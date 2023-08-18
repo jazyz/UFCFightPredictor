@@ -88,7 +88,8 @@ def calculate_power_rating_with_history(fighter_stats, attribute_weights):
         past_fights = fighter_with_fights.fights[-5:]
 
         for idx, fight in enumerate(past_fights):
-            fight_impact = (1 if fight.result == "win" else -1) * (1 * (5 - idx))
+            fight_impact = (1 if fight.result ==
+                            "win" else -1) * (1 * (5 - idx))
 
             if fight.time and ":" in fight.time and fight.round:
                 minutes, seconds = fight.time.split(":")
@@ -99,6 +100,20 @@ def calculate_power_rating_with_history(fighter_stats, attribute_weights):
                 round_impact = (1 - round_number / 5) * 0.1
 
                 fight_impact *= time_impact + round_impact
+
+            opp = fight.opponent
+            # make algo so that if you lose to a good fighter it doesn't affect that much
+            # but if you lose to a bad fighter you lose a lot
+            opp_record = opp.record.split("-")
+            opp_wins = float(opp_record[0])
+            opp_losses = float(opp_record[1])
+            opp_draws = float(opp_record[2])
+            experience = opp_wins + opp_losses + opp_draws
+            bias = opp_wins / experience
+            if fight.result == "win":
+                fight_impact *= bias
+            else:
+                fight_impact *= (1 - bias)
 
             power_rating += fight_impact
 
