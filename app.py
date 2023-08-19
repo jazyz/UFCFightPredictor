@@ -88,8 +88,7 @@ def calculate_power_rating_with_history(fighter_stats, attribute_weights):
         past_fights = fighter_with_fights.fights[0:5]
 
         for idx, fight in enumerate(past_fights):
-            fight_impact = (1 if fight.result ==
-                            "win" else -1) * (1 * (5 - idx))
+            fight_impact = (1 if fight.result == "win" else -1) * (1 * (100 - idx))
 
             if fight.time and ":" in fight.time and fight.round:
                 minutes, seconds = fight.time.split(":")
@@ -102,6 +101,7 @@ def calculate_power_rating_with_history(fighter_stats, attribute_weights):
                 fight_impact *= time_impact + round_impact
 
             opp = get_fighter_by_name(fight.opponent)
+            opp_name=fight.opponent
             # make algo so that if you lose to a good fighter it doesn't affect that much
             # but if you lose to a bad fighter you lose a lot
             opp_record = opp.record.replace("(","-")
@@ -122,14 +122,14 @@ def calculate_power_rating_with_history(fighter_stats, attribute_weights):
 
 
 attribute_weights = {
-    "SLpM": 0.1,
-    "Str_Acc": 0.2,
-    "SApM": 0.1,
-    "Str_Def": 0.2,
-    "TD_Avg": 0.2,
-    "TD_Acc": 0.2,
-    "TD_Def": 0.2,  
-    "Sub_Avg": 0.2,
+    "SLpM": 1,
+    "Str_Acc": 3,
+    "SApM": -1,
+    "Str_Def": 3,
+    "TD_Avg": 2,
+    "TD_Acc": 3,
+    "TD_Def": 3,  
+    "Sub_Avg": 5,
     "Weight": 0.2,
 }
 
@@ -144,16 +144,31 @@ def predictOutcome(fighter1, fighter2):
 
 
 def get_fighter_by_name(fighter_name):
+    # fighter_name=fighter_name.title()
     with app.app_context():
         fighter = Fighter.query.filter_by(name=fighter_name).first()
         return fighter
 
 
 def main():
-    fighter1 = get_fighter_by_name("Aljamain Sterling")
-    fighter2 = get_fighter_by_name("Sean O'Malley")
+    fighter1 = get_fighter_by_name("Karine Silva")
+    fighter2 = get_fighter_by_name("Maryna Moroz")
     print(predictOutcome(fighter1, fighter2))
 
 
 if __name__ == "__main__":
     main()
+
+# UFC 292
+# Sterling
+# Weili
+# Garry
+# Bautista
+# Vera
+# Weidman (underdog)
+# Rodrigues
+# Hubbard
+# Katona
+# Petroski
+# Silva
+# Silva
