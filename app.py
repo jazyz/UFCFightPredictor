@@ -85,7 +85,7 @@ def calculate_power_rating_with_history(fighter_stats, attribute_weights):
                 value = clean_and_convert(value)
                 power_rating += weight * value
 
-        past_fights = fighter_with_fights.fights[-5:]
+        past_fights = fighter_with_fights.fights[0:5]
 
         for idx, fight in enumerate(past_fights):
             fight_impact = (1 if fight.result ==
@@ -101,10 +101,11 @@ def calculate_power_rating_with_history(fighter_stats, attribute_weights):
 
                 fight_impact *= time_impact + round_impact
 
-            opp = fight.opponent
+            opp = get_fighter_by_name(fight.opponent)
             # make algo so that if you lose to a good fighter it doesn't affect that much
             # but if you lose to a bad fighter you lose a lot
-            opp_record = opp.record.split("-")
+            opp_record = opp.record.replace("(","-")
+            opp_record = opp_record.split("-")
             opp_wins = float(opp_record[0])
             opp_losses = float(opp_record[1])
             opp_draws = float(opp_record[2])
@@ -121,14 +122,14 @@ def calculate_power_rating_with_history(fighter_stats, attribute_weights):
 
 
 attribute_weights = {
-    "SLpM": 0.2,
-    "Str_Acc": 0.1,
+    "SLpM": 0.1,
+    "Str_Acc": 0.2,
     "SApM": 0.1,
-    "Str_Def": 0.15,
-    "TD_Avg": 0.1,
-    "TD_Acc": 0.05,
-    "TD_Def": 0.05,
-    "Sub_Avg": 0.15,
+    "Str_Def": 0.2,
+    "TD_Avg": 0.2,
+    "TD_Acc": 0.2,
+    "TD_Def": 0.2,  
+    "Sub_Avg": 0.2,
     "Weight": 0.2,
 }
 
