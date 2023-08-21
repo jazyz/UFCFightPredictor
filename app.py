@@ -67,76 +67,86 @@ def clean_and_convert(value):
         return 0.0
 
 
-def calculate_power_rating_with_history(fighter_stats, attribute_weights):
+def add_fight_history(fighter, past_fights):
+    power_rating = 0
+    for idx, fight in enumerate(past_fights):
+        fight_impact = (1 if fight.result == "win" else -1) * (1 * (25 - 3 * idx))
+        # probably replace fight time with decision method instead
+
+        opp = get_fighter_by_name(fight.opponent)
+        opp_name = fight.opponent
+        # make algo so that if you lose to a good fighter it doesn't affect that much
+        # but if you lose to a bad fighter you lose a lot
+        opp_record = opp.record.replace("(", "-")
+        opp_record = opp_record.split("-")
+        opp_wins = float(opp_record[0])
+        opp_losses = float(opp_record[1])
+        opp_draws = float(opp_record[2])
+        experience = opp_wins + opp_losses + opp_draws
+        if experience == 0:
+            continue
+        bias = opp_wins / experience
+        # calculate oppstrength based on stats
+        # oppstats=calculate_power_with_stats(opp)
+        # mystats=calculate_power_with_stats(fighter)
+        # if oppstats==0:
+        #     return 0
+        # bias=mystats/(oppstats+mystats)
+        if fight.result == "win":
+            fight_impact *= bias
+        else:
+            fight_impact *= 1 - bias
+
+        power_rating += fight_impact
+    return power_rating
+
+
+def calculate_power_with_stats(fighter):
+    power_rating = 0
+    for attribute, weight in attribute_weights.items():
+        if hasattr(fighter, attribute):
+            value = getattr(fighter, attribute)
+            value = clean_and_convert(value)
+            power_rating += weight * value
+    return power_rating
+
+
+def calculate_power_rating(fighter_stats):
     power_rating = 0
 
     with app.app_context():
         session = db.session
-        fighter_with_fights = (
+        fighter = (
             session.query(Fighter)
             .filter_by(id=fighter_stats.id)
             .options(db.joinedload(Fighter.fights))
             .first()
         )
-
-        for attribute, weight in attribute_weights.items():
-            if hasattr(fighter_with_fights, attribute):
-                value = getattr(fighter_with_fights, attribute)
-                value = clean_and_convert(value)
-                power_rating += weight * value
-
-        past_fights = fighter_with_fights.fights[0:5]
-
-        for idx, fight in enumerate(past_fights):
-            fight_impact = (1 if fight.result == "win" else -1) * (1 * (100 - idx))
-
-            if fight.time and ":" in fight.time and fight.round:
-                minutes, seconds = fight.time.split(":")
-                time_in_seconds = int(minutes) * 60 + int(seconds)
-                time_impact = (1 / (time_in_seconds + 1)) * 0.2
-
-                round_number = int(fight.round)
-                round_impact = (1 - round_number / 5) * 0.1
-
-                fight_impact *= time_impact + round_impact
-
-            opp = get_fighter_by_name(fight.opponent)
-            opp_name=fight.opponent
-            # make algo so that if you lose to a good fighter it doesn't affect that much
-            # but if you lose to a bad fighter you lose a lot
-            opp_record = opp.record.replace("(","-")
-            opp_record = opp_record.split("-")
-            opp_wins = float(opp_record[0])
-            opp_losses = float(opp_record[1])
-            opp_draws = float(opp_record[2])
-            experience = opp_wins + opp_losses + opp_draws
-            bias = opp_wins / experience
-            if fight.result == "win":
-                fight_impact *= bias
-            else:
-                fight_impact *= (1 - bias)
-
-            power_rating += fight_impact
+        past_fights = fighter.fights[0:5]
+        if len(past_fights) < 5:
+            return 0
+        power_rating += calculate_power_with_stats(fighter)
+        power_rating += add_fight_history(fighter, past_fights)
 
     return power_rating
 
 
 attribute_weights = {
-    "SLpM": 1,
+    "SLpM": 3,
     "Str_Acc": 3,
-    "SApM": -1,
-    "Str_Def": 3,
+    "SApM": -3,
+    "Str_Def": 5,
     "TD_Avg": 2,
-    "TD_Acc": 3,
-    "TD_Def": 3,  
-    "Sub_Avg": 5,
-    "Weight": 0.2,
+    "TD_Acc": 2,
+    "TD_Def": 5,
+    "Sub_Avg": 3,
+    # "Weight": 0.2,
 }
 
 
 def predictOutcome(fighter1, fighter2):
-    power1 = calculate_power_rating_with_history(fighter1, attribute_weights)
-    power2 = calculate_power_rating_with_history(fighter2, attribute_weights)
+    power1 = calculate_power_rating(fighter1)
+    power2 = calculate_power_rating(fighter2)
     if power1 > power2:
         return fighter1.name
     else:
@@ -150,25 +160,45 @@ def get_fighter_by_name(fighter_name):
         return fighter
 
 
+def get_all_fighters():
+    with app.app_context():
+        fighters = Fighter.query.all()
+        p4p = []
+        for fighter in fighters:
+            power = calculate_power_rating(fighter)
+            p4p.append([power, fighter.name])
+        p4p.sort(key=lambda x: (x[0], x[1]), reverse=True)
+
+        for idx, (power, fighter_name) in enumerate(p4p[:10], start=1):
+            print(f"{idx}. Power: {power:.2f}, Fighter: {fighter_name}")
+
+
+def predict_event():
+    fights = [["Aljamain Sterling", "Sean O'Malley"]]
+    for fight in fights:
+        fighter1 = get_fighter_by_name(fight[0])
+        fighter2 = get_fighter_by_name(fight[1])
+        print(predictOutcome(fighter1, fighter2))
+
+
 def main():
-    fighter1 = get_fighter_by_name("Karine Silva")
-    fighter2 = get_fighter_by_name("Maryna Moroz")
-    print(predictOutcome(fighter1, fighter2))
+    get_all_fighters()
+    # predict_event()
 
 
 if __name__ == "__main__":
     main()
 
 # UFC 292
-# Sterling
-# Weili
-# Garry
-# Bautista
-# Vera
-# Weidman (underdog)
-# Rodrigues
-# Hubbard
-# Katona
-# Petroski
-# Silva
-# Silva
+# Sterling wrong
+# Weili correct
+# Garry correct
+# Bautista correct
+# Vera correct
+# Weidman (underdog) wrong
+# Rodrigues correct
+# Hubbard wrong
+# Katona correct
+# Petroski correct
+# Silva correct
+# Silva correct
