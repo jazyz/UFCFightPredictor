@@ -1,48 +1,10 @@
 from flask import Flask
+from models import Fighter, Fight, db
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///fighters.db"
-db = SQLAlchemy(app)
-
-
-class Fighter(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
-    record = db.Column(db.String)
-    SLpM = db.Column(db.Float)
-    Str_Acc = db.Column(db.String)
-    SApM = db.Column(db.Float)
-    Str_Def = db.Column(db.String)
-    TD_Avg = db.Column(db.Float)
-    TD_Acc = db.Column(db.String)
-    TD_Def = db.Column(db.String)
-    Sub_Avg = db.Column(db.Float)
-    Height = db.Column(db.String)
-    Weight = db.Column(db.String)
-    Reach = db.Column(db.String)
-    Stance = db.Column(db.String)
-    DOB = db.Column(db.String)
-
-    fights = db.relationship("Fight", back_populates="fighter")
-
-
-class Fight(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    fighter_id = db.Column(db.Integer, db.ForeignKey("fighter.id"))
-    result = db.Column(db.String)
-    opponent = db.Column(db.String)
-    KD = db.Column(db.String)
-    STR = db.Column(db.String)
-    TD = db.Column(db.String)
-    SUB = db.Column(db.String)
-    event = db.Column(db.String)
-    date = db.Column(db.String)
-    method = db.Column(db.String)
-    round = db.Column(db.String)
-    time = db.Column(db.String)
-
-    fighter = db.relationship("Fighter", back_populates="fights")
+db.init_app(app)
 
 
 def remove_after_first_space(input_string):
@@ -111,22 +73,13 @@ def calculate_power_with_stats(fighter):
     return power_rating
 
 
-def calculate_power_rating(fighter_stats):
+def calculate_power_rating(fighter):
     power_rating = 0
-
-    with app.app_context():
-        session = db.session
-        fighter = (
-            session.query(Fighter)
-            .filter_by(id=fighter_stats.id)
-            .options(db.joinedload(Fighter.fights))
-            .first()
-        )
-        past_fights = fighter.fights[0:5]
-        if len(past_fights) < 5:
-            return 0
-        power_rating += calculate_power_with_stats(fighter)
-        power_rating += add_fight_history(fighter, past_fights)
+    past_fights = fighter.fights[0:5]
+    # if len(past_fights) < 5:
+    #     return 0
+    power_rating += calculate_power_with_stats(fighter)
+    power_rating += add_fight_history(fighter, past_fights)
 
     return power_rating
 
@@ -155,35 +108,38 @@ def predictOutcome(fighter1, fighter2):
 
 def get_fighter_by_name(fighter_name):
     # fighter_name=fighter_name.title()
-    with app.app_context():
-        fighter = Fighter.query.filter_by(name=fighter_name).first()
-        return fighter
+    fighter = Fighter.query.filter_by(name=fighter_name).first()
+    return fighter
 
 
 def get_all_fighters():
     with app.app_context():
         fighters = Fighter.query.all()
         p4p = []
+        fightcnt=0
         for fighter in fighters:
             power = calculate_power_rating(fighter)
+            total_fights = len(fighter.fights)
+            fightcnt+=total_fights
             p4p.append([power, fighter.name])
         p4p.sort(key=lambda x: (x[0], x[1]), reverse=True)
-
+        print(fightcnt)
         for idx, (power, fighter_name) in enumerate(p4p[:10], start=1):
             print(f"{idx}. Power: {power:.2f}, Fighter: {fighter_name}")
 
 
 def predict_event():
-    fights = [["Aljamain Sterling", "Sean O'Malley"]]
+    fights = [["Max Holloway", "Chan Sung Jung"],["Anthony Smith", "Ryan Spann"],["Alex Caceres", "Giga Chikadze"],["Fernie Garcia", "Rinya Nakamura"],["Erin Blanchfield", "Taila Santos"],["Parker Porter", "Junior Tafa"],["Lukasz Brzeski", "Waldo Cortes-Acosta"],["Garrett Armfield", "Toshiomi Kazama"],["Michal Oleksiejczuk", "Chidi Njokuani"],["Rolando Bedoya", "Song Kenan"],["Billy Goff", "Yusaku Kinoshita"],["JJ Aldrich", "Liang Na"],["Jarno Errens", "SeungWoo Choi"]]
     for fight in fights:
         fighter1 = get_fighter_by_name(fight[0])
         fighter2 = get_fighter_by_name(fight[1])
-        print(predictOutcome(fighter1, fighter2))
+        print(predictOutcome(fighter1,fighter2))
 
 
 def main():
-    get_all_fighters()
-    # predict_event()
+    with app.app_context():
+        predict_event()
+        # get_all_fighters()
 
 
 if __name__ == "__main__":
@@ -202,3 +158,18 @@ if __name__ == "__main__":
 # Petroski correct
 # Silva correct
 # Silva correct
+
+# UFC Singapore
+# Max Holloway
+# Ryan Spann
+# Alex Caceres
+# Rinya Nakamura
+# Erin Blanchfield
+# Parker Porter
+# Waldo Cortes-Acosta
+# Toshiomi Kazama
+# Michal Oleksiejczuk 
+# Song Kenan 
+# Billy Goff 
+# JJ Aldrich 
+# SeungWoo Choi
