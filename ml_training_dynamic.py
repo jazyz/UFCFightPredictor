@@ -1,11 +1,11 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder, MinMaxScaler
+from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
-
+# Load the training data
 data = pd.read_csv("dynamicfightstats.csv")
 
 selected_columns = [
@@ -30,21 +30,14 @@ selected_columns = [
     "result",
 ]
 
-data.dropna(
-    subset=selected_columns,
-    inplace=True,
-)
-
+data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
-print(len(data))
+
 label_encoder = LabelEncoder()
 data["result"] = label_encoder.fit_transform(data["result"])
 
 X = data.drop("result", axis=1)
 y = data["result"]
-
-# scaler = MinMaxScaler(feature_range=(-1, 1))
-# X_scaled = scaler.fit_transform(X)
 
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
@@ -66,11 +59,43 @@ feature_importance_df = pd.DataFrame(
 
 feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
 
-plt.figure(figsize=(10, 6))
-plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
-plt.xlabel("Importance")
-plt.ylabel("Feature")
-plt.title("Feature Importance")
-plt.show()
+# plt.figure(figsize=(10, 6))
+# plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
+# plt.xlabel("Importance")
+# plt.ylabel("Feature")
+# plt.title("Feature Importance")
+# plt.show()
+
+# Load the prediction data
+predict_data = pd.read_csv("predictFights.csv")
+print(predict_data)
+
+# Drop missing values
+predict_data.dropna(subset=selected_columns, inplace=True)
+predict_data = predict_data[selected_columns]
+
+# Prepare features for prediction
+X_predict = predict_data.drop("result", axis=1)
+
+# Make predictions on new data
+y_pred = model.predict(X_predict)
+
+# Predict class probabilities for each sample
+class_probabilities = model.predict_proba(X_predict)
+
+# Decode the predictions back to labels
+predicted_results = label_encoder.inverse_transform(y_pred)
+
+# Add predicted results and class probabilities to the prediction data
+predict_data["predicted_result"] = predicted_results
+for i, label in enumerate(label_encoder.classes_):
+    predict_data[f"probability_{label}"] = class_probabilities[:, i]
+
+# Print prediction data with predicted results and class probabilities
+print(predict_data)
+
+
+
+
 
 
