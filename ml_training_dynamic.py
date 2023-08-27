@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 
 data = pd.read_csv("dynamicfightstats.csv")
+data.replace("--", pd.NA, inplace=True)
 
 selected_columns = [
     "fighter_kd_differential",
@@ -18,6 +19,7 @@ selected_columns = [
     "fighter_totalfights",
     "fighter_totalwins",
     "fighter_titlefights",
+    "fighter_dob",
     "opponent_kd_differential",
     "opponent_str_differential",
     "opponent_td_differential",
@@ -27,6 +29,7 @@ selected_columns = [
     "opponent_totalfights",
     "opponent_totalwins",
     "opponent_titlefights",
+    "opponent_dob",
     "result",
 ]
 
@@ -37,6 +40,10 @@ data.dropna(
 
 data = data[selected_columns]
 print(len(data))
+
+data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
+data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
+
 label_encoder = LabelEncoder()
 data["result"] = label_encoder.fit_transform(data["result"])
 
