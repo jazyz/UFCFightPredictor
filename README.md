@@ -1,13 +1,10 @@
 # UFC Fight Predictor
 
+v1:
 75% Accuracy on UFC 292 (9/12 fights predicted correctly) using power rating algorithm
 
+v2:
 Achieved 67% accuracy on test set using a machine learning RandomForest model
 
-## Possible problems
-
-data training:
-
-- all fights are added after your first fight, which may show a potential problem
-  - stats are very volatile in the first few fights
-  - solution could be to "average opponent experience" to take into account how good the opponents were
+v3:
+Achieved 68% accuracy on test set and 77% accuracy on recent UFC Fight Night: Max Halloway vs. Korean Zombie using LGBM model
