@@ -96,9 +96,3 @@ for i, label in enumerate(label_encoder.classes_):
     predict_data[f"probability_{label}"] = class_probabilities[:, i]
 
 print(predict_data)
-
-
-
-
-
-
