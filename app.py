@@ -160,16 +160,16 @@ if __name__ == "__main__":
 # Silva correct
 
 # UFC Singapore
-# Max Holloway
-# Ryan Spann
-# Alex Caceres
-# Rinya Nakamura
-# Erin Blanchfield
-# Parker Porter
-# Waldo Cortes-Acosta
-# Toshiomi Kazama
-# Michal Oleksiejczuk 
-# Song Kenan 
-# Billy Goff 
-# JJ Aldrich 
-# SeungWoo Choi
+# Max Holloway correct
+# Ryan Spann wrong
+# Alex Caceres wrong 
+# Rinya Nakamura correct 
+# Erin Blanchfield correct
+# Parker Porter wrong
+# Waldo Cortes-Acosta correct
+# Toshiomi Kazama wrong
+# Michal Oleksiejczuk correct
+# Song Kenan correct
+# Billy Goff correct
+# JJ Aldrich correct
+# SeungWoo Choi correct

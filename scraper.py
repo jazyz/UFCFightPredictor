@@ -6,7 +6,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///fighters.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///detailedfighters.db'
 db = SQLAlchemy(app)
 
 class Fighter(db.Model):
@@ -34,10 +34,15 @@ class Fight(db.Model):
     fighter_id = db.Column(db.Integer, db.ForeignKey('fighter.id'))
     result = db.Column(db.String)
     opponent = db.Column(db.String)
-    KD = db.Column(db.String)
-    STR = db.Column(db.String)
-    TD = db.Column(db.String)
-    SUB = db.Column(db.String)
+    fighterKD = db.Column(db.String)
+    fighterSTR = db.Column(db.String)
+    fighterTD = db.Column(db.String)
+    fighterSUB = db.Column(db.String)
+    opponentKD = db.Column(db.String)
+    opponentSTR = db.Column(db.String)
+    opponentTD = db.Column(db.String)
+    opponentSUB = db.Column(db.String)
+    titlefight = db.Column(db.Boolean)
     event = db.Column(db.String)
     date = db.Column(db.String)
     method = db.Column(db.String)
@@ -66,7 +71,7 @@ def scrape_fighter_records(fighter_links):
                 'SLpM': 'SLpM',
                 'Str. Acc.': 'Str_Acc',
                 'SApM': 'SApM',
-                'Str. Def.': 'Str_Def',
+                'Str. Def': 'Str_Def',
                 'TD Avg.': 'TD_Avg',
                 'TD Acc.': 'TD_Acc',
                 'TD Def.': 'TD_Def',
@@ -121,12 +126,17 @@ def scrape_fighter_records(fighter_links):
                         fight_info = {
                             "result": cols[0].find('a').text.strip(),
                             "opponent": cols[1].find_all('a')[1].text.strip(),
-                            "KD": cols[2].find('p').text.strip(),
-                            "STR": cols[3].find('p').text.strip(),
-                            "TD": cols[4].find('p').text.strip(),
-                            "SUB": cols[5].find('p').text.strip(),
+                            "fighterKD": cols[2].find_all('p')[0].text.strip(),
+                            "opponentKD": cols[2].find_all('p')[1].text.strip(),
+                            "fighterSTR": cols[3].find_all('p')[0].text.strip(),
+                            "opponentSTR": cols[3].find_all('p')[1].text.strip(),
+                            "fighterTD": cols[4].find_all('p')[0].text.strip(),
+                            "opponentTD": cols[4].find_all('p')[1].text.strip(),
+                            "fighterSUB": cols[5].find_all('p')[0].text.strip(),
+                            "opponentSUB": cols[5].find_all('p')[1].text.strip(),
                             "event": cols[6].find('a').text.strip(),
                             "date": cols[6].find_next('p').find_next('p').text.strip(),
+                            "titlefight": cols[6].find_next('p').find_next('p').find('img')!=None,
                             "method": cols[7].find('p').text.strip(),
                             "round": cols[8].find('p').text.strip(),
                             "time": cols[9].find('p').text.strip(),
@@ -186,10 +196,15 @@ def write_fighter_details_to_file(fighter, file):
     for fight in fighter.fights:
         file.write(f"Opponent: {fight.opponent}\n")
         file.write(f"Result: {fight.result}\n")
-        file.write(f"KD: {fight.KD}\n")
-        file.write(f"STR: {fight.STR}\n")
-        file.write(f"TD: {fight.TD}\n")
-        file.write(f"SUB: {fight.SUB}\n")
+        file.write(f"fighterKD: {fight.fighterKD}\n")
+        file.write(f"fighterSTR: {fight.fighterSTR}\n")
+        file.write(f"fighterTD: {fight.fighterTD}\n")
+        file.write(f"fighterSUB: {fight.fighterSUB}\n")
+        file.write(f"opponentKD: {fight.opponentKD}\n")
+        file.write(f"opponentSTR: {fight.opponentSTR}\n")
+        file.write(f"opponentTD: {fight.opponentTD}\n")
+        file.write(f"opponentSUB: {fight.opponentSUB}\n")
+        file.write(f"titlefight: {fight.titlefight}\n")
         file.write(f"Event: {fight.event}\n")
         file.write(f"Date: {fight.date}\n")
         file.write(f"Method: {fight.method}\n")
@@ -233,7 +248,7 @@ def main():
     
 
 if __name__ == "__main__":
-    
-    main()
-    print_db()
     # delete_db()
+    # main()
+    print_db()
+    
