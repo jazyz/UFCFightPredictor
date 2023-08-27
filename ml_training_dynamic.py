@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
 
 data = pd.read_csv("dynamicfightstats.csv")
 
@@ -56,6 +57,15 @@ feature_importance_df = pd.DataFrame(
 )
 
 feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
+
+
+plt.figure(figsize=(10, 6))
+plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
+plt.xlabel("Importance")
+plt.ylabel("Feature")
+plt.title("Feature Importance")
+plt.show()
+
 
 predict_data = pd.read_csv("predictFights.csv")
 print(predict_data)
