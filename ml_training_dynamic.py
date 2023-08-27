@@ -80,6 +80,9 @@ print(predict_data)
 predict_data.dropna(subset=selected_columns, inplace=True)
 predict_data = predict_data[selected_columns]
 
+predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
+predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year
+
 X_predict = predict_data.drop("result", axis=1)
 
 y_pred = model.predict(X_predict)
