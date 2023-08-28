@@ -1,0 +1,24 @@
+Accuracy: 0.68
+   fighter_kd_differential  fighter_str_differential  fighter_td_differential  \
+0                -0.263158                 30.631579                 0.526316   
+
+   fighter_sub_differential  fighter_winrate  fighter_winstreak  \
+0                  0.631579         0.789474                  4   
+
+   fighter_totalfights  fighter_totalwins  fighter_titlefights  \
+0                   19                 15                    5   
+
+   opponent_kd_differential  opponent_str_differential  \
+0                  0.666667                      32.75   
+
+   opponent_td_differential  opponent_sub_differential  opponent_winrate  \
+0                     -0.75                       0.25          0.833333   
+
+   opponent_winstreak  opponent_totalfights  opponent_totalwins  \
+0                   5                    12                  10   
+
+   opponent_titlefights      result predicted_result  probability_draw  \
+0                     1  not needed             loss          0.000009   
+
+   probability_loss  probability_nc  probability_win  
+0          0.650651        0.000457         0.348883  
