@@ -1,5 +1,5 @@
 from flask import Flask
-from models import Fighter, Fight, db
+from backend.models import Fighter, Fight, db
 from flask_sqlalchemy import SQLAlchemy
 import csv
 import re

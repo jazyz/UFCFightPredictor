@@ -301,7 +301,6 @@ def main():
     with app2.app_context():
         db2.drop_all()
     fights = [
-        ["Israel Adesanya", "Sean Strickland"],
         ["Aljamain Sterling", "Sean O'Malley"],
         ["Zhang Weili", "Amanda Lemos"],
         ["Ian Garry", "Neil Magny"],
