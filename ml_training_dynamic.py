@@ -39,7 +39,7 @@ selected_columns = [
 
 data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
-
+data = data[(data['fighter_totalfights'] > 2) & (data['opponent_totalfights'] > 2)]
 print(len(data))
 data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
 data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
@@ -60,7 +60,7 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 
 accuracy = accuracy_score(y_test, y_pred)
-print(f"Accuracy: {accuracy:.2f}")
+print(f"Accuracy: {accuracy:.4f}")
 
 output_file = open("ml_output.txt", "w")
 original_stdout = sys.stdout
