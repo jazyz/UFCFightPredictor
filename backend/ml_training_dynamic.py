@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("backend/dynamicfightstats.csv")
 data.replace("--", pd.NA, inplace=True)
-
+    
 selected_columns = [
     "fighter_kd_differential",
     "fighter_str_differential",
@@ -20,7 +20,6 @@ selected_columns = [
     "fighter_totalfights",
     "fighter_totalwins",
     "fighter_titlefights",
-    # "fighter_dob",
     "opponent_kd_differential",
     "opponent_str_differential",
     "opponent_td_differential",
@@ -30,15 +29,21 @@ selected_columns = [
     "opponent_totalfights",
     "opponent_totalwins",
     "opponent_titlefights",
-    # "opponent_dob",
+    "fighter_dob",
+    "opponent_dob",
     "result",
 ]
 
+# if predicting past event
+# event_to_drop = "UFC 292: Sterling vs. O'Malley"
+# data = data[data['event'] != event_to_drop]
+
 data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
-
-# data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
-# data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
+data = data[(data['fighter_totalfights'] > 2) & (data['opponent_totalfights'] > 2)]
+print(len(data))
+data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
+data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
 
 label_encoder = LabelEncoder()
 data["result"] = label_encoder.fit_transform(data["result"])
@@ -55,22 +60,29 @@ model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
 
-output_file = open("output.txt", "w")
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.4f}")
+
+output_file = open("ml_output.txt", "w")
 original_stdout = sys.stdout
 sys.stdout = output_file
 pd.set_option("display.max_columns", None)
 
+<<<<<<< HEAD:backend/ml_training_dynamic.py
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.2f}")
 
 predict_data = pd.read_csv("backend/predictFights.csv")
+=======
+predict_data = pd.read_csv("predict_fights.csv")
+>>>>>>> 7568cef8ad8d1606357b4c16fb12a6aedad28976:ml_training_dynamic.py
 predict_data.replace("--", pd.NA, inplace=True)
 
 predict_data.dropna(subset=selected_columns, inplace=True)
 predict_data = predict_data[selected_columns]
 
-# predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
-# predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year
+predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
+predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year
 
 X_predict = predict_data.drop("result", axis=1)
 
