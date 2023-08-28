@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("dynamicfightstats.csv")
 data.replace("--", pd.NA, inplace=True)
-
+    
 selected_columns = [
     "fighter_kd_differential",
     "fighter_str_differential",
@@ -19,7 +19,6 @@ selected_columns = [
     "fighter_totalfights",
     "fighter_totalwins",
     "fighter_titlefights",
-    # "fighter_dob",
     "opponent_kd_differential",
     "opponent_str_differential",
     "opponent_td_differential",
@@ -29,15 +28,19 @@ selected_columns = [
     "opponent_totalfights",
     "opponent_totalwins",
     "opponent_titlefights",
-    # "opponent_dob",
+    "fighter_dob",
+    "opponent_dob",
     "result",
 ]
 
+event_to_drop = "UFC 292: Sterling vs. O'Malley"
+data = data[data['event'] != event_to_drop]
 data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
 
-# data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
-# data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
+print(len(data))
+data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
+data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
 
 label_encoder = LabelEncoder()
 data["result"] = label_encoder.fit_transform(data["result"])
@@ -68,8 +71,8 @@ predict_data.replace("--", pd.NA, inplace=True)
 predict_data.dropna(subset=selected_columns, inplace=True)
 predict_data = predict_data[selected_columns]
 
-# predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
-# predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year
+predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
+predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year
 
 X_predict = predict_data.drop("result", axis=1)
 

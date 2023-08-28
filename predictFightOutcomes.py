@@ -133,9 +133,13 @@ def fun(fighter_name1, fighter_name2):
         # fighter 1
         fighter=Fighter.query.filter_by(name=fighter_name1).first()
         fights = fighter.fights
+        fights=list(reversed(fights))
+        n=len(fights)
+        cnt=0
         for fight in fights:
             opponent = Fighter.query.filter_by(name=fight.opponent).first()
-                
+            if cnt==n-1:
+                break
             if fight.fighterKD =="--" or fight.fighterSTR =="--" or fight.fighterTD =="--" or fight.fighterSUB =="--":
                 continue
 
@@ -151,14 +155,19 @@ def fun(fighter_name1, fighter_name2):
                 fighter_stats[fighter.name]["winstreak"] = 0
             if fight.titlefight:
                 fighter_stats[fighter.name]["titlefights"] += 1
+            cnt+=1
 
     with app.app_context():
         # fighter 2
         fighter=Fighter.query.filter_by(name=fighter_name2).first()
         fights = fighter.fights
+        fights=list(reversed(fights))
+        n=len(fights)
+        cnt=0
         for fight in fights:
             opponent = Fighter.query.filter_by(name=fight.opponent).first()
-                
+            if cnt==n-1:
+                break
             if fight.fighterKD =="--" or fight.fighterSTR =="--" or fight.fighterTD =="--" or fight.fighterSUB =="--":
                 continue
 
@@ -174,6 +183,7 @@ def fun(fighter_name1, fighter_name2):
                 fighter_stats[fighter.name]["winstreak"] = 0
             if fight.titlefight:
                 fighter_stats[fighter.name]["titlefights"] += 1
+            cnt+=1
     
     # fighter1 = fighter, fighter2 = opponent
     with app.app_context():
@@ -320,20 +330,20 @@ def main():
     with app2.app_context():
         db2.drop_all()
     fights = [
-        ["Max Holloway", "Chan Sung Jung"],
-        ["Anthony Smith", "Ryan Spann"],
-        ["Alex Caceres", "Giga Chikadze"],
-        ["Fernie Garcia", "Rinya Nakamura"],
-        ["Erin Blanchfield", "Taila Santos"],
-        ["Parker Porter", "Junior Tafa"],
-        ["Lukasz Brzeski", "Waldo Cortes-Acosta"],
-        ["Garrett Armfield", "Toshiomi Kazama"],
-        ["Michal Oleksiejczuk", "Chidi Njokuani"],
-        ["Rolando Bedoya", "Song Kenan"],
-        ["Billy Goff", "Yusaku Kinoshita"],
-        ["JJ Aldrich", "Liang Na"],
-        ["Jarno Errens", "SeungWoo Choi"],
+        ["Aljamain Sterling", "Sean O'Malley"],
+        ["Zhang Weili", "Amanda Lemos"],
+        ["Ian Garry", "Neil Magny"],
+        ["Mario Bautista", "Da'Mon Blackshear"],
+        ["Marlon Vera", "Pedro Munhoz"],
+        ["Chris Weidman", "Brad Tavares"],
+        ["Gregory Rodrigues", "Denis Tiuliulin"],
+        ["Kurt Holobaugh", "Austin Hubbard"],
+        ["Brad Katona", "Cody Gibson"],
+        ["Gerald Meerschaert", "Andre Petroski"],
+        ["Andrea Lee", "Natalia Silva"],
+        ["Maryna Moroz", "Karine Silva"],
     ]
+ 
     for fight in fights:
         fun(fight[0],fight[1])
     export_to_csv("predictFights.csv")
@@ -347,5 +357,6 @@ if __name__ == "__main__":
 
 # UFC Fight Night Holloway vs Zombie
 # fights = [["Max Holloway", "Chan Sung Jung"],["Anthony Smith", "Ryan Spann"],["Alex Caceres", "Giga Chikadze"],["Fernie Garcia", "Rinya Nakamura"],["Erin Blanchfield", "Taila Santos"],["Parker Porter", "Junior Tafa"],["Lukasz Brzeski", "Waldo Cortes-Acosta"],["Garrett Armfield", "Toshiomi Kazama"],["Michal Oleksiejczuk", "Chidi Njokuani"],["Rolando Bedoya", "Song Kenan"],["Billy Goff", "Yusaku Kinoshita"],["JJ Aldrich", "Liang Na"],["Jarno Errens", "SeungWoo Choi"]]
+
 
 # UFC 292
