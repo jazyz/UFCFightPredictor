@@ -33,8 +33,10 @@ selected_columns = [
     "result",
 ]
 
-event_to_drop = "UFC 292: Sterling vs. O'Malley"
-data = data[data['event'] != event_to_drop]
+# if predicting past event
+# event_to_drop = "UFC 292: Sterling vs. O'Malley"
+# data = data[data['event'] != event_to_drop]
+
 data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
 
@@ -57,15 +59,15 @@ model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
 
-output_file = open("output.txt", "w")
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+
+output_file = open("ml_output.txt", "w")
 original_stdout = sys.stdout
 sys.stdout = output_file
 pd.set_option("display.max_columns", None)
 
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Accuracy: {accuracy:.2f}")
-
-predict_data = pd.read_csv("predictFights.csv")
+predict_data = pd.read_csv("predict_fights.csv")
 predict_data.replace("--", pd.NA, inplace=True)
 
 predict_data.dropna(subset=selected_columns, inplace=True)

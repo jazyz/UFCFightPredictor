@@ -97,13 +97,14 @@ class FightStats(db2.Model):
 # .csv 
 def fun(fighter_name1, fighter_name2):
     fighter_stats = dict()
-    fightdict = dict()
+    matchup=list()
     with app.app_context():
         fighter1 = Fighter.query.filter_by(name=fighter_name1).first()
         fighter2 = Fighter.query.filter_by(name=fighter_name2).first()
         if not fighter1 or not fighter2:
             return  # Handle case where one or both fighters are not found
-        
+        matchup.append(fighter1)
+        matchup.append(fighter2)
         fighter_stats[fighter1.name] = {
             "kd_differential": 0,
             "str_differential": 0,
@@ -125,65 +126,35 @@ def fun(fighter_name1, fighter_name2):
             "totalwins": 0,
             "totalfights": 0,
             "titlefights": 0
-        }
-        
-    with app2.app_context():
-        db2.create_all()
-    with app.app_context():
-        # fighter 1
-        fighter=Fighter.query.filter_by(name=fighter_name1).first()
-        fights = fighter.fights
-        fights=list(reversed(fights))
-        n=len(fights)
-        cnt=0
-        for fight in fights:
-            opponent = Fighter.query.filter_by(name=fight.opponent).first()
-            if cnt==n-1:
-                break
-            if fight.fighterKD =="--" or fight.fighterSTR =="--" or fight.fighterTD =="--" or fight.fighterSUB =="--":
-                continue
+        }        
+        with app2.app_context():
+            db2.create_all()
+        for fighter in matchup:
+            fights = fighter.fights
+            fights=list(reversed(fights))
+            n=len(fights)
+            cnt=0
+            for fight in fights:
+                opponent = Fighter.query.filter_by(name=fight.opponent).first()
+                # if predicting the last fight of a fighter
+                # if cnt==n-1:
+                #     break
+                if fight.fighterKD =="--" or fight.fighterSTR =="--" or fight.fighterTD =="--" or fight.fighterSUB =="--":
+                    continue
 
-            fighter_stats[fighter.name]["kd_differential"] += int(fight.fighterKD) - int(fight.opponentKD)
-            fighter_stats[fighter.name]["str_differential"] += int(fight.fighterSTR) - int(fight.opponentSTR)
-            fighter_stats[fighter.name]["td_differential"] += int(fight.fighterTD) - int(fight.opponentTD)
-            fighter_stats[fighter.name]["sub_differential"] += int(fight.fighterSUB) - int(fight.opponentSUB)
-            fighter_stats[fighter.name]["totalfights"] += 1
-            if fight.result=="win":
-                fighter_stats[fighter.name]["winstreak"] += 1
-                fighter_stats[fighter.name]["totalwins"] += 1
-            else:
-                fighter_stats[fighter.name]["winstreak"] = 0
-            if fight.titlefight:
-                fighter_stats[fighter.name]["titlefights"] += 1
-            cnt+=1
-
-    with app.app_context():
-        # fighter 2
-        fighter=Fighter.query.filter_by(name=fighter_name2).first()
-        fights = fighter.fights
-        fights=list(reversed(fights))
-        n=len(fights)
-        cnt=0
-        for fight in fights:
-            opponent = Fighter.query.filter_by(name=fight.opponent).first()
-            if cnt==n-1:
-                break
-            if fight.fighterKD =="--" or fight.fighterSTR =="--" or fight.fighterTD =="--" or fight.fighterSUB =="--":
-                continue
-
-            fighter_stats[fighter.name]["kd_differential"] += int(fight.fighterKD) - int(fight.opponentKD)
-            fighter_stats[fighter.name]["str_differential"] += int(fight.fighterSTR) - int(fight.opponentSTR)
-            fighter_stats[fighter.name]["td_differential"] += int(fight.fighterTD) - int(fight.opponentTD)
-            fighter_stats[fighter.name]["sub_differential"] += int(fight.fighterSUB) - int(fight.opponentSUB)
-            fighter_stats[fighter.name]["totalfights"] += 1
-            if fight.result=="win":
-                fighter_stats[fighter.name]["winstreak"] += 1
-                fighter_stats[fighter.name]["totalwins"] += 1
-            else:
-                fighter_stats[fighter.name]["winstreak"] = 0
-            if fight.titlefight:
-                fighter_stats[fighter.name]["titlefights"] += 1
-            cnt+=1
+                fighter_stats[fighter.name]["kd_differential"] += int(fight.fighterKD) - int(fight.opponentKD)
+                fighter_stats[fighter.name]["str_differential"] += int(fight.fighterSTR) - int(fight.opponentSTR)
+                fighter_stats[fighter.name]["td_differential"] += int(fight.fighterTD) - int(fight.opponentTD)
+                fighter_stats[fighter.name]["sub_differential"] += int(fight.fighterSUB) - int(fight.opponentSUB)
+                fighter_stats[fighter.name]["totalfights"] += 1
+                if fight.result=="win":
+                    fighter_stats[fighter.name]["winstreak"] += 1
+                    fighter_stats[fighter.name]["totalwins"] += 1
+                else:
+                    fighter_stats[fighter.name]["winstreak"] = 0
+                if fight.titlefight:
+                    fighter_stats[fighter.name]["titlefights"] += 1
+                cnt+=1
     
     # fighter1 = fighter, fighter2 = opponent
     with app.app_context():
@@ -191,8 +162,8 @@ def fun(fighter_name1, fighter_name2):
         fighter = Fighter.query.filter_by(name=fighter_name1).first()
         opponent = Fighter.query.filter_by(name=fighter_name2).first()
         processed_fight = FightStats(
-            event="not needed",
-            date="not needed",
+            event="unknown",
+            date="unknown",
             
             fighter_name=fighter.name,
             opponent_name=opponent.name,
@@ -227,10 +198,10 @@ def fun(fighter_name1, fighter_name2):
             opponent_record = opponent.record,
             opponent_titlefights = fighter_stats[opponent.name]["titlefights"],
 
-            result="not needed",
-            method="not needed",
-            round="not needed",
-            time="not needed",
+            result="unknown",
+            method="unknown",
+            round="unknown",
+            time="unknown",
         )
         with app2.app_context():
             db2.session.add(processed_fight)
@@ -346,7 +317,7 @@ def main():
  
     for fight in fights:
         fun(fight[0],fight[1])
-    export_to_csv("predictFights.csv")
+    export_to_csv("predict_fights.csv")
     # clean_data()
     return
     
