@@ -122,15 +122,19 @@ def create_tables():
         fighters=Fighter.query.all()
         for fighter in fighters:
             fights = fighter.fights
+            fights = list(reversed(fights))
             first_fight=True
+            cnt=0
             for fight in fights:
                 opponent = Fighter.query.get(fighter_ids[fight.opponent])
-                
+                cnt+=1
                 # Check if the processed fight already exists in db2
                 fight_in_db=False
                 with app2.app_context():
-                    existingfight = FightStats.query.filter_by(event=fight.event,date=fight.date,fighter_name=opponent.name,opponent_name=fighter.name,).first()
-                    if existingfight and not first_fight:
+                    existingfight=None
+                    if not first_fight:
+                        existingfight = FightStats.query.filter_by(event=fight.event,date=fight.date,fighter_name=opponent.name,opponent_name=fighter.name,).first()
+                    if existingfight:
                         existingfight.opponent_weight=fighter.Weight
                         existingfight.opponent_height=fighter.Height
                         existingfight.opponent_reach=fighter.Reach
@@ -194,7 +198,8 @@ def create_tables():
                     fighter_stats[fighter.name]["winstreak"] = 0
                 if fight.titlefight:
                     fighter_stats[fighter.name]["titlefights"] += 1
-                first_fight=False
+                if cnt>=2:
+                    first_fight=False
 
 def export_to_csv(filename):
     with app2.app_context():
@@ -284,60 +289,6 @@ def export_to_csv(filename):
                     "time": fight_stat.time,
                 })
 
-# clean scraped data in the database
-def clean_data():
-    with app2.app_context():
-        fight_stats = FightStats.query.all()
-
-        for fight_stat in fight_stats:
-            if fight_stat.fighter_weight != "--":
-                fight_stat.fighter_weight = int(re.search(r'\d+', fight_stat.fighter_weight).group())
-            else:
-                fight_stat.fighter_weight = None
-
-            if fight_stat.opponent_weight != "--":
-                fight_stat.opponent_weight = int(re.search(r'\d+', fight_stat.opponent_weight).group())
-            else:
-                fight_stat.opponent_weight = None
-
-            if fight_stat.fighter_height != "--":
-                height_parts = fight_stat.fighter_height.split("'")
-                feet = int(height_parts[0])
-                inches = 0
-                if len(height_parts) > 1:
-                    inches = int(height_parts[1].split('"')[0])
-                total_inches = feet * 12 + inches
-                fight_stat.fighter_height = total_inches
-            else:
-                fight_stat.fighter_height = None
-
-            if fight_stat.opponent_height != "--":
-                height_parts = fight_stat.opponent_height.split("'")
-                feet = int(height_parts[0])
-                inches = 0
-                if len(height_parts) > 1:
-                    inches = int(height_parts[1].split('"')[0])
-                total_inches = feet * 12 + inches
-                fight_stat.opponent_height = total_inches
-            else:
-                fight_stat.opponent_height = None
-
-            if fight_stat.fighter_reach != "--":
-                fight_stat.fighter_reach = int(re.search(r'\d+', fight_stat.fighter_reach).group())
-            else:
-                fight_stat.fighter_reach = None
-
-            if fight_stat.opponent_reach != "--":
-                fight_stat.opponent_reach = int(re.search(r'\d+', fight_stat.opponent_reach).group())
-            else:
-                fight_stat.opponent_reach = None
-
-            if fight_stat.fighter_dob=="--":
-                fight_stat.fighter_dob = None
-            
-            if fight_stat.opponent_dob=="--":
-                fight_stat.opponent_dob = None
-        db2.session.commit()
 
 def main():
     drop_tables()
