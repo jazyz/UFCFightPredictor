@@ -92,6 +92,11 @@ class FightStats(db2.Model):
     round = db2.Column(db2.String)
     time = db2.Column(db2.String)
 
+def process(fighter_name1, fighter_name2):
+    with app2.app_context():
+        db2.drop_all()
+    fun(fighter_name1, fighter_name2)
+    export_to_csv("predict_fights.csv")
 # write stats of 2 fighters to a file, then send that file to the ml model
 # predict the outcome of the fight
 # .csv 
@@ -331,7 +336,4 @@ if __name__ == "__main__":
 
 
 # UFC 292
-<<<<<<< HEAD:backend/predictFightOutcomes.py
 # fights = [["Aljamain Sterling", "Sean O'Malley"]]
-=======
->>>>>>> 7568cef8ad8d1606357b4c16fb12a6aedad28976:predict_fight_outcomes.py
