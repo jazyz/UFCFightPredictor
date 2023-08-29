@@ -5,7 +5,7 @@ import os
 import subprocess
 import pandas as pd
 from flask_cors import CORS
-
+import sys
 app = Flask(__name__)
 CORS(app)
 
@@ -29,7 +29,8 @@ def predict():
 @app.route("/train", methods=["POST"])
 def train():
     try:
-        subprocess.run(["python", "backend/ml_training_dynamic.py"], check=True)
+        venv_python_executable = sys.executable
+        subprocess.run([venv_python_executable, "backend/ml_training_dynamic.py"], check=True)
         response = {"message": "Model trained successfully"}
     except subprocess.CalledProcessError as e:
         response = {"message": f"Error during training: {e}"}

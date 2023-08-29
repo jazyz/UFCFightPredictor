@@ -331,7 +331,3 @@ if __name__ == "__main__":
 
 
 # UFC 292
-<<<<<<< HEAD:backend/predictFightOutcomes.py
-# fights = [["Aljamain Sterling", "Sean O'Malley"]]
-=======
->>>>>>> 7568cef8ad8d1606357b4c16fb12a6aedad28976:predict_fight_outcomes.py
