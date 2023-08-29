@@ -28,7 +28,7 @@ def predict():
 def train():
     try:
         venv_python_executable = sys.executable
-        subprocess.run([venv_python_executable, "backend/ml_training_dynamic.py"], check=True)
+        subprocess.run([venv_python_executable, "ml_training_dynamic.py"], check=True)
         response = {"message": "Model trained successfully"}
     except subprocess.CalledProcessError as e:
         response = {"message": f"Error during training: {e}"}
@@ -49,7 +49,7 @@ def get_stats():
 @app.route("/get_predicted_data", methods=["GET"])
 def get_predicted_data():
     try:
-        with open("backend/predicted_data.json", "r") as json_file:
+        with open("predicted_data.json", "r") as json_file:
             predicted_data_dict = json.load(json_file)
         response = {
             "predicted_data": predicted_data_dict["predict_data"],

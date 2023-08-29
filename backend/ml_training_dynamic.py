@@ -7,7 +7,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 
-data = pd.read_csv("backend/dynamicfightstats.csv")
+data = pd.read_csv("dynamicfightstats.csv")
 data.replace("--", pd.NA, inplace=True)
     
 selected_columns = [
@@ -101,7 +101,7 @@ predicted_data_dict = {
 }
 
 # Save the dictionary as a JSON file
-with open("backend/predicted_data.json", "w") as json_file:
+with open("predicted_data.json", "w") as json_file:
     json.dump(predicted_data_dict, json_file)
 
 feature_importances = model.feature_importances_
