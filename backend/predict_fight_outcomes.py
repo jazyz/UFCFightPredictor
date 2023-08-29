@@ -137,8 +137,6 @@ def fun(fighter_name1, fighter_name2):
             "titlefights": 0,
             "opp_avg_winrate": 0
         }        
-        with app2.app_context():
-            db2.create_all()
         for fighter in matchup:
             fights = fighter.fights
             fights=list(reversed(fights))
@@ -325,8 +323,11 @@ def export_to_csv(filename):
 # used to run tests locally
 def main():
     # clears the db
+    with app.app_context():
+        db.create_all()
     with app2.app_context():
         db2.drop_all()
+        db2.create_all()
     fights = [
         ["Aljamain Sterling", "Sean O'Malley"],
         ["Zhang Weili", "Amanda Lemos"],
