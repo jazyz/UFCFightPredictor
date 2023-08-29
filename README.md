@@ -8,3 +8,4 @@ Achieved 67% accuracy on test set using a machine learning RandomForest model
 
 v3:
 Achieved 68% accuracy on test set and 77% accuracy on recent UFC Fight Night: Max Halloway vs. Korean Zombie using LGBM model
+# ufc
