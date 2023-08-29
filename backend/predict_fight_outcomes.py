@@ -122,7 +122,8 @@ def fun(fighter_name1, fighter_name2):
             "winstreak": 0,
             "totalwins": 0,
             "totalfights": 0,
-            "titlefights": 0
+            "titlefights": 0,
+            "opp_avg_winrate": 0
         }
         fighter_stats[fighter2.name] = {
             "kd_differential": 0,
@@ -133,7 +134,8 @@ def fun(fighter_name1, fighter_name2):
             "winstreak": 0,
             "totalwins": 0,
             "totalfights": 0,
-            "titlefights": 0
+            "titlefights": 0,
+            "opp_avg_winrate": 0
         }        
         with app2.app_context():
             db2.create_all()
@@ -150,6 +152,19 @@ def fun(fighter_name1, fighter_name2):
                 if fight.fighterKD =="--" or fight.fighterSTR =="--" or fight.fighterTD =="--" or fight.fighterSUB =="--":
                     continue
 
+                # calculate opponent record at the time of the fight
+                opponent_fights = list(reversed(opponent.fights))
+                opp_wins = 0
+                opp_total_fights = 0
+                for opp_fight in opponent_fights:
+                    if opp_fight.fighterKD == "--" or opp_fight.fighterSTR == "--" or opp_fight.fighterTD == "--" or opp_fight.fighterSUB == "--":
+                        continue
+                    if opp_fight.result == "win":
+                        opp_wins += 1
+                    opp_total_fights += 1
+                opp_avg_winrate = opp_wins / opp_total_fights
+                fighter_stats[fighter.name]["opp_avg_winrate"] += opp_avg_winrate
+
                 fighter_stats[fighter.name]["kd_differential"] += int(fight.fighterKD) - int(fight.opponentKD)
                 fighter_stats[fighter.name]["str_differential"] += int(fight.fighterSTR) - int(fight.opponentSTR)
                 fighter_stats[fighter.name]["td_differential"] += int(fight.fighterTD) - int(fight.opponentTD)
@@ -163,6 +178,9 @@ def fun(fighter_name1, fighter_name2):
                 if fight.titlefight:
                     fighter_stats[fighter.name]["titlefights"] += 1
                 cnt+=1
+
+            fighter_stats[fighter.name]["opp_avg_winrate"] /= cnt
+
     
     # fighter1 = fighter, fighter2 = opponent
     with app.app_context():

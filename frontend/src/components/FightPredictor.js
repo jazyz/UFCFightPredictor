@@ -94,7 +94,7 @@ const FightPredictor = () => {
               </p>
               <p>
                 {stats.fighter_name}{" "}
-                {predictedData.predicted_result == "win"
+                {predictedData.predicted_result === "win"
                   ? "defeats"
                   : "loses to"}{" "}
                 {stats.opponent_name}
