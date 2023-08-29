@@ -1,4 +1,3 @@
-import json
 import pandas as pd
 import sys
 import lightgbm as lgb
@@ -68,9 +67,6 @@ original_stdout = sys.stdout
 sys.stdout = output_file
 pd.set_option("display.max_columns", None)
 
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Accuracy: {accuracy:.2f}")
-
 predict_data = pd.read_csv("predict_fights.csv")
 predict_data.replace("--", pd.NA, inplace=True)
 
@@ -94,16 +90,6 @@ for i, label in enumerate(label_encoder.classes_):
 
 print(predict_data)
 
-# Create a dictionary to store the predicted data and probabilities
-predicted_data_dict = {
-    "predict_data": predict_data.to_dict(orient="records"),
-    "class_probabilities": class_probabilities.tolist(),
-}
-
-# Save the dictionary as a JSON file
-with open("predicted_data.json", "w") as json_file:
-    json.dump(predicted_data_dict, json_file)
-
 feature_importances = model.feature_importances_
 
 feature_importance_df = pd.DataFrame(
@@ -112,11 +98,9 @@ feature_importance_df = pd.DataFrame(
 
 feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
 
-# python matplot to show feature importance
-
-# plt.figure(figsize=(10, 6))
-# plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
-# plt.xlabel("Importance")
-# plt.ylabel("Feature")
-# plt.title("Feature Importance")
-# plt.show()
+plt.figure(figsize=(10, 6))
+plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
+plt.xlabel("Importance")
+plt.ylabel("Feature")
+plt.title("Feature Importance")
+plt.show()

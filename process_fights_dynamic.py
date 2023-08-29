@@ -50,7 +50,7 @@ class Fight(db.Model):
     fighter = db.relationship('Fighter', back_populates='fights')
 
 app2 = Flask("processfightsdynamic")
-app2.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///predictfight.db"
+app2.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///dynamicfightstats.db"
 db2 = SQLAlchemy(app2)
 
 class FightStats(db2.Model):
@@ -92,76 +92,99 @@ class FightStats(db2.Model):
     round = db2.Column(db2.String)
     time = db2.Column(db2.String)
 
-# clean the database then get the stats of the fighters in the csv
-# used to run predictions from the frontend
-def process(fighter_name1, fighter_name2):
+
+def drop_tables():
     with app2.app_context():
         db2.drop_all()
-    fun(fighter_name1, fighter_name2)
-    export_to_csv("predict_fights.csv")
 
-# write stats of 2 fighters to a file, then send that file to the ml model
-# predict the outcome of the fight
-# .csv 
-def fun(fighter_name1, fighter_name2):
+def create_tables():
     fighter_stats = dict()
-    matchup=list()
+    fighter_ids = dict()
+    fightdict = dict()
     with app.app_context():
-        fighter1 = Fighter.query.filter_by(name=fighter_name1).first()
-        fighter2 = Fighter.query.filter_by(name=fighter_name2).first()
-        if not fighter1 or not fighter2:
-            return  # Handle case where one or both fighters are not found
-        matchup.append(fighter1)
-        matchup.append(fighter2)
-        fighter_stats[fighter1.name] = {
-            "kd_differential": 0,
-            "str_differential": 0,
-            "td_differential": 0,
-            "sub_differential": 0,
-            "winrate": 0,
-            "winstreak": 0,
-            "totalwins": 0,
-            "totalfights": 0,
-            "titlefights": 0,
-            "opp_avg_winrate": 0
-        }
-        fighter_stats[fighter2.name] = {
-            "kd_differential": 0,
-            "str_differential": 0,
-            "td_differential": 0,
-            "sub_differential": 0,
-            "winrate": 0,
-            "winstreak": 0,
-            "totalwins": 0,
-            "totalfights": 0,
-            "titlefights": 0,
-            "opp_avg_winrate": 0
-        }        
-        for fighter in matchup:
+        fighters=Fighter.query.all()
+        for fighter in fighters:
+            fighter_stats[fighter.name] = {
+                "kd_differential": 0,
+                "str_differential": 0,
+                "td_differential": 0,
+                "sub_differential": 0,
+                "winrate": 0,
+                "winstreak": 0,
+                "totalwins": 0,
+                "totalfights": 0,
+                "titlefights": 0
+            }
+            fighter_ids[fighter.name] = fighter.id
+    with app2.app_context():
+        db2.create_all()
+    with app.app_context():
+        fighters=Fighter.query.all()
+        for fighter in fighters:
             fights = fighter.fights
-            fights=list(reversed(fights))
-            n=len(fights)
+            fights = list(reversed(fights))
+            first_fight=True
             cnt=0
             for fight in fights:
-                opponent = Fighter.query.filter_by(name=fight.opponent).first()
-                # if predicting the last fight of a fighter
-                # if cnt==n-1:
-                #     break
+                opponent = Fighter.query.get(fighter_ids[fight.opponent])
+                cnt+=1
+                # Check if the processed fight already exists in db2
+                fight_in_db=False
+                with app2.app_context():
+                    existingfight=None
+                    if not first_fight:
+                        existingfight = FightStats.query.filter_by(event=fight.event,date=fight.date,fighter_name=opponent.name,opponent_name=fighter.name,).first()
+                    if existingfight:
+                        existingfight.opponent_weight=fighter.Weight
+                        existingfight.opponent_height=fighter.Height
+                        existingfight.opponent_reach=fighter.Reach
+                        existingfight.opponent_dob=fighter.DOB
+                        existingfight.opponent_kd_differential = fighter_stats[fighter.name]["kd_differential"]/fighter_stats[fighter.name]["totalfights"]
+                        existingfight.opponent_str_differential = fighter_stats[fighter.name]["str_differential"]/fighter_stats[fighter.name]["totalfights"]
+                        existingfight.opponent_td_differential = fighter_stats[fighter.name]["td_differential"]/fighter_stats[fighter.name]["totalfights"]
+                        existingfight.opponent_sub_differential = fighter_stats[fighter.name]["sub_differential"]/fighter_stats[fighter.name]["totalfights"]
+                        existingfight.opponent_winrate = fighter_stats[fighter.name]["totalwins"]/fighter_stats[fighter.name]["totalfights"]
+                        existingfight.opponent_winstreak = fighter_stats[fighter.name]["winstreak"]
+                        existingfight.opponent_totalfights = fighter_stats[fighter.name]["totalfights"]
+                        existingfight.opponent_totalwins = fighter_stats[fighter.name]["totalwins"]
+                        existingfight.opponent_record = fighter.record
+                        existingfight.opponent_titlefights = fighter_stats[fighter.name]["titlefights"]
+                        fight_in_db=True
+                        db2.session.commit()
+                
                 if fight.fighterKD =="--" or fight.fighterSTR =="--" or fight.fighterTD =="--" or fight.fighterSUB =="--":
                     continue
+                processed_fight = FightStats()
+                if not first_fight and not fight_in_db:
+                    processed_fight = FightStats(
+                        event=fight.event,
+                        date=fight.date,
+                        fighter_name=fighter.name,
+                        opponent_name=opponent.name,
+                        fighter_weight=fighter.Weight,
+                        fighter_height=fighter.Height,
+                        fighter_reach=fighter.Reach,
+                        fighter_dob=fighter.DOB,
+                        fighter_kd_differential = fighter_stats[fighter.name]["kd_differential"]/fighter_stats[fighter.name]["totalfights"],
+                        fighter_str_differential = fighter_stats[fighter.name]["str_differential"]/fighter_stats[fighter.name]["totalfights"],
+                        fighter_td_differential = fighter_stats[fighter.name]["td_differential"]/fighter_stats[fighter.name]["totalfights"],
+                        fighter_sub_differential = fighter_stats[fighter.name]["sub_differential"]/fighter_stats[fighter.name]["totalfights"],
+                        fighter_winrate = fighter_stats[fighter.name]["totalwins"]/fighter_stats[fighter.name]["totalfights"],
+                        fighter_winstreak = fighter_stats[fighter.name]["winstreak"],
+                        fighter_totalfights = fighter_stats[fighter.name]["totalfights"],
+                        fighter_totalwins = fighter_stats[fighter.name]["totalwins"],
+                        fighter_record = fighter.record,
+                        fighter_titlefights = fighter_stats[fighter.name]["titlefights"],
+                        result=fight.result,
+                        method=fight.method,
+                        round=fight.round,
+                        time=fight.time,
+                    )
 
-                # calculate opponent record at the time of the fight
-                opponent_fights = list(reversed(opponent.fights))
-                opp_wins = 0
-                opp_total_fights = 0
-                for opp_fight in opponent_fights:
-                    if opp_fight.fighterKD == "--" or opp_fight.fighterSTR == "--" or opp_fight.fighterTD == "--" or opp_fight.fighterSUB == "--":
-                        continue
-                    if opp_fight.result == "win":
-                        opp_wins += 1
-                    opp_total_fights += 1
-                opp_avg_winrate = opp_wins / opp_total_fights
-                fighter_stats[fighter.name]["opp_avg_winrate"] += opp_avg_winrate
+                with app2.app_context():
+                    if not first_fight and not fight_in_db:
+                        db2.session.add(processed_fight)
+                        db2.session.commit()
 
                 fighter_stats[fighter.name]["kd_differential"] += int(fight.fighterKD) - int(fight.opponentKD)
                 fighter_stats[fighter.name]["str_differential"] += int(fight.fighterSTR) - int(fight.opponentSTR)
@@ -175,62 +198,8 @@ def fun(fighter_name1, fighter_name2):
                     fighter_stats[fighter.name]["winstreak"] = 0
                 if fight.titlefight:
                     fighter_stats[fighter.name]["titlefights"] += 1
-                cnt+=1
-
-            fighter_stats[fighter.name]["opp_avg_winrate"] /= cnt
-
-    
-    # fighter1 = fighter, fighter2 = opponent
-    with app.app_context():
-        processed_fight = FightStats()
-        fighter = Fighter.query.filter_by(name=fighter_name1).first()
-        opponent = Fighter.query.filter_by(name=fighter_name2).first()
-        processed_fight = FightStats(
-            event="unknown",
-            date="unknown",
-            
-            fighter_name=fighter.name,
-            opponent_name=opponent.name,
-
-            fighter_weight=fighter.Weight,
-            fighter_height=fighter.Height,
-            fighter_reach=fighter.Reach,
-            fighter_dob=fighter.DOB,
-            fighter_kd_differential = fighter_stats[fighter.name]["kd_differential"]/fighter_stats[fighter.name]["totalfights"],
-            fighter_str_differential = fighter_stats[fighter.name]["str_differential"]/fighter_stats[fighter.name]["totalfights"],
-            fighter_td_differential = fighter_stats[fighter.name]["td_differential"]/fighter_stats[fighter.name]["totalfights"],
-            fighter_sub_differential = fighter_stats[fighter.name]["sub_differential"]/fighter_stats[fighter.name]["totalfights"],
-            fighter_winrate = fighter_stats[fighter.name]["totalwins"]/fighter_stats[fighter.name]["totalfights"],
-            fighter_winstreak = fighter_stats[fighter.name]["winstreak"],
-            fighter_totalfights = fighter_stats[fighter.name]["totalfights"],
-            fighter_totalwins = fighter_stats[fighter.name]["totalwins"],
-            fighter_record = fighter.record,
-            fighter_titlefights = fighter_stats[fighter.name]["titlefights"],
-            
-            opponent_weight=opponent.Weight,
-            opponent_height=opponent.Height,
-            opponent_reach=opponent.Reach,
-            opponent_dob=opponent.DOB,
-            opponent_kd_differential = fighter_stats[opponent.name]["kd_differential"]/fighter_stats[opponent.name]["totalfights"],
-            opponent_str_differential = fighter_stats[opponent.name]["str_differential"]/fighter_stats[opponent.name]["totalfights"],
-            opponent_td_differential = fighter_stats[opponent.name]["td_differential"]/fighter_stats[opponent.name]["totalfights"],
-            opponent_sub_differential = fighter_stats[opponent.name]["sub_differential"]/fighter_stats[opponent.name]["totalfights"],
-            opponent_winrate = fighter_stats[opponent.name]["totalwins"]/fighter_stats[opponent.name]["totalfights"],
-            opponent_winstreak = fighter_stats[opponent.name]["winstreak"],
-            opponent_totalfights = fighter_stats[opponent.name]["totalfights"],
-            opponent_totalwins = fighter_stats[opponent.name]["totalwins"],
-            opponent_record = opponent.record,
-            opponent_titlefights = fighter_stats[opponent.name]["titlefights"],
-
-            result="unknown",
-            method="unknown",
-            round="unknown",
-            time="unknown",
-        )
-        with app2.app_context():
-            db2.session.add(processed_fight)
-            db2.session.commit()
-
+                if cnt>=2:
+                    first_fight=False
 
 def export_to_csv(filename):
     with app2.app_context():
@@ -320,32 +289,11 @@ def export_to_csv(filename):
                     "time": fight_stat.time,
                 })
 
-# used to run tests locally
+
 def main():
-    # clears the db
-    with app.app_context():
-        db.create_all()
-    with app2.app_context():
-        db2.drop_all()
-        db2.create_all()
-    fights = [
-        ["Aljamain Sterling", "Sean O'Malley"],
-        ["Zhang Weili", "Amanda Lemos"],
-        ["Ian Garry", "Neil Magny"],
-        ["Mario Bautista", "Da'Mon Blackshear"],
-        ["Marlon Vera", "Pedro Munhoz"],
-        ["Chris Weidman", "Brad Tavares"],
-        ["Gregory Rodrigues", "Denis Tiuliulin"],
-        ["Kurt Holobaugh", "Austin Hubbard"],
-        ["Brad Katona", "Cody Gibson"],
-        ["Gerald Meerschaert", "Andre Petroski"],
-        ["Andrea Lee", "Natalia Silva"],
-        ["Maryna Moroz", "Karine Silva"],
-    ]
- 
-    for fight in fights:
-        fun(fight[0],fight[1])
-    export_to_csv("predict_fights.csv")
+    drop_tables()
+    create_tables()
+    export_to_csv("dynamicfightstats.csv")
     # clean_data()
     return
     
@@ -354,9 +302,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# UFC Fight Night Holloway vs Zombie
-# fights = [["Max Holloway", "Chan Sung Jung"],["Anthony Smith", "Ryan Spann"],["Alex Caceres", "Giga Chikadze"],["Fernie Garcia", "Rinya Nakamura"],["Erin Blanchfield", "Taila Santos"],["Parker Porter", "Junior Tafa"],["Lukasz Brzeski", "Waldo Cortes-Acosta"],["Garrett Armfield", "Toshiomi Kazama"],["Michal Oleksiejczuk", "Chidi Njokuani"],["Rolando Bedoya", "Song Kenan"],["Billy Goff", "Yusaku Kinoshita"],["JJ Aldrich", "Liang Na"],["Jarno Errens", "SeungWoo Choi"]]
 
-
-# UFC 292
-# fights = [["Aljamain Sterling", "Sean O'Malley"]]
