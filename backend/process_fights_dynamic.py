@@ -198,7 +198,7 @@ def create_tables():
                     fighter_stats[fighter.name]["winstreak"] = 0
                 if fight.titlefight:
                     fighter_stats[fighter.name]["titlefights"] += 1
-                if cnt>=2:
+                if cnt>=1:
                     first_fight=False
 
 def export_to_csv(filename):
