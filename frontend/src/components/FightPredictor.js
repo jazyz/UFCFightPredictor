@@ -38,7 +38,7 @@ const FightPredictor = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 shadow-md rounded-lg w-96">
-        <h2 className="text-2xl font-semibold mb-4">Fight Predictor</h2>
+        <h2 className="text-2xl font-semibold mb-4">UFC Fight Predictor</h2>
         <div className="mb-4">
           <input
             className="w-full border rounded py-2 px-3"
@@ -74,7 +74,6 @@ const FightPredictor = () => {
                 <p>{stats.fighter_dob}</p>
                 <p>{stats.fighter_height}</p>
                 <p>{stats.fighter_reach}</p>
-                <p>{stats.fighter_dob}</p>
               </div>
               <div className="flex flex-col">
                 <h3 className="text-xl font-semibold mb-2">
@@ -84,7 +83,6 @@ const FightPredictor = () => {
                 <p>{stats.opponent_dob}</p>
                 <p>{stats.opponent_height}</p>
                 <p>{stats.opponent_reach}</p>
-                <p>{stats.opponent_dob}</p>
               </div>
             </div>
             <div className="mt-4">
@@ -96,7 +94,7 @@ const FightPredictor = () => {
               </p>
               <p>
                 {stats.fighter_name}{" "}
-                {predictedData.predicted_results == "win"
+                {predictedData.predicted_result == "win"
                   ? "defeats"
                   : "loses to"}{" "}
                 {stats.opponent_name}

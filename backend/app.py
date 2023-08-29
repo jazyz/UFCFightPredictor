@@ -1,6 +1,6 @@
 import json
 from flask import Flask, request, jsonify
-from predictFightOutcomes import fun
+from predictFightOutcomes import process
 import os
 import subprocess
 import pandas as pd
@@ -8,8 +8,6 @@ from flask_cors import CORS
 import sys
 app = Flask(__name__)
 CORS(app)
-
-# ... (previous routes and code)
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -21,7 +19,7 @@ def predict():
     if os.environ.get("FLASK_APP") != "app":
         os.environ["FLASK_APP"] = "app"
 
-    fun(fighter_name1, fighter_name2)
+    process(fighter_name1, fighter_name2)
 
     response = {"message": "Fighter stats processed"}
     return jsonify(response)
@@ -41,7 +39,7 @@ def train():
 def get_stats():
     try:
         # get stats from the csv file
-        stats = pd.read_csv("backend/predictFights.csv")
+        stats = pd.read_csv("predict_fights.csv")
         response = {"stats": stats.to_dict(orient="records")}
     except FileNotFoundError:
         response = {"message": "Fighters data not found"}
