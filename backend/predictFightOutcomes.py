@@ -92,11 +92,14 @@ class FightStats(db2.Model):
     round = db2.Column(db2.String)
     time = db2.Column(db2.String)
 
+# clean the database then get the stats of the fighters in the csv
+# used to run predictions from the frontend
 def process(fighter_name1, fighter_name2):
     with app2.app_context():
         db2.drop_all()
     fun(fighter_name1, fighter_name2)
     export_to_csv("predict_fights.csv")
+
 # write stats of 2 fighters to a file, then send that file to the ml model
 # predict the outcome of the fight
 # .csv 
@@ -301,6 +304,7 @@ def export_to_csv(filename):
                     "time": fight_stat.time,
                 })
 
+# used to run tests locally
 def main():
     # clears the db
     with app2.app_context():

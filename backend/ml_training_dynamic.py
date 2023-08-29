@@ -112,6 +112,8 @@ feature_importance_df = pd.DataFrame(
 
 feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
 
+# python matplot to show feature importance
+
 # plt.figure(figsize=(10, 6))
 # plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
 # plt.xlabel("Importance")
