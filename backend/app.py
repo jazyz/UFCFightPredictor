@@ -9,8 +9,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# ... (previous routes and code)
-
 @app.route("/predict", methods=["POST"])
 def predict():
     data = request.json
