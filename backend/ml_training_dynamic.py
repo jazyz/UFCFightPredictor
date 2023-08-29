@@ -68,14 +68,10 @@ original_stdout = sys.stdout
 sys.stdout = output_file
 pd.set_option("display.max_columns", None)
 
-<<<<<<< HEAD:backend/ml_training_dynamic.py
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.2f}")
 
-predict_data = pd.read_csv("backend/predictFights.csv")
-=======
 predict_data = pd.read_csv("predict_fights.csv")
->>>>>>> 7568cef8ad8d1606357b4c16fb12a6aedad28976:ml_training_dynamic.py
 predict_data.replace("--", pd.NA, inplace=True)
 
 predict_data.dropna(subset=selected_columns, inplace=True)
