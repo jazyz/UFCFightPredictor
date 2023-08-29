@@ -1,8 +1,4 @@
 from flask import Flask
-<<<<<<< HEAD:backend/power_rating_predictor.py
-from backend.models import Fighter, Fight, db
-=======
->>>>>>> 7568cef8ad8d1606357b4c16fb12a6aedad28976:power_rating_predictor.py
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
