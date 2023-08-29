@@ -1,6 +1,6 @@
 import json
 from flask import Flask, request, jsonify
-from predictFightOutcomes import process
+from predict_fight_outcomes import process
 import os
 import subprocess
 import pandas as pd
