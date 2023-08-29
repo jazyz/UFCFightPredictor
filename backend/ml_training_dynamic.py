@@ -71,7 +71,7 @@ pd.set_option("display.max_columns", None)
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.2f}")
 
-predict_data = pd.read_csv("backend/predictFights.csv")
+predict_data = pd.read_csv("predict_fights.csv")
 predict_data.replace("--", pd.NA, inplace=True)
 
 predict_data.dropna(subset=selected_columns, inplace=True)
@@ -111,6 +111,8 @@ feature_importance_df = pd.DataFrame(
 )
 
 feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
+
+# python matplot to show feature importance
 
 # plt.figure(figsize=(10, 6))
 # plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
