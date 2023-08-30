@@ -19,6 +19,7 @@ selected_columns = [
     "fighter_totalfights",
     "fighter_totalwins",
     "fighter_titlefights",
+    "fighter_opponentexp",
     "opponent_kd_differential",
     "opponent_str_differential",
     "opponent_td_differential",
@@ -28,6 +29,7 @@ selected_columns = [
     "opponent_totalfights",
     "opponent_totalwins",
     "opponent_titlefights",
+    "opponent_opponentexp",
     "fighter_dob",
     "opponent_dob",
     "result",
@@ -39,7 +41,7 @@ selected_columns = [
 
 data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
-data = data[(data['fighter_totalfights'] > 2) & (data['opponent_totalfights'] > 2)]
+data = data[(data['fighter_totalfights'] > 1) & (data['opponent_totalfights'] > 1)]
 print(len(data))
 data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
 data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
