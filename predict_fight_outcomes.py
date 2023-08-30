@@ -72,6 +72,7 @@ class FightStats(db2.Model):
     fighter_totalwins = db2.Column(db2.Integer)
     fighter_record = db2.Column(db2.String)
     fighter_titlefights = db2.Column(db2.Integer)
+    fighter_opponentexp = db2.Column(db2.Float)
     opponent_name = db2.Column(db2.String)
     opponent_weight = db2.Column(db2.String)
     opponent_height = db2.Column(db2.String)
@@ -87,6 +88,7 @@ class FightStats(db2.Model):
     opponent_totalwins = db2.Column(db2.Integer)
     opponent_record = db2.Column(db2.String)    
     opponent_titlefights = db2.Column(db2.Integer)
+    opponent_opponentexp = db2.Column(db2.Float)
     result = db2.Column(db2.String)
     method = db2.Column(db2.String)
     round = db2.Column(db2.String)
@@ -114,7 +116,8 @@ def fun(fighter_name1, fighter_name2):
             "winstreak": 0,
             "totalwins": 0,
             "totalfights": 0,
-            "titlefights": 0
+            "titlefights": 0,
+            "opponentexp": 0
         }
         fighter_stats[fighter2.name] = {
             "kd_differential": 0,
@@ -125,7 +128,8 @@ def fun(fighter_name1, fighter_name2):
             "winstreak": 0,
             "totalwins": 0,
             "totalfights": 0,
-            "titlefights": 0
+            "titlefights": 0,
+            "opponentexp": 0
         }        
         with app2.app_context():
             db2.create_all()
@@ -154,6 +158,20 @@ def fun(fighter_name1, fighter_name2):
                     fighter_stats[fighter.name]["winstreak"] = 0
                 if fight.titlefight:
                     fighter_stats[fighter.name]["titlefights"] += 1
+                opponent_fights = list(reversed(opponent.fights))
+                opp_wins = 0
+                opp_total_fights = 0
+                for opp_fight in opponent_fights:
+                    if opp_fight.event == fight.event:
+                        break
+                    if opp_fight.result == "win":
+                        opp_wins += 1
+                    opp_total_fights += 1
+                if opp_total_fights==0:
+                    fighter_stats[fighter.name]["opponentexp"] += 0
+                else:
+                    opp_avg_winrate = opp_wins / opp_total_fights
+                    fighter_stats[fighter.name]["opponentexp"] += opp_avg_winrate
                 cnt+=1
     
     # fighter1 = fighter, fighter2 = opponent
@@ -182,6 +200,7 @@ def fun(fighter_name1, fighter_name2):
             fighter_totalwins = fighter_stats[fighter.name]["totalwins"],
             fighter_record = fighter.record,
             fighter_titlefights = fighter_stats[fighter.name]["titlefights"],
+            fighter_opponentexp = fighter_stats[fighter.name]["opponentexp"]/fighter_stats[fighter.name]["totalfights"],
             
             opponent_weight=opponent.Weight,
             opponent_height=opponent.Height,
@@ -197,6 +216,7 @@ def fun(fighter_name1, fighter_name2):
             opponent_totalwins = fighter_stats[opponent.name]["totalwins"],
             opponent_record = opponent.record,
             opponent_titlefights = fighter_stats[opponent.name]["titlefights"],
+            opponent_opponentexp = fighter_stats[opponent.name]["opponentexp"]/fighter_stats[opponent.name]["totalfights"],
 
             result="unknown",
             method="unknown",
@@ -232,6 +252,7 @@ def export_to_csv(filename):
                 "fighter_totalwins",
                 "fighter_record",
                 "fighter_titlefights",
+                "fighter_opponentexp",
                 "opponent_name",
                 "opponent_weight",
                 "opponent_height",
@@ -247,6 +268,7 @@ def export_to_csv(filename):
                 "opponent_totalwins",
                 "opponent_record",
                 "opponent_titlefights",
+                "opponent_opponentexp",
                 "result",
                 "method",
                 "round",
@@ -275,6 +297,7 @@ def export_to_csv(filename):
                     "fighter_totalwins": fight_stat.fighter_totalwins,
                     "fighter_record": fight_stat.fighter_record,
                     "fighter_titlefights": fight_stat.fighter_titlefights,
+                    "fighter_opponentexp": fight_stat.fighter_opponentexp,
                     "opponent_name": fight_stat.opponent_name,
                     "opponent_weight": fight_stat.opponent_weight,
                     "opponent_height": fight_stat.opponent_height,
@@ -290,6 +313,7 @@ def export_to_csv(filename):
                     "opponent_totalwins": fight_stat.opponent_totalwins,
                     "opponent_record": fight_stat.opponent_record,
                     "opponent_titlefights": fight_stat.opponent_titlefights,
+                    "opponent_opponentexp": fight_stat.opponent_opponentexp,
                     "result": fight_stat.result,
                     "method": fight_stat.method,
                     "round": fight_stat.round,
@@ -301,18 +325,7 @@ def main():
     with app2.app_context():
         db2.drop_all()
     fights = [
-        ["Aljamain Sterling", "Sean O'Malley"],
-        ["Zhang Weili", "Amanda Lemos"],
-        ["Ian Garry", "Neil Magny"],
-        ["Mario Bautista", "Da'Mon Blackshear"],
-        ["Marlon Vera", "Pedro Munhoz"],
-        ["Chris Weidman", "Brad Tavares"],
-        ["Gregory Rodrigues", "Denis Tiuliulin"],
-        ["Kurt Holobaugh", "Austin Hubbard"],
-        ["Brad Katona", "Cody Gibson"],
-        ["Gerald Meerschaert", "Andre Petroski"],
-        ["Andrea Lee", "Natalia Silva"],
-        ["Maryna Moroz", "Karine Silva"],
+        ["Jon Jones", "Stipe Miocic"],
     ]
  
     for fight in fights:

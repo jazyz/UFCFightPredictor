@@ -72,6 +72,7 @@ class FightStats(db2.Model):
     fighter_totalwins = db2.Column(db2.Integer)
     fighter_record = db2.Column(db2.String)
     fighter_titlefights = db2.Column(db2.Integer)
+    fighter_opponentexp = db2.Column(db2.Float)
     opponent_name = db2.Column(db2.String)
     opponent_weight = db2.Column(db2.String)
     opponent_height = db2.Column(db2.String)
@@ -87,6 +88,7 @@ class FightStats(db2.Model):
     opponent_totalwins = db2.Column(db2.Integer)
     opponent_record = db2.Column(db2.String)    
     opponent_titlefights = db2.Column(db2.Integer)
+    opponent_opponentexp = db2.Column(db2.Float)
     result = db2.Column(db2.String)
     method = db2.Column(db2.String)
     round = db2.Column(db2.String)
@@ -113,7 +115,8 @@ def create_tables():
                 "winstreak": 0,
                 "totalwins": 0,
                 "totalfights": 0,
-                "titlefights": 0
+                "titlefights": 0,
+                "opponentexp": 0
             }
             fighter_ids[fighter.name] = fighter.id
     with app2.app_context():
@@ -126,14 +129,17 @@ def create_tables():
             first_fight=True
             cnt=0
             for fight in fights:
-                opponent = Fighter.query.get(fighter_ids[fight.opponent])
+                opponent = db.session.get(Fighter, fighter_ids[fight.opponent])
                 cnt+=1
                 # Check if the processed fight already exists in db2
                 fight_in_db=False
                 with app2.app_context():
                     existingfight=None
                     if not first_fight:
-                        existingfight = FightStats.query.filter_by(event=fight.event,date=fight.date,fighter_name=opponent.name,opponent_name=fighter.name,).first()
+                        fighthash=fight.event+fight.opponent+fighter.name
+                        key=fightdict.get(fighthash, None)
+                        if key:
+                            existingfight = db2.session.get(FightStats, key)
                     if existingfight:
                         existingfight.opponent_weight=fighter.Weight
                         existingfight.opponent_height=fighter.Height
@@ -149,8 +155,51 @@ def create_tables():
                         existingfight.opponent_totalwins = fighter_stats[fighter.name]["totalwins"]
                         existingfight.opponent_record = fighter.record
                         existingfight.opponent_titlefights = fighter_stats[fighter.name]["titlefights"]
+                        existingfight.opponent_opponentexp = fighter_stats[opponent.name]["opponentexp"]/fighter_stats[opponent.name]["totalfights"]
                         fight_in_db=True
                         db2.session.commit()
+                        # newfight = FightStats(
+                        #     event=fight.event,
+                        #     date=fight.date,
+                        #     fighter_name=fighter.name,
+                        #     fighter_weight=fighter.Weight,
+                        #     fighter_height=fighter.Height,
+                        #     fighter_reach=fighter.Reach,
+                        #     fighter_dob=fighter.DOB,
+                        #     fighter_kd_differential = fighter_stats[fighter.name]["kd_differential"]/fighter_stats[fighter.name]["totalfights"],
+                        #     fighter_str_differential = fighter_stats[fighter.name]["str_differential"]/fighter_stats[fighter.name]["totalfights"],
+                        #     fighter_td_differential = fighter_stats[fighter.name]["td_differential"]/fighter_stats[fighter.name]["totalfights"],
+                        #     fighter_sub_differential = fighter_stats[fighter.name]["sub_differential"]/fighter_stats[fighter.name]["totalfights"],
+                        #     fighter_winrate = fighter_stats[fighter.name]["totalwins"]/fighter_stats[fighter.name]["totalfights"],
+                        #     fighter_winstreak = fighter_stats[fighter.name]["winstreak"],
+                        #     fighter_totalfights = fighter_stats[fighter.name]["totalfights"],
+                        #     fighter_totalwins = fighter_stats[fighter.name]["totalwins"],
+                        #     fighter_record = fighter.record,
+                        #     fighter_titlefights = fighter_stats[fighter.name]["titlefights"],
+                        #     fighter_opponentexp = fighter_stats[fighter.name]["opponentexp"]/fighter_stats[fighter.name]["totalfights"],
+                        #     opponent_name=opponent.name,
+                        #     opponent_weight=opponent.Weight,
+                        #     opponent_height=opponent.Height,
+                        #     opponent_reach=opponent.Reach,
+                        #     opponent_dob=opponent.DOB,
+                        #     opponent_kd_differential = existingfight.fighter_kd_differential,
+                        #     opponent_str_differential = existingfight.fighter_str_differential,
+                        #     opponent_td_differential = existingfight.fighter_td_differential,
+                        #     opponent_sub_differential = existingfight.fighter_sub_differential,
+                        #     opponent_winrate = existingfight.fighter_winrate,
+                        #     opponent_winstreak = existingfight.fighter_winstreak,
+                        #     opponent_totalfights = existingfight.fighter_totalfights,
+                        #     opponent_totalwins = existingfight.fighter_totalwins,
+                        #     opponent_record = existingfight.fighter_record,
+                        #     opponent_titlefights = existingfight.fighter_titlefights,
+                        #     opponent_opponentexp = existingfight.fighter_opponentexp,
+                        #     result=fight.result,
+                        #     method=fight.method,
+                        #     round=fight.round,
+                        #     time=fight.time,
+                        # )
+                        # db2.session.add(newfight)
+                        # db2.session.commit()
                 
                 if fight.fighterKD =="--" or fight.fighterSTR =="--" or fight.fighterTD =="--" or fight.fighterSUB =="--":
                     continue
@@ -175,6 +224,7 @@ def create_tables():
                         fighter_totalwins = fighter_stats[fighter.name]["totalwins"],
                         fighter_record = fighter.record,
                         fighter_titlefights = fighter_stats[fighter.name]["titlefights"],
+                        fighter_opponentexp = fighter_stats[fighter.name]["opponentexp"]/fighter_stats[fighter.name]["totalfights"],
                         result=fight.result,
                         method=fight.method,
                         round=fight.round,
@@ -185,12 +235,15 @@ def create_tables():
                     if not first_fight and not fight_in_db:
                         db2.session.add(processed_fight)
                         db2.session.commit()
+                        fighthash=processed_fight.event+processed_fight.fighter_name+processed_fight.opponent_name
+                        fightdict[fighthash]=processed_fight.id
 
                 fighter_stats[fighter.name]["kd_differential"] += int(fight.fighterKD) - int(fight.opponentKD)
                 fighter_stats[fighter.name]["str_differential"] += int(fight.fighterSTR) - int(fight.opponentSTR)
                 fighter_stats[fighter.name]["td_differential"] += int(fight.fighterTD) - int(fight.opponentTD)
                 fighter_stats[fighter.name]["sub_differential"] += int(fight.fighterSUB) - int(fight.opponentSUB)
                 fighter_stats[fighter.name]["totalfights"] += 1
+
                 if fight.result=="win":
                     fighter_stats[fighter.name]["winstreak"] += 1
                     fighter_stats[fighter.name]["totalwins"] += 1
@@ -198,6 +251,22 @@ def create_tables():
                     fighter_stats[fighter.name]["winstreak"] = 0
                 if fight.titlefight:
                     fighter_stats[fighter.name]["titlefights"] += 1
+                
+                opponent_fights = list(reversed(opponent.fights))
+                opp_wins = 0
+                opp_total_fights = 0
+                for opp_fight in opponent_fights:
+                    if opp_fight.event == fight.event:
+                        break
+                    if opp_fight.result == "win":
+                        opp_wins += 1
+                    opp_total_fights += 1
+                if opp_total_fights==0:
+                    fighter_stats[fighter.name]["opponentexp"] += 0
+                else:
+                    opp_avg_winrate = opp_wins / opp_total_fights
+                    fighter_stats[fighter.name]["opponentexp"] += opp_avg_winrate
+                
                 if cnt>=1:
                     first_fight=False
 
@@ -225,6 +294,7 @@ def export_to_csv(filename):
                 "fighter_totalwins",
                 "fighter_record",
                 "fighter_titlefights",
+                "fighter_opponentexp",
                 "opponent_name",
                 "opponent_weight",
                 "opponent_height",
@@ -240,6 +310,7 @@ def export_to_csv(filename):
                 "opponent_totalwins",
                 "opponent_record",
                 "opponent_titlefights",
+                "opponent_opponentexp",
                 "result",
                 "method",
                 "round",
@@ -268,6 +339,7 @@ def export_to_csv(filename):
                     "fighter_totalwins": fight_stat.fighter_totalwins,
                     "fighter_record": fight_stat.fighter_record,
                     "fighter_titlefights": fight_stat.fighter_titlefights,
+                    "fighter_opponentexp": fight_stat.fighter_opponentexp,
                     "opponent_name": fight_stat.opponent_name,
                     "opponent_weight": fight_stat.opponent_weight,
                     "opponent_height": fight_stat.opponent_height,
@@ -283,6 +355,7 @@ def export_to_csv(filename):
                     "opponent_totalwins": fight_stat.opponent_totalwins,
                     "opponent_record": fight_stat.opponent_record,
                     "opponent_titlefights": fight_stat.opponent_titlefights,
+                    "opponent_opponentexp": fight_stat.opponent_opponentexp,
                     "result": fight_stat.result,
                     "method": fight_stat.method,
                     "round": fight_stat.round,
