@@ -125,7 +125,7 @@ fighter_ids = dict()
 ratings = dict()
 
 # when looking at past events, drop the event
-event_to_drop = ""
+event_to_drop = "UFC 292: Sterling vs. O'Malley"
 # find event names here: http://www.ufcstats.com/statistics/events/completed
 
 def get_stats():
