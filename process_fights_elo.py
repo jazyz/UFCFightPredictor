@@ -122,6 +122,10 @@ fighter_stats = dict()
 fighter_ids = dict()
 ratings = dict()
 
+# when looking at past events, drop the event
+event_to_drop = ""
+# find event names here: http://www.ufcstats.com/statistics/events/completed
+
 def get_stats():
     with app.app_context():
         fighters = Fighter.query.all()
@@ -151,6 +155,8 @@ def get_stats():
         fights = sorted(fights, key=lambda x: x[0])
         for date, fight in fights:
             print(date)
+            if fight.event == event_to_drop:
+                continue
             fighter_a = fight.fighter
             fighter_b = db.session.get(Fighter, fighter_ids[fight.opponent])
             
@@ -160,6 +166,7 @@ def get_stats():
                 existing_fight = FightStats.query.filter_by(event=fight.event, fighter_name=fighter_b.name, opponent_name=fighter_a.name).first()
                 if existing_fight:
                     flag = True
+                    continue
             # now add this fight stats to the database
             with app2.app_context():
                 if fighter_stats[fighter_a.name]["totalfights"]>0 and fighter_stats[fighter_b.name]["totalfights"]>0:
@@ -367,9 +374,9 @@ def export_to_csv(filename):
 def predict_to_csv(filename):
     # fights = [["Sean Strickland","Israel Adesanya"], ["Israel Adesanya", "Sean Strickland"], ["Dricus Du Plessis","Israel Adesanya"], ["Israel Adesanya", "Dricus Du Plessis"],]
     # fights = [["Michael Chandler", "Conor McGregor"], ["Conor McGregor", "Michael Chandler"]]
-    # fights = [["Sean O'Malley", "Aljamain Sterling"], ["Amanda Lemos", "Zhang Weili"],["Neil Magny", "Ian Garry"],["Da'Mon Blackshear", "Mario Bautista"], ["Pedro Munhoz", "Marlon Vera"], ["Chris Weidman", "Brad Tavares"], ["Denis Tiuliulin", "Gregory Rodrigues"], ["Austin Hubbard", "Kurt Holobaugh"], ["Cody Gibson", "Brad Katona"], ["Gerald Meerschaert", "Andre Petroski"], ["Andrea Lee", "Natalia Silva"], ["Maryna Moroz", "Karine Silva"]]
+    fights = [["Sean O'Malley", "Aljamain Sterling"], ["Amanda Lemos", "Zhang Weili"],["Neil Magny", "Ian Garry"],["Da'Mon Blackshear", "Mario Bautista"], ["Pedro Munhoz", "Marlon Vera"], ["Chris Weidman", "Brad Tavares"], ["Denis Tiuliulin", "Gregory Rodrigues"], ["Austin Hubbard", "Kurt Holobaugh"], ["Cody Gibson", "Brad Katona"], ["Gerald Meerschaert", "Andre Petroski"], ["Andrea Lee", "Natalia Silva"], ["Maryna Moroz", "Karine Silva"]]
     # fights = [["Aljamain Sterling", "Sean O'Malley"], ["Zhang Weili", "Amanda Lemos"],["Ian Garry", "Neil Magny"],["Mario Bautista", "Da'Mon Blackshear"], ["Marlon Vera", "Pedro Munhoz"], ["Brad Tavares", "Chris Weidman"], ["Gregory Rodrigues", "Denis Tiuliulin"], ["Kurt Holobaugh", "Austin Hubbard"], ["Brad Katona", "Cody Gibson"], ["Andre Petroski", "Gerald Meerschaert"], ["Natalia Silva", "Andrea Lee"], ["Karine Silva", "Maryna Moroz"]]
-    fights = [["Max Holloway", "Chan Sung Jung"],["Anthony Smith", "Ryan Spann"],["Alex Caceres", "Giga Chikadze"],["Fernie Garcia", "Rinya Nakamura"],["Erin Blanchfield", "Taila Santos"],["Parker Porter", "Junior Tafa"],["Lukasz Brzeski", "Waldo Cortes-Acosta"],["Garrett Armfield", "Toshiomi Kazama"],["Michal Oleksiejczuk", "Chidi Njokuani"],["Rolando Bedoya", "Song Kenan"],["Billy Goff", "Yusaku Kinoshita"],["JJ Aldrich", "Liang Na"],["Jarno Errens", "SeungWoo Choi"]]
+    # fights = [["Max Holloway", "Chan Sung Jung"],["Anthony Smith", "Ryan Spann"],["Alex Caceres", "Giga Chikadze"],["Fernie Garcia", "Rinya Nakamura"],["Erin Blanchfield", "Taila Santos"],["Parker Porter", "Junior Tafa"],["Lukasz Brzeski", "Waldo Cortes-Acosta"],["Garrett Armfield", "Toshiomi Kazama"],["Michal Oleksiejczuk", "Chidi Njokuani"],["Rolando Bedoya", "Song Kenan"],["Billy Goff", "Yusaku Kinoshita"],["JJ Aldrich", "Liang Na"],["Jarno Errens", "SeungWoo Choi"]]
     with open(filename, mode="w", newline="", encoding="utf-8") as csvfile:
         fieldnames = [
             "id",
