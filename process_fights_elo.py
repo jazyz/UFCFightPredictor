@@ -162,7 +162,7 @@ def get_stats():
                     flag = True
             # now add this fight stats to the database
             with app2.app_context():
-                if fighter_stats[fighter_a.name]["totalfights"]>0 and fighter_stats[fighter_b.name]["totalfights"]>0:
+                if fighter_stats[fighter_a.name]["totalfights"]>0 and fighter_stats[fighter_b.name]["totalfights"]>0 and not flag:
                     processed_fight = FightStats(
                         event=fight.event,
                         date=fight.date,
@@ -252,7 +252,7 @@ def get_stats():
                     fighter_stats[fighter_b.name]["sub_differential"] -= int(fight.fighterSUB) - int(fight.opponentSUB)
                     fighter_stats[fighter_b.name]["totalfights"] += 1
 
-                if fight.result=="lose":
+                if fight.result=="loss":
                     fighter_stats[fighter_b.name]["winstreak"] += 1
                     fighter_stats[fighter_b.name]["totalwins"] += 1
                     fighter_stats[fighter_b.name]["losestreak"] = 0
@@ -261,7 +261,7 @@ def get_stats():
                     fighter_stats[fighter_b.name]["winstreak"] = 0
                 if fight.titlefight:
                     fighter_stats[fighter_b.name]["titlefights"] += 1
-                    if fight.result=="lose":
+                    if fight.result=="loss":
                         fighter_stats[fighter_b.name]["titlewins"] += 1
             
 def export_to_csv(filename):
