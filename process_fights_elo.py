@@ -74,6 +74,7 @@ class FightStats(db2.Model):
     fighter_titlefights = db2.Column(db2.Integer)
     fighter_titlewins = db2.Column(db2.Integer)
     fighter_elo = db2.Column(db2.Float)
+    fighter_opp_avg_elo = db2.Column(db2.Float)
     opponent_name = db2.Column(db2.String)
     opponent_weight = db2.Column(db2.String)
     opponent_height = db2.Column(db2.String)
@@ -92,6 +93,7 @@ class FightStats(db2.Model):
     opponent_titlefights = db2.Column(db2.Integer)
     opponent_titlewins = db2.Column(db2.Integer)
     opponent_elo = db2.Column(db2.Float)
+    opponent_opp_avg_elo = db2.Column(db2.Float)
     result = db2.Column(db2.String)
     method = db2.Column(db2.String)
     round = db2.Column(db2.String)
@@ -143,6 +145,7 @@ def get_stats():
                 "totalfights": 0,
                 "titlefights": 0,
                 "titlewins": 0,
+                "opp_avg_elo": 0,
             }
             fighter_ids[fighter.name] = fighter.id
 
@@ -191,6 +194,7 @@ def get_stats():
                         fighter_titlefights = fighter_stats[fighter_a.name]["titlefights"],
                         fighter_titlewins = fighter_stats[fighter_a.name]["titlewins"],
                         fighter_elo = ratings[fighter_a.name],
+                        fighter_opp_avg_elo = fighter_stats[fighter_a.name]["opp_avg_elo"]/fighter_stats[fighter_a.name]["totalfights"],
                         opponent_name=fighter_b.name,
                         opponent_weight=fighter_b.Weight,
                         opponent_height=fighter_b.Height,
@@ -209,6 +213,7 @@ def get_stats():
                         opponent_titlefights = fighter_stats[fighter_b.name]["titlefights"],
                         opponent_titlewins = fighter_stats[fighter_b.name]["titlewins"],
                         opponent_elo = ratings[fighter_b.name],
+                        opponent_opp_avg_elo = fighter_stats[fighter_b.name]["opp_avg_elo"]/fighter_stats[fighter_b.name]["totalfights"],
                         result=fight.result,
                         method=fight.method,
                         round=fight.round,
@@ -248,6 +253,8 @@ def get_stats():
                     fighter_stats[fighter_a.name]["titlefights"] += 1
                     if fight.result=="win":
                         fighter_stats[fighter_a.name]["titlewins"] += 1
+
+                fighter_stats[fighter_a.name]["opp_avg_elo"] += ratings[fighter_b.name]
                 
                 # Change fighter b's stats
                 if fight.opponentKD =="--" or fight.opponentSTR =="--" or fight.opponentTD =="--" or fight.opponentSUB =="--":
@@ -270,6 +277,8 @@ def get_stats():
                     fighter_stats[fighter_b.name]["titlefights"] += 1
                     if fight.result=="loss":
                         fighter_stats[fighter_b.name]["titlewins"] += 1
+                
+                fighter_stats[fighter_b.name]["opp_avg_elo"] += ratings[fighter_a.name]
             
 def export_to_csv(filename):
     with app2.app_context():
@@ -298,6 +307,7 @@ def export_to_csv(filename):
                 "fighter_titlefights",
                 "fighter_titlewins",
                 "fighter_elo",
+                "fighter_opp_avg_elo",
                 "opponent_name",
                 "opponent_weight",
                 "opponent_height",
@@ -316,6 +326,7 @@ def export_to_csv(filename):
                 "opponent_titlefights",
                 "opponent_titlewins",
                 "opponent_elo",
+                "opponent_opp_avg_elo",
                 "result",
                 "method",
                 "round",
@@ -347,6 +358,7 @@ def export_to_csv(filename):
                     "fighter_titlefights": fight_stat.fighter_titlefights,
                     "fighter_titlewins": fight_stat.fighter_titlewins,
                     "fighter_elo": fight_stat.fighter_elo,
+                    "fighter_opp_avg_elo": fight_stat.fighter_opp_avg_elo,
                     "opponent_name": fight_stat.opponent_name,
                     "opponent_weight": fight_stat.opponent_weight,
                     "opponent_height": fight_stat.opponent_height,
@@ -365,6 +377,7 @@ def export_to_csv(filename):
                     "opponent_titlefights": fight_stat.opponent_titlefights,
                     "opponent_titlewins": fight_stat.opponent_titlewins,
                     "opponent_elo": fight_stat.opponent_elo,
+                    "opponent_opp_avg_elo": fight_stat.opponent_opp_avg_elo,
                     "result": fight_stat.result,
                     "method": fight_stat.method,
                     "round": fight_stat.round,
@@ -400,6 +413,7 @@ def predict_to_csv(filename):
             "fighter_titlefights",
             "fighter_titlewins",
             "fighter_elo",
+            "fighter_opp_avg_elo",
             "opponent_name",
             "opponent_weight",
             "opponent_height",
@@ -418,6 +432,7 @@ def predict_to_csv(filename):
             "opponent_titlefights",
             "opponent_titlewins",
             "opponent_elo",
+            "opponent_opp_avg_elo",
             "result",
             "method",
             "round",
@@ -451,6 +466,7 @@ def predict_to_csv(filename):
                     fighter_titlefights = fighter_stats[fighter_a.name]["titlefights"],
                     fighter_titlewins = fighter_stats[fighter_a.name]["titlewins"],
                     fighter_elo = ratings[fighter_a.name],
+                    fighter_opp_avg_elo = fighter_stats[fighter_a.name]["opp_avg_elo"]/fighter_stats[fighter_a.name]["totalfights"],
                     opponent_name=fighter_b.name,
                     opponent_weight=fighter_b.Weight,
                     opponent_height=fighter_b.Height,
@@ -469,6 +485,7 @@ def predict_to_csv(filename):
                     opponent_titlefights = fighter_stats[fighter_b.name]["titlefights"],
                     opponent_titlewins = fighter_stats[fighter_b.name]["titlewins"],
                     opponent_elo = ratings[fighter_b.name],
+                    opponent_opp_avg_elo = fighter_stats[fighter_b.name]["opp_avg_elo"]/fighter_stats[fighter_b.name]["totalfights"],
                     result="unknown",
                     method="unknown",
                     round="unknown",
@@ -496,6 +513,7 @@ def predict_to_csv(filename):
                     "fighter_titlefights": fight_stat.fighter_titlefights,
                     "fighter_titlewins": fight_stat.fighter_titlewins,
                     "fighter_elo": fight_stat.fighter_elo,
+                    "fighter_opp_avg_elo": fight_stat.fighter_opp_avg_elo,
                     "opponent_name": fight_stat.opponent_name,
                     "opponent_weight": fight_stat.opponent_weight,
                     "opponent_height": fight_stat.opponent_height,
@@ -514,6 +532,7 @@ def predict_to_csv(filename):
                     "opponent_titlefights": fight_stat.opponent_titlefights,
                     "opponent_titlewins": fight_stat.opponent_titlewins,
                     "opponent_elo": fight_stat.opponent_elo,
+                    "opponent_opp_avg_elo": fight_stat.opponent_opp_avg_elo,
                     "result": fight_stat.result,
                     "method": fight_stat.method,
                     "round": fight_stat.round,
