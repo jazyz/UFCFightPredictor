@@ -2,30 +2,38 @@
 0                 0.100000                 22.000000                      0.5   
 1                 0.714286                 26.571429                      1.0   
 
-   fighter_sub_differential  fighter_totalfights  fighter_titlefights  \
-0                  0.250000                   20                    0   
-1                  0.428571                    7                    0   
+   fighter_sub_differential  fighter_winrate  fighter_winstreak  \
+0                  0.250000         0.100000                  0   
+1                  0.428571         0.714286                  1   
 
-   fighter_titlewins  fighter_elo  opponent_kd_differential  \
-0                  0  1137.027828                     0.875   
-1                  0  1121.217370                     0.875   
+   fighter_losestreak  fighter_totalfights  fighter_totalwins  \
+0                   9                   20                  2   
+1                   0                    7                  5   
 
-   opponent_str_differential  opponent_td_differential  \
-0                    19.5625                   -1.3125   
-1                    19.5625                   -1.3125   
+   fighter_titlefights  fighter_titlewins  fighter_elo  \
+0                    0                  0  1137.027828   
+1                    0                  0  1121.217370   
 
-   opponent_sub_differential  opponent_totalfights  opponent_titlefights  \
-0                     0.1875                    16                    10   
-1                     0.1875                    16                    10   
+   opponent_kd_differential  opponent_str_differential  \
+0                     0.875                    19.5625   
+1                     0.875                    19.5625   
 
-   opponent_titlewins  opponent_elo  fighter_dob  opponent_dob   result  \
-0                   8   1184.796615         1991          1989  unknown   
-1                   8   1184.796615         1994          1989  unknown   
+   opponent_td_differential  opponent_sub_differential  opponent_winrate  \
+0                   -1.3125                     0.1875            0.8125   
+1                   -1.3125                     0.1875            0.8125   
 
-  predicted_result  probability_draw  probability_loss  probability_nc  \
-0              win          0.000325          0.226343        0.000169   
-1              win          0.000088          0.110600        0.000025   
+   opponent_winstreak  opponent_losestreak  opponent_totalfights  \
+0                   1                    0                    16   
+1                   1                    0                    16   
 
-   probability_win  
-0         0.773163  
-1         0.889288  
+   opponent_totalwins  opponent_titlefights  opponent_titlewins  opponent_elo  \
+0                  13                    10                   8   1184.796615   
+1                  13                    10                   8   1184.796615   
+
+   fighter_dob  opponent_dob   result predicted_result  probability_draw  \
+0         1991          1989  unknown              win          0.000020   
+1         1994          1989  unknown              win          0.000005   
+
+   probability_loss  probability_nc  probability_win  
+0          0.328962        0.000120         0.670899  
+1          0.175747        0.000067         0.824182  

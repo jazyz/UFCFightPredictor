@@ -67,6 +67,7 @@ class FightStats(db2.Model):
     fighter_sub_differential = db2.Column(db2.Integer)
     fighter_winrate = db2.Column(db2.Float)
     fighter_winstreak = db2.Column(db2.Integer)
+    fighter_losestreak = db2.Column(db2.Integer)
     fighter_totalfights = db2.Column(db2.Integer)
     fighter_totalwins = db2.Column(db2.Integer)
     fighter_record = db2.Column(db2.String)
@@ -84,6 +85,7 @@ class FightStats(db2.Model):
     opponent_sub_differential = db2.Column(db2.Integer)
     opponent_winrate = db2.Column(db2.Float)
     opponent_winstreak = db2.Column(db2.Integer)
+    opponent_losestreak = db2.Column(db2.Integer)
     opponent_totalfights = db2.Column(db2.Integer)
     opponent_totalwins = db2.Column(db2.Integer)
     opponent_record = db2.Column(db2.String)    
@@ -132,6 +134,7 @@ def get_stats():
                 "sub_differential": 0,
                 "winrate": 0,
                 "winstreak": 0,
+                "losestreak": 0,
                 "totalwins": 0,
                 "totalfights": 0,
                 "titlefights": 0,
@@ -173,6 +176,7 @@ def get_stats():
                         fighter_sub_differential = fighter_stats[fighter_a.name]["sub_differential"]/fighter_stats[fighter_a.name]["totalfights"],
                         fighter_winrate = fighter_stats[fighter_a.name]["totalwins"]/fighter_stats[fighter_a.name]["totalfights"],
                         fighter_winstreak = fighter_stats[fighter_a.name]["winstreak"],
+                        fighter_losestreak = fighter_stats[fighter_a.name]["losestreak"],
                         fighter_totalfights = fighter_stats[fighter_a.name]["totalfights"],
                         fighter_totalwins = fighter_stats[fighter_a.name]["totalwins"],
                         fighter_record = fighter_a.record,
@@ -190,6 +194,7 @@ def get_stats():
                         opponent_sub_differential = fighter_stats[fighter_b.name]["sub_differential"]/fighter_stats[fighter_b.name]["totalfights"],
                         opponent_winrate = fighter_stats[fighter_b.name]["totalwins"]/fighter_stats[fighter_b.name]["totalfights"],
                         opponent_winstreak = fighter_stats[fighter_b.name]["winstreak"],
+                        opponent_losestreak = fighter_stats[fighter_b.name]["losestreak"],
                         opponent_totalfights = fighter_stats[fighter_b.name]["totalfights"],
                         opponent_totalwins = fighter_stats[fighter_b.name]["totalwins"],
                         opponent_record = fighter_b.record,
@@ -212,6 +217,8 @@ def get_stats():
             
             ratings[fighter_a.name] = new_rating_a
             ratings[fighter_b.name] = new_rating_b
+
+            # Change fighter a's stats
             if fight.fighterKD =="--" or fight.fighterSTR =="--" or fight.fighterTD =="--" or fight.fighterSUB =="--":
                 pass
             else:
@@ -224,13 +231,17 @@ def get_stats():
             if fight.result=="win":
                 fighter_stats[fighter_a.name]["winstreak"] += 1
                 fighter_stats[fighter_a.name]["totalwins"] += 1
+                fighter_stats[fighter_a.name]["losestreak"] = 0
             else:
+                fighter_stats[fighter_a.name]["losestreak"] += 1
                 fighter_stats[fighter_a.name]["winstreak"] = 0
+
             if fight.titlefight:
                 fighter_stats[fighter_a.name]["titlefights"] += 1
                 if fight.result=="win":
                     fighter_stats[fighter_a.name]["titlewins"] += 1
             
+            # Change fighter b's stats
             if fight.opponentKD =="--" or fight.opponentSTR =="--" or fight.opponentTD =="--" or fight.opponentSUB =="--":
                 pass
             else:
@@ -243,7 +254,9 @@ def get_stats():
             if fight.result=="lose":
                 fighter_stats[fighter_b.name]["winstreak"] += 1
                 fighter_stats[fighter_b.name]["totalwins"] += 1
+                fighter_stats[fighter_b.name]["losestreak"] = 0
             else:
+                fighter_stats[fighter_b.name]["losestreak"] += 1
                 fighter_stats[fighter_b.name]["winstreak"] = 0
             if fight.titlefight:
                 fighter_stats[fighter_b.name]["titlefights"] += 1
@@ -270,6 +283,7 @@ def export_to_csv(filename):
                 "fighter_sub_differential",
                 "fighter_winrate",
                 "fighter_winstreak",
+                "fighter_losestreak",
                 "fighter_totalfights",
                 "fighter_totalwins",
                 "fighter_record",
@@ -287,6 +301,7 @@ def export_to_csv(filename):
                 "opponent_sub_differential",
                 "opponent_winrate",
                 "opponent_winstreak",
+                "opponent_losestreak",
                 "opponent_totalfights",
                 "opponent_totalwins",
                 "opponent_record",
@@ -317,6 +332,7 @@ def export_to_csv(filename):
                     "fighter_sub_differential": fight_stat.fighter_sub_differential,
                     "fighter_winrate": fight_stat.fighter_winrate,
                     "fighter_winstreak": fight_stat.fighter_winstreak,
+                    "fighter_losestreak": fight_stat.fighter_losestreak,
                     "fighter_totalfights": fight_stat.fighter_totalfights,
                     "fighter_totalwins": fight_stat.fighter_totalwins,
                     "fighter_record": fight_stat.fighter_record,
@@ -334,6 +350,7 @@ def export_to_csv(filename):
                     "opponent_sub_differential": fight_stat.opponent_sub_differential,
                     "opponent_winrate": fight_stat.opponent_winrate,
                     "opponent_winstreak": fight_stat.opponent_winstreak,
+                    "opponent_losestreak": fight_stat.opponent_losestreak,
                     "opponent_totalfights": fight_stat.opponent_totalfights,
                     "opponent_totalwins": fight_stat.opponent_totalwins,
                     "opponent_record": fight_stat.opponent_record,
@@ -364,6 +381,7 @@ def predict_to_csv(filename):
             "fighter_sub_differential",
             "fighter_winrate",
             "fighter_winstreak",
+            "fighter_losestreak",
             "fighter_totalfights",
             "fighter_totalwins",
             "fighter_record",
@@ -381,6 +399,7 @@ def predict_to_csv(filename):
             "opponent_sub_differential",
             "opponent_winrate",
             "opponent_winstreak",
+            "opponent_losestreak",
             "opponent_totalfights",
             "opponent_totalwins",
             "opponent_record",
@@ -412,6 +431,7 @@ def predict_to_csv(filename):
                     fighter_sub_differential = fighter_stats[fighter_a.name]["sub_differential"]/fighter_stats[fighter_a.name]["totalfights"],
                     fighter_winrate = fighter_stats[fighter_a.name]["totalwins"]/fighter_stats[fighter_a.name]["totalfights"],
                     fighter_winstreak = fighter_stats[fighter_a.name]["winstreak"],
+                    fighter_losestreak = fighter_stats[fighter_a.name]["losestreak"],
                     fighter_totalfights = fighter_stats[fighter_a.name]["totalfights"],
                     fighter_totalwins = fighter_stats[fighter_a.name]["totalwins"],
                     fighter_record = fighter_a.record,
@@ -429,6 +449,7 @@ def predict_to_csv(filename):
                     opponent_sub_differential = fighter_stats[fighter_b.name]["sub_differential"]/fighter_stats[fighter_b.name]["totalfights"],
                     opponent_winrate = fighter_stats[fighter_b.name]["totalwins"]/fighter_stats[fighter_b.name]["totalfights"],
                     opponent_winstreak = fighter_stats[fighter_b.name]["winstreak"],
+                    opponent_losestreak = fighter_stats[fighter_b.name]["losestreak"],
                     opponent_totalfights = fighter_stats[fighter_b.name]["totalfights"],
                     opponent_totalwins = fighter_stats[fighter_b.name]["totalwins"],
                     opponent_record = fighter_b.record,
@@ -455,6 +476,7 @@ def predict_to_csv(filename):
                     "fighter_sub_differential": fight_stat.fighter_sub_differential,
                     "fighter_winrate": fight_stat.fighter_winrate,
                     "fighter_winstreak": fight_stat.fighter_winstreak,
+                    "fighter_losestreak": fight_stat.fighter_losestreak,
                     "fighter_totalfights": fight_stat.fighter_totalfights,
                     "fighter_totalwins": fight_stat.fighter_totalwins,
                     "fighter_record": fight_stat.fighter_record,
@@ -472,6 +494,7 @@ def predict_to_csv(filename):
                     "opponent_sub_differential": fight_stat.opponent_sub_differential,
                     "opponent_winrate": fight_stat.opponent_winrate,
                     "opponent_winstreak": fight_stat.opponent_winstreak,
+                    "opponent_losestreak": fight_stat.opponent_losestreak,
                     "opponent_totalfights": fight_stat.opponent_totalfights,
                     "opponent_totalwins": fight_stat.opponent_totalwins,
                     "opponent_record": fight_stat.opponent_record,
