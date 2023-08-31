@@ -14,11 +14,11 @@ selected_columns = [
     "fighter_str_differential",
     "fighter_td_differential",
     "fighter_sub_differential",
-    # "fighter_winrate",
-    # "fighter_winstreak",
+    "fighter_winrate",
+    "fighter_winstreak",
+    "fighter_losestreak",
     "fighter_totalfights",
     "fighter_totalwins",
-    # "fighter_totalwins",
     "fighter_titlefights",
     "fighter_titlewins",
     "fighter_elo",
@@ -26,11 +26,11 @@ selected_columns = [
     "opponent_str_differential",
     "opponent_td_differential",
     "opponent_sub_differential",
-    # "opponent_winrate",
-    # "opponent_winstreak",
+    "opponent_winrate",
+    "opponent_winstreak",
+    "opponent_losestreak",
     "opponent_totalfights",
     "opponent_totalwins",
-    # "opponent_totalwins",
     "opponent_titlefights",
     "opponent_titlewins",
     "opponent_elo",
@@ -40,8 +40,8 @@ selected_columns = [
 ]
 
 # if predicting past event
-# event_to_drop = "UFC 292: Sterling vs. O'Malley"
-# data = data[data['event'] != event_to_drop]
+event_to_drop = "UFC Fight Night: Holloway vs. The Korean Zombie"
+data = data[data['event'] != event_to_drop]
 
 data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
