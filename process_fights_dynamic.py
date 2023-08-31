@@ -8,7 +8,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///detailedfighters.db"
 db = SQLAlchemy(app)
 
 class Fighter(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, index=True)
     name = db.Column(db.String, nullable=False)
     record = db.Column(db.String)
     SLpM = db.Column(db.Float)
@@ -28,7 +28,7 @@ class Fighter(db.Model):
     fights = db.relationship("Fight", back_populates="fighter")
 
 class Fight(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, index=True)
     fighter_id = db.Column(db.Integer, db.ForeignKey('fighter.id'))
     result = db.Column(db.String)
     opponent = db.Column(db.String)
