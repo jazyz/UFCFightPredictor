@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 data = pd.read_csv("elofightstats.csv")
 data.replace("--", pd.NA, inplace=True)
@@ -15,34 +16,32 @@ selected_columns = [
     "fighter_str_differential",
     "fighter_td_differential",
     "fighter_sub_differential",
-    "fighter_winrate",
-    "fighter_winstreak",
-    "fighter_losestreak",
+    # "fighter_winrate",
+    # "fighter_winstreak",
+    # "fighter_losestreak",
     "fighter_totalfights",
     "fighter_totalwins",
     "fighter_titlefights",
     "fighter_titlewins",
     "fighter_elo",
+    "fighter_opp_avg_elo",
     "opponent_kd_differential",
     "opponent_str_differential",
     "opponent_td_differential",
     "opponent_sub_differential",
-    "opponent_winrate",
-    "opponent_winstreak",
-    "opponent_losestreak",
+    # "opponent_winrate",
+    # "opponent_winstreak",
+    # "opponent_losestreak",
     "opponent_totalfights",
     "opponent_totalwins",
     "opponent_titlefights",
     "opponent_titlewins",
     "opponent_elo",
+    "opponent_opp_avg_elo",
     "fighter_dob",
     "opponent_dob",
     "result",
 ]
-
-# if predicting past event
-event_to_drop = "UFC Fight Night: Holloway vs. The Korean Zombie"
-data = data[data['event'] != event_to_drop]
 
 data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
@@ -110,4 +109,11 @@ plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
 plt.xlabel("Importance")
 plt.ylabel("Feature")
 plt.title("Feature Importance")
+plt.show()
+
+# python matplot a correlation heatmap
+correlation_matrix = data[selected_columns].corr()
+plt.figure(figsize=(12, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", center=0)
+plt.title("Correlation Heatmap")
 plt.show()
