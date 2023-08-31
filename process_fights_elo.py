@@ -416,9 +416,10 @@ def predict_to_csv(filename):
             "round",
             "time",
         ]
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
+        
         with app.app_context():
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
             for fight in fights:
                 fighter_a=Fighter.query.filter_by(name=fight[0]).first()
                 fighter_b=Fighter.query.filter_by(name=fight[1]).first()
