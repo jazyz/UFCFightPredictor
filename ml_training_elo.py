@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 data = pd.read_csv("elofightstats.csv")
 data.replace("--", pd.NA, inplace=True)
@@ -19,6 +20,7 @@ selected_columns = [
     "fighter_losestreak",
     "fighter_totalfights",
     "fighter_totalwins",
+    "fighter_totalwins",
     "fighter_titlefights",
     "fighter_titlewins",
     "fighter_elo",
@@ -30,6 +32,7 @@ selected_columns = [
     "opponent_winstreak",
     "opponent_losestreak",
     "opponent_totalfights",
+    "opponent_totalwins",
     "opponent_totalwins",
     "opponent_titlefights",
     "opponent_titlewins",
@@ -47,8 +50,8 @@ data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
 data = data[(data['fighter_totalfights'] > 4) & (data['opponent_totalfights'] > 4)]
 print(len(data))
-data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
-data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
+data["fighter_dob"] = pd.to_datetime(data["fighter_dob"], format="%b %d, %Y").dt.year
+data["opponent_dob"] = pd.to_datetime(data["opponent_dob"], format="%b %d, %Y").dt.year
 
 label_encoder = LabelEncoder()
 data["result"] = label_encoder.fit_transform(data["result"])
@@ -79,8 +82,8 @@ predict_data.replace("--", pd.NA, inplace=True)
 predict_data.dropna(subset=selected_columns, inplace=True)
 predict_data = predict_data[selected_columns]
 
-predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
-predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year
+predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"], format="%b %d, %Y").dt.year
+predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"], format="%b %d, %Y").dt.year
 
 X_predict = predict_data.drop("result", axis=1)
 
@@ -109,4 +112,10 @@ plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
 plt.xlabel("Importance")
 plt.ylabel("Feature")
 plt.title("Feature Importance")
+plt.show()
+
+correlation_matrix = data[selected_columns].corr()
+plt.figure(figsize=(12, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", center=0)
+plt.title("Correlation Heatmap")
 plt.show()
