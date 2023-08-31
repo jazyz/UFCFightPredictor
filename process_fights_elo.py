@@ -346,41 +346,6 @@ def export_to_csv(filename):
                     "time": fight_stat.time,
                 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def predict_to_csv(filename):
     fights = [["Sean Strickland","Israel Adesanya"],["Dricus Du Plessis","Israel Adesanya"]]
     with open(filename, mode="w", newline="", encoding="utf-8") as csvfile:
@@ -427,6 +392,8 @@ def predict_to_csv(filename):
             "round",
             "time",
         ]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
         with app.app_context():
             for fight in fights:
                 fighter_a=Fighter.query.filter_by(name=fight[0]).first()
@@ -473,9 +440,6 @@ def predict_to_csv(filename):
                     round="unknown",
                     time="unknown",
                 )
-
-                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-                writer.writeheader()
                 writer.writerow({
                     "id": fight_stat.id,
                     "event": fight_stat.event,
@@ -527,6 +491,13 @@ def main():
     get_stats()
     export_to_csv("elofightstats.csv")
     predict_to_csv("predict_fights_elo.csv")
+    sorted_ratings = sorted(ratings.items(), key=lambda x:x[1], reverse=True)
+    cnt=0
+    for name, rating in sorted_ratings:
+        print(name,rating)
+        cnt+=1
+        if(cnt==10):
+            break
     return
 
 if __name__ == "__main__":
