@@ -154,11 +154,12 @@ def get_stats():
             fighter_a = fight.fighter
             fighter_b = db.session.get(Fighter, fighter_ids[fight.opponent])
             
+            flag = False
             with app2.app_context():
                 # also chcek if fight already exists in db
                 existing_fight = FightStats.query.filter_by(event=fight.event, fighter_name=fighter_b.name, opponent_name=fighter_a.name).first()
                 if existing_fight:
-                    continue
+                    flag = True
             # now add this fight stats to the database
             with app2.app_context():
                 if fighter_stats[fighter_a.name]["totalfights"]>0 and fighter_stats[fighter_b.name]["totalfights"]>0:
@@ -208,60 +209,60 @@ def get_stats():
                     )
                     db2.session.add(processed_fight)
                     db2.session.commit()
+            if (not flag):
+                rating_a = ratings[fighter_a.name]
+                rating_b = ratings[fighter_b.name]
+                result = fight.result.lower()
+                
+                new_rating_a, new_rating_b = update_elo_ratings(rating_a, rating_b, result)
+                
+                ratings[fighter_a.name] = new_rating_a
+                ratings[fighter_b.name] = new_rating_b
+    
+                # Change fighter a's stats
+                if fight.fighterKD =="--" or fight.fighterSTR =="--" or fight.fighterTD =="--" or fight.fighterSUB =="--":
+                    pass
+                else:
+                    fighter_stats[fighter_a.name]["kd_differential"] += int(fight.fighterKD) - int(fight.opponentKD)
+                    fighter_stats[fighter_a.name]["str_differential"] += int(fight.fighterSTR) - int(fight.opponentSTR)
+                    fighter_stats[fighter_a.name]["td_differential"] += int(fight.fighterTD) - int(fight.opponentTD)
+                    fighter_stats[fighter_a.name]["sub_differential"] += int(fight.fighterSUB) - int(fight.opponentSUB)
+                    fighter_stats[fighter_a.name]["totalfights"] += 1
 
-            rating_a = ratings[fighter_a.name]
-            rating_b = ratings[fighter_b.name]
-            result = fight.result.lower()
-            
-            new_rating_a, new_rating_b = update_elo_ratings(rating_a, rating_b, result)
-            
-            ratings[fighter_a.name] = new_rating_a
-            ratings[fighter_b.name] = new_rating_b
-
-            # Change fighter a's stats
-            if fight.fighterKD =="--" or fight.fighterSTR =="--" or fight.fighterTD =="--" or fight.fighterSUB =="--":
-                pass
-            else:
-                fighter_stats[fighter_a.name]["kd_differential"] += int(fight.fighterKD) - int(fight.opponentKD)
-                fighter_stats[fighter_a.name]["str_differential"] += int(fight.fighterSTR) - int(fight.opponentSTR)
-                fighter_stats[fighter_a.name]["td_differential"] += int(fight.fighterTD) - int(fight.opponentTD)
-                fighter_stats[fighter_a.name]["sub_differential"] += int(fight.fighterSUB) - int(fight.opponentSUB)
-                fighter_stats[fighter_a.name]["totalfights"] += 1
-
-            if fight.result=="win":
-                fighter_stats[fighter_a.name]["winstreak"] += 1
-                fighter_stats[fighter_a.name]["totalwins"] += 1
-                fighter_stats[fighter_a.name]["losestreak"] = 0
-            else:
-                fighter_stats[fighter_a.name]["losestreak"] += 1
-                fighter_stats[fighter_a.name]["winstreak"] = 0
-
-            if fight.titlefight:
-                fighter_stats[fighter_a.name]["titlefights"] += 1
                 if fight.result=="win":
-                    fighter_stats[fighter_a.name]["titlewins"] += 1
-            
-            # Change fighter b's stats
-            if fight.opponentKD =="--" or fight.opponentSTR =="--" or fight.opponentTD =="--" or fight.opponentSUB =="--":
-                pass
-            else:
-                fighter_stats[fighter_b.name]["kd_differential"] -= int(fight.fighterKD) - int(fight.opponentKD)
-                fighter_stats[fighter_b.name]["str_differential"] -= int(fight.fighterSTR) - int(fight.opponentSTR)
-                fighter_stats[fighter_b.name]["td_differential"] -= int(fight.fighterTD) - int(fight.opponentTD)
-                fighter_stats[fighter_b.name]["sub_differential"] -= int(fight.fighterSUB) - int(fight.opponentSUB)
-                fighter_stats[fighter_b.name]["totalfights"] += 1
+                    fighter_stats[fighter_a.name]["winstreak"] += 1
+                    fighter_stats[fighter_a.name]["totalwins"] += 1
+                    fighter_stats[fighter_a.name]["losestreak"] = 0
+                else:
+                    fighter_stats[fighter_a.name]["losestreak"] += 1
+                    fighter_stats[fighter_a.name]["winstreak"] = 0
 
-            if fight.result=="lose":
-                fighter_stats[fighter_b.name]["winstreak"] += 1
-                fighter_stats[fighter_b.name]["totalwins"] += 1
-                fighter_stats[fighter_b.name]["losestreak"] = 0
-            else:
-                fighter_stats[fighter_b.name]["losestreak"] += 1
-                fighter_stats[fighter_b.name]["winstreak"] = 0
-            if fight.titlefight:
-                fighter_stats[fighter_b.name]["titlefights"] += 1
+                if fight.titlefight:
+                    fighter_stats[fighter_a.name]["titlefights"] += 1
+                    if fight.result=="win":
+                        fighter_stats[fighter_a.name]["titlewins"] += 1
+                
+                # Change fighter b's stats
+                if fight.opponentKD =="--" or fight.opponentSTR =="--" or fight.opponentTD =="--" or fight.opponentSUB =="--":
+                    pass
+                else:
+                    fighter_stats[fighter_b.name]["kd_differential"] -= int(fight.fighterKD) - int(fight.opponentKD)
+                    fighter_stats[fighter_b.name]["str_differential"] -= int(fight.fighterSTR) - int(fight.opponentSTR)
+                    fighter_stats[fighter_b.name]["td_differential"] -= int(fight.fighterTD) - int(fight.opponentTD)
+                    fighter_stats[fighter_b.name]["sub_differential"] -= int(fight.fighterSUB) - int(fight.opponentSUB)
+                    fighter_stats[fighter_b.name]["totalfights"] += 1
+
                 if fight.result=="lose":
-                    fighter_stats[fighter_b.name]["titlewins"] += 1
+                    fighter_stats[fighter_b.name]["winstreak"] += 1
+                    fighter_stats[fighter_b.name]["totalwins"] += 1
+                    fighter_stats[fighter_b.name]["losestreak"] = 0
+                else:
+                    fighter_stats[fighter_b.name]["losestreak"] += 1
+                    fighter_stats[fighter_b.name]["winstreak"] = 0
+                if fight.titlefight:
+                    fighter_stats[fighter_b.name]["titlefights"] += 1
+                    if fight.result=="lose":
+                        fighter_stats[fighter_b.name]["titlewins"] += 1
             
 def export_to_csv(filename):
     with app2.app_context():
@@ -364,7 +365,8 @@ def export_to_csv(filename):
                 })
 
 def predict_to_csv(filename):
-    fights = [["Sean Strickland","Israel Adesanya"],["Dricus Du Plessis","Israel Adesanya"]]
+    fights = [["Sean Strickland","Israel Adesanya"], ["Israel Adesanya", "Sean Strickland"], ["Dricus Du Plessis","Israel Adesanya"], ["Israel Adesanya", "Dricus Du Plessis"],]
+    # fights = [["Michael Chandler", "Conor McGregor"], ["Conor McGregor", "Michael Chandler"]]
     with open(filename, mode="w", newline="", encoding="utf-8") as csvfile:
         fieldnames = [
             "id",
@@ -414,6 +416,8 @@ def predict_to_csv(filename):
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         with app.app_context():
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
             for fight in fights:
                 fighter_a=Fighter.query.filter_by(name=fight[0]).first()
                 fighter_b=Fighter.query.filter_by(name=fight[1]).first()
