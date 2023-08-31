@@ -233,7 +233,7 @@ def get_stats():
                     fighter_stats[fighter_a.name]["winstreak"] += 1
                     fighter_stats[fighter_a.name]["totalwins"] += 1
                     fighter_stats[fighter_a.name]["losestreak"] = 0
-                else:
+                elif fight.result=="loss":
                     fighter_stats[fighter_a.name]["losestreak"] += 1
                     fighter_stats[fighter_a.name]["winstreak"] = 0
 
@@ -252,16 +252,16 @@ def get_stats():
                     fighter_stats[fighter_b.name]["sub_differential"] -= int(fight.fighterSUB) - int(fight.opponentSUB)
                     fighter_stats[fighter_b.name]["totalfights"] += 1
 
-                if fight.result=="lose":
+                if fight.result=="loss":
                     fighter_stats[fighter_b.name]["winstreak"] += 1
                     fighter_stats[fighter_b.name]["totalwins"] += 1
                     fighter_stats[fighter_b.name]["losestreak"] = 0
-                else:
+                elif fight.result=="win":
                     fighter_stats[fighter_b.name]["losestreak"] += 1
                     fighter_stats[fighter_b.name]["winstreak"] = 0
                 if fight.titlefight:
                     fighter_stats[fighter_b.name]["titlefights"] += 1
-                    if fight.result=="lose":
+                    if fight.result=="loss":
                         fighter_stats[fighter_b.name]["titlewins"] += 1
             
 def export_to_csv(filename):
@@ -367,8 +367,8 @@ def export_to_csv(filename):
 def predict_to_csv(filename):
     # fights = [["Sean Strickland","Israel Adesanya"], ["Israel Adesanya", "Sean Strickland"], ["Dricus Du Plessis","Israel Adesanya"], ["Israel Adesanya", "Dricus Du Plessis"],]
     # fights = [["Michael Chandler", "Conor McGregor"], ["Conor McGregor", "Michael Chandler"]]
-    # fights = [["Sean O'Malley", "Aljamain Sterling"], ["Amanda Lemos", "Zhang Weili"],["Neil Magny", "Ian Garry"],["Da'Mon Blackshear", "Mario Bautista"], ["Pedro Munhoz", "Marlon Vera"], ["Chris Weidman", "Brad Tavares"], ["Denis Tiuliulin", "Gregory Rodrigues"], ["Austin Hubbard", "Kurt Holobaugh"], ["Cody Gibson", "Brad Katona"], ["Gerald Meerschaert", "Andre Petroski"], ["Andrea Lee", "Natalia Silva"], ["Maryna Moroz", "Karine Silva"]]
-    fights = [["Aljamain Sterling", "Sean O'Malley"], ["Zhang Weili", "Amanda Lemos"],["Ian Garry", "Neil Magny"],["Mario Bautista", "Da'Mon Blackshear"], ["Marlon Vera", "Pedro Munhoz"], ["Brad Tavares", "Chris Weidman"], ["Gregory Rodrigues", "Denis Tiuliulin"], ["Kurt Holobaugh", "Austin Hubbard"], ["Brad Katona", "Cody Gibson"], ["Andre Petroski", "Gerald Meerschaert"], ["Natalia Silva", "Andrea Lee"], ["Karine Silva", "Maryna Moroz"]]
+    fights = [["Sean O'Malley", "Aljamain Sterling"], ["Amanda Lemos", "Zhang Weili"],["Neil Magny", "Ian Garry"],["Da'Mon Blackshear", "Mario Bautista"], ["Pedro Munhoz", "Marlon Vera"], ["Chris Weidman", "Brad Tavares"], ["Denis Tiuliulin", "Gregory Rodrigues"], ["Austin Hubbard", "Kurt Holobaugh"], ["Cody Gibson", "Brad Katona"], ["Gerald Meerschaert", "Andre Petroski"], ["Andrea Lee", "Natalia Silva"], ["Maryna Moroz", "Karine Silva"]]
+    # fights = [["Aljamain Sterling", "Sean O'Malley"], ["Zhang Weili", "Amanda Lemos"],["Ian Garry", "Neil Magny"],["Mario Bautista", "Da'Mon Blackshear"], ["Marlon Vera", "Pedro Munhoz"], ["Brad Tavares", "Chris Weidman"], ["Gregory Rodrigues", "Denis Tiuliulin"], ["Kurt Holobaugh", "Austin Hubbard"], ["Brad Katona", "Cody Gibson"], ["Andre Petroski", "Gerald Meerschaert"], ["Natalia Silva", "Andrea Lee"], ["Karine Silva", "Maryna Moroz"]]
     # fights = [["Max Holloway", "Chan Sung Jung"],["Anthony Smith", "Ryan Spann"],["Alex Caceres", "Giga Chikadze"],["Fernie Garcia", "Rinya Nakamura"],["Erin Blanchfield", "Taila Santos"],["Parker Porter", "Junior Tafa"],["Lukasz Brzeski", "Waldo Cortes-Acosta"],["Garrett Armfield", "Toshiomi Kazama"],["Michal Oleksiejczuk", "Chidi Njokuani"],["Rolando Bedoya", "Song Kenan"],["Billy Goff", "Yusaku Kinoshita"],["JJ Aldrich", "Liang Na"],["Jarno Errens", "SeungWoo Choi"]]
     with open(filename, mode="w", newline="", encoding="utf-8") as csvfile:
         fieldnames = [
