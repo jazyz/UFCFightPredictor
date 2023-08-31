@@ -1,31 +1,59 @@
    fighter_kd_differential  fighter_str_differential  fighter_td_differential  \
-0                 0.100000                 22.000000                      0.5   
-1                 0.714286                 26.571429                      1.0   
+0                 0.100000                 22.000000                   0.5000   
+1                 0.875000                 19.562500                  -1.3125   
+2                 0.714286                 26.571429                   1.0000   
+3                 0.875000                 19.562500                  -1.3125   
 
-   fighter_sub_differential  fighter_totalfights  fighter_titlefights  \
-0                  0.250000                   20                    0   
-1                  0.428571                    7                    0   
+   fighter_sub_differential  fighter_winrate  fighter_winstreak  \
+0                  0.250000         0.100000                  0   
+1                  0.187500         0.812500                  1   
+2                  0.428571         0.714286                  1   
+3                  0.187500         0.812500                  1   
+
+   fighter_totalfights  fighter_totalwins  fighter_titlefights  \
+0                   20                  2                    0   
+1                   16                 13                   10   
+2                    7                  5                    0   
+3                   16                 13                   10   
 
    fighter_titlewins  fighter_elo  opponent_kd_differential  \
-0                  0  1137.027828                     0.875   
-1                  0  1121.217370                     0.875   
+0                  0  1137.027828                  0.875000   
+1                  8  1184.796615                  0.100000   
+2                  0  1121.217370                  0.875000   
+3                  8  1184.796615                  0.714286   
 
    opponent_str_differential  opponent_td_differential  \
-0                    19.5625                   -1.3125   
-1                    19.5625                   -1.3125   
+0                  19.562500                   -1.3125   
+1                  22.000000                    0.5000   
+2                  19.562500                   -1.3125   
+3                  26.571429                    1.0000   
 
-   opponent_sub_differential  opponent_totalfights  opponent_titlefights  \
-0                     0.1875                    16                    10   
-1                     0.1875                    16                    10   
+   opponent_sub_differential  opponent_winrate  opponent_winstreak  \
+0                   0.187500          0.812500                   1   
+1                   0.250000          0.100000                   0   
+2                   0.187500          0.812500                   1   
+3                   0.428571          0.714286                   1   
+
+   opponent_totalfights  opponent_totalwins  opponent_titlefights  \
+0                    16                  13                    10   
+1                    20                   2                     0   
+2                    16                  13                    10   
+3                     7                   5                     0   
 
    opponent_titlewins  opponent_elo  fighter_dob  opponent_dob   result  \
 0                   8   1184.796615         1991          1989  unknown   
-1                   8   1184.796615         1994          1989  unknown   
+1                   0   1137.027828         1989          1991  unknown   
+2                   8   1184.796615         1994          1989  unknown   
+3                   0   1121.217370         1989          1994  unknown   
 
   predicted_result  probability_draw  probability_loss  probability_nc  \
-0              win          0.000325          0.226343        0.000169   
-1              win          0.000088          0.110600        0.000025   
+0             loss          0.000001          0.996596        0.000010   
+1              win          0.000009          0.440905        0.001154   
+2             loss          0.000044          0.681833        0.000044   
+3             loss          0.000028          0.850641        0.000105   
 
    probability_win  
-0         0.773163  
-1         0.889288  
+0         0.003393  
+1         0.557932  
+2         0.318079  
+3         0.149226  
