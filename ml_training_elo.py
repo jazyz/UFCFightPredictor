@@ -4,6 +4,7 @@ import lightgbm as lgb
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import balanced_accuracy_score
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -39,8 +40,8 @@ selected_columns = [
 ]
 
 # if predicting past event
-# event_to_drop = "UFC 292: Sterling vs. O'Malley"
-# data = data[data['event'] != event_to_drop]
+event_to_drop = "UFC 292: Sterling vs. O'Malley"
+data = data[data['event'] != event_to_drop]
 
 data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
