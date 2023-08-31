@@ -169,7 +169,7 @@ def get_stats():
                     continue
             # now add this fight stats to the database
             with app2.app_context():
-                if fighter_stats[fighter_a.name]["totalfights"]>0 and fighter_stats[fighter_b.name]["totalfights"]>0:
+                if fighter_stats[fighter_a.name]["totalfights"]>0 and fighter_stats[fighter_b.name]["totalfights"]>0 and not flag:
                     processed_fight = FightStats(
                         event=fight.event,
                         date=fight.date,
