@@ -8,7 +8,8 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("elofightstats.csv")
 data.replace("--", pd.NA, inplace=True)
-    
+data = data[(data['fighter_totalfights'] > 4) & (data['opponent_totalfights'] > 4)]
+
 selected_columns = [
     "fighter_kd_differential",
     "fighter_str_differential",
@@ -45,7 +46,7 @@ data = data[data['event'] != event_to_drop]
 
 data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
-data = data[(data['fighter_totalfights'] > 4) & (data['opponent_totalfights'] > 4)]
+
 print(len(data))
 data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
 data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
