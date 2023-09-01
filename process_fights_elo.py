@@ -73,8 +73,10 @@ class FightStats(db2.Model):
     fighter_record = db2.Column(db2.String)
     fighter_titlefights = db2.Column(db2.Integer)
     fighter_titlewins = db2.Column(db2.Integer)
+    fighter_age_deviation = db2.Column(db2.Float)
     fighter_elo = db2.Column(db2.Float)
     fighter_opp_avg_elo = db2.Column(db2.Float)
+
     opponent_name = db2.Column(db2.String)
     opponent_weight = db2.Column(db2.String)
     opponent_height = db2.Column(db2.String)
@@ -92,8 +94,10 @@ class FightStats(db2.Model):
     opponent_record = db2.Column(db2.String)    
     opponent_titlefights = db2.Column(db2.Integer)
     opponent_titlewins = db2.Column(db2.Integer)
+    opponent_age_deviation = db2.Column(db2.Float)
     opponent_elo = db2.Column(db2.Float)
     opponent_opp_avg_elo = db2.Column(db2.Float)
+
     result = db2.Column(db2.String)
     method = db2.Column(db2.String)
     round = db2.Column(db2.String)
@@ -125,7 +129,7 @@ fighter_ids = dict()
 ratings = dict()
 
 # when looking at past events, drop the event
-event_to_drop = ""
+event_to_drop = "UFC 292: Sterling vs. O'Malley"
 # find event names here: http://www.ufcstats.com/statistics/events/completed
 
 def get_stats():
@@ -145,6 +149,7 @@ def get_stats():
                 "totalfights": 0,
                 "titlefights": 0,
                 "titlewins": 0,
+                "age_deviation": 0,
                 "opp_avg_elo": 0,
             }
             fighter_ids[fighter.name] = fighter.id
@@ -193,6 +198,7 @@ def get_stats():
                         fighter_record = fighter_a.record,
                         fighter_titlefights = fighter_stats[fighter_a.name]["titlefights"],
                         fighter_titlewins = fighter_stats[fighter_a.name]["titlewins"],
+                        fighter_age_deviation = fighter_stats[fighter_a.name]["age_deviation"],
                         fighter_elo = ratings[fighter_a.name],
                         fighter_opp_avg_elo = fighter_stats[fighter_a.name]["opp_avg_elo"]/fighter_stats[fighter_a.name]["totalfights"],
                         opponent_name=fighter_b.name,
@@ -212,6 +218,7 @@ def get_stats():
                         opponent_record = fighter_b.record,
                         opponent_titlefights = fighter_stats[fighter_b.name]["titlefights"],
                         opponent_titlewins = fighter_stats[fighter_b.name]["titlewins"],
+                        opponent_age_deviation = fighter_stats[fighter_b.name]["age_deviation"],
                         opponent_elo = ratings[fighter_b.name],
                         opponent_opp_avg_elo = fighter_stats[fighter_b.name]["opp_avg_elo"]/fighter_stats[fighter_b.name]["totalfights"],
                         result=fight.result,
@@ -231,7 +238,17 @@ def get_stats():
                 ratings[fighter_a.name] = new_rating_a
                 ratings[fighter_b.name] = new_rating_b
     
+                prime_age = 25 * 365
+                fight_date_object = datetime.strptime(fight.date, "%b. %d, %Y")
                 # Change fighter a's stats
+                try:
+                    a_date_object = datetime.strptime(fighter_a.DOB, "%b %d, %Y")
+                    age_a = (fight_date_object - a_date_object).days
+                    fighter_stats[fighter_a.name]["age_deviation"] = abs(age_a - prime_age)
+                # If DOB is --
+                except: 
+                    fighter_stats[fighter_a.name]["age_deviation"] = 5*365
+
                 if fight.fighterKD =="--" or fight.fighterSTR =="--" or fight.fighterTD =="--" or fight.fighterSUB =="--":
                     pass
                 else:
@@ -257,6 +274,13 @@ def get_stats():
                 fighter_stats[fighter_a.name]["opp_avg_elo"] += ratings[fighter_b.name]
                 
                 # Change fighter b's stats
+                try:
+                    b_date_object = datetime.strptime(fighter_b.DOB, "%b %d, %Y")
+                    age_b = (fight_date_object - b_date_object).days
+                    fighter_stats[fighter_b.name]["age_deviation"] = abs(age_b - prime_age)
+                except:
+                    fighter_stats[fighter_b.name]["age_deviation"] = 5*365
+
                 if fight.opponentKD =="--" or fight.opponentSTR =="--" or fight.opponentTD =="--" or fight.opponentSUB =="--":
                     pass
                 else:
@@ -306,6 +330,7 @@ def export_to_csv(filename):
                 "fighter_record",
                 "fighter_titlefights",
                 "fighter_titlewins",
+                "fighter_age_deviation",
                 "fighter_elo",
                 "fighter_opp_avg_elo",
                 "opponent_name",
@@ -325,6 +350,7 @@ def export_to_csv(filename):
                 "opponent_record",
                 "opponent_titlefights",
                 "opponent_titlewins",
+                "opponent_age_deviation",
                 "opponent_elo",
                 "opponent_opp_avg_elo",
                 "result",
@@ -357,6 +383,7 @@ def export_to_csv(filename):
                     "fighter_record": fight_stat.fighter_record,
                     "fighter_titlefights": fight_stat.fighter_titlefights,
                     "fighter_titlewins": fight_stat.fighter_titlewins,
+                    "fighter_age_deviation": fight_stat.fighter_age_deviation,
                     "fighter_elo": fight_stat.fighter_elo,
                     "fighter_opp_avg_elo": fight_stat.fighter_opp_avg_elo,
                     "opponent_name": fight_stat.opponent_name,
@@ -376,6 +403,7 @@ def export_to_csv(filename):
                     "opponent_record": fight_stat.opponent_record,
                     "opponent_titlefights": fight_stat.opponent_titlefights,
                     "opponent_titlewins": fight_stat.opponent_titlewins,
+                    "opponent_age_deviation": fight_stat.opponent_age_deviation,
                     "opponent_elo": fight_stat.opponent_elo,
                     "opponent_opp_avg_elo": fight_stat.opponent_opp_avg_elo,
                     "result": fight_stat.result,
@@ -412,6 +440,7 @@ def predict_to_csv(filename):
             "fighter_record",
             "fighter_titlefights",
             "fighter_titlewins",
+            "fighter_age_deviation",
             "fighter_elo",
             "fighter_opp_avg_elo",
             "opponent_name",
@@ -431,6 +460,7 @@ def predict_to_csv(filename):
             "opponent_record",
             "opponent_titlefights",
             "opponent_titlewins",
+            "opponent_age_deviation",
             "opponent_elo",
             "opponent_opp_avg_elo",
             "result",
@@ -465,6 +495,7 @@ def predict_to_csv(filename):
                     fighter_record = fighter_a.record,
                     fighter_titlefights = fighter_stats[fighter_a.name]["titlefights"],
                     fighter_titlewins = fighter_stats[fighter_a.name]["titlewins"],
+                    fighter_age_deviation = fighter_stats[fighter_a.name]["age_deviation"],
                     fighter_elo = ratings[fighter_a.name],
                     fighter_opp_avg_elo = fighter_stats[fighter_a.name]["opp_avg_elo"]/fighter_stats[fighter_a.name]["totalfights"],
                     opponent_name=fighter_b.name,
@@ -484,6 +515,7 @@ def predict_to_csv(filename):
                     opponent_record = fighter_b.record,
                     opponent_titlefights = fighter_stats[fighter_b.name]["titlefights"],
                     opponent_titlewins = fighter_stats[fighter_b.name]["titlewins"],
+                    opponent_age_deviation = fighter_stats[fighter_b.name]["age_deviation"],
                     opponent_elo = ratings[fighter_b.name],
                     opponent_opp_avg_elo = fighter_stats[fighter_b.name]["opp_avg_elo"]/fighter_stats[fighter_b.name]["totalfights"],
                     result="unknown",
@@ -512,6 +544,7 @@ def predict_to_csv(filename):
                     "fighter_record": fight_stat.fighter_record,
                     "fighter_titlefights": fight_stat.fighter_titlefights,
                     "fighter_titlewins": fight_stat.fighter_titlewins,
+                    "fighter_age_deviation": fight_stat.fighter_age_deviation,
                     "fighter_elo": fight_stat.fighter_elo,
                     "fighter_opp_avg_elo": fight_stat.fighter_opp_avg_elo,
                     "opponent_name": fight_stat.opponent_name,
@@ -531,6 +564,7 @@ def predict_to_csv(filename):
                     "opponent_record": fight_stat.opponent_record,
                     "opponent_titlefights": fight_stat.opponent_titlefights,
                     "opponent_titlewins": fight_stat.opponent_titlewins,
+                    "opponent_age_deviation": fight_stat.opponent_age_deviation,
                     "opponent_elo": fight_stat.opponent_elo,
                     "opponent_opp_avg_elo": fight_stat.opponent_opp_avg_elo,
                     "result": fight_stat.result,

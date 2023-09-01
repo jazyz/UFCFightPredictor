@@ -21,6 +21,7 @@ selected_columns = [
     "fighter_totalwins",
     "fighter_titlefights",
     "fighter_titlewins",
+    "fighter_age_deviation",
     "fighter_elo",
     "fighter_opp_avg_elo",
     "opponent_kd_differential",
@@ -34,6 +35,7 @@ selected_columns = [
     "opponent_totalwins",
     "opponent_titlefights",
     "opponent_titlewins",
+    "opponent_age_deviation",
     "opponent_elo",
     "opponent_opp_avg_elo",
     "fighter_dob",
@@ -55,10 +57,10 @@ X = data.drop("result", axis=1)
 y = data["result"]
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+    X, y, test_size=0.2, random_state=0
 )
 
-model = lgb.LGBMClassifier(random_state=42)
+model = lgb.LGBMClassifier(random_state=0)
 model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
