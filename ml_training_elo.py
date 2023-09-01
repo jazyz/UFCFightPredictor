@@ -5,10 +5,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 data = pd.read_csv("elofightstats.csv")
 data.replace("--", pd.NA, inplace=True)
-    
+data = data[(data['fighter_totalfights'] > 4) & (data['opponent_totalfights'] > 4)]
+
 selected_columns = [
     "fighter_kd_differential",
     "fighter_str_differential",
@@ -45,7 +47,7 @@ selected_columns = [
 
 data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
-data = data[(data['fighter_totalfights'] > 4) & (data['opponent_totalfights'] > 4)]
+
 print(len(data))
 data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
 data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
@@ -109,4 +111,11 @@ plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
 plt.xlabel("Importance")
 plt.ylabel("Feature")
 plt.title("Feature Importance")
+plt.show()
+
+# python matplot a correlation heatmap
+correlation_matrix = data[selected_columns].corr()
+plt.figure(figsize=(12, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", center=0)
+plt.title("Correlation Heatmap")
 plt.show()
