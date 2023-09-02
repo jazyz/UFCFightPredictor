@@ -10,4 +10,4 @@ v3:
 Achieved 68% accuracy on test set with data leakage using Light Gradient Boosting Machine model
 
 v4:
-Achieved maximum of 64% accuracy on test set without data leakage using Light Gradient Boosting Machine model
+Achieved 64% accuracy on test set without data leakage using Light Gradient Boosting Machine model
