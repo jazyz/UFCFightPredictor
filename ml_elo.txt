@@ -1,4 +1,5 @@
    fighter_kd_differential  fighter_str_differential  fighter_td_differential  \
+<<<<<<< HEAD
 0                 0.100000                 22.000000                   0.5000   
 1                 0.875000                 19.562500                  -1.3125   
 2                 0.714286                 26.571429                   1.0000   
@@ -45,3 +46,59 @@
 1          0.000011          0.483971        0.000647         0.515371  
 2          0.000053          0.284977        0.000096         0.714875  
 3          0.000009          0.738958        0.000166         0.260867  
+=======
+0                -0.250000                  7.416667                 2.250000   
+1                 0.285714                  0.928571                -0.071429   
+2                 0.230769                -11.230769                 0.384615   
+3                 0.000000                -24.750000                 1.000000   
+4                 0.250000                 40.750000                -0.500000   
+
+   fighter_sub_differential  fighter_totalfights  fighter_totalwins  \
+0                  0.166667                   12                  8   
+1                  0.357143                   14                  9   
+2                  0.615385                   13                  9   
+3                  0.500000                    4                  1   
+4                  0.750000                    4                  3   
+
+   fighter_titlefights  fighter_titlewins  fighter_elo  fighter_opp_avg_elo  \
+0                    0                  0  1077.410465          1025.679744   
+1                    8                  4  1089.532874          1066.321869   
+2                    0                  0  1075.875760          1021.473904   
+3                    0                  0   974.550393          1019.506639   
+4                    0                  0  1027.610820           984.224167   
+
+   opponent_kd_differential  opponent_str_differential  \
+0                  0.181818                  38.545455   
+1                  0.285714                  45.285714   
+2                  1.000000                 -20.666667   
+3                  0.000000                 -44.000000   
+4                  0.000000                  63.333333   
+
+   opponent_td_differential  opponent_sub_differential  opponent_totalfights  \
+0                  0.000000                   0.454545                    11   
+1                  1.142857                   0.000000                     7   
+2                  1.500000                   0.500000                     6   
+3                 -1.666667                  -0.666667                     3   
+4                  2.666667                  -1.666667                     3   
+
+   opponent_totalwins  opponent_titlefights  opponent_titlewins  opponent_elo  \
+0                   9                     3                   1   1125.738146   
+1                   7                     0                   0   1106.216587   
+2                   4                     0                   0   1039.529735   
+3                   0                     0                   0    958.791582   
+4                   3                     0                   0   1045.094979   
+
+   opponent_opp_avg_elo  fighter_dob  opponent_dob   result predicted_result  \
+0           1092.919766         1995          1990  unknown             loss   
+1           1012.956069         1992          1990  unknown             loss   
+2           1018.766472         1995          1995  unknown             loss   
+3           1049.029204         1993          1995  unknown              win   
+4            979.393187         1995          1997  unknown             loss   
+
+   probability_draw  probability_loss  probability_nc  probability_win  
+0          0.000027          0.598753        0.000062         0.401158  
+1          0.000008          0.575509        0.000365         0.424118  
+2          0.000008          0.681302        0.000017         0.318673  
+3          0.000021          0.113780        0.000027         0.886173  
+4          0.000091          0.802693        0.000009         0.197207  
+>>>>>>> e591e1299cb366937e5f7fd1efaa25e82f7226ba
