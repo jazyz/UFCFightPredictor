@@ -6,12 +6,14 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
+from imblearn.over_sampling import RandomOverSampler
 
 data = pd.read_csv("elofightstats.csv")
 data.replace("--", pd.NA, inplace=True)
 data = data[(data['fighter_totalfights'] > 4) & (data['opponent_totalfights'] > 4)]
 
-selected_columns = [
+all_columns = [
     "fighter_kd_differential",
     "fighter_str_differential",
     "fighter_td_differential",
@@ -42,13 +44,38 @@ selected_columns = [
     "opponent_dob",
     "result",
 ]
-
-data.dropna(subset=selected_columns, inplace=True)
-data = data[selected_columns]
-
-print(len(data))
+data.dropna(subset=all_columns, inplace=True)
+data = data[all_columns]
 data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
 data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
+
+selected_columns = [
+    "kd_differential",
+    "str_differential",
+    "td_differential",
+    "sub_differential",
+    "totalfights",
+    "titlefights",
+    "titlewins",
+    "elo",
+    "opp_avg_elo",
+    "dob",
+    "result",
+]
+
+# Calculate the differences between fighter and opponent stats
+for stat in ["kd_differential", "str_differential", "td_differential", "sub_differential", "totalfights", "titlefights", "titlewins", "elo", "opp_avg_elo", "dob"]:
+    data[f"{stat}_differential"] = data[f"fighter_{stat}"] - data[f"opponent_{stat}"]
+
+differential_columns_to_keep = ["kd_differential_differential", "str_differential_differential", "td_differential_differential", "sub_differential_differential", "totalfights_differential", "titlefights_differential", "titlewins_differential", "elo_differential", "opp_avg_elo_differential", "dob_differential", "result"]
+
+# Drop all the original columns
+data = data[differential_columns_to_keep]
+
+# data.drop(["fighter_" + stat for stat in selected_columns[4:-1]], axis=1, inplace=True)
+# data.drop(["opponent_" + stat for stat in selected_columns[4:-1]], axis=1, inplace=True)
+
+
 
 label_encoder = LabelEncoder()
 data["result"] = label_encoder.fit_transform(data["result"])
@@ -61,13 +88,15 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 model = lgb.LGBMClassifier(random_state=42)
-
 model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
 
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.4f}")
+
+y_pred = model.predict(X_test)
+
 
 output_file = open("ml_elo.txt", "w")
 original_stdout = sys.stdout
@@ -76,12 +105,31 @@ pd.set_option("display.max_columns", None)
 
 predict_data = pd.read_csv("predict_fights_elo.csv")
 predict_data.replace("--", pd.NA, inplace=True)
-
-predict_data.dropna(subset=selected_columns, inplace=True)
-predict_data = predict_data[selected_columns]
-
+predict_data.dropna(subset=all_columns, inplace=True)
+predict_data = predict_data[all_columns]
 predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
 predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year
+
+selected_columns = [
+    "kd_differential",
+    "str_differential",
+    "td_differential",
+    "sub_differential",
+    "totalfights",
+    "titlefights",
+    "titlewins",
+    "elo",
+    "opp_avg_elo",
+    "dob",
+    "result",
+]
+
+for stat in ["kd_differential", "str_differential", "td_differential", "sub_differential", "totalfights", "titlefights", "titlewins", "elo", "opp_avg_elo", "dob"]:
+    predict_data[f"{stat}_differential"] = predict_data[f"fighter_{stat}"] - predict_data[f"opponent_{stat}"]
+
+differential_columns_to_keep = ["kd_differential_differential", "str_differential_differential", "td_differential_differential", "sub_differential_differential", "totalfights_differential", "titlefights_differential", "titlewins_differential", "elo_differential", "opp_avg_elo_differential", "dob_differential", "result"]
+
+predict_data = predict_data[differential_columns_to_keep]
 
 X_predict = predict_data.drop("result", axis=1)
 
@@ -97,20 +145,20 @@ for i, label in enumerate(label_encoder.classes_):
 
 print(predict_data)
 
-# feature_importances = model.feature_importances_
+feature_importances = model.feature_importances_
 
-# feature_importance_df = pd.DataFrame(
-#     {"Feature": X.columns, "Importance": feature_importances}
-# )
+feature_importance_df = pd.DataFrame(
+    {"Feature": X.columns, "Importance": feature_importances}
+)
 
-# feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
+feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
 
-# plt.figure(figsize=(10, 6))
-# plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
-# plt.xlabel("Importance")
-# plt.ylabel("Feature")
-# plt.title("Feature Importance")
-# plt.show()
+plt.figure(figsize=(10, 6))
+plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
+plt.xlabel("Importance")
+plt.ylabel("Feature")
+plt.title("Feature Importance")
+plt.show()
 
 # # python matplot a correlation heatmap
 # correlation_matrix = data[selected_columns].corr()
