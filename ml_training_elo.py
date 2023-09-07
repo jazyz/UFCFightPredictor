@@ -62,7 +62,8 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=0
 )
 
-model = lgb.LGBMClassifier(random_state=0)
+model = lgb.LGBMClassifier(random_state=42)
+
 model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
@@ -98,24 +99,24 @@ for i, label in enumerate(label_encoder.classes_):
 
 print(predict_data)
 
-feature_importances = model.feature_importances_
+# feature_importances = model.feature_importances_
 
-feature_importance_df = pd.DataFrame(
-    {"Feature": X.columns, "Importance": feature_importances}
-)
+# feature_importance_df = pd.DataFrame(
+#     {"Feature": X.columns, "Importance": feature_importances}
+# )
 
-feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
+# feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
 
-plt.figure(figsize=(10, 6))
-plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
-plt.xlabel("Importance")
-plt.ylabel("Feature")
-plt.title("Feature Importance")
-plt.show()
+# plt.figure(figsize=(10, 6))
+# plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
+# plt.xlabel("Importance")
+# plt.ylabel("Feature")
+# plt.title("Feature Importance")
+# plt.show()
 
-# python matplot a correlation heatmap
-correlation_matrix = data[selected_columns].corr()
-plt.figure(figsize=(12, 8))
-sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", center=0)
-plt.title("Correlation Heatmap")
-plt.show()
+# # python matplot a correlation heatmap
+# correlation_matrix = data[selected_columns].corr()
+# plt.figure(figsize=(12, 8))
+# sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", center=0)
+# plt.title("Correlation Heatmap")
+# plt.show()
