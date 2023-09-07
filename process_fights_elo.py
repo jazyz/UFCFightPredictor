@@ -153,7 +153,7 @@ def get_stats():
                 "opp_avg_elo": 0,
             }
             fighter_ids[fighter.name] = fighter.id
-
+    fightset=set()
     with app.app_context():
         allfights = Fight.query.order_by(Fight.date).all()
         fights = []
@@ -163,16 +163,16 @@ def get_stats():
         fights = sorted(fights, key=lambda x: x[0])
         for date, fight in fights:
             print(date)
-            if fight.event == event_to_drop:
-                continue
+            # if fight.event == event_to_drop:
+            #     continue
             fighter_a = fight.fighter
             fighter_b = db.session.get(Fighter, fighter_ids[fight.opponent])
             
             flag = False
             with app2.app_context():
                 # also chcek if fight already exists in db
-                existing_fight = FightStats.query.filter_by(event=fight.event, fighter_name=fighter_b.name, opponent_name=fighter_a.name).first()
-                if existing_fight:
+                fighthash=fighter_b.name+fighter_a.name+fight.event
+                if fighthash in fightset:
                     flag = True
                     continue
             # now add this fight stats to the database
@@ -228,6 +228,8 @@ def get_stats():
                     )
                     db2.session.add(processed_fight)
                     db2.session.commit()
+                    fighthash=fighter_a.name+fighter_b.name+fight.event
+                    fightset.add(fighthash)
             if (not flag):
                 rating_a = ratings[fighter_a.name]
                 rating_b = ratings[fighter_b.name]
@@ -413,7 +415,7 @@ def export_to_csv(filename):
                 })
 
 def predict_to_csv(filename):
-    # fights = [["Sean Strickland","Israel Adesanya"], ["Israel Adesanya", "Sean Strickland"], ["Dricus Du Plessis","Israel Adesanya"], ["Israel Adesanya", "Dricus Du Plessis"],]
+    fights = [["Sean Strickland","Israel Adesanya"], ["Israel Adesanya", "Sean Strickland"], ["Dricus Du Plessis","Israel Adesanya"], ["Israel Adesanya", "Dricus Du Plessis"],]
     # fights = [["Michael Chandler", "Conor McGregor"], ["Conor McGregor", "Michael Chandler"]]
     # fights = [["Sean O'Malley", "Aljamain Sterling"], ["Amanda Lemos", "Zhang Weili"],["Neil Magny", "Ian Garry"],["Da'Mon Blackshear", "Mario Bautista"], ["Pedro Munhoz", "Marlon Vera"], ["Chris Weidman", "Brad Tavares"], ["Denis Tiuliulin", "Gregory Rodrigues"], ["Austin Hubbard", "Kurt Holobaugh"], ["Cody Gibson", "Brad Katona"], ["Gerald Meerschaert", "Andre Petroski"], ["Andrea Lee", "Natalia Silva"], ["Maryna Moroz", "Karine Silva"]]
     # fights = [["Aljamain Sterling", "Sean O'Malley"], ["Zhang Weili", "Amanda Lemos"],["Ian Garry", "Neil Magny"],["Mario Bautista", "Da'Mon Blackshear"], ["Marlon Vera", "Pedro Munhoz"], ["Brad Tavares", "Chris Weidman"], ["Gregory Rodrigues", "Denis Tiuliulin"], ["Kurt Holobaugh", "Austin Hubbard"], ["Brad Katona", "Cody Gibson"], ["Andre Petroski", "Gerald Meerschaert"], ["Natalia Silva", "Andrea Lee"], ["Karine Silva", "Maryna Moroz"]]
@@ -587,7 +589,7 @@ def main():
     for name, rating in sorted_ratings:
         print(name,rating)
         cnt+=1
-        if(cnt==10):
+        if(cnt==30):
             break
     return
 
