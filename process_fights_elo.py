@@ -480,7 +480,7 @@ def predict_to_csv(filename):
             for fight in fights:
                 fighter_a=Fighter.query.filter_by(name=fight[0]).first()
                 fighter_b=Fighter.query.filter_by(name=fight[1]).first()
-                if fighter_stats[fighter_a.name]["totalfights"]<5 or fighter_stats[fighter_b.name]["totalfights"]<5:
+                if fighter_stats[fighter_a.name]["totalfights"]<3 or fighter_stats[fighter_b.name]["totalfights"]<3:
                     continue
                 fight_stat = FightStats(
                     event="unknown",
