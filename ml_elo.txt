@@ -1,32 +1,43 @@
    fighter_kd_differential  fighter_str_differential  fighter_td_differential  \
-0                    0.875                   19.5625                  -1.3125   
+0                    0.100                   22.0000                   0.5000   
+1                    0.875                   19.5625                  -1.3125   
 
    fighter_sub_differential  fighter_winstreak  fighter_losestreak  \
-0                    0.1875                  1                   0   
+0                    0.2500                  2                   0   
+1                    0.1875                  1                   0   
 
    fighter_totalfights  fighter_totalwins  fighter_age_deviation  \
-0                   16                 14                   3188   
+0                   20                 15                   2687   
+1                   16                 14                   3188   
 
    fighter_titlefights  fighter_titlewins  fighter_opp_avg_elo  fighter_elo  \
-0                   10                  8           1089.86569  1184.130667   
+0                    0                  0          1046.036578  1136.650286   
+1                   10                  8          1089.865690  1184.130667   
 
    opponent_kd_differential  opponent_str_differential  \
-0                       0.1                       22.0   
+0                     0.875                    19.5625   
+1                     0.100                    22.0000   
 
    opponent_td_differential  opponent_sub_differential  opponent_winstreak  \
-0                       0.5                       0.25                   2   
+0                   -1.3125                     0.1875                   1   
+1                    0.5000                     0.2500                   2   
 
    opponent_losestreak  opponent_totalfights  opponent_totalwins  \
-0                    0                    20                  15   
+0                    0                    16                  14   
+1                    0                    20                  15   
 
    opponent_age_deviation  opponent_titlefights  opponent_titlewins  \
-0                    2687                     0                   0   
+0                    3188                    10                   8   
+1                    2687                     0                   0   
 
    opponent_elo  opponent_opp_avg_elo  fighter_dob  opponent_dob   result  \
-0   1136.650286           1046.036578         1989          1991  unknown   
+0   1184.130667           1089.865690         1991          1989  unknown   
+1   1136.650286           1046.036578         1989          1991  unknown   
 
   predicted_result  probability_draw  probability_loss  probability_nc  \
-0              win          0.000025          0.477241        0.000058   
+0             loss          0.000026          0.554355        0.000039   
+1              win          0.000025          0.477241        0.000058   
 
    probability_win  
-0         0.522676  
+0         0.445580  
+1         0.522676  
