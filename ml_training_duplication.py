@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 data = pd.read_csv("elofightstats.csv")
 data.replace("--", pd.NA, inplace=True)
 data = data[(data['fighter_totalfights'] > 4) & (data['opponent_totalfights'] > 4)]
+# data = data[pd.to_datetime(data["date"]).dt.year>2008]
 data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
 data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
 selected_columns = [
@@ -17,10 +18,11 @@ selected_columns = [
     "fighter_td_differential",
     "fighter_sub_differential",
     # "fighter_winrate",
-    # "fighter_winstreak",
+    "fighter_winstreak",
     "fighter_losestreak",
-    # "fighter_totalfights",
-    # "fighter_totalwins",
+    "fighter_totalfights",
+    "fighter_totalwins",
+    "fighter_age_deviation",
     "fighter_titlefights",
     "fighter_titlewins",
     "fighter_opp_avg_elo",
@@ -30,10 +32,11 @@ selected_columns = [
     "opponent_td_differential",
     "opponent_sub_differential",
     # "opponent_winrate",
-    # "opponent_winstreak",
+    "opponent_winstreak",
     "opponent_losestreak",
-    # "opponent_totalfights",
-    # "opponent_totalwins",
+    "opponent_totalfights",
+    "opponent_totalwins",
+    "opponent_age_deviation",   
     "opponent_titlefights",
     "opponent_titlewins",
     "opponent_elo",
@@ -49,7 +52,6 @@ selected_columns = [
 
 data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
-print(len(data))
 
 label_encoder = LabelEncoder()
 data["result"] = label_encoder.fit_transform(data["result"])
@@ -57,11 +59,10 @@ data["result"] = label_encoder.fit_transform(data["result"])
 X = data.drop("result", axis=1)
 y = data["result"]
 
+seed=42
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+    X, y, test_size=0.2, random_state=seed
 )
-
-# # ... (your previous code)
 
 fighter_train = X_train.copy()
 
@@ -97,40 +98,10 @@ for i in range(num_original_rows, len(combined_y_train)):
     elif combined_y_train[i] == 3:
         combined_y_train[i] = 1
     
-
-model = lgb.LGBMClassifier(random_state=42)
+print(len(combined_X_train))
+print(len(combined_y_train))
+model = lgb.LGBMClassifier(random_state=seed)
 model.fit(combined_X_train, combined_y_train)
-
-# fighter_test = X_test.copy()
-
-# for col in fighter_test.columns:
-#     fighter_test.rename(columns={col: col.replace("fighter_", "tmp_")}, inplace=True)
-
-# for col in fighter_test.columns:
-#     fighter_test.rename(columns={col: col.replace("opponent_", "fighter_")}, inplace=True)
-
-# for col in fighter_test.columns:
-#     fighter_test.rename(columns={col: col.replace("tmp_", "opponent_")}, inplace=True)
-
-# # Reset index
-# fighter_test.reset_index(drop=True, inplace=True)
-
-# # Manual concatenation for test set
-# combined_X_test = pd.DataFrame()
-
-# # Make sure column names match after renaming
-# for col in fighter_test.columns:
-#     combined_X_test[col] = pd.concat([fighter_test[col], X_test[col]], ignore_index=True)
-# combined_y_test = y_test._append(y_test, ignore_index=True)
-
-# num_original_test_rows = len(y_test)
-# num_duplicated_test_rows = len(combined_y_test) - num_original_test_rows
-
-# for i in range(num_original_test_rows, len(combined_y_test)):
-#     if combined_y_test[i] == "win":
-#         combined_y_test[i] = "loss"
-#     elif combined_y_test[i] == "loss":
-#         combined_y_test[i] = "win"
 
 y_pred = model.predict(X_test)
 

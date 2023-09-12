@@ -1,11 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import csv
-import re
+from models import db, Fighter, Fight
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///detailedfighters.db"
-db = SQLAlchemy(app)
+db.init_app(app)
 
 class Fighter(db.Model):
     id = db.Column(db.Integer, primary_key=True, index=True)
