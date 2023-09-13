@@ -4,7 +4,7 @@ UFCFightPredictor is a Python-based tool that leverages web scraping techniques 
 
 ## Web Scraping
 
-Using **Python BeautifulSoup** library we webscraped past history of all UFC and UFC related (TUF, DWCS, Pride, etc.) since 1993. From [ufcstats.com](ufcstats.com) going from each fighter's last name we look at their past fight history and gather data from their fights like number of strikes they landed vs number of strikes their opponent landed. Storing these values in an **SQLAlchemy database** we're able to use these values later for data processing.
+Using **Python BeautifulSoup** library we webscraped past history of all UFC and UFC related (TUF, DWCS, Pride, etc.) since 1993. From [ufcstats.com](ufcstats.com) going from each fighter's last name we look at their past fight history and gather data from their fights like number of strikes they landed vs number of strikes their opponent landed. Storing these values in an **SQL database** we're able to use these values later for data processing.
 
 ## Data Processing and Cleaning
 
