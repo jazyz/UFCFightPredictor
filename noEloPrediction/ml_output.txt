@@ -1,0 +1,26 @@
+   fighter_kd_differential  fighter_str_differential  fighter_td_differential  \
+0                 0.217391                  30.73913                 1.826087   
+
+   fighter_sub_differential  fighter_winrate  fighter_winstreak  \
+0                  0.434783         0.913043                  5   
+
+   fighter_totalfights  fighter_totalwins  fighter_titlefights  \
+0                   23                 21                   16   
+
+   fighter_opponentexp  opponent_kd_differential  opponent_str_differential  \
+0             0.756609                  0.111111                  11.166667   
+
+   opponent_td_differential  opponent_sub_differential  opponent_winrate  \
+0                  1.055556                  -0.111111          0.777778   
+
+   opponent_winstreak  opponent_totalfights  opponent_totalwins  \
+0                   0                    18                  14   
+
+   opponent_titlefights  opponent_opponentexp  fighter_dob  opponent_dob  \
+0                     8              0.763095         1987          1982   
+
+    result predicted_result  probability_draw  probability_loss  \
+0  unknown              win          0.000002          0.059604   
+
+   probability_nc  probability_win  
+0        0.000009         0.940386  
