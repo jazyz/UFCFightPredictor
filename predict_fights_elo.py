@@ -31,7 +31,8 @@ def extract_fighter_stats(
             combined_stats["opponent_name"] = opponent_name
         else:
             combined_stats["opponent_" + key] = value
-    combined_stats["result"]="unknown"
+    combined_stats["result"] = "unknown"
+    combined_stats["date"] = "unknown"
     with open(output_csv_filename, mode="a", newline="") as output_file:
         csv_writer = csv.DictWriter(output_file, fieldnames=fieldnames)
         csv_writer.writerow(combined_stats)
@@ -58,7 +59,7 @@ with open(output_csv_filename, mode="w", newline="") as output_file:
         "fighter_opp_avg_elo",
         "fighter_elo",
         "fighter_dob",
-        'opponent_name',
+        "opponent_name",
         "opponent_kd_differential",
         "opponent_str_differential",
         "opponent_td_differential",
@@ -74,12 +75,21 @@ with open(output_csv_filename, mode="w", newline="") as output_file:
         "opponent_opp_avg_elo",
         "opponent_elo",
         "opponent_dob",
-        "result"
+        "result",
+        "date",
     ]
     csv_writer = csv.DictWriter(output_file, fieldnames=fieldnames)
     csv_writer.writeheader()
 
-fights=[["Sean Strickland", "Israel Adesanya"]]
+fights = [
+    ["Alexa Grasso", "Valentina Shevchenko"],
+    ["Jack Della Maddalena", "Kevin Holland"],
+    ["Daniel Zellhuber", "Christos Giagos"],
+    ["Loopy Godinez","Elise Reed"],
+    ["Roman Kopylov","Josh Fremd"],
+    ["Edgar Chairez","Daniel Lacerda"],
+    ["Tracy Cortez","Jasmine Jasudavicius"],
+]
 for fight in fights:
     fighter_name = fight[0]
     opponent_name = fight[1]

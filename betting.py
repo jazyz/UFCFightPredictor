@@ -6,6 +6,6 @@ if (odds < 0):
     kc = (n * prob_win - (1 - prob_win)) / n
     print(kc)
 else:
-    n = odds / 100
+    n = odds / 100  
     kc = (n * prob_win - (1 - prob_win)) / n
     print(kc)
