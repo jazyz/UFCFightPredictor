@@ -90,6 +90,7 @@ fights = [
     ["Edgar Chairez","Daniel Lacerda"],
     ["Tracy Cortez","Jasmine Jasudavicius"],
 ]
+
 for fight in fights:
     fighter_name = fight[0]
     opponent_name = fight[1]
