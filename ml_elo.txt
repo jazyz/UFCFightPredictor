@@ -1,43 +1,159 @@
-   fighter_kd_differential  fighter_str_differential  fighter_td_differential  \
-0                    0.100                   22.0000                   0.5000   
-1                    0.875                   19.5625                  -1.3125   
+       date  fighter_kd_differential  fighter_str_differential  \
+0   unknown                 0.000000                 12.583333   
+1   unknown                 0.058824                 25.823529   
+2   unknown                 0.666667                 29.777778   
+3   unknown                 0.304348                 15.608696   
+4   unknown                 0.250000                 11.500000   
+5   unknown                 0.000000                 -0.153846   
+6   unknown                 0.000000                  5.900000   
+7   unknown                 0.250000                 -5.125000   
+8   unknown                 0.500000                  3.666667   
+9   unknown                 0.000000                  2.000000   
+10  unknown                 0.333333                -30.666667   
+11  unknown                 0.000000                -25.200000   
+12  unknown                -0.142857                 18.571429   
+13  unknown                 0.000000                -14.250000   
 
-   fighter_sub_differential  fighter_winstreak  fighter_losestreak  \
-0                    0.2500                  2                   0   
-1                    0.1875                  1                   0   
+    fighter_td_differential  fighter_sub_differential  fighter_winstreak  \
+0                 -1.333333                  0.416667                  5   
+1                  2.352941                  0.117647                  0   
+2                 -0.777778                 -0.222222                  9   
+3                 -1.304348                 -0.391304                  2   
+4                  0.250000                  0.000000                  1   
+5                  0.769231                 -0.307692                  1   
+6                  2.800000                  0.500000                  2   
+7                 -1.250000                 -0.125000                  1   
+8                 -0.166667                 -0.500000                  3   
+9                 -3.400000                 -0.200000                  2   
+10                -2.666667                  0.333333                  0   
+11                 0.400000                  0.000000                  0   
+12                 2.285714                  0.142857                  7   
+13                 1.750000                  0.000000                  3   
 
-   fighter_totalfights  fighter_totalwins  fighter_age_deviation  \
-0                   20                 15                   2687   
-1                   16                 14                   3188   
+    fighter_losestreak  fighter_age_deviation  fighter_titlefights  \
+0                    0                   1674                    1   
+1                    1                   3655                   10   
+2                    0                    679                    0   
+3                    0                   2098                    0   
+4                    0                    442                    0   
+5                    0                   3017                    0   
+6                    0                   1723                    0   
+7                    0                   2012                    0   
+8                    0                   2649                    0   
+9                    0                   1676                    0   
+10                   3                    899                    0   
+11                   5                    664                    0   
+12                   0                   1250                    0   
+13                   0                   3394                    0   
 
-   fighter_titlefights  fighter_titlewins  fighter_opp_avg_elo  fighter_elo  \
-0                    0                  0          1046.036578  1136.650286   
-1                   10                  8          1089.865690  1184.130667   
+    fighter_titlewins  fighter_opp_avg_elo  fighter_elo  \
+0                   1          1032.395463  1100.680220   
+1                   8          1049.838465  1157.403113   
+2                   0          1007.665500  1128.643152   
+3                   0          1040.453074  1126.129144   
+4                   0           983.001413  1027.470594   
+5                   0          1015.609289  1000.864479   
+6                   0          1016.485406  1040.727475   
+7                   0          1002.458367  1005.559196   
+8                   0          1029.067902  1013.292467   
+9                   0           998.946102   988.495829   
+10                  0          1039.991674   957.615118   
+11                  0          1047.525269   933.796306   
+12                  0           986.238735  1098.280131   
+13                  0           998.352019  1056.883162   
 
-   opponent_kd_differential  opponent_str_differential  \
-0                     0.875                    19.5625   
-1                     0.100                    22.0000   
+    opponent_kd_differential  opponent_str_differential  \
+0                   0.058824                  25.823529   
+1                   0.000000                  12.583333   
+2                   0.304348                  15.608696   
+3                   0.666667                  29.777778   
+4                   0.000000                  -0.153846   
+5                   0.250000                  11.500000   
+6                   0.250000                  -5.125000   
+7                   0.000000                   5.900000   
+8                   0.000000                   2.000000   
+9                   0.500000                   3.666667   
+10                  0.000000                 -25.200000   
+11                  0.333333                 -30.666667   
+12                  0.000000                 -14.250000   
+13                 -0.142857                  18.571429   
 
-   opponent_td_differential  opponent_sub_differential  opponent_winstreak  \
-0                   -1.3125                     0.1875                   1   
-1                    0.5000                     0.2500                   2   
+    opponent_td_differential  opponent_sub_differential  opponent_winstreak  \
+0                   2.352941                   0.117647                   0   
+1                  -1.333333                   0.416667                   5   
+2                  -1.304348                  -0.391304                   2   
+3                  -0.777778                  -0.222222                   9   
+4                   0.769231                  -0.307692                   1   
+5                   0.250000                   0.000000                   1   
+6                  -1.250000                  -0.125000                   1   
+7                   2.800000                   0.500000                   2   
+8                  -3.400000                  -0.200000                   2   
+9                  -0.166667                  -0.500000                   3   
+10                  0.400000                   0.000000                   0   
+11                 -2.666667                   0.333333                   0   
+12                  1.750000                   0.000000                   3   
+13                  2.285714                   0.142857                   7   
 
-   opponent_losestreak  opponent_totalfights  opponent_totalwins  \
-0                    0                    16                  14   
-1                    0                    20                  15   
+    opponent_losestreak  opponent_age_deviation  opponent_titlefights  \
+0                     1                    3655                    10   
+1                     0                    1674                     1   
+2                     0                    2098                     0   
+3                     0                     679                     0   
+4                     0                    3017                     0   
+5                     0                     442                     0   
+6                     0                    2012                     0   
+7                     0                    1723                     0   
+8                     0                    1676                     0   
+9                     0                    2649                     0   
+10                    5                     664                     0   
+11                    3                     899                     0   
+12                    0                    3394                     0   
+13                    0                    1250                     0   
 
-   opponent_age_deviation  opponent_titlefights  opponent_titlewins  \
-0                    3188                    10                   8   
-1                    2687                     0                   0   
+    opponent_titlewins  opponent_elo  opponent_opp_avg_elo   result  \
+0                    8   1157.403113           1049.838465  unknown   
+1                    1   1100.680220           1032.395463  unknown   
+2                    0   1126.129144           1040.453074  unknown   
+3                    0   1128.643152           1007.665500  unknown   
+4                    0   1000.864479           1015.609289  unknown   
+5                    0   1027.470594            983.001413  unknown   
+6                    0   1005.559196           1002.458367  unknown   
+7                    0   1040.727475           1016.485406  unknown   
+8                    0    988.495829            998.946102  unknown   
+9                    0   1013.292467           1029.067902  unknown   
+10                   0    933.796306           1047.525269  unknown   
+11                   0    957.615118           1039.991674  unknown   
+12                   0   1056.883162            998.352019  unknown   
+13                   0   1098.280131            986.238735  unknown   
 
-   opponent_elo  opponent_opp_avg_elo  fighter_dob  opponent_dob   result  \
-0   1184.130667           1089.865690         1991          1989  unknown   
-1   1136.650286           1046.036578         1989          1991  unknown   
+   predicted_result  probability_draw  probability_loss  probability_nc  \
+0              loss          0.000061          0.522901        0.000144   
+1               win          0.000045          0.478859        0.000151   
+2               win          0.000116          0.173259        0.000335   
+3              loss          0.000689          0.690722        0.000620   
+4               win          0.003706          0.355768        0.000176   
+5              loss          0.013448          0.742858        0.000592   
+6               win          0.000275          0.210685        0.002262   
+7              loss          0.000320          0.762472        0.006599   
+8               win          0.000057          0.467565        0.003189   
+9              loss          0.000051          0.591472        0.001457   
+10              win          0.000657          0.476423        0.000171   
+11             loss          0.000638          0.655690        0.000062   
+12              win          0.000173          0.197005        0.000147   
+13             loss          0.000714          0.698348        0.000160   
 
-  predicted_result  probability_draw  probability_loss  probability_nc  \
-0             loss          0.000026          0.554355        0.000039   
-1              win          0.000025          0.477241        0.000058   
-
-   probability_win  
-0         0.445580  
-1         0.522676  
+    probability_win  
+0          0.476895  
+1          0.520945  
+2          0.826290  
+3          0.307968  
+4          0.640350  
+5          0.243102  76% Daniel Zellhuber
+6          0.786778  78% Loopy Godinez
+7          0.230609  
+8          0.529188  60% Roman Kopylov
+9          0.407020  
+10         0.522749  66% Edgar Chairez
+11         0.343610  
+12         0.802675  
+13         0.300778  70% Tracy Cortez
