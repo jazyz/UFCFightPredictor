@@ -1,6 +1,6 @@
 # UFC Fight Predictor
 
-UFCFightPredictor is a Python-based tool that leverages web scraping techniques to gather data from ufcstats.com and employs machine learning techniques like LightGBM (Light Gradient Boosting Machine) model for fight predictions. With a dataset comprising over 19,000 fights and data points, UFCFightPredictor has achieved a remarkable 64% accuracy, surpassing the community standard of 62%.
+UFCFightPredictor is a Python-based tool that leverages web scraping techniques to gather data from ufcstats.com and employs machine learning techniques like LightGBM (Light Gradient Boosting Machine) model for fight predictions. With a dataset comprising over 19,000 fights and data points, UFCFightPredictor has achieved a remarkable 64% accuracy, surpassing previous research paper accuracies of 62%. 
 
 ## Web Scraping
 
@@ -20,6 +20,7 @@ UFCFightPredictor relies on LightGBM (Light Gradient Boosting Machine) due to it
 
 ## Challenges
 
+## Versions
 v1:
 75% Accuracy on UFC 292 (9/12 fights predicted correctly) using power rating algorithm
 
@@ -31,5 +32,8 @@ Achieved 68% accuracy on test set with data leakage using Light Gradient Boostin
 
 v4:
 Achieved 64% accuracy on test set without data leakage using Light Gradient Boosting Machine model
+
+v5:
+Tuned LightGBM model and achieved 67% accuracy on the last 3 months of fights
 
 Website at https://github.com/KoreaFriedChips/ufc

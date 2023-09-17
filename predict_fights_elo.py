@@ -1,5 +1,6 @@
 import csv
-
+import requests
+from bs4 import BeautifulSoup
 
 def extract_fighter_stats(
     input_csv_filename, output_csv_filename, fighter_name, opponent_name
@@ -19,6 +20,8 @@ def extract_fighter_stats(
         print("Fighter or opponent not found in the CSV.")
         return
 
+    if int(fighter_stats["totalfights"]) <= 2 or int(opponent_stats["totalfights"]) <= 2:
+        return
     combined_stats = {}
     for key, value in fighter_stats.items():
         if key == "name":
@@ -81,15 +84,37 @@ with open(output_csv_filename, mode="w", newline="") as output_file:
     csv_writer = csv.DictWriter(output_file, fieldnames=fieldnames)
     csv_writer.writeheader()
 
-fights = [
-    ["Alexa Grasso", "Valentina Shevchenko"],
-    ["Jack Della Maddalena", "Kevin Holland"],
-    ["Daniel Zellhuber", "Christos Giagos"],
-    ["Loopy Godinez","Elise Reed"],
-    ["Roman Kopylov","Josh Fremd"],
-    ["Edgar Chairez","Daniel Lacerda"],
-    ["Tracy Cortez","Jasmine Jasudavicius"],
-]
+
+# fights = [
+#     ["Alexa Grasso", "Valentina Shevchenko"],
+#     ["Jack Della Maddalena", "Kevin Holland"],
+#     ["Daniel Zellhuber", "Christos Giagos"],
+#     ["Loopy Godinez","Elise Reed"],
+#     ["Roman Kopylov","Josh Fremd"],
+#     ["Edgar Chairez","Daniel Lacerda"],
+#     ["Tracy Cortez","Jasmine Jasudavicius"],
+# ]
+
+# replace with correct url
+url = "http://ufcstats.com/event-details/8fa2b06572365321"
+
+response = requests.get(url)
+
+if response.status_code == 200:
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    fight_table = soup.find("tbody", class_="b-fight-details__table-body")
+
+    fight_rows = fight_table.find_all("tr", class_="b-fight-details__table-row")
+    fights=[]
+    for fight_row in fight_rows:
+        fighter_names = fight_row.find_all("a", class_="b-link_style_black")
+        fighter1_name = fighter_names[0].text.strip()
+        fighter2_name = fighter_names[1].text.strip()
+        fights.append([fighter1_name,fighter2_name])
+else:
+    print("Failed to retrieve the web page.")
+
 
 for fight in fights:
     fighter_name = fight[0]
