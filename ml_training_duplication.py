@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("elofightstats.csv")
 data['date'] = pd.to_datetime(data['date'], format='%b. %d, %Y')
-data = data.sort_values(by='date')
+# data = data.sort_values(by='date')
 data.replace("--", pd.NA, inplace=True)
 data = data[(data['fighter_totalfights'] > 2) & (data['opponent_totalfights'] > 2)]
 data = data[pd.to_datetime(data["date"]).dt.year>=2010]
@@ -56,6 +56,26 @@ selected_columns = [
 data.dropna(subset=selected_columns, inplace=True)
 data = data[selected_columns]
 
+columns_to_difference = [
+    "kd_differential",
+    "str_differential",
+    "td_differential",
+    "sub_differential",
+    "age_deviation",
+    "titlefights",
+    "titlewins",
+    "elo",
+    "opp_avg_elo",
+    "winstreak",
+    "losestreak",
+]
+
+# for column in columns_to_difference:
+#     fighter_column = f"fighter_{column}"
+#     opponent_column = f"opponent_{column}"
+#     data[f"{column}_differential"] = data[fighter_column] - data[opponent_column]
+
+
 label_encoder = LabelEncoder()
 data["result"] = label_encoder.fit_transform(data["result"])
 
@@ -74,8 +94,8 @@ seed=42
 #     X, y, test_size=0.2, random_state=42
 # )
 
-train_data = data[data['date'] < '2023-09-01']
-test_data = data[data['date'] >= '2023-09-01']
+train_data = data[data['date'] < '2023-06-01']
+test_data = data[(data['date'] >= '2023-06-01')]
 
 X_train = train_data.drop(["result","date"], axis=1)
 y_train = train_data["result"]
@@ -87,7 +107,6 @@ print(len(X_train))
 print(len(X_test))
 fighter_train = X_train.copy()
 
-# Rename columns
 for col in fighter_train.columns:
     fighter_train.rename(columns={col: col.replace("fighter_", "tmp_")}, inplace=True)
 
@@ -97,17 +116,13 @@ for col in fighter_train.columns:
 for col in fighter_train.columns:
     fighter_train.rename(columns={col: col.replace("tmp_", "opponent_")}, inplace=True)
 
-# Reset index
 fighter_train.reset_index(drop=True, inplace=True)
 
-# Manual concatenation
 combined_X_train = pd.DataFrame()
 
-# Make sure column names match after renaming
 for col in fighter_train.columns:
     combined_X_train[col] = pd.concat([fighter_train[col], X_train[col]], ignore_index=True)
 
-# Duplicate and flip labels
 combined_y_train = y_train._append(y_train, ignore_index=True)
 
 num_original_rows = len(y_train)
@@ -124,10 +139,10 @@ print(len(combined_y_train))
 model = lgb.LGBMClassifier(random_state=seed)
 model.fit(combined_X_train, combined_y_train)
 
-# y_pred = model.predict(X_test)
+y_pred = model.predict(X_test)
 
-# accuracy = accuracy_score(y_test, y_pred)
-# print(f"Accuracy: {accuracy:.4f}")
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.4f}")
 
 output_file = open("ml_elo.txt", "w")
 original_stdout = sys.stdout
@@ -143,6 +158,11 @@ predict_data.replace("--", pd.NA, inplace=True)
 predict_data.dropna(subset=selected_columns, inplace=True)
 predict_data = predict_data[selected_columns]
 
+# for column in columns_to_difference:
+#     fighter_column = f"fighter_{column}"
+#     opponent_column = f"opponent_{column}"
+#     predict_data[f"{column}_differential"] = predict_data[fighter_column] - predict_data[opponent_column]
+
 X_predict = predict_data.drop(["result","date"], axis=1)
 
 y_pred = model.predict(X_predict)
@@ -157,17 +177,17 @@ for i, label in enumerate(label_encoder.classes_):
 
 print(predict_data)
 
-# feature_importances = model.feature_importances_
+feature_importances = model.feature_importances_
 
-# feature_importance_df = pd.DataFrame(
-#     {"Feature": X.columns, "Importance": feature_importances}
-# )
+feature_importance_df = pd.DataFrame(
+    {"Feature": X_train.columns, "Importance": feature_importances}
+)
 
-# feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
+feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
 
-# plt.figure(figsize=(10, 6))
-# plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
-# plt.xlabel("Importance")
-# plt.ylabel("Feature")
-# plt.title("Feature Importance")
-# plt.show()
+plt.figure(figsize=(10, 6))
+plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
+plt.xlabel("Importance")
+plt.ylabel("Feature")
+plt.title("Feature Importance")
+plt.show()
