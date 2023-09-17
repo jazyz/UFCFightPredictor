@@ -1,38 +1,26 @@
-UFC Paris: Gane vs Spivak
 
-Chosen Fighter, Odds, (Implied Probability), (Kelly Criterion Equation), (Value, bet, don't bet)
-Gane -175 (60%, 40%) (0.57 * 0.6 - 0.4) / 0.57 = -0.10 
-Fiorot -205 (58%, 42%) (0.49 * 0.58 - 0.42) / 0.48 = -0.28 
-Benoit -162 (68%, 32%) (0.62 * 0.68 - 0.32) / 0.62 = 0.16 (bet)
-Loosa -166 (89%, 11%) (0.60 * 0.89 - 0.11) / 0.60 = 0.71 (bet)
-Basharat -340 (80%, 20%) (0.29 * 0.80 - 0.20) / 0.29 = 0.11 (bet)
-
-Assuming starting with 1000$:
-$160 on Benoit = $98.77 profit (hit)
-$710 on Loosa = $427.71 profit (hit)
-$110 on Basharat = $32.35 profit (hit)
----------------------------------------------
-Total = $558.83 profit GG
-
-** All predictions correct
-
-
-UFC 293: Adesanya vs Strickland
-
-Chosen Fighter, Odds, (Implied Probability), (Kelly Criterion Equation), (Value, bet, don't bet)
-Adesanya -600 (52%, 48%) -2.36 (don't bet)
-Tai +164 (61%, 39%) 0.37 (bet)
-Lane +195 (60%, 40%) 0.39 (bet)
-Turkalj
-Ulberg
-Makdessi
-   
+Total Bankroll: $1000
+Using a conservative betting strategy based on the Fractional Kelly Criterion using 1/10
 UFC Fight Night: Grasso vs Shevchenko 2
 
-52% Shevchenko no bet
-76% Jack Della Maddalena 0.405
-76% Daniel Zellhuber 0.076
-78% Loopy Godinez no bet
-60% Roman Kopylov no bet 
-66% Edgar Chairez no bet
-70% Tracy Cortez 0.346
+52%, Shevchenko no bet (rare split draw)
+76%, -148, Jack Della Maddalena $40.5 correct
+76%, -285, Daniel Zellhuber $7.6 correct
+78% Loopy Godinez no bet correct
+60% Roman Kopylov no bet correct
+66% Edgar Chairez no bet (rare decision overturned)
+70%, -118, Tracy Cortez $34.6 correct
+
+Returns:
+40.5->67.86 +27.36
+7.6->10.27 +2.67
+34.6->63.92 +29.32
+Total +$59.32
+
+$1059.32
+
+
+
+
+
+
