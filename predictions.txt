@@ -1,4 +1,3 @@
-
 Total Bankroll: $1000
 Using a conservative betting strategy based on the Fractional Kelly Criterion using 1/10
 UFC Fight Night: Grasso vs Shevchenko 2
@@ -18,9 +17,3 @@ Returns:
 Total +$59.32
 
 $1059.32
-
-
-
-
-
-
