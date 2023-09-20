@@ -1,6 +1,66 @@
 # scrape betting odds from ufc
 import requests
 from bs4 import BeautifulSoup
+import csv
+
+input_csv_filename = "fighter_stats.csv"
+
+def extract_fighter_stats(
+    input_csv_filename, fighter_name
+):
+    fighter_stats = None
+
+    with open(input_csv_filename, mode="r", newline="") as input_file:
+        csv_reader = csv.DictReader(input_file)
+        for row in csv_reader:
+            if row["name"] == fighter_name:
+                fighter_stats = row
+
+    if fighter_stats is None:
+        print("Fighter or opponent not found in the CSV.")
+        return
+
+    if int(fighter_stats["totalfights"]) <= 2:
+        print("Fighter has less than 3 fights.")
+        return
+    print(fighter_stats["totalwins"])
+
+# read from ml_elo.txt
+def ml_elo(fighter_name):
+    input_txt_filename = "ml_elo.txt"
+    id = -1
+    flag = False
+    prob_win = 0
+
+    with open(input_txt_filename, mode="r") as input_file:
+        lines = input_file.readlines()
+        for line in lines:
+            if fighter_name in line:
+                id = line[0] + line[1]
+                id = id.strip()
+            fields = line.strip().split(' ')
+            
+            # print(fields[0])
+            if (fields[0] == "probability_win"):
+                    flag = True
+            elif (id != -1 and flag and fields[0] == id):
+                # print(fields[0] + " " + fields[1] + " " + id)
+                prob_win = fields[-1]
+    
+    if id == -1:
+        print(f"Fighter {fighter_name} not found in the text file.")
+        return
+    return prob_win
+
+def kelly_criterion(odds, prob_win):
+    kc = 0
+    if (odds < 0):
+        n = 100 / -odds
+        kc = (n * prob_win - (1 - prob_win)) / n
+    else:
+        n = odds / 100  
+        kc = (n * prob_win - (1 - prob_win)) / n
+    return kc
 
 # Send a GET request to the events page
 url = "https://www.ufc.com/events#events-list-past"
@@ -61,16 +121,32 @@ if response.status_code == 200:
                 if len(odds_values) == 2:
                     fighter1_odds = odds_values[0]
                     fighter2_odds = odds_values[1]
-                    print(f"{fighter1_name}: {fighter1_odds}")
-                    print(f"{fighter2_name}: {fighter2_odds}")
+                    if (ml_elo(fighter1_name) == None or ml_elo(fighter2_name) == None):
+                        print(f"Fighter not found in the text file.")
+                        print("---")
+                        continue
+                    avb_win = ml_elo(fighter1_name)
+                    avb_lose = 1 - float(avb_win)
+                    bva_win = ml_elo(fighter2_name)
+                    # print(bva_win)
+                    bva_lose = 1 - float(bva_win)
+                    a_win_avg = (float(avb_win) + float(bva_lose)) / 2
+                    b_win_avg = (float(bva_win) + float(avb_lose)) / 2
+                    print(f"{fighter1_name}: {fighter1_odds} " + str(a_win_avg))
+                    print(f"{fighter2_name}: {fighter2_odds} " + str(b_win_avg))
+                    if a_win_avg > b_win_avg:
+                        print(kelly_criterion(int(fighter1_odds), a_win_avg))
+                    elif a_win_avg == b_win_avg:
+                        print("0")
+                    else:
+                        print(kelly_criterion(int(fighter2_odds), b_win_avg))
+
                     print("---")
 
         else:
             print(f"Failed to retrieve the fight card page. Status code: {response.status_code}")
 else:
     print(f"Failed to retrieve the events page. Status code: {response.status_code}")
-
-
 
 
 # calculate using fractional kelly crciterion

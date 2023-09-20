@@ -151,6 +151,11 @@ pd.set_option("display.max_columns", None)
 
 predict_data = pd.read_csv("predict_fights_elo.csv")
 predict_data.replace("--", pd.NA, inplace=True)
+fighter_name_label = "fighter_name"
+
+# Print the label and fighter names to ml_elo.txt
+print(f"{fighter_name_label}", file=output_file)
+print(predict_data["fighter_name"])
 
 # predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
 # predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year
