@@ -1,3 +1,19 @@
+fighter_name
+0             Alexa Grasso
+1     Valentina Shevchenko
+2     Jack Della Maddalena
+3            Kevin Holland
+4         Daniel Zellhuber
+5          Christos Giagos
+6            Loopy Godinez
+7               Elise Reed
+8            Roman Kopylov
+9               Josh Fremd
+10           Edgar Chairez
+11          Daniel Lacerda
+12            Tracy Cortez
+13    Jasmine Jasudavicius
+Name: fighter_name, dtype: object
        date  fighter_kd_differential  fighter_str_differential  \
 0   unknown                 0.000000                 12.583333   
 1   unknown                 0.058824                 25.823529   
