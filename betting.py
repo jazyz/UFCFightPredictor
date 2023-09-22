@@ -1,4 +1,5 @@
-# scrape betting odds from ufc
+# scrape betting odds from ufc and automatically calculate kelly criterion bet from ml_elo.txt
+
 import requests
 from bs4 import BeautifulSoup
 import csv
@@ -128,18 +129,17 @@ if response.status_code == 200:
                     avb_win = ml_elo(fighter1_name)
                     avb_lose = 1 - float(avb_win)
                     bva_win = ml_elo(fighter2_name)
-                    # print(bva_win)
                     bva_lose = 1 - float(bva_win)
                     a_win_avg = (float(avb_win) + float(bva_lose)) / 2
                     b_win_avg = (float(bva_win) + float(avb_lose)) / 2
-                    print(f"{fighter1_name}: {fighter1_odds} " + str(a_win_avg))
-                    print(f"{fighter2_name}: {fighter2_odds} " + str(b_win_avg))
+                    kc_a = kelly_criterion(int(fighter1_odds), a_win_avg)
+                    kc_b = kelly_criterion(int(fighter2_odds), b_win_avg)
+                    print(f"{fighter1_name}: {fighter1_odds} " + str(a_win_avg) + " " + str(kc_a))
+                    print(f"{fighter2_name}: {fighter2_odds} " + str(b_win_avg) + " " + str(kc_b))
                     if a_win_avg > b_win_avg:
-                        print(kelly_criterion(int(fighter1_odds), a_win_avg))
-                    elif a_win_avg == b_win_avg:
-                        print("0")
+                        print(f"{fighter1_name}")
                     else:
-                        print(kelly_criterion(int(fighter2_odds), b_win_avg))
+                        print(f"{fighter2_name}")
 
                     print("---")
 
@@ -149,16 +149,4 @@ else:
     print(f"Failed to retrieve the events page. Status code: {response.status_code}")
 
 
-# calculate using fractional kelly crciterion
 
-# odds = int(input())
-# prob_win = int(input())/100
-
-# if (odds < 0):
-#     n = 100 / -odds
-#     kc = (n * prob_win - (1 - prob_win)) / n
-#     print(kc)
-# else:
-#     n = odds / 100  
-#     kc = (n * prob_win - (1 - prob_win)) / n
-#     print(kc)

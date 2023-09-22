@@ -20,7 +20,7 @@ def extract_fighter_stats(
         print("Fighter or opponent not found in the CSV.")
         return
 
-    if int(fighter_stats["totalfights"]) <= 2 or int(opponent_stats["totalfights"]) <= 2:
+    if int(fighter_stats["totalfights"]) <= 4 or int(opponent_stats["totalfights"]) <= 4:
         return
     combined_stats = {}
     for key, value in fighter_stats.items():
@@ -96,7 +96,7 @@ with open(output_csv_filename, mode="w", newline="") as output_file:
 # ]
 
 # replace with correct url
-url = "http://ufcstats.com/event-details/8fa2b06572365321"
+url = "http://www.ufcstats.com/event-details/c945adc22c2bfe8f"
 
 response = requests.get(url)
 
