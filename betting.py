@@ -4,7 +4,7 @@ import csv
 
 input_csv_filename = "fighter_stats.csv"
 
-bankroll = 1059.32
+bankroll = 1099.64
 # Create or open the predictions.txt file for writing
 with open("predictions.txt", "a") as predictions_file:
 
@@ -51,7 +51,7 @@ with open("predictions.txt", "a") as predictions_file:
                     prob_win = fields[-1]
 
         if id == -1:
-            predictions_file.write(f"Fighter {fighter_name} not found in the text file.\n")
+            predictions_file.write(f"Fighter {fighter_name} has less than 5 fights.\n")
             return
         return prob_win
 
@@ -83,6 +83,9 @@ with open("predictions.txt", "a") as predictions_file:
 
         # Loop through each fight card link and scrape the odds
         for fight_card_link in fight_card_links:
+            if (fight_card_link != "https://www.ufc.com/event/ufc-293"):
+                    continue
+            
             response = requests.get(fight_card_link)
 
             if response.status_code == 200:
@@ -108,9 +111,7 @@ with open("predictions.txt", "a") as predictions_file:
                             fighter_names.append(fighter_name)
                         else:
                             fighter_names.append("Fighter Name Not Found")
-
-                if (fight_card_link != "https://www.ufc.com/event/ufc-fight-night-september-23-2023"):
-                    continue
+                
                 predictions_file.write(f"Fight Card: {fight_card_link}\n")
 
                 # Extract and print the odds for each fight on the current card
@@ -126,7 +127,7 @@ with open("predictions.txt", "a") as predictions_file:
                         fighter1_odds = odds_values[0]
                         fighter2_odds = odds_values[1]
                         if (ml_elo(fighter1_name) == None or ml_elo(fighter2_name) == None):
-                            predictions_file.write("Fighter not found in the text file.\n")
+                            # predictions_file.write("Fighter not found in the text file.\n")
                             predictions_file.write("---\n")
                             continue
                         avb_win = ml_elo(fighter1_name)
@@ -143,7 +144,13 @@ with open("predictions.txt", "a") as predictions_file:
                             predictions_file.write(f"{fighter1_name} ")
                             if (kc_a > 0):
                                 bet = bankroll * (0.1) * kc_a
-                                predictions_file.write(f"${bet:.2f} (bet)")
+                                potential_return = 0
+                                odds = int(fighter1_odds)
+                                if (odds < 0):
+                                    potential_return = bet * (100 / -odds)
+                                else:
+                                    potential_return = bet * (odds / 100)
+                                predictions_file.write(f"${bet:.2f} (bet) pt: ${bet + potential_return:.2f} +${potential_return:.2f}")
                             else:
                                 predictions_file.write(f"(no bet)")
                             predictions_file.write("\n")
@@ -151,7 +158,13 @@ with open("predictions.txt", "a") as predictions_file:
                             predictions_file.write(f"{fighter2_name} ")
                             if (kc_b > 0):
                                 bet = bankroll * (0.1) * kc_b
-                                predictions_file.write(f"${bet:.2f} (bet)")
+                                potential_return = 0
+                                odds = int(fighter2_odds)
+                                if (odds < 0):
+                                    potential_return = bet * (100 / -odds)
+                                else:
+                                    potential_return = bet * (odds / 100)
+                                predictions_file.write(f"${bet:.2f} (bet) pt: ${bet + potential_return:.2f} +${potential_return:.2f}")
                             else:
                                 predictions_file.write(f"(no bet)")
                             predictions_file.write("\n")
