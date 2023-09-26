@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import csv
 from models import db, Fighter, Fight
+import sys
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///detailedfighters.db"
@@ -88,8 +89,24 @@ fighter_ids = dict()
 ratings = dict()
 
 # when looking at past events, drop the event
-event_to_drop = "UFC 292: Sterling vs. O'Malley"
+event_to_drop = ""
 # find event names here: http://www.ufcstats.com/statistics/events/completed
+
+def main():
+    create_all_tables()
+    export_to_csv("elofightstats.csv")
+    export_fighter_stats_to_csv("fighter_stats.csv")
+    sorted_ratings = sorted(ratings.items(), key=lambda x:x[1], reverse=True)
+    cnt=0
+    for name, rating in sorted_ratings:
+        # print(name,rating)
+        cnt+=1
+        if(cnt==30):
+            break
+    return
+
+if __name__ == "__main__":
+    main()
 
 def get_stats():
     with app.app_context():
@@ -122,9 +139,13 @@ def get_stats():
             fights.append((formatted_date, fight))
         fights = sorted(fights, key=lambda x: x[0])
         for date, fight in fights:
-            print(date)
+            # print(date)
             # if fight.event == event_to_drop:
-            #     continue
+            #     print("Dropping event", event_to_drop)
+            #     break
+            if event_to_drop == date:
+                print("Dropping event", event_to_drop)
+                break
             fighter_a = fight.fighter
             fighter_b = db.session.get(Fighter, fighter_ids[fight.opponent])
             
@@ -422,20 +443,4 @@ def create_all_tables():
         db2.drop_all()
         db2.create_all()
     get_stats()
-
-def main():
-    create_all_tables()
-    export_to_csv("elofightstats.csv")
-    export_fighter_stats_to_csv("fighter_stats.csv")
-    sorted_ratings = sorted(ratings.items(), key=lambda x:x[1], reverse=True)
-    cnt=0
-    for name, rating in sorted_ratings:
-        print(name,rating)
-        cnt+=1
-        if(cnt==30):
-            break
-    return
-
-if __name__ == "__main__":
-    main()
 
