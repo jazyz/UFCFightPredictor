@@ -58,8 +58,8 @@ with open("testing.txt", "w") as test:
 
     urls = []
     urls.append("https://www.ufc.com/events")
-    for i in range(1, 6):
-        urls.append("https://www.ufc.com/events?page=" + str(i))    
+    # for i in range(1, 6):
+    #     urls.append("https://www.ufc.com/events?page=" + str(i))    
     all_fight_card_links = []
     for url in urls:
         # Send a GET request to the events page
@@ -90,7 +90,7 @@ with open("testing.txt", "w") as test:
     
     cnt = 0
     for fight_card_link in all_fight_card_links:
-
+        print(fight_card_link)
         response = requests.get(fight_card_link)
 
         if response.status_code == 200:
@@ -219,8 +219,7 @@ with open("testing.txt", "w") as test:
 
                     test.write("---\n")
         
-            print(fight_card_link)
-            if cnt % 6 == 0:
+            if cnt % 10 == 0:
                 #  UPDATE FIGHTER STATS AFTER EACH EVENT
                 meta_tag = soup.find('meta', attrs={'property': 'og:description'})
                 content = meta_tag.get('content')

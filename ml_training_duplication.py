@@ -6,7 +6,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 
-date_to_train = ""
+date_to_train = "2022-07-20"
 
 def lgbm():
     data = pd.read_csv("elofightstats.csv")

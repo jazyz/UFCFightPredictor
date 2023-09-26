@@ -88,26 +88,6 @@ fighter_stats = dict()
 fighter_ids = dict()
 ratings = dict()
 
-# when looking at past events, drop the event
-event_to_drop = ""
-# find event names here: http://www.ufcstats.com/statistics/events/completed
-
-def main():
-    create_all_tables()
-    export_to_csv("elofightstats.csv")
-    export_fighter_stats_to_csv("fighter_stats.csv")
-    sorted_ratings = sorted(ratings.items(), key=lambda x:x[1], reverse=True)
-    cnt=0
-    for name, rating in sorted_ratings:
-        # print(name,rating)
-        cnt+=1
-        if(cnt==30):
-            break
-    return
-
-if __name__ == "__main__":
-    main()
-
 def get_stats():
     with app.app_context():
         fighters = Fighter.query.all()
@@ -139,7 +119,6 @@ def get_stats():
             fights.append((formatted_date, fight))
         fights = sorted(fights, key=lambda x: x[0])
         for date, fight in fights:
-            # print(date)
             # if fight.event == event_to_drop:
             #     print("Dropping event", event_to_drop)
             #     break
@@ -287,6 +266,15 @@ def get_stats():
                 
                 fighter_stats[fighter_b.name]["opp_avg_elo"] += ratings[fighter_a.name]
             
+# when looking at past events, drop the event
+event_to_drop = ""
+# find event names here: http://www.ufcstats.com/statistics/events/completed
+def create_all_tables():
+    with app2.app_context():
+        db2.drop_all()
+        db2.create_all()
+    get_stats()
+
 def export_to_csv(filename):
     with app2.app_context():
         fight_stats = FightStats.query.all()
@@ -438,9 +426,18 @@ def export_fighter_stats_to_csv(filename):
                 "dob": stats["dob"]
             })
 
-def create_all_tables():
-    with app2.app_context():
-        db2.drop_all()
-        db2.create_all()
-    get_stats()
+def main():
+    create_all_tables()
+    export_to_csv("elofightstats.csv")
+    export_fighter_stats_to_csv("fighter_stats.csv")
+    sorted_ratings = sorted(ratings.items(), key=lambda x:x[1], reverse=True)
+    cnt=0
+    for name, rating in sorted_ratings:
+        # print(name,rating)
+        cnt+=1
+        if(cnt==30):
+            break
+    return
 
+if __name__ == "__main__":
+    main()
