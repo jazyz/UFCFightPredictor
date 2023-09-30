@@ -6,7 +6,8 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 
-date_to_train = "2022-07-20"
+# default to present
+date_to_train = "2023-08-27"
 
 def lgbm():
     data = pd.read_csv("elofightstats.csv")
@@ -24,9 +25,9 @@ def lgbm():
         "fighter_td_differential",
         "fighter_sub_differential",
         # "fighter_winrate",
-        # "fighter_winstreak",
+        "fighter_winstreak",
         "fighter_losestreak",
-        "fighter_totalfights",
+        # "fighter_totalfights",
         # "fighter_totalwins",
         "fighter_age_deviation",
         "fighter_titlefights",
@@ -38,9 +39,9 @@ def lgbm():
         "opponent_td_differential",
         "opponent_sub_differential",
         # "opponent_winrate",
-        # "opponent_winstreak",
+        "opponent_winstreak",
         "opponent_losestreak",
-        "opponent_totalfights",
+        # "opponent_totalfights",
         # "opponent_totalwins",
         "opponent_age_deviation",   
         "opponent_titlefights",
@@ -159,7 +160,7 @@ def lgbm():
 
     # Print the label and fighter names to ml_elo.txt
     print(f"{fighter_name_label}", file=output_file)
-    print(predict_data["fighter_name"] + " " + predict_data["opponent_name"], file=output_file)
+    print(predict_data["fighter_name"] + "*" + predict_data["opponent_name"], file=output_file)
 
     # predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
     # predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year

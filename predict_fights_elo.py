@@ -8,23 +8,23 @@ output_csv_filename = "predict_fights_elo.csv"
 def main():
     # GET LIST OF EVENTS URLS
     url = "http://www.ufcstats.com/statistics/events/completed?page=all"
-    response = requests.get(url)
+    # response = requests.get(url)
 
-    event_urls = []
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.text, 'html.parser')
-        rows = soup.find_all('tr', class_='b-statistics__table-row')
-        for row in rows:
-            link = row.find('a', class_='b-link b-link_style_black')
-            if link:
-                event_url = link.get('href')
-                event_urls.append(event_url)
-                # event that your testing until
-                print(event_url)
-                if (event_url == "http://www.ufcstats.com/event-details/6f81b6de2557739a"):
-                    break
-    else:
-        print(f"Failed to retrieve the page. Status code: {response.status_code}")
+    event_urls = ["http://www.ufcstats.com/event-details/c8a49ff2acb6f3c5"]
+    # if response.status_code == 200:
+    #     soup = BeautifulSoup(response.text, 'html.parser')
+    #     rows = soup.find_all('tr', class_='b-statistics__table-row')
+    #     for row in rows:
+    #         link = row.find('a', class_='b-link b-link_style_black')
+    #         if link:
+    #             event_url = link.get('href')
+    #             event_urls.append(event_url)
+    #             # event that your testing until
+    #             # print(event_url)
+    #             if (event_url == "http://www.ufcstats.com/event-details/c8a49ff2acb6f3c5"):
+    #                 break
+    # else:
+    #     print(f"Failed to retrieve the page. Status code: {response.status_code}")
 
     # GET ALL THE NAMES OF FIGHTERS ON EACH CARD
     def extract_fighter_stats(

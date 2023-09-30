@@ -21,24 +21,29 @@ def ml_elo(p1, p2):
                     flag = True
                 elif ("dtype:" in line):
                     flag = False
-                fields = line.strip().split(' ')
-                fields = list(filter(lambda a: a != '', fields))
+                # fields = line.strip().split(' ')
+                # fields = list(filter(lambda a: a != '', fields))
+                fields = line.strip().split('*')
+                # print(fields)
 
                 if (flag):
-                    if (fields[0] != "fighter_names" and len(fields) > 4):
-                        fighter_name = fields[1] + " " + fields[2]
-                        opponent_name = fields[3] + " " + fields[4]
+                    if (fields[0] != "fighter_names" and len(fields) > 1):
+                        fighter_name = fields[0][3:].strip()
+                        opponent_name = fields[1].strip()
+                        # print(fighter_name + " " + opponent_name)
                         if (p1 == fighter_name and p2 == opponent_name):
-                            id = fields[0]
-
-                if (len(fields) > 0 and "probability_win" in fields[-1]):
+                            id = fields[0][0:3].strip()
+                            print(id)
+                if (len(fields) > 0 and "probability_win" in line):
                         flag = True
-                elif (id != -1 and flag and fields[0] == id):
+                elif (id != -1 and flag and fields[0][0:3].strip() == id):
                     # print(fields[0] + " " + fields[1] + " " + id)
+                    fields = line.strip().split(' ')
+                    fields = list(filter(lambda a: a != '', fields))
                     prob_win = fields[-1]
 
         if id == -1:
-            # test.write(f"Fighter {fighter_name} has less than 5 fights.\n")
+            # test.write(f"Fighter {p1} has less than 5 fights.\n")
             return
         return prob_win
 
@@ -53,6 +58,14 @@ def kelly_criterion(odds, prob_win):
             n = odds / 100  
             kc = (n * prob_win - (1 - prob_win)) / n
         return kc
+
+def odds_to_prob(odds):
+    if odds >= 0:
+        prob = 100 / (odds + 100)
+    else:
+        prob = -odds / (-odds + 100)
+    
+    return prob
 
 with open("testing.txt", "w") as test:
 
@@ -155,19 +168,30 @@ with open("testing.txt", "w") as test:
 
                 if len(odds_values) == 2:
                     fighter1_odds = odds_values[0]
-                    fighter1_odds = fighter1_odds.replace('−', '-')  # Replace the non-standard minus sign with a regular on
+                    fighter1_odds = fighter1_odds.replace('−', '-')  
                     fighter2_odds = odds_values[1]
-                    fighter2_odds = fighter2_odds.replace('−', '-')  # Replace the non-standard minus sign with a regular one
+                    fighter2_odds = fighter2_odds.replace('−', '-')  
                     if (ml_elo(fighter1_name, fighter2_name) == None or ml_elo(fighter2_name, fighter1_name) == None):
                         # test.write("Fighter not found in the text file.\n")
                         test.write("---\n")
                         continue
-                    avb_win = ml_elo(fighter1_name, fighter2_name)
-                    avb_lose = 1 - float(avb_win)
-                    bva_win = ml_elo(fighter2_name, fighter1_name)
-                    bva_lose = 1 - float(bva_win)
-                    a_win_avg = (float(avb_win) + float(bva_lose)) / 2
-                    b_win_avg = (float(bva_win) + float(avb_lose)) / 2
+                    avb_win = float(ml_elo(fighter1_name, fighter2_name)) #70
+                    avb_lose = 1 - avb_win
+                    bva_win = float(ml_elo(fighter2_name, fighter1_name))
+                    bva_lose = 1 - bva_win #60
+                    odds1_prob = 0
+                    odds2_prob = 0
+                    if (fighter1_odds != "-" and fighter2_odds != "-"):
+                        odds1_prob = odds_to_prob(int(fighter1_odds))
+                        odds2_prob = odds_to_prob(int(fighter2_odds))
+                    a_win_avg=avb_win
+                    b_win_avg=bva_win
+                    if(abs(avb_win-odds1_prob) > abs(bva_lose-odds1_prob)):
+                        a_win_avg=bva_lose
+                    if(abs(bva_win-odds2_prob) > abs(avb_lose-odds2_prob)):
+                        b_win_avg=avb_lose
+                    # a_win_avg = (float(avb_win) + float(bva_lose)) / 2
+                    # b_win_avg = (float(bva_win) + float(avb_lose)) / 2
                     kc_a = 0
                     kc_b = 0
                     if (fighter1_odds != "-" and fighter2_odds != "-"):
@@ -261,3 +285,4 @@ with open("testing.txt", "w") as test:
             test.write(f"Failed to retrieve the fight card page. Status code: {response.status_code}\n")
     else:
         test.write(f"Failed to retrieve the events page. Status code: {response.status_code}\n")
+    test.write(f"Bankroll: ${bankroll:.2f}\n")
