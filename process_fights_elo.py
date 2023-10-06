@@ -1,3 +1,7 @@
+# process_fights_elo
+# this file is used to process the fights and create features for the model
+# during testing this file updates all fighter's stats after a certain period of time
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime

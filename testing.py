@@ -1,3 +1,7 @@
+# automated testing file
+# get all the fights from a certain date from ufc events website
+# 
+
 import requests
 from bs4 import BeautifulSoup
 import csv
@@ -9,43 +13,43 @@ import predict_fights_elo
 
 # TODO: figure out how to do rematches (maybe just use a set)
 def ml_elo(p1, p2):
-        input_txt_filename = "ml_elo.txt"
-        id = -1
-        flag = False
-        prob_win = 0
+    input_txt_filename = "ml_elo.txt"
+    id = -1
+    flag = False
+    prob_win = 0
 
-        with open(input_txt_filename, mode="r") as input_file:
-            lines = input_file.readlines()
-            for line in lines:
-                if ("fighter_names" in line):
+    with open(input_txt_filename, mode="r") as input_file:
+        lines = input_file.readlines()
+        for line in lines:
+            if ("fighter_names" in line):
+                flag = True
+            elif ("dtype:" in line):
+                flag = False
+            # fields = line.strip().split(' ')
+            # fields = list(filter(lambda a: a != '', fields))
+            fields = line.strip().split('*')
+            # print(fields)
+
+            if (flag):
+                if (fields[0] != "fighter_names" and len(fields) > 1):
+                    fighter_name = fields[0][3:].strip()
+                    opponent_name = fields[1].strip()
+                    # print(fighter_name + " " + opponent_name)
+                    if (p1 == fighter_name and p2 == opponent_name):
+                        id = fields[0][0:3].strip()
+                        print(id)
+            if (len(fields) > 0 and "probability_win" in line):
                     flag = True
-                elif ("dtype:" in line):
-                    flag = False
-                # fields = line.strip().split(' ')
-                # fields = list(filter(lambda a: a != '', fields))
-                fields = line.strip().split('*')
-                # print(fields)
+            elif (id != -1 and flag and fields[0][0:3].strip() == id):
+                # print(fields[0] + " " + fields[1] + " " + id)
+                fields = line.strip().split(' ')
+                fields = list(filter(lambda a: a != '', fields))
+                prob_win = fields[-1]
 
-                if (flag):
-                    if (fields[0] != "fighter_names" and len(fields) > 1):
-                        fighter_name = fields[0][3:].strip()
-                        opponent_name = fields[1].strip()
-                        # print(fighter_name + " " + opponent_name)
-                        if (p1 == fighter_name and p2 == opponent_name):
-                            id = fields[0][0:3].strip()
-                            print(id)
-                if (len(fields) > 0 and "probability_win" in line):
-                        flag = True
-                elif (id != -1 and flag and fields[0][0:3].strip() == id):
-                    # print(fields[0] + " " + fields[1] + " " + id)
-                    fields = line.strip().split(' ')
-                    fields = list(filter(lambda a: a != '', fields))
-                    prob_win = fields[-1]
-
-        if id == -1:
-            # test.write(f"Fighter {p1} has less than 5 fights.\n")
-            return
-        return prob_win
+    if id == -1:
+        # test.write(f"Fighter {p1} has less than 5 fights.\n")
+        return
+    return prob_win
 
 bankroll = 1000.00
 
@@ -71,8 +75,9 @@ with open("testing.txt", "w") as test:
 
     urls = []
     urls.append("https://www.ufc.com/events")
-    # for i in range(1, 6):
-    #     urls.append("https://www.ufc.com/events?page=" + str(i))    
+    # end of page 5 is 1 year ago, usman vs edwards
+    for i in range(1, 2):
+        urls.append("https://www.ufc.com/events?page=" + str(i))    
     all_fight_card_links = []
     for url in urls:
         # Send a GET request to the events page
@@ -102,6 +107,12 @@ with open("testing.txt", "w") as test:
         # Loop through each fight card link and scrape the odds
     
     cnt = 0
+    # UPDATE FIGHTER STATS TO THE DATE OF THE STARTING TEST
+    process_fights_elo.event_to_drop = "2023-06-10"
+    process_fights_elo.main()
+
+    # UPDATE PREDICT_FIGHTS_ELO.CSV WITH NEW FIGHTER STATS
+    predict_fights_elo.main()
     for fight_card_link in all_fight_card_links:
         print(fight_card_link)
         response = requests.get(fight_card_link)
