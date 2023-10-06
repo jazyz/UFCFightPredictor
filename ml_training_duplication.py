@@ -7,14 +7,14 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 
 # default to present
-date_to_train = "2023-08-27"
+date_to_train = "2023-06-01"
 
 def lgbm():
     data = pd.read_csv("elofightstats.csv")
     data['date'] = pd.to_datetime(data['date'], format='%b. %d, %Y')
     # data = data.sort_values(by='date')
     data.replace("--", pd.NA, inplace=True)
-    data = data[(data['fighter_totalfights'] > 4) & (data['opponent_totalfights'] > 4)]
+    data = data[(data['fighter_totalfights'] > 2) & (data['opponent_totalfights'] > 2)]
     data = data[pd.to_datetime(data["date"]).dt.year>=2010]
     # data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
     # data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
@@ -99,7 +99,7 @@ def lgbm():
     # )
 
     train_data = data[data['date'] < date_to_train]
-    test_data = data[(data['date'] >= '2022-07-20')]
+    test_data = data[(data['date'] >= date_to_train)]
 
     X_train = train_data.drop(["result","date"], axis=1)
     y_train = train_data["result"]

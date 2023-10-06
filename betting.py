@@ -1,8 +1,9 @@
+# after letting the model make predictions on the fights
+# use the results to make bets
+# read from ml_elo.txt and write to predictions.txt
+
 import requests
 from bs4 import BeautifulSoup
-import csv
-
-input_csv_filename = "fighter_stats.csv"
 
 bankroll = 1099.64
 # Create or open the predictions.txt file for writing
@@ -132,10 +133,10 @@ with open("predictions.txt", "a") as predictions_file:
                             # test.write("Fighter not found in the text file.\n")
                             predictions_file.write("---\n")
                             continue
-                        avb_win = float(ml_elo(fighter1_name, fighter2_name)) #70
+                        avb_win = float(ml_elo(fighter1_name, fighter2_name)) 
                         avb_lose = 1 - avb_win
                         bva_win = float(ml_elo(fighter2_name, fighter1_name))
-                        bva_lose = 1 - bva_win #60
+                        bva_lose = 1 - bva_win 
                         odds1_prob = 0
                         odds2_prob = 0
                         if (fighter1_odds != "-" and fighter2_odds != "-"):
