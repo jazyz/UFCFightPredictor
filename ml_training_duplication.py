@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 
 # default to present
-date_to_train = "2023-06-01"
+date_to_train = "2023-08-27"
 
 def lgbm():
     data = pd.read_csv("elofightstats.csv")
@@ -99,7 +99,7 @@ def lgbm():
     # )
 
     train_data = data[data['date'] < date_to_train]
-    test_data = data[(data['date'] >= date_to_train)]
+    test_data = data[(data['date'] >= "2023-06-01")]
 
     X_train = train_data.drop(["result","date"], axis=1)
     y_train = train_data["result"]
