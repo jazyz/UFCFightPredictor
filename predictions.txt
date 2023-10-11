@@ -75,23 +75,23 @@ Bankroll: $1099.64
 Fight Card: https://www.ufc.com/event/ufc-fight-night-october-07-2023
 Grant Dawson: -445 0.81 -0.04
 Bobby Green: +310 0.19 -0.07
-Grant Dawson $1.11 (bet)
+Grant Dawson $1.11 (bet) (loss)
 ---
 Joe Pyfer: -455 0.82 0.01
 Abdul Razak Alhassan: +350 0.18 -0.06
-Joe Pyfer $0.67 (bet) pt: $0.82 +$0.15
+Joe Pyfer $0.67 (bet) pt: $0.82 +$0.15 (win)
 ---
 Alex Morono: +142 0.62 0.36
 Joaquin Buckley: -170 0.38 -0.68
-Alex Morono $39.47 (bet) pt: $95.53 +$56.05
+Alex Morono $39.47 (bet) pt: $95.53 +$56.05 (loss)
 ---
 Drew Dober: -455 0.67 -0.83
 Ricky Glenn: +350 0.33 0.14
-Drew Dober $1.36 (bet)
+Drew Dober $1.36 (bet) pt: +$0.29 (win)
 ---
 Alexander Hernandez: +120 0.73 0.50
 Bill Algeo: -142 0.27 -0.76
-Alexander Hernandez $54.84 (bet) pt: $120.65 +$65.81
+Alexander Hernandez $54.84 (bet) pt: $120.65 +$65.81 (loss)
 ---
 Philipe Lins: +124 0.16 -0.51
 Ion Cutelaba: -148 0.84 0.59
@@ -110,4 +110,38 @@ Johnny Munoz $27.28 (bet) pt: $52.54 +$25.26 (no bet, too risky)
 Montana De La Rosa: -130 0.64 0.17
 JJ Aldrich: +110 0.36 -0.22
 Montana De La Rosa $18.18 (bet) pt: $32.16 +$13.98 (no bet, too risky)
+---
+
+Bankroll: $1004.66
+
+Fight Card: https://www.ufc.com/event/ufc-fight-night-october-14-2023
+Sodiq Yusuff: -166 0.61 -0.03
+Edson Barboza: +140 0.39 -0.05
+Sodiq Yusuff (no bet)
+---
+---
+Jonathan Martinez: -112 0.56 0.07
+Adrian Yanez: -108 0.44 -0.17
+Jonathan Martinez $8.19 (bet) pt: $15.49 +$7.31
+---
+Andre Petroski: +105 0.52 0.07
+Michel Pereira: -125 0.48 -0.18
+Andre Petroski $7.85 (bet) pt: $16.09 +$8.24
+---
+---
+Christian Rodriguez: -162 0.50 -0.31
+Cameron Saaiman: +136 0.50 0.13
+Christian Rodriguez (no bet)
+---
+Darren Elkins: +170 0.52 0.23
+TJ Brown: -205 0.48 -0.58
+Darren Elkins $25.52 (bet) pt: $68.92 +$43.39
+---
+---
+---
+---
+Chris Gutierrez: -325 0.71 -0.23
+Alatengheili: +260 0.29 0.02
+Chris Gutierrez (no bet)
+---
 ---
