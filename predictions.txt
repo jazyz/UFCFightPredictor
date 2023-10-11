@@ -16,17 +16,7 @@ Returns:
 34.6->63.92 +29.32
 Total +$59.32
 
-$1059.32
-
-UFC Fight Night: Fiziev vs. Gamrot
-57%, +130, Gamrot, $25.73 (no bet, too risky)
-Bryce Mitchell
-Marina Rodriguez
-54%, +154, AJ Fletcher, $25.7
-57%, +114, Ramos, $20.4
-60%, +145, Johns, $33.6 correct
-55%, +145, Means, $25.9 correct
-Jacob Malkoun (lose by dq, was winning the fight)
+*** Bankroll: $1059.32 ***
 
 Fight Card: https://www.ufc.com/event/ufc-fight-night-september-23-2023
 Rafael Fiziev: -155 0.43 -0.46
@@ -35,11 +25,11 @@ Mateusz Gamrot $25.73 (bet) pt: $59.19 +$33.45 (correct)
 ---
 Bryce Mitchell: -205 0.52 -0.46
 Dan Ige: +170 0.48 0.17
-Bryce Mitchell (no bet)
+Bryce Mitchell (no bet) (correct)
 ---
 Marina Rodriguez: -310 0.70 -0.24
 Michelle Waterson-Gomez: +250 0.30 0.02
-Marina Rodriguez (no bet)
+Marina Rodriguez (no bet) (correct)
 ---
 Bryan Battle: -185 0.46 -0.54
 AJ Fletcher: +154 0.54 0.24
@@ -59,7 +49,7 @@ Tim Means $25.95 (bet) pt: $63.58 +$37.63 (correct)
 ---
 Jacob Malkoun: -575 0.62 -1.55
 Cody Brundage: +425 0.38 0.23
-Jacob Malkoun (no bet)
+Jacob Malkoun (no bet) (lose by dq, was winning the fight)
 ---
 Fighter Mohammed Usman has less than 5 fights.
 ---
@@ -68,9 +58,9 @@ Fighter Mizuki has less than 5 fights.
 Fighter Tamires Vidal has less than 5 fights.
 ---
 
-145/105
+145/105 = 1.38, +38% return, very good
 
-Bankroll: $1099.64
+*** Bankroll: $1099.64 ***
 
 Fight Card: https://www.ufc.com/event/ufc-fight-night-october-07-2023
 Grant Dawson: -445 0.81 -0.04
@@ -79,7 +69,7 @@ Grant Dawson $1.11 (bet) (loss)
 ---
 Joe Pyfer: -455 0.82 0.01
 Abdul Razak Alhassan: +350 0.18 -0.06
-Joe Pyfer $0.67 (bet) pt: $0.82 +$0.15 (win)
+Joe Pyfer $0.67 (bet) pt: $0.82 +$0.15 (correct)
 ---
 Alex Morono: +142 0.62 0.36
 Joaquin Buckley: -170 0.38 -0.68
@@ -87,7 +77,7 @@ Alex Morono $39.47 (bet) pt: $95.53 +$56.05 (loss)
 ---
 Drew Dober: -455 0.67 -0.83
 Ricky Glenn: +350 0.33 0.14
-Drew Dober $1.36 (bet) pt: +$0.29 (win)
+Drew Dober $1.36 (bet) pt: +$0.29 (correct)
 ---
 Alexander Hernandez: +120 0.73 0.50
 Bill Algeo: -142 0.27 -0.76
@@ -95,24 +85,26 @@ Alexander Hernandez $54.84 (bet) pt: $120.65 +$65.81 (loss)
 ---
 Philipe Lins: +124 0.16 -0.51
 Ion Cutelaba: -148 0.84 0.59
-Ion Cutelaba $65.14 (bet) pt: $109.15 +$44.01 (no bet, too risky)
+Ion Cutelaba $65.14 (bet) pt: $109.15 +$44.01 (no bet, too risky, fight got cancelled)
 ---
 Karolina Kowalkiewicz: -166 0.48 -0.38
 Diana Belbita: +140 0.52 0.18
-Diana Belbita $19.25 (bet) pt: $46.20 +$26.95 (no bet, too risky)
+Diana Belbita $19.25 (bet) pt: $46.20 +$26.95 (no bet, too risky) (wrong)
 ---
 Aoriqileng: -112 0.36 -0.35
 Johnny Munoz: -108 0.64 0.25
-Johnny Munoz $27.28 (bet) pt: $52.54 +$25.26 (no bet, too risky)
+Johnny Munoz $27.28 (bet) pt: $52.54 +$25.26 (no bet, too risky) (wrong)
 ---
 ---
 ---
 Montana De La Rosa: -130 0.64 0.17
 JJ Aldrich: +110 0.36 -0.22
-Montana De La Rosa $18.18 (bet) pt: $32.16 +$13.98 (no bet, too risky)
+Montana De La Rosa $18.18 (bet) pt: $32.16 +$13.98 (no bet, too risky) (wrong)
 ---
 
-Bankroll: $1004.66
+bad week, Bobby Green upset was unseen, investigate why the model probability is so far from the odds for Morono, Hernandez, and Aldrich
+
+*** Bankroll: $1004.66 ***
 
 Fight Card: https://www.ufc.com/event/ufc-fight-night-october-14-2023
 Sodiq Yusuff: -166 0.61 -0.03
