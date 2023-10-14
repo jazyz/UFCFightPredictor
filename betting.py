@@ -84,7 +84,7 @@ with open("predictions.txt", "a") as predictions_file:
         # Loop through each fight card link and scrape the odds
         for fight_card_link in fight_card_links:
             # insert event link you want to predict
-            if (fight_card_link != "https://www.ufc.com/event/ufc-fight-night-october-07-2023"):
+            if (fight_card_link != "https://www.ufc.com/event/ufc-294"):
                     continue
             
             response = requests.get(fight_card_link)
