@@ -13,7 +13,7 @@ def main():
     response = requests.get(url)
 
     # to get one event, paste the url in event_urls and comment out the part below
-    event_urls = ["http://www.ufcstats.com/event-details/c8a49ff2acb6f3c5"]
+    event_urls = ["http://www.ufcstats.com/event-details/13a0fb8fbdafb54f"]
 
     # if response.status_code == 200:
     #     soup = BeautifulSoup(response.text, 'html.parser')
@@ -118,7 +118,7 @@ def main():
             fight_table = soup.find("tbody", class_="b-fight-details__table-body")
 
             fight_rows = fight_table.find_all("tr", class_="b-fight-details__table-row")
-            fights=[]
+            fights=[["Kamaru Usman", "Khamzat Chimaev"]]
             for fight_row in fight_rows:
                 fighter_names = fight_row.find_all("a", class_="b-link_style_black")
                 fighter1_name = fighter_names[0].text.strip()
