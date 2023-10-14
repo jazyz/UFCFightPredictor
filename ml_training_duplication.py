@@ -99,7 +99,7 @@ def lgbm():
     # )
 
     train_data = data[data['date'] < date_to_train]
-    test_data = data[(data['date'] >= "2023-06-01")]
+    test_data = data[(data['date'] >= "2022-06-03")]
 
     X_train = train_data.drop(["result","date"], axis=1)
     y_train = train_data["result"]

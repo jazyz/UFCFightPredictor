@@ -13,22 +13,22 @@ def main():
     response = requests.get(url)
 
     # to get one event, paste the url in event_urls and comment out the part below
-    event_urls = ["http://www.ufcstats.com/event-details/13a0fb8fbdafb54f"]
+    event_urls = []
 
-    # if response.status_code == 200:
-    #     soup = BeautifulSoup(response.text, 'html.parser')
-    #     rows = soup.find_all('tr', class_='b-statistics__table-row')
-    #     for row in rows:
-    #         link = row.find('a', class_='b-link b-link_style_black')
-    #         if link:
-    #             event_url = link.get('href')
-    #             event_urls.append(event_url)
-    #             # event that your testing until
-    #             # print(event_url)
-    #             if (event_url == "http://www.ufcstats.com/event-details/b6c6d1731ff00eeb"):
-    #                 break
-    # else:
-    #     print(f"Failed to retrieve the page. Status code: {response.status_code}")
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
+        rows = soup.find_all('tr', class_='b-statistics__table-row')
+        for row in rows:
+            link = row.find('a', class_='b-link b-link_style_black')
+            if link:
+                event_url = link.get('href')
+                event_urls.append(event_url)
+                # event that your testing until
+                # print(event_url)
+                if (event_url == "http://www.ufcstats.com/event-details/00a905a4a4a2b071"):
+                    break
+    else:
+        print(f"Failed to retrieve the page. Status code: {response.status_code}")
 
     # GET ALL THE NAMES OF FIGHTERS ON EACH CARD
     def extract_fighter_stats(
@@ -118,7 +118,7 @@ def main():
             fight_table = soup.find("tbody", class_="b-fight-details__table-body")
 
             fight_rows = fight_table.find_all("tr", class_="b-fight-details__table-row")
-            fights=[["Kamaru Usman", "Khamzat Chimaev"]]
+            fights=[]
             for fight_row in fight_rows:
                 fighter_names = fight_row.find_all("a", class_="b-link_style_black")
                 fighter1_name = fighter_names[0].text.strip()
