@@ -52,6 +52,10 @@ def ml_elo(p1, p2):
     return prob_win
 
 bankroll = 1000.00
+correct_predictions = 0
+total_predictions = 0
+correct_bets = 0
+total_bets = 0
 
 def kelly_criterion(odds, prob_win):
         kc = 0
@@ -63,20 +67,53 @@ def kelly_criterion(odds, prob_win):
             kc = (n * prob_win - (1 - prob_win)) / n
         return kc
 
+# choosing win/lose probability based on how close they are to odds
 def odds_to_prob(odds):
     if odds >= 0:
         prob = 100 / (odds + 100)
     else:
         prob = -odds / (-odds + 100)
-    
-    return prob
+    return prob    
+
+# average win probability between AvB and BvA
+def avg_win(avb_win, bva_lose):
+    avg_win = (float(avb_win) + float(bva_lose)) / 2
+    return avg_win
+
+# bet only on favourites which has higher odds than ufc
+
+# bet only on underdogs 
+
+# bet on fights where our odds are +/-10% of ufc odds
+
+# calculate potential return on bet
+def pt(odds, bet):
+    if (odds < 0):
+        return (bet * (100 / -odds))
+    else:
+        return (bet * (odds / 100))
+
+# check winner and update bankroll
+def check_winner(winner_name, fighter_name, potential_return, bet):
+    global bankroll, correct_bets, total_bets
+    if (winner_name == fighter_name):
+        test.write(" (win)")
+        bankroll += potential_return
+        correct_bets += 1
+        total_bets += 1
+    elif (winner_name == "draw/no contest"):
+        test.write(" (draw/no contest)")
+    else:
+        test.write(" (loss)")
+        bankroll -= bet
+        total_bets += 1
 
 with open("testing.txt", "w") as test:
 
     urls = []
     urls.append("https://www.ufc.com/events")
     # end of page 5 is 1 year ago, usman vs edwards
-    for i in range(1, 2):
+    for i in range(1, 6):
         urls.append("https://www.ufc.com/events?page=" + str(i))    
     all_fight_card_links = []
     for url in urls:
@@ -108,11 +145,15 @@ with open("testing.txt", "w") as test:
     
     cnt = 0
     # UPDATE FIGHTER STATS TO THE DATE OF THE STARTING TEST
-    process_fights_elo.event_to_drop = "2023-06-10"
+    process_fights_elo.event_to_drop = "2022-09-03"
     process_fights_elo.main()
 
     # UPDATE PREDICT_FIGHTS_ELO.CSV WITH NEW FIGHTER STATS
     predict_fights_elo.main()
+
+    #  UPDATE TRAINING AND GET NEW PREDICTIONS
+    ml_training_duplication.date_to_train = "2022-09-03"
+    ml_training_duplication.main()
     for fight_card_link in all_fight_card_links:
         print(fight_card_link)
         response = requests.get(fight_card_link)
@@ -143,12 +184,15 @@ with open("testing.txt", "w") as test:
 
             # Find all elements with the class "c-listing-fight__corner-body--blue"
             blue_corner_elements = soup.find_all(class_='c-listing-fight__corner-body--blue')
+            red_corner_elements = soup.find_all(class_='c-listing-fight__corner-body--red')
             winners = []
             
-            for blue_corner in blue_corner_elements:
-                if blue_corner.find(class_='c-listing-fight__outcome--Win'):
+            for i in range (0, len(blue_corner_elements)):
+                if (blue_corner_elements[i].find(class_='c-listing-fight__outcome--Win') 
+                    or red_corner_elements[i].find(class_='c-listing-fight__outcome--Loss')):
                     winners.append("win")
-                elif blue_corner.find(class_='c-listing-fight__outcome--Loss'):
+                elif (blue_corner_elements[i].find(class_='c-listing-fight__outcome--Loss')
+                      or red_corner_elements[i].find(class_='c-listing-fight__outcome--Win')):
                     winners.append("loss")
                 else:
                     winners.append("draw/no contest")
@@ -179,78 +223,75 @@ with open("testing.txt", "w") as test:
 
                 if len(odds_values) == 2:
                     fighter1_odds = odds_values[0]
-                    fighter1_odds = fighter1_odds.replace('−', '-')  
+                    fighter1_odds = fighter1_odds.replace('−', '-')
                     fighter2_odds = odds_values[1]
-                    fighter2_odds = fighter2_odds.replace('−', '-')  
-                    if (ml_elo(fighter1_name, fighter2_name) == None or ml_elo(fighter2_name, fighter1_name) == None):
+                    fighter2_odds = fighter2_odds.replace('−', '-')
+                    if (ml_elo(fighter1_name, fighter2_name) == None or ml_elo(fighter2_name, fighter1_name) == None
+                        or fighter1_odds == "-" or fighter2_odds == "-"):
                         # test.write("Fighter not found in the text file.\n")
                         test.write("---\n")
                         continue
-                    avb_win = float(ml_elo(fighter1_name, fighter2_name)) #70
+                    fighter1_odds = int(fighter1_odds)
+                    fighter2_odds = int(fighter2_odds)
+                    avb_win = float(ml_elo(fighter1_name, fighter2_name)) 
                     avb_lose = 1 - avb_win
                     bva_win = float(ml_elo(fighter2_name, fighter1_name))
-                    bva_lose = 1 - bva_win #60
-                    odds1_prob = 0
-                    odds2_prob = 0
-                    if (fighter1_odds != "-" and fighter2_odds != "-"):
-                        odds1_prob = odds_to_prob(int(fighter1_odds))
-                        odds2_prob = odds_to_prob(int(fighter2_odds))
-                    a_win_avg=avb_win
-                    b_win_avg=bva_win
-                    if(abs(avb_win-odds1_prob) > abs(bva_lose-odds1_prob)):
-                        a_win_avg=bva_lose
-                    if(abs(bva_win-odds2_prob) > abs(avb_lose-odds2_prob)):
-                        b_win_avg=avb_lose
-                    # a_win_avg = (float(avb_win) + float(bva_lose)) / 2
-                    # b_win_avg = (float(bva_win) + float(avb_lose)) / 2
+                    bva_lose = 1 - bva_win 
+                    
+                    # average AvB and BvA
+                    a_win_avg = avg_win(avb_win, bva_lose)
+                    b_win_avg = avg_win(bva_win, avb_lose)
+
+                    # choose AvB or BvA based on how close they are to odds
+                    # odds1_prob = 0
+                    # odds2_prob = 0
+                    # if (fighter1_odds != "-" and fighter2_odds != "-"):
+                    #     odds1_prob = odds_to_prob(fighter1_odds)
+                    #     odds2_prob = odds_to_prob(fighter2_odds)
+                    # a_win_avg=avb_win
+                    # b_win_avg=bva_win
+                    # if(abs(avb_win-odds1_prob) > abs(bva_lose-odds1_prob)):
+                    #     a_win_avg=bva_lose
+                    # if(abs(bva_win-odds2_prob) > abs(avb_lose-odds2_prob)):
+                    #     b_win_avg=avb_lose
+
                     kc_a = 0
                     kc_b = 0
                     if (fighter1_odds != "-" and fighter2_odds != "-"):
-                        kc_a = kelly_criterion(int(fighter1_odds), a_win_avg)
-                        kc_b = kelly_criterion(int(fighter2_odds), b_win_avg)
+                        kc_a = kelly_criterion(fighter1_odds, a_win_avg)
+                        kc_b = kelly_criterion(fighter2_odds, b_win_avg)
                     test.write(f"{fighter1_name}: {fighter1_odds} {a_win_avg:.2f} {kc_a:.2f}\n")
                     test.write(f"{fighter2_name}: {fighter2_odds} {b_win_avg:.2f} {kc_b:.2f}\n")
                     if a_win_avg > b_win_avg:
+                        if (winner_name == fighter1_name and winner_name != "draw/no contest"):
+                            correct_predictions += 1
+                        total_predictions += 1
                         test.write(f"{fighter1_name} ")
-                        if (kc_a > 0):
+                        if (kc_a > 0 and fighter1_odds < fighter2_odds): 
                             bet = bankroll * (0.1) * kc_a
-                            potential_return = 0
-                            odds = int(fighter1_odds)
-                            if (odds < 0):
-                                potential_return = bet * (100 / -odds)
-                            else:
-                                potential_return = bet * (odds / 100)
+                            odds = fighter1_odds
+                            potential_return = pt(odds, bet)
                             test.write(f"${bet:.2f} (bet) pt: ${bet + potential_return:.2f} +${potential_return:.2f}")
-                            if (winner_name == fighter1_name):
-                                test.write(" (win)")
-                                bankroll += potential_return
-                            else:
-                                test.write(" (loss)")
-                                bankroll -= bet
+                            check_winner(winner_name, fighter1_name, potential_return, bet)
                         else:
                             test.write(f"(no bet)")
                         test.write("\n")
                     else:
+                        if (winner_name == fighter2_name and winner_name != "draw/no contest"):
+                            correct_predictions += 1
+                        total_predictions += 1
                         test.write(f"{fighter2_name} ")
-                        if (kc_b > 0):
+                        if (kc_b > 0 and fighter2_odds < fighter1_odds):
                             bet = bankroll * (0.1) * kc_b
-                            potential_return = 0
-                            odds = int(fighter2_odds)
-                            if (odds < 0):
-                                potential_return = bet * (100 / -odds)
-                            else:
-                                potential_return = bet * (odds / 100)
+                            odds = fighter2_odds
+                            potential_return = pt(odds, bet)
                             test.write(f"${bet:.2f} (bet) pt: ${bet + potential_return:.2f} +${potential_return:.2f}")
-                            if (winner_name == fighter2_name):
-                                test.write(" (win)")
-                                bankroll += potential_return
-                            else:
-                                test.write(" (loss)")
-                                bankroll -= bet
+                            check_winner(winner_name, fighter2_name, potential_return, bet)
                         else:
                             test.write(f"(no bet)")
                         test.write("\n")
-                        
+                    test.write(f" *** {winner_name} *** \n")
+                    
 
                     test.write("---\n")
         
@@ -288,7 +329,7 @@ with open("testing.txt", "w") as test:
 
                 
             # most recent fight
-            if (fight_card_link == "https://www.ufc.com/event/ufc-fight-night-september-23-2023"):
+            if (fight_card_link == "https://www.ufc.com/event/ufc-fight-night-october-07-2023"):
                 break
             cnt += 1
 
@@ -297,3 +338,5 @@ with open("testing.txt", "w") as test:
     else:
         test.write(f"Failed to retrieve the events page. Status code: {response.status_code}\n")
     test.write(f"Bankroll: ${bankroll:.2f}\n")
+    test.write(f"{correct_bets}/{total_bets} correct bets\n")
+    test.write(f"{correct_predictions}/{total_predictions} correct predictions\n")
