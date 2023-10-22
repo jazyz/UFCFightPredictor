@@ -114,11 +114,11 @@ Sodiq Yusuff (no bet)
 ---
 Jonathan Martinez: -112 0.56 0.07
 Adrian Yanez: -108 0.44 -0.17
-Jonathan Martinez $8.19 (bet) pt: $15.49 +$7.31
+Jonathan Martinez $8.19 (bet) pt: $15.49 +$7.31 (correct)
 ---
 Andre Petroski: +105 0.52 0.07
 Michel Pereira: -125 0.48 -0.18
-Andre Petroski $7.85 (bet) pt: $16.09 +$8.24
+Andre Petroski $7.85 (bet) pt: $16.09 +$8.24 (loss)
 ---
 ---
 Christian Rodriguez: -162 0.50 -0.31
@@ -127,7 +127,7 @@ Christian Rodriguez (no bet)
 ---
 Darren Elkins: +170 0.52 0.23
 TJ Brown: -205 0.48 -0.58
-Darren Elkins $25.52 (bet) pt: $68.92 +$43.39
+Darren Elkins $25.52 (bet) pt: $68.92 +$43.39 (correct)
 ---
 ---
 ---
@@ -137,81 +137,32 @@ Alatengheili: +260 0.29 0.02
 Chris Gutierrez (no bet)
 ---
 ---
-Fight Card: https://www.ufc.com/event/ufc-294
-Islam Makhachev: -340 0.76 -0.05
-Alexander Volkanovski: +270 0.24 -0.04
-Islam Makhachev (no bet)
----
-Paulo Costa: +285 0.25 -0.02
-Khamzat Chimaev: -360 0.75 -0.14
-Khamzat Chimaev (no bet)
----
-Magomed Ankalaev: - 0.63 0.00
-Johnny Walker: - 0.37 0.00
-Magomed Ankalaev (no bet)
----
----
----
-Tim Elliott: - 0.34 0.00
-Muhammad Mokaev: - 0.66 0.00
-Muhammad Mokaev (no bet)
----
----
----
----
----
----
----
----
+
+nice wins for a fight night, 84.41 / 41.56 = 2.03, +103% return
+
+*** Bankroll: $1047.51 ***
+
 Fight Card: https://www.ufc.com/event/ufc-294
 Islam Makhachev: -340 0.80 0.13
 Alexander Volkanovski: +270 0.20 -0.10
-Islam Makhachev $13.78 (bet) pt: $17.84 +$4.05
+Islam Makhachev $26.26 (bet) pt: $33.98 +$7.72 (correct)
 ---
-Paulo Costa: +285 0.22 -0.06
-Khamzat Chimaev: -360 0.78 -0.00
-Khamzat Chimaev (no bet)
+Kamaru Usman: +285 0.54 0.38
+Khamzat Chimaev: -360 0.46 -1.48
+Kamaru Usman $78.86 (bet) pt: $303.61 +$224.75 (loss)
 ---
 Magomed Ankalaev: - 0.60 0.00
 Johnny Walker: - 0.40 0.00
 Magomed Ankalaev (no bet)
 ---
----
----
 Tim Elliott: - 0.31 0.00
 Muhammad Mokaev: - 0.69 0.00
 Muhammad Mokaev (no bet)
 ---
----
----
----
----
----
----
----
-Fight Card: https://www.ufc.com/event/ufc-294
-Islam Makhachev: -340 0.80 0.13
-Alexander Volkanovski: +270 0.20 -0.10
-Islam Makhachev $13.78 (bet) pt: $17.84 +$4.05
----
-Paulo Costa: +285 0.22 -0.06
-Khamzat Chimaev: -360 0.78 -0.00
-Khamzat Chimaev (no bet)
----
-Magomed Ankalaev: - 0.60 0.00
-Johnny Walker: - 0.40 0.00
-Magomed Ankalaev (no bet)
----
----
----
-Tim Elliott: - 0.31 0.00
-Muhammad Mokaev: - 0.69 0.00
-Muhammad Mokaev (no bet)
----
----
----
----
----
----
----
----
+
+increased bets to 20% of bankroll since Usman and Makhachev are dawgs
+- Usman did not get it done. Islam round 1 headkick ko.
+
+*** Bankroll: $976.37 ***
+
+
