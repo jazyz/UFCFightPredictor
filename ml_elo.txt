@@ -1,109 +1,197 @@
 fighter_names
-0    Islam Makhachev*Alexander Volkanovski
-1    Alexander Volkanovski*Islam Makhachev
-2             Kamaru Usman*Khamzat Chimaev
-3             Khamzat Chimaev*Kamaru Usman
-4           Magomed Ankalaev*Johnny Walker
-5           Johnny Walker*Magomed Ankalaev
-6              Tim Elliott*Muhammad Mokaev
-7              Muhammad Mokaev*Tim Elliott
+0                    Jailton Almeida*Derrick Lewis
+1                    Derrick Lewis*Jailton Almeida
+2                     Gabriel Bonfim*Nicolas Dalby
+3                     Nicolas Dalby*Gabriel Bonfim
+4                Rodrigo Nascimento*Don'Tale Mayes
+5                Don'Tale Mayes*Rodrigo Nascimento
+6                   Rodolfo Vieira*Armen Petrosyan
+7                   Armen Petrosyan*Rodolfo Vieira
+8                        Ismael Bonfim*Vinc Pichel
+9                        Vinc Pichel*Ismael Bonfim
+10    Elizeu Zaleski dos Santos*Rinat Fakhretdinov
+11    Rinat Fakhretdinov*Elizeu Zaleski dos Santos
+12                Vitor Petrino*Modestas Bukauskas
+13                Modestas Bukauskas*Vitor Petrino
+14                        Angela Hill*Denise Gomes
+15                        Denise Gomes*Angela Hill
 dtype: object
-      date  fighter_kd_differential  fighter_str_differential  \
-0  unknown                 0.062500                 11.312500   
-1  unknown                 0.312500                 49.562500   
-2  unknown                 0.500000                 29.111111   
-3  unknown                 0.250000                 22.750000   
-4  unknown                 0.461538                 18.384615   
-5  unknown                 0.000000                 10.692308   
-6  unknown                 0.095238                  8.190476   
-7  unknown                 0.333333                  2.166667   
+       date  fighter_kd_differential  fighter_str_differential  \
+0   unknown                 0.000000                 14.571429   
+1   unknown                 0.172414                  1.172414   
+2   unknown                 0.000000                  3.500000   
+3   unknown                -0.333333                  5.583333   
+4   unknown                -0.285714                 -1.857143   
+5   unknown                 0.000000                 -0.571429   
+6   unknown                -0.142857                -11.714286   
+7   unknown                 0.333333                 34.166667   
+8   unknown                 0.750000                 25.250000   
+9   unknown                 0.090909                 10.363636   
+10  unknown                -0.125000                 20.687500   
+11  unknown                 0.500000                 25.500000   
+12  unknown                 0.000000                 10.750000   
+13  unknown                -0.428571                 -6.428571   
+14  unknown                 0.080000                  9.880000   
+15  unknown                 0.400000                 24.600000   
 
-   fighter_td_differential  fighter_sub_differential  fighter_winstreak  \
-0                 2.187500                  0.437500                 13   
-1                 1.500000                  0.000000                  1   
-2                 3.555556                 -0.166667                  0   
-3                 1.375000                  1.125000                  8   
-4                 0.384615                 -0.153846                 10   
-5                -0.307692                  0.692308                  3   
-6                 1.857143                  0.047619                  2   
-7                 5.166667                  0.333333                  6   
+    fighter_td_differential  fighter_sub_differential  fighter_winstreak  \
+0                  2.000000                  0.857143                  7   
+1                 -1.068966                 -0.275862                  1   
+2                  0.750000                  0.500000                  4   
+3                  0.250000                 -0.166667                  3   
+4                  0.428571                  0.571429                  2   
+5                 -0.857143                 -0.285714                  1   
+6                  2.285714                  0.428571                  1   
+7                 -2.333333                 -0.333333                  2   
+8                  0.250000                 -0.500000                  0   
+9                 -0.363636                 -0.363636                  0   
+10                -1.437500                  0.062500                  3   
+11                 4.250000                  0.250000                  4   
+12                 1.000000                  0.250000                  4   
+13                -0.428571                  0.000000                  2   
+14                -0.640000                  0.000000                  0   
+15                -0.600000                  0.600000                  2   
 
-   fighter_losestreak  fighter_age_deviation  fighter_titlefights  \
-0                   0                   2305                    2   
-1                   0                   3575                    7   
-2                   2                   3970                   10   
-3                   0                   1234                    0   
-4                   0                   2023                    1   
-5                   0                   2241                    0   
-6                   0                   4185                    1   
-7                   0                    859                    0   
+    fighter_losestreak  fighter_age_deviation  fighter_titlefights  \
+0                    0                   2519                    0   
+1                    0                   4926                    2   
+2                    0                    349                    0   
+3                    0                   4967                    0   
+4                    0                   2007                    0   
+5                    0                   2336                    0   
+6                    0                   3144                    0   
+7                    0                   2790                    0   
+8                    1                    922                    0   
+9                    1                   5257                    0   
+10                   0                   4198                    0   
+11                   0                   2474                    0   
+12                   0                    320                    0   
+13                   0                   1594                    0   
+14                   1                   4882                    0   
+15                   0                    534                    0   
 
-   fighter_titlewins  fighter_opp_avg_elo  fighter_elo  \
-0                  2          1058.430081  1210.399865   
-1                  6          1084.816137  1213.400261   
-2                  8          1101.138068  1208.383073   
-3                  0          1026.882803  1124.953170   
-4                  0          1026.059358  1125.897947   
-5                  0          1036.014163  1079.706865   
-6                  0          1034.485444  1005.770273   
-7                  0           987.858380  1086.394740   
+    fighter_titlewins  fighter_opp_avg_elo  fighter_elo  \
+0                   0          1004.356227  1103.620041   
+1                   0          1055.494449  1122.867442   
+2                   0          1003.516362  1063.271193   
+3                   0          1026.235913  1069.871299   
+4                   0          1004.908011  1059.559952   
+5                   0          1010.886723  1034.109790   
+6                   0          1009.891036  1043.787311   
+7                   0          1006.957445  1061.008428   
+8                   0           996.155269  1028.370976   
+9                   0          1030.606637  1057.150600   
+10                  0          1016.951877  1111.691728   
+11                  0           994.280097  1061.897819   
+12                  0           980.385107  1058.883378   
+13                  0          1004.256418  1016.029598   
+14                  0          1011.536385   998.021271   
+15                  0          1006.961382  1047.568634   
 
-   opponent_kd_differential  opponent_str_differential  \
-0                  0.312500                  49.562500   
-1                  0.062500                  11.312500   
-2                  0.250000                  22.750000   
-3                  0.500000                  29.111111   
-4                  0.000000                  10.692308   
-5                  0.461538                  18.384615   
-6                  0.333333                   2.166667   
-7                  0.095238                   8.190476   
+    opponent_kd_differential  opponent_str_differential  \
+0                   0.172414                   1.172414   
+1                   0.000000                  14.571429   
+2                  -0.333333                   5.583333   
+3                   0.000000                   3.500000   
+4                   0.000000                  -0.571429   
+5                  -0.285714                  -1.857143   
+6                   0.333333                  34.166667   
+7                  -0.142857                 -11.714286   
+8                   0.090909                  10.363636   
+9                   0.750000                  25.250000   
+10                  0.500000                  25.500000   
+11                 -0.125000                  20.687500   
+12                 -0.428571                  -6.428571   
+13                  0.000000                  10.750000   
+14                  0.400000                  24.600000   
+15                  0.080000                   9.880000   
 
-   opponent_td_differential  opponent_sub_differential  opponent_winstreak  \
-0                  1.500000                   0.000000                   1   
-1                  2.187500                   0.437500                  13   
-2                  1.375000                   1.125000                   8   
-3                  3.555556                  -0.166667                   0   
-4                 -0.307692                   0.692308                   3   
-5                  0.384615                  -0.153846                  10   
-6                  5.166667                   0.333333                   6   
-7                  1.857143                   0.047619                   2   
+    opponent_td_differential  opponent_sub_differential  opponent_winstreak  \
+0                  -1.068966                  -0.275862                   1   
+1                   2.000000                   0.857143                   7   
+2                   0.250000                  -0.166667                   3   
+3                   0.750000                   0.500000                   4   
+4                  -0.857143                  -0.285714                   1   
+5                   0.428571                   0.571429                   2   
+6                  -2.333333                  -0.333333                   2   
+7                   2.285714                   0.428571                   1   
+8                  -0.363636                  -0.363636                   0   
+9                   0.250000                  -0.500000                   0   
+10                  4.250000                   0.250000                   4   
+11                 -1.437500                   0.062500                   3   
+12                 -0.428571                   0.000000                   2   
+13                  1.000000                   0.250000                   4   
+14                 -0.600000                   0.600000                   2   
+15                 -0.640000                   0.000000                   0   
 
-   opponent_losestreak  opponent_age_deviation  opponent_titlefights  \
-0                    0                    3575                     7   
-1                    0                    2305                     2   
-2                    0                    1234                     0   
-3                    2                    3970                    10   
-4                    0                    2241                     0   
-5                    0                    2023                     1   
-6                    0                     859                     0   
-7                    0                    4185                     1   
+    opponent_losestreak  opponent_age_deviation  opponent_titlefights  \
+0                     0                    4926                     2   
+1                     0                    2519                     0   
+2                     0                    4967                     0   
+3                     0                     349                     0   
+4                     0                    2336                     0   
+5                     0                    2007                     0   
+6                     0                    2790                     0   
+7                     0                    3144                     0   
+8                     1                    5257                     0   
+9                     1                     922                     0   
+10                    0                    2474                     0   
+11                    0                    4198                     0   
+12                    0                    1594                     0   
+13                    0                     320                     0   
+14                    0                     534                     0   
+15                    1                    4882                     0   
 
-   opponent_titlewins  opponent_elo  opponent_opp_avg_elo   result  \
-0                   6   1213.400261           1084.816137  unknown   
-1                   2   1210.399865           1058.430081  unknown   
-2                   0   1124.953170           1026.882803  unknown   
-3                   8   1208.383073           1101.138068  unknown   
-4                   0   1079.706865           1036.014163  unknown   
-5                   0   1125.897947           1026.059358  unknown   
-6                   0   1086.394740            987.858380  unknown   
-7                   0   1005.770273           1034.485444  unknown   
+    opponent_titlewins  opponent_elo  opponent_opp_avg_elo   result  \
+0                    0   1122.867442           1055.494449  unknown   
+1                    0   1103.620041           1004.356227  unknown   
+2                    0   1069.871299           1026.235913  unknown   
+3                    0   1063.271193           1003.516362  unknown   
+4                    0   1034.109790           1010.886723  unknown   
+5                    0   1059.559952           1004.908011  unknown   
+6                    0   1061.008428           1006.957445  unknown   
+7                    0   1043.787311           1009.891036  unknown   
+8                    0   1057.150600           1030.606637  unknown   
+9                    0   1028.370976            996.155269  unknown   
+10                   0   1061.897819            994.280097  unknown   
+11                   0   1111.691728           1016.951877  unknown   
+12                   0   1016.029598           1004.256418  unknown   
+13                   0   1058.883378            980.385107  unknown   
+14                   0   1047.568634           1006.961382  unknown   
+15                   0    998.021271           1011.536385  unknown   
 
-  predicted_result  probability_draw  probability_loss  probability_nc  \
-0              win          0.000273          0.186199        0.001043   
-1             loss          0.000091          0.789689        0.000164   
-2              win          0.001756          0.483181        0.005180   
-3             loss          0.002489          0.561785        0.002610   
-4              win          0.001568          0.418155        0.000526   
-5             loss          0.001896          0.613926        0.000591   
-6             loss          0.000363          0.674668        0.000249   
-7              win          0.000081          0.287568        0.000166   
+   predicted_result  probability_draw  probability_loss  probability_nc  \
+0               win          0.000177          0.337831        0.000131   
+1              loss          0.000195          0.764443        0.000147   
+2               win          0.000021          0.381289        0.000346   
+3              loss          0.000020          0.623935        0.000252   
+4              loss          0.000036          0.513800        0.000887   
+5              loss          0.000082          0.505377        0.002386   
+6               win          0.001039          0.435967        0.000202   
+7              loss          0.000078          0.540044        0.000214   
+8               win          0.000851          0.234356        0.000490   
+9              loss          0.001028          0.838266        0.000292   
+10             loss          0.000139          0.837421        0.000056   
+11              win          0.000177          0.191280        0.000034   
+12              win          0.000015          0.357105        0.000910   
+13             loss          0.000020          0.748684        0.002204   
+14             loss          0.000065          0.784719        0.002777   
+15              win          0.000104          0.235706        0.000610   
 
-   probability_win  
-0         0.812485  
-1         0.210055  
-2         0.509883  
-3         0.433116  
-4         0.579752  
-5         0.383587  
-6         0.324720  
-7         0.712185  
+    probability_win  
+0          0.661861  
+1          0.235215  
+2          0.618344  
+3          0.375793  
+4          0.485277  
+5          0.492155  
+6          0.562791  
+7          0.459664  
+8          0.764303  
+9          0.160413  
+10         0.162385  
+11         0.808509  
+12         0.641969  
+13         0.249092  
+14         0.212439  
+15         0.763580  

@@ -84,7 +84,7 @@ with open("predictions.txt", "a") as predictions_file:
         # Loop through each fight card link and scrape the odds
         for fight_card_link in fight_card_links:
             # insert event link you want to predict
-            if (fight_card_link != "https://www.ufc.com/event/ufc-294"):
+            if (fight_card_link != "https://www.ufc.com/event/ufc-fight-night-november-04-2023"):
                     continue
             
             response = requests.get(fight_card_link)
@@ -160,7 +160,7 @@ with open("predictions.txt", "a") as predictions_file:
                         if a_win_avg > b_win_avg:
                             predictions_file.write(f"{fighter1_name} ")
                             if (kc_a > 0):
-                                bet = bankroll * (0.2) * kc_a
+                                bet = bankroll * (0.1) * kc_a
                                 potential_return = 0
                                 odds = int(fighter1_odds)
                                 if (odds < 0):
@@ -174,7 +174,7 @@ with open("predictions.txt", "a") as predictions_file:
                         else:
                             predictions_file.write(f"{fighter2_name} ")
                             if (kc_b > 0):
-                                bet = bankroll * (0.2) * kc_b
+                                bet = bankroll * (0.1) * kc_b
                                 potential_return = 0
                                 odds = int(fighter2_odds)
                                 if (odds < 0):
