@@ -1,0 +1,2 @@
+# Instead of recomputing stats every time, read the current stats from elofights.csv into fighter_stats dict. Then, update them from a certain start date to end date.
+# Then also write the new fights into the db without overwriting the previous info.
