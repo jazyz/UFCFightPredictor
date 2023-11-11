@@ -117,8 +117,12 @@ with open("predictions.txt", "a") as predictions_file:
 
                 # Extract and print the odds for each fight on the current card
                 for i in range(0, len(fighter_names), 2):
-                    fighter1_name = fighter_names[i]
-                    fighter2_name = fighter_names[i + 1]
+                    fighter1_name = fighter_names[i].replace("é", "e")
+                    fighter1_name = fighter1_name.replace("ří", "ri")
+                    fighter1_name = fighter1_name.replace("á", "a")
+                    fighter1_name = fighter1_name.replace("ę", "e")
+                    fighter2_name = fighter_names[i + 1].replace("î", "i")
+                    print(fighter1_name + " " + fighter2_name)
 
                     odds_wrapper = odds_wrappers[i // 2]
                     odds_elements = odds_wrapper.find_all(class_='c-listing-fight__odds-amount')
