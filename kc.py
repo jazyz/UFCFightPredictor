@@ -1,4 +1,4 @@
-bankroll = 1099.64
+bankroll = 958.11
 
 while True:
     odds = int(input())
