@@ -1,5 +1,7 @@
 bankroll = 958.11
 
+print(11**23 % 31)
+
 while True:
     odds = int(input())
     prob_win = float(input())
