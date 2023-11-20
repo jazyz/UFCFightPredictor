@@ -13,7 +13,7 @@ def main():
     response = requests.get(url)
 
     # to get one event, paste the url in event_urls and comment out the part below
-    event_urls = ["http://www.ufcstats.com/event-details/5a558ba1ff5e9121"]
+    event_urls = ["http://ufcstats.com/event-details/3feed7d02711d8b7"]
 
     # if response.status_code == 200:
     #     soup = BeautifulSoup(response.text, 'html.parser')
@@ -49,7 +49,7 @@ def main():
             print("Fighter or opponent not found in the CSV.")
             return
 
-        if int(fighter_stats["totalfights"]) <= 3 or int(opponent_stats["totalfights"]) <= 3:
+        if int(fighter_stats["totalfights"]) <= 4 or int(opponent_stats["totalfights"]) <= 4:
             return
         combined_stats = {}
         for key, value in fighter_stats.items():
