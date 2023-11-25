@@ -5,7 +5,7 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
-import process_fights_elo
+import update_stats
 from datetime import datetime
 import ml_training_duplication
 import predict_fights_elo
@@ -52,10 +52,23 @@ def ml_elo(p1, p2):
     return prob_win
 
 bankroll = 1000.00
+
+# GOOD INFO TO KEEP TRACK OF AND RESEARCH
 correct_predictions = 0
 total_predictions = 0
 correct_bets = 0
 total_bets = 0
+correct_underdogs = 0
+total_underdogs = 0
+correct_favourites = 0
+total_favourites = 0
+max_bankroll = 0
+# how much we lose from favourites/underdogs
+favourite_loss = 0
+underdog_loss = 0
+# how much we gain from favourites/underdogs
+favourite_gain = 0
+underdog_gain = 0
 
 def kelly_criterion(odds, prob_win):
         kc = 0
@@ -94,19 +107,35 @@ def pt(odds, bet):
         return (bet * (odds / 100))
 
 # check winner and update bankroll
-def check_winner(winner_name, fighter_name, potential_return, bet):
-    global bankroll, correct_bets, total_bets
+def check_winner(winner_name, fighter_name, potential_return, bet, fighter_odds):
+    global bankroll, max_bankroll, correct_bets, total_bets, correct_underdogs, total_underdogs, correct_favourites, total_favourites
+    global favourite_loss, underdog_loss, favourite_gain, underdog_gain
+    if (fighter_odds < 0):
+        total_favourites += 1
+    else:
+        total_underdogs += 1
     if (winner_name == fighter_name):
         test.write(" (win)")
         bankroll += potential_return
+        max_bankroll = max(max_bankroll, bankroll)
         correct_bets += 1
         total_bets += 1
+        if (fighter_odds < 0):
+            favourite_gain += potential_return
+            correct_favourites += 1
+        else:
+            underdog_gain += potential_return
+            correct_underdogs += 1
     elif (winner_name == "draw/no contest"):
         test.write(" (draw/no contest)")
     else:
         test.write(" (loss)")
         bankroll -= bet
         total_bets += 1
+        if (fighter_odds < 0):
+            favourite_loss += bet
+        else:
+            underdog_loss += bet
 
 with open("testing.txt", "w") as test:
 
@@ -145,14 +174,14 @@ with open("testing.txt", "w") as test:
     
     cnt = 0
     # UPDATE FIGHTER STATS TO THE DATE OF THE STARTING TEST
-    process_fights_elo.event_to_drop = "2022-09-03"
-    process_fights_elo.main()
+    update_stats.event_to_drop = "2022-10-22"
+    update_stats.main()
 
     # UPDATE PREDICT_FIGHTS_ELO.CSV WITH NEW FIGHTER STATS
     predict_fights_elo.main()
 
     #  UPDATE TRAINING AND GET NEW PREDICTIONS
-    ml_training_duplication.date_to_train = "2022-09-03"
+    ml_training_duplication.date_to_train = "2022-10-22"
     ml_training_duplication.main()
     for fight_card_link in all_fight_card_links:
         print(fight_card_link)
@@ -243,17 +272,17 @@ with open("testing.txt", "w") as test:
                     b_win_avg = avg_win(bva_win, avb_lose)
 
                     # choose AvB or BvA based on how close they are to odds
-                    # odds1_prob = 0
-                    # odds2_prob = 0
-                    # if (fighter1_odds != "-" and fighter2_odds != "-"):
-                    #     odds1_prob = odds_to_prob(fighter1_odds)
-                    #     odds2_prob = odds_to_prob(fighter2_odds)
-                    # a_win_avg=avb_win
-                    # b_win_avg=bva_win
-                    # if(abs(avb_win-odds1_prob) > abs(bva_lose-odds1_prob)):
-                    #     a_win_avg=bva_lose
-                    # if(abs(bva_win-odds2_prob) > abs(avb_lose-odds2_prob)):
-                    #     b_win_avg=avb_lose
+                    odds1_prob = 0
+                    odds2_prob = 0
+                    if (fighter1_odds != "-" and fighter2_odds != "-"):
+                        odds1_prob = odds_to_prob(fighter1_odds)
+                        odds2_prob = odds_to_prob(fighter2_odds)
+                    a_win_avg=avb_win
+                    b_win_avg=bva_win
+                    if(abs(avb_win-odds1_prob) > abs(bva_lose-odds1_prob)):
+                        a_win_avg=bva_lose
+                    if(abs(bva_win-odds2_prob) > abs(avb_lose-odds2_prob)):
+                        b_win_avg=avb_lose
 
                     kc_a = 0
                     kc_b = 0
@@ -267,12 +296,17 @@ with open("testing.txt", "w") as test:
                             correct_predictions += 1
                         total_predictions += 1
                         test.write(f"{fighter1_name} ")
-                        if (kc_a > 0 and fighter1_odds < fighter2_odds): 
+                        # for underdogs (and )
+                        if (kc_a > 0): 
+                            # bet = 0
+                            # if (fighter1_odds < fighter2_odds):
+                            #     bet = 25
+                            # else:
                             bet = bankroll * (0.1) * kc_a
                             odds = fighter1_odds
                             potential_return = pt(odds, bet)
                             test.write(f"${bet:.2f} (bet) pt: ${bet + potential_return:.2f} +${potential_return:.2f}")
-                            check_winner(winner_name, fighter1_name, potential_return, bet)
+                            check_winner(winner_name, fighter1_name, potential_return, bet, fighter1_odds)
                         else:
                             test.write(f"(no bet)")
                         test.write("\n")
@@ -281,12 +315,17 @@ with open("testing.txt", "w") as test:
                             correct_predictions += 1
                         total_predictions += 1
                         test.write(f"{fighter2_name} ")
-                        if (kc_b > 0 and fighter2_odds < fighter1_odds):
+                        # for underdogs (and fighter2_odds < fighter1_odds)
+                        if (kc_b > 0):
+                            # bet = 0
+                            # if (fighter2_odds < fighter1_odds):
+                            #     bet = 25
+                            # else:
                             bet = bankroll * (0.1) * kc_b
                             odds = fighter2_odds
                             potential_return = pt(odds, bet)
                             test.write(f"${bet:.2f} (bet) pt: ${bet + potential_return:.2f} +${potential_return:.2f}")
-                            check_winner(winner_name, fighter2_name, potential_return, bet)
+                            check_winner(winner_name, fighter2_name, potential_return, bet, fighter2_odds)
                         else:
                             test.write(f"(no bet)")
                         test.write("\n")
@@ -315,8 +354,8 @@ with open("testing.txt", "w") as test:
                         pass  # Continue to the next format if parsing fails
                 if (formatted_date == ""):
                     print(date_str)
-                process_fights_elo.event_to_drop = date_obj
-                process_fights_elo.main()
+                update_stats.event_to_drop = date_obj
+                update_stats.main()
 
                 # UPDATE PREDICT_FIGHTS_ELO.CSV WITH NEW FIGHTER STATS
                 predict_fights_elo.main()
@@ -329,7 +368,7 @@ with open("testing.txt", "w") as test:
 
                 
             # most recent fight
-            if (fight_card_link == "https://www.ufc.com/event/ufc-fight-night-october-07-2023"):
+            if (fight_card_link == "https://www.ufc.com/event/ufc-fight-night-november-18-2023"):
                 break
             cnt += 1
 
@@ -338,5 +377,12 @@ with open("testing.txt", "w") as test:
     else:
         test.write(f"Failed to retrieve the events page. Status code: {response.status_code}\n")
     test.write(f"Bankroll: ${bankroll:.2f}\n")
-    test.write(f"{correct_bets}/{total_bets} correct bets\n")
-    test.write(f"{correct_predictions}/{total_predictions} correct predictions\n")
+    test.write(f"Max Bankroll: ${max_bankroll:.2f}\n")
+    test.write(f"{correct_bets}/{total_bets} = {correct_bets/total_bets * 100}% correct bets\n")
+    test.write(f"{correct_predictions}/{total_predictions} = {correct_predictions/total_predictions*100}% correct predictions\n")
+    test.write(f"{total_underdogs}/{total_bets} {correct_underdogs}/{total_underdogs} = {correct_underdogs/total_underdogs*100}% correct underdog bets\n")
+    test.write(f"Total underdog loss: ${underdog_loss:.2f}\n")
+    test.write(f"Total underdog gain: ${underdog_gain:.2f}\n")
+    test.write(f"{total_favourites}/{total_bets} {correct_favourites}/{total_favourites} = {correct_favourites/total_favourites*100}% correct favourite bets\n")
+    test.write(f"Total favourite loss: ${favourite_loss:.2f}\n")
+    test.write(f"Total favourite gain: ${favourite_gain:.2f}\n")
