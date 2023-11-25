@@ -1,0 +1,47 @@
+Testing All Different Betting Strategies 
+- starting with $1000 bankroll
+- on the past year
+
+*** flat bet all predictions ***
+Bankroll: $858.27
+Max Bankroll: $1065.27
+165/276 = 59.78260869565217% correct bets
+165/293 = 56.31399317406144% correct predictions
+69/276 23/69 = 33.33333333333333% correct underdog bets
+224/276 142/224 = 63.39285714285714% correct favourite bets
+
+*** Pure KC *** 
+Bankroll: $1193.65
+Max Bankroll: $1554.97
+88/165 = 53.333333333333336% correct bets
+165/293 = 56.31399317406144% correct predictions
+69/165 23/69 = 33.33333333% correct underdog bets
+109/165 65/109 = 59.633028% correct favourite bets
+
+*** KC underdogs, flat bet favourites ***
+Bankroll: $1193.84
+Max Bankroll: $1456.37
+88/165 = 53.333333333333336% correct bets
+165/293 = 56.31399317406144% correct predictions
+69/165 = 41.81818181818181% correct underdog bets
+109/165 = 66.06060606060606% correct favourite bets
+
+*** choosing win percentages that closer align to the odds, kc all bets ***
+Bankroll: $1307.45
+Max Bankroll: $1588.20
+88/165 = 53.333333333333336% correct bets
+168/293 = 57.33788395904437% correct predictions
+60/165 21/60 = 35.0% correct underdog bets
+Total underdog loss: $1226.30
+Total underdog gain: $1612.50
+116/165 67/116 = 57.758620689655174% correct favourite bets
+Total favourite loss: $932.81
+Total favourite gain: $854.06
+
+*** choose win percentages that closer align to the odds, flat bet favourites, kc underdogs ***
+Bankroll: $1246.18
+Max Bankroll: $1412.31
+88/165 = 53.333333333333336% correct bets
+168/293 = 57.33788395904437% correct predictions
+60/165 21/60 = 35.0% correct underdog bets
+116/165 67/116 = 57.758620689655174% correct favourite bets
