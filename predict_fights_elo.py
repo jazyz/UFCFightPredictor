@@ -25,7 +25,7 @@ def main():
                 event_urls.append(event_url)
                 # event that your testing until
                 # print(event_url)
-                if (event_url == "http://www.ufcstats.com/event-details/885e7f70dcac0007"):
+                if (event_url == "http://www.ufcstats.com/event-details/1174782eacde9b0c"):
                     break
     else:
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
