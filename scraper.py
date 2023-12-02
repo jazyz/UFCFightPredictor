@@ -248,7 +248,7 @@ def main():
     
 
 if __name__ == "__main__":
-    delete_db()
-    main()
+    #delete_db()
+    #main()
     print_db()
     
