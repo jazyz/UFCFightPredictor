@@ -5,7 +5,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-bankroll = 1148.47
+bankroll = 1131.75
 # Create or open the predictions.txt file for writing
 with open("predictions.txt", "a") as predictions_file:
 
@@ -84,7 +84,7 @@ with open("predictions.txt", "a") as predictions_file:
         # Loop through each fight card link and scrape the odds
         for fight_card_link in fight_card_links:
             # insert event link you want to predict
-            if (fight_card_link != "https://www.ufc.com/event/ufc-fight-night-december-02-2023"):
+            if (fight_card_link != "https://www.ufc.com/event/ufc-fight-night-december-09-2023"):
                     continue
             
             response = requests.get(fight_card_link)
