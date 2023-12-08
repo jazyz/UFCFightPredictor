@@ -13,22 +13,22 @@ def main():
     response = requests.get(url)
 
     # to get one event, paste the url in event_urls and comment out the part below
-    event_urls = []
+    event_urls = ["http://www.ufcstats.com/event-details/5ef0088c1b19beeb"]
 
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.text, 'html.parser')
-        rows = soup.find_all('tr', class_='b-statistics__table-row')
-        for row in rows:
-            link = row.find('a', class_='b-link b-link_style_black')
-            if link:
-                event_url = link.get('href')
-                event_urls.append(event_url)
-                # event that your testing until
-                # print(event_url)
-                if (event_url == "http://www.ufcstats.com/event-details/1174782eacde9b0c"):
-                    break
-    else:
-        print(f"Failed to retrieve the page. Status code: {response.status_code}")
+    # if response.status_code == 200:
+    #     soup = BeautifulSoup(response.text, 'html.parser')
+    #     rows = soup.find_all('tr', class_='b-statistics__table-row')
+    #     for row in rows:
+    #         link = row.find('a', class_='b-link b-link_style_black')
+    #         if link:
+    #             event_url = link.get('href')
+    #             event_urls.append(event_url)
+    #             # event that your testing until
+    #             # print(event_url)
+    #             if (event_url == ""):
+    #                 break
+    # else:
+    #     print(f"Failed to retrieve the page. Status code: {response.status_code}")
 
     # GET ALL THE NAMES OF FIGHTERS ON EACH CARD
     def extract_fighter_stats(
