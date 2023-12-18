@@ -354,27 +354,27 @@ Tatsuro Taira (no bet) (correct)
 Fight Card: https://www.ufc.com/event/ufc-296
 Leon Edwards: -155 0.67 0.15
 Colby Covington: +130 0.33 -0.18
-Leon Edwards $17.34 (bet) pt: $28.52 +$11.18
+Leon Edwards $17.34 (bet) pt: $28.52 +$11.18 (hit)
 ---
 Alexandre Pantoja: -192 0.72 0.18
 Brandon Royval: +160 0.28 -0.17
-Alexandre Pantoja $19.96 (bet) pt: $30.36 +$10.40
+Alexandre Pantoja $19.96 (bet) pt: $30.36 +$10.40 (hit)
 ---
 Shavkat Rakhmonov: -650 0.60 -2.00
 Stephen Thompson: +470 0.40 0.27
-Shavkat Rakhmonov (no bet)
+Shavkat Rakhmonov (no bet) (correct)
 ---
 Tony Ferguson: +250 0.24 -0.07
 Paddy Pimblett: -310 0.76 0.03
-Paddy Pimblett $3.62 (bet) pt: $4.78 +$1.17
+Paddy Pimblett $3.62 (bet) pt: $4.78 +$1.17 (hit)
 ---
 Josh Emmett: +185 0.23 -0.19
 Bryce Mitchell: -225 0.77 0.26
-Bryce Mitchell $29.03 (bet) pt: $41.93 +$12.90
+Bryce Mitchell $29.03 (bet) pt: $41.93 +$12.90 (wrong)
 ---
 Alonzo Menifield: +220 0.43 0.18
 Dustin Jacoby: -270 0.57 -0.61
-Dustin Jacoby (no bet)
+Dustin Jacoby (no bet) (wrong)
 ---
 Irene Aldana: -192 0.25 -1.18
 Karol Rosa: +160 0.75 0.59
@@ -382,7 +382,7 @@ Karol Rosa $67.07 (bet) pt: $174.39 +$107.31 (no bet too risky)
 ---
 Cody Garbrandt: -192 0.66 0.01
 Brian Kelleher: +160 0.34 -0.08
-Cody Garbrandt $1.61 (bet) pt: $2.46 +$0.84
+Cody Garbrandt $1.61 (bet) pt: $2.46 +$0.84 (hit)
 ---
 Casey O'Neill: -192 0.46 -0.58
 Ariane Lipski: +160 0.54 0.26
@@ -390,7 +390,9 @@ Ariane Lipski $29.04 (bet) pt: $75.52 +$46.47 (no bet too risky)
 ---
 Tagir Ulanbekov: -166 0.43 -0.52
 Cody Durden: +140 0.57 0.27
-Cody Durden $30.33 (bet) pt: $72.79 +$42.46
+Cody Durden $30.33 (bet) pt: $72.79 +$42.46 (wrong)
 ---
 ---
 ---
+
+*** Bankroll: $1100.37 ***

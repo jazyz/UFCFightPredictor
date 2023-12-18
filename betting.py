@@ -5,7 +5,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-bankroll = 1136.14
+bankroll = 1100.37
 # Create or open the predictions.txt file for writing
 with open("predictions.txt", "a") as predictions_file:
 
