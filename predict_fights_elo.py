@@ -25,7 +25,7 @@ def main():
                 event_urls.append(event_url)
                 # event that your testing until
                 # print(event_url)
-                if (event_url == "http://www.ufcstats.com/event-details/885e7f70dcac0007"):
+                if (event_url == "http://www.ufcstats.com/event-details/d2fa318f34d0aadc"):
                     break
     else:
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
@@ -71,7 +71,14 @@ def main():
 
     with open(output_csv_filename, mode="w", newline="") as output_file:
         fieldnames = [
+            "id",
+            "event",
+            "date",
             "fighter_name",
+            "fighter_weight",
+            "fighter_height",
+            "fighter_reach",
+            "fighter_dob",
             "fighter_kd_differential",
             "fighter_str_differential",
             "fighter_td_differential",
@@ -79,15 +86,31 @@ def main():
             "fighter_winrate",
             "fighter_winstreak",
             "fighter_losestreak",
-            "fighter_totalwins",
             "fighter_totalfights",
+            "fighter_totalwins",
+            "fighter_record",
             "fighter_titlefights",
             "fighter_titlewins",
             "fighter_age_deviation",
-            "fighter_opp_avg_elo",
             "fighter_elo",
-            "fighter_dob",
+            "fighter_opp_avg_elo",
+            
+            "fighter_kowin",
+            "fighter_koloss",
+            "fighter_subwin",
+            "fighter_subloss",
+            "fighter_udecwin",
+            "fighter_udecloss",
+            "fighter_sdecwin",
+            "fighter_sdecloss",
+            "fighter_mdecwin",
+            "fighter_mdecloss",
+
             "opponent_name",
+            "opponent_weight",
+            "opponent_height",
+            "opponent_reach",
+            "opponent_dob",
             "opponent_kd_differential",
             "opponent_str_differential",
             "opponent_td_differential",
@@ -95,16 +118,29 @@ def main():
             "opponent_winrate",
             "opponent_winstreak",
             "opponent_losestreak",
-            "opponent_totalwins",
             "opponent_totalfights",
+            "opponent_totalwins",
+            "opponent_record",
             "opponent_titlefights",
             "opponent_titlewins",
             "opponent_age_deviation",
-            "opponent_opp_avg_elo",
             "opponent_elo",
-            "opponent_dob",
+            "opponent_opp_avg_elo",
+            "opponent_kowin",
+            "opponent_koloss",
+            "opponent_subwin",
+            "opponent_subloss",
+            "opponent_udecwin",
+            "opponent_udecloss",
+            "opponent_sdecwin",
+            "opponent_sdecloss",
+            "opponent_mdecwin",
+            "opponent_mdecloss",
+
             "result",
-            "date",
+            "method",
+            "round",
+            "time",
         ]
         csv_writer = csv.DictWriter(output_file, fieldnames=fieldnames)
         csv_writer.writeheader()
