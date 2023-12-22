@@ -58,6 +58,16 @@ def get_stats():
                 "titlewins": 0,
                 "age_deviation": 0,
                 "opp_avg_elo": 0,
+                "kowin": 0,
+                "koloss": 0,
+                "subwin": 0,
+                "subloss": 0,
+                "udecwin": 0,
+                "udecloss": 0,
+                "sdecwin": 0,
+                "sdecloss": 0,
+                "mdecwin": 0,
+                "mdecloss": 0,
                 "dob": fighter.DOB,
             }
             fighter_ids[fighter.name] = fighter.id
@@ -73,6 +83,7 @@ def get_stats():
             # if fight.event == event_to_drop:
             #     print("Dropping event", event_to_drop)
             #     break
+            print(date)
             if event_to_drop == date:
                 print("Dropping event", event_to_drop)
                 break
@@ -80,10 +91,12 @@ def get_stats():
             fighter_b = db.session.get(Fighter, fighter_ids[fight.opponent])
             
             flag = False
+            
             fighthash=fighter_b.name+fighter_a.name+fight.event
             if fighthash in fightset:
                 flag = True
-                continue # just go next
+                continue
+            
             if (not flag):
                 rating_a = ratings[fighter_a.name]
                 rating_b = ratings[fighter_b.name]
@@ -118,9 +131,29 @@ def get_stats():
                     fighter_stats[fighter_a.name]["winstreak"] += 1
                     fighter_stats[fighter_a.name]["totalwins"] += 1
                     fighter_stats[fighter_a.name]["losestreak"] = 0
+                    if fight.method == "KO/TKO":
+                        fighter_stats[fighter_a.name]["kowin"] += 1
+                    elif fight.method == "SUB":
+                        fighter_stats[fighter_a.name]["subwin"] += 1
+                    elif fight.method == "U-DEC":
+                        fighter_stats[fighter_a.name]["udecwin"] += 1
+                    elif fight.method == "S-DEC":
+                        fighter_stats[fighter_a.name]["sdecwin"] += 1
+                    elif fight.method == "M-DEC":
+                        fighter_stats[fighter_a.name]["mdecwin"] += 1
                 elif fight.result=="loss":
                     fighter_stats[fighter_a.name]["losestreak"] += 1
                     fighter_stats[fighter_a.name]["winstreak"] = 0
+                    if fight.method == "KO/TKO":
+                        fighter_stats[fighter_a.name]["koloss"] += 1
+                    elif fight.method == "SUB":
+                        fighter_stats[fighter_a.name]["subloss"] += 1
+                    elif fight.method == "U-DEC":
+                        fighter_stats[fighter_a.name]["udecloss"] += 1
+                    elif fight.method == "S-DEC":
+                        fighter_stats[fighter_a.name]["sdecloss"] += 1
+                    elif fight.method == "M-DEC":
+                        fighter_stats[fighter_a.name]["mdecloss"] += 1
 
                 if fight.titlefight:
                     fighter_stats[fighter_a.name]["titlefights"] += 1
@@ -150,9 +183,29 @@ def get_stats():
                     fighter_stats[fighter_b.name]["winstreak"] += 1
                     fighter_stats[fighter_b.name]["totalwins"] += 1
                     fighter_stats[fighter_b.name]["losestreak"] = 0
+                    if fight.method == "KO/TKO":
+                        fighter_stats[fighter_b.name]["koloss"] += 1
+                    elif fight.method == "SUB":
+                        fighter_stats[fighter_b.name]["subloss"] += 1
+                    elif fight.method == "U-DEC":
+                        fighter_stats[fighter_b.name]["udecloss"] += 1
+                    elif fight.method == "S-DEC":
+                        fighter_stats[fighter_b.name]["sdecloss"] += 1
+                    elif fight.method == "M-DEC":
+                        fighter_stats[fighter_b.name]["mdecloss"] += 1
                 elif fight.result=="win":
                     fighter_stats[fighter_b.name]["losestreak"] += 1
                     fighter_stats[fighter_b.name]["winstreak"] = 0
+                    if fight.method == "KO/TKO":
+                        fighter_stats[fighter_b.name]["kowin"] += 1
+                    elif fight.method == "SUB":
+                        fighter_stats[fighter_b.name]["subwin"] += 1
+                    elif fight.method == "U-DEC":
+                        fighter_stats[fighter_b.name]["udecwin"] += 1
+                    elif fight.method == "S-DEC":
+                        fighter_stats[fighter_b.name]["sdecwin"] += 1
+                    elif fight.method == "M-DEC":
+                        fighter_stats[fighter_b.name]["mdecwin"] += 1
                 if fight.titlefight:
                     fighter_stats[fighter_b.name]["titlefights"] += 1
                     if fight.result=="loss":
@@ -184,7 +237,17 @@ def export_fighter_stats_to_csv(filename):
             "age_deviation",
             "opp_avg_elo",
             "elo",
-            "dob"
+            "dob",
+            "kowin",
+            "koloss",
+            "subwin",
+            "subloss",
+            "udecwin",
+            "udecloss",
+            "mdecwin",
+            "mdecloss",
+            "sdecwin",
+            "sdecloss",
         ]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -206,7 +269,17 @@ def export_fighter_stats_to_csv(filename):
                 "age_deviation": stats["age_deviation"],
                 "opp_avg_elo": stats["opp_avg_elo"] / stats["totalfights"] if stats["totalfights"] > 0 else 0,
                 "elo": ratings.get(fighter_name, 0),
-                "dob": stats["dob"]
+                "dob": stats["dob"],
+                "kowin": stats.get("kowin", 0),
+                "koloss": stats.get("koloss", 0),
+                "subwin": stats.get("subwin", 0),
+                "subloss": stats.get("subloss", 0),
+                "udecwin": stats.get("udecwin", 0),
+                "udecloss": stats.get("udecloss", 0),
+                "mdecwin": stats.get("mdecwin", 0),
+                "mdecloss": stats.get("mdecloss", 0),
+                "sdecwin": stats.get("sdecwin", 0),
+                "sdecloss": stats.get("sdecloss", 0),
             })
 
 def main():
