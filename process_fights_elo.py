@@ -40,6 +40,16 @@ class FightStats(db2.Model):
     fighter_age_deviation = db2.Column(db2.Float)
     fighter_elo = db2.Column(db2.Float)
     fighter_opp_avg_elo = db2.Column(db2.Float)
+    fighter_kowin = db2.Column(db2.Integer)
+    fighter_koloss = db2.Column(db2.Integer)
+    fighter_subwin = db2.Column(db2.Integer)
+    fighter_subloss = db2.Column(db2.Integer)
+    fighter_udecwin = db2.Column(db2.Integer)
+    fighter_udecloss = db2.Column(db2.Integer)
+    fighter_sdecwin = db2.Column(db2.Integer)
+    fighter_sdecloss = db2.Column(db2.Integer)
+    fighter_mdecwin = db2.Column(db2.Integer)
+    fighter_mdecloss = db2.Column(db2.Integer)
 
     opponent_name = db2.Column(db2.String)
     opponent_weight = db2.Column(db2.String)
@@ -61,6 +71,16 @@ class FightStats(db2.Model):
     opponent_age_deviation = db2.Column(db2.Float)
     opponent_elo = db2.Column(db2.Float)
     opponent_opp_avg_elo = db2.Column(db2.Float)
+    opponent_kowin = db2.Column(db2.Integer)
+    opponent_koloss = db2.Column(db2.Integer)
+    opponent_subwin = db2.Column(db2.Integer)
+    opponent_subloss = db2.Column(db2.Integer)
+    opponent_udecwin = db2.Column(db2.Integer)
+    opponent_udecloss = db2.Column(db2.Integer)
+    opponent_sdecwin = db2.Column(db2.Integer)
+    opponent_sdecloss = db2.Column(db2.Integer)
+    opponent_mdecwin = db2.Column(db2.Integer)
+    opponent_mdecloss = db2.Column(db2.Integer)
 
     result = db2.Column(db2.String)
     method = db2.Column(db2.String)
@@ -111,6 +131,16 @@ def get_stats():
                 "titlewins": 0,
                 "age_deviation": 0,
                 "opp_avg_elo": 0,
+                "kowin": 0,
+                "koloss": 0,
+                "subwin": 0,
+                "subloss": 0,
+                "udecwin": 0,
+                "udecloss": 0,
+                "sdecwin": 0,
+                "sdecloss": 0,
+                "mdecwin": 0,
+                "mdecloss": 0,
                 "dob": fighter.DOB,
             }
             fighter_ids[fighter.name] = fighter.id
@@ -126,6 +156,7 @@ def get_stats():
             # if fight.event == event_to_drop:
             #     print("Dropping event", event_to_drop)
             #     break
+            print(date)
             if event_to_drop == date:
                 print("Dropping event", event_to_drop)
                 break
@@ -150,46 +181,69 @@ def get_stats():
                         fighter_height=fighter_a.Height,
                         fighter_reach=fighter_a.Reach,
                         fighter_dob=fighter_a.DOB,
-                        fighter_kd_differential = fighter_stats[fighter_a.name]["kd_differential"]/fighter_stats[fighter_a.name]["totalfights"],
-                        fighter_str_differential = fighter_stats[fighter_a.name]["str_differential"]/fighter_stats[fighter_a.name]["totalfights"],
-                        fighter_td_differential = fighter_stats[fighter_a.name]["td_differential"]/fighter_stats[fighter_a.name]["totalfights"],
-                        fighter_sub_differential = fighter_stats[fighter_a.name]["sub_differential"]/fighter_stats[fighter_a.name]["totalfights"],
-                        fighter_winrate = fighter_stats[fighter_a.name]["totalwins"]/fighter_stats[fighter_a.name]["totalfights"],
-                        fighter_winstreak = fighter_stats[fighter_a.name]["winstreak"],
-                        fighter_losestreak = fighter_stats[fighter_a.name]["losestreak"],
-                        fighter_totalfights = fighter_stats[fighter_a.name]["totalfights"],
-                        fighter_totalwins = fighter_stats[fighter_a.name]["totalwins"],
-                        fighter_record = fighter_a.record,
-                        fighter_titlefights = fighter_stats[fighter_a.name]["titlefights"],
-                        fighter_titlewins = fighter_stats[fighter_a.name]["titlewins"],
-                        fighter_age_deviation = fighter_stats[fighter_a.name]["age_deviation"],
-                        fighter_elo = ratings[fighter_a.name],
-                        fighter_opp_avg_elo = fighter_stats[fighter_a.name]["opp_avg_elo"]/fighter_stats[fighter_a.name]["totalfights"],
+                        fighter_kd_differential=fighter_stats[fighter_a.name]["kd_differential"]/fighter_stats[fighter_a.name]["totalfights"],
+                        fighter_str_differential=fighter_stats[fighter_a.name]["str_differential"]/fighter_stats[fighter_a.name]["totalfights"],
+                        fighter_td_differential=fighter_stats[fighter_a.name]["td_differential"]/fighter_stats[fighter_a.name]["totalfights"],
+                        fighter_sub_differential=fighter_stats[fighter_a.name]["sub_differential"]/fighter_stats[fighter_a.name]["totalfights"],
+                        fighter_winrate=fighter_stats[fighter_a.name]["totalwins"]/fighter_stats[fighter_a.name]["totalfights"],
+                        fighter_winstreak=fighter_stats[fighter_a.name]["winstreak"],
+                        fighter_losestreak=fighter_stats[fighter_a.name]["losestreak"],
+                        fighter_totalfights=fighter_stats[fighter_a.name]["totalfights"],
+                        fighter_totalwins=fighter_stats[fighter_a.name]["totalwins"],
+                        fighter_record=fighter_a.record,
+                        fighter_titlefights=fighter_stats[fighter_a.name]["titlefights"],
+                        fighter_titlewins=fighter_stats[fighter_a.name]["titlewins"],
+                        fighter_age_deviation=fighter_stats[fighter_a.name]["age_deviation"],
+                        fighter_elo=ratings[fighter_a.name],
+                        fighter_opp_avg_elo=fighter_stats[fighter_a.name]["opp_avg_elo"]/fighter_stats[fighter_a.name]["totalfights"],
+                        fighter_kowin=fighter_stats[fighter_a.name].get("kowin", 0),
+                        fighter_koloss=fighter_stats[fighter_a.name].get("koloss", 0),
+                        fighter_subwin=fighter_stats[fighter_a.name].get("subwin", 0),
+                        fighter_subloss=fighter_stats[fighter_a.name].get("subloss", 0),
+                        fighter_udecwin=fighter_stats[fighter_a.name].get("udecwin", 0),
+                        fighter_udecloss=fighter_stats[fighter_a.name].get("udecloss", 0),
+                        fighter_sdecwin=fighter_stats[fighter_a.name].get("sdecwin", 0),
+                        fighter_sdecloss=fighter_stats[fighter_a.name].get("sdecloss", 0),
+                        fighter_mdecwin=fighter_stats[fighter_a.name].get("mdecwin", 0),
+                        fighter_mdecloss=fighter_stats[fighter_a.name].get("mdecloss", 0),
+
                         opponent_name=fighter_b.name,
                         opponent_weight=fighter_b.Weight,
                         opponent_height=fighter_b.Height,
                         opponent_reach=fighter_b.Reach,
                         opponent_dob=fighter_b.DOB,
-                        opponent_kd_differential = fighter_stats[fighter_b.name]["kd_differential"]/fighter_stats[fighter_b.name]["totalfights"],
-                        opponent_str_differential = fighter_stats[fighter_b.name]["str_differential"]/fighter_stats[fighter_b.name]["totalfights"],
-                        opponent_td_differential = fighter_stats[fighter_b.name]["td_differential"]/fighter_stats[fighter_b.name]["totalfights"],
-                        opponent_sub_differential = fighter_stats[fighter_b.name]["sub_differential"]/fighter_stats[fighter_b.name]["totalfights"],
-                        opponent_winrate = fighter_stats[fighter_b.name]["totalwins"]/fighter_stats[fighter_b.name]["totalfights"],
-                        opponent_winstreak = fighter_stats[fighter_b.name]["winstreak"],
-                        opponent_losestreak = fighter_stats[fighter_b.name]["losestreak"],
-                        opponent_totalfights = fighter_stats[fighter_b.name]["totalfights"],
-                        opponent_totalwins = fighter_stats[fighter_b.name]["totalwins"],
-                        opponent_record = fighter_b.record,
-                        opponent_titlefights = fighter_stats[fighter_b.name]["titlefights"],
-                        opponent_titlewins = fighter_stats[fighter_b.name]["titlewins"],
-                        opponent_age_deviation = fighter_stats[fighter_b.name]["age_deviation"],
-                        opponent_elo = ratings[fighter_b.name],
-                        opponent_opp_avg_elo = fighter_stats[fighter_b.name]["opp_avg_elo"]/fighter_stats[fighter_b.name]["totalfights"],
+                        opponent_kd_differential=fighter_stats[fighter_b.name]["kd_differential"]/fighter_stats[fighter_b.name]["totalfights"],
+                        opponent_str_differential=fighter_stats[fighter_b.name]["str_differential"]/fighter_stats[fighter_b.name]["totalfights"],
+                        opponent_td_differential=fighter_stats[fighter_b.name]["td_differential"]/fighter_stats[fighter_b.name]["totalfights"],
+                        opponent_sub_differential=fighter_stats[fighter_b.name]["sub_differential"]/fighter_stats[fighter_b.name]["totalfights"],
+                        opponent_winrate=fighter_stats[fighter_b.name]["totalwins"]/fighter_stats[fighter_b.name]["totalfights"],
+                        opponent_winstreak=fighter_stats[fighter_b.name]["winstreak"],
+                        opponent_losestreak=fighter_stats[fighter_b.name]["losestreak"],
+                        opponent_totalfights=fighter_stats[fighter_b.name]["totalfights"],
+                        opponent_totalwins=fighter_stats[fighter_b.name]["totalwins"],
+                        opponent_record=fighter_b.record,
+                        opponent_titlefights=fighter_stats[fighter_b.name]["titlefights"],
+                        opponent_titlewins=fighter_stats[fighter_b.name]["titlewins"],
+                        opponent_age_deviation=fighter_stats[fighter_b.name]["age_deviation"],
+                        opponent_elo=ratings[fighter_b.name],
+                        opponent_opp_avg_elo=fighter_stats[fighter_b.name]["opp_avg_elo"]/fighter_stats[fighter_b.name]["totalfights"],
+                        opponent_kowin=fighter_stats[fighter_b.name].get("kowin", 0),
+                        opponent_koloss=fighter_stats[fighter_b.name].get("koloss", 0),
+                        opponent_subwin=fighter_stats[fighter_b.name].get("subwin", 0),
+                        opponent_subloss=fighter_stats[fighter_b.name].get("subloss", 0),
+                        opponent_udecwin=fighter_stats[fighter_b.name].get("udecwin", 0),
+                        opponent_udecloss=fighter_stats[fighter_b.name].get("udecloss", 0),
+                        opponent_sdecwin=fighter_stats[fighter_b.name].get("sdecwin", 0),
+                        opponent_sdecloss=fighter_stats[fighter_b.name].get("sdecloss", 0),
+                        opponent_mdecwin=fighter_stats[fighter_b.name].get("mdecwin", 0),
+                        opponent_mdecloss=fighter_stats[fighter_b.name].get("mdecloss", 0),
+
                         result=fight.result,
                         method=fight.method,
                         round=fight.round,
                         time=fight.time,
                     )
+
                     db2.session.add(processed_fight)
                     db2.session.commit()
                     fighthash=fighter_a.name+fighter_b.name+fight.event
@@ -228,9 +282,29 @@ def get_stats():
                     fighter_stats[fighter_a.name]["winstreak"] += 1
                     fighter_stats[fighter_a.name]["totalwins"] += 1
                     fighter_stats[fighter_a.name]["losestreak"] = 0
+                    if fight.method == "KO/TKO":
+                        fighter_stats[fighter_a.name]["kowin"] += 1
+                    elif fight.method == "SUB":
+                        fighter_stats[fighter_a.name]["subwin"] += 1
+                    elif fight.method == "U-DEC":
+                        fighter_stats[fighter_a.name]["udecwin"] += 1
+                    elif fight.method == "S-DEC":
+                        fighter_stats[fighter_a.name]["sdecwin"] += 1
+                    elif fight.method == "M-DEC":
+                        fighter_stats[fighter_a.name]["mdecwin"] += 1
                 elif fight.result=="loss":
                     fighter_stats[fighter_a.name]["losestreak"] += 1
                     fighter_stats[fighter_a.name]["winstreak"] = 0
+                    if fight.method == "KO/TKO":
+                        fighter_stats[fighter_a.name]["koloss"] += 1
+                    elif fight.method == "SUB":
+                        fighter_stats[fighter_a.name]["subloss"] += 1
+                    elif fight.method == "U-DEC":
+                        fighter_stats[fighter_a.name]["udecloss"] += 1
+                    elif fight.method == "S-DEC":
+                        fighter_stats[fighter_a.name]["sdecloss"] += 1
+                    elif fight.method == "M-DEC":
+                        fighter_stats[fighter_a.name]["mdecloss"] += 1
 
                 if fight.titlefight:
                     fighter_stats[fighter_a.name]["titlefights"] += 1
@@ -260,9 +334,29 @@ def get_stats():
                     fighter_stats[fighter_b.name]["winstreak"] += 1
                     fighter_stats[fighter_b.name]["totalwins"] += 1
                     fighter_stats[fighter_b.name]["losestreak"] = 0
+                    if fight.method == "KO/TKO":
+                        fighter_stats[fighter_b.name]["koloss"] += 1
+                    elif fight.method == "SUB":
+                        fighter_stats[fighter_b.name]["subloss"] += 1
+                    elif fight.method == "U-DEC":
+                        fighter_stats[fighter_b.name]["udecloss"] += 1
+                    elif fight.method == "S-DEC":
+                        fighter_stats[fighter_b.name]["sdecloss"] += 1
+                    elif fight.method == "M-DEC":
+                        fighter_stats[fighter_b.name]["mdecloss"] += 1
                 elif fight.result=="win":
                     fighter_stats[fighter_b.name]["losestreak"] += 1
                     fighter_stats[fighter_b.name]["winstreak"] = 0
+                    if fight.method == "KO/TKO":
+                        fighter_stats[fighter_b.name]["kowin"] += 1
+                    elif fight.method == "SUB":
+                        fighter_stats[fighter_b.name]["subwin"] += 1
+                    elif fight.method == "U-DEC":
+                        fighter_stats[fighter_b.name]["udecwin"] += 1
+                    elif fight.method == "S-DEC":
+                        fighter_stats[fighter_b.name]["sdecwin"] += 1
+                    elif fight.method == "M-DEC":
+                        fighter_stats[fighter_b.name]["mdecwin"] += 1
                 if fight.titlefight:
                     fighter_stats[fighter_b.name]["titlefights"] += 1
                     if fight.result=="loss":
@@ -278,6 +372,8 @@ def create_all_tables():
         db2.drop_all()
         db2.create_all()
     get_stats()
+
+
 
 def export_to_csv(filename):
     with app2.app_context():
@@ -308,6 +404,18 @@ def export_to_csv(filename):
                 "fighter_age_deviation",
                 "fighter_elo",
                 "fighter_opp_avg_elo",
+                
+                "fighter_kowin",
+                "fighter_koloss",
+                "fighter_subwin",
+                "fighter_subloss",
+                "fighter_udecwin",
+                "fighter_udecloss",
+                "fighter_sdecwin",
+                "fighter_sdecloss",
+                "fighter_mdecwin",
+                "fighter_mdecloss",
+
                 "opponent_name",
                 "opponent_weight",
                 "opponent_height",
@@ -328,6 +436,17 @@ def export_to_csv(filename):
                 "opponent_age_deviation",
                 "opponent_elo",
                 "opponent_opp_avg_elo",
+                "opponent_kowin",
+                "opponent_koloss",
+                "opponent_subwin",
+                "opponent_subloss",
+                "opponent_udecwin",
+                "opponent_udecloss",
+                "opponent_sdecwin",
+                "opponent_sdecloss",
+                "opponent_mdecwin",
+                "opponent_mdecloss",
+
                 "result",
                 "method",
                 "round",
@@ -337,55 +456,9 @@ def export_to_csv(filename):
             writer.writeheader()
 
             for fight_stat in fight_stats:
-                writer.writerow({
-                    "id": fight_stat.id,
-                    "event": fight_stat.event,
-                    "date": fight_stat.date,
-                    "fighter_name": fight_stat.fighter_name,
-                    "fighter_weight": fight_stat.fighter_weight,
-                    "fighter_height": fight_stat.fighter_height,
-                    "fighter_reach": fight_stat.fighter_reach,
-                    "fighter_dob": fight_stat.fighter_dob,
-                    "fighter_kd_differential": fight_stat.fighter_kd_differential,
-                    "fighter_str_differential": fight_stat.fighter_str_differential,
-                    "fighter_td_differential": fight_stat.fighter_td_differential,
-                    "fighter_sub_differential": fight_stat.fighter_sub_differential,
-                    "fighter_winrate": fight_stat.fighter_winrate,
-                    "fighter_winstreak": fight_stat.fighter_winstreak,
-                    "fighter_losestreak": fight_stat.fighter_losestreak,
-                    "fighter_totalfights": fight_stat.fighter_totalfights,
-                    "fighter_totalwins": fight_stat.fighter_totalwins,
-                    "fighter_record": fight_stat.fighter_record,
-                    "fighter_titlefights": fight_stat.fighter_titlefights,
-                    "fighter_titlewins": fight_stat.fighter_titlewins,
-                    "fighter_age_deviation": fight_stat.fighter_age_deviation,
-                    "fighter_elo": fight_stat.fighter_elo,
-                    "fighter_opp_avg_elo": fight_stat.fighter_opp_avg_elo,
-                    "opponent_name": fight_stat.opponent_name,
-                    "opponent_weight": fight_stat.opponent_weight,
-                    "opponent_height": fight_stat.opponent_height,
-                    "opponent_reach": fight_stat.opponent_reach,
-                    "opponent_dob": fight_stat.opponent_dob,
-                    "opponent_kd_differential": fight_stat.opponent_kd_differential,
-                    "opponent_str_differential": fight_stat.opponent_str_differential,
-                    "opponent_td_differential": fight_stat.opponent_td_differential,
-                    "opponent_sub_differential": fight_stat.opponent_sub_differential,
-                    "opponent_winrate": fight_stat.opponent_winrate,
-                    "opponent_winstreak": fight_stat.opponent_winstreak,
-                    "opponent_losestreak": fight_stat.opponent_losestreak,
-                    "opponent_totalfights": fight_stat.opponent_totalfights,
-                    "opponent_totalwins": fight_stat.opponent_totalwins,
-                    "opponent_record": fight_stat.opponent_record,
-                    "opponent_titlefights": fight_stat.opponent_titlefights,
-                    "opponent_titlewins": fight_stat.opponent_titlewins,
-                    "opponent_age_deviation": fight_stat.opponent_age_deviation,
-                    "opponent_elo": fight_stat.opponent_elo,
-                    "opponent_opp_avg_elo": fight_stat.opponent_opp_avg_elo,
-                    "result": fight_stat.result,
-                    "method": fight_stat.method,
-                    "round": fight_stat.round,
-                    "time": fight_stat.time,
-                })
+                # Create a dictionary where each key is a fieldname and the value is the corresponding attribute from fight_stat
+                row_data = {fieldname: getattr(fight_stat, fieldname, None) for fieldname in fieldnames}
+                writer.writerow(row_data)
 
 def export_fighter_stats_to_csv(filename):
     with open(filename, mode="w", newline="", encoding="utf-8") as csvfile:
@@ -405,7 +478,17 @@ def export_fighter_stats_to_csv(filename):
             "age_deviation",
             "opp_avg_elo",
             "elo",
-            "dob"
+            "dob",
+            "kowin",
+            "koloss",
+            "subwin",
+            "subloss",
+            "udecwin",
+            "udecloss",
+            "mdecwin",
+            "mdecloss",
+            "sdecwin",
+            "sdecloss",
         ]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -427,8 +510,19 @@ def export_fighter_stats_to_csv(filename):
                 "age_deviation": stats["age_deviation"],
                 "opp_avg_elo": stats["opp_avg_elo"] / stats["totalfights"] if stats["totalfights"] > 0 else 0,
                 "elo": ratings.get(fighter_name, 0),
-                "dob": stats["dob"]
+                "dob": stats["dob"],
+                "kowin": stats.get("kowin", 0),
+                "koloss": stats.get("koloss", 0),
+                "subwin": stats.get("subwin", 0),
+                "subloss": stats.get("subloss", 0),
+                "udecwin": stats.get("udecwin", 0),
+                "udecloss": stats.get("udecloss", 0),
+                "mdecwin": stats.get("mdecwin", 0),
+                "mdecloss": stats.get("mdecloss", 0),
+                "sdecwin": stats.get("sdecwin", 0),
+                "sdecloss": stats.get("sdecloss", 0),
             })
+
 
 def main():
     create_all_tables()

@@ -142,7 +142,7 @@ with open("testing.txt", "w") as test:
     urls = []
     urls.append("https://www.ufc.com/events")
     # end of page 5 is 1 year ago, usman vs edwards
-    for i in range(1, 6):
+    for i in range(1, 2):
         urls.append("https://www.ufc.com/events?page=" + str(i))    
     all_fight_card_links = []
     for url in urls:
@@ -174,7 +174,7 @@ with open("testing.txt", "w") as test:
     
     cnt = 0
     # UPDATE FIGHTER STATS TO THE DATE OF THE STARTING TEST
-    update_stats.event_to_drop = "2022-10-22"
+    update_stats.event_to_drop = "2023-06-01"
     update_stats.main()
 
     # UPDATE PREDICT_FIGHTS_ELO.CSV WITH NEW FIGHTER STATS
