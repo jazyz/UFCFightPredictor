@@ -63,6 +63,7 @@ total_underdogs = 0
 correct_favourites = 0
 total_favourites = 0
 max_bankroll = 0
+min_bankroll = 1000
 # how much we lose from favourites/underdogs
 favourite_loss = 0
 underdog_loss = 0
@@ -108,7 +109,7 @@ def pt(odds, bet):
 
 # check winner and update bankroll
 def check_winner(winner_name, fighter_name, potential_return, bet, fighter_odds):
-    global bankroll, max_bankroll, correct_bets, total_bets, correct_underdogs, total_underdogs, correct_favourites, total_favourites
+    global bankroll, max_bankroll, min_bankroll, correct_bets, total_bets, correct_underdogs, total_underdogs, correct_favourites, total_favourites
     global favourite_loss, underdog_loss, favourite_gain, underdog_gain
     if (fighter_odds < 0):
         total_favourites += 1
@@ -131,6 +132,7 @@ def check_winner(winner_name, fighter_name, potential_return, bet, fighter_odds)
     else:
         test.write(" (loss)")
         bankroll -= bet
+        min_bankroll = min(min_bankroll, bankroll)
         total_bets += 1
         if (fighter_odds < 0):
             favourite_loss += bet
@@ -181,7 +183,7 @@ with open("testing.txt", "w") as test:
     predict_fights_elo.main()
 
     #  UPDATE TRAINING AND GET NEW PREDICTIONS
-    ml_training_duplication.date_to_train = "2022-10-22"
+    ml_training_duplication.date_to_train = "2023-07-22"
     ml_training_duplication.main()
     for fight_card_link in all_fight_card_links:
         print(fight_card_link)
@@ -296,7 +298,7 @@ with open("testing.txt", "w") as test:
                             correct_predictions += 1
                         total_predictions += 1
                         test.write(f"{fighter1_name} ")
-                        # for underdogs (and )
+                        # for underdogs (and fighter1_odds < fighter2_odds)
                         if (kc_a > 0): 
                             # bet = 0
                             # if (fighter1_odds < fighter2_odds):
@@ -315,7 +317,7 @@ with open("testing.txt", "w") as test:
                             correct_predictions += 1
                         total_predictions += 1
                         test.write(f"{fighter2_name} ")
-                        # for underdogs (and fighter2_odds < fighter1_odds)
+                        # for favourites (and fighter2_odds < fighter1_odds)
                         if (kc_b > 0):
                             # bet = 0
                             # if (fighter2_odds < fighter1_odds):
@@ -334,7 +336,7 @@ with open("testing.txt", "w") as test:
 
                     test.write("---\n")
         
-            if cnt % 10 == 0:
+            if cnt % 6 == 0:
                 #  UPDATE FIGHTER STATS AFTER EACH EVENT
                 meta_tag = soup.find('meta', attrs={'property': 'og:description'})
                 content = meta_tag.get('content')
@@ -368,7 +370,7 @@ with open("testing.txt", "w") as test:
 
                 
             # most recent fight
-            if (fight_card_link == "https://www.ufc.com/event/ufc-fight-night-november-18-2023"):
+            if (fight_card_link == "https://www.ufc.com/event/ufc-fight-night-december-02-2023"):
                 break
             cnt += 1
 

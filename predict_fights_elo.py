@@ -13,7 +13,7 @@ def main():
     response = requests.get(url)
 
     # to get one event, paste the url in event_urls and comment out the part below
-    event_urls = []
+    event_urls = ["http://www.ufcstats.com/event-details/a8e8587a06e73c87"]
 
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
