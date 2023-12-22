@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 
 # default to present
-date_to_train = "2023-06-08"
+date_to_train = "2023-06-01"
 
 def lgbm():
     data = pd.read_csv("elofightstats.csv")
@@ -166,52 +166,52 @@ def lgbm():
     model = lgb.LGBMClassifier(random_state=seed)
     model.fit(combined_X_train, combined_y_train)
 
-    #y_pred = model.predict(X_test)
+    y_pred = model.predict(X_test)
 
-    #accuracy = accuracy_score(y_test, y_pred)
-    #print(f"Accuracy: {accuracy:.4f}")
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f"Accuracy: {accuracy:.4f}")
 
-    # output_file = open("ml_elo.txt", "w")
-    # original_stdout = sys.stdout
-    # sys.stdout = output_file
-    # pd.set_option("display.max_columns", None)  # Display all columns
-    # pd.set_option("display.max_rows", None)     # Display all rows
+    output_file = open("ml_elo.txt", "w")
+    original_stdout = sys.stdout
+    sys.stdout = output_file
+    pd.set_option("display.max_columns", None)  # Display all columns
+    pd.set_option("display.max_rows", None)     # Display all rows
 
-    # predict_data = pd.read_csv("predict_fights_elo.csv")
-    # predict_data.replace("--", pd.NA, inplace=True)
-    # fighter_name_label = "fighter_names"
+    predict_data = pd.read_csv("predict_fights_elo.csv")
+    predict_data.replace("--", pd.NA, inplace=True)
+    fighter_name_label = "fighter_names"
 
-    # # Print the label and fighter names to ml_elo.txt
-    # print(f"{fighter_name_label}", file=output_file)
-    # print(predict_data["fighter_name"] + "*" + predict_data["opponent_name"], file=output_file)
+    # Print the label and fighter names to ml_elo.txt
+    print(f"{fighter_name_label}", file=output_file)
+    print(predict_data["fighter_name"] + "*" + predict_data["opponent_name"], file=output_file)
 
-    # # predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
-    # # predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year
+    # predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
+    # predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year
 
-    # predict_data.dropna(subset=selected_columns, inplace=True)
-    # predict_data = predict_data[selected_columns]
-
+    predict_data.dropna(subset=selected_columns, inplace=True)
+    predict_data = predict_data[selected_columns]
+    print(len(predict_data))
     # # for column in columns_to_difference:
     # #     fighter_column = f"fighter_{column}"
     # #     opponent_column = f"opponent_{column}"
     # #     predict_data[f"{column}_differential"] = predict_data[fighter_column] - predict_data[opponent_column]
 
-    # X_predict = predict_data.drop(["result","date"], axis=1)
+    X_predict = predict_data.drop(["result","date"], axis=1)
 
-    # y_pred = model.predict(X_predict)
+    y_pred = model.predict(X_predict)
 
-    # class_probabilities = model.predict_proba(X_predict)
+    class_probabilities = model.predict_proba(X_predict)
 
-    # predicted_results = label_encoder.inverse_transform(y_pred)
+    predicted_results = label_encoder.inverse_transform(y_pred)
 
-    # predict_data["predicted_result"] = predicted_results
-    # for i, label in enumerate(label_encoder.classes_):
-    #     predict_data[f"probability_{label}"] = class_probabilities[:, i]
+    predict_data["predicted_result"] = predicted_results
+    for i, label in enumerate(label_encoder.classes_):
+        predict_data[f"probability_{label}"] = class_probabilities[:, i]
 
-    # print(predict_data)
+    print(predict_data)
 
-    # sys.stdout = original_stdout
-    # output_file.close()
+    sys.stdout = original_stdout
+    output_file.close()
 
     #feature_importances = model.feature_importances_
 
