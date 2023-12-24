@@ -2,6 +2,41 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
+def get_additional_links(url):
+    # Fetch the content from the URL
+    response = requests.get(url)
+    if response.status_code == 200:
+        # Parse the HTML content
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # Find all links that contain 'fight-details'
+        links = soup.find_all('a', href=True)
+        return [link['href'] for link in links if 'fight-details' in link['href']]
+    else:
+        return []
+
+def get_embedded_links(url):
+    # Fetch the main page content
+    response = requests.get(url)
+    if response.status_code == 200:
+        # Parse the HTML content
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # Find all rows with links
+        rows = soup.find_all('tr', class_='b-statistics__table-row')
+
+        # Extract the embedded links
+        links = [row.find('a', href=True)['href'] for row in rows if row.find('a', href=True)]
+
+        # For each link, get additional 'fight-details' links
+        all_links = {}
+        for link in links:
+            all_links[link] = get_additional_links(link)
+
+        return all_links
+    else:
+        return {}
+
 def merge_dicts(d1, d2):
     result = d1.copy()  # Start with keys and values of the first dictionary
     for key, value in d2.items():
@@ -128,6 +163,20 @@ def read_and_print_csv(filename='fight_details.csv'):
                 print(f"{header}: {value}")
             print("-" * 100)  # Separator for each fight
 
-urls=["http://ufcstats.com/fight-details/f2b407019b2a5c15"]
-process_fight_urls(urls)
-read_and_print_csv()
+def get_all_fight_urls(url):
+    # Fetch the main page content
+    embedded_links = get_embedded_links(url)
+    all_additional_links = []
+    
+    # Collect all additional links
+    #first_link=True
+    for link, additional_links in embedded_links.items():
+        #if not first_link:
+        all_additional_links.extend(additional_links)
+        #first_link=False    
+    return all_additional_links
+
+# URL of the UFC statistics events
+url = "http://ufcstats.com/statistics/events/completed?page=all"
+all_fights = get_all_fight_urls(url)
+process_fight_urls(all_fights)

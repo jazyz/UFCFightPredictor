@@ -14,7 +14,7 @@ def lgbm():
     data['date'] = pd.to_datetime(data['date'], format='%b. %d, %Y')
     # data = data.sort_values(by='date')
     data.replace("--", pd.NA, inplace=True)
-    data = data[(data['fighter_totalfights'] > 2) & (data['opponent_totalfights'] > 2)]
+    data = data[(data['fighter_totalfights'] > 4) & (data['opponent_totalfights'] > 4)]
     data = data[pd.to_datetime(data["date"]).dt.year>=2010]
     # data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
     # data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
@@ -27,7 +27,7 @@ def lgbm():
         # "fighter_winrate",
         "fighter_winstreak",
         "fighter_losestreak",
-        # "fighter_totalfights",
+        "fighter_totalfights",
         # "fighter_totalwins",
         "fighter_age_deviation",
         "fighter_titlefights",
@@ -36,11 +36,11 @@ def lgbm():
         "fighter_elo",
 
         "fighter_kowin",
-        "fighter_koloss",
+        # "fighter_koloss",
         "fighter_subwin",
-        "fighter_subloss",
+        # "fighter_subloss",
         "fighter_udecwin",
-        "fighter_udecloss",
+        # "fighter_udecloss",
         # "fighter_sdecwin",
         # "fighter_sdecloss",
         # "fighter_mdecwin",
@@ -53,7 +53,7 @@ def lgbm():
         # "opponent_winrate",
         "opponent_winstreak",
         "opponent_losestreak",
-        # "opponent_totalfights",
+        "opponent_totalfights",
         # "opponent_totalwins",
         "opponent_age_deviation",   
         "opponent_titlefights",
@@ -62,11 +62,11 @@ def lgbm():
         "opponent_opp_avg_elo",
 
         "opponent_kowin",
-        "opponent_koloss",
+        # "opponent_koloss",
         "opponent_subwin",
-        "opponent_subloss",
+        # "opponent_subloss",
         "opponent_udecwin",
-        "opponent_udecloss",
+        # "opponent_udecloss",
         # "opponent_sdecwin",
         # "opponent_sdecloss",
         # "opponent_mdecwin",
@@ -75,14 +75,35 @@ def lgbm():
         # "opponent_dob",
         "result",
     ]
-
     # if predicting past event
     # event_to_drop = "UFC 292: Sterling vs. O'Malley"
     # data = data[data['event'] != event_to_drop]
 
     data.dropna(subset=selected_columns, inplace=True)
     data = data[selected_columns]
+    columns_to_divide = [
+        # "opponent_kowin",
+        # "opponent_koloss",
+        # "opponent_subwin",
+        # "opponent_subloss",
+        # "opponent_udecwin",
+        # "opponent_udecloss"
+    ]
 
+    for column in columns_to_divide:
+        data[column] = data[column] / data['opponent_totalfights']
+    
+    columns_to_divide2 = [
+        # "fighter_kowin",
+        # "fighter_koloss",
+        # "fighter_subwin",
+        # "fighter_subloss",
+        # "fighter_udecwin",
+        # "fighter_udecloss"
+    ]
+
+    for column in columns_to_divide2:
+        data[column] = data[column] / data['fighter_totalfights']
     columns_to_difference = [
         "kd_differential",
         "str_differential",
@@ -190,7 +211,13 @@ def lgbm():
 
     predict_data.dropna(subset=selected_columns, inplace=True)
     predict_data = predict_data[selected_columns]
-    print(len(predict_data))
+
+
+    for column in columns_to_divide:
+        predict_data[column] = predict_data[column] / predict_data['opponent_totalfights']
+    
+    for column in columns_to_divide2:
+        predict_data[column] = predict_data[column] / predict_data['fighter_totalfights']
     # # for column in columns_to_difference:
     # #     fighter_column = f"fighter_{column}"
     # #     opponent_column = f"opponent_{column}"
@@ -213,11 +240,11 @@ def lgbm():
     sys.stdout = original_stdout
     output_file.close()
 
-    #feature_importances = model.feature_importances_
+    # feature_importances = model.feature_importances_
 
-    #feature_importance_df = pd.DataFrame(
+    # feature_importance_df = pd.DataFrame(
     #    {"Feature": X_train.columns, "Importance": feature_importances}
-    #)
+    # )
 
     # feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
 
