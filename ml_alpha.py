@@ -81,14 +81,14 @@ y = df["Result"]
 # X = pd.get_dummies(X)  # This line is optional and depends on your data
 
 # Manual split based on percentage
-split_index = int(len(df) * 0.9)
+split_index = int(len(df) * 0.8)
 X_train, X_test = X[:split_index], X[split_index:]
 y_train, y_test = y[:split_index], y[split_index:]
 
 seed = 42
 
 # Determine the new start index for the training data to skip the first 20%
-prune_index = int(len(X_train) * 0.2)
+prune_index = int(len(X_train) * 0.1)
 
 # Update the training set to exclude the first 20%
 X_train = X_train[prune_index:]
@@ -138,9 +138,9 @@ model = lgb.LGBMClassifier(
     reg_alpha=best_params['reg_alpha']
 )
 
-# model.fit(X_train_extended, y_train_extended)
-
 model.fit(X_train_extended, y_train_extended)
+# model = lgb.LGBMClassifier(random_state=seed)
+# model.fit(X_train_extended, y_train_extended)
 # Make predictions and evaluate the model
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
