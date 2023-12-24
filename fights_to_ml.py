@@ -93,7 +93,7 @@ def processFight(fight, Red, Blue):
                 Result = 'win'
 
         processed_fight = {"Result": Result}
-        if fighter_stats[Red]["totalfights"] >= 4 and fighter_stats[Blue]["totalfights"] >= 4:
+        if fighter_stats[Red]["totalfights"] >= 3 and fighter_stats[Blue]["totalfights"] >= 3:
             for feature in feature_list:
                 if feature in fighter_stats[Red] and feature in fighter_stats[Blue]:
                     processed_fight[f'Red {feature}'] = fighter_stats[Red][feature]
@@ -105,8 +105,6 @@ def processFight(fight, Red, Blue):
             processed_fight['Blue Fighter'] = Blue
             processed_fight['Title'] = fight['Title']
             processed_fights.append(processed_fight)
-
-
 
         rating_a = fighter_stats[Red]["elo"]
         rating_b = fighter_stats[Blue]["elo"]
@@ -151,6 +149,7 @@ def export_fighter_stats(fighter_stats, filename='detailed_fighter_stats.csv'):
         if fighter_stats:  # check if the dictionary is not empty
             example_fighter = next(iter(fighter_stats.values()))  # Get an example of the inner dictionary
             headers = ['Fighter'] + list(example_fighter.keys())  # 'Fighter' column plus each stat
+            print(headers)
             writer = csv.DictWriter(file, fieldnames=headers)
             writer.writeheader()
 
@@ -162,5 +161,3 @@ def export_fighter_stats(fighter_stats, filename='detailed_fighter_stats.csv'):
 # Assuming your processed_fights and fighter_stats are ready
 export_processed_fights(processed_fights)
 export_fighter_stats(fighter_stats)
-
-
