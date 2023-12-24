@@ -76,7 +76,7 @@ processed_fights=[]
 count=0
 
 def processFight(fight, Red, Blue):
-    if fighter_stats[Red]["totalfights"]>=1 and fighter_stats[Blue]["totalfights"]>=1:
+    if fighter_stats[Red]["totalfights"]>=0 and fighter_stats[Blue]["totalfights"]>=0:
         winner = fight['Winner']
         Result='draw'
         if winner == Red:
@@ -121,13 +121,17 @@ for fight in fights:
     processFight(fight, Red, Blue)
         # update more features
     for feature in feature_list:
+        if feature=="elo" or feature=="totalfights":
+            continue
         red_feature_key = "Red " + feature
         blue_feature_key = "Blue " + feature
         try:
             red_value = float(fight[red_feature_key])
             blue_value = float(fight[blue_feature_key])
-            fighter_stats[Red][feature] += red_value - blue_value
-            fighter_stats[Blue][feature] += blue_value - red_value
+            fighter_stats[Red][feature] += (red_value - blue_value)
+            #fighter_stats[Red][feature] *= fighter_stats[Blue]["elo"]
+            fighter_stats[Blue][feature] += (blue_value - red_value)
+            #fighter_stats[Blue][feature] *= fighter_stats[Red]["elo"]
         except:
             pass
 
