@@ -81,6 +81,49 @@ def lgbm():
 
     data.dropna(subset=selected_columns, inplace=True)
     data = data[selected_columns]
+    columns_to_divide = [
+        # "fighter_elo"
+        # "opponent_kowin",
+        # "opponent_koloss",
+        # "opponent_subwin",
+        # "opponent_subloss",
+        # "opponent_udecwin",
+        # "opponent_udecloss"
+    ]
+
+    for column in columns_to_divide:
+        data[column] = data[column] / data['opponent_totalfights']
+    
+    columns_to_divide2 = [
+        # "fighter_kowin",
+        # "fighter_koloss",
+        # "fighter_subwin",
+        # "fighter_subloss",
+        # "fighter_udecwin",
+        # "fighter_udecloss"
+    ]
+
+    for column in columns_to_divide2:
+        data[column] = data[column] / data['fighter_totalfights']
+    columns_to_difference = [
+        "kd_differential",
+        "str_differential",
+        "td_differential",
+        "sub_differential",
+        "age_deviation",
+        "titlefights",
+        "titlewins",
+        "elo",
+        "opp_avg_elo",
+        "winstreak",
+        "losestreak",
+    ]
+
+    # for column in columns_to_difference:
+    #     fighter_column = f"fighter_{column}"
+    #     opponent_column = f"opponent_{column}"
+    #     data[f"{column}_differential"] = data[fighter_column] - data[opponent_column]
+
 
     label_encoder = LabelEncoder()
     data["result"] = label_encoder.fit_transform(data["result"])
@@ -150,7 +193,7 @@ def lgbm():
     accuracy = accuracy_score(y_test, y_pred)
     print(f"Accuracy: {accuracy:.4f}")
 
-    output_file = open("ml_elo.txt", "w")
+    output_file = open("ml_alpha_output.txt", "w")
     original_stdout = sys.stdout
     sys.stdout = output_file
     pd.set_option("display.max_columns", None)  # Display all columns
@@ -169,6 +212,15 @@ def lgbm():
 
     predict_data.dropna(subset=selected_columns, inplace=True)
     predict_data = predict_data[selected_columns]
+
+
+    for column in columns_to_divide:
+        predict_data[column] = predict_data[column] / predict_data['opponent_totalfights']
+    
+    # # for column in columns_to_difference:
+    # #     fighter_column = f"fighter_{column}"
+    # #     opponent_column = f"opponent_{column}"
+    # #     predict_data[f"{column}_differential"] = predict_data[fighter_column] - predict_data[opponent_column]
 
     X_predict = predict_data.drop(["result","date"], axis=1)
 
