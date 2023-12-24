@@ -83,7 +83,7 @@ def get_stats():
             # if fight.event == event_to_drop:
             #     print("Dropping event", event_to_drop)
             #     break
-            print(date)
+            #print(date)
             if event_to_drop == date:
                 print("Dropping event", event_to_drop)
                 break

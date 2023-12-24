@@ -177,7 +177,7 @@ with open("testing.txt", "w") as test:
     cnt = 0
     # UPDATE FIGHTER STATS TO THE DATE OF THE STARTING TEST
     update_stats.event_to_drop = "2023-06-01"
-    #update_stats.main()
+    update_stats.main()
 
     # UPDATE PREDICT_FIGHTS_ELO.CSV WITH NEW FIGHTER STATS
     predict_fights_elo.main()
@@ -336,7 +336,7 @@ with open("testing.txt", "w") as test:
 
                     test.write("---\n")
         
-            if cnt % 10 == 0:
+            if cnt % 8 == 0:
                 #  UPDATE FIGHTER STATS AFTER EACH EVENT
                 meta_tag = soup.find('meta', attrs={'property': 'og:description'})
                 content = meta_tag.get('content')
@@ -356,8 +356,8 @@ with open("testing.txt", "w") as test:
                         pass  # Continue to the next format if parsing fails
                 if (formatted_date == ""):
                     print(date_str)
-                #update_stats.event_to_drop = date_obj
-                #update_stats.main()
+                update_stats.event_to_drop = date_obj
+                update_stats.main()
 
                 # UPDATE PREDICT_FIGHTS_ELO.CSV WITH NEW FIGHTER STATS
                 predict_fights_elo.main()
