@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const FightPredictor = () => {
@@ -7,6 +7,11 @@ const FightPredictor = () => {
   const [stats, setStats] = useState(null);
   const [predictedData, setPredictedData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showAdvancedStats, setShowAdvancedStats] = useState(false);
+
+  const toggleAdvancedStats = () => {
+    setShowAdvancedStats(!showAdvancedStats);
+  };
 
   const baseURL = "http://127.0.0.1:5000/";
 
@@ -22,7 +27,8 @@ const FightPredictor = () => {
       const training = await axios.post(`${baseURL}/train`);
       console.log(training.data.message);
       const fighterStats = await axios.get(`${baseURL}/get_stats`);
-      setStats(fighterStats.data.stats[0]);
+      console.log(fighterStats.data);
+      setStats(fighterStats.data[0]);
       console.log(stats);
       const results = await axios.get(`${baseURL}/get_predicted_data`);
       setPredictedData(results.data.predicted_data[0]);
@@ -99,6 +105,66 @@ const FightPredictor = () => {
                   : "loses to"}{" "}
                 {stats.opponent_name}
               </p>
+            </div>
+          </div>
+        )}
+
+        {/* New: Advanced Stats Button */}
+        <button
+          className="w-full mt-4 bg-gray-500 text-white py-2 rounded hover:bg-gray-600"
+          onClick={toggleAdvancedStats}
+        >
+          {showAdvancedStats ? "Hide Advanced Stats" : "Show Advanced Stats"}
+        </button>
+
+        {/* New: Advanced Stats Box */}
+        {showAdvancedStats && predictedData && (
+          <div className="mt-4 space-x-4">
+            <div className="flex space-x-4">
+              <div className="flex flex-col">
+                <p>ELO: {predictedData.fighter_elo.toFixed(2)}</p>
+                <p>
+                  KD Differential:{" "}
+                  {predictedData.fighter_kd_differential.toFixed(2)}
+                </p>
+                <p>Loss Streak: {predictedData.fighter_losestreak}</p>
+                <p>
+                  Strike Differential:{" "}
+                  {predictedData.fighter_str_differential.toFixed(2)}
+                </p>
+                <p>
+                  Submission Differential:{" "}
+                  {predictedData.fighter_sub_differential.toFixed(2)}
+                </p>
+                <p>
+                  Takedown Differential:{" "}
+                  {predictedData.fighter_td_differential.toFixed(2)}
+                </p>
+                <p>Title Fights: {predictedData.fighter_titlefights}</p>
+                <p>Title Wins: {predictedData.fighter_titlewins}</p>
+              </div>
+              <div className="flex flex-col">
+                <p>ELO: {predictedData.opponent_elo.toFixed(2)}</p>
+                <p>
+                  KD Differential:{" "}
+                  {predictedData.opponent_kd_differential.toFixed(2)}
+                </p>
+                <p>Loss Streak: {predictedData.opponent_losestreak}</p>
+                <p>
+                  Strike Differential:{" "}
+                  {predictedData.opponent_str_differential.toFixed(2)}
+                </p>
+                <p>
+                  Submission Differential:{" "}
+                  {predictedData.opponent_sub_differential.toFixed(2)}
+                </p>
+                <p>
+                  Takedown Differential:{" "}
+                  {predictedData.opponent_td_differential.toFixed(2)}
+                </p>
+                <p>Title Fights: {predictedData.opponent_titlefights}</p>
+                <p>Title Wins: {predictedData.opponent_titlewins}</p>
+              </div>
             </div>
           </div>
         )}
