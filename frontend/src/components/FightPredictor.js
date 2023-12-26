@@ -31,7 +31,7 @@ const FightPredictor = () => {
       setStats(fighterStats.data[0]);
       console.log(stats);
       const results = await axios.get(`${baseURL}/get_predicted_data`);
-      setPredictedData(results.data.predicted_data[0]);
+      setPredictedData(results.data.predicted_data);
       console.log(results.data.predicted_data);
       setIsLoading(false);
     } catch (error) {
@@ -93,10 +93,24 @@ const FightPredictor = () => {
             </div>
             <div className="mt-4">
               <p>
-                Probability Win: {predictedData.probability_win.toFixed(2)}%
+                Probability Win:{" "}
+                {(
+                  (100 *
+                    (predictedData[0].probability_win +
+                      predictedData[1].probability_loss)) /
+                  2
+                ).toFixed(2)}
+                %
               </p>
               <p>
-                Probability Lose: {predictedData.probability_loss.toFixed(2)}%
+                Probability Lose:{" "}
+                {(
+                  (100 *
+                    (predictedData[1].probability_win +
+                      predictedData[0].probability_loss)) /
+                  2
+                ).toFixed(2)}
+                %
               </p>
               <p>
                 {stats.fighter_name}{" "}
@@ -122,48 +136,48 @@ const FightPredictor = () => {
           <div className="mt-4 space-x-4">
             <div className="flex space-x-4">
               <div className="flex flex-col">
-                <p>ELO: {predictedData.fighter_elo.toFixed(2)}</p>
+                <p>ELO: {predictedData[0].fighter_elo.toFixed(2)}</p>
                 <p>
                   KD Differential:{" "}
-                  {predictedData.fighter_kd_differential.toFixed(2)}
+                  {predictedData[0].fighter_kd_differential.toFixed(2)}
                 </p>
-                <p>Loss Streak: {predictedData.fighter_losestreak}</p>
+                <p>Loss Streak: {predictedData[0].fighter_losestreak}</p>
                 <p>
                   Strike Differential:{" "}
-                  {predictedData.fighter_str_differential.toFixed(2)}
+                  {predictedData[0].fighter_str_differential.toFixed(2)}
                 </p>
                 <p>
                   Submission Differential:{" "}
-                  {predictedData.fighter_sub_differential.toFixed(2)}
+                  {predictedData[0].fighter_sub_differential.toFixed(2)}
                 </p>
                 <p>
                   Takedown Differential:{" "}
-                  {predictedData.fighter_td_differential.toFixed(2)}
+                  {predictedData[0].fighter_td_differential.toFixed(2)}
                 </p>
-                <p>Title Fights: {predictedData.fighter_titlefights}</p>
-                <p>Title Wins: {predictedData.fighter_titlewins}</p>
+                <p>Title Fights: {predictedData[0].fighter_titlefights}</p>
+                <p>Title Wins: {predictedData[0].fighter_titlewins}</p>
               </div>
               <div className="flex flex-col">
-                <p>ELO: {predictedData.opponent_elo.toFixed(2)}</p>
+                <p>ELO: {predictedData[0].opponent_elo.toFixed(2)}</p>
                 <p>
                   KD Differential:{" "}
-                  {predictedData.opponent_kd_differential.toFixed(2)}
+                  {predictedData[0].opponent_kd_differential.toFixed(2)}
                 </p>
-                <p>Loss Streak: {predictedData.opponent_losestreak}</p>
+                <p>Loss Streak: {predictedData[0].opponent_losestreak}</p>
                 <p>
                   Strike Differential:{" "}
-                  {predictedData.opponent_str_differential.toFixed(2)}
+                  {predictedData[0].opponent_str_differential.toFixed(2)}
                 </p>
                 <p>
                   Submission Differential:{" "}
-                  {predictedData.opponent_sub_differential.toFixed(2)}
+                  {predictedData[0].opponent_sub_differential.toFixed(2)}
                 </p>
                 <p>
                   Takedown Differential:{" "}
-                  {predictedData.opponent_td_differential.toFixed(2)}
+                  {predictedData[0].opponent_td_differential.toFixed(2)}
                 </p>
-                <p>Title Fights: {predictedData.opponent_titlefights}</p>
-                <p>Title Wins: {predictedData.opponent_titlewins}</p>
+                <p>Title Fights: {predictedData[0].opponent_titlefights}</p>
+                <p>Title Wins: {predictedData[0].opponent_titlewins}</p>
               </div>
             </div>
           </div>
