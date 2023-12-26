@@ -1,39 +1,39 @@
 fighter_names
-0    Petr Yan*Marlon Vera
-1    Marlon Vera*Petr Yan
+0    Marlon Vera*Petr Yan
+1    Petr Yan*Marlon Vera
 dtype: object
       date  fighter_kd_differential  fighter_str_differential  \
-0  unknown                 0.785714                 15.142857   
-1  unknown                 0.500000                -10.000000   
+0  unknown                 0.500000                -10.000000   
+1  unknown                 0.785714                 15.142857   
 
    fighter_td_differential  fighter_sub_differential  fighter_losestreak  \
-0                 0.285714                  0.142857                   3   
-1                -0.458333                  0.875000                   0   
+0                -0.458333                  0.875000                   0   
+1                 0.285714                  0.142857                   3   
 
    fighter_age_deviation  fighter_titlefights  fighter_titlewins  \
-0                   1860                    4                  2   
-1                   2092                    0                  0   
+0                   2092                    0                  0   
+1                   1860                    4                  2   
 
    fighter_opp_avg_elo  fighter_elo  opponent_kd_differential  \
-0          1071.724266  1092.497186                  0.500000   
-1          1041.024027  1134.215039                  0.785714   
+0          1041.024027  1134.215039                  0.785714   
+1          1071.724266  1092.497186                  0.500000   
 
    opponent_str_differential  opponent_td_differential  \
-0                 -10.000000                 -0.458333   
-1                  15.142857                  0.285714   
+0                  15.142857                  0.285714   
+1                 -10.000000                 -0.458333   
 
    opponent_sub_differential  opponent_losestreak  opponent_age_deviation  \
-0                   0.875000                    0                    2092   
-1                   0.142857                    3                    1860   
+0                   0.142857                    3                    1860   
+1                   0.875000                    0                    2092   
 
    opponent_titlefights  opponent_titlewins  opponent_elo  \
-0                     0                   0   1134.215039   
-1                     4                   2   1092.497186   
+0                     4                   2   1092.497186   
+1                     0                   0   1134.215039   
 
    opponent_opp_avg_elo   result predicted_result  probability_draw  \
-0           1041.024027  unknown              win          0.000060   
-1           1071.724266  unknown             loss          0.000422   
+0           1071.724266  unknown             loss          0.000422   
+1           1041.024027  unknown              win          0.000060   
 
    probability_loss  probability_nc  probability_win  
-0          0.475917        0.000052         0.523971  
-1          0.535490        0.000079         0.464009  
+0          0.535490        0.000079         0.464009  
+1          0.475917        0.000052         0.523971  
