@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
+import json
 
 # default to present
 date_to_train = "2023-06-01"
@@ -187,20 +188,30 @@ def lgbm():
     sys.stdout = original_stdout
     output_file.close()
 
-    feature_importances = model.feature_importances_
+    # Create a dictionary to store the predicted data and probabilities
+    predicted_data_dict = {
+        "predict_data": predict_data.to_dict(orient="records"),
+        "class_probabilities": class_probabilities.tolist(),
+    }
 
-    feature_importance_df = pd.DataFrame(
-       {"Feature": X_train.columns, "Importance": feature_importances}
-    )
+    # Save the dictionary as a JSON file
+    with open("predicted_data.json", "w") as json_file:
+        json.dump(predicted_data_dict, json_file)
 
-    feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
+    # feature_importances = model.feature_importances_
 
-    plt.figure(figsize=(10, 6))
-    plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
-    plt.xlabel("Importance")
-    plt.ylabel("Feature")
-    plt.title("Feature Importance")
-    plt.show()
+    # feature_importance_df = pd.DataFrame(
+    #    {"Feature": X_train.columns, "Importance": feature_importances}
+    # )
+
+    # feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
+
+    # plt.figure(figsize=(10, 6))
+    # plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
+    # plt.xlabel("Importance")
+    # plt.ylabel("Feature")
+    # plt.title("Feature Importance")
+    # plt.show()
 
 def main():
 
