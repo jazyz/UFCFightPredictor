@@ -14,7 +14,7 @@ def lgbm():
     data['date'] = pd.to_datetime(data['date'], format='%b. %d, %Y')
     # data = data.sort_values(by='date')
     data.replace("--", pd.NA, inplace=True)
-    data = data[(data['fighter_totalfights'] > 4) & (data['opponent_totalfights'] > 4)]
+    data = data[(data['fighter_totalfights'] > 2) & (data['opponent_totalfights'] > 2)]
     data = data[pd.to_datetime(data["date"]).dt.year>=2010]
     # data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
     # data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
@@ -30,15 +30,15 @@ def lgbm():
         # "fighter_totalfights",
         # "fighter_totalwins",
         "fighter_age_deviation",
-        "fighter_titlefights",
-        "fighter_titlewins",
+        # "fighter_titlefights",
+        # "fighter_titlewins",
         "fighter_opp_avg_elo",
         "fighter_elo",
 
         # "fighter_kowin",
-        # # "fighter_koloss",
+        # "fighter_koloss",
         # "fighter_subwin",
-        # # "fighter_subloss",
+        # "fighter_subloss",
         # "fighter_udecwin",
         # "fighter_udecloss",
         # "fighter_sdecwin",
@@ -56,15 +56,15 @@ def lgbm():
         # "opponent_totalfights",
         # "opponent_totalwins",
         "opponent_age_deviation",   
-        "opponent_titlefights",
-        "opponent_titlewins",
+        # "opponent_titlefights",
+        # "opponent_titlewins",
         "opponent_elo",
         "opponent_opp_avg_elo",
 
         # "opponent_kowin",
-        # # "opponent_koloss",
+        # "opponent_koloss",
         # "opponent_subwin",
-        # # "opponent_subloss",
+        # "opponent_subloss",
         # "opponent_udecwin",
         # "opponent_udecloss",
         # "opponent_sdecwin",

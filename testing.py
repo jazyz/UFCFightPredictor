@@ -336,7 +336,7 @@ with open("testing.txt", "w") as test:
 
                     test.write("---\n")
         
-            if cnt % 8 == 0:
+            if cnt % 10 == 0:
                 #  UPDATE FIGHTER STATS AFTER EACH EVENT
                 meta_tag = soup.find('meta', attrs={'property': 'og:description'})
                 content = meta_tag.get('content')

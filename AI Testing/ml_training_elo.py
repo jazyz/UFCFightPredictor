@@ -16,7 +16,7 @@ selected_columns = [
     "fighter_str_differential",
     "fighter_td_differential",
     "fighter_sub_differential",
-    # "fighter_winrate",
+    "fighter_winrate",
     # "fighter_winstreak",
     # "fighter_losestreak",
     # "fighter_totalfights",
@@ -30,7 +30,7 @@ selected_columns = [
     "opponent_str_differential",
     "opponent_td_differential",
     "opponent_sub_differential",
-    # "opponent_winrate",
+    "opponent_winrate",
     # "opponent_winstreak",
     # "opponent_losestreak",
     # "opponent_totalfights",
@@ -59,7 +59,7 @@ X = data.drop("result", axis=1)
 y = data["result"]
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=0
+    X, y, test_size=0.2, random_state=42
 )
 
 model = lgb.LGBMClassifier(random_state=42)
