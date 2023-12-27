@@ -27,7 +27,7 @@ def lgbm():
         # "fighter_winrate",
         "fighter_winstreak",
         "fighter_losestreak",
-        "fighter_totalfights",
+        # "fighter_totalfights",
         # "fighter_totalwins",
         "fighter_age_deviation",
         "fighter_titlefights",
@@ -53,7 +53,7 @@ def lgbm():
         # "opponent_winrate",
         "opponent_winstreak",
         "opponent_losestreak",
-        "opponent_totalfights",
+        # "opponent_totalfights",
         # "opponent_totalwins",
         "opponent_age_deviation",   
         "opponent_titlefights",
@@ -193,7 +193,7 @@ def lgbm():
     accuracy = accuracy_score(y_test, y_pred)
     print(f"Accuracy: {accuracy:.4f}")
 
-    output_file = open("ml_alpha_output.txt", "w")
+    output_file = open("ml_elo", "w")
     original_stdout = sys.stdout
     sys.stdout = output_file
     pd.set_option("display.max_columns", None)  # Display all columns
