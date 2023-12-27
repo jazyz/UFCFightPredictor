@@ -142,48 +142,6 @@ def main():
     else:
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
 
-<<<<<<< HEAD
-    # GET ALL THE NAMES OF FIGHTERS ON EACH CARD
-    def extract_fighter_stats(
-        input_csv_filename, output_csv_filename, fighter_name, opponent_name
-    ):
-        fighter_stats = None
-        opponent_stats = None
-
-        with open(input_csv_filename, mode="r", newline="") as input_file:
-            csv_reader = csv.DictReader(input_file)
-            for row in csv_reader:
-                if row["name"] == fighter_name:
-                    fighter_stats = row
-                elif row["name"] == opponent_name:
-                    opponent_stats = row
-
-        if fighter_stats is None or opponent_stats is None:
-            print("Fighter or opponent not found in the CSV.")
-            return
-
-        if int(fighter_stats["totalfights"]) <= 2 or int(opponent_stats["totalfights"]) <= 2:
-            return
-        combined_stats = {}
-        for key, value in fighter_stats.items():
-            if key == "name":
-                combined_stats["fighter_name"] = fighter_name
-            else:
-                combined_stats["fighter_" + key] = value
-
-        for key, value in opponent_stats.items():
-            if key == "name":
-                combined_stats["opponent_name"] = opponent_name
-            else:
-                combined_stats["opponent_" + key] = value
-        combined_stats["result"] = "unknown"
-        combined_stats["date"] = "unknown"
-        with open(output_csv_filename, mode="a", newline="") as output_file:
-            csv_writer = csv.DictWriter(output_file, fieldnames=fieldnames)
-            csv_writer.writerow(combined_stats)
-
-=======
->>>>>>> 4df30993c763a96af9dcfbbbe46a51652c01d502
     with open(output_csv_filename, mode="w", newline="") as output_file:
         csv_writer = csv.DictWriter(output_file, fieldnames=fieldnames)
         csv_writer.writeheader()
