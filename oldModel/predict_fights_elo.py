@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 import csv
 import os
 
-input_csv_filename = os.join.path("oldModel", "fighter_stats.csv")
-output_csv_filename = os.join.path("oldModel", "predict_fights_elo.csv")
+input_csv_filename = os.path.join("oldModel", "fighter_stats.csv")
+output_csv_filename = os.path.join("oldModel", "predict_fights_elo.csv")
 
 fieldnames = [
     "id",

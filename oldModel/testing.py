@@ -42,7 +42,7 @@ def runTests(testFrom_card, testTo_card):
 
     # TODO: figure out how to do rematches (maybe just use a set)
     def ml_elo(p1, p2):
-        input_txt_filename = os.join.path("oldModel", "ml_elo.txt")
+        input_txt_filename = os.path.join("oldModel", "ml_elo.txt")
         id = -1
         flag = False
         prob_win = 0
@@ -148,7 +148,7 @@ def runTests(testFrom_card, testTo_card):
             else:
                 underdog_loss += bet
 
-    with open(os.join.path("oldModel", "testing.txt"), "w") as test:
+    with open(os.path.join("oldModel", "testing.txt"), "w") as test:
 
         urls = []
         urls.append("https://www.ufc.com/events")

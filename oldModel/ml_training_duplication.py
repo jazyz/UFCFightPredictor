@@ -160,7 +160,7 @@ def lgbm():
     pd.set_option("display.max_columns", None)  # Display all columns
     pd.set_option("display.max_rows", None)     # Display all rows
 
-    predict_data = pd.read_csv(os.join.path("oldModel", "predict_fights_elo.csv"))
+    predict_data = pd.read_csv(os.path.join("oldModel", "predict_fights_elo.csv"))
     predict_data.replace("--", pd.NA, inplace=True)
     fighter_name_label = "fighter_names"
 

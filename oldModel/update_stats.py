@@ -285,7 +285,7 @@ def export_fighter_stats_to_csv(filename):
 
 def main():
     create_all_tables()
-    export_fighter_stats_to_csv(os.join.path("oldModel", "fighter_stats.csv"))
+    export_fighter_stats_to_csv(os.path.join("oldModel", "fighter_stats.csv"))
     sorted_ratings = sorted(ratings.items(), key=lambda x:x[1], reverse=True)
     cnt=0
     for name, rating in sorted_ratings:
