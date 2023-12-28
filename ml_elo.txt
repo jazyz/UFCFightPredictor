@@ -1,39 +1,2375 @@
 fighter_names
-0    Marlon Vera*Petr Yan
-1    Petr Yan*Marlon Vera
+0                      Leon Edwards*Colby Covington
+1                      Colby Covington*Leon Edwards
+2                  Alexandre Pantoja*Brandon Royval
+3                  Brandon Royval*Alexandre Pantoja
+4                Shavkat Rakhmonov*Stephen Thompson
+5                Stephen Thompson*Shavkat Rakhmonov
+6                      Paddy Pimblett*Tony Ferguson
+7                      Tony Ferguson*Paddy Pimblett
+8                        Josh Emmett*Bryce Mitchell
+9                        Bryce Mitchell*Josh Emmett
+10                   Alonzo Menifield*Dustin Jacoby
+11                   Dustin Jacoby*Alonzo Menifield
+12                          Irene Aldana*Karol Rosa
+13                          Karol Rosa*Irene Aldana
+14                    Cody Garbrandt*Brian Kelleher
+15                    Brian Kelleher*Cody Garbrandt
+16                      Ariane Lipski*Casey O'Neill
+17                      Casey O'Neill*Ariane Lipski
+18                      Tagir Ulanbekov*Cody Durden
+19                      Cody Durden*Tagir Ulanbekov
+20                         Andre Fili*Lucas Almeida
+21                         Lucas Almeida*Andre Fili
+22                      Song Yadong*Chris Gutierrez
+23                      Chris Gutierrez*Song Yadong
+24                Khalil Rountree Jr.*Anthony Smith
+25                Anthony Smith*Khalil Rountree Jr.
+26                 Nasrat Haqparast*Jamie Mullarkey
+27                 Jamie Mullarkey*Nasrat Haqparast
+28                           Tim Elliott*Sumudaerji
+29                           Sumudaerji*Tim Elliott
+30                         Andre Muniz*JunYong Park
+31                         JunYong Park*Andre Muniz
+32                       HyunSung Park*Shannon Ross
+33                       Shannon Ross*HyunSung Park
+34                   Tatsuro Taira*Carlos Hernandez
+35                   Carlos Hernandez*Tatsuro Taira
+36                   Arman Tsarukyan*Beneil Dariush
+37                   Beneil Dariush*Arman Tsarukyan
+38                         Jalin Turner*Bobby Green
+39                         Bobby Green*Jalin Turner
+40                     Deiveson Figueiredo*Rob Font
+41                     Rob Font*Deiveson Figueiredo
+42                       Sean Brady*Kelvin Gastelum
+43                       Kelvin Gastelum*Sean Brady
+44                         Joaquim Silva*Clay Guida
+45                         Clay Guida*Joaquim Silva
+46                Dustin Stoltzfus*Punahele Soriano
+47                Punahele Soriano*Dustin Stoltzfus
+48                          Miesha Tate*Julia Avila
+49                          Julia Avila*Miesha Tate
+50                        Drakkar Klose*Joe Solecki
+51                        Joe Solecki*Drakkar Klose
+52                   Jared Gooden*Wellington Turman
+53                   Wellington Turman*Jared Gooden
+54                         Brendan Allen*Paul Craig
+55                         Paul Craig*Brendan Allen
+56                    Michael Morales*Jake Matthews
+57                    Jake Matthews*Michael Morales
+58                      Chase Hooper*Jordan Leavitt
+59                      Jordan Leavitt*Chase Hooper
+60                      Amanda Ribas*Luana Pinheiro
+61                      Luana Pinheiro*Amanda Ribas
+62                 Joanderson Brito*Jonathan Pearce
+63                 Jonathan Pearce*Joanderson Brito
+64                      Jose Johnson*Chad Anheliger
+65                      Chad Anheliger*Jose Johnson
+66                         Trey Ogden*Nikolas Motta
+67                         Nikolas Motta*Trey Ogden
+68                      Alex Pereira*Jiri Prochazka
+69                      Jiri Prochazka*Alex Pereira
+70                    Tom Aspinall*Sergei Pavlovich
+71                    Sergei Pavlovich*Tom Aspinall
+72                   Jessica Andrade*Mackenzie Dern
+73                   Mackenzie Dern*Jessica Andrade
+74                  Benoit Saint Denis*Matt Frevola
+75                  Matt Frevola*Benoit Saint Denis
+76                         Diego Lopes*Pat Sabatini
+77                         Pat Sabatini*Diego Lopes
+78                      Loopy Godinez*Tabatha Ricci
+79                      Tabatha Ricci*Loopy Godinez
+80                Mateusz Rebecki*Roosevelt Roberts
+81                Roosevelt Roberts*Mateusz Rebecki
+82              Nazim Sadykhov*Viacheslav Borshchev
+83              Viacheslav Borshchev*Nazim Sadykhov
+84                         Jared Gordon*Mark Madsen
+85                         Mark Madsen*Jared Gordon
+86                     John Castaneda*Kyung Ho Kang
+87                     Kyung Ho Kang*John Castaneda
+88                     Jamall Emmers*Dennis Buzukja
+89                     Dennis Buzukja*Jamall Emmers
+90                    Jailton Almeida*Derrick Lewis
+91                    Derrick Lewis*Jailton Almeida
+92                     Nicolas Dalby*Gabriel Bonfim
+93                     Gabriel Bonfim*Nicolas Dalby
+94                Rodrigo Nascimento*Don'Tale Mayes
+95                Don'Tale Mayes*Rodrigo Nascimento
+96     Rinat Fakhretdinov*Elizeu Zaleski dos Santos
+97     Elizeu Zaleski dos Santos*Rinat Fakhretdinov
+98                 Vitor Petrino*Modestas Bukauskas
+99                 Modestas Bukauskas*Vitor Petrino
+100                        Angela Hill*Denise Gomes
+101                        Denise Gomes*Angela Hill
+102           Islam Makhachev*Alexander Volkanovski
+103           Alexander Volkanovski*Islam Makhachev
+104                    Khamzat Chimaev*Kamaru Usman
+105                    Kamaru Usman*Khamzat Chimaev
+106                  Magomed Ankalaev*Johnny Walker
+107                  Johnny Walker*Magomed Ankalaev
+108                     Muhammad Mokaev*Tim Elliott
+109                     Tim Elliott*Muhammad Mokaev
+110                     Javid Basharat*Victor Henry
+111                     Victor Henry*Javid Basharat
+112                      Edson Barboza*Sodiq Yusuff
+113                      Sodiq Yusuff*Edson Barboza
+114                    Viviane Araujo*Jennifer Maia
+115                    Jennifer Maia*Viviane Araujo
+116                  Jonathan Martinez*Adrian Yanez
+117                  Adrian Yanez*Jonathan Martinez
+118                   Michel Pereira*Andre Petroski
+119                   Andre Petroski*Michel Pereira
+120             Christian Rodriguez*Cameron Saaiman
+121             Cameron Saaiman*Christian Rodriguez
+122                          Darren Elkins*TJ Brown
+123                          TJ Brown*Darren Elkins
+124                    Chris Gutierrez*Alatengheili
+125                    Alatengheili*Chris Gutierrez
+126                       Emily Ducote*Ashley Yoder
+127                       Ashley Yoder*Emily Ducote
+128                        Bobby Green*Grant Dawson
+129                        Grant Dawson*Bobby Green
+130                  Joe Pyfer*Abdul Razak Alhassan
+131                  Abdul Razak Alhassan*Joe Pyfer
+132                     Joaquin Buckley*Alex Morono
+133                     Alex Morono*Joaquin Buckley
+134                          Drew Dober*Ricky Glenn
+135                          Ricky Glenn*Drew Dober
+136                  Bill Algeo*Alexander Hernandez
+137                  Alexander Hernandez*Bill Algeo
+138             Karolina Kowalkiewicz*Diana Belbita
+139             Diana Belbita*Karolina Kowalkiewicz
+140                     Nate Maness*Mateus Mendonca
+141                     Mateus Mendonca*Nate Maness
+142                Vanessa Demopoulos*Kanako Murata
+143                Kanako Murata*Vanessa Demopoulos
+144                         Aoriqileng*Johnny Munoz
+145                         Johnny Munoz*Aoriqileng
+146                   JJ Aldrich*Montana De La Rosa
+147                   Montana De La Rosa*JJ Aldrich
+148                    Mateusz Gamrot*Rafael Fiziev
+149                    Rafael Fiziev*Mateusz Gamrot
+150                          Bryce Mitchell*Dan Ige
+151                          Dan Ige*Bryce Mitchell
+152        Marina Rodriguez*Michelle Waterson-Gomez
+153        Michelle Waterson-Gomez*Marina Rodriguez
+154                        Bryan Battle*AJ Fletcher
+155                        AJ Fletcher*Bryan Battle
+156                  Charles Jourdain*Ricardo Ramos
+157                  Ricardo Ramos*Charles Jourdain
+158                         Dan Argueta*Miles Johns
+159                         Miles Johns*Dan Argueta
+160                          Tim Means*Andre Fialho
+161                          Andre Fialho*Tim Means
+162                     Cody Brundage*Jacob Malkoun
+163                     Jacob Malkoun*Cody Brundage
+164                     Mohammed Usman*Jake Collier
+165                     Jake Collier*Mohammed Usman
+166                             Mizuki*Hannah Goldy
+167                             Hannah Goldy*Mizuki
+168               Alexa Grasso*Valentina Shevchenko
+169               Valentina Shevchenko*Alexa Grasso
+170              Jack Della Maddalena*Kevin Holland
+171              Kevin Holland*Jack Della Maddalena
+172                Daniel Zellhuber*Christos Giagos
+173                Christos Giagos*Daniel Zellhuber
+174                        Loopy Godinez*Elise Reed
+175                        Elise Reed*Loopy Godinez
+176                        Roman Kopylov*Josh Fremd
+177                        Josh Fremd*Roman Kopylov
+178                    Edgar Chairez*Daniel Lacerda
+179                    Daniel Lacerda*Edgar Chairez
+180               Tracy Cortez*Jasmine Jasudavicius
+181               Jasmine Jasudavicius*Tracy Cortez
+182                 Sean Strickland*Israel Adesanya
+183                 Israel Adesanya*Sean Strickland
+184                    Alexander Volkov*Tai Tuivasa
+185                    Tai Tuivasa*Alexander Volkov
+186                         Justin Tafa*Austen Lane
+187                         Austen Lane*Justin Tafa
+188                       Tyson Pedro*Anton Turkalj
+189                       Anton Turkalj*Tyson Pedro
+190                      Carlos Ulberg*Da Woon Jung
+191                      Da Woon Jung*Carlos Ulberg
+192                   Jamie Mullarkey*John Makdessi
+193                   John Makdessi*Jamie Mullarkey
+194                       Ciryl Gane*Serghei Spivac
+195                       Serghei Spivac*Ciryl Gane
+196                     Manon Fiorot*Rose Namajunas
+197                     Rose Namajunas*Manon Fiorot
+198                Benoit Saint Denis*Thiago Moises
+199                Thiago Moises*Benoit Saint Denis
+200                           Ange Loosa*Rhys McKee
+201                           Rhys McKee*Ange Loosa
+202               Farid Basharat*Kleydson Rodrigues
+203               Kleydson Rodrigues*Farid Basharat
+204                     Max Holloway*Chan Sung Jung
+205                     Chan Sung Jung*Max Holloway
+206                        Anthony Smith*Ryan Spann
+207                        Ryan Spann*Anthony Smith
+208                      Giga Chikadze*Alex Caceres
+209                      Alex Caceres*Giga Chikadze
+210                    Rinya Nakamura*Fernie Garcia
+211                    Fernie Garcia*Rinya Nakamura
+212                   Erin Blanchfield*Taila Santos
+213                   Taila Santos*Erin Blanchfield
+214              Waldo Cortes-Acosta*Lukasz Brzeski
+215              Lukasz Brzeski*Waldo Cortes-Acosta
+216              Michal Oleksiejczuk*Chidi Njokuani
+217              Chidi Njokuani*Michal Oleksiejczuk
+218                             JJ Aldrich*Liang Na
+219                             Liang Na*JJ Aldrich
+220                 Sean O'Malley*Aljamain Sterling
+221                 Aljamain Sterling*Sean O'Malley
+222                        Zhang Weili*Amanda Lemos
+223                        Amanda Lemos*Zhang Weili
+224                            Ian Garry*Neil Magny
+225                            Neil Magny*Ian Garry
+226                Mario Bautista*Da'Mon Blackshear
+227                Da'Mon Blackshear*Mario Bautista
+228                        Marlon Vera*Pedro Munhoz
+229                        Pedro Munhoz*Marlon Vera
+230                      Brad Tavares*Chris Weidman
+231                      Chris Weidman*Brad Tavares
+232               Gregory Rodrigues*Denis Tiuliulin
+233               Denis Tiuliulin*Gregory Rodrigues
+234                   Kurt Holobaugh*Austin Hubbard
+235                   Austin Hubbard*Kurt Holobaugh
+236                         Brad Katona*Cody Gibson
+237                         Cody Gibson*Brad Katona
+238               Andre Petroski*Gerald Meerschaert
+239               Gerald Meerschaert*Andre Petroski
+240                        Natalia Silva*Andrea Lee
+241                        Andrea Lee*Natalia Silva
+242                       Karine Silva*Maryna Moroz
+243                       Maryna Moroz*Karine Silva
+244                  Vicente Luque*Rafael Dos Anjos
+245                  Rafael Dos Anjos*Vicente Luque
+246                       Cub Swanson*Hakeem Dawodu
+247                       Hakeem Dawodu*Cub Swanson
+248               Khalil Rountree Jr.*Chris Daukaus
+249               Chris Daukaus*Khalil Rountree Jr.
+250                    Iasmin Lucindo*Polyana Viana
+251                    Polyana Viana*Iasmin Lucindo
+252                         AJ Dobson*Tafon Nchukwi
+253                         Tafon Nchukwi*AJ Dobson
+254                        Josh Fremd*Jamie Pickett
+255                        Jamie Pickett*Josh Fremd
+256                  Terrance McKinney*Mike Breeden
+257                  Mike Breeden*Terrance McKinney
+258                      Martin Buday*Josh Parisian
+259                      Josh Parisian*Martin Buday
+260                  Da'Mon Blackshear*Jose Johnson
+261                  Jose Johnson*Da'Mon Blackshear
 dtype: object
-      date  fighter_kd_differential  fighter_str_differential  \
-0  unknown                 0.500000                -10.000000   
-1  unknown                 0.785714                 15.142857   
+        date  fighter_kd_differential  fighter_str_differential  \
+0    unknown                 0.250000                  6.562500   
+1    unknown                -0.200000                 17.333333   
+2    unknown                 0.230769                  6.692308   
+3    unknown                 0.142857                  5.285714   
+4    unknown                 0.200000                 14.800000   
+5    unknown                 0.263158                 17.315789   
+6    unknown                 0.250000                  5.500000   
+7    unknown                -0.090909                  8.363636   
+8    unknown                 0.692308                 -8.153846   
+9    unknown                 0.000000                  9.000000   
+10   unknown                 0.153846                  4.692308   
+11   unknown                 0.153846                 18.000000   
+12   unknown                 0.166667                -12.416667   
+13   unknown                 0.125000                 19.000000   
+14   unknown                 0.230769                 -9.153846   
+15   unknown                 0.066667                -10.533333   
+16   unknown                 0.200000                 -2.900000   
+17   unknown                 0.000000                 35.200000   
+18   unknown                -0.250000                  0.750000   
+19   unknown                 0.000000                  2.000000   
+20   unknown                 0.000000                 -3.400000   
+21   unknown                 0.333333                  0.000000   
+22   unknown                 0.583333                  9.916667   
+23   unknown                 0.400000                 23.600000   
+24   unknown                 0.785714                 -3.285714   
+25   unknown                 0.083333                -12.500000   
+26   unknown                 0.363636                  6.090909   
+27   unknown                -0.111111                  0.555556   
+28   unknown                 0.111111                  9.000000   
+29   unknown                 0.400000                 19.600000   
+30   unknown                 0.000000                  1.222222   
+31   unknown                 0.111111                 14.222222   
+32   unknown                -0.666667                  6.000000   
+33   unknown                -1.666667                 -8.333333   
+34   unknown                 0.000000                 21.500000   
+35   unknown                 0.000000                 13.250000   
+36   unknown                 0.222222                 26.000000   
+37   unknown                 0.090909                 10.772727   
+38   unknown                 0.363636                  9.090909   
+39   unknown                 0.034483                 24.413793   
+40   unknown                 0.714286                 -4.857143   
+41   unknown                 0.125000                 25.562500   
+42   unknown                 0.166667                  3.833333   
+43   unknown                 0.142857                  4.380952   
+44   unknown                -0.111111                -10.333333   
+45   unknown                 0.000000                 -4.605263   
+46   unknown                -0.166667                 -3.166667   
+47   unknown                 0.714286                 -1.714286   
+48   unknown                -0.150000                 -6.300000   
+49   unknown                 0.250000                  3.500000   
+50   unknown                 0.111111                 12.111111   
+51   unknown                -0.142857                  7.857143   
+52   unknown                 0.200000                -24.800000   
+53   unknown                -0.125000                 -9.375000   
+54   unknown                 0.153846                  0.538462   
+55   unknown                -0.125000                 -2.125000   
+56   unknown                 0.750000                 18.500000   
+57   unknown                 0.055556                 10.444444   
+58   unknown                -0.625000                 15.375000   
+59   unknown                 0.142857                  5.285714   
+60   unknown                -0.222222                 16.444444   
+61   unknown                 0.500000                  1.750000   
+62   unknown                 0.200000                  6.800000   
+63   unknown                 0.000000                 24.714286   
+64   unknown                 0.000000                  5.000000   
+65   unknown                 1.000000                  3.000000   
+66   unknown                 0.000000                -22.000000   
+67   unknown                -0.250000                 -9.000000   
+68   unknown                 0.166667                 16.333333   
+69   unknown                 0.666667                  5.000000   
+70   unknown                 0.428571                 11.000000   
+71   unknown                 1.000000                 10.428571   
+72   unknown                -0.040000                 12.280000   
+73   unknown                 0.090909                 -9.909091   
+74   unknown                 0.600000                  2.600000   
+75   unknown                 0.200000                  1.300000   
+76   unknown                 0.000000                -25.000000   
+77   unknown                 0.166667                  5.500000   
+78   unknown                 0.111111                  6.666667   
+79   unknown                -0.200000                 -4.000000   
+80   unknown                 0.666667                 29.000000   
+81   unknown                -0.222222                  0.222222   
+82   unknown                 0.000000                  6.000000   
+83   unknown                 1.000000                 11.200000   
+84   unknown                -0.153846                 23.461538   
+85   unknown                -0.200000                 -5.000000   
+86   unknown                 0.500000                 -6.666667   
+87   unknown                 0.250000                  2.166667   
+88   unknown                 0.000000                 13.166667   
+89   unknown                 0.333333                -21.333333   
+90   unknown                 0.000000                 17.833333   
+91   unknown                 0.185185                  0.148148   
+92   unknown                -0.363636                  7.545455   
+93   unknown                 0.000000                  2.666667   
+94   unknown                -0.333333                 -3.166667   
+95   unknown                 0.000000                 -4.100000   
+96   unknown                 0.666667                 25.000000   
+97   unknown                -0.230769                 17.076923   
+98   unknown                 0.000000                  6.333333   
+99   unknown                -0.500000                 -6.666667   
+100  unknown                 0.043478                  7.000000   
+101  unknown                 0.500000                 18.750000   
+102  unknown                 0.071429                 11.071429   
+103  unknown                 0.357143                 49.785714   
+104  unknown                 0.333333                 16.666667   
+105  unknown                 0.529412                 30.117647   
+106  unknown                 0.454545                 17.363636   
+107  unknown                 0.000000                  9.250000   
+108  unknown                 0.250000                  3.000000   
+109  unknown                 0.111111                  9.000000   
+110  unknown                 0.000000                 49.500000   
+111  unknown                 0.000000                 40.333333   
+112  unknown                 0.321429                 -1.428571   
+113  unknown                 0.250000                 16.875000   
+114  unknown                 0.000000                -12.888889   
+115  unknown                 0.000000                 -4.272727   
+116  unknown                 0.250000                 11.083333   
+117  unknown                 0.714286                  5.285714   
+118  unknown                 0.250000                 17.125000   
+119  unknown                 0.200000                  8.200000   
+120  unknown                 0.000000                 14.250000   
+121  unknown                 0.500000                 33.250000   
+122  unknown                -0.148148                  2.148148   
+123  unknown                -0.500000                  6.250000   
+124  unknown                 0.400000                 23.600000   
+125  unknown                 0.166667                -20.666667   
+126  unknown                 0.000000                -26.000000   
+127  unknown                 0.100000                -10.200000   
+128  unknown                 0.034483                 24.413793   
+129  unknown                 0.000000                  7.818182   
+130  unknown                 0.400000                  6.600000   
+131  unknown                 0.583333                 -4.750000   
+132  unknown                 0.272727                  5.545455   
+133  unknown                 0.052632                  9.947368   
+134  unknown                 0.304348                  0.913043   
+135  unknown                 0.000000                 -1.700000   
+136  unknown                 0.222222                 22.444444   
+137  unknown                 0.083333                 -2.583333   
+138  unknown                -0.062500                  4.750000   
+139  unknown                 0.166667                  2.000000   
+140  unknown                 0.166667                -16.833333   
+141  unknown                 0.666667                -29.000000   
+142  unknown                 0.000000                -21.428571   
+143  unknown                 0.000000                 -3.333333   
+144  unknown                -0.166667                 -2.666667   
+145  unknown                -0.333333                 -2.500000   
+146  unknown                 0.000000                 -6.571429   
+147  unknown                 0.090909                 -6.090909   
+148  unknown                -0.375000                 -2.375000   
+149  unknown                 0.111111                 -0.888889   
+150  unknown                 0.000000                  9.000000   
+151  unknown                 0.250000                  3.000000   
+152  unknown                 0.153846                 26.461538   
+153  unknown                -0.062500                 -8.687500   
+154  unknown                 0.166667                  6.333333   
+155  unknown                 0.200000                -12.200000   
+156  unknown                 0.333333                 18.500000   
+157  unknown                 0.181818                 -5.272727   
+158  unknown                 0.000000                  5.250000   
+159  unknown                 0.125000                  9.750000   
+160  unknown                 0.250000                 14.678571   
+161  unknown                -0.285714                -25.857143   
+162  unknown                 0.250000                 -5.625000   
+163  unknown                -0.166667                 15.000000   
+164  unknown                 0.333333                -12.333333   
+165  unknown                 0.142857                  7.714286   
+166  unknown                -0.333333                -16.000000   
+167  unknown                -0.333333                  6.000000   
+168  unknown                 0.083333                 10.833333   
+169  unknown                 0.000000                 21.062500   
+170  unknown                 0.714286                 19.000000   
+171  unknown                 0.238095                 12.952381   
+172  unknown                 0.250000                  6.250000   
+173  unknown                 0.000000                  0.230769   
+174  unknown                 0.111111                  6.666667   
+175  unknown                 0.000000                 -4.428571   
+176  unknown                 0.666667                  6.500000   
+177  unknown                -0.200000                  3.200000   
+178  unknown                 0.333333                -18.666667   
+179  unknown                 0.200000                -21.400000   
+180  unknown                -0.166667                 19.833333   
+181  unknown                 0.000000                -13.000000   
+182  unknown                 0.150000                 23.350000   
+183  unknown                 0.750000                 15.000000   
+184  unknown                 0.133333                 27.733333   
+185  unknown                 0.142857                 -6.928571   
+186  unknown                 0.375000                 -3.875000   
+187  unknown                -0.500000                  3.000000   
+188  unknown                 0.300000                  3.700000   
+189  unknown                -0.250000                 -7.000000   
+190  unknown                 0.571429                 25.000000   
+191  unknown                 0.125000                 -4.000000   
+192  unknown                -0.111111                  0.555556   
+193  unknown                 0.100000                 16.600000   
+194  unknown                 0.181818                 46.727273   
+195  unknown                -0.181818                 -2.000000   
+196  unknown                 0.166667                 35.333333   
+197  unknown                 0.285714                  2.071429   
+198  unknown                 0.600000                  2.600000   
+199  unknown                 0.083333                -20.416667   
+200  unknown                 0.000000                 -8.500000   
+201  unknown                 0.000000                -37.666667   
+202  unknown                 0.000000                 32.666667   
+203  unknown                 0.250000                 24.000000   
+204  unknown                 0.357143                 38.464286   
+205  unknown                -0.142857                 -7.285714   
+206  unknown                 0.083333                -12.500000   
+207  unknown                 0.230769                 -2.615385   
+208  unknown                 0.500000                  8.400000   
+209  unknown                 0.000000                 14.586207   
+210  unknown                 1.000000                 13.000000   
+211  unknown                 0.250000                -10.500000   
+212  unknown                 0.000000                 23.666667   
+213  unknown                 0.375000                 11.250000   
+214  unknown                 0.400000                 30.000000   
+215  unknown                -0.500000                 19.000000   
+216  unknown                 0.583333                  6.250000   
+217  unknown                 0.333333                  7.666667   
+218  unknown                 0.000000                 -6.571429   
+219  unknown                -0.333333                -15.000000   
+220  unknown                 0.666667                 32.750000   
+221  unknown                -0.263158                 30.631579   
+222  unknown                 0.200000                 31.100000   
+223  unknown                 0.400000                -10.300000   
+224  unknown                 0.500000                 34.666667   
+225  unknown                -0.193548                 13.354839   
+226  unknown                -0.111111                  8.888889   
+227  unknown                 0.000000                  2.200000   
+228  unknown                 0.545455                -10.090909   
+229  unknown                 0.350000                 -7.650000   
+230  unknown                -0.130435                  4.608696   
+231  unknown                -0.055556                 -2.888889   
+232  unknown                 0.250000                  2.250000   
+233  unknown                 0.500000                 -4.500000   
+234  unknown                 0.142857                  4.428571   
+235  unknown                 0.000000                  5.625000   
+236  unknown                 0.000000                  3.400000   
+237  unknown                 0.200000                  0.200000   
+238  unknown                 0.200000                  8.200000   
+239  unknown                -0.052632                 -1.631579   
+240  unknown                 0.500000                 33.000000   
+241  unknown                 0.090909                 17.090909   
+242  unknown                 0.250000                  0.000000   
+243  unknown                -0.181818                 -3.363636   
+244  unknown                 0.300000                  0.150000   
+245  unknown                 0.117647                  4.852941   
+246  unknown                 0.129032                  9.967742   
+247  unknown                 0.000000                 28.000000   
+248  unknown                 0.785714                 -3.285714   
+249  unknown                 0.250000                  4.500000   
+250  unknown                 0.000000                  1.333333   
+251  unknown                 0.000000                  4.000000   
+252  unknown                 0.250000                -10.750000   
+253  unknown                 0.000000                 16.428571   
+254  unknown                -0.200000                  3.200000   
+255  unknown                -0.272727                -10.272727   
+256  unknown                -0.125000                  5.625000   
+257  unknown                -0.250000                -14.750000   
+258  unknown                 0.400000                  2.200000   
+259  unknown                 0.125000                 -2.500000   
+260  unknown                 0.000000                  2.200000   
+261  unknown                 0.000000                  5.000000   
 
-   fighter_td_differential  fighter_sub_differential  fighter_losestreak  \
-0                -0.458333                  0.875000                   0   
-1                 0.285714                  0.142857                   3   
+     fighter_td_differential  fighter_sub_differential  fighter_losestreak  \
+0                  -0.437500                  0.250000                   0   
+1                   4.000000                 -0.066667                   0   
+2                  -0.461538                  0.769231                   0   
+3                  -2.142857                  0.428571                   0   
+4                   0.800000                  0.800000                   0   
+5                  -0.736842                 -0.210526                   0   
+6                  -1.250000                  1.250000                   0   
+7                  -0.500000                  0.409091                  12   
+8                   0.230769                  0.000000                   4   
+9                   2.000000                  1.000000                   0   
+10                 -0.538462                 -0.076923                   0   
+11                 -1.000000                 -0.153846                   0   
+12                 -1.166667                  0.250000                   2   
+13                  0.625000                  0.000000                   0   
+14                  0.538462                 -0.076923                   0   
+15                  0.066667                 -0.066667                   4   
+16                 -0.400000                 -0.200000                   0   
+17                  0.800000                  0.600000                   2   
+18                  1.250000                  0.250000                   0   
+19                  3.375000                 -0.750000                   0   
+20                  0.600000                 -0.150000                   2   
+21                 -1.000000                 -0.333333                   2   
+22                 -0.750000                  0.166667                   0   
+23                 -0.600000                 -0.200000                   2   
+24                 -1.000000                  0.000000                   0   
+25                 -0.708333                  0.333333                   0   
+26                 -0.363636                 -0.090909                   0   
+27                  1.444444                  0.000000                   0   
+28                  2.055556                  0.055556                   0   
+29                 -0.600000                 -0.200000                   2   
+30                  0.777778                  0.444444                   4   
+31                  0.111111                  0.777778                   0   
+32                  1.000000                  1.666667                   0   
+33                  0.000000                  0.000000                   6   
+34                  1.250000                  1.000000                   0   
+35                 -1.500000                 -0.500000                   0   
+36                  2.000000                  0.000000                   0   
+37                  0.772727                  0.045455                   2   
+38                 -0.454545                  0.363636                   4   
+39                  0.103448                 -0.068966                   0   
+40                 -0.500000                  1.214286                   2   
+41                 -0.750000                  0.125000                   2   
+42                  2.166667                  0.666667                   2   
+43                 -0.476190                 -0.285714                   0   
+44                 -1.444444                  0.333333                   2   
+45                  2.026316                 -0.315789                   2   
+46                  0.000000                 -0.500000                   2   
+47                 -1.428571                 -0.142857                   2   
+48                  0.500000                  0.450000                   4   
+49                 -0.750000                 -0.500000                   0   
+50                  0.333333                 -0.444444                   0   
+51                  1.714286                  1.142857                   0   
+52                 -0.800000                 -0.400000                   4   
+53                 -0.250000                  0.250000                   4   
+54                 -0.230769                  0.846154                   0   
+55                  0.500000                  0.625000                   0   
+56                  0.750000                 -0.250000                   0   
+57                  0.722222                  0.055556                   0   
+58                  0.125000                  1.250000                   0   
+59                  0.142857                 -0.428571                   0   
+60                  1.444444                  0.444444                   2   
+61                  1.500000                  0.250000                   0   
+62                  1.200000                 -0.800000                   0   
+63                  2.571429                 -0.142857                   0   
+64                 -6.333333                 -1.000000                   2   
+65                 -3.666667                  1.000000                   2   
+66                  0.666667                  0.666667                   2   
+67                  0.000000                  0.000000                   2   
+68                 -1.166667                 -0.166667                   0   
+69                 -1.666667                 -0.333333                   0   
+70                  0.571429                  0.285714                   0   
+71                 -0.142857                  0.000000                   0   
+72                  0.720000                 -0.240000                   6   
+73                  0.454545                  1.272727                   0   
+74                  2.200000                  0.400000                   0   
+75                  0.000000                  0.000000                   0   
+76                 -2.666667                  3.333333                   0   
+77                  1.666667                  1.000000                   0   
+78                  2.888889                  1.111111                   0   
+79                  3.000000                  0.200000                   0   
+80                  1.666667                  0.666667                   0   
+81                  0.111111                  0.222222                   4   
+82                 -1.333333                  0.333333                   0   
+83                 -4.800000                 -0.200000                   0   
+84                  0.384615                 -0.538462                   2   
+85                  1.800000                 -0.400000                   2   
+86                  0.333333                  0.166667                   0   
+87                  0.916667                  0.500000                   0   
+88                  1.333333                 -0.166667                   2   
+89                 -0.666667                  0.000000                   2   
+90                  2.000000                  0.833333                   0   
+91                 -1.185185                 -0.296296                   0   
+92                 -0.272727                 -0.181818                   0   
+93                  0.666667                  0.666667                   0   
+94                  0.500000                  0.500000                   0   
+95                 -0.600000                 -0.300000                   0   
+96                  4.000000                  0.333333                   0   
+97                 -1.153846                  0.153846                   0   
+98                  1.666667                  0.666667                   0   
+99                 -0.500000                  0.000000                   0   
+100                -0.608696                  0.000000                   2   
+101                -0.500000                  0.750000                   0   
+102                 2.071429                  0.428571                   0   
+103                 1.285714                  0.000000                   0   
+104                 1.333333                  1.166667                   0   
+105                 3.411765                 -0.235294                   4   
+106                 0.545455                 -0.090909                   0   
+107                -0.416667                  0.500000                   0   
+108                 5.000000                  0.250000                   0   
+109                 2.055556                  0.055556                   0   
+110                 1.000000                  0.250000                   0   
+111                -2.000000                  0.666667                   0   
+112                -0.535714                 -0.178571                   0   
+113                -0.625000                  0.375000                   0   
+114                 1.444444                  0.666667                   4   
+115                -1.090909                  0.090909                   0   
+116                -0.500000                 -0.250000                   0   
+117                 0.000000                  0.000000                   2   
+118                 1.250000                  0.250000                   0   
+119                 3.200000                  1.800000                   0   
+120                -2.500000                  0.250000                   0   
+121                -0.750000                  0.250000                   0   
+122                 1.296296                  0.185185                   2   
+123                 1.250000                  0.500000                   2   
+124                -0.600000                 -0.200000                   2   
+125                 1.000000                 -0.166667                   0   
+126                -0.333333                  0.000000                   4   
+127                 0.500000                  0.100000                   4   
+128                 0.103448                 -0.068966                   0   
+129                 2.454545                  0.727273                   2   
+130                 0.800000                  0.200000                   0   
+131                -1.833333                 -0.250000                   2   
+132                 0.272727                 -0.181818                   0   
+133                -0.631579                  0.263158                   2   
+134                -0.739130                 -0.260870                   0   
+135                -1.000000                  0.000000                   4   
+136                -2.000000                 -0.555556                   0   
+137                 0.083333                 -0.166667                   2   
+138                -0.625000                 -0.062500                   0   
+139                -1.000000                 -0.666667                   2   
+140                -0.666667                 -0.166667                   0   
+141                -0.333333                  0.000000                   4   
+142                -0.571429                  0.571429                   0   
+143                 3.000000                  0.333333                   4   
+144                -0.833333                 -0.500000                   0   
+145                 0.833333                  1.333333                   4   
+146                -0.214286                 -0.071429                   0   
+147                 0.818182                  0.363636                   6   
+148                 3.250000                  0.125000                   0   
+149                -0.333333                  0.000000                   4   
+150                 2.000000                  1.000000                   0   
+151                -0.687500                 -0.125000                   2   
+152                -1.307692                 -0.153846                   0   
+153                 0.625000                  0.125000                   8   
+154                -1.333333                  0.166667                   0   
+155                -0.200000                  0.400000                   2   
+156                -1.833333                  0.000000                   0   
+157                 1.181818                  0.272727                   2   
+158                 1.000000                  1.000000                   2   
+159                 0.500000                 -0.375000                   0   
+160                -0.500000                 -0.142857                   0   
+161                -0.428571                  0.000000                   8   
+162                 0.250000                  0.250000                   0   
+163                 4.666667                  0.333333                   2   
+164                 1.000000                 -0.666667                   0   
+165                -0.285714                  0.357143                   8   
+166                -0.666667                  0.000000                   0   
+167                -0.333333                  0.166667                   4   
+168                -1.666667                  0.416667                   0   
+169                 2.375000                  0.000000                   2   
+170                -0.571429                 -0.142857                   0   
+171                -1.476190                 -0.428571                   2   
+172                 0.000000                  0.250000                   0   
+173                 0.846154                 -0.230769                   2   
+174                 2.888889                  1.111111                   0   
+175                -2.285714                 -1.000000                   2   
+176                 0.000000                 -0.333333                   0   
+177                -2.000000                  0.200000                   2   
+178                -2.000000                  0.666667                   4   
+179                 0.600000                 -0.200000                   8   
+180                 1.333333                  0.166667                   0   
+181                 1.666667                  0.000000                   2   
+182                 0.500000                  0.200000                   0   
+183                -1.125000                  0.187500                   2   
+184                -0.933333                  0.000000                   0   
+185                -0.714286                 -0.142857                   6   
+186                 0.000000                 -0.125000                   0   
+187                -0.250000                  0.000000                   2   
+188                -0.500000                  0.300000                   0   
+189                 1.500000                 -0.750000                   6   
+190                 0.285714                  0.142857                   0   
+191                 0.625000                  0.000000                   6   
+192                 1.444444                  0.000000                   0   
+193                -0.350000                 -0.050000                   4   
+194                 0.000000                  0.363636                   0   
+195                 2.181818                  0.181818                   2   
+196                 1.000000                  0.000000                   0   
+197                 0.214286                  0.428571                   4   
+198                 2.200000                  0.400000                   0   
+199                -0.250000                  0.666667                   2   
+200                 2.250000                  0.250000                   0   
+201                -3.333333                 -0.333333                   6   
+202                 2.333333                 -0.666667                   0   
+203                -0.500000                  0.250000                   2   
+204                -0.571429                  0.250000                   0   
+205                -0.285714                  0.428571                   4   
+206                -0.708333                  0.333333                   0   
+207                -0.461538                  0.230769                   4   
+208                -0.900000                  0.000000                   0   
+209                -1.137931                  0.068966                   2   
+210                 1.500000                  0.750000                   0   
+211                -2.000000                 -0.500000                   6   
+212                 1.666667                  0.833333                   0   
+213                 1.375000                  0.875000                   4   
+214                -0.800000                  0.000000                   0   
+215                -1.500000                  0.250000                   6   
+216                -1.000000                 -0.333333                   0   
+217                -1.166667                  0.166667                   6   
+218                -0.214286                 -0.071429                   0   
+219                 2.000000                  0.333333                   6   
+220                -0.750000                  0.250000                   0   
+221                 0.526316                  0.631579                   2   
+222                 1.600000                  0.000000                   0   
+223                -0.300000                  0.400000                   2   
+224                -0.166667                  0.000000                   0   
+225                 0.483871                 -0.032258                   2   
+226                 0.333333                  0.444444                   0   
+227                 0.400000                  0.000000                   2   
+228                -0.500000                  0.818182                   0   
+229                -0.150000                  0.400000                   2   
+230                -0.173913                 -0.347826                   0   
+231                 1.944444                  0.500000                   4   
+232                 1.125000                  0.250000                   0   
+233                -1.000000                 -0.500000                   4   
+234                -1.285714                 -0.428571                   0   
+235                -0.500000                 -0.500000                   4   
+236                -0.800000                 -0.200000                   0   
+237                 0.000000                 -0.600000                   6   
+238                 3.200000                  1.800000                   0   
+239                 0.105263                  0.473684                   4   
+240                 0.250000                 -0.500000                   0   
+241                -0.272727                  0.181818                   6   
+242                 0.250000                  1.250000                   0   
+243                -0.454545                  0.272727                   4   
+244                -0.400000                  0.300000                   0   
+245                 0.147059                  0.529412                   2   
+246                -0.677419                 -0.129032                   0   
+247                -1.700000                 -0.300000                   4   
+248                -1.000000                  0.000000                   0   
+249                 0.000000                  0.000000                   8   
+250                 1.666667                  0.333333                   0   
+251                -0.555556                  0.777778                   2   
+252                 0.000000                  0.250000                   0   
+253                -0.285714                 -0.285714                   6   
+254                -2.000000                  0.200000                   2   
+255                 0.000000                 -0.545455                   8   
+256                 0.750000                  0.125000                   0   
+257                -2.000000                  0.000000                   8   
+258                 0.200000                  0.200000                   0   
+259                -1.125000                 -0.250000                   4   
+260                 0.400000                  0.000000                   2   
+261                -6.333333                 -1.000000                   2   
 
-   fighter_age_deviation  fighter_titlefights  fighter_titlewins  \
-0                   2092                    0                  0   
-1                   1860                    4                  2   
+     fighter_age_deviation  fighter_opp_avg_elo  fighter_elo  \
+0                     2403          1118.596924  1351.096422   
+1                     3305          1156.348238  1293.503448   
+2                     3011          1052.828417  1194.318155   
+3                     2074          1058.047123  1112.892516   
+4                     1234          1131.893426  1188.153450   
+5                     5415          1147.189358  1197.278734   
+6                     1078          1013.893058  1120.097264   
+7                     5287          1122.487080  1129.796793   
+8                     4866          1104.131433  1159.718493   
+9                     1456          1055.759327  1168.256393   
+10                    3922          1020.482586  1135.282206   
+11                    3781          1023.477797  1107.791735   
+12                    3734          1055.048589  1097.091997   
+13                    1285          1002.981902  1087.570484   
+14                    2438          1114.080718  1103.251466   
+15                    3969          1053.572247  1030.695193   
+16                    1623          1021.347386  1036.612301   
+17                     168           983.640296  1066.130181   
+18                    2288           983.112743  1050.130093   
+19                    2692           998.583585  1091.019620   
+20                    2955          1042.291424  1031.686874   
+21                    2700          1042.524202   981.428902   
+22                     154          1072.808819  1189.236221   
+23                    2556          1032.613055  1134.740726   
+24                    3095          1008.906601  1102.952347   
+25                    3689          1101.470134  1163.964930   
+26                    1120          1032.536305  1095.541305   
+27                    1490          1022.252614  1051.849143   
+28                    4185          1050.955498  1044.547195   
+29                     549           981.890695  1020.146314   
+30                    3083          1076.403311  1134.366630   
+31                    2701           991.605431  1129.736514   
+32                     829          1006.510751  1091.379309   
+33                    3350          1021.882226   916.273745   
+34                     562           986.121710  1109.314662   
+35                    1702           986.289663  1049.550196   
+36                     620          1070.358959  1161.831356   
+37                    3328          1105.813787  1279.458818   
+38                    1153          1045.063069  1083.983743   
+39                    4417          1086.373478  1162.004102   
+40                    3693          1120.627174  1197.010946   
+41                    4065          1108.522059  1144.493004   
+42                    1800          1102.181740  1143.355662   
+43                    2364          1159.456467  1150.142673   
+44                    3425          1021.876913  1012.904070   
+45                    5978          1090.731167  1058.195198   
+46                    2125          1022.256601   953.634771   
+47                    1885          1016.586281  1015.073811   
+48                    3991          1035.914412  1053.620955   
+49                    2974           962.429286  1042.447943   
+50                    3436          1040.293095  1139.075582   
+51                    1649          1018.324396  1129.241784   
+52                    1563          1035.924670   932.180510   
+53                     708          1044.264935   975.949757   
+54                     915          1063.235713  1235.204883   
+55                    3896          1063.319124  1123.801404   
+56                     352          1014.861472  1119.324225   
+57                    1446          1036.841436  1128.293055   
+58                     475           983.279527  1033.212969   
+59                    1005          1009.656603  1076.616278   
+60                    1769          1061.529433  1084.613492   
+61                    1973           960.395085  1101.823864   
+62                    1242           992.200168  1083.929047   
+63                    2048          1027.892505  1149.833043   
+64                    1186          1007.638024   972.051938   
+65                    3942          1001.855420  1025.171511   
+66                    3073          1055.054356   984.136364   
+67                    1961          1019.605144  1001.644385   
+68                    4046          1182.723626  1181.997115   
+69                    1707          1163.817647  1130.235636   
+70                    1934          1095.804512  1170.225117   
+71                    2176          1117.831759  1197.818265   
+72                    2512          1077.483651  1108.891374   
+73                    1889          1024.369428  1117.033884   
+74                     995          1030.592255  1103.255552   
+75                    2892          1033.760093  1104.702076   
+76                    1320          1083.310800   995.295308   
+77                    2783          1015.662303  1104.627713   
+78                    1842           999.380789  1088.059080   
+79                    1225          1006.586911  1094.639222   
+80                    2065           989.038746  1086.739411   
+81                     928          1021.396635  1032.244493   
+82                    1527           971.058869  1082.057219   
+83                    2330           998.366273  1023.206501   
+84                    3521          1060.426156  1078.617639   
+85                    4797          1064.932860  1100.398554   
+86                    2365          1014.345317  1057.367926   
+87                    3940          1017.399747  1132.720850   
+88                    3263          1019.538203   961.723519   
+89                     314          1028.832103   977.901862   
+90                    2519          1021.629765  1167.932140   
+91                    4926          1105.129438  1171.761182   
+92                    4967          1042.269551  1118.906013   
+93                     349          1016.517861  1094.141644   
+94                    2007          1015.606125  1089.239276   
+95                    2336          1017.709836  1043.327145   
+96                    2474          1035.311022  1099.513036   
+97                    4198          1034.669585  1163.224892   
+98                     320           977.776016  1083.625426   
+99                    1594          1018.787976  1016.017771   
+100                   4882          1023.374633   992.281570   
+101                    534          1012.551095  1064.391339   
+102                   2305          1116.874272  1353.470192   
+103                   3575          1173.842123  1359.781538   
+104                   1234          1070.821429  1193.880412   
+105                   3970          1176.903291  1341.612645   
+106                   2023          1064.535453  1234.023830   
+107                   2241          1076.719269  1140.513865   
+108                    859           991.222073  1111.224372   
+109                   4185          1050.955498  1044.547195   
+110                    866          1006.207321  1116.396473   
+111                   3970          1067.639591  1046.751589   
+112                   4473          1114.938116  1131.045054   
+113                   1602          1057.283088  1171.799983   
+114                   4127          1048.172997  1029.841464   
+115                   3456          1066.976801  1078.535615   
+116                   1427          1025.019026  1176.821559   
+117                   1597          1018.419649  1122.825271   
+118                   1329          1039.044218  1137.159835   
+119                   2631           996.866624  1136.341676   
+120                    118          1009.935837  1063.103743   
+121                    890           979.409355  1107.221791   
+122                   4955          1055.030873  1085.934817   
+123                   2891           998.692316   995.283637   
+124                   2556          1032.613055  1134.740726   
+125                   2103          1002.767635  1081.426512   
+126                   1606          1027.400277   971.818445   
+127                   3213           995.437809   908.384953   
+128                   4417          1086.373478  1162.004102   
+129                   1696          1054.197409  1190.917205   
+130                    756           990.335342  1088.318207   
+131                   4811          1011.706382   991.125217   
+132                   1630          1041.799647  1102.180315   
+133                   2980          1037.049780  1122.111753   
+134                   3646          1032.478576  1146.571176   
+135                   3471          1065.063722  1003.174386   
+136                   3413          1036.700824  1068.701441   
+137                   2203          1103.044590  1038.242543   
+138                   4746          1045.949591  1078.153332   
+139                    839           998.801758   951.579129   
+140                   2665          1023.769437  1053.649122   
+141                     96          1044.627501   976.397691   
+142                   3673           998.556935  1036.251951   
+143                   1890          1002.891001   965.977618   
+144                   1936           987.892842  1005.599913   
+145                   2065          1006.587050   945.106991   
+146                   2205          1002.493606  1080.306526   
+147                   1337          1040.993116   991.539092   
+148                   2849          1111.405880  1168.715949   
+149                   2034          1097.081897  1117.402751   
+150                   1456          1055.759327  1168.256393   
+151                   2611          1081.535154  1109.427084   
+152                   4171          1054.892173  1126.881867   
+153                   4649          1060.317270   986.172592   
+154                   1469           992.336335  1099.223714   
+155                    588          1018.051711   975.724631   
+156                   1037          1032.740607  1063.668906   
+157                   1155          1016.347823  1047.124737   
+158                   1873          1044.771909   984.779446   
+159                   1644           995.809077  1094.157047   
+160                   5335          1051.069117  1063.751618   
+161                   1636          1070.155869   945.288188   
+162                   1597          1021.455040   970.647571   
+163                   1130          1025.641797  1007.525876   
+164                   3468           957.514889  1078.446511   
+165                   3626          1015.432913   912.241795   
+166                   1502           986.965935  1026.291148   
+167                   2325          1001.067443   939.749364   
+168                   1870          1063.399803  1176.389773   
+169                   3851          1090.873936  1228.936401   
+170                    742          1050.352403  1204.283198   
+171                   2147          1083.865677  1149.234223   
+172                    288           989.603241  1056.709471   
+173                   3164          1029.373227   999.046749   
+174                   1842           999.380789  1088.059080   
+175                   2117          1011.489835   980.401761   
+176                   2698          1013.323431  1075.383214   
+177                   1711           994.143717   975.178592   
+178                    969          1009.052305   944.285131   
+179                    839          1014.971518   900.603485   
+180                   1747           996.776111  1157.180432   
+181                   3492          1023.757872  1055.788691   
+182                   2757          1083.537891  1248.695706   
+183                   3342          1175.226938  1273.603601   
+184                   3613          1134.318155  1227.631962   
+185                   2009          1090.367528  1085.880881   
+186                   1737           996.749943  1040.229623   
+187                   3963          1010.386189   973.481642   
+188                   2555          1013.105308  1045.403458   
+189                    827          1044.466105   949.944685   
+190                   2869          1009.865803  1140.609552   
+191                   1743          1057.058397  1028.336813   
+192                   1490          1022.252614  1051.849143   
+193                   4883          1044.461419  1039.400659   
+194                   3071          1161.525516  1246.210450   
+195                   1323          1060.318567  1118.363039   
+196                   3125          1057.712537  1186.257862   
+197                   2262          1111.736591  1148.802454   
+198                    995          1030.592255  1103.255552   
+199                   1265          1057.484111  1071.839886   
+200                   2000           989.163186  1006.205306   
+201                   1094          1042.533461   920.986789   
+202                    402           985.972978  1085.901431   
+203                   1052          1005.950307   997.318624   
+204                   2463          1138.198852  1335.695200   
+205                   4186          1153.266568  1118.720344   
+206                   3689          1101.470134  1163.964930   
+207                   2565          1070.518521  1089.093703   
+208                   3659          1048.854822  1174.248709   
+209                   3725          1025.392931  1119.507956   
+210                   1258           982.736506  1108.194476   
+211                   2333          1012.094563   940.115530   
+212                    245          1062.592887  1187.209916   
+213                   1897          1064.399351  1072.439200   
+214                   2525           968.120909  1066.260887   
+215                   2298          1042.387341   949.638631   
+216                   1287          1034.739563  1089.203589   
+217                   3531          1030.007063   993.097111   
+218                   2205          1002.493606  1080.306526   
+219                    766           998.881010   910.690713   
+220                   1401          1062.863107  1241.436532   
+221                   3312          1121.441378  1305.078882   
+222                   3299          1108.483478  1202.824314   
+223                   4113          1062.954507  1126.988664   
+224                    281          1043.835552  1182.489664   
+225                   4040          1104.133812  1202.612988   
+226                   1881          1010.825521  1141.102254   
+227                   1474          1020.294762  1009.003853   
+228                   2092          1069.427894  1231.453240   
+229                   4370          1109.417115  1119.124503   
+230                   3900          1065.731279  1138.633045   
+231                   5182          1209.677333  1150.333610   
+232                   2381          1024.168274  1067.330093   
+233                   3752          1038.798738   953.287687   
+234                   4369          1043.737368   930.203542   
+235                   2438          1025.294839   956.016090   
+236                   2441           988.774763  1018.000040   
+237                   4001          1018.789293   920.028166   
+238                   2631           996.866624  1136.341676   
+239                   3903          1042.229602  1027.102363   
+240                    568          1000.097867  1113.256565   
+241                   3482          1039.158165   977.377652   
+242                   1727           988.975887  1110.686546   
+243                   2543          1015.810655  1016.421214   
+244                   2456          1088.164884  1241.620468   
+245                   5044          1150.075494  1199.022152   
+246                   5403          1079.731752  1137.302103   
+247                   2604          1040.865140  1052.103146   
+248                   3095          1008.906601  1102.952347   
+249                   3249          1110.372714  1028.184257   
+250                   1239           983.362960  1030.894929   
+251                   2256           994.085759   973.267759   
+252                   2404          1005.505863  1002.186594   
+253                   1404          1003.342790   954.539686   
+254                   1711           994.143717   975.178592   
+255                   3641          1012.765940   891.737733   
+256                   1433          1016.216773  1006.983353   
+257                   3406          1031.111418   895.574252   
+258                   2472           979.666720  1128.506817   
+259                   3338          1001.418814   983.223293   
+260                   1474          1020.294762  1009.003853   
+261                   1186          1007.638024   972.051938   
 
-   fighter_opp_avg_elo  fighter_elo  opponent_kd_differential  \
-0          1041.024027  1134.215039                  0.785714   
-1          1071.724266  1092.497186                  0.500000   
+     opponent_kd_differential  opponent_str_differential  \
+0                   -0.200000                  17.333333   
+1                    0.250000                   6.562500   
+2                    0.142857                   5.285714   
+3                    0.230769                   6.692308   
+4                    0.263158                  17.315789   
+5                    0.200000                  14.800000   
+6                   -0.090909                   8.363636   
+7                    0.250000                   5.500000   
+8                    0.000000                   9.000000   
+9                    0.692308                  -8.153846   
+10                   0.153846                  18.000000   
+11                   0.153846                   4.692308   
+12                   0.125000                  19.000000   
+13                   0.166667                 -12.416667   
+14                   0.066667                 -10.533333   
+15                   0.230769                  -9.153846   
+16                   0.000000                  35.200000   
+17                   0.200000                  -2.900000   
+18                   0.000000                   2.000000   
+19                  -0.250000                   0.750000   
+20                   0.333333                   0.000000   
+21                   0.000000                  -3.400000   
+22                   0.400000                  23.600000   
+23                   0.583333                   9.916667   
+24                   0.083333                 -12.500000   
+25                   0.785714                  -3.285714   
+26                  -0.111111                   0.555556   
+27                   0.363636                   6.090909   
+28                   0.400000                  19.600000   
+29                   0.111111                   9.000000   
+30                   0.111111                  14.222222   
+31                   0.000000                   1.222222   
+32                  -1.666667                  -8.333333   
+33                  -0.666667                   6.000000   
+34                   0.000000                  13.250000   
+35                   0.000000                  21.500000   
+36                   0.090909                  10.772727   
+37                   0.222222                  26.000000   
+38                   0.034483                  24.413793   
+39                   0.363636                   9.090909   
+40                   0.125000                  25.562500   
+41                   0.714286                  -4.857143   
+42                   0.142857                   4.380952   
+43                   0.166667                   3.833333   
+44                   0.000000                  -4.605263   
+45                  -0.111111                 -10.333333   
+46                   0.714286                  -1.714286   
+47                  -0.166667                  -3.166667   
+48                   0.250000                   3.500000   
+49                  -0.150000                  -6.300000   
+50                  -0.142857                   7.857143   
+51                   0.111111                  12.111111   
+52                  -0.125000                  -9.375000   
+53                   0.200000                 -24.800000   
+54                  -0.125000                  -2.125000   
+55                   0.153846                   0.538462   
+56                   0.055556                  10.444444   
+57                   0.750000                  18.500000   
+58                   0.142857                   5.285714   
+59                  -0.625000                  15.375000   
+60                   0.500000                   1.750000   
+61                  -0.222222                  16.444444   
+62                   0.000000                  24.714286   
+63                   0.200000                   6.800000   
+64                   1.000000                   3.000000   
+65                   0.000000                   5.000000   
+66                  -0.250000                  -9.000000   
+67                   0.000000                 -22.000000   
+68                   0.666667                   5.000000   
+69                   0.166667                  16.333333   
+70                   1.000000                  10.428571   
+71                   0.428571                  11.000000   
+72                   0.090909                  -9.909091   
+73                  -0.040000                  12.280000   
+74                   0.200000                   1.300000   
+75                   0.600000                   2.600000   
+76                   0.166667                   5.500000   
+77                   0.000000                 -25.000000   
+78                  -0.200000                  -4.000000   
+79                   0.111111                   6.666667   
+80                  -0.222222                   0.222222   
+81                   0.666667                  29.000000   
+82                   1.000000                  11.200000   
+83                   0.000000                   6.000000   
+84                  -0.200000                  -5.000000   
+85                  -0.153846                  23.461538   
+86                   0.250000                   2.166667   
+87                   0.500000                  -6.666667   
+88                   0.333333                 -21.333333   
+89                   0.000000                  13.166667   
+90                   0.185185                   0.148148   
+91                   0.000000                  17.833333   
+92                   0.000000                   2.666667   
+93                  -0.363636                   7.545455   
+94                   0.000000                  -4.100000   
+95                  -0.333333                  -3.166667   
+96                  -0.230769                  17.076923   
+97                   0.666667                  25.000000   
+98                  -0.500000                  -6.666667   
+99                   0.000000                   6.333333   
+100                  0.500000                  18.750000   
+101                  0.043478                   7.000000   
+102                  0.357143                  49.785714   
+103                  0.071429                  11.071429   
+104                  0.529412                  30.117647   
+105                  0.333333                  16.666667   
+106                  0.000000                   9.250000   
+107                  0.454545                  17.363636   
+108                  0.111111                   9.000000   
+109                  0.250000                   3.000000   
+110                  0.000000                  40.333333   
+111                  0.000000                  49.500000   
+112                  0.250000                  16.875000   
+113                  0.321429                  -1.428571   
+114                  0.000000                  -4.272727   
+115                  0.000000                 -12.888889   
+116                  0.714286                   5.285714   
+117                  0.250000                  11.083333   
+118                  0.200000                   8.200000   
+119                  0.250000                  17.125000   
+120                  0.500000                  33.250000   
+121                  0.000000                  14.250000   
+122                 -0.500000                   6.250000   
+123                 -0.148148                   2.148148   
+124                  0.166667                 -20.666667   
+125                  0.400000                  23.600000   
+126                  0.100000                 -10.200000   
+127                  0.000000                 -26.000000   
+128                  0.000000                   7.818182   
+129                  0.034483                  24.413793   
+130                  0.583333                  -4.750000   
+131                  0.400000                   6.600000   
+132                  0.052632                   9.947368   
+133                  0.272727                   5.545455   
+134                  0.000000                  -1.700000   
+135                  0.304348                   0.913043   
+136                  0.083333                  -2.583333   
+137                  0.222222                  22.444444   
+138                  0.166667                   2.000000   
+139                 -0.062500                   4.750000   
+140                  0.666667                 -29.000000   
+141                  0.166667                 -16.833333   
+142                  0.000000                  -3.333333   
+143                  0.000000                 -21.428571   
+144                 -0.333333                  -2.500000   
+145                 -0.166667                  -2.666667   
+146                  0.090909                  -6.090909   
+147                  0.000000                  -6.571429   
+148                  0.111111                  -0.888889   
+149                 -0.375000                  -2.375000   
+150                  0.250000                   3.000000   
+151                  0.000000                   9.000000   
+152                 -0.062500                  -8.687500   
+153                  0.153846                  26.461538   
+154                  0.200000                 -12.200000   
+155                  0.166667                   6.333333   
+156                  0.181818                  -5.272727   
+157                  0.333333                  18.500000   
+158                  0.125000                   9.750000   
+159                  0.000000                   5.250000   
+160                 -0.285714                 -25.857143   
+161                  0.250000                  14.678571   
+162                 -0.166667                  15.000000   
+163                  0.250000                  -5.625000   
+164                  0.142857                   7.714286   
+165                  0.333333                 -12.333333   
+166                 -0.333333                   6.000000   
+167                 -0.333333                 -16.000000   
+168                  0.000000                  21.062500   
+169                  0.083333                  10.833333   
+170                  0.238095                  12.952381   
+171                  0.714286                  19.000000   
+172                  0.000000                   0.230769   
+173                  0.250000                   6.250000   
+174                  0.000000                  -4.428571   
+175                  0.111111                   6.666667   
+176                 -0.200000                   3.200000   
+177                  0.666667                   6.500000   
+178                  0.200000                 -21.400000   
+179                  0.333333                 -18.666667   
+180                  0.000000                 -13.000000   
+181                 -0.166667                  19.833333   
+182                  0.750000                  15.000000   
+183                  0.150000                  23.350000   
+184                  0.142857                  -6.928571   
+185                  0.133333                  27.733333   
+186                 -0.500000                   3.000000   
+187                  0.375000                  -3.875000   
+188                 -0.250000                  -7.000000   
+189                  0.300000                   3.700000   
+190                  0.125000                  -4.000000   
+191                  0.571429                  25.000000   
+192                  0.100000                  16.600000   
+193                 -0.111111                   0.555556   
+194                 -0.181818                  -2.000000   
+195                  0.181818                  46.727273   
+196                  0.285714                   2.071429   
+197                  0.166667                  35.333333   
+198                  0.083333                 -20.416667   
+199                  0.600000                   2.600000   
+200                  0.000000                 -37.666667   
+201                  0.000000                  -8.500000   
+202                  0.250000                  24.000000   
+203                  0.000000                  32.666667   
+204                 -0.142857                  -7.285714   
+205                  0.357143                  38.464286   
+206                  0.230769                  -2.615385   
+207                  0.083333                 -12.500000   
+208                  0.000000                  14.586207   
+209                  0.500000                   8.400000   
+210                  0.250000                 -10.500000   
+211                  1.000000                  13.000000   
+212                  0.375000                  11.250000   
+213                  0.000000                  23.666667   
+214                 -0.500000                  19.000000   
+215                  0.400000                  30.000000   
+216                  0.333333                   7.666667   
+217                  0.583333                   6.250000   
+218                 -0.333333                 -15.000000   
+219                  0.000000                  -6.571429   
+220                 -0.263158                  30.631579   
+221                  0.666667                  32.750000   
+222                  0.400000                 -10.300000   
+223                  0.200000                  31.100000   
+224                 -0.193548                  13.354839   
+225                  0.500000                  34.666667   
+226                  0.000000                   2.200000   
+227                 -0.111111                   8.888889   
+228                  0.350000                  -7.650000   
+229                  0.545455                 -10.090909   
+230                 -0.055556                  -2.888889   
+231                 -0.130435                   4.608696   
+232                  0.500000                  -4.500000   
+233                  0.250000                   2.250000   
+234                  0.000000                   5.625000   
+235                  0.142857                   4.428571   
+236                  0.200000                   0.200000   
+237                  0.000000                   3.400000   
+238                 -0.052632                  -1.631579   
+239                  0.200000                   8.200000   
+240                  0.090909                  17.090909   
+241                  0.500000                  33.000000   
+242                 -0.181818                  -3.363636   
+243                  0.250000                   0.000000   
+244                  0.117647                   4.852941   
+245                  0.300000                   0.150000   
+246                  0.000000                  28.000000   
+247                  0.129032                   9.967742   
+248                  0.250000                   4.500000   
+249                  0.785714                  -3.285714   
+250                  0.000000                   4.000000   
+251                  0.000000                   1.333333   
+252                  0.000000                  16.428571   
+253                  0.250000                 -10.750000   
+254                 -0.272727                 -10.272727   
+255                 -0.200000                   3.200000   
+256                 -0.250000                 -14.750000   
+257                 -0.125000                   5.625000   
+258                  0.125000                  -2.500000   
+259                  0.400000                   2.200000   
+260                  0.000000                   5.000000   
+261                  0.000000                   2.200000   
 
-   opponent_str_differential  opponent_td_differential  \
-0                  15.142857                  0.285714   
-1                 -10.000000                 -0.458333   
+     opponent_td_differential  opponent_sub_differential  opponent_losestreak  \
+0                    4.000000                  -0.066667                    0   
+1                   -0.437500                   0.250000                    0   
+2                   -2.142857                   0.428571                    0   
+3                   -0.461538                   0.769231                    0   
+4                   -0.736842                  -0.210526                    0   
+5                    0.800000                   0.800000                    0   
+6                   -0.500000                   0.409091                   12   
+7                   -1.250000                   1.250000                    0   
+8                    2.000000                   1.000000                    0   
+9                    0.230769                   0.000000                    4   
+10                  -1.000000                  -0.153846                    0   
+11                  -0.538462                  -0.076923                    0   
+12                   0.625000                   0.000000                    0   
+13                  -1.166667                   0.250000                    2   
+14                   0.066667                  -0.066667                    4   
+15                   0.538462                  -0.076923                    0   
+16                   0.800000                   0.600000                    2   
+17                  -0.400000                  -0.200000                    0   
+18                   3.375000                  -0.750000                    0   
+19                   1.250000                   0.250000                    0   
+20                  -1.000000                  -0.333333                    2   
+21                   0.600000                  -0.150000                    2   
+22                  -0.600000                  -0.200000                    2   
+23                  -0.750000                   0.166667                    0   
+24                  -0.708333                   0.333333                    0   
+25                  -1.000000                   0.000000                    0   
+26                   1.444444                   0.000000                    0   
+27                  -0.363636                  -0.090909                    0   
+28                  -0.600000                  -0.200000                    2   
+29                   2.055556                   0.055556                    0   
+30                   0.111111                   0.777778                    0   
+31                   0.777778                   0.444444                    4   
+32                   0.000000                   0.000000                    6   
+33                   1.000000                   1.666667                    0   
+34                  -1.500000                  -0.500000                    0   
+35                   1.250000                   1.000000                    0   
+36                   0.772727                   0.045455                    2   
+37                   2.000000                   0.000000                    0   
+38                   0.103448                  -0.068966                    0   
+39                  -0.454545                   0.363636                    4   
+40                  -0.750000                   0.125000                    2   
+41                  -0.500000                   1.214286                    2   
+42                  -0.476190                  -0.285714                    0   
+43                   2.166667                   0.666667                    2   
+44                   2.026316                  -0.315789                    2   
+45                  -1.444444                   0.333333                    2   
+46                  -1.428571                  -0.142857                    2   
+47                   0.000000                  -0.500000                    2   
+48                  -0.750000                  -0.500000                    0   
+49                   0.500000                   0.450000                    4   
+50                   1.714286                   1.142857                    0   
+51                   0.333333                  -0.444444                    0   
+52                  -0.250000                   0.250000                    4   
+53                  -0.800000                  -0.400000                    4   
+54                   0.500000                   0.625000                    0   
+55                  -0.230769                   0.846154                    0   
+56                   0.722222                   0.055556                    0   
+57                   0.750000                  -0.250000                    0   
+58                   0.142857                  -0.428571                    0   
+59                   0.125000                   1.250000                    0   
+60                   1.500000                   0.250000                    0   
+61                   1.444444                   0.444444                    2   
+62                   2.571429                  -0.142857                    0   
+63                   1.200000                  -0.800000                    0   
+64                  -3.666667                   1.000000                    2   
+65                  -6.333333                  -1.000000                    2   
+66                   0.000000                   0.000000                    2   
+67                   0.666667                   0.666667                    2   
+68                  -1.666667                  -0.333333                    0   
+69                  -1.166667                  -0.166667                    0   
+70                  -0.142857                   0.000000                    0   
+71                   0.571429                   0.285714                    0   
+72                   0.454545                   1.272727                    0   
+73                   0.720000                  -0.240000                    6   
+74                   0.000000                   0.000000                    0   
+75                   2.200000                   0.400000                    0   
+76                   1.666667                   1.000000                    0   
+77                  -2.666667                   3.333333                    0   
+78                   3.000000                   0.200000                    0   
+79                   2.888889                   1.111111                    0   
+80                   0.111111                   0.222222                    4   
+81                   1.666667                   0.666667                    0   
+82                  -4.800000                  -0.200000                    0   
+83                  -1.333333                   0.333333                    0   
+84                   1.800000                  -0.400000                    2   
+85                   0.384615                  -0.538462                    2   
+86                   0.916667                   0.500000                    0   
+87                   0.333333                   0.166667                    0   
+88                  -0.666667                   0.000000                    2   
+89                   1.333333                  -0.166667                    2   
+90                  -1.185185                  -0.296296                    0   
+91                   2.000000                   0.833333                    0   
+92                   0.666667                   0.666667                    0   
+93                  -0.272727                  -0.181818                    0   
+94                  -0.600000                  -0.300000                    0   
+95                   0.500000                   0.500000                    0   
+96                  -1.153846                   0.153846                    0   
+97                   4.000000                   0.333333                    0   
+98                  -0.500000                   0.000000                    0   
+99                   1.666667                   0.666667                    0   
+100                 -0.500000                   0.750000                    0   
+101                 -0.608696                   0.000000                    2   
+102                  1.285714                   0.000000                    0   
+103                  2.071429                   0.428571                    0   
+104                  3.411765                  -0.235294                    4   
+105                  1.333333                   1.166667                    0   
+106                 -0.416667                   0.500000                    0   
+107                  0.545455                  -0.090909                    0   
+108                  2.055556                   0.055556                    0   
+109                  5.000000                   0.250000                    0   
+110                 -2.000000                   0.666667                    0   
+111                  1.000000                   0.250000                    0   
+112                 -0.625000                   0.375000                    0   
+113                 -0.535714                  -0.178571                    0   
+114                 -1.090909                   0.090909                    0   
+115                  1.444444                   0.666667                    4   
+116                  0.000000                   0.000000                    2   
+117                 -0.500000                  -0.250000                    0   
+118                  3.200000                   1.800000                    0   
+119                  1.250000                   0.250000                    0   
+120                 -0.750000                   0.250000                    0   
+121                 -2.500000                   0.250000                    0   
+122                  1.250000                   0.500000                    2   
+123                  1.296296                   0.185185                    2   
+124                  1.000000                  -0.166667                    0   
+125                 -0.600000                  -0.200000                    2   
+126                  0.500000                   0.100000                    4   
+127                 -0.333333                   0.000000                    4   
+128                  2.454545                   0.727273                    2   
+129                  0.103448                  -0.068966                    0   
+130                 -1.833333                  -0.250000                    2   
+131                  0.800000                   0.200000                    0   
+132                 -0.631579                   0.263158                    2   
+133                  0.272727                  -0.181818                    0   
+134                 -1.000000                   0.000000                    4   
+135                 -0.739130                  -0.260870                    0   
+136                  0.083333                  -0.166667                    2   
+137                 -2.000000                  -0.555556                    0   
+138                 -1.000000                  -0.666667                    2   
+139                 -0.625000                  -0.062500                    0   
+140                 -0.333333                   0.000000                    4   
+141                 -0.666667                  -0.166667                    0   
+142                  3.000000                   0.333333                    4   
+143                 -0.571429                   0.571429                    0   
+144                  0.833333                   1.333333                    4   
+145                 -0.833333                  -0.500000                    0   
+146                  0.818182                   0.363636                    6   
+147                 -0.214286                  -0.071429                    0   
+148                 -0.333333                   0.000000                    4   
+149                  3.250000                   0.125000                    0   
+150                 -0.687500                  -0.125000                    2   
+151                  2.000000                   1.000000                    0   
+152                  0.625000                   0.125000                    8   
+153                 -1.307692                  -0.153846                    0   
+154                 -0.200000                   0.400000                    2   
+155                 -1.333333                   0.166667                    0   
+156                  1.181818                   0.272727                    2   
+157                 -1.833333                   0.000000                    0   
+158                  0.500000                  -0.375000                    0   
+159                  1.000000                   1.000000                    2   
+160                 -0.428571                   0.000000                    8   
+161                 -0.500000                  -0.142857                    0   
+162                  4.666667                   0.333333                    2   
+163                  0.250000                   0.250000                    0   
+164                 -0.285714                   0.357143                    8   
+165                  1.000000                  -0.666667                    0   
+166                 -0.333333                   0.166667                    4   
+167                 -0.666667                   0.000000                    0   
+168                  2.375000                   0.000000                    2   
+169                 -1.666667                   0.416667                    0   
+170                 -1.476190                  -0.428571                    2   
+171                 -0.571429                  -0.142857                    0   
+172                  0.846154                  -0.230769                    2   
+173                  0.000000                   0.250000                    0   
+174                 -2.285714                  -1.000000                    2   
+175                  2.888889                   1.111111                    0   
+176                 -2.000000                   0.200000                    2   
+177                  0.000000                  -0.333333                    0   
+178                  0.600000                  -0.200000                    8   
+179                 -2.000000                   0.666667                    4   
+180                  1.666667                   0.000000                    2   
+181                  1.333333                   0.166667                    0   
+182                 -1.125000                   0.187500                    2   
+183                  0.500000                   0.200000                    0   
+184                 -0.714286                  -0.142857                    6   
+185                 -0.933333                   0.000000                    0   
+186                 -0.250000                   0.000000                    2   
+187                  0.000000                  -0.125000                    0   
+188                  1.500000                  -0.750000                    6   
+189                 -0.500000                   0.300000                    0   
+190                  0.625000                   0.000000                    6   
+191                  0.285714                   0.142857                    0   
+192                 -0.350000                  -0.050000                    4   
+193                  1.444444                   0.000000                    0   
+194                  2.181818                   0.181818                    2   
+195                  0.000000                   0.363636                    0   
+196                  0.214286                   0.428571                    4   
+197                  1.000000                   0.000000                    0   
+198                 -0.250000                   0.666667                    2   
+199                  2.200000                   0.400000                    0   
+200                 -3.333333                  -0.333333                    6   
+201                  2.250000                   0.250000                    0   
+202                 -0.500000                   0.250000                    2   
+203                  2.333333                  -0.666667                    0   
+204                 -0.285714                   0.428571                    4   
+205                 -0.571429                   0.250000                    0   
+206                 -0.461538                   0.230769                    4   
+207                 -0.708333                   0.333333                    0   
+208                 -1.137931                   0.068966                    2   
+209                 -0.900000                   0.000000                    0   
+210                 -2.000000                  -0.500000                    6   
+211                  1.500000                   0.750000                    0   
+212                  1.375000                   0.875000                    4   
+213                  1.666667                   0.833333                    0   
+214                 -1.500000                   0.250000                    6   
+215                 -0.800000                   0.000000                    0   
+216                 -1.166667                   0.166667                    6   
+217                 -1.000000                  -0.333333                    0   
+218                  2.000000                   0.333333                    6   
+219                 -0.214286                  -0.071429                    0   
+220                  0.526316                   0.631579                    2   
+221                 -0.750000                   0.250000                    0   
+222                 -0.300000                   0.400000                    2   
+223                  1.600000                   0.000000                    0   
+224                  0.483871                  -0.032258                    2   
+225                 -0.166667                   0.000000                    0   
+226                  0.400000                   0.000000                    2   
+227                  0.333333                   0.444444                    0   
+228                 -0.150000                   0.400000                    2   
+229                 -0.500000                   0.818182                    0   
+230                  1.944444                   0.500000                    4   
+231                 -0.173913                  -0.347826                    0   
+232                 -1.000000                  -0.500000                    4   
+233                  1.125000                   0.250000                    0   
+234                 -0.500000                  -0.500000                    4   
+235                 -1.285714                  -0.428571                    0   
+236                  0.000000                  -0.600000                    6   
+237                 -0.800000                  -0.200000                    0   
+238                  0.105263                   0.473684                    4   
+239                  3.200000                   1.800000                    0   
+240                 -0.272727                   0.181818                    6   
+241                  0.250000                  -0.500000                    0   
+242                 -0.454545                   0.272727                    4   
+243                  0.250000                   1.250000                    0   
+244                  0.147059                   0.529412                    2   
+245                 -0.400000                   0.300000                    0   
+246                 -1.700000                  -0.300000                    4   
+247                 -0.677419                  -0.129032                    0   
+248                  0.000000                   0.000000                    8   
+249                 -1.000000                   0.000000                    0   
+250                 -0.555556                   0.777778                    2   
+251                  1.666667                   0.333333                    0   
+252                 -0.285714                  -0.285714                    6   
+253                  0.000000                   0.250000                    0   
+254                  0.000000                  -0.545455                    8   
+255                 -2.000000                   0.200000                    2   
+256                 -2.000000                   0.000000                    8   
+257                  0.750000                   0.125000                    0   
+258                 -1.125000                  -0.250000                    4   
+259                  0.200000                   0.200000                    0   
+260                 -6.333333                  -1.000000                    2   
+261                  0.400000                   0.000000                    2   
 
-   opponent_sub_differential  opponent_losestreak  opponent_age_deviation  \
-0                   0.142857                    3                    1860   
-1                   0.875000                    0                    2092   
+     opponent_age_deviation  opponent_elo  opponent_opp_avg_elo   result  \
+0                      3305   1293.503448           1156.348238  unknown   
+1                      2403   1351.096422           1118.596924  unknown   
+2                      2074   1112.892516           1058.047123  unknown   
+3                      3011   1194.318155           1052.828417  unknown   
+4                      5415   1197.278734           1147.189358  unknown   
+5                      1234   1188.153450           1131.893426  unknown   
+6                      5287   1129.796793           1122.487080  unknown   
+7                      1078   1120.097264           1013.893058  unknown   
+8                      1456   1168.256393           1055.759327  unknown   
+9                      4866   1159.718493           1104.131433  unknown   
+10                     3781   1107.791735           1023.477797  unknown   
+11                     3922   1135.282206           1020.482586  unknown   
+12                     1285   1087.570484           1002.981902  unknown   
+13                     3734   1097.091997           1055.048589  unknown   
+14                     3969   1030.695193           1053.572247  unknown   
+15                     2438   1103.251466           1114.080718  unknown   
+16                      168   1066.130181            983.640296  unknown   
+17                     1623   1036.612301           1021.347386  unknown   
+18                     2692   1091.019620            998.583585  unknown   
+19                     2288   1050.130093            983.112743  unknown   
+20                     2700    981.428902           1042.524202  unknown   
+21                     2955   1031.686874           1042.291424  unknown   
+22                     2556   1134.740726           1032.613055  unknown   
+23                      154   1189.236221           1072.808819  unknown   
+24                     3689   1163.964930           1101.470134  unknown   
+25                     3095   1102.952347           1008.906601  unknown   
+26                     1490   1051.849143           1022.252614  unknown   
+27                     1120   1095.541305           1032.536305  unknown   
+28                      549   1020.146314            981.890695  unknown   
+29                     4185   1044.547195           1050.955498  unknown   
+30                     2701   1129.736514            991.605431  unknown   
+31                     3083   1134.366630           1076.403311  unknown   
+32                     3350    916.273745           1021.882226  unknown   
+33                      829   1091.379309           1006.510751  unknown   
+34                     1702   1049.550196            986.289663  unknown   
+35                      562   1109.314662            986.121710  unknown   
+36                     3328   1279.458818           1105.813787  unknown   
+37                      620   1161.831356           1070.358959  unknown   
+38                     4417   1162.004102           1086.373478  unknown   
+39                     1153   1083.983743           1045.063069  unknown   
+40                     4065   1144.493004           1108.522059  unknown   
+41                     3693   1197.010946           1120.627174  unknown   
+42                     2364   1150.142673           1159.456467  unknown   
+43                     1800   1143.355662           1102.181740  unknown   
+44                     5978   1058.195198           1090.731167  unknown   
+45                     3425   1012.904070           1021.876913  unknown   
+46                     1885   1015.073811           1016.586281  unknown   
+47                     2125    953.634771           1022.256601  unknown   
+48                     2974   1042.447943            962.429286  unknown   
+49                     3991   1053.620955           1035.914412  unknown   
+50                     1649   1129.241784           1018.324396  unknown   
+51                     3436   1139.075582           1040.293095  unknown   
+52                      708    975.949757           1044.264935  unknown   
+53                     1563    932.180510           1035.924670  unknown   
+54                     3896   1123.801404           1063.319124  unknown   
+55                      915   1235.204883           1063.235713  unknown   
+56                     1446   1128.293055           1036.841436  unknown   
+57                      352   1119.324225           1014.861472  unknown   
+58                     1005   1076.616278           1009.656603  unknown   
+59                      475   1033.212969            983.279527  unknown   
+60                     1973   1101.823864            960.395085  unknown   
+61                     1769   1084.613492           1061.529433  unknown   
+62                     2048   1149.833043           1027.892505  unknown   
+63                     1242   1083.929047            992.200168  unknown   
+64                     3942   1025.171511           1001.855420  unknown   
+65                     1186    972.051938           1007.638024  unknown   
+66                     1961   1001.644385           1019.605144  unknown   
+67                     3073    984.136364           1055.054356  unknown   
+68                     1707   1130.235636           1163.817647  unknown   
+69                     4046   1181.997115           1182.723626  unknown   
+70                     2176   1197.818265           1117.831759  unknown   
+71                     1934   1170.225117           1095.804512  unknown   
+72                     1889   1117.033884           1024.369428  unknown   
+73                     2512   1108.891374           1077.483651  unknown   
+74                     2892   1104.702076           1033.760093  unknown   
+75                      995   1103.255552           1030.592255  unknown   
+76                     2783   1104.627713           1015.662303  unknown   
+77                     1320    995.295308           1083.310800  unknown   
+78                     1225   1094.639222           1006.586911  unknown   
+79                     1842   1088.059080            999.380789  unknown   
+80                      928   1032.244493           1021.396635  unknown   
+81                     2065   1086.739411            989.038746  unknown   
+82                     2330   1023.206501            998.366273  unknown   
+83                     1527   1082.057219            971.058869  unknown   
+84                     4797   1100.398554           1064.932860  unknown   
+85                     3521   1078.617639           1060.426156  unknown   
+86                     3940   1132.720850           1017.399747  unknown   
+87                     2365   1057.367926           1014.345317  unknown   
+88                      314    977.901862           1028.832103  unknown   
+89                     3263    961.723519           1019.538203  unknown   
+90                     4926   1171.761182           1105.129438  unknown   
+91                     2519   1167.932140           1021.629765  unknown   
+92                      349   1094.141644           1016.517861  unknown   
+93                     4967   1118.906013           1042.269551  unknown   
+94                     2336   1043.327145           1017.709836  unknown   
+95                     2007   1089.239276           1015.606125  unknown   
+96                     4198   1163.224892           1034.669585  unknown   
+97                     2474   1099.513036           1035.311022  unknown   
+98                     1594   1016.017771           1018.787976  unknown   
+99                      320   1083.625426            977.776016  unknown   
+100                     534   1064.391339           1012.551095  unknown   
+101                    4882    992.281570           1023.374633  unknown   
+102                    3575   1359.781538           1173.842123  unknown   
+103                    2305   1353.470192           1116.874272  unknown   
+104                    3970   1341.612645           1176.903291  unknown   
+105                    1234   1193.880412           1070.821429  unknown   
+106                    2241   1140.513865           1076.719269  unknown   
+107                    2023   1234.023830           1064.535453  unknown   
+108                    4185   1044.547195           1050.955498  unknown   
+109                     859   1111.224372            991.222073  unknown   
+110                    3970   1046.751589           1067.639591  unknown   
+111                     866   1116.396473           1006.207321  unknown   
+112                    1602   1171.799983           1057.283088  unknown   
+113                    4473   1131.045054           1114.938116  unknown   
+114                    3456   1078.535615           1066.976801  unknown   
+115                    4127   1029.841464           1048.172997  unknown   
+116                    1597   1122.825271           1018.419649  unknown   
+117                    1427   1176.821559           1025.019026  unknown   
+118                    2631   1136.341676            996.866624  unknown   
+119                    1329   1137.159835           1039.044218  unknown   
+120                     890   1107.221791            979.409355  unknown   
+121                     118   1063.103743           1009.935837  unknown   
+122                    2891    995.283637            998.692316  unknown   
+123                    4955   1085.934817           1055.030873  unknown   
+124                    2103   1081.426512           1002.767635  unknown   
+125                    2556   1134.740726           1032.613055  unknown   
+126                    3213    908.384953            995.437809  unknown   
+127                    1606    971.818445           1027.400277  unknown   
+128                    1696   1190.917205           1054.197409  unknown   
+129                    4417   1162.004102           1086.373478  unknown   
+130                    4811    991.125217           1011.706382  unknown   
+131                     756   1088.318207            990.335342  unknown   
+132                    2980   1122.111753           1037.049780  unknown   
+133                    1630   1102.180315           1041.799647  unknown   
+134                    3471   1003.174386           1065.063722  unknown   
+135                    3646   1146.571176           1032.478576  unknown   
+136                    2203   1038.242543           1103.044590  unknown   
+137                    3413   1068.701441           1036.700824  unknown   
+138                     839    951.579129            998.801758  unknown   
+139                    4746   1078.153332           1045.949591  unknown   
+140                      96    976.397691           1044.627501  unknown   
+141                    2665   1053.649122           1023.769437  unknown   
+142                    1890    965.977618           1002.891001  unknown   
+143                    3673   1036.251951            998.556935  unknown   
+144                    2065    945.106991           1006.587050  unknown   
+145                    1936   1005.599913            987.892842  unknown   
+146                    1337    991.539092           1040.993116  unknown   
+147                    2205   1080.306526           1002.493606  unknown   
+148                    2034   1117.402751           1097.081897  unknown   
+149                    2849   1168.715949           1111.405880  unknown   
+150                    2611   1109.427084           1081.535154  unknown   
+151                    1456   1168.256393           1055.759327  unknown   
+152                    4649    986.172592           1060.317270  unknown   
+153                    4171   1126.881867           1054.892173  unknown   
+154                     588    975.724631           1018.051711  unknown   
+155                    1469   1099.223714            992.336335  unknown   
+156                    1155   1047.124737           1016.347823  unknown   
+157                    1037   1063.668906           1032.740607  unknown   
+158                    1644   1094.157047            995.809077  unknown   
+159                    1873    984.779446           1044.771909  unknown   
+160                    1636    945.288188           1070.155869  unknown   
+161                    5335   1063.751618           1051.069117  unknown   
+162                    1130   1007.525876           1025.641797  unknown   
+163                    1597    970.647571           1021.455040  unknown   
+164                    3626    912.241795           1015.432913  unknown   
+165                    3468   1078.446511            957.514889  unknown   
+166                    2325    939.749364           1001.067443  unknown   
+167                    1502   1026.291148            986.965935  unknown   
+168                    3851   1228.936401           1090.873936  unknown   
+169                    1870   1176.389773           1063.399803  unknown   
+170                    2147   1149.234223           1083.865677  unknown   
+171                     742   1204.283198           1050.352403  unknown   
+172                    3164    999.046749           1029.373227  unknown   
+173                     288   1056.709471            989.603241  unknown   
+174                    2117    980.401761           1011.489835  unknown   
+175                    1842   1088.059080            999.380789  unknown   
+176                    1711    975.178592            994.143717  unknown   
+177                    2698   1075.383214           1013.323431  unknown   
+178                     839    900.603485           1014.971518  unknown   
+179                     969    944.285131           1009.052305  unknown   
+180                    3492   1055.788691           1023.757872  unknown   
+181                    1747   1157.180432            996.776111  unknown   
+182                    3342   1273.603601           1175.226938  unknown   
+183                    2757   1248.695706           1083.537891  unknown   
+184                    2009   1085.880881           1090.367528  unknown   
+185                    3613   1227.631962           1134.318155  unknown   
+186                    3963    973.481642           1010.386189  unknown   
+187                    1737   1040.229623            996.749943  unknown   
+188                     827    949.944685           1044.466105  unknown   
+189                    2555   1045.403458           1013.105308  unknown   
+190                    1743   1028.336813           1057.058397  unknown   
+191                    2869   1140.609552           1009.865803  unknown   
+192                    4883   1039.400659           1044.461419  unknown   
+193                    1490   1051.849143           1022.252614  unknown   
+194                    1323   1118.363039           1060.318567  unknown   
+195                    3071   1246.210450           1161.525516  unknown   
+196                    2262   1148.802454           1111.736591  unknown   
+197                    3125   1186.257862           1057.712537  unknown   
+198                    1265   1071.839886           1057.484111  unknown   
+199                     995   1103.255552           1030.592255  unknown   
+200                    1094    920.986789           1042.533461  unknown   
+201                    2000   1006.205306            989.163186  unknown   
+202                    1052    997.318624           1005.950307  unknown   
+203                     402   1085.901431            985.972978  unknown   
+204                    4186   1118.720344           1153.266568  unknown   
+205                    2463   1335.695200           1138.198852  unknown   
+206                    2565   1089.093703           1070.518521  unknown   
+207                    3689   1163.964930           1101.470134  unknown   
+208                    3725   1119.507956           1025.392931  unknown   
+209                    3659   1174.248709           1048.854822  unknown   
+210                    2333    940.115530           1012.094563  unknown   
+211                    1258   1108.194476            982.736506  unknown   
+212                    1897   1072.439200           1064.399351  unknown   
+213                     245   1187.209916           1062.592887  unknown   
+214                    2298    949.638631           1042.387341  unknown   
+215                    2525   1066.260887            968.120909  unknown   
+216                    3531    993.097111           1030.007063  unknown   
+217                    1287   1089.203589           1034.739563  unknown   
+218                     766    910.690713            998.881010  unknown   
+219                    2205   1080.306526           1002.493606  unknown   
+220                    3312   1305.078882           1121.441378  unknown   
+221                    1401   1241.436532           1062.863107  unknown   
+222                    4113   1126.988664           1062.954507  unknown   
+223                    3299   1202.824314           1108.483478  unknown   
+224                    4040   1202.612988           1104.133812  unknown   
+225                     281   1182.489664           1043.835552  unknown   
+226                    1474   1009.003853           1020.294762  unknown   
+227                    1881   1141.102254           1010.825521  unknown   
+228                    4370   1119.124503           1109.417115  unknown   
+229                    2092   1231.453240           1069.427894  unknown   
+230                    5182   1150.333610           1209.677333  unknown   
+231                    3900   1138.633045           1065.731279  unknown   
+232                    3752    953.287687           1038.798738  unknown   
+233                    2381   1067.330093           1024.168274  unknown   
+234                    2438    956.016090           1025.294839  unknown   
+235                    4369    930.203542           1043.737368  unknown   
+236                    4001    920.028166           1018.789293  unknown   
+237                    2441   1018.000040            988.774763  unknown   
+238                    3903   1027.102363           1042.229602  unknown   
+239                    2631   1136.341676            996.866624  unknown   
+240                    3482    977.377652           1039.158165  unknown   
+241                     568   1113.256565           1000.097867  unknown   
+242                    2543   1016.421214           1015.810655  unknown   
+243                    1727   1110.686546            988.975887  unknown   
+244                    5044   1199.022152           1150.075494  unknown   
+245                    2456   1241.620468           1088.164884  unknown   
+246                    2604   1052.103146           1040.865140  unknown   
+247                    5403   1137.302103           1079.731752  unknown   
+248                    3249   1028.184257           1110.372714  unknown   
+249                    3095   1102.952347           1008.906601  unknown   
+250                    2256    973.267759            994.085759  unknown   
+251                    1239   1030.894929            983.362960  unknown   
+252                    1404    954.539686           1003.342790  unknown   
+253                    2404   1002.186594           1005.505863  unknown   
+254                    3641    891.737733           1012.765940  unknown   
+255                    1711    975.178592            994.143717  unknown   
+256                    3406    895.574252           1031.111418  unknown   
+257                    1433   1006.983353           1016.216773  unknown   
+258                    3338    983.223293           1001.418814  unknown   
+259                    2472   1128.506817            979.666720  unknown   
+260                    1186    972.051938           1007.638024  unknown   
+261                    1474   1009.003853           1020.294762  unknown   
 
-   opponent_titlefights  opponent_titlewins  opponent_elo  \
-0                     4                   2   1092.497186   
-1                     0                   0   1134.215039   
+    predicted_result  probability_draw  probability_loss  probability_nc  \
+0                win          0.000101          0.375526        0.004302   
+1               loss          0.000125          0.587326        0.008968   
+2               loss          0.000087          0.555635        0.000214   
+3                win          0.000050          0.498183        0.000174   
+4                win          0.001253          0.180774        0.004771   
+5               loss          0.000452          0.733965        0.004943   
+6                win          0.000709          0.302758        0.002806   
+7               loss          0.000147          0.764411        0.003320   
+8               loss          0.000116          0.929191        0.001369   
+9                win          0.000060          0.040843        0.002624   
+10              loss          0.000058          0.575864        0.000319   
+11               win          0.000036          0.450889        0.000408   
+12              loss          0.000047          0.640802        0.000412   
+13               win          0.000089          0.468659        0.000775   
+14               win          0.000229          0.278074        0.000180   
+15              loss          0.000259          0.719596        0.001079   
+16              loss          0.002006          0.554262        0.000399   
+17               win          0.000524          0.498705        0.000260   
+18              loss          0.000278          0.788216        0.000099   
+19               win          0.000137          0.217450        0.000083   
+20               win          0.000174          0.487434        0.001759   
+21              loss          0.000143          0.506432        0.005187   
+22               win          0.000130          0.328564        0.001438   
+23              loss          0.000162          0.769023        0.003114   
+24              loss          0.000023          0.704825        0.000350   
+25               win          0.000024          0.307610        0.000531   
+26               win          0.000076          0.319679        0.010616   
+27              loss          0.000061          0.586377        0.005760   
+28              loss          0.000625          0.634756        0.000167   
+29               win          0.000723          0.375078        0.000164   
+30              loss          0.000761          0.506995        0.000106   
+31               win          0.000710          0.482502        0.000098   
+32               win          0.000012          0.337373        0.000942   
+33              loss          0.000009          0.711319        0.000914   
+34               win          0.000677          0.308252        0.000332   
+35              loss          0.000885          0.769423        0.000133   
+36               win          0.000083          0.060927        0.007539   
+37              loss          0.000289          0.895702        0.017673   
+38              loss          0.000048          0.513383        0.002267   
+39               win          0.000111          0.495182        0.005337   
+40              loss          0.000022          0.569841        0.002530   
+41               win          0.000035          0.386165        0.002371   
+42               win          0.000091          0.374967        0.006372   
+43              loss          0.000066          0.634876        0.007225   
+44               win          0.000111          0.445109        0.000490   
+45              loss          0.000025          0.553969        0.000547   
+46               win          0.001890          0.482690        0.021026   
+47              loss          0.000719          0.604517        0.008224   
+48              loss          0.000025          0.604407        0.000532   
+49               win          0.000018          0.363164        0.000177   
+50              loss          0.000809          0.615582        0.000627   
+51               win          0.004248          0.425581        0.000788   
+52              loss          0.000911          0.476300        0.089542   
+53               win          0.004587          0.407483        0.061258   
+54               win          0.000023          0.204880        0.000709   
+55              loss          0.000040          0.754084        0.000374   
+56               win          0.000302          0.286465        0.000855   
+57              loss          0.000308          0.793179        0.001755   
+58              loss          0.000879          0.508024        0.000315   
+59               win          0.000110          0.462671        0.000142   
+60              loss          0.000022          0.562126        0.000153   
+61              loss          0.000025          0.512463        0.000089   
+62              loss          0.000058          0.606266        0.000673   
+63               win          0.000052          0.227264        0.000738   
+64              loss          0.000533          0.575087        0.002058   
+65               win          0.000755          0.488110        0.002092   
+66               win          0.000506          0.383550        0.000297   
+67              loss          0.000758          0.567832        0.000214   
+68               win          0.000266          0.476568        0.000899   
+69              loss          0.000054          0.617833        0.001251   
+70               win          0.000232          0.380357        0.000599   
+71              loss          0.000229          0.634738        0.001491   
+72               win          0.000050          0.473114        0.000390   
+73              loss          0.000182          0.526809        0.000447   
+74               win          0.001142          0.355704        0.000129   
+75              loss          0.000544          0.718856        0.000433   
+76              loss          0.000122          0.788937        0.000128   
+77               win          0.000196          0.170865        0.000171   
+78               win          0.000031          0.389626        0.000211   
+79              loss          0.000027          0.594895        0.000229   
+80               win          0.000090          0.234146        0.000188   
+81              loss          0.000082          0.664796        0.001285   
+82              loss          0.000017          0.751810        0.000308   
+83               win          0.000016          0.478207        0.000304   
+84               win          0.000022          0.155418        0.003301   
+85              loss          0.000037          0.854990        0.006677   
+86               win          0.000121          0.483184        0.000742   
+87               win          0.000037          0.498832        0.000413   
+88               win          0.000870          0.389889        0.000202   
+89              loss          0.000682          0.507199        0.000406   
+90               win          0.000079          0.194261        0.000605   
+91              loss          0.000216          0.863537        0.000157   
+92              loss          0.000030          0.714545        0.002948   
+93               win          0.000033          0.247763        0.001063   
+94              loss          0.000084          0.508370        0.001308   
+95              loss          0.000058          0.565170        0.000641   
+96               win          0.000129          0.113494        0.000190   
+97              loss          0.000590          0.878596        0.000597   
+98               win          0.000021          0.312181        0.000129   
+99              loss          0.000018          0.771017        0.000288   
+100             loss          0.000063          0.803162        0.000393   
+101              win          0.000032          0.177161        0.002152   
+102              win          0.000118          0.372373        0.019205   
+103             loss          0.000141          0.520401        0.016289   
+104              win          0.000337          0.299844        0.013380   
+105             loss          0.000274          0.558479        0.033839   
+106              win          0.000089          0.382039        0.000233   
+107             loss          0.000097          0.560784        0.000732   
+108              win          0.000286          0.279655        0.000210   
+109             loss          0.000179          0.607670        0.000344   
+110             loss          0.000796          0.594426        0.000776   
+111              win          0.000116          0.425522        0.001162   
+112             loss          0.000109          0.903703        0.000407   
+113              win          0.000123          0.257701        0.000447   
+114             loss          0.000068          0.732970        0.000263   
+115              win          0.000035          0.330806        0.001918   
+116              win          0.000140          0.296728        0.139986   
+117             loss          0.000049          0.579694        0.017289   
+118              win          0.000463          0.289328        0.000890   
+119             loss          0.000811          0.709914        0.000513   
+120              win          0.000025          0.479281        0.000081   
+121             loss          0.000021          0.555835        0.000095   
+122              win          0.000012          0.463922        0.000296   
+123             loss          0.000010          0.563133        0.000181   
+124              win          0.000072          0.306820        0.000290   
+125             loss          0.000079          0.737793        0.001767   
+126              win          0.000087          0.288699        0.021110   
+127             loss          0.000116          0.676781        0.003205   
+128             loss          0.000813          0.687008        0.001015   
+129              win          0.000245          0.339561        0.000599   
+130              win          0.000250          0.112102        0.000298   
+131             loss          0.000185          0.863753        0.000262   
+132              win          0.000290          0.431490        0.001047   
+133             loss          0.000348          0.560499        0.003422   
+134              win          0.000279          0.303839        0.000597   
+135             loss          0.000287          0.704751        0.003137   
+136              win          0.000125          0.356530        0.017083   
+137             loss          0.000114          0.526680        0.013009   
+138              win          0.000080          0.413732        0.003814   
+139             loss          0.000036          0.588422        0.000991   
+140              win          0.000628          0.364202        0.003113   
+141             loss          0.002057          0.622706        0.001407   
+142              win          0.000161          0.442353        0.011742   
+143             loss          0.000100          0.648236        0.009768   
+144              win          0.000042          0.319092        0.056026   
+145             loss          0.000074          0.711552        0.003225   
+146             loss          0.000070          0.564638        0.006809   
+147              win          0.000298          0.434865        0.001657   
+148             loss          0.000027          0.685898        0.033956   
+149              win          0.000023          0.472296        0.002959   
+150              win          0.000155          0.132337        0.000989   
+151             loss          0.000147          0.848069        0.000815   
+152              win          0.000114          0.286890        0.000226   
+153             loss          0.000047          0.711208        0.000352   
+154              win          0.000210          0.247696        0.000241   
+155             loss          0.000390          0.813125        0.000352   
+156             loss          0.000098          0.567385        0.000466   
+157              win          0.000105          0.463900        0.001037   
+158              win          0.000154          0.436787        0.001253   
+159             loss          0.000099          0.618474        0.001105   
+160              win          0.000083          0.258638        0.001061   
+161             loss          0.000104          0.625740        0.000574   
+162             loss          0.000136          0.510794        0.002551   
+163              win          0.000174          0.355457        0.001699   
+164              win          0.000081          0.313137        0.000819   
+165             loss          0.000016          0.528147        0.000183   
+166              win          0.000035          0.389276        0.019273   
+167             loss          0.000020          0.521984        0.032073   
+168              win          0.000546          0.367508        0.000388   
+169             loss          0.001580          0.798711        0.000085   
+170              win          0.000086          0.232473        0.000473   
+171             loss          0.000078          0.708531        0.000587   
+172              win          0.001198          0.257381        0.000411   
+173             loss          0.000251          0.676206        0.000380   
+174              win          0.000081          0.088319        0.000091   
+175             loss          0.000123          0.838363        0.000373   
+176              win          0.000081          0.380868        0.004387   
+177             loss          0.000069          0.806668        0.001700   
+178             loss          0.000390          0.624457        0.102911   
+179              win          0.000712          0.296891        0.098733   
+180              win          0.000363          0.129010        0.000164   
+181             loss          0.000150          0.882265        0.000069   
+182              win          0.000058          0.347761        0.002453   
+183             loss          0.000033          0.502668        0.003771   
+184              win          0.000146          0.394347        0.000909   
+185             loss          0.000026          0.688350        0.002096   
+186              win          0.000053          0.361036        0.005043   
+187             loss          0.000051          0.608843        0.001027   
+188              win          0.001608          0.325829        0.000545   
+189             loss          0.002422          0.793950        0.000607   
+190              win          0.000724          0.391915        0.007942   
+191             loss          0.000263          0.707474        0.011059   
+192              win          0.000339          0.296178        0.003194   
+193             loss          0.000236          0.748273        0.001764   
+194              win          0.000064          0.175369        0.004858   
+195             loss          0.000081          0.689575        0.029077   
+196              win          0.003779          0.181947        0.000688   
+197             loss          0.006823          0.860967        0.002959   
+198              win          0.000086          0.403638        0.000295   
+199             loss          0.000119          0.529220        0.001078   
+200              win          0.000246          0.488681        0.000713   
+201             loss          0.000133          0.546196        0.000823   
+202              win          0.000037          0.133023        0.000206   
+203             loss          0.000092          0.857650        0.000322   
+204              win          0.000011          0.069346        0.002439   
+205             loss          0.000017          0.944960        0.001496   
+206             loss          0.000033          0.552945        0.001216   
+207             loss          0.000062          0.548829        0.002880   
+208              win          0.000050          0.392504        0.000223   
+209              win          0.000135          0.478828        0.000335   
+210              win          0.000408          0.055005        0.000263   
+211             loss          0.000055          0.904220        0.000155   
+212              win          0.000045          0.242025        0.003319   
+213             loss          0.000247          0.728466        0.003180   
+214              win          0.000014          0.136959        0.000239   
+215             loss          0.000025          0.793232        0.000609   
+216              win          0.000026          0.234518        0.003069   
+217             loss          0.000031          0.655416        0.002612   
+218              win          0.000053          0.428360        0.002479   
+219             loss          0.000046          0.731392        0.001569   
+220              win          0.000023          0.400925        0.036731   
+221              win          0.000044          0.417582        0.017829   
+222              win          0.000067          0.202053        0.000095   
+223             loss          0.000064          0.904414        0.000166   
+224              win          0.000032          0.100845        0.000998   
+225             loss          0.000113          0.929896        0.002172   
+226              win          0.000155          0.226062        0.000982   
+227             loss          0.000280          0.749813        0.001550   
+228              win          0.000032          0.396111        0.000266   
+229             loss          0.000050          0.720226        0.001569   
+230              win          0.000088          0.231608        0.001933   
+231             loss          0.000053          0.755141        0.000795   
+232              win          0.000202          0.313573        0.000366   
+233             loss          0.000105          0.814500        0.000275   
+234             loss          0.000013          0.765774        0.000800   
+235              win          0.000022          0.356198        0.001205   
+236              win          0.000037          0.496564        0.000098   
+237             loss          0.000067          0.572460        0.000270   
+238              win          0.000072          0.228808        0.000124   
+239             loss          0.000042          0.842122        0.000423   
+240              win          0.000760          0.109796        0.000670   
+241             loss          0.000597          0.903523        0.004950   
+242              win          0.000102          0.187682        0.000434   
+243             loss          0.000158          0.871928        0.000953   
+244              win          0.000135          0.336675        0.003416   
+245             loss          0.000039          0.522365        0.007593   
+246             loss          0.002329          0.587803        0.000386   
+247              win          0.002259          0.322015        0.000389   
+248              win          0.000553          0.296522        0.003215   
+249             loss          0.000336          0.514592        0.001865   
+250              win          0.000071          0.199493        0.000401   
+251             loss          0.000057          0.755788        0.001143   
+252              win          0.000543          0.456607        0.003527   
+253             loss          0.000145          0.562400        0.002941   
+254              win          0.000039          0.326183        0.000546   
+255             loss          0.000072          0.557711        0.000248   
+256              win          0.000144          0.128446        0.001274   
+257             loss          0.000057          0.871309        0.001402   
+258              win          0.000081          0.065483        0.000036   
+259             loss          0.000047          0.876473        0.000037   
+260             loss          0.000257          0.543850        0.001622   
+261             loss          0.000210          0.508547        0.001087   
 
-   opponent_opp_avg_elo   result predicted_result  probability_draw  \
-0           1071.724266  unknown             loss          0.000422   
-1           1041.024027  unknown              win          0.000060   
-
-   probability_loss  probability_nc  probability_win  
-0          0.535490        0.000079         0.464009  
-1          0.475917        0.000052         0.523971  
+     probability_win  
+0           0.620071  
+1           0.403581  
+2           0.444064  
+3           0.501593  
+4           0.813202  
+5           0.260640  
+6           0.693728  
+7           0.232122  
+8           0.069325  
+9           0.956472  
+10          0.423758  
+11          0.548667  
+12          0.358739  
+13          0.530477  
+14          0.721516  
+15          0.279066  
+16          0.443333  
+17          0.500511  
+18          0.211407  
+19          0.782330  
+20          0.510634  
+21          0.488238  
+22          0.669868  
+23          0.227701  
+24          0.294802  
+25          0.691834  
+26          0.669629  
+27          0.407802  
+28          0.364452  
+29          0.624035  
+30          0.492139  
+31          0.516690  
+32          0.661673  
+33          0.287758  
+34          0.690739  
+35          0.229559  
+36          0.931451  
+37          0.086336  
+38          0.484302  
+39          0.499370  
+40          0.427607  
+41          0.611429  
+42          0.618570  
+43          0.357833  
+44          0.554290  
+45          0.445458  
+46          0.494394  
+47          0.386540  
+48          0.395037  
+49          0.636641  
+50          0.382982  
+51          0.569383  
+52          0.433247  
+53          0.526672  
+54          0.794388  
+55          0.245503  
+56          0.712378  
+57          0.204759  
+58          0.490782  
+59          0.537077  
+60          0.437699  
+61          0.487423  
+62          0.393003  
+63          0.771946  
+64          0.422321  
+65          0.509043  
+66          0.615646  
+67          0.431196  
+68          0.522267  
+69          0.380863  
+70          0.618812  
+71          0.363542  
+72          0.526446  
+73          0.472562  
+74          0.643025  
+75          0.280167  
+76          0.210813  
+77          0.828768  
+78          0.610132  
+79          0.404849  
+80          0.765576  
+81          0.333836  
+82          0.247864  
+83          0.521474  
+84          0.841259  
+85          0.138295  
+86          0.515953  
+87          0.500718  
+88          0.609039  
+89          0.491713  
+90          0.805055  
+91          0.136089  
+92          0.282477  
+93          0.751141  
+94          0.490238  
+95          0.434131  
+96          0.886187  
+97          0.120218  
+98          0.687669  
+99          0.228678  
+100         0.196382  
+101         0.820654  
+102         0.608304  
+103         0.463169  
+104         0.686439  
+105         0.407408  
+106         0.617640  
+107         0.438387  
+108         0.719849  
+109         0.391807  
+110         0.404003  
+111         0.573199  
+112         0.095781  
+113         0.741729  
+114         0.266698  
+115         0.667241  
+116         0.563146  
+117         0.402968  
+118         0.709319  
+119         0.288762  
+120         0.520613  
+121         0.444049  
+122         0.535770  
+123         0.436676  
+124         0.692819  
+125         0.260361  
+126         0.690104  
+127         0.319897  
+128         0.311164  
+129         0.659596  
+130         0.887350  
+131         0.135800  
+132         0.567173  
+133         0.435731  
+134         0.695285  
+135         0.291825  
+136         0.626262  
+137         0.460197  
+138         0.582374  
+139         0.410552  
+140         0.632057  
+141         0.373830  
+142         0.545744  
+143         0.341896  
+144         0.624841  
+145         0.285149  
+146         0.428484  
+147         0.563180  
+148         0.280119  
+149         0.524723  
+150         0.866520  
+151         0.150969  
+152         0.712770  
+153         0.288392  
+154         0.751852  
+155         0.186134  
+156         0.432051  
+157         0.534957  
+158         0.561805  
+159         0.380322  
+160         0.740219  
+161         0.373581  
+162         0.486519  
+163         0.642670  
+164         0.685964  
+165         0.471655  
+166         0.591417  
+167         0.445923  
+168         0.631557  
+169         0.199624  
+170         0.766968  
+171         0.290804  
+172         0.741010  
+173         0.323163  
+174         0.911509  
+175         0.161141  
+176         0.614663  
+177         0.191563  
+178         0.272241  
+179         0.603664  
+180         0.870463  
+181         0.117516  
+182         0.649728  
+183         0.493527  
+184         0.604598  
+185         0.309529  
+186         0.633868  
+187         0.390079  
+188         0.672018  
+189         0.203021  
+190         0.599419  
+191         0.281204  
+192         0.700290  
+193         0.249727  
+194         0.819710  
+195         0.281267  
+196         0.813586  
+197         0.129251  
+198         0.595981  
+199         0.469583  
+200         0.510360  
+201         0.452848  
+202         0.866735  
+203         0.141935  
+204         0.928204  
+205         0.053527  
+206         0.445805  
+207         0.448229  
+208         0.607223  
+209         0.520702  
+210         0.944324  
+211         0.095570  
+212         0.754611  
+213         0.268107  
+214         0.862788  
+215         0.206134  
+216         0.762388  
+217         0.341941  
+218         0.569108  
+219         0.266992  
+220         0.562322  
+221         0.564545  
+222         0.797784  
+223         0.095356  
+224         0.898125  
+225         0.067819  
+226         0.772801  
+227         0.248358  
+228         0.603591  
+229         0.278155  
+230         0.766371  
+231         0.244010  
+232         0.685858  
+233         0.185120  
+234         0.233413  
+235         0.642576  
+236         0.503300  
+237         0.427202  
+238         0.770995  
+239         0.157414  
+240         0.888774  
+241         0.090930  
+242         0.811782  
+243         0.126962  
+244         0.659774  
+245         0.470003  
+246         0.409482  
+247         0.675337  
+248         0.699710  
+249         0.483207  
+250         0.800035  
+251         0.243012  
+252         0.539323  
+253         0.434514  
+254         0.673233  
+255         0.441969  
+256         0.870136  
+257         0.127233  
+258         0.934401  
+259         0.123443  
+260         0.454271  
+261         0.490156  

@@ -427,15 +427,14 @@ def runTests(testFrom_card, testTo_card):
                 update_stats.event_to_drop = date_obj
                 update_stats.main()
 
-                    # UPDATE PREDICT_FIGHTS_ELO.CSV WITH NEW FIGHTER STATS
-                    predict_fights_elo.main()
+                # UPDATE PREDICT_FIGHTS_ELO.CSV WITH NEW FIGHTER STATS
+                predict_fights_elo.main()
 
-                    #  UPDATE TRAINING AND GET NEW PREDICTIONS
-                    # formatted_date = date_obj.strftime('%Y-%m-%d')
-                    print(formatted_date)
-                    ml_training_duplication.date_to_train = formatted_date
-                    ml_training_duplication.main()
-
+                #  UPDATE TRAINING AND GET NEW PREDICTIONS
+                # formatted_date = date_obj.strftime('%Y-%m-%d')
+                print(formatted_date)
+                ml_training_duplication.date_to_train = formatted_date
+                ml_training_duplication.main()
                     
                 # # most recent fight
                 if (fight_card_link == testTo_card):
