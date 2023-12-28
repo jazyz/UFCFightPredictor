@@ -5,10 +5,11 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
-import update_stats
+import oldModel.update_stats
 from datetime import datetime
-import ml_training_duplication
-import predict_fights_elo
+import oldModel.ml_training_duplication
+import oldModel.predict_fights_elo
+import os
 
 bankroll = 1000.00
 # GOOD INFO TO KEEP TRACK OF AND RESEARCH
@@ -41,7 +42,7 @@ def runTests(testFrom_card, testTo_card):
 
     # TODO: figure out how to do rematches (maybe just use a set)
     def ml_elo(p1, p2):
-        input_txt_filename = "oldModel\ml_elo.txt"
+        input_txt_filename = os.join.path("oldModel", "ml_elo.txt")
         id = -1
         flag = False
         prob_win = 0
@@ -147,7 +148,7 @@ def runTests(testFrom_card, testTo_card):
             else:
                 underdog_loss += bet
 
-    with open(r"oldModel\testing.txt", "w") as test:
+    with open(os.join.path("oldModel", "testing.txt"), "w") as test:
 
         urls = []
         urls.append("https://www.ufc.com/events")
@@ -216,17 +217,17 @@ def runTests(testFrom_card, testTo_card):
                     pass  # Continue to the next format if parsing fails
             if (formatted_date == ""):
                 print(date_str)
-            update_stats.event_to_drop = date_obj
-            update_stats.main()
+            oldModel.update_stats.event_to_drop = date_obj
+            oldModel.update_stats.main()
 
             # UPDATE PREDICT_FIGHTS_ELO.CSV WITH NEW FIGHTER STATS
-            predict_fights_elo.main()
+            oldModel.predict_fights_elo.main()
 
             #  UPDATE TRAINING AND GET NEW PREDICTIONS
             # formatted_date = date_obj.strftime('%Y-%m-%d')
             print(formatted_date)
-            ml_training_duplication.date_to_train = formatted_date
-            ml_training_duplication.main()
+            oldModel.ml_training_duplication.date_to_train = formatted_date
+            oldModel.ml_training_duplication.main()
         
         for fight_card_link in all_fight_card_links:
             print(fight_card_link)
@@ -400,8 +401,8 @@ def runTests(testFrom_card, testTo_card):
                             pass  # Continue to the next format if parsing fails
                     if (formatted_date == ""):
                         print(date_str)
-                    update_stats.event_to_drop = date_obj
-                    update_stats.main()
+                    oldModel.update_stats.event_to_drop = date_obj
+                    oldModel.update_stats.main()
                     test.write("---\n")
         
             if cnt % 10 == 0:
@@ -424,17 +425,17 @@ def runTests(testFrom_card, testTo_card):
                         pass  # Continue to the next format if parsing fails
                 if (formatted_date == ""):
                     print(date_str)
-                update_stats.event_to_drop = date_obj
-                update_stats.main()
+                oldModel.update_stats.event_to_drop = date_obj
+                oldModel.update_stats.main()
 
                 # UPDATE PREDICT_FIGHTS_ELO.CSV WITH NEW FIGHTER STATS
-                predict_fights_elo.main()
+                oldModel.predict_fights_elo.main()
 
                 #  UPDATE TRAINING AND GET NEW PREDICTIONS
                 # formatted_date = date_obj.strftime('%Y-%m-%d')
                 print(formatted_date)
-                ml_training_duplication.date_to_train = formatted_date
-                ml_training_duplication.main()
+                oldModel.ml_training_duplication.date_to_train = formatted_date
+                oldModel.ml_training_duplication.main()
                     
                 # # most recent fight
                 if (fight_card_link == testTo_card):

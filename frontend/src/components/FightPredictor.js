@@ -14,6 +14,7 @@ const FightPredictor = () => {
   };
 
   const baseURL = "http://127.0.0.1:5000/";
+  // const baseURL = "http://3.131.89.190:5000/";
 
   const handlePredictClick = async () => {
     try {
@@ -29,10 +30,10 @@ const FightPredictor = () => {
       const fighterStats = await axios.get(`${baseURL}/get_stats`);
       console.log(fighterStats.data);
       setStats(fighterStats.data[0]);
-      console.log(stats);
+      // console.log(stats);
       const results = await axios.get(`${baseURL}/get_predicted_data`);
       setPredictedData(results.data.predicted_data);
-      console.log(results.data.predicted_data);
+      // console.log(results.data.predicted_data);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -154,8 +155,8 @@ const FightPredictor = () => {
                   Takedown Differential:{" "}
                   {predictedData[0].fighter_td_differential.toFixed(2)}
                 </p>
-                <p>Title Fights: {predictedData[0].fighter_titlefights}</p>
-                <p>Title Wins: {predictedData[0].fighter_titlewins}</p>
+                <p>Title Fights: {stats.fighter_titlefights / 2}</p>
+                <p>Title Wins: {stats.fighter_titlewins / 2}</p>
               </div>
               <div className="flex flex-col">
                 <p>ELO: {predictedData[0].opponent_elo.toFixed(2)}</p>
@@ -176,8 +177,8 @@ const FightPredictor = () => {
                   Takedown Differential:{" "}
                   {predictedData[0].opponent_td_differential.toFixed(2)}
                 </p>
-                <p>Title Fights: {predictedData[0].opponent_titlefights}</p>
-                <p>Title Wins: {predictedData[0].opponent_titlewins}</p>
+                <p>Title Fights: {stats.opponent_titlefights / 2}</p>
+                <p>Title Wins: {stats.opponent_titlewins / 2}</p>
               </div>
             </div>
           </div>

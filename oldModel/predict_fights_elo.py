@@ -3,9 +3,10 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
+import os
 
-input_csv_filename = r"oldModel\fighter_stats.csv"
-output_csv_filename = r"oldModel\predict_fights_elo.csv"
+input_csv_filename = os.join.path("oldModel", "fighter_stats.csv")
+output_csv_filename = os.join.path("oldModel", "predict_fights_elo.csv")
 
 fieldnames = [
     "id",

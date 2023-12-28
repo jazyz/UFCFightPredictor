@@ -6,8 +6,9 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
-data = pd.read_csv("oldModel\elofightstats.csv")
+data = pd.read_csv(os.join.path("oldModel", "elofightstats.csv"))
 data.replace("--", pd.NA, inplace=True)
 data = data[(data['fighter_totalfights'] > 1) & (data['opponent_totalfights'] > 1)]
 
@@ -81,7 +82,7 @@ original_stdout = sys.stdout
 sys.stdout = output_file
 pd.set_option("display.max_columns", None)
 
-predict_data = pd.read_csv("oldModel\predict_fights_elo.csv")
+predict_data = pd.read_csv(os.join.path("oldModel", "predict_fights_elo.csv"))
 predict_data.replace("--", pd.NA, inplace=True)
 
 predict_data.dropna(subset=selected_columns, inplace=True)
