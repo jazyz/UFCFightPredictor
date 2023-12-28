@@ -1,0 +1,197 @@
+
+***************************
+RESULTS:
+URLs: range(1, 4)
+
+Train: 0.1-0.8
+Test: 0.8-1
+Features: 
+selected_columns = [
+    "Result",
+    "Red oppelo",
+    "Blue oppelo",
+    "Red wins",
+    "Blue wins",
+    "Red elo",
+    "Blue elo",
+    "Red losestreak",
+    "Blue losestreak",
+    "Red titlewins",
+    "Blue titlewins",
+    "Red KD",
+    "Blue KD",
+    "Red Sig. str.",
+    "Blue Sig. str.",
+    "Red Td",
+    "Blue Td",
+    "Red Sub. att",
+    "Blue Sub. att",
+    "Red Ctrl",
+    "Blue Ctrl",
+    "Red Sig. str.%",
+    "Blue Sig. str.%",
+    "Red Td%",
+    "Blue Td%",
+    
+]
+Bankroll: $1792.76
+Max Bankroll: $2010.34
+55/99 = 55.55555555555556% correct bets
+89/151 = 58.94039735099338% correct predictions
+52/99 21/52 = 40.38461538461539% correct underdog bets
+Total underdog loss: $1407.24
+Total underdog gain: $2153.58
+53/99 34/53 = 64.15094339622641% correct favourite bets
+Total favourite loss: $867.50
+Total favourite gain: $913.93
+
+
+****************************
+RESULT:
+
+Train: 0.1-0.8
+Test: 0.8-1
+URLs: range(1,10)
+Features: same as above
+
+Bankroll: $1963.68
+Max Bankroll: $2119.09
+Min Bankroll: $906.12
+279/454 = 61.45374449339207% correct bets
+279/474 = 58.86075949367089% correct predictions
+123/454 49/123 = 39.83739837398374% correct underdog bets
+Total underdog loss: $3339.54
+Total underdog gain: $4252.01
+351/454 230/351 = 65.52706552706553% correct favourite bets
+Total favourite loss: $2633.52
+Total favourite gain: $2684.73
+
+****************************
+RESULT:
+Test:
+URLs: range(1,10)
+Train: 0.1-0.8
+Test: 0.8-1
+Strat: Choose closer odds, flat bet favourite
+Columns:
+    "Result",
+    "Red oppelo",
+    "Blue oppelo",
+    "Red wins",
+    "Blue wins",
+    # "Red losses",
+    # "Blue losses",
+    # "Red dob",
+    # "Blue dob",
+    # "Red totalfights",
+    # "Blue totalfights",
+    "Red elo",
+    "Blue elo",
+    "Red losestreak",
+    "Blue losestreak",
+    # "Red winstreak",
+    # "Blue winstreak",
+    "Red titlewins",
+    "Blue titlewins",
+    "Red KD",
+    "Blue KD",
+    "Red Sig. str.",
+    "Blue Sig. str.",
+    # "Red Total str.",
+    # "Blue Total str.",
+    "Red Td",
+    "Blue Td",
+    "Red Sub. att",
+    "Blue Sub. att",
+    # "Red Rev.",
+    # "Blue Rev.",
+    "Red Ctrl",
+    "Blue Ctrl",
+    "Red Head",
+    "Blue Head",
+    # "Red Body",
+    # "Blue Body",
+    # "Red Leg",
+    # "Blue Leg",
+    # "Red Distance",
+    # "Blue Distance",
+    # "Red Clinch",
+    # "Blue Clinch",
+    "Red Ground",
+    "Blue Ground",
+    "Red Sig. str.%",
+    "Blue Sig. str.%",
+    # "Red Total str.%",
+    # "Blue Total str.%",
+    "Red Td%",
+    "Blue Td%",
+    "Red Head%",
+    "Blue Head%",
+    # "Red Body%",
+    # "Blue Body%",
+    # "Red Leg%",
+    # "Blue Leg%",
+    # "Red Distance%",
+    # "Blue Distance%",
+    # "Red Clinch%",
+    # "Blue Clinch%",
+    "Red Ground%",
+    "Blue Ground%",
+    # "Red Fighter",
+    # "Blue Fighter",
+    # "Red Sig. str",
+    # "Blue Sig. str",
+    # "Red Sig. str%",
+    # "Blue Sig. str%",
+    # "Title",
+
+Bankroll: $1768.38
+Max Bankroll: $2273.83
+Min Bankroll: $990.00
+129/237 = 54.43037974683544% correct bets
+270/460 = 58.69565217391305% correct predictions
+116/237 49/116 = 42.241379310344826% correct underdog bets
+Total underdog loss: $3707.67
+Total underdog gain: $4366.51
+131/237 80/131 = 61.06870229007634% correct favourite bets
+Total favourite loss: $474.48
+Total favourite gain: $584.02
+**************************************
+RESULT:
+Features same as above
+
+URLs: range(1,5)
+KC: fraction 0.15, max_fraction 0.1
+
+Bankroll: $2301.76
+Max Bankroll: $2779.16
+Min Bankroll: $823.23
+55/105 = 52.38095238095239% correct bets
+113/197 = 57.360406091370564% correct predictions
+56/105 24/56 = 42.857142857142854% correct underdog bets
+Total underdog loss: $2530.54
+Total underdog gain: $3466.50
+60/105 31/60 = 51.66666666666667% correct favourite bets
+Total favourite loss: $397.61
+Total favourite gain: $763.41
+**************************************
+RESULT: 
+Features same as above
+
+URLs: range(1,8)
+KC: fraction 0.1, max_fraction 0.1, flat 0.02
+
+Bankroll: $1860.43
+Max Bankroll: $2026.05
+Min Bankroll: $769.72
+217/356 = 60.95505617977528% correct bets
+217/376 = 57.71276595744681% correct predictions
+104/356 43/104 = 41.34615384615385% correct underdog bets
+Total underdog loss: $2580.81
+Total underdog gain: $3021.35
+272/356 174/272 = 63.970588235294116% correct favourite bets
+Total favourite loss: $1133.28
+Total favourite gain: $1553.17
+
+
+****************************
