@@ -7,9 +7,9 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-data = pd.read_csv("elofightstats.csv")
+data = pd.read_csv("oldModel\elofightstats.csv")
 data.replace("--", pd.NA, inplace=True)
-data = data[(data['fighter_totalfights'] > 4) & (data['opponent_totalfights'] > 4)]
+data = data[(data['fighter_totalfights'] > 1) & (data['opponent_totalfights'] > 1)]
 
 selected_columns = [
     "fighter_kd_differential",
@@ -52,15 +52,20 @@ print(len(data))
 data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
 data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
 
+
 label_encoder = LabelEncoder()
 data["result"] = label_encoder.fit_transform(data["result"])
 
 X = data.drop("result", axis=1)
 y = data["result"]
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+split_index = int(len(data) * 0.9)
+last_index = int(len(data) * 1)
+X_train, X_test = X[:split_index], X[split_index:last_index]
+y_train, y_test = y[:split_index], y[split_index:last_index]
+# X_train, X_test, y_train, y_test = train_test_split(
+#     X, y, test_size=0.2, random_state=42
+# )
 
 model = lgb.LGBMClassifier(random_state=42)
 
@@ -76,7 +81,7 @@ original_stdout = sys.stdout
 sys.stdout = output_file
 pd.set_option("display.max_columns", None)
 
-predict_data = pd.read_csv("predict_fights_elo.csv")
+predict_data = pd.read_csv("oldModel\predict_fights_elo.csv")
 predict_data.replace("--", pd.NA, inplace=True)
 
 predict_data.dropna(subset=selected_columns, inplace=True)

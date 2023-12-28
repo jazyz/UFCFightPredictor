@@ -4,8 +4,8 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
-input_csv_filename = "fighter_stats.csv"
-output_csv_filename = "predict_fights_elo.csv"
+input_csv_filename = r"oldModel\fighter_stats.csv"
+output_csv_filename = r"oldModel\predict_fights_elo.csv"
 
 fieldnames = [
     "id",

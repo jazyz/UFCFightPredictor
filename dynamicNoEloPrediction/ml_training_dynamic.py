@@ -52,9 +52,13 @@ data["result"] = label_encoder.fit_transform(data["result"])
 X = data.drop("result", axis=1)
 y = data["result"]
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+split_index = int(len(data) * 0.88)
+last_index = int(len(data) * 1)
+X_train, X_test = X[:split_index], X[split_index:last_index]
+y_train, y_test = y[:split_index], y[split_index:last_index]
+# X_train, X_test, y_train, y_test = train_test_split(
+#     X, y, test_size=0.25, random_state=42
+# )
 
 model = lgb.LGBMClassifier(random_state=42)
 model.fit(X_train, y_train)
