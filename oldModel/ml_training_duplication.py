@@ -11,7 +11,7 @@ import json
 date_to_train = "2023-06-01"
 
 def lgbm():
-    data = pd.read_csv("elofightstats.csv")
+    data = pd.read_csv("oldModel\elofightstats.csv")
     data['date'] = pd.to_datetime(data['date'], format='%b. %d, %Y')
     # data = data.sort_values(by='date')
     data.replace("--", pd.NA, inplace=True)
@@ -72,10 +72,12 @@ def lgbm():
         # "opponent_sdecloss",
         # "opponent_mdecwin",
         # "opponent_mdecloss",
-        # "fighter_dob",
-        # "opponent_dob",
+        "fighter_dob",
+        "opponent_dob",
         "result",
     ]
+    data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
+    data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
     # if predicting past event
     # event_to_drop = "UFC 292: Sterling vs. O'Malley"
     # data = data[data['event'] != event_to_drop]
@@ -101,8 +103,8 @@ def lgbm():
     #     X, y, test_size=0.2, random_state=42
     # )
 
-    train_data = data[data['date'] < "2023-01-01"]
-    test_data = data[(data['date'] >= "2023-01-01")]
+    train_data = data[data['date'] < "2023-07-01"]
+    test_data = data[(data['date'] >= "2023-07-01")]
 
     X_train = train_data.drop(["result","date"], axis=1)
     y_train = train_data["result"]
@@ -151,13 +153,13 @@ def lgbm():
     accuracy = accuracy_score(y_test, y_pred)
     print(f"Accuracy: {accuracy:.4f}")
 
-    output_file = open("ml_elo.txt", "w")
+    output_file = open("oldModel\ml_elo.txt", "w")
     original_stdout = sys.stdout
     sys.stdout = output_file
     pd.set_option("display.max_columns", None)  # Display all columns
     pd.set_option("display.max_rows", None)     # Display all rows
 
-    predict_data = pd.read_csv("predict_fights_elo.csv")
+    predict_data = pd.read_csv("oldModel\predict_fights_elo.csv")
     predict_data.replace("--", pd.NA, inplace=True)
     fighter_name_label = "fighter_names"
 
@@ -165,8 +167,8 @@ def lgbm():
     print(f"{fighter_name_label}", file=output_file)
     print(predict_data["fighter_name"] + "*" + predict_data["opponent_name"], file=output_file)
 
-    # predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
-    # predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year
+    predict_data["fighter_dob"] = pd.to_datetime(predict_data["fighter_dob"]).dt.year
+    predict_data["opponent_dob"] = pd.to_datetime(predict_data["opponent_dob"]).dt.year
 
     predict_data.dropna(subset=selected_columns, inplace=True)
     predict_data = predict_data[selected_columns]
@@ -195,7 +197,7 @@ def lgbm():
     }
 
     # Save the dictionary as a JSON file
-    with open("predicted_data.json", "w") as json_file:
+    with open("oldModel\predicted_data.json", "w") as json_file:
         json.dump(predicted_data_dict, json_file)
 
     # feature_importances = model.feature_importances_
