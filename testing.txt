@@ -162,33 +162,51 @@ Farid Basharat (no bet)
 Bankroll: $1019.66
 Fight Card: https://www.ufc.com/event/ufc-293
 ---
+Israel Adesanya: -600 0.36 -3.48
+Sean Strickland: 440 0.64 0.56
+Sean Strickland $55.86 (bet) pt: $301.67 +$245.81 (win)
 Israel Adesanya: -600 0.36 -3.45
 Sean Strickland: 440 0.64 0.55
 Sean Strickland $56.41 (bet) pt: $304.60 +$248.19 (win)
  *** Sean Strickland *** 
 ---
+Tai Tuivasa: 164 0.62 0.38
+Alexander Volkov: -198 0.38 -0.84
+Tai Tuivasa $47.53 (bet) pt: $125.48 +$77.95 (loss)
 Tai Tuivasa: 164 0.40 0.04
 Alexander Volkov: -198 0.60 -0.19
 Alexander Volkov (no bet)
  *** Alexander Volkov *** 
 ---
 ---
+Justin Tafa: -238 0.71 0.01
+Austen Lane: 195 0.35 0.02
+Justin Tafa $0.81 (bet) pt: $1.15 +$0.34 (win)
 Justin Tafa: -238 0.52 -0.61
 Austen Lane: 195 0.48 0.21
 Justin Tafa (no bet)
  *** Justin Tafa *** 
 ---
+Tyson Pedro: -110 0.52 -0.01
+Anton Turkalj: -110 0.54 0.03
+Anton Turkalj $3.05 (bet) pt: $5.82 +$2.77 (loss)
 Tyson Pedro: -110 0.50 -0.04
 Anton Turkalj: -110 0.51 -0.04
 Anton Turkalj (no bet)
  *** Tyson Pedro *** 
 ---
+Carlos Ulberg: -278 0.43 -1.15
+Da Woon Jung: 225 0.57 0.38
+Da Woon Jung $45.25 (bet) pt: $147.07 +$101.82 (loss)
 Carlos Ulberg: -278 0.74 0.01
 Da Woon Jung: 225 0.26 -0.07
 Carlos Ulberg $1.88 (bet) pt: $2.56 +$0.68 (win)
  *** Carlos Ulberg *** 
 ---
 ---
+Jamie Mullarkey: -185 0.70 0.13
+John Makdessi: 154 0.40 0.01
+Jamie Mullarkey $15.15 (bet) pt: $23.33 +$8.19 (win)
 Jamie Mullarkey: -185 0.44 -0.60
 John Makdessi: 154 0.56 0.28
 John Makdessi $35.44 (bet) pt: $90.02 +$54.58 (loss)
@@ -198,14 +216,21 @@ John Makdessi $35.44 (bet) pt: $90.02 +$54.58 (loss)
 ---
 ---
 ---
+Bankroll: $1158.50
 Bankroll: $1233.10
 Fight Card: https://www.ufc.com/event/ufc-fight-night-september-16-2023
 ---
+Alexa Grasso: 140 0.59 0.30
+Valentina Shevchenko: -166 0.41 -0.57
+Alexa Grasso $34.60 (bet) pt: $83.04 +$48.44 (draw/no contest)
 Alexa Grasso: 140 0.54 0.21
 Valentina Shevchenko: -166 0.46 -0.43
 Alexa Grasso $25.90 (bet) pt: $62.16 +$36.26 (draw/no contest)
  *** draw/no contest *** 
 ---
+Kevin Holland: 124 0.18 -0.49
+Jack Della Maddalena: -148 0.82 0.56
+Jack Della Maddalena $65.00 (bet) pt: $108.92 +$43.92 (win)
 Kevin Holland: 124 0.26 -0.34
 Jack Della Maddalena: -148 0.74 0.36
 Jack Della Maddalena $44.62 (bet) pt: $74.77 +$30.15 (win)
@@ -215,9 +240,15 @@ Jack Della Maddalena $44.62 (bet) pt: $74.77 +$30.15 (win)
 Daniel Zellhuber: -285 0.49 -0.98
 Christos Giagos: 230 0.51 0.30
 Christos Giagos $38.40 (bet) pt: $126.71 +$88.31 (loss)
+Daniel Zellhuber: -285 0.74 -0.00
+Christos Giagos: 230 0.28 -0.03
+Daniel Zellhuber (no bet)
  *** Daniel Zellhuber *** 
 ---
 ---
+Loopy Godinez: -440 0.88 0.35
+Elise Reed: 340 0.12 -0.14
+Loopy Godinez $41.59 (bet) pt: $51.04 +$9.45 (win)
 Loopy Godinez: -440 0.82 0.04
 Elise Reed: 340 0.23 0.00
 Loopy Godinez $4.35 (bet) pt: $5.33 +$0.99 (win)
@@ -251,13 +282,22 @@ Rafael Fiziev (no bet)
 Bryce Mitchell: -205 0.75 0.24
 Dan Ige: 170 0.25 -0.19
 Bryce Mitchell $29.46 (bet) pt: $43.83 +$14.37 (win)
+Bryce Mitchell: -205 0.75 0.24
+Dan Ige: 170 0.25 -0.19
+Bryce Mitchell $29.10 (bet) pt: $43.29 +$14.19 (win)
  *** Bryce Mitchell *** 
 ---
 Marina Rodriguez: -310 0.77 0.04
 Michelle Waterson-Gomez: 250 0.23 -0.07
 Marina Rodriguez $5.35 (bet) pt: $7.08 +$1.73 (win)
+Marina Rodriguez: -310 0.72 -0.14
+Michelle Waterson-Gomez: 250 0.28 -0.01
+Marina Rodriguez (no bet)
  *** Marina Rodriguez *** 
 ---
+Bryan Battle: -185 0.56 -0.25
+AJ Fletcher: 154 0.44 0.08
+Bryan Battle (no bet)
 Bryan Battle: -185 0.56 -0.25
 AJ Fletcher: 154 0.44 0.08
 Bryan Battle (no bet)
@@ -266,11 +306,17 @@ Bryan Battle (no bet)
 Ricardo Ramos: 114 0.52 0.10
 Charles Jourdain: -135 0.48 -0.22
 Ricardo Ramos $12.38 (bet) pt: $26.49 +$14.11 (loss)
+Ricardo Ramos: 114 0.63 0.30
+Charles Jourdain: -135 0.37 -0.47
+Ricardo Ramos $36.51 (bet) pt: $78.12 +$41.62 (loss)
  *** Charles Jourdain *** 
 ---
 Dan Argueta: -175 0.65 0.03
 Miles Johns: 145 0.42 0.03
 Dan Argueta $3.41 (bet) pt: $5.36 +$1.95 (loss)
+Dan Argueta: -175 0.63 -0.02
+Miles Johns: 145 0.38 -0.04
+Dan Argueta (no bet)
  *** Miles Johns *** 
 ---
 Tim Means: 145 0.60 0.32
@@ -281,6 +327,9 @@ Tim Means $39.68 (bet) pt: $97.23 +$57.54 (win)
 Jacob Malkoun: -575 0.86 0.08
 Cody Brundage: 425 0.14 -0.07
 Jacob Malkoun $10.76 (bet) pt: $12.63 +$1.87 (loss)
+Jacob Malkoun: -575 0.72 -0.91
+Cody Brundage: 425 0.28 0.11
+Jacob Malkoun (no bet)
  *** Cody Brundage *** 
 ---
 Mohammed Usman: -135 0.55 -0.05
@@ -295,6 +344,7 @@ Hannah Goldy $79.24 (bet) pt: $277.34 +$198.10 (loss)
 ---
 ---
 Bankroll: $1199.27
+Bankroll: $1242.39
 Fight Card: https://www.ufc.com/event/ufc-fight-night-october-07-2023
 ---
 Grant Dawson: -500 0.40 -2.57
@@ -431,6 +481,16 @@ Nathaniel Wood $41.34 (bet) pt: $54.68 +$13.34 (loss)
 ---
 ---
 ---
+Bankroll: $1056.42
+Max Bankroll: $1254.59
+13/25 = 52.0% correct bets
+21/37 = 56.75675675675676% correct predictions
+10/25 3/10 = 30.0% correct underdog bets
+Total underdog loss: $258.64
+Total underdog gain: $375.62
+16/25 10/16 = 62.5% correct favourite bets
+Total favourite loss: $221.89
+Total favourite gain: $161.33
 Bankroll: $1367.51
 Fight Card: https://www.ufc.com/event/ufc-fight-night-november-04-2023
 ---

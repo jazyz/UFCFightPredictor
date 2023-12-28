@@ -137,6 +137,7 @@ with open("predictions.txt", "a") as predictions_file:
                             # test.write("Fighter not found in the text file.\n")
                             predictions_file.write("---\n")
                             continue
+                        predictions_file.write("---\n")
                         avb_win = float(ml_elo(fighter1_name, fighter2_name)) 
                         avb_lose = 1 - avb_win
                         bva_win = float(ml_elo(fighter2_name, fighter1_name))
@@ -191,7 +192,7 @@ with open("predictions.txt", "a") as predictions_file:
                             predictions_file.write("\n")
                             
 
-                        predictions_file.write("---\n")
+                        
 
             else:
                 predictions_file.write(f"Failed to retrieve the fight card page. Status code: {response.status_code}\n")

@@ -167,7 +167,12 @@ def main():
         for fight in fights:
             fighter_name = fight[0]
             opponent_name = fight[1]
-            process(fighter_name, opponent_name)
+            extract_fighter_stats(
+                input_csv_filename, output_csv_filename, fighter_name, opponent_name
+            )
+            extract_fighter_stats(
+                input_csv_filename, output_csv_filename, opponent_name, fighter_name
+            )
 
 
 def process(fighter1_name, fighter2_name):
