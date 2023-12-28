@@ -15,7 +15,7 @@ def lgbm():
     data['date'] = pd.to_datetime(data['date'], format='%b. %d, %Y')
     # data = data.sort_values(by='date')
     data.replace("--", pd.NA, inplace=True)
-    data = data[(data['fighter_totalfights'] > 2) & (data['opponent_totalfights'] > 2)]
+    data = data[(data['fighter_totalfights'] > 1) & (data['opponent_totalfights'] > 1)]
     data = data[pd.to_datetime(data["date"]).dt.year>=2010]
     # data["fighter_dob"] = pd.to_datetime(data["fighter_dob"]).dt.year
     # data["opponent_dob"] = pd.to_datetime(data["opponent_dob"]).dt.year
@@ -101,8 +101,8 @@ def lgbm():
     #     X, y, test_size=0.2, random_state=42
     # )
 
-    train_data = data[data['date'] < date_to_train]
-    test_data = data[(data['date'] >= "2023-06-01")]
+    train_data = data[data['date'] < "2023-01-01"]
+    test_data = data[(data['date'] >= "2023-01-01")]
 
     X_train = train_data.drop(["result","date"], axis=1)
     y_train = train_data["result"]

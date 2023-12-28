@@ -126,7 +126,7 @@ def processFight(fight, Red, Blue):
             Result = 'win'
 
     processed_fight = {"Result": Result}
-    if fighter_stats[Red]["totalfights"] >= 3 and fighter_stats[Blue]["totalfights"] >= 3:
+    if fighter_stats[Red]["totalfights"] >= 2 and fighter_stats[Blue]["totalfights"] >= 2:
         processed_fight['Red Fighter'] = Red
         processed_fight['Blue Fighter'] = Blue
         processed_fight['Title'] = fight['Title']

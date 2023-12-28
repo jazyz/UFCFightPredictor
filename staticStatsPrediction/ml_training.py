@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 
 
-data = pd.read_csv("fightstats.csv")
+data = pd.read_csv(r"staticStatsPrediction\fightstats.csv")
 
 data.dropna(
     subset=[

@@ -90,7 +90,7 @@ def processBet(bet, fighter_name, fighter_odds):
 with open("testing_alpha_clean.txt", "w") as test:
     urls = []
     urls.append("https://www.ufc.com/events")
-    for i in range(1, 10):
+    for i in range(1, 5):
         urls.append("https://www.ufc.com/events?page=" + str(i))    
     all_fight_card_links = []
     for url in urls:
