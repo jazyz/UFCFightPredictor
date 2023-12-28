@@ -2,6 +2,7 @@ import json
 from flask import Flask, request, jsonify
 from predict_fights_elo import process
 from ml_training_duplication import lgbm
+from testing import runTests
 import os
 import subprocess
 import pandas as pd
@@ -65,5 +66,28 @@ def get_predicted_data():
     
     return jsonify(response)
 
+def get_test_results():
+    file_path = 'testing.txt'
+    try:
+        with open(file_path, 'r') as file:
+            content = file.read()
+        return {'content': content}
+    except FileNotFoundError:
+        return {'error': 'File not found'}, 404
+
+@app.route("/test", methods=["POST"])
+def test():
+    try:
+        data = request.json
+        testFrom_card = data.get("testFrom_card")
+        testTo_card = data.get("testTo_card")
+        runTests(testFrom_card, testTo_card)
+
+        response = get_test_results()
+    except Exception as e:
+        response = {"message": f"Error during testing: {e}"}
+
+    return jsonify(response)
+
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
