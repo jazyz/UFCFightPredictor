@@ -128,6 +128,6 @@ def read_and_print_csv(filename=r'data\fight_details.csv'):
                 print(f"{header}: {value}")
             print("-" * 100)  # Separator for each fight
 
-urls=["http://ufcstats.com/fight-details/f2b407019b2a5c15"]
-process_fight_urls(urls)
-read_and_print_csv()
+# urls=["http://ufcstats.com/fight-details/f2b407019b2a5c15"]
+# process_fight_urls(urls)
+# read_and_print_csv()

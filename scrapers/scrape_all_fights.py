@@ -177,6 +177,6 @@ def get_all_fight_urls(url):
     return all_additional_links
 
 # URL of the UFC statistics events
-url = "http://ufcstats.com/statistics/events/completed?page=all"
-all_fights = get_all_fight_urls(url)
-process_fight_urls(all_fights)
+# url = "http://ufcstats.com/statistics/events/completed?page=all"
+# all_fights = get_all_fight_urls(url)
+# process_fight_urls(all_fights)
