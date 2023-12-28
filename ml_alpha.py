@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 from bayes_opt import BayesianOptimization
 from sklearn.model_selection import cross_val_score
-
+import optuna
 # Step 1: Read the data
 df = pd.read_csv("detailed_fights.csv")
 # df = df[(df['Red totalfights'] > 4) & (df['Blue totalfights'] > 4)]
