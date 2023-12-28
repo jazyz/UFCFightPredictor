@@ -6,12 +6,13 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import json
+import os
 
 # default to present
 date_to_train = "2023-06-01"
 
 def lgbm():
-    data = pd.read_csv("oldModel\elofightstats.csv")
+    data = pd.read_csv(os.path.join("oldModel", "elofightstats.csv"))
     data['date'] = pd.to_datetime(data['date'], format='%b. %d, %Y')
     # data = data.sort_values(by='date')
     data.replace("--", pd.NA, inplace=True)
@@ -153,13 +154,13 @@ def lgbm():
     accuracy = accuracy_score(y_test, y_pred)
     print(f"Accuracy: {accuracy:.4f}")
 
-    output_file = open("oldModel\ml_elo.txt", "w")
+    output_file = open(os.path.join("oldModel", "ml_elo.txt"), "w")
     original_stdout = sys.stdout
     sys.stdout = output_file
     pd.set_option("display.max_columns", None)  # Display all columns
     pd.set_option("display.max_rows", None)     # Display all rows
 
-    predict_data = pd.read_csv("oldModel\predict_fights_elo.csv")
+    predict_data = pd.read_csv(os.path.join("oldModel", "predict_fights_elo.csv"))
     predict_data.replace("--", pd.NA, inplace=True)
     fighter_name_label = "fighter_names"
 
@@ -197,7 +198,7 @@ def lgbm():
     }
 
     # Save the dictionary as a JSON file
-    with open("oldModel\predicted_data.json", "w") as json_file:
+    with open(os.path.join("oldModel", "predicted_data.json"), "w") as json_file:
         json.dump(predicted_data_dict, json_file)
 
     # feature_importances = model.feature_importances_

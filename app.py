@@ -1,8 +1,8 @@
 import json
 from flask import Flask, request, jsonify
-from predict_fights_elo import process
-from ml_training_duplication import lgbm
-from testing import runTests
+from oldModel.predict_fights_elo import process
+from oldModel.ml_training_duplication import lgbm
+from oldModel.testing import runTests
 import os
 import subprocess
 import pandas as pd
@@ -47,7 +47,7 @@ def read_csv(file_path):
 
 @app.route('/get_stats', methods=['GET'])
 def get_stats():
-    csv_file_path = 'predict_fights_elo.csv'  
+    csv_file_path = os.path.join('oldModel', 'predict_fights_elo.csv')
     data = read_csv(csv_file_path)
     return jsonify(data)
     
@@ -55,7 +55,7 @@ def get_stats():
 @app.route("/get_predicted_data", methods=["GET"])
 def get_predicted_data():
     try:
-        with open("predicted_data.json", "r") as json_file:
+        with open(os.path.join("oldModel", "predicted_data.json"), "r") as json_file:
             predicted_data_dict = json.load(json_file)
         response = {
             "predicted_data": predicted_data_dict["predict_data"],
@@ -67,7 +67,7 @@ def get_predicted_data():
     return jsonify(response)
 
 def get_test_results():
-    file_path = 'testing.txt'
+    file_path = os.path.join('oldModel', 'testing.txt')
     try:
         with open(file_path, 'r') as file:
             content = file.read()
