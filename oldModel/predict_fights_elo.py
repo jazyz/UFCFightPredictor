@@ -99,7 +99,7 @@ def extract_fighter_stats(
         print("Fighter or opponent not found in the CSV.")
         return
 
-    if int(fighter_stats["totalfights"]) <= 4 or int(opponent_stats["totalfights"]) <= 4:
+    if int(fighter_stats["totalfights"]) <= 1 or int(opponent_stats["totalfights"]) <= 1:
         return
     combined_stats = {}
     for key, value in fighter_stats.items():

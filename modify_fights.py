@@ -1,7 +1,7 @@
 import pandas as pd
 
-# Reading the data from fight_details.csv file
-df = pd.read_csv('fight_details.csv')
+# Reading the data from data\fight_details.csv file
+df = pd.read_csv(r'data\fight_details.csv')
 
 # Function to convert "x of y" strings to a tuple of (x, x/y)
 def convert_ratio(value):
@@ -36,7 +36,7 @@ for col in df.columns:
 rows_to_delete = set()
 i = 0
 while i < len(df) - 1:
-    if df.loc[i, 'Draw'] == True:
+    if pd.isna(df.loc[i, 'Winner']) or df.loc[i, 'Winner'] == '':
         rows_to_delete.add(i + 1)
         i += 2  
     else:
@@ -46,10 +46,13 @@ while i < len(df) - 1:
 df = df.drop(list(rows_to_delete))
 
 # Deleting the old percentage columns as specified
-columns_to_delete = ["Red Sig. str. %", "Red Td %", "Blue Sig. str. %", "Blue Td %"]
+columns_to_delete = ["Red Sig. str. %", "Red Td %", "Blue Sig. str. %", "Blue Td %", "Red Sig. str", "Blue Sig. str", "Red Sig. str%", "Blue Sig. str%"]
 df = df.drop(columns=columns_to_delete)
-
+df = df[~df['Title'].str.contains("Women")]
+df = df[~df['Title'].str.contains("Open")]
+#df = df[~df['Title'].str.contains("Title")]
 # Saving the modified DataFrame back to CSV or you can use it as is in your Python environment
-df.to_csv('modified_fight_details.csv', index=False)
+df.to_csv('data\modified_fight_details.csv', index=False)
 
 # Israel Adesanya,16,1131.9101928075177,12.0,240.0,168.0,-18.0,3.0,1.0,-25.01666666666667,240.0,45.0,19.0,176.0,246.0,-18.0,12.0,1.130486641768835,0.7995857264691455,-2.7634920634920634,1.130486641768835,0.9464661345739814,0.44584948993712337,0.7380345872896514,1.4338087582947758,-1.57277183600713,2.3772727272727274
+
