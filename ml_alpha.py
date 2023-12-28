@@ -399,5 +399,5 @@ plt.ylabel("Feature")
 plt.title("Feature Importance")
 plt.show()
 
-print("Top 25 Important Features:")
+print("Top 10 Important Features:")
 print(feature_importance_df.head(10))

@@ -213,19 +213,19 @@ selected_columns = [
 ]
 
 
-corr_matrix = df[selected_columns].corr().abs()
+# corr_matrix = df[selected_columns].corr().abs()
 
-# Select upper triangle of correlation matrix
-upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
+# # Select upper triangle of correlation matrix
+# upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
 
-# Find features with correlation greater than 95%
-to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
+# # Find features with correlation greater than 95%
+# to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
 
-# Drop highly correlated features
-df.drop(to_drop, axis=1, inplace=True)
+# # Drop highly correlated features
+# df.drop(to_drop, axis=1, inplace=True)
 
-# Make sure to update the 'selected_columns' to reflect the dropped columns
-selected_columns = [column for column in selected_columns if column not in to_drop]
+# # Make sure to update the 'selected_columns' to reflect the dropped columns
+# selected_columns = [column for column in selected_columns if column not in to_drop]
 
 df = df[selected_columns]
 X = df.drop(["Result"], axis=1)
@@ -235,7 +235,7 @@ y = df["Result"]
 # X = pd.get_dummies(X)  # This line is optional and depends on your data
 
 # Manual split based on percentage
-split_index = int(len(df) * 0.9)
+split_index = int(len(df) * 0.8)
 last_index = int(len(df) * 1)
 X_train, X_test = X[:split_index], X[split_index:last_index]
 y_train, y_test = y[:split_index], y[split_index:last_index]
@@ -282,8 +282,8 @@ with open('best_params.json', 'r') as file:
 best_params = data_loaded['best_params']
 best_score = data_loaded['best_score']
 
-model = lgb.LGBMClassifier(**best_params)
-
+# model = lgb.LGBMClassifier(**best_params)
+model = lgb.LGBMClassifier(random_state=seed)
 model.fit(X_train_extended, y_train_extended)
 
 # Make predictions and evaluate the model
