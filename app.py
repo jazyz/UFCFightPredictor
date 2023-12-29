@@ -12,6 +12,15 @@ import csv
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/get_all_fighter_names', methods=['GET'])
+def get_all_fighter_names():
+    csv_file_path = os.path.join('oldModel', 'fighter_stats.csv')
+    data = read_csv(csv_file_path)
+    fighter_names = []
+    for row in data:
+        fighter_names.append(row['name'])
+    return jsonify(fighter_names)
+
 @app.route("/predict", methods=["POST"])
 def predict():
     data = request.json
