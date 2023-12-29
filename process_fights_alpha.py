@@ -188,6 +188,7 @@ for fight in fights:
 
     processFight(fight, Red, Blue)
 
+    ### update stats
     fighter_stats[Red]["totalfights"] += 1
     fighter_stats[Blue]["totalfights"] += 1
     redfights = fighter_stats[Red]["totalfights"] 
