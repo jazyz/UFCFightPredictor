@@ -16,9 +16,9 @@ const App = () => {
   // fetch all fighter names from backend
   useEffect(() => {
     axios
-      .get(`${baseURL}/get-fighter-names`)
+      .get(`${baseURL}/get_all_fighter_names`)
       .then((res) => {
-        setNameOptions(res.data.names);
+        setNameOptions(res.data.fighter_names);
       })
       .catch((err) => {
         console.error(err);
