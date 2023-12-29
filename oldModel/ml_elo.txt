@@ -1,35 +1,35 @@
 fighter_names
-0    Chael Sonnen*Anderson Silva
-1    Anderson Silva*Chael Sonnen
+0    Marlon Vera*Petr Yan
+1    Petr Yan*Marlon Vera
 dtype: object
       date  fighter_kd_differential  fighter_str_differential  \
-0  unknown                -0.052632                 19.263158   
-1  unknown                 0.441860                 10.139535   
+0  unknown                 0.545455                -10.090909   
+1  unknown                 0.750000                 13.000000   
 
    fighter_td_differential  fighter_sub_differential  fighter_losestreak  \
-0                 1.894737                 -0.894737                   2   
-1                -0.534884                  0.279070                   6   
+0                -0.500000                  0.818182                   0   
+1                 0.416667                  0.166667                   6   
 
    fighter_age_deviation  fighter_opp_avg_elo  fighter_elo  \
-0                   4251          1169.566691  1189.211750   
-1                   7512          1095.307037  1164.435071   
+0                   2092          1069.427894  1231.453240   
+1                   1860          1136.532947  1133.560181   
 
    opponent_kd_differential  opponent_str_differential  \
-0                  0.441860                  10.139535   
-1                 -0.052632                  19.263158   
+0                  0.750000                  13.000000   
+1                  0.545455                 -10.090909   
 
    opponent_td_differential  opponent_sub_differential  opponent_losestreak  \
-0                 -0.534884                   0.279070                    6   
-1                  1.894737                  -0.894737                    2   
+0                  0.416667                   0.166667                    6   
+1                 -0.500000                   0.818182                    0   
 
    opponent_age_deviation  opponent_elo  opponent_opp_avg_elo  fighter_dob  \
-0                    7512   1164.435071           1095.307037         1977   
-1                    4251   1189.211750           1169.566691         1975   
+0                    1860   1133.560181           1136.532947         1992   
+1                    2092   1231.453240           1069.427894         1993   
 
    opponent_dob   result predicted_result  probability_draw  probability_loss  \
-0          1975  unknown              win          0.000666          0.416133   
-1          1977  unknown             loss          0.000416          0.756177   
+0          1993  unknown             loss          0.000852          0.726367   
+1          1992  unknown              win          0.000226          0.247196   
 
    probability_nc  probability_win  
-0        0.004629         0.578572  
-1        0.001849         0.241557  
+0        0.002257         0.270524  
+1        0.000466         0.752112  

@@ -17,14 +17,15 @@ const FightPredictor = ({ nameOptions }) => {
 
   const handlePredictClick = async () => {
     try {
+      console.log(nameOptions);
       if (!nameOptions.includes(fighterName1)) {
-        throw new Error('Please enter valid fighter names.')
+        throw new Error("Please enter valid fighter names.");
       }
       if (!nameOptions.includes(fighterName2)) {
-        throw new Error('Please enter valid fighter names.')
+        throw new Error("Please enter valid fighter names.");
       }
       if (fighterName1 === fighterName2) {
-        throw new Error('Please enter two different fighter names.')
+        throw new Error("Please enter two different fighter names.");
       }
 
       setIsLoading(true);
@@ -58,31 +59,33 @@ const FightPredictor = ({ nameOptions }) => {
         <div className="mb-4">
           <input
             className="w-full border rounded py-2 px-3"
-            list='options-1'
-            type='text'
+            list="options-1"
+            type="text"
             placeholder="Enter Fighter 1 Name"
             value={fighterName1}
             onChange={(e) => setFighterName1(e.target.value)}
           />
-          <datalist id='options-1'>
-            {nameOptions.map((option) => (
-              <option key={`${option}-1`} value={option} />
-            ))}
+          <datalist id="options-1">
+            {nameOptions &&
+              nameOptions.map((option) => (
+                <option key={`${option}-1`} value={option} />
+              ))}
           </datalist>
         </div>
         <div className="mb-4">
           <input
             className="w-full border rounded py-2 px-3"
-            list='options-2'
+            list="options-2"
             type="text"
             placeholder="Enter Fighter 2 Name"
             value={fighterName2}
             onChange={(e) => setFighterName2(e.target.value)}
           />
-          <datalist id='options-2'>
-            {nameOptions.map((option) => (
-              <option key={`${option}-2`} value={option} />
-            ))}
+          <datalist id="options-2">
+            {nameOptions &&
+              nameOptions.map((option) => (
+                <option key={`${option}-2`} value={option} />
+              ))}
           </datalist>
         </div>
         <button

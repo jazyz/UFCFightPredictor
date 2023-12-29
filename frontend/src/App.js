@@ -8,29 +8,32 @@ import Testing from "./components/Testing";
 import axios from "axios";
 import { baseURL } from "./constants";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-  const [nameOptions, setNameOptions] = useState(['']);
+  const [nameOptions, setNameOptions] = useState([""]);
 
   // fetch all fighter names from backend
   useEffect(() => {
     axios
       .get(`${baseURL}/get_all_fighter_names`)
       .then((res) => {
-        setNameOptions(res.data.fighter_names);
+        setNameOptions(res.data);
       })
       .catch((err) => {
         console.error(err);
         toast.error("Error fetching fighter names.");
-      })
-  }, [])
+      });
+  }, []);
 
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<FightPredictor nameOptions={nameOptions} />} />
+        <Route
+          path="/"
+          element={<FightPredictor nameOptions={nameOptions} />}
+        />
         <Route path="/about" element={<About />} />
         <Route path="/results" element={<Results />} />
         <Route path="/testing" element={<Testing />} />
