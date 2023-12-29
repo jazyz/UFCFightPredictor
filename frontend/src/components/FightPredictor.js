@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { baseURL } from "../constants";
+import { toast } from "react-toastify";
 
-const FightPredictor = () => {
+const FightPredictor = ({ nameOptions }) => {
   const [fighterName1, setFighterName1] = useState("");
   const [fighterName2, setFighterName2] = useState("");
   const [stats, setStats] = useState(null);
@@ -13,11 +15,18 @@ const FightPredictor = () => {
     setShowAdvancedStats(!showAdvancedStats);
   };
 
-  const baseURL = "http://127.0.0.1:5000/";
-  // const baseURL = "http://3.131.89.190:5000/";
-
   const handlePredictClick = async () => {
     try {
+      if (!nameOptions.includes(fighterName1)) {
+        throw new Error('Please enter valid fighter names.')
+      }
+      if (!nameOptions.includes(fighterName2)) {
+        throw new Error('Please enter valid fighter names.')
+      }
+      if (fighterName1 === fighterName2) {
+        throw new Error('Please enter two different fighter names.')
+      }
+
       setIsLoading(true);
       console.log("Predicting fight...");
       const response = await axios.post(`${baseURL}/predict`, {
@@ -36,8 +45,8 @@ const FightPredictor = () => {
       // console.log(results.data.predicted_data);
       setIsLoading(false);
     } catch (error) {
+      toast.error(error.message);
       setIsLoading(false);
-
       console.error("Error predicting fight:", error);
     }
   };
@@ -49,20 +58,32 @@ const FightPredictor = () => {
         <div className="mb-4">
           <input
             className="w-full border rounded py-2 px-3"
-            type="text"
+            list='options-1'
+            type='text'
             placeholder="Enter Fighter 1 Name"
             value={fighterName1}
             onChange={(e) => setFighterName1(e.target.value)}
           />
+          <datalist id='options-1'>
+            {nameOptions.map((option) => (
+              <option key={`${option}-1`} value={option} />
+            ))}
+          </datalist>
         </div>
         <div className="mb-4">
           <input
             className="w-full border rounded py-2 px-3"
+            list='options-2'
             type="text"
             placeholder="Enter Fighter 2 Name"
             value={fighterName2}
             onChange={(e) => setFighterName2(e.target.value)}
           />
+          <datalist id='options-2'>
+            {nameOptions.map((option) => (
+              <option key={`${option}-2`} value={option} />
+            ))}
+          </datalist>
         </div>
         <button
           className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
