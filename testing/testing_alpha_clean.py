@@ -26,6 +26,16 @@ def get_ml(p1, p2):
 bankroll = 1000.00
 minBankroll = bankroll
 maxBankroll = bankroll
+maxCardBet = 0
+correctBets = 0
+totalBets = 0
+totalBetAmount = 0 
+favourite_gain = 0
+favourite_loss = 0
+underdog_gain = 0
+underdog_loss = 0
+correctPredictions = 0
+totalPredictions = 0
 
 def kelly_criterion(odds, prob_win):
         kc = 0
@@ -69,13 +79,27 @@ def closerToOdds(avb_win, avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob):
     return a_win, b_win
 
 def process_winner(winner_name, fighter_name, potential_return, bet, fighter_odds):
+    global correctBets, favourite_gain, favourite_loss, underdog_gain, underdog_loss, totalBets, totalBetAmount
+    totalBets+=1
     if (winner_name == fighter_name):
+        correctBets+=1
+        if fighter_odds<0:
+            favourite_gain+=potential_return
+        if fighter_odds>0:
+            underdog_gain+=potential_return
+
+
         test.write(" (win)")
         return potential_return
     elif (winner_name == "draw/no contest"):
         test.write(" (draw/no contest)")
         return 0
     else:
+        if fighter_odds<0:
+            favourite_loss+=bet
+        if fighter_odds>0:
+            underdog_loss+=bet
+
         test.write(" (loss)")
         return -bet
     return 0
@@ -90,7 +114,7 @@ bankrolls=[]
 with open(r"test_results\testing_alpha_clean.txt", "w") as test:
     urls = []
     urls.append("https://www.ufc.com/events")
-    for i in range(1, 10):
+    for i in range(1, 6):
         urls.append("https://www.ufc.com/events?page=" + str(i))    
     all_fight_card_links = []
     for url in urls:
@@ -155,7 +179,7 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
             test.write("---\n")
 
             # Extract and print the odds for each fight on the current card
-            
+            cardBet=0
             nextBankroll=bankroll
             for i in range(0, len(fighter_names), 2):
                 fighter1_name = fighter_names[i]
@@ -210,27 +234,37 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
                     test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.2f} {kc_a:.2f}\n")
                     test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.2f} {kc_b:.2f}\n")
 
-                    fraction = 0.1
-                    max_fraction = 0.1
+                    fraction = 0.05
+                    max_fraction = 0.05
                     flat = 0.000
+                    totalPredictions += 1
                     if a_win > b_win:
+                        if winner_name == fighter1_name:
+                            correctPredictions+=1
+
                         if (kc_a > 0):
                             bet = bankroll * fraction * kc_a
                             bet = min(bet,max_fraction*bankroll)
+                            cardBet+=bet
                             nextBankroll+=processBet(bet, fighter1_name, fighter1_odds)
                         else:
-                            bet = bankroll * flat
-                            nextBankroll+=processBet(bet, fighter1_name, fighter1_odds)
+                            # bet = bankroll * flat
+                            # nextBankroll+=processBet(bet, fighter1_name, fighter1_odds)
+                            test.write(f"(no bet)")
                         test.write("\n")
                     else:
+                        if winner_name == fighter2_name:
+                            correctPredictions+=1
+
                         if (kc_b > 0):
                             bet = bankroll * fraction * kc_b
                             bet = min(bet,max_fraction*bankroll)
+                            cardBet+=bet
                             nextBankroll+=processBet(bet, fighter2_name, fighter2_odds)
                         else:
-                            bet = bankroll * flat
-                            nextBankroll+=processBet(bet, fighter2_name, fighter2_odds)
-                            # test.write(f"(no bet)")
+                            # bet = bankroll * flat
+                            # nextBankroll+=processBet(bet, fighter2_name, fighter2_odds)
+                            test.write(f"(no bet)")
                             
                         test.write("\n")
                     test.write(f" *** {winner_name} *** \n")
@@ -242,6 +276,7 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
             bankrolls.append(bankroll)
             minBankroll=min(minBankroll,bankroll)
             maxBankroll=max(maxBankroll,bankroll)
+            maxCardBet=max(maxCardBet,cardBet)
             if (fight_card_link == "https://www.ufc.com/event/ufc-296"):
                 break
 
@@ -254,6 +289,13 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
         file.write(f"Bankroll: ${bankroll:.2f}\n")
         file.write(f"Min Bankroll: ${minBankroll:.2f}\n")
         file.write(f"Max Bankroll: ${maxBankroll:.2f}\n")
+        file.write(f"Max Card Bet: ${maxCardBet:.2f}\n")
+        # file.write(f"Correct Predictions: {correctPredictions/totalPredictions:.2f}\n")
+        # file.write(f"Correct Bets: {correctBets/totalBets:.2f}\n")
+        file.write(f"Favourite Gain: ${favourite_gain:.2f}\n")
+        file.write(f"Favourite Loss: ${favourite_loss:.2f}\n")
+        file.write(f"Underdog Gain: ${underdog_gain:.2f}\n")
+        file.write(f"Underdog Loss: ${underdog_loss:.2f}\n")
         file.write("\n")
 
 plt.figure(figsize=(10, 6))
