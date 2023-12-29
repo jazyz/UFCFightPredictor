@@ -1,4 +1,5 @@
 import csv
+import os
 import json
 import pandas as pd
 import sys
@@ -11,6 +12,7 @@ from sklearn.model_selection import cross_val_score
 import numpy as np
 from sklearn.metrics import log_loss
 import optuna
+
 # Step 1: Read the data
 df = pd.read_csv("data\detailed_fights.csv")
 # Step 2: Preprocess the data
@@ -272,22 +274,79 @@ X_train_extended = pd.concat([X_train, X_train_swapped], ignore_index=True)
 y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
 
 
+# # for accuracy
+def objective(trial):
+    # Parameter suggestions by Optuna for tuning
+    param = {
+        "objective": "multiclass",  # or 'binary' for binary classification
+        "verbosity": -1,
+        "boosting_type": "gbdt",  # Default boosting type
+        "num_leaves": trial.suggest_int(
+            "num_leaves", 20, 100
+        ),  # more conservative than default
+        "learning_rate": trial.suggest_float(
+            "learning_rate", 0.02, 0.2, log=True
+        ),  # adjusted range for more granular learning rates
+        "min_child_samples": trial.suggest_int(
+            "min_child_samples", 10, 100
+        ),  # adjusted range to prevent overfitting
+        "subsample": trial.suggest_float(
+            "subsample", 0.5, 1.0
+        ),  # subsample ratio of the training instance
+        "colsample_bytree": trial.suggest_float(
+            "colsample_bytree", 0.5, 1.0
+        ),  # subsample ratio of columns when constructing each tree
+        "n_estimators": 100,  # Fixed number of estimators for simplicity
+        "num_class": 3,  # Replace with the actual number of classes in your dataset
+    }
+
+    # Splitting data for validation
+    X_train, X_valid, y_train, y_valid = train_test_split(
+        X_train_extended, y_train_extended, test_size=0.2, stratify=y_train_extended
+    )
+
+    # Creating LightGBM datasets
+    dtrain = lgb.Dataset(X_train, label=y_train)
+    dvalid = lgb.Dataset(X_valid, label=y_valid)
+
+    # Training model
+    model = lgb.train(
+        param,
+        dtrain,
+        valid_sets=[dvalid],
+        callbacks=[lgb.early_stopping(stopping_rounds=30)],
+    )
+
+    # Making predictions
+    preds = model.predict(X_valid, num_iteration=model.best_iteration)
+    pred_labels = np.argmax(preds, axis=1)  # For multiclass classification
+
+    # Calculate accuracy
+    accuracy = accuracy_score(y_valid, pred_labels)
+
+    # Return negative accuracy for maximization
+    return (
+        accuracy  # Optuna minimizes the objective, so use negative accuracy to maximize
+    )
+
+
 # def objective(trial):
 #     # Parameter suggestions by Optuna for tuning
 #     param = {
 #         'objective': 'multiclass',  # or 'binary' for binary classification
+#         'metric': 'multi_logloss',
 #         'verbosity': -1,
 #         'boosting_type': 'gbdt',    # Default boosting type
-#         'num_leaves': trial.suggest_int('num_leaves', 30, 150),  # more conservative than default
+#         'num_leaves': trial.suggest_int('num_leaves', 20, 100),  # more conservative than default
 #         'learning_rate': trial.suggest_float('learning_rate', 0.02, 0.2, log=True),  # adjusted range for more granular learning rates
-#         'min_child_samples': trial.suggest_int('min_child_samples', 20, 100),  # adjusted range to prevent overfitting
+#         'min_child_samples': trial.suggest_int('min_child_samples', 10, 100),  # adjusted range to prevent overfitting
 #         'subsample': trial.suggest_float('subsample', 0.5, 1.0),  # subsample ratio of the training instance
 #         'colsample_bytree': trial.suggest_float('colsample_bytree', 0.5, 1.0),  # subsample ratio of columns when constructing each tree
 #         'n_estimators': 100,  # Fixed number of estimators for simplicity
 #         'num_class': 3  # Replace with the actual number of classes in your dataset
 #     }
-    
-#     # Splitting data for validation
+
+#         # Splitting data for validation
 #     X_train, X_valid, y_train, y_valid = train_test_split(X_train_extended, y_train_extended, test_size=0.2, stratify=y_train_extended)
 
 #     # Creating LightGBM datasets
@@ -296,50 +355,63 @@ y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
 
 #     # Training model
 #     model = lgb.train(
-#         param, 
-#         dtrain, 
+#         param,
+#         dtrain,
 #         valid_sets=[dvalid],
-#         callbacks=[lgb.early_stopping(stopping_rounds=10)]
+#         callbacks=[lgb.early_stopping(stopping_rounds=30)]
 #     )
 
 #     # Making predictions
 #     preds = model.predict(X_valid, num_iteration=model.best_iteration)
-#     pred_labels = np.argmax(preds, axis=1)  # For multiclass classification
+#     logloss = log_loss(y_valid, preds)
 
-#     # Calculate accuracy
-#     accuracy = accuracy_score(y_valid, pred_labels)
+#     return logloss
 
-#     # Return negative accuracy for maximization
-#     return accuracy  # Optuna minimizes the objective, so use negative accuracy to maximize
+#     # data = lgb.Dataset(X_train_extended, label=y_train_extended)
+#     # # Training model
+#     # cv_results = lgb.cv(
+#     #     param,
+#     #     data,
+#     #     num_boost_round=1000,
+#     #     nfold=3,  # Or another number of folds
+#     #     stratified=True,
+#     #     shuffle=True,
+#     #     callbacks=[lgb.early_stopping(stopping_rounds=20)],
+#     # )
 
-# # Create the study object with maximization direction
-# study = optuna.create_study(direction='maximize')  # Change to 'maximize' because we are focusing on accuracy
-# study.optimize(objective, n_trials=20)
+#     # print(cv_results.keys())
 
-# # Fetching the best parameters
-# best_params = study.best_params
-# best_score = study.best_value
+#     # # Extract the best score
+#     # best_score = cv_results['valid multi_logloss-mean'][-1]
 
-# # Output the best parameters and score
-# print(f"Best params: {best_params}")
-# print(f"Best score: {best_score}")
+#     # return best_score
 
-# with open('best_params.json', 'w') as file:
-#     # Creating a dictionary to hold data
-#     data_to_save = {
-#         'best_params': best_params,
-#         'best_score': best_score
-#     }
-#     # Writing as a JSON formatted string for readability and ease of use
-#     json.dump(data_to_save, file, indent=4)
+# Create the study object with maximization direction
+study = optuna.create_study(direction="maximize")
+study.optimize(objective, n_trials=10)
+
+# Fetching the best parameters
+best_params = study.best_params
+best_score = study.best_value
+
+# Output the best parameters and score
+print(f"Best params: {best_params}")
+print(f"Best score: {best_score}")
+
+with open("best_params.json", "w") as file:
+    # Creating a dictionary to hold data
+    data_to_save = {"best_params": best_params, "best_score": best_score}
+    # Writing as a JSON formatted string for readability and ease of use
+    json.dump(data_to_save, file, indent=4)
 # Now use the best parameters to fit the model on complete training data
-    
-with open('best_params.json', 'r') as file:
+
+with open("best_params.json", "r") as file:
     data_loaded = json.load(file)
 
 # Extracting the best parameters and score from the loaded data
-best_params = data_loaded['best_params']
-best_score = data_loaded['best_score']
+best_params = data_loaded["best_params"]
+best_score = data_loaded["best_score"]
+
 model = lgb.LGBMClassifier(**best_params)
 model.fit(X_train_extended, y_train_extended)
 # Make predictions and evaluate the model
@@ -401,3 +473,43 @@ plt.show()
 
 print("Top 10 Important Features:")
 print(feature_importance_df.head(10))
+
+# def objective(trial):
+#     # Parameter suggestions by Optuna for tuning
+#     param = {
+#         'objective': 'multiclass',  # or 'binary' for binary classification
+#         'verbosity': -1,
+#         'boosting_type': 'gbdt',    # Default boosting type
+#         'num_leaves': trial.suggest_int('num_leaves', 30, 150),  # more conservative than default
+#         'learning_rate': trial.suggest_float('learning_rate', 0.02, 0.2, log=True),  # adjusted range for more granular learning rates
+#         'min_child_samples': trial.suggest_int('min_child_samples', 20, 100),  # adjusted range to prevent overfitting
+#         'subsample': trial.suggest_float('subsample', 0.5, 1.0),  # subsample ratio of the training instance
+#         'colsample_bytree': trial.suggest_float('colsample_bytree', 0.5, 1.0),  # subsample ratio of columns when constructing each tree
+#         'n_estimators': 100,  # Fixed number of estimators for simplicity
+#         'num_class': 3  # Replace with the actual number of classes in your dataset
+#     }
+
+#     # Splitting data for validation
+#     X_train, X_valid, y_train, y_valid = train_test_split(X_train_extended, y_train_extended, test_size=0.2, stratify=y_train_extended)
+
+#     # Creating LightGBM datasets
+#     dtrain = lgb.Dataset(X_train, label=y_train)
+#     dvalid = lgb.Dataset(X_valid, label=y_valid)
+
+#     # Training model
+#     model = lgb.train(
+#         param,
+#         dtrain,
+#         valid_sets=[dvalid],
+#         callbacks=[lgb.early_stopping(stopping_rounds=10)]
+#     )
+
+#     # Making predictions
+#     preds = model.predict(X_valid, num_iteration=model.best_iteration)
+#     pred_labels = np.argmax(preds, axis=1)  # For multiclass classification
+
+#     # Calculate accuracy
+#     accuracy = accuracy_score(y_valid, pred_labels)
+
+#     # Return negative accuracy for maximization
+#     return accuracy  # Optuna minimizes the objective, so use negative accuracy to maximize
