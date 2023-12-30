@@ -6,10 +6,12 @@ from datetime import datetime
 from models import db, Fighter, Fight
 import os
 
+# retrieve data from Flask database
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///detailedfighters.db"
 db.init_app(app)
 
+# ********** HELPER FUNCTIONS **********
 def query_fighter_by_name(name):
     fighter = Fighter.query.filter_by(name=name).first() 
     return fighter
@@ -122,6 +124,7 @@ def sqrSum(n):
 def getTime(fight):
     return (float(fight['Round'])-1)*5 + float(fight['Time'])
 
+# PROCESS FIGHTS TO RED AND BLUE 
 def processFight(fight, Red, Blue):
     winner = fight['Winner']
     Result='draw'
