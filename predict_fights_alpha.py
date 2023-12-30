@@ -1,6 +1,3 @@
-# Which then gets read by ml alpha
-# Which outputs predicted results
-
 import requests
 from bs4 import BeautifulSoup
 import csv
@@ -23,11 +20,15 @@ def sqrSum(n):
     return x*(x+1)*(2*x+1)//6
 
 # ****** CONSTANTS ******
+# where to read stats from
 input_csv_filename = os.path.join("data", "detailed_fighter_stats.csv")
+# where to output processed stats to
 output_csv_filename = "predict_fights_alpha.csv"
 
-end_fight_card = "http://www.ufcstats.com/event-details/13a0fb8fbdafb54f"
+# starts from the most recent fight card and goes back in time, this is the last fight card to be processed
+end_fight_card = "http://www.ufcstats.com/event-details/a8e8587a06e73c87"
 
+# same stats as ml_alpha
 fieldnames = [
     "Result",
     "Red Fighter",
@@ -221,8 +222,8 @@ fieldnames = [
     "Ground% defense oppdiff",
 ]
 
+# file path to the modified fight details csv, which contains the wanted headers
 file_path = os.path.join('data', 'modified_fight_details.csv')
-
 
 # retrieve all total strike numbers from head, body, leg, distance, clinch, ground, sig.str
 # store it back into the dicts
