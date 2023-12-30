@@ -28,7 +28,7 @@ output_csv_filename = "predict_fights_alpha.csv"
 # starts from the most recent fight card and goes back in time, this is the last fight card to be processed
 end_fight_card = "http://www.ufcstats.com/event-details/a8e8587a06e73c87"
 
-# same stats as ml_alpha
+# same fields used in ml_alpha
 fieldnames = [
     "Result",
     "Red Fighter",
@@ -222,6 +222,7 @@ fieldnames = [
     "Ground% defense oppdiff",
 ]
 
+# GETTING ALL REQUIRED STATS
 # file path to the modified fight details csv, which contains the wanted headers
 file_path = os.path.join('data', 'modified_fight_details.csv')
 
@@ -270,6 +271,8 @@ def extract_fighter_stats(fighter_name, opponent_name):
         csv_writer = csv.DictWriter(output_file, fieldnames=fieldnames)
         csv_writer.writerow(combined_stats)
 
+# process the 2 fighters stats into Red and Blue
+# same process as process_fights_alpha
 def process_fight(fighter_stats, opponent_stats, processed_fight):
     if int(fighter_stats["totalfights"]) >= 2 and int(opponent_stats["totalfights"]) >= 2:
         processed_fight["Result"] = "unknown"
@@ -312,6 +315,8 @@ def process_fight(fighter_stats, opponent_stats, processed_fight):
 
         return processed_fight
 
+
+# Used to predict exactly 1 fight (erases all data in the output csv and writes the new fight)
 def predict_fight(fighter1_name, fighter2_name):
     # print(f"Processing {fighter1_name} vs {fighter2_name}")
     with open(output_csv_filename, mode="w", newline="") as output_file:
@@ -320,6 +325,10 @@ def predict_fight(fighter1_name, fighter2_name):
     extract_fighter_stats(fighter1_name, fighter2_name)
     extract_fighter_stats(fighter2_name, fighter1_name)
 
+# ***** MAIN *****
+# get all the urls of the fight cards
+# if you want a single fight card, paste the ufcstats.com url in event_urls and comment out the part below
+# or if you just want the most recent fight card, change end_fight_card to the most recent
 def main():
     # GET LIST OF EVENTS URLS
     url = "http://www.ufcstats.com/statistics/events/completed?page=all"
