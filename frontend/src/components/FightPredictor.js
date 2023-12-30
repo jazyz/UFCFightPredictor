@@ -66,10 +66,9 @@ const FightPredictor = ({ nameOptions }) => {
             onChange={(e) => setFighterName1(e.target.value)}
           />
           <datalist id="options-1">
-            {nameOptions &&
-              nameOptions.map((option) => (
-                <option key={`${option}-1`} value={option} />
-              ))}
+            {nameOptions.map((option) => (
+              <option key={`${option}-1`} value={option} />
+            ))}
           </datalist>
         </div>
         <div className="mb-4">
@@ -82,10 +81,9 @@ const FightPredictor = ({ nameOptions }) => {
             onChange={(e) => setFighterName2(e.target.value)}
           />
           <datalist id="options-2">
-            {nameOptions &&
-              nameOptions.map((option) => (
-                <option key={`${option}-2`} value={option} />
-              ))}
+            {nameOptions.map((option) => (
+              <option key={`${option}-2`} value={option} />
+            ))}
           </datalist>
         </div>
         <button
