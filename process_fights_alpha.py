@@ -4,21 +4,24 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from models import db, Fighter, Fight
+import os
 
+# retrieve data from Flask database
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///detailedfighters.db"
 db.init_app(app)
 
+# ********** HELPER FUNCTIONS **********
 def query_fighter_by_name(name):
     fighter = Fighter.query.filter_by(name=name).first() 
     return fighter
 
-file_path = 'data\modified_fight_details.csv'
+file_path = os.path.join('data', 'modified_fight_details.csv')
 
 def reverse_csv_to_dict(file_path):
     with open(file_path, mode='r') as file:
         csv_reader = csv.DictReader(file)
-        #return list(csv_reader)
+        # return list(csv_reader)
         reversed_rows = list(csv_reader)[::-1]
         return reversed_rows
 
@@ -121,6 +124,7 @@ def sqrSum(n):
 def getTime(fight):
     return (float(fight['Round'])-1)*5 + float(fight['Time'])
 
+# PROCESS FIGHTS TO RED AND BLUE 
 def processFight(fight, Red, Blue):
     winner = fight['Winner']
     Result='draw'
@@ -255,7 +259,7 @@ for fight in fights:
     fighter_stats[Blue]["elo"]=new_rating_b
     
 
-def export_processed_fights(processed_fights, filename='data\detailed_fights.csv'):
+def export_processed_fights(processed_fights, filename=os.path.join('data', 'detailed_fights.csv')):
     with open(filename, mode='w', newline='') as file:
         if processed_fights:  # check if the list is not empty
             headers = processed_fights[0].keys()  # Get the keys from the first dictionary as headers
@@ -265,7 +269,7 @@ def export_processed_fights(processed_fights, filename='data\detailed_fights.csv
             for fight in processed_fights:
                 writer.writerow(fight)
 
-def export_fighter_stats(fighter_stats, filename='data\detailed_fighter_stats.csv'):
+def export_fighter_stats(fighter_stats, filename=os.path.join('data', 'detailed_fighter_stats.csv')):
     with open(filename, mode='w', newline='') as file:
         if fighter_stats:  # check if the dictionary is not empty
             example_fighter = next(iter(fighter_stats.values()))  # Get an example of the inner dictionary
@@ -297,8 +301,8 @@ def write_to_text_file(data, file_path, is_fighter_stats=False):
                 file.write("\n")
 
 # Paths for the output text files
-processed_fights_txt_path = r'data\processed_fights_readable.txt'
-fighter_stats_txt_path = r'data\fighter_stats_readable.txt'
+processed_fights_txt_path = os.path.join('data', 'processed_fights_readable.txt')
+fighter_stats_txt_path = os.path.join('data', 'fighter_stats_readable.txt')
 
 # Write the processed fights and fighter stats to text files
 write_to_text_file(processed_fights, processed_fights_txt_path)
