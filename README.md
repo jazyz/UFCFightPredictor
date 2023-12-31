@@ -1,5 +1,11 @@
 # UFC Fight Predictor
 
+# V4 Alpha Model:
+
+The new and improved UFC AI model is consistently averaging around 10% profit over the past year of UFC events. With a robust accuracy of 64%, it can accurately identify winning percentages of each fighter which is used in the Kelly Criterion to determine how much to bet on each fight.
+
+# V1-V3.1 Model (Old):
+
 UFCFightPredictor is a Python-based tool that leverages web scraping techniques to gather data from ufcstats.com and employs machine learning techniques like LightGBM (Light Gradient Boosting Machine) model for fight predictions. With a dataset comprising over 19,000 fights and data points, UFCFightPredictor has achieved a remarkable 64% accuracy, surpassing previous research paper accuracies of 62%. Simulating for the last 2 months, we have managed to increase our money to 110% of the starting bankroll.
 
 ## Testing One Event
@@ -39,10 +45,6 @@ UFCFightPredictor relies on LightGBM (Light Gradient Boosting Machine) due to it
 
 ### Feature Testing
 
-### Getting "Good" Data
-
-- Generating fake data to add to the training
-
 ## Versions
 
 v1:
@@ -51,16 +53,14 @@ v1:
 v2:
 Achieved 67% accuracy on test set with data leakage using a machine learning RandomForest model
 
-v3:
+v2.1:
 Achieved 68% accuracy on test set with data leakage using Light Gradient Boosting Machine model
 
-v4:
+v3.0:
 Achieved 64% accuracy on test set without data leakage using Light Gradient Boosting Machine model
 
-v5:
+v3.1:
 Tuned LightGBM model and achieved 67% accuracy on the last 3 months of fights
-
-Website at https://github.com/KoreaFriedChips/ufc
 
 ## Other Studies
 
