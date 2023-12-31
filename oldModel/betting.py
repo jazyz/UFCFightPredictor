@@ -4,14 +4,13 @@
 
 import requests
 from bs4 import BeautifulSoup
-import os
 
 bankroll = 1100.37
 # Create or open the predictions.txt file for writing
 with open("predictions.txt", "a") as predictions_file:
 
     def ml_elo(p1, p2):
-        input_txt_filename = os.path.join("data", "predicted_fights_alpha_results.txt")
+        input_txt_filename = "ml_elo.txt"
         id = -1
         flag = False
         prob_win = 0
