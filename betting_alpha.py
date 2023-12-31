@@ -1,12 +1,10 @@
-import matplotlib.pyplot as plt
-
-
+# file used for betting on next fight card
 import requests
 from bs4 import BeautifulSoup
 import csv
 import os
 
-# TODO: figure out how to do rematches (maybe just use a set)
+# TODO: figure out how to do rematches 
 def get_ml(p1, p2):
     with open(os.path.join("data", "predicted_fights_alpha_results_clean.csv"), mode='r') as file:
         reader = csv.DictReader(file)
@@ -16,8 +14,11 @@ def get_ml(p1, p2):
         # If no match found
         return None
 
+# ***** CONSTANTS *****
 bankroll = 1000.00
 
+# ***** HELPER FUNCTIONS *****
+# kelly criterion function, conservative betting strategy
 def kelly_criterion(odds, prob_win):
         kc = 0
         if (odds < 0):
@@ -28,7 +29,7 @@ def kelly_criterion(odds, prob_win):
             kc = (n * prob_win - (1 - prob_win)) / n
         return kc
 
-# choosing win/lose probability based on how close they are to odds
+# convert odds to probability
 def odds_to_prob(odds):
     if odds >= 0:
         prob = 100 / (odds + 100)
@@ -50,6 +51,7 @@ def pt(odds, bet):
     else:
         return (bet * (odds / 100))
 
+# choosing win/lose probability based on how close they are to odds
 def closerToOdds(avb_win, avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob):
     a_win=avb_win
     b_win=bva_win
@@ -59,19 +61,23 @@ def closerToOdds(avb_win, avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob):
         b_win=avb_lose
     return a_win, b_win
 
-
+# if we bet on a fight, write the bet to the file
 def processBet(bet, fighter_name, fighter_odds):
     test.write(fighter_name)
     potential_return = pt(fighter_odds, bet)    
     test.write(f" ${bet:.2f} (bet) pt: ${bet + potential_return:.2f} +${potential_return:.2f} ")
 
-bankrolls=[]
-with open(os.path.join("data", "betting_results.txt"), "w") as test:
-    fight_card_link = "https://www.ufc.com/event/ufc-296"
 
-    print(fight_card_link)
+# ***** MAIN *****
+# write predictions and betting results to betting_results.txt
+with open(os.path.join("data", "betting_results.txt"), "w") as test:
+    
+    # paste the link to the fight card you want to bet on here
+    fight_card_link = "https://www.ufc.com/event/ufc-295"
+
     response = requests.get(fight_card_link)
 
+    # get all the names of the fighters on the card and the odds 
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
         odds_wrappers = soup.find_all(class_='c-listing-fight__odds-wrapper')
@@ -93,21 +99,18 @@ with open(os.path.join("data", "betting_results.txt"), "w") as test:
                     fighter_names.append(fighter_name)
                 else:
                     fighter_names.append("Fighter Name Not Found")
-
-        blue_corner_elements = soup.find_all(class_='c-listing-fight__corner-body--blue')
-        red_corner_elements = soup.find_all(class_='c-listing-fight__corner-body--red')
         
         test.write(f"Bankroll: ${bankroll:.2f}\n")
         test.write(f"Fight Card: {fight_card_link}\n")
         test.write("---\n")
 
         # Extract and print the odds for each fight on the current card
-        cardBet=0
         for i in range(0, len(fighter_names), 2):
             fighter1_name = fighter_names[i]
             fighter2_name = fighter_names[i + 1]
             winner_name = ""
 
+            # extracting the odds
             odds_wrapper = odds_wrappers[i // 2]
             odds_elements = odds_wrapper.find_all(class_='c-listing-fight__odds-amount')
             odds_values = [element.get_text() for element in odds_elements]
@@ -158,7 +161,7 @@ with open(os.path.join("data", "betting_results.txt"), "w") as test:
                         bet = min(bet,max_fraction*bankroll)
                         processBet(bet, fighter1_name, fighter1_odds)
                     else:
-                        test.write(f"prediction: {fighter1_name} (no bet)")
+                        test.write(f"{fighter1_name} (no bet)")
                     test.write("\n")
                 else:
                     if (kc_b > 0):
@@ -166,7 +169,7 @@ with open(os.path.join("data", "betting_results.txt"), "w") as test:
                         bet = min(bet,max_fraction*bankroll)
                         processBet(bet, fighter2_name, fighter2_odds)
                     else:
-                        test.write(f"prediction: {fighter2_name} (no bet)")
+                        test.write(f"{fighter2_name} (no bet)")
                         
                     test.write("\n")
                 test.write("---\n")
