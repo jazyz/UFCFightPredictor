@@ -235,6 +235,7 @@ plt.show()
 print("Top 10 Important Features:")
 print(feature_importance_df.head(10))
 
+# ***** writing all detailed stats to predicted_fights_alpha_results.txt *****
 output_file = open(os.path.join("data", "predicted_fights_alpha_results.txt"), "w")
 original_stdout = sys.stdout
 sys.stdout = output_file
@@ -268,8 +269,10 @@ print(predict_data)
 sys.stdout = original_stdout
 output_file.close()
 
-predict_data = pd.read_csv(os.path.join("data", "predict_fights_alpha.csv"))
 
+# ***** writing a clean version with just win and lose probabilities predicted_fights_alpha_results_clean.txt *****
+# easier to use for betting
+predict_data = pd.read_csv(os.path.join("data", "predict_fights_alpha.csv"))
 with open(os.path.join("data", "predicted_fights_alpha_results_clean.csv"), mode="w", newline="") as file:
     writer = csv.writer(file)
     writer.writerow(

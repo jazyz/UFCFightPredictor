@@ -27,6 +27,7 @@ output_csv_filename = os.path.join("data", "predict_fights_alpha.csv")
 
 # starts from the most recent fight card and goes back in time, this is the last fight card to be processed
 end_fight_card = "http://www.ufcstats.com/event-details/a8e8587a06e73c87"
+# end_fight_card = "http://www.ufcstats.com/event-details/5a558ba1ff5e9121"
 
 # same fields used in ml_alpha
 fieldnames = [
@@ -335,22 +336,22 @@ def main():
     response = requests.get(url)
 
     # to get one event, paste the url in event_urls and comment out the part below
-    event_urls = []
+    event_urls = ["http://www.ufcstats.com/event-details/5a558ba1ff5e9121"]
 
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.text, 'html.parser')
-        rows = soup.find_all('tr', class_='b-statistics__table-row')
-        for row in rows:
-            link = row.find('a', class_='b-link b-link_style_black')
-            if link:
-                event_url = link.get('href')
-                event_urls.append(event_url)
-                # event that your testing until
-                # print(event_url)
-                if (event_url == end_fight_card):
-                    break
-    else:
-        print(f"Failed to retrieve the page. Status code: {response.status_code}")
+    # if response.status_code == 200:
+    #     soup = BeautifulSoup(response.text, 'html.parser')
+    #     rows = soup.find_all('tr', class_='b-statistics__table-row')
+    #     for row in rows:
+    #         link = row.find('a', class_='b-link b-link_style_black')
+    #         if link:
+    #             event_url = link.get('href')
+    #             event_urls.append(event_url)
+    #             # event that your testing until
+    #             # print(event_url)
+    #             if (event_url == end_fight_card):
+    #                 break
+    # else:
+    #     print(f"Failed to retrieve the page. Status code: {response.status_code}")
 
     with open(output_csv_filename, mode="w", newline="") as output_file:
         csv_writer = csv.DictWriter(output_file, fieldnames=fieldnames)
