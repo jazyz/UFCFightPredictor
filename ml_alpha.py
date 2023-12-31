@@ -519,13 +519,13 @@ print(feature_importance_df.head(10))
 #     # Return negative accuracy for maximization
 #     return accuracy  # Optuna minimizes the objective, so use negative accuracy to maximize
 
-output_file = open("predicted_fights_alpha_results.txt", "w")
+output_file = open(os.path.join("data", "predicted_fights_alpha_results.txt"), "w")
 original_stdout = sys.stdout
 sys.stdout = output_file
 pd.set_option("display.max_columns", None)  # Display all columns
 pd.set_option("display.max_rows", None)     # Display all rows
 
-predict_data = pd.read_csv("predict_fights_alpha.csv")
+predict_data = pd.read_csv(os.path.join("data", "predict_fights_alpha.csv"))
 predict_data.replace("--", pd.NA, inplace=True)
 fighter_name_label = "fighter_names"
 
