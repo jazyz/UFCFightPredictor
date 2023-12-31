@@ -89,7 +89,7 @@ y_test_swapped = y_test_swapped.apply(lambda x: 2 if x == 1 else (1 if x == 2 el
 X_test_extended = pd.concat([X_test, X_test_swapped], ignore_index=True)
 y_test_extended = pd.concat([y_test, y_test_swapped], ignore_index=True)
 
-with open('best_params.json', 'r') as file:
+with open('data/best_params.json', 'r') as file:
     data_loaded = json.load(file)
 
 # Extracting the best parameters and score from the loaded data

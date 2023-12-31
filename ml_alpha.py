@@ -159,14 +159,14 @@ best_score = study.best_value
 print(f"Best params: {best_params}")
 print(f"Best score: {best_score}")
 
-with open("best_params.json", "w") as file:
+with open("data/best_params.json", "w") as file:
     # Creating a dictionary to hold data
     data_to_save = {"best_params": best_params, "best_score": best_score}
     # Writing as a JSON formatted string for readability and ease of use
     json.dump(data_to_save, file, indent=4)
 # Now use the best parameters to fit the model on complete training data
 
-with open("best_params.json", "r") as file:
+with open("data/best_params.json", "r") as file:
     data_loaded = json.load(file)
 
 # Extracting the best parameters and score from the loaded data
