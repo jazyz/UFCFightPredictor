@@ -4,10 +4,11 @@ import matplotlib.pyplot as plt
 import requests
 from bs4 import BeautifulSoup
 import csv
+import os
 
 # TODO: figure out how to do rematches (maybe just use a set)
 def get_ml(p1, p2):
-    with open("data\predicted_results.csv", mode='r') as file:
+    with open(os.path.join("data", "predicted_results.csv"), mode='r') as file:
         reader = csv.DictReader(file)
         for row in reader:
             if (row["Red Fighter"] == p1 and row["Blue Fighter"] == p2):

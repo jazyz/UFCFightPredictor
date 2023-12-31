@@ -12,9 +12,14 @@ from sklearn.model_selection import cross_val_score
 import numpy as np
 from sklearn.metrics import log_loss
 import optuna
+import os
+
+file_path = os.path.join("data", "detailed_fights.csv")
+# file_path = "predict_fights_alpha.csv"
 
 # Step 1: Read the data
-df = pd.read_csv("data\detailed_fights.csv")
+df = pd.read_csv(file_path)
+
 # Step 2: Preprocess the data
 # Assuming 'Result' is the target variable and the rest are features
 label_encoder = LabelEncoder()
@@ -177,7 +182,7 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.4f}")
 
 # Get the fighter names and actual results for the test set
-df_with_details = pd.read_csv("data\detailed_fights.csv")[
+df_with_details = pd.read_csv(file_path)[
     ["Red Fighter", "Blue Fighter", "Result"]
 ]
 df_with_details = df_with_details.iloc[split_index:]  # Align with the test data split
@@ -188,7 +193,7 @@ df_with_details["Result"] = label_encoder.fit_transform(df_with_details["Result"
 predicted_labels = label_encoder.inverse_transform(y_pred)
 actual_labels = label_encoder.inverse_transform(df_with_details["Result"])
 
-with open("data\predicted_results.csv", mode="w", newline="") as file:
+with open(os.path.join("data", "predicted_results.csv"), mode="w", newline="") as file:
     writer = csv.writer(file)
     writer.writerow(
         [
@@ -284,3 +289,40 @@ print(feature_importance_df.head(10))
 #     return (
 #         accuracy  # Optuna minimizes the objective, so use negative accuracy to maximize
 #     )
+#     return accuracy  # Optuna minimizes the objective, so use negative accuracy to maximize
+
+output_file = open("predicted_fights_alpha_results.txt", "w")
+original_stdout = sys.stdout
+sys.stdout = output_file
+pd.set_option("display.max_columns", None)  # Display all columns
+pd.set_option("display.max_rows", None)     # Display all rows
+
+predict_data = pd.read_csv("predict_fights_alpha.csv")
+predict_data.replace("--", pd.NA, inplace=True)
+fighter_name_label = "fighter_names"
+
+print(f"{fighter_name_label}", file=output_file)
+print(predict_data["Red Fighter"] + "*" + predict_data["Blue Fighter"], file=output_file)
+
+# predict_data["Red dob"] = pd.to_datetime(predict_data["Red dob"]).dt.year
+# predict_data["Blue dob"] = pd.to_datetime(predict_data["Blue dob"]).dt.year
+
+predict_data.dropna(subset=selected_columns, inplace=True)
+predict_data = predict_data[selected_columns]
+
+X_predict = predict_data.drop(["Result"], axis=1)
+
+y_pred = model.predict(X_predict)
+
+class_probabilities = model.predict_proba(X_predict)
+
+predicted_results = label_encoder.inverse_transform(y_pred)
+
+predict_data["predicted_result"] = predicted_results
+for i, label in enumerate(label_encoder.classes_):
+    predict_data[f"probability_{label}"] = class_probabilities[:, i]
+
+print(predict_data)
+
+sys.stdout = original_stdout
+output_file.close()
