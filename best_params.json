@@ -1,10 +1,10 @@
 {
     "best_params": {
-        "num_leaves": 58,
-        "learning_rate": 0.048859061344763206,
-        "min_child_samples": 16,
-        "subsample": 0.5619774082790465,
-        "colsample_bytree": 0.9945863237579918
+        "num_leaves": 36,
+        "learning_rate": 0.03558409333364868,
+        "min_child_samples": 85,
+        "subsample": 0.53395959694028,
+        "colsample_bytree": 0.5919638397496819
     },
-    "best_score": 0.607232968881413
+    "best_score": 0.7201351989712093
 }
