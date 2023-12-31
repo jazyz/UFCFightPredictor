@@ -23,7 +23,7 @@ def sqrSum(n):
 # where to read stats from
 input_csv_filename = os.path.join("data", "detailed_fighter_stats.csv")
 # where to output processed stats to
-output_csv_filename = "predict_fights_alpha.csv"
+output_csv_filename = os.path.join("data", "predict_fights_alpha.csv")
 
 # starts from the most recent fight card and goes back in time, this is the last fight card to be processed
 end_fight_card = "http://www.ufcstats.com/event-details/a8e8587a06e73c87"
