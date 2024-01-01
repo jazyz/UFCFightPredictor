@@ -435,7 +435,7 @@ Bankroll: $1156.03
 Min Bankroll: $933.90
 Max Bankroll: $1226.04
 
-TESTING HYPERPARAMS START:::::::::::
+10 TRIALS: AVG BANKROLL 1090 - URLs range (1,6), KC 0.05
 ------ RESULT ------
 Bankroll: $1148.49
 Min Bankroll: $927.81
@@ -940,3 +940,221 @@ Underdog Gain: $1317.04
 Underdog Loss: $985.54
 
 Best params: {'num_leaves': 36, 'learning_rate': 0.03558409333364868, 'min_child_samples': 85, 'subsample': 0.53395959694028, 'colsample_bytree': 0.5919638397496819}
+------ RESULT ------
+Bankroll: $1097.18
+Min Bankroll: $771.46
+Max Bankroll: $1266.18
+Max Card Bet: $149.05
+Favourite Gain: $213.83
+Favourite Loss: $249.49
+Underdog Gain: $1042.42
+Underdog Loss: $909.58
+
+------ RESULT ------
+Bankroll: $1261.12
+Min Bankroll: $982.77
+Max Bankroll: $1350.36
+Max Card Bet: $80.29
+Favourite Gain: $317.54
+Favourite Loss: $387.93
+Underdog Gain: $1317.04
+Underdog Loss: $985.54
+
+------ RESULT ------
+Bankroll: $1487.03
+Min Bankroll: $958.53
+Max Bankroll: $1716.08
+Max Card Bet: $202.01
+Favourite Gain: $690.71
+Favourite Loss: $853.87
+Underdog Gain: $2854.72
+Underdog Loss: $2204.53
+
+Best params: {'num_leaves': 23, 'learning_rate': 0.04342407764302582, 'min_child_samples': 14, 'subsample': 0.5624212185928869, 'colsample_bytree': 0.614801473757421}
+------ RESULT ------
+Bankroll: $1038.95
+Min Bankroll: $827.51
+Max Bankroll: $1286.81
+Max Card Bet: $138.63
+Favourite Gain: $566.03
+Favourite Loss: $739.59
+Underdog Gain: $2164.79
+Underdog Loss: $1952.27
+
+------ RESULT ------
+Bankroll: $955.27
+Min Bankroll: $901.59
+Max Bankroll: $1168.13
+Average Bankroll: $1045.45
+Max Card Bet: $91.33
+Favourite Gain: $460.47
+Favourite Loss: $469.94
+Underdog Gain: $1192.57
+Underdog Loss: $1227.84
+
+------ RESULT ------
+Bankroll: $822.19
+Min Bankroll: $761.39
+Max Bankroll: $1296.86
+Average Bankroll: $1040.65
+Max Card Bet: $184.00
+Favourite Gain: $919.75
+Favourite Loss: $952.65
+Underdog Gain: $2313.05
+Underdog Loss: $2457.95
+
+Best params: {'num_leaves': 55, 'learning_rate': 0.03325535143957005, 'min_child_samples': 62, 'subsample': 0.5749612154195654, 'colsample_bytree': 0.744917484603866}
+------ RESULT ------
+Bankroll: $1158.80
+Min Bankroll: $967.98
+Max Bankroll: $1277.33
+Average Bankroll: $1088.35
+Max Card Bet: $86.76
+Favourite Gain: $390.60
+Favourite Loss: $398.83
+Underdog Gain: $1212.82
+Underdog Loss: $1045.78
+
+Best params: {'num_leaves': 88, 'learning_rate': 0.027217794008033327, 'min_child_samples': 85, 'subsample': 0.7948930034100206, 'colsample_bytree': 0.867067995252661}
+------ RESULT ------
+Bankroll: $1295.88
+Min Bankroll: $974.72
+Max Bankroll: $1368.59
+Average Bankroll: $1138.97
+Max Card Bet: $80.11
+Favourite Gain: $313.47
+Favourite Loss: $340.82
+Underdog Gain: $1415.68
+Underdog Loss: $1092.45
+
+Best params: {'num_leaves': 45, 'learning_rate': 0.11871284753494746, 'min_child_samples': 71, 'subsample': 0.7080881053226749, 'colsample_bytree': 0.8031246205537119}
+------ RESULT ------
+Bankroll: $1524.92
+Min Bankroll: $948.23
+Max Bankroll: $1736.70
+Average Bankroll: $1290.16
+Max Card Bet: $176.87
+Favourite Gain: $1448.45
+Favourite Loss: $1284.72
+Underdog Gain: $1949.62
+Underdog Loss: $1588.42
+
+------ RESULT ------
+Bankroll: $2056.27
+Min Bankroll: $878.47
+Max Bankroll: $2691.54
+Average Bankroll: $1603.42
+Max Card Bet: $482.14
+Favourite Gain: $3511.93
+Favourite Loss: $3125.58
+Underdog Gain: $4702.36
+Underdog Loss: $4032.43
+
+Best params: {'num_leaves': 88, 'learning_rate': 0.16602169504350073, 'min_child_samples': 79, 'subsample': 0.6280039056570013, 'colsample_bytree': 0.9113186753715607}
+------ RESULT ------
+Bankroll: $2207.22
+Min Bankroll: $1000.00
+Max Bankroll: $3372.82
+Average Bankroll: $1969.18
+Max Card Bet: $855.75
+Favourite Gain: $6990.58
+Favourite Loss: $6155.39
+Underdog Gain: $6274.34
+Underdog Loss: $5902.32
+
+Best params: {'num_leaves': 22, 'learning_rate': 0.029377616816238752, 'min_child_samples': 77, 'subsample': 0.6957178557222066, 'colsample_bytree': 0.9019743307668895}
+------ RESULT ------
+Bankroll: $1711.58
+Min Bankroll: $929.39
+Max Bankroll: $1927.48
+Average Bankroll: $1319.35
+Max Card Bet: $211.02
+Favourite Gain: $557.73
+Favourite Loss: $650.66
+Underdog Gain: $3356.65
+Underdog Loss: $2552.13
+
+Best params: {'num_leaves': 95, 'learning_rate': 0.04202159190655344, 'min_child_samples': 25, 'subsample': 0.8295849120192049, 'colsample_bytree': 0.8553981299626929}
+------ RESULT ------
+Bankroll: $1138.20
+Min Bankroll: $1000.00
+Max Bankroll: $2320.51
+Average Bankroll: $1530.37
+Max Card Bet: $396.48
+Favourite Gain: $1846.72
+Favourite Loss: $2049.37
+Underdog Gain: $3786.26
+Underdog Loss: $3445.41
+
+Best params: {'num_leaves': 51, 'learning_rate': 0.03607810854356906, 'min_child_samples': 40, 'subsample': 0.7928065196523231, 'colsample_bytree': 0.5367147898275069}
+------ RESULT ------
+Bankroll: $732.60
+Min Bankroll: $718.74
+Max Bankroll: $1087.78
+Average Bankroll: $877.66
+Max Card Bet: $133.10
+Favourite Gain: $621.25
+Favourite Loss: $733.01
+Underdog Gain: $1556.25
+Underdog Loss: $1711.90
+
+Best params: {'num_leaves': 47, 'learning_rate': 0.05615913523980992, 'min_child_samples': 25, 'subsample': 0.5845774635371985, 'colsample_bytree': 0.7281703618082478}
+------ RESULT ------
+Bankroll: $1913.85
+Min Bankroll: $1000.00
+Max Bankroll: $2176.98
+Average Bankroll: $1640.66
+Max Card Bet: $319.77
+Favourite Gain: $1314.19
+Favourite Loss: $1238.54
+Underdog Gain: $3540.53
+Underdog Loss: $2702.34
+
+Best params: {'num_leaves': 83, 'learning_rate': 0.1057448639906161, 'min_child_samples': 95, 'subsample': 0.9050145570192321, 'colsample_bytree': 0.674408146796182}
+------ RESULT ------
+Bankroll: $2055.25
+Min Bankroll: $1000.00
+Max Bankroll: $2541.68
+Average Bankroll: $1683.26
+Max Card Bet: $428.83
+Favourite Gain: $2411.93
+Favourite Loss: $1746.70
+Underdog Gain: $3431.68
+Underdog Loss: $3041.65
+
+Best params: {'num_leaves': 80, 'learning_rate': 0.15950792794493016, 'min_child_samples': 22, 'subsample': 0.7026006573268468, 'colsample_bytree': 0.64862575152953}
+------ RESULT ------
+Bankroll: $1272.47
+Min Bankroll: $906.18
+Max Bankroll: $1727.39
+Average Bankroll: $1256.96
+Max Card Bet: $524.94
+Favourite Gain: $3515.56
+Favourite Loss: $3260.04
+Underdog Gain: $2742.11
+Underdog Loss: $2725.16
+
+Best params: {'num_leaves': 91, 'learning_rate': 0.03028636549631458, 'min_child_samples': 87, 'subsample': 0.7470789600233678, 'colsample_bytree': 0.7423606098562159}
+------ RESULT ------
+Bankroll: $1403.65
+Min Bankroll: $998.91
+Max Bankroll: $1714.89
+Average Bankroll: $1313.44
+Max Card Bet: $212.41
+Favourite Gain: $613.55
+Favourite Loss: $481.77
+Underdog Gain: $2479.50
+Underdog Loss: $2207.63
+
+Best params: {'num_leaves': 22, 'learning_rate': 0.09794594937671783, 'min_child_samples': 39, 'subsample': 0.7530046101141099, 'colsample_bytree': 0.7164175297716303}
+------ RESULT ------
+Bankroll: $1434.89
+Min Bankroll: $1000.00
+Max Bankroll: $1834.13
+Average Bankroll: $1471.89
+Max Card Bet: $237.77
+Favourite Gain: $1340.16
+Favourite Loss: $1119.59
+Underdog Gain: $2904.35
+Underdog Loss: $2690.02
+

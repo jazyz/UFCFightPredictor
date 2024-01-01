@@ -134,10 +134,10 @@ def objective(trial):
         param,
         data,
         num_boost_round=1000,
-        nfold=3,  # Or another number of folds
+        nfold=5,  # Or another number of folds
         stratified=True,
         shuffle=True,
-        callbacks=[lgb.early_stopping(stopping_rounds=20)],
+        callbacks=[lgb.early_stopping(stopping_rounds=30)],
     )
 
     print(cv_results.keys())
@@ -148,41 +148,37 @@ def objective(trial):
     return best_score
 
 # Create the study object with maximization direction
-study = optuna.create_study(direction="minimize")
-study.optimize(objective, n_trials=10)
+study1 = optuna.create_study(direction='minimize')
+study1.optimize(objective, n_trials=10)  # Adjust n_trials to your preference
 
-# Fetching the best parameters
-best_params = study.best_params
-best_score = study.best_value
+# Create and optimize the second study
+study2 = optuna.create_study(direction='minimize')
+study2.optimize(objective, n_trials=10)  # Adjust n_trials to your preference
 
-# Output the best parameters and score
-print(f"Best params: {best_params}")
-print(f"Best score: {best_score}")
+# Retrieve the best hyperparameters
+best_params1 = study1.best_params
+best_params2 = study2.best_params
 
-with open("data/best_params.json", "w") as file:
-    # Creating a dictionary to hold data
-    data_to_save = {"best_params": best_params, "best_score": best_score}
-    # Writing as a JSON formatted string for readability and ease of use
-    json.dump(data_to_save, file, indent=4)
-# Now use the best parameters to fit the model on complete training data
+model1 = lgb.LGBMClassifier(**best_params1)
+model1.fit(X_train_extended, y_train_extended)
 
-with open("data/best_params.json", "r") as file:
-    data_loaded = json.load(file)
+# Initialize and train the second LGBM model with best_params2
+model2 = lgb.LGBMClassifier(**best_params2)
+model2.fit(X_train_extended, y_train_extended)
 
-# Extracting the best parameters and score from the loaded data
-best_params = data_loaded["best_params"]
-best_score = data_loaded["best_score"]
+# Make predictions with both models
+predicted_probabilities1 = model1.predict_proba(X_test)
+predicted_probabilities2 = model2.predict_proba(X_test)
 
-model = lgb.LGBMClassifier(**best_params)
-model.fit(X_train_extended, y_train_extended)
-# Make predictions and evaluate the model
-y_pred = model.predict(X_test)
-predicted_probabilities = model.predict_proba(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-logloss = log_loss(y_test, predicted_probabilities)
+# Ensemble predictions: Averaging the predicted probabilities from each model
+ensemble_predicted_probabilities = (predicted_probabilities1 + predicted_probabilities2) / 2
 
-print(f"Accuracy: {accuracy:.4f}")
-print(f"Log Loss: {logloss:.4f}")
+# Convert probabilities to predicted class (optional, depending on needs)
+ensemble_preds = np.argmax(ensemble_predicted_probabilities, axis=1)
+
+# Evaluate the ensemble model
+accuracy = accuracy_score(y_test, ensemble_preds)
+logloss = log_loss(y_test, ensemble_predicted_probabilities)
 
 # Get the fighter names and actual results for the test set
 df_with_details = pd.read_csv(file_path)[
@@ -193,7 +189,7 @@ df_with_details.reset_index(drop=True, inplace=True)
 df_with_details["Result"] = label_encoder.fit_transform(df_with_details["Result"])
 
 # Convert the predicted and actual results back to the original labels if necessary.
-predicted_labels = label_encoder.inverse_transform(y_pred)
+predicted_labels = label_encoder.inverse_transform(ensemble_preds)
 actual_labels = label_encoder.inverse_transform(df_with_details["Result"])
 
 with open(os.path.join("data", "predicted_results.csv"), mode="w", newline="") as file:
@@ -208,7 +204,7 @@ with open(os.path.join("data", "predicted_results.csv"), mode="w", newline="") a
         ]
     )
     for i in range(len(predicted_labels)):
-        max_probability = max(predicted_probabilities[i])
+        max_probability = max(ensemble_predicted_probabilities[i])
 
         writer.writerow(
             [
@@ -220,53 +216,4 @@ with open(os.path.join("data", "predicted_results.csv"), mode="w", newline="") a
             ]
         )
 
-feature_importances = model.feature_importances_
 
-feature_importance_df = pd.DataFrame(
-    {"Feature": X_train.columns, "Importance": feature_importances}
-)
-
-feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
-
-plt.figure(figsize=(10, 6))
-plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
-plt.xlabel("Importance")
-plt.ylabel("Feature")
-plt.title("Feature Importance")
-plt.show()
-
-print("Top 10 Important Features:")
-print(feature_importance_df.head(10))
-
-output_file = open("predicted_fights_alpha_results.txt", "w")
-original_stdout = sys.stdout
-sys.stdout = output_file
-pd.set_option("display.max_columns", None)  # Display all columns
-pd.set_option("display.max_rows", None)     # Display all rows
-
-predict_data = pd.read_csv(os.path.join("data", "predict_fights_alpha.csv"))
-predict_data.replace("--", pd.NA, inplace=True)
-fighter_name_label = "fighter_names"
-
-print(f"{fighter_name_label}", file=output_file)
-print(predict_data["Red Fighter"] + "*" + predict_data["Blue Fighter"], file=output_file)
-
-predict_data.dropna(subset=selected_columns, inplace=True)
-predict_data = predict_data[selected_columns]
-
-X_predict = predict_data.drop(["Result"], axis=1)
-
-y_pred = model.predict(X_predict)
-
-class_probabilities = model.predict_proba(X_predict)
-
-predicted_results = label_encoder.inverse_transform(y_pred)
-
-predict_data["predicted_result"] = predicted_results
-for i, label in enumerate(label_encoder.classes_):
-    predict_data[f"probability_{label}"] = class_probabilities[:, i]
-
-print(predict_data)
-
-sys.stdout = original_stdout
-output_file.close()
