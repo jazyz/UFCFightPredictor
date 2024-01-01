@@ -9,28 +9,28 @@ The new and improved UFC AI model is consistently averaging around $100 profit o
 ## Data
 
 ### Web Scraping
-All of the data was scraped from ufcstats.com. Previously, we had scraped data for each fighter as well as their fight histories and statistics, stored in an SQL database. However, in order to get more detailed fight statistics, we had to revamp the scraper entirely. We have now collected stats such as strike accuracy, control time, and submissions attempts for every fight from 1994 to 2023.
+All of the data was scraped from ufcstats.com. Previously, we had scraped data for each fighter as well as their fight histories and statistics, stored in an SQL database. However, in order to get more detailed fight statistics, we had to revamp the scraper entirely. We have now collected stats such as strike accuracy, control time, and submissions attempts for every fight from 1994 to 2023. The collected statistics are stored inside the data folder.
 
 ### Data Processing and Cleaning 
-First, we need to clean the data, removing incomplete values, outdated fights, and duplicated data that was scraped. We also need to process all the data in a way which our machine learning model can understand, and retrieve all the raw numbers. 
+First, we need to clean the data, removing incomplete values, outdated fights, and duplicated data that was scraped. We also need to process all the data in a way which our machine learning model can understand, and retrieve all the raw numbers. This is done within modify_fights.py.
 
 ### Feature Engineering
 With around 15 base stats for each fight, we now process the statistics in order to create expressive and predictive features. In order to predict a fight, we need the past fight histories of both fighters. The data scraped tells us which fighter is in the red corner and which fighter is in the blue corner. For simplicity in code, we call them Red and Blue. 
 
 By looping through all fights from past to present, we can dynamically compute stats from their past fights and then use those stats to predict a current fight. By doing this, we make sure that only data accessible before a fight has happened is used to predict a fight. Without doing this, our model accuracy would be up to 80+%, a mistake that some predictors with absurdly high accuracy may have.
 
-Over 180+ features are engineering from these 15 base stats. For each base stat, such as significant strikes landed, we compute the number landed per minute, the accuracy of strikes, the difference between how many strikes you landed and how many strikes you took, the percentages of strikes you dodged, etc. Then, these stats are accumulated and processed into a weighted average which weighs recent fights much heavier than past, in order to get an accurate picture of each fighter's skills at different points in time. These in-depth statistics are then fed into the LightGBM ML model to be used to predict fights.
+Over 180+ features are engineering from these 15 base stats. For each base stat, such as significant strikes landed, we compute the number landed per minute, the accuracy of strikes, the difference between how many strikes you landed and how many strikes you took, the percentages of strikes you dodged, etc. Then, these stats are accumulated and processed into a weighted average which weighs recent fights much heavier than past, in order to get an accurate picture of each fighter's skills at different points in time. These in-depth statistics are then fed into the LightGBM ML model to be used to predict fights. This process is done within process_fights_alpha.py.
 
 ## Model
 
 ### LightGBM
-We chose LightGBM (Light Gradient Boosting Machine), a tree-based learning algorithm, due to its exceptional speed, efficiency, and predicting power. LightGBM excels in capturing complex, non-linear relationships within UFC fight data, providing valuable insights into feature importance and tuning. With the new Alpha model, our accuracies were much more consistent than before. With much less features in our previous model, changing a few features could lead to dramatic changes in accuracy. Now that we have more robust data with a much wider selection of features, the reliability of the model was greatly increased. 
+We chose LightGBM (Light Gradient Boosting Machine), a tree-based learning algorithm, due to its exceptional speed, efficiency, and predicting power. LightGBM excels in capturing complex, non-linear relationships within UFC fight data, providing valuable insights into feature importance and tuning. With the new Alpha model, our accuracies were much more consistent than before. With much less features in our previous model, changing a few features could lead to dramatic changes in accuracy. Now that we have more robust data with a much wider selection of features, the reliability of the model was greatly increased. The code can be found within ml_alpha.py.
 
 ### Feature Selection
 With so many features, it's important to select those which actually help the model. We prune out features which have high correlation with each other, as well as features which have low impact on the model. This reduces noise and helps the model pick out the correct percentages.
 
 ### Hyperparameter Tuning and Trials
-LightGBM allows you to fine-tune your model, setting parameters such as learning rate, number of leaves in a tree, etc. These can all have great impacts on the predictions that the model makes. We utilized the optuna library to run trails in order to select the best hyperparameters for the model. Our current model accuracy is 64%.
+LightGBM allows you to fine-tune your model, setting parameters such as learning rate, number of leaves in a tree, etc. These can all have great impacts on the predictions that the model makes. We utilized the optuna library to run trails in order to select the best hyperparameters for the model. Our current model accuracy is 64%. 
 
 ## Testing
 
@@ -53,6 +53,7 @@ http://arno.uvt.nl/show.cgi?fid=156304
 
 # V1-V3.1 Model (Old):
 
+The old code can be found within the oldModel folder.
 UFCFightPredictor is a Python-based tool that leverages web scraping techniques to gather data from ufcstats.com and employs machine learning techniques like LightGBM (Light Gradient Boosting Machine) model for fight predictions. With a dataset comprising over 19,000 fights and data points, UFCFightPredictor has achieved a remarkable 64% accuracy, surpassing previous research paper accuracies of 62%. Simulating for the last 2 months, we have managed to increase our money to 110% of the starting bankroll.
 
 ## Testing One Event
