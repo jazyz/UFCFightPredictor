@@ -17,7 +17,7 @@ First, we need to clean the data, removing incomplete values, outdated fights, a
 ### Feature Engineering
 With around 15 base stats for each fight, we now process the statistics in order to create expressive and predictive features. In order to predict a fight, we need the past fight histories of both fighters. The data scraped tells us which fighter is in the red corner and which fighter is in the blue corner. For simplicity in code, we call them Red and Blue. 
 
-By looping through all fights from past to present, we can dynamically compute stats from their past fights and then use those stats to predict a current fight. By doing this, we make sure that only data accessible before a fight has happened is used to predict a fight. Without doing this, our model accuracy would be up to 80+%, which is a common mistake that other UFC predictors may fall into.
+By looping through all fights from past to present, we can dynamically compute stats from their past fights and then use those stats to predict a current fight. By doing this, we make sure that only data accessible before a fight has happened is used to predict a fight. Without doing this, our model accuracy would be up to 80+%, a mistake that some predictors with absurdly high accuracy may have.
 
 Over 180+ features are engineering from these 15 base stats. For each base stat, such as significant strikes landed, we compute the number landed per minute, the accuracy of strikes, the difference between how many strikes you landed and how many strikes you took, the percentages of strikes you dodged, etc. Then, these stats are accumulated and processed into a weighted average which weighs recent fights much heavier than past, in order to get an accurate picture of each fighter's skills at different points in time. These in-depth statistics are then fed into the LightGBM ML model to be used to predict fights.
 
@@ -40,6 +40,16 @@ To test our predictions on past fight cards from ufc.com, we use the testing fol
 ## Results
 Testing on the fight cards in 2023, we ran 10 separate trials with different tuned hyperparameters, and averaged an $1100 final bankroll starting from $1000. We used a conservative 0.05 Kelly Criterion betting strategy, which helps us determine what fraction of our bankroll to wager on each bet. Testing on the fight cards from both 2022 and 2023 with a more risky 0.1 Kelly Criterion, we average a final bankroll of $1600, while maxing out at around $3000. We found that our model is consistently gaining money and can sometimes go up to $2000 or $3000 over a longer period of time, while only going down to around $750.
 
+## Other Studies
+
+Stanford University: 62.6%
+https://cs229.stanford.edu/proj2019aut/data/assignment_308875_raw/26426025.pdf
+
+MMA AI: 63.4%
+https://www.mma-ai.net/
+
+Tilburg University: 62% (RandomForest, Neural Network)
+http://arno.uvt.nl/show.cgi?fid=156304
 
 # V1-V3.1 Model (Old):
 
@@ -99,13 +109,4 @@ Achieved 64% accuracy on test set without data leakage using Light Gradient Boos
 v3.1:
 Tuned LightGBM model and achieved 67% accuracy on the last 3 months of fights
 
-# Other Studies
 
-Stanford University: 62.6%
-https://cs229.stanford.edu/proj2019aut/data/assignment_308875_raw/26426025.pdf
-
-MMA AI: 63.4%
-https://www.mma-ai.net/
-
-Tilburg University: 62% (RandomForest, Neural Network)
-http://arno.uvt.nl/show.cgi?fid=156304
