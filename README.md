@@ -9,13 +9,16 @@ The new and improved UFC AI model is consistently averaging around $100 profit o
 ## Data
 
 ### Web Scraping
+
 All of the data was scraped from ufcstats.com. Previously, we had scraped data for each fighter as well as their fight histories and statistics, stored in an SQL database. However, in order to get more detailed fight statistics, we had to revamp the scraper entirely. We have now collected stats such as strike accuracy, control time, and submissions attempts for every fight from 1994 to 2023.
 
-### Data Processing and Cleaning 
-First, we need to clean the data, removing incomplete values, outdated fights, and duplicated data that was scraped. We also need to process all the data in a way which our machine learning model can understand, and retrieve all the raw numbers. 
+### Data Processing and Cleaning
+
+First, we need to clean the data, removing incomplete values, outdated fights, and duplicated data that was scraped. We also need to process all the data in a way which our machine learning model can understand, and retrieve all the raw numbers.
 
 ### Feature Engineering
-With around 15 base stats for each fight, we now process the statistics in order to create expressive and predictive features. In order to predict a fight, we need the past fight histories of both fighters. The data scraped tells us which fighter is in the red corner and which fighter is in the blue corner. For simplicity in code, we call them Red and Blue. 
+
+With around 15 base stats for each fight, we now process the statistics in order to create expressive and predictive features. In order to predict a fight, we need the past fight histories of both fighters. The data scraped tells us which fighter is in the red corner and which fighter is in the blue corner. For simplicity in code, we call them Red and Blue.
 
 By looping through all fights from past to present, we can dynamically compute stats from their past fights and then use those stats to predict a current fight. By doing this, we make sure that only data accessible before a fight has happened is used to predict a fight. Without doing this, our model accuracy would be up to 80+%, a mistake that some predictors with absurdly high accuracy may have.
 
@@ -24,21 +27,30 @@ Over 180+ features are engineering from these 15 base stats. For each base stat,
 ## Model
 
 ### LightGBM
-We chose LightGBM (Light Gradient Boosting Machine), a tree-based learning algorithm, due to its exceptional speed, efficiency, and predicting power. LightGBM excels in capturing complex, non-linear relationships within UFC fight data, providing valuable insights into feature importance and tuning. With the new Alpha model, our accuracies were much more consistent than before. With much less features in our previous model, changing a few features could lead to dramatic changes in accuracy. Now that we have more robust data with a much wider selection of features, the reliability of the model was greatly increased. 
+
+We chose LightGBM (Light Gradient Boosting Machine), a tree-based learning algorithm, due to its exceptional speed, efficiency, and predicting power. LightGBM excels in capturing complex, non-linear relationships within UFC fight data, providing valuable insights into feature importance and tuning. With the new Alpha model, our accuracies were much more consistent than before. With much less features in our previous model, changing a few features could lead to dramatic changes in accuracy. Now that we have more robust data with a much wider selection of features, the reliability of the model was greatly increased.
 
 ### Feature Selection
+
 With so many features, it's important to select those which actually help the model. We prune out features which have high correlation with each other, as well as features which have low impact on the model. This reduces noise and helps the model pick out the correct percentages.
 
 ### Hyperparameter Tuning and Trials
+
 LightGBM allows you to fine-tune your model, setting parameters such as learning rate, number of leaves in a tree, etc. These can all have great impacts on the predictions that the model makes. We utilized the optuna library to run trails in order to select the best hyperparameters for the model. Our current model accuracy is 64%.
 
 ## Testing
 
 ### How to Test
-To test our predictions on past fight cards from ufc.com, we use the testing folder. First, go to ml_alpha_testing.py. Edit the train/test split so that the test set contains all fight card fights which we want to evaluate. The train set should be disjoint from this test set. Then, edit testing_alpha_clean.py to set the range of event URLs to be tested. To perform tests, first run ml_alpha_testing.py, then testing_alpha_clean.py. The results will be written to test_results/testing_alpha_clean.txt, and the bankroll will be automatically graphed. By default, we set the test set to 10% of the fights in our database, which is around the past year of data. 
+
+To test our predictions on past fight cards from ufc.com, we use the testing folder. First, go to ml_alpha_testing.py. Edit the train/test split so that the test set contains all fight card fights which we want to evaluate. The train set should be disjoint from this test set. Then, edit testing_alpha_clean.py to set the range of event URLs to be tested. To perform tests, first run ml_alpha_testing.py, then testing_alpha_clean.py. The results will be written to test_results/testing_alpha_clean.txt, and the bankroll will be automatically graphed. By default, we set the test set to 10% of the fights in our database, which is around the past year of data.
 
 ## Results
+
 Testing on the fight cards in 2023, we ran 10 separate trials with different tuned hyperparameters, and averaged an $1100 final bankroll starting from $1000. We used a conservative 0.05 Kelly Criterion betting strategy, which helps us determine what fraction of our bankroll to wager on each bet. Testing on the fight cards from both 2022 and 2023 with a more risky 0.1 Kelly Criterion, we average a final bankroll of $1600, while maxing out at around $3000. We found that our model is consistently gaining money and can sometimes go up to $2000 or $3000 over a longer period of time, while only going down to around $750.
+
+## How to Bet on the Next Fight Card
+
+To bet on the next fight card, we use predict_fights_alpha.py. After pasting the ufcstats.com url into events_url, you can run the file which scrapes all the names of the fighters on the card. Given we have enough data on both fighters (i.e. both fighters have more than 5 fights) their stats will be processed together and put into predict_fights_alpha.csv in the data folder. Next we run ml_alpha.py which trains the model and reads from the csv to make predictions. These results take into account all the selected stats and output winning and losing probabilities for each fighter. These proabbilities are outputted to predicted_fights_alpha_results_clean.csv. Finally, we use betting_alpha.py which reads the fighters and the odds of each fight from ufc.com to make bets. After getting the probabilities from predicted_fights_alpha_results_clean.csv, based on the odds and kelly criterion we can automate which fights we will bet on. It should also be noted that we take the probability closer to the odds in order to reduce error in predicting.
 
 ## Other Studies
 
@@ -108,5 +120,3 @@ Achieved 64% accuracy on test set without data leakage using Light Gradient Boos
 
 v3.1:
 Tuned LightGBM model and achieved 67% accuracy on the last 3 months of fights
-
-
