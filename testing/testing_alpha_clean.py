@@ -115,8 +115,8 @@ def processBet(bet, fighter_name, fighter_odds):
 
 with open(r"test_results\testing_alpha_clean.txt", "w") as test:
     urls = []
-    urls.append("https://www.ufc.com/events")
-    for i in range(1, 10):
+    # urls.append("https://www.ufc.com/events")
+    for i in range(5,10):
         urls.append("https://www.ufc.com/events?page=" + str(i))    
     all_fight_card_links = []
     for url in urls:
@@ -236,8 +236,8 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
                     test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.2f} {kc_a:.2f}\n")
                     test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.2f} {kc_b:.2f}\n")
 
-                    fraction = 0.1
-                    max_fraction = 0.1
+                    fraction = 0.05
+                    max_fraction = 0.05
                     flat = 0.000
                     totalPredictions += 1
                     if a_win > b_win:
@@ -247,6 +247,7 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
                         if (kc_a > 0):
                             bet = bankroll * fraction * kc_a
                             bet = min(bet,max_fraction*bankroll)
+                            bet=10
                             cardBet+=bet
                             nextBankroll+=processBet(bet, fighter1_name, fighter1_odds)
                         else:
@@ -261,6 +262,7 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
                         if (kc_b > 0):
                             bet = bankroll * fraction * kc_b
                             bet = min(bet,max_fraction*bankroll)
+                            bet=10
                             cardBet+=bet
                             nextBankroll+=processBet(bet, fighter2_name, fighter2_odds)
                         else:

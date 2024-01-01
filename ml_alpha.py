@@ -128,6 +128,7 @@ def objective(trial):
 
     # return logloss
 
+    # data = lgb.Dataset(X_train_extended, label=y_train_extended)
     data = lgb.Dataset(X_train_extended, label=y_train_extended)
     # Training model
     cv_results = lgb.cv(
@@ -148,23 +149,23 @@ def objective(trial):
     return best_score
 
 # Create the study object with maximization direction
-study = optuna.create_study(direction="minimize")
-study.optimize(objective, n_trials=10)
+# study = optuna.create_study(direction="minimize")
+# study.optimize(objective, n_trials=10)
 
-# Fetching the best parameters
-best_params = study.best_params
-best_score = study.best_value
+# # Fetching the best parameters
+# best_params = study.best_params
+# best_score = study.best_value
 
-# Output the best parameters and score
-print(f"Best params: {best_params}")
-print(f"Best score: {best_score}")
+# # Output the best parameters and score
+# print(f"Best params: {best_params}")
+# print(f"Best score: {best_score}")
 
-with open("data/best_params.json", "w") as file:
-    # Creating a dictionary to hold data
-    data_to_save = {"best_params": best_params, "best_score": best_score}
-    # Writing as a JSON formatted string for readability and ease of use
-    json.dump(data_to_save, file, indent=4)
-# Now use the best parameters to fit the model on complete training data
+# with open("data/best_params.json", "w") as file:
+#     # Creating a dictionary to hold data
+#     data_to_save = {"best_params": best_params, "best_score": best_score}
+#     # Writing as a JSON formatted string for readability and ease of use
+#     json.dump(data_to_save, file, indent=4)
+
 
 with open("data/best_params.json", "r") as file:
     data_loaded = json.load(file)
@@ -174,7 +175,9 @@ best_params = data_loaded["best_params"]
 best_score = data_loaded["best_score"]
 
 model = lgb.LGBMClassifier(**best_params)
+# model = lgb.LGBMClassifier(random_state=seed)
 model.fit(X_train_extended, y_train_extended)
+# model.fit(X_train, y_train)
 # Make predictions and evaluate the model
 y_pred = model.predict(X_test)
 predicted_probabilities = model.predict_proba(X_test)
