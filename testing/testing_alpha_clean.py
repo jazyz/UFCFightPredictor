@@ -37,7 +37,9 @@ underdog_gain = 0
 underdog_loss = 0
 correctPredictions = 0
 totalPredictions = 0
-
+averageBankroll = 0
+cardNumber = 0
+bankrolls = []
 def kelly_criterion(odds, prob_win):
         kc = 0
         if (odds < 0):
@@ -111,11 +113,10 @@ def processBet(bet, fighter_name, fighter_odds):
     test.write(f" ${bet:.2f} (bet) pt: ${bet + potential_return:.2f} +${potential_return:.2f} ")
     return process_winner(winner_name, fighter_name, potential_return, bet, fighter_odds)
 
-bankrolls=[]
 with open(r"test_results\testing_alpha_clean.txt", "w") as test:
     urls = []
     urls.append("https://www.ufc.com/events")
-    for i in range(1, 6):
+    for i in range(1, 10):
         urls.append("https://www.ufc.com/events?page=" + str(i))    
     all_fight_card_links = []
     for url in urls:
@@ -235,8 +236,8 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
                     test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.2f} {kc_a:.2f}\n")
                     test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.2f} {kc_b:.2f}\n")
 
-                    fraction = 0.05
-                    max_fraction = 0.05
+                    fraction = 0.1
+                    max_fraction = 0.1
                     flat = 0.000
                     totalPredictions += 1
                     if a_win > b_win:
@@ -274,6 +275,8 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
                     test.write("---\n")
                 
             bankroll=nextBankroll
+            averageBankroll+=bankroll
+            cardNumber+=1
             bankrolls.append(bankroll)
             minBankroll=min(minBankroll,bankroll)
             maxBankroll=max(maxBankroll,bankroll)
@@ -290,6 +293,7 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
         file.write(f"Bankroll: ${bankroll:.2f}\n")
         file.write(f"Min Bankroll: ${minBankroll:.2f}\n")
         file.write(f"Max Bankroll: ${maxBankroll:.2f}\n")
+        file.write(f"Average Bankroll: ${averageBankroll/cardNumber:.2f}\n")
         file.write(f"Max Card Bet: ${maxCardBet:.2f}\n")
         # file.write(f"Correct Predictions: {correctPredictions/totalPredictions:.2f}\n")
         # file.write(f"Correct Bets: {correctBets/totalBets:.2f}\n")

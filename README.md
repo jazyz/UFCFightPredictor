@@ -2,9 +2,9 @@
 
 # V4 Alpha Model:
 
-The new and improved UFC AI model is consistently averaging around $100 profit over the past year of UFC events in 2023, when starting with $1000 (10% profit). With a robust accuracy of 64%, it can accurately identify winning percentages of each fighter which is used in the Kelly Criterion to determine how much to bet on each fight. The best result we have simulated was turning $1000 on February 22, 2022 to $3042.19 by December 16, 2023, which shows what could possibly happen in the long term if the model learns the current fighting meta well.
+The new and improved UFC AI model is consistently averaging around $100 profit over the past year of UFC events in 2023, when starting with $1000 (10% profit). With a robust accuracy of 64%, it can accurately identify winning percentages of each fighter which is used in the Kelly Criterion to determine how much to bet on each fight. The best result we have simulated was turning $1000 on February 22, 2022 to $3042.19 by December 16, 2023, as well as averaging $1600 on this time period, which shows what could possibly happen in the long term if the model learns the fighting meta well.
 
-## The Pipeline:
+## The Pipeline
 
 ## Data
 
@@ -12,7 +12,7 @@ The new and improved UFC AI model is consistently averaging around $100 profit o
 All of the data was scraped from ufcstats.com. Previously, we had scraped data for each fighter as well as their fight histories and statistics, stored in an SQL database. However, in order to get more detailed fight statistics, we had to revamp the scraper entirely. We have now collected stats such as strike accuracy, control time, and submissions attempts for every fight from 1994 to 2023.
 
 ### Data Processing and Cleaning 
-First, we need to clean the data, removing incomplete values, outdated fights, and duplicated data that was scraped. We also need to process all the data in a way which our machine learning model can understand, and retrieving all the raw numbers. 
+First, we need to clean the data, removing incomplete values, outdated fights, and duplicated data that was scraped. We also need to process all the data in a way which our machine learning model can understand, and retrieve all the raw numbers. 
 
 ### Feature Engineering
 With around 15 base stats for each fight, we now process the statistics in order to create expressive and predictive features. In order to predict a fight, we need the past fight histories of both fighters. The data scraped tells us which fighter is in the red corner and which fighter is in the blue corner. For simplicity in code, we call them Red and Blue. 
@@ -24,14 +24,21 @@ Over 180+ features are engineering from these 15 base stats. For each base stat,
 ## Model
 
 ### LightGBM
-We chose LightGBM (Light Gradient Boosting Machine), a tree-based learning algorithm, due to its exceptional speed, efficiency, and predicting power. LightGBM excels in capturing complex, non-linear relationships within UFC fight data, providing valuable insights into feature importance and tuning. With the new Alpha model, our accuracies were much more consistent than before. With much less features in our previous model, changing a few features could lead to dramatic changes in accuracy. Now that we have more robust data with a much wider selection of features, the reliability of the model was greatly increased.
+We chose LightGBM (Light Gradient Boosting Machine), a tree-based learning algorithm, due to its exceptional speed, efficiency, and predicting power. LightGBM excels in capturing complex, non-linear relationships within UFC fight data, providing valuable insights into feature importance and tuning. With the new Alpha model, our accuracies were much more consistent than before. With much less features in our previous model, changing a few features could lead to dramatic changes in accuracy. Now that we have more robust data with a much wider selection of features, the reliability of the model was greatly increased. 
 
 ### Feature Selection
 With so many features, it's important to select those which actually help the model. We prune out features which have high correlation with each other, as well as features which have low impact on the model. This reduces noise and helps the model pick out the correct percentages.
 
 ### Hyperparameter Tuning and Trials
-LightGBM allows you to fine-tune your model, setting parameters such as learning rate, number of leaves in a tree, etc. These can all have great impacts on the predictions that the model makes.
+LightGBM allows you to fine-tune your model, setting parameters such as learning rate, number of leaves in a tree, etc. These can all have great impacts on the predictions that the model makes. We utilized the optuna library to run trails in order to select the best hyperparameters for the model. Our current model accuracy is 64%.
 
+## Testing
+
+### How to Test
+To test our predictions on past fight cards from ufc.com, we use the testing folder. First, go to ml_alpha_testing.py. Edit the train/test split so that the test set contains all fight card fights which we want to evaluate. The train set should be disjoint from this test set. Then, edit testing_alpha_clean.py to set the range of event URLs to be tested. To perform tests, first run ml_alpha_testing.py, then testing_alpha_clean.py. The results will be written to test_results/testing_alpha_clean.txt, and the bankroll will be automatically graphed. By default, we set the test set to 10% of the fights in our database, which is around the past year of data. 
+
+## Results
+Testing on the fight cards in 2023, we ran 10 separate trials with different tuned hyperparameters, and averaged an $1100 final bankroll starting from $1000. We used a conservative 0.05 Kelly Criterion betting strategy, which helps us determine what fraction of our bankroll to wager on each bet. Testing on the fight cards from both 2022 and 2023 with a more risky 0.1 Kelly Criterion, we average a final bankroll of $1600, while maxing out at around $3000. We found that our model is consistently gaining money and can sometimes go up to $2000 or $3000 over a longer period of time, while only going down to around $750.
 
 
 # V1-V3.1 Model (Old):
