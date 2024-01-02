@@ -19,9 +19,6 @@ const Navbar = () => {
             <Link to="/testing" className="text-white">
               Testing
             </Link>
-            <Link to="/fighters" className="text-white">
-              Fighters
-            </Link>
           </div>
         </div>
       </div>
