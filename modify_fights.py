@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Reading the data from data\fight_details.csv file
-df = pd.read_csv(r'data\fight_details.csv')
+df = pd.read_csv(r'data\fight_details_date.csv')
 
 # Function to convert "x of y" strings to a tuple of (x, x/y)
 def convert_ratio(value):
@@ -50,9 +50,9 @@ columns_to_delete = ["Red Sig. str. %", "Red Td %", "Blue Sig. str. %", "Blue Td
 df = df.drop(columns=columns_to_delete)
 df = df[~df['Title'].str.contains("Women")]
 df = df[~df['Title'].str.contains("Open")]
+df = df.dropna(subset=['Date'])
 #df = df[~df['Title'].str.contains("Title")]
 # Saving the modified DataFrame back to CSV or you can use it as is in your Python environment
 df.to_csv('data\modified_fight_details.csv', index=False)
 
-# Israel Adesanya,16,1131.9101928075177,12.0,240.0,168.0,-18.0,3.0,1.0,-25.01666666666667,240.0,45.0,19.0,176.0,246.0,-18.0,12.0,1.130486641768835,0.7995857264691455,-2.7634920634920634,1.130486641768835,0.9464661345739814,0.44584948993712337,0.7380345872896514,1.4338087582947758,-1.57277183600713,2.3772727272727274
 

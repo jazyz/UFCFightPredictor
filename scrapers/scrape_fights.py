@@ -106,13 +106,13 @@ def write_to_csv(fight_details, filename=r'data\fight_details.csv', is_header_re
         # Write the combined row
         writer.writerow(row)
 
-def process_fight_urls(url_list, filename=r'data\fight_details.csv'):
+def process_fight_urls(url_list, filename=r'data\fight_details_date.csv'):
     # Write details for each URL
     for i, url in enumerate(url_list):
         fight_details = get_fight_details(url)
         write_to_csv(fight_details, filename, is_header_required=(i==0))  # Header only for the first one
 
-def read_and_print_csv(filename=r'data\fight_details.csv'):
+def read_and_print_csv(filename=r'data\fight_details_date.csv'):
     with open(filename, mode='r', newline='') as file:
         reader = csv.reader(file)
         
@@ -128,6 +128,6 @@ def read_and_print_csv(filename=r'data\fight_details.csv'):
                 print(f"{header}: {value}")
             print("-" * 100)  # Separator for each fight
 
-# urls=["http://ufcstats.com/fight-details/f2b407019b2a5c15"]
-# process_fight_urls(urls)
-# read_and_print_csv()
+urls=["http://ufcstats.com/fight-details/3fa8ee3fdc04fe36"]
+process_fight_urls(urls)
+read_and_print_csv()
