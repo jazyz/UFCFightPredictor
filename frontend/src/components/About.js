@@ -21,7 +21,6 @@ const About = () => {
 
   return (
     <div className="container px-8 mx-auto mt-8">
-      <h2 className="text-2xl font-semibold mb-4">About UFC Predictor</h2>
       <ReactMarkdown className="markdown">{markdownContent}</ReactMarkdown>
     </div>
   );
