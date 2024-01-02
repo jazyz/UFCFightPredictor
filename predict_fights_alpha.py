@@ -319,7 +319,7 @@ def process_fight(fighter_stats, opponent_stats, processed_fight):
 
 # Used to predict exactly 1 fight (erases all data in the output csv and writes the new fight)
 def predict_fight(fighter1_name, fighter2_name):
-    # print(f"Processing {fighter1_name} vs {fighter2_name}")
+    print(f"Processing {fighter1_name} vs {fighter2_name}")
     with open(output_csv_filename, mode="w", newline="") as output_file:
         csv_writer = csv.DictWriter(output_file, fieldnames=fieldnames)
         csv_writer.writeheader()
