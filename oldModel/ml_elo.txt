@@ -1,35 +1,35 @@
 fighter_names
-0    Marlon Vera*Petr Yan
-1    Petr Yan*Marlon Vera
+0    Petr Yan*Marlon Vera
+1    Marlon Vera*Petr Yan
 dtype: object
       date  fighter_kd_differential  fighter_str_differential  \
-0  unknown                 0.545455                -10.090909   
-1  unknown                 0.750000                 13.000000   
+0  unknown                 0.750000                 13.000000   
+1  unknown                 0.545455                -10.090909   
 
    fighter_td_differential  fighter_sub_differential  fighter_losestreak  \
-0                -0.500000                  0.818182                   0   
-1                 0.416667                  0.166667                   6   
+0                 0.416667                  0.166667                   6   
+1                -0.500000                  0.818182                   0   
 
    fighter_age_deviation  fighter_opp_avg_elo  fighter_elo  \
-0                   2092          1069.427894  1231.453240   
-1                   1860          1136.532947  1133.560181   
+0                   1860          1136.532947  1133.560181   
+1                   2092          1069.427894  1231.453240   
 
    opponent_kd_differential  opponent_str_differential  \
-0                  0.750000                  13.000000   
-1                  0.545455                 -10.090909   
+0                  0.545455                 -10.090909   
+1                  0.750000                  13.000000   
 
    opponent_td_differential  opponent_sub_differential  opponent_losestreak  \
-0                  0.416667                   0.166667                    6   
-1                 -0.500000                   0.818182                    0   
+0                 -0.500000                   0.818182                    0   
+1                  0.416667                   0.166667                    6   
 
    opponent_age_deviation  opponent_elo  opponent_opp_avg_elo  fighter_dob  \
-0                    1860   1133.560181           1136.532947         1992   
-1                    2092   1231.453240           1069.427894         1993   
+0                    2092   1231.453240           1069.427894         1993   
+1                    1860   1133.560181           1136.532947         1992   
 
    opponent_dob   result predicted_result  probability_draw  probability_loss  \
-0          1993  unknown             loss          0.000852          0.726367   
-1          1992  unknown              win          0.000226          0.247196   
+0          1992  unknown              win          0.000226          0.247196   
+1          1993  unknown             loss          0.000852          0.726367   
 
    probability_nc  probability_win  
-0        0.002257         0.270524  
-1        0.000466         0.752112  
+0        0.000466         0.752112  
+1        0.002257         0.270524  

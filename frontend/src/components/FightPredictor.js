@@ -6,7 +6,8 @@ import { toast } from "react-toastify";
 const FightPredictor = ({ nameOptions }) => {
   const [fighterName1, setFighterName1] = useState("");
   const [fighterName2, setFighterName2] = useState("");
-  const [stats, setStats] = useState(null);
+  const [fighter1_stats, setFighter1_stats] = useState(null);
+  const [fighter2_stats, setFighter2_stats] = useState(null);
   const [predictedData, setPredictedData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showAdvancedStats, setShowAdvancedStats] = useState(false);
@@ -17,7 +18,6 @@ const FightPredictor = ({ nameOptions }) => {
 
   const handlePredictClick = async () => {
     try {
-      console.log(nameOptions);
       if (!nameOptions.includes(fighterName1)) {
         throw new Error("Please enter valid fighter names.");
       }
@@ -37,13 +37,16 @@ const FightPredictor = ({ nameOptions }) => {
       console.log(response.data.message);
       const training = await axios.post(`${baseURL}/train`);
       console.log(training.data.message);
-      const fighterStats = await axios.get(`${baseURL}/get_stats`);
+      const fighterStats = await axios.post(`${baseURL}/get_stats`, {
+        fighter_name1: fighterName1,
+        fighter_name2: fighterName2,
+      });
       console.log(fighterStats.data);
-      setStats(fighterStats.data[0]);
-      // console.log(stats);
+      setFighter1_stats(fighterStats.data.fighter1_stats);
+      setFighter2_stats(fighterStats.data.fighter2_stats);
       const results = await axios.get(`${baseURL}/get_predicted_data`);
+      console.log(results.data);
       setPredictedData(results.data.predicted_data);
-      // console.log(results.data.predicted_data);
       setIsLoading(false);
     } catch (error) {
       toast.error(error.message);
@@ -97,21 +100,17 @@ const FightPredictor = ({ nameOptions }) => {
             <div className="flex space-x-4">
               <div className="flex flex-col">
                 <h3 className="text-xl font-semibold mb-2">
-                  {stats.fighter_name}
+                  {fighter1_stats.Fighter}
                 </h3>
-                <p>{stats.fighter_record}</p>
-                <p>{stats.fighter_dob}</p>
-                <p>{stats.fighter_height}</p>
-                <p>{stats.fighter_reach}</p>
+                <p>Age: {fighter1_stats.dob}</p>
+                <p>ELO: {parseFloat(fighter1_stats.elo).toFixed(2)}</p>
               </div>
               <div className="flex flex-col">
                 <h3 className="text-xl font-semibold mb-2">
-                  {stats.opponent_name}
+                  {fighter2_stats.Fighter}
                 </h3>
-                <p>{stats.opponent_record}</p>
-                <p>{stats.opponent_dob}</p>
-                <p>{stats.opponent_height}</p>
-                <p>{stats.opponent_reach}</p>
+                <p>Age: {fighter2_stats.dob}</p>
+                <p>ELO: {parseFloat(fighter2_stats.elo).toFixed(2)}</p>
               </div>
             </div>
             <div className="mt-4">
@@ -136,11 +135,16 @@ const FightPredictor = ({ nameOptions }) => {
                 %
               </p>
               <p>
-                {stats.fighter_name}{" "}
-                {predictedData.predicted_result === "win"
+                {fighter1_stats.Fighter}{" "}
+                {(
+                  (100 *
+                    (predictedData[0].probability_win +
+                      predictedData[1].probability_loss)) /
+                  2
+                ).toFixed(2) > 50
                   ? "defeats"
                   : "loses to"}{" "}
-                {stats.opponent_name}
+                {fighter2_stats.Fighter}
               </p>
             </div>
           </div>
@@ -155,52 +159,32 @@ const FightPredictor = ({ nameOptions }) => {
         </button>
 
         {/* New: Advanced Stats Box */}
-        {showAdvancedStats && predictedData && (
+        {showAdvancedStats && fighter1_stats && fighter2_stats && (
           <div className="mt-4 space-x-4">
             <div className="flex space-x-4">
               <div className="flex flex-col">
-                <p>ELO: {predictedData[0].fighter_elo.toFixed(2)}</p>
+                <p>Win Streak: {fighter1_stats.winstreak}</p>
+                <p>Loss Streak: {fighter1_stats.losestreak}</p>
                 <p>
-                  KD Differential:{" "}
-                  {predictedData[0].fighter_kd_differential.toFixed(2)}
+                  Avg Opponent Elo:{" "}
+                  {(
+                    parseFloat(fighter1_stats.oppelo) /
+                    parseFloat(fighter1_stats.totalfights)
+                  ).toFixed(2)}
                 </p>
-                <p>Loss Streak: {predictedData[0].fighter_losestreak}</p>
-                <p>
-                  Strike Differential:{" "}
-                  {predictedData[0].fighter_str_differential.toFixed(2)}
-                </p>
-                <p>
-                  Submission Differential:{" "}
-                  {predictedData[0].fighter_sub_differential.toFixed(2)}
-                </p>
-                <p>
-                  Takedown Differential:{" "}
-                  {predictedData[0].fighter_td_differential.toFixed(2)}
-                </p>
-                <p>Title Fights: {stats.fighter_titlefights / 2}</p>
-                <p>Title Wins: {stats.fighter_titlewins / 2}</p>
+                <p>Title Wins: {fighter1_stats.titlewins}</p>
               </div>
               <div className="flex flex-col">
-                <p>ELO: {predictedData[0].opponent_elo.toFixed(2)}</p>
+                <p>Win Streak: {fighter2_stats.winstreak}</p>
+                <p>Loss Streak: {fighter2_stats.losestreak}</p>
                 <p>
-                  KD Differential:{" "}
-                  {predictedData[0].opponent_kd_differential.toFixed(2)}
+                  Avg Opponent Elo:{" "}
+                  {(
+                    parseFloat(fighter2_stats.oppelo) /
+                    parseFloat(fighter2_stats.totalfights)
+                  ).toFixed(2)}
                 </p>
-                <p>Loss Streak: {predictedData[0].opponent_losestreak}</p>
-                <p>
-                  Strike Differential:{" "}
-                  {predictedData[0].opponent_str_differential.toFixed(2)}
-                </p>
-                <p>
-                  Submission Differential:{" "}
-                  {predictedData[0].opponent_sub_differential.toFixed(2)}
-                </p>
-                <p>
-                  Takedown Differential:{" "}
-                  {predictedData[0].opponent_td_differential.toFixed(2)}
-                </p>
-                <p>Title Fights: {stats.opponent_titlefights / 2}</p>
-                <p>Title Wins: {stats.opponent_titlewins / 2}</p>
+                <p>Title Wins: {fighter2_stats.titlewins}</p>
               </div>
             </div>
           </div>
