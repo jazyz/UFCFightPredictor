@@ -36,7 +36,6 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/results" element={<Results />} />
         <Route path="/testing" element={<Testing />} />
-        <Route path="/fighters" element={<FightersPage fighters={nameOptions} />} /> {/* Add this line */}
       </Routes>
       <ToastContainer />
     </Router>
