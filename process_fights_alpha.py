@@ -124,6 +124,12 @@ def sqrSum(n):
 def getTime(fight):
     return (float(fight['Round'])-1)*5 + float(fight['Time'])
 
+def getDate(date_string, date_format):
+    try:
+        return datetime.strptime(date_string, date_format)
+    except ValueError:
+        return None
+    
 # PROCESS FIGHTS TO RED AND BLUE 
 def processFight(fight, Red, Blue):
     winner = fight['Winner']
@@ -146,6 +152,18 @@ def processFight(fight, Red, Blue):
         processed_fight['Red Fighter'] = Red
         processed_fight['Blue Fighter'] = Blue
         processed_fight['Title'] = fight['Title']
+        processed_fight['Date'] = fight['Date']
+        fight_date=getDate(fight['Date'], "%B %d, %Y")
+        # if not (fight_date or fighter_stats[Red]['dob'] or fighter_stats[Blue]['dob']):
+        #     print("BAD")
+        #     return
+        # processed_fight['Red age'] = fight_date.year - fighter_stats[Red]['dob']
+        # processed_fight['Blue age'] = fight_date.year - fighter_stats[Blue]['dob']
+        # processed_fight['age oppdiff'] = processed_fight['Red age'] - processed_fight['Blue age'] 
+        # fighter_stats[Red]['avg age'] += processed_fight['Red age']
+        # fighter_stats[Blue]['avg age'] += processed_fight['Blue age']
+        # fighter_stats[Red]['age differential'] += processed_fight['age oppdiff']
+        # fighter_stats[Blue]['age differential'] += -processed_fight['age oppdiff']
         for feature in feature_list:
             if feature in fighter_stats[Red] and feature in fighter_stats[Blue]:
                 processed_fight[f'Red {feature}'] = fighter_stats[Red][feature]
