@@ -1,6 +1,6 @@
 # UFC Fight Predictor
 
-# V4 Alpha Model:
+# V4 Alpha Model
 
 The new and improved UFC AI model is consistently averaging around $100 profit over the past year of UFC events in 2023, when starting with $1000 (10% profit). With a robust accuracy of 64%, it can accurately identify winning percentages of each fighter which is used in the Kelly Criterion to determine how much to bet on each fight. The best result we have simulated was turning $1000 on February 22, 2022 to $3042.19 by December 16, 2023, as well as averaging $1600 on this time period, which shows what could possibly happen in the long term if the model learns the fighting meta well. Previous research studies have found accuracies maxing out at around 63%.
 
@@ -40,7 +40,7 @@ To test our predictions on past fight cards from ufc.com, we use the testing fol
 
 ## Results
 
-Testing on the fight cards in 2023, we ran 10 separate trials with different tuned hyperparameters, and averaged an $1100 final bankroll starting from $1000. We used a conservative 0.05 Kelly Criterion betting strategy, which helps us determine what fraction of our bankroll to wager on each bet. Testing on the fight cards from both 2022 and 2023 with a more risky 0.1 Kelly Criterion, we average a final bankroll of $1600, while maxing out at around $3000. We found that our model is consistently gaining money and can sometimes go up to $2000 or $3000 over a longer period of time, while only going down to around $750.
+Testing on the fight cards in 2023, we ran 10 separate trials with different tuned hyperparameters, and averaged an $1100 final bankroll starting from $1000. We used a conservative 0.05 Kelly Criterion betting strategy, which helps us determine what fraction of our bankroll to wager on each bet. Testing on the fight cards from both 2022 and 2023 with a more risky 0.1 Kelly Criterion, we average a final bankroll of $1600, while maxing out at around $3000. We found that our model is consistently gaining money and can sometimes go up to $2000 or $3000 over a longer period of time, while only going down to around $750. Starting with $1000, for 73/86 or 85% of the trials, the model goes above $1000, going down only 13/86 or 15% of the trials. 
 
 ## How to Bet on the Next Fight Card
 
