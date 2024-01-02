@@ -7,13 +7,21 @@ const Navbar = () => {
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div className="text-white text-lg font-semibold">
-            <Link to="/">UFC Predictor</Link>
+            <Link to="/">betUFC Predictor</Link>
           </div>
           <div className="space-x-4">
-            <Link to="/about" className="text-white">About</Link>
-            <Link to="/results" className="text-white">Results</Link>
-            <Link to="/testing" className="text-white">Testing</Link>
-            <Link to="/fighters" className="text-white">Fighters</Link>
+            <Link to="/about" className="text-white">
+              About
+            </Link>
+            <Link to="/results" className="text-white">
+              Results
+            </Link>
+            <Link to="/testing" className="text-white">
+              Testing
+            </Link>
+            <Link to="/fighters" className="text-white">
+              Fighters
+            </Link>
           </div>
         </div>
       </div>

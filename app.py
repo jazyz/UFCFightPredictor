@@ -80,7 +80,6 @@ def get_stats():
     return jsonify(response)
 
     
-
 @app.route("/get_predicted_data", methods=["GET"])
 def get_predicted_data():
     try:

@@ -117,7 +117,8 @@ def check_winner(winner_name, fighter_name, potential_return, bet, fighter_odds)
         else:
             underdog_loss += bet
 
-with open(r"test_results\testing_alpha.txt", "w") as test:
+
+with open(os.path.join("test_results", "testing_alpha.txt"), "w") as test:
     urls = []
     urls.append("https://www.ufc.com/events")
     for i in range(1, 8):
