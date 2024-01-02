@@ -24,7 +24,7 @@ label_encoder = LabelEncoder()
 df["Result"] = label_encoder.fit_transform(df["Result"])
 selected_columns = df.columns.tolist()
 
-columns_to_remove = ["Red Fighter", "Blue Fighter", "Title"]
+columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date"]
 selected_columns = [col for col in selected_columns if col not in columns_to_remove]
 
 corr_matrix = df[selected_columns].corr().abs()
@@ -41,27 +41,25 @@ df.drop(to_drop, axis=1, inplace=True)
 # Make sure to update the 'selected_columns' to reflect the dropped columns
 selected_columns = [column for column in selected_columns if column not in to_drop]
 
+selected_columns.append("Date")
+        
 df = df[selected_columns]
-X = df.drop(["Result"], axis=1)
-y = df["Result"]
 
-# Convert categorical variables if any
-# X = pd.get_dummies(X)  # This line is optional and depends on your data
+df["Date"] = pd.to_datetime(df["Date"])
+df.sort_values(by="Date", inplace=True)
 
-# Manual split based on percentage
-split_index = int(len(df) * 0.85)
-last_index = int(len(df) * 1)
-X_train, X_test = X[:split_index], X[split_index:last_index]
-y_train, y_test = y[:split_index], y[split_index:last_index]
+df = df[df["Date"] >= pd.to_datetime("2010-01-01")]
 
-seed = 42
+split_date = pd.to_datetime("2022-01-01")  
+# print(df.head())
+# Split based on the date
+train_df = df[df["Date"] < split_date]
+test_df = df[df["Date"] >= split_date]
 
-# Determine the new start index for the training data to skip the first 20%
-prune_index = int(len(X_train) * 0.1)
-
-
-X_train = X_train[prune_index:]
-y_train = y_train[prune_index:]
+X_train = train_df.drop(["Result", "Date"], axis=1)
+y_train = train_df["Result"]
+X_test = test_df.drop(["Result", "Date"], axis=1)
+y_test = test_df["Result"]
 
 # Prepare the train and test data for duplication and swapping
 X_train_swapped = X_train.copy()
@@ -110,8 +108,13 @@ accuracy = accuracy_score(y_test_extended, y_pred)
 print(f"Extended Test Set Accuracy: {accuracy:.4f}")
 
 # Get the fighter names and actual results for the test set
-df_with_details = pd.read_csv(file_path)[["Red Fighter", "Blue Fighter", "Result"]]
-df_with_details = df_with_details.iloc[split_index:].reset_index(drop=True)
+df_with_details = pd.read_csv(file_path)[
+    ["Red Fighter", "Blue Fighter", "Result", "Date"]
+]
+df_with_details["Date"] = pd.to_datetime(df_with_details["Date"])
+df_with_details.sort_values(by="Date", inplace=True)
+df_with_details = df_with_details[df_with_details["Date"] >= split_date]
+df_with_details.reset_index(drop=True, inplace=True)
 
 # Duplicate and swap 'Red' and 'Blue' in the second half of df_with_details
 df_with_details_swapped = df_with_details.copy()

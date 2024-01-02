@@ -3,17 +3,28 @@ from bs4 import BeautifulSoup
 import csv
 
 def get_additional_links(url):
+    # Initialize a dictionary to hold the date and links
+    result = {'date': '', 'links': []}
+
     # Fetch the content from the URL
     response = requests.get(url)
     if response.status_code == 200:
         # Parse the HTML content
         soup = BeautifulSoup(response.text, 'html.parser')
 
-        # Find all links that contain 'fight-details'
+        # Extract the date from the relevant section
+        date_section = soup.find('li', class_='b-list__box-list-item')
+        if date_section and "Date:" in date_section.text:
+            date_text = date_section.text.replace('Date:', '').strip()
+            result['date'] = date_text  # Save the date into the result dictionary
+
+        # Find all the links that contain 'fight-details'
         links = soup.find_all('a', href=True)
-        return [link['href'] for link in links if 'fight-details' in link['href']]
-    else:
-        return []
+        fight_links = [link['href'] for link in links if 'fight-details' in link['href']]
+        result['links'] = fight_links  # Save the additional links into the result dictionary
+
+    # Return the dictionary with date and links
+    return result
 
 def get_embedded_links(url):
     # Fetch the main page content
@@ -25,15 +36,17 @@ def get_embedded_links(url):
         # Find all rows with links
         rows = soup.find_all('tr', class_='b-statistics__table-row')
 
-        # Extract the embedded links
-        links = [row.find('a', href=True)['href'] for row in rows if row.find('a', href=True)]
+        # Extract the embedded links and dates
+        all_links_details = {}
+        for row in rows:
+            link = row.find('a', href=True)
+            if link:
+                href = link['href']
+                additional_links_details = get_additional_links(href)
+                # Store the additional links and date under each embedded link
+                all_links_details[href] = additional_links_details
 
-        # For each link, get additional 'fight-details' links
-        all_links = {}
-        for link in links:
-            all_links[link] = get_additional_links(link)
-
-        return all_links
+        return all_links_details
     else:
         return {}
 
@@ -109,7 +122,10 @@ def get_fight_details(url):
     except Exception as e:
         return {"Error": str(e)}
 
-def write_to_csv(fight_details, filename='data', is_header_required=True):
+is_header_required = True
+
+def write_to_csv(fight_details, filename=r'data\fight_details_date.csv'):
+    global is_header_required
     file_mode = 'w' if is_header_required else 'a'
     with open(filename, mode=file_mode, newline='') as file:
         writer = csv.writer(file)
@@ -117,10 +133,11 @@ def write_to_csv(fight_details, filename='data', is_header_required=True):
         # Prepare headers only if it's required (for the first time)
         if is_header_required:
             headers = [
-                'Title', 'Winner', 'Loser', 'Draw', 'Method', 'Round', 'Time', 'Time Format', 'Referee', 'Details'
+                'Title', 'Winner', 'Loser', 'Draw', 'Method', 'Round', 'Time', 'Time Format', 'Referee', 'Details', 'Date',
             ] + [f"Red {key}" for key in fight_details['Fighter 1 Stats'].keys()] + [f"Blue {key}" for key in fight_details['Fighter 2 Stats'].keys()]
             writer.writerow(headers)
-        
+
+        is_header_required=False        
         # Prepare fight info for easier access
         fi = fight_details['Fight Info']
         
@@ -135,19 +152,21 @@ def write_to_csv(fight_details, filename='data', is_header_required=True):
             fi.get('Time', ''),
             fi.get('Time Format', ''),
             fi.get('Referee', ''),
-            fi.get('Details', '')
+            fi.get('Details', ''),
+            fight_details.get('Date', ''),
         ] + list(fight_details['Fighter 1 Stats'].values()) + list(fight_details['Fighter 2 Stats'].values())
 
         # Write the combined row
         writer.writerow(row)
 
-def process_fight_urls(url_list, filename=r'data\fight_details.csv'):
-    # Write details for each URL
-    for i, url in enumerate(url_list):
-        fight_details = get_fight_details(url)
-        write_to_csv(fight_details, filename, is_header_required=(i==0))  # Header only for the first one
+def process_fight_urls(all_links_details, filename=r'data\fight_details_date.csv'):
+    for embedded_link, details in all_links_details.items():
+        for fight_link in details['links']:
+            fight_details = get_fight_details(fight_link)
+            fight_details['Date'] = details['date']  # Add the date to fight details
+            write_to_csv(fight_details, filename)
 
-def read_and_print_csv(filename=r'data\fight_details.csv'):
+def read_and_print_csv(filename=r'data\fight_details_date.csv'):
     with open(filename, mode='r', newline='') as file:
         reader = csv.reader(file)
         
@@ -163,20 +182,7 @@ def read_and_print_csv(filename=r'data\fight_details.csv'):
                 print(f"{header}: {value}")
             print("-" * 100)  # Separator for each fight
 
-def get_all_fight_urls(url):
-    # Fetch the main page content
-    embedded_links = get_embedded_links(url)
-    all_additional_links = []
-    
-    # Collect all additional links
-    #first_link=True
-    for link, additional_links in embedded_links.items():
-        #if not first_link:
-        all_additional_links.extend(additional_links)
-        #first_link=False    
-    return all_additional_links
-
 # URL of the UFC statistics events
-# url = "http://ufcstats.com/statistics/events/completed?page=all"
-# all_fights = get_all_fight_urls(url)
-# process_fight_urls(all_fights)
+url = "http://ufcstats.com/statistics/events/completed?page=all"
+all_links_details = get_embedded_links(url)
+process_fight_urls(all_links_details)
