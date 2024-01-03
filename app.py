@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 from predict_fights_alpha import predict_fight
 from ml_alpha import main
 from oldModel.testing import runTests
+from testing.test_from_site import main
 import os
 import subprocess
 import pandas as pd
@@ -95,7 +96,7 @@ def get_predicted_data():
     return jsonify(response)
 
 def get_test_results():
-    file_path = os.path.join('oldModel', 'testing.txt')
+    file_path = os.path.join('test_results', 'test_from_site.txt')
     try:
         with open(file_path, 'r') as file:
             content = file.read()
@@ -109,7 +110,7 @@ def test():
         data = request.json
         testFrom_card = data.get("testFrom_card")
         testTo_card = data.get("testTo_card")
-        runTests(testFrom_card, testTo_card)
+        main(testFrom_card, testTo_card)
 
         response = get_test_results()
     except Exception as e:
