@@ -28,7 +28,8 @@ const Testing = () => {
 
   return (
     <div className="container mx-auto mt-8">
-      <h2 className="text-2xl font-semibold mb-4">Testing UFC Predictor</h2>
+        In progress...
+      {/* <h2 className="text-2xl font-semibold mb-4">Testing UFC Predictor</h2>
       <div className="bg-white p-8 shadow-md rounded-lg w-96">
         <h2 className="text-2xl font-semibold mb-4">UFC Fight Predictor</h2>
         <div className="mb-4">
@@ -58,7 +59,7 @@ const Testing = () => {
       </div>
       <div className="mt-4 space-x-4">
         <pre className="text-wrap">{results}</pre>
-      </div>
+      </div> */}
     </div>
   );
 };
