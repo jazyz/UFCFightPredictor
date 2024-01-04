@@ -53,7 +53,7 @@ def main():
     # X = pd.get_dummies(X)  # This line is optional and depends on your data
 
     # Manual split based on percentage
-    split_index = int(len(df) * 0.8)
+    split_index = int(len(df) * 0.9)
     last_index = int(len(df) * 1)
     X_train, X_test = X[:split_index], X[split_index:last_index]
     y_train, y_test = y[:split_index], y[split_index:last_index]
@@ -149,22 +149,22 @@ def main():
 
         return best_score
 
-    study = optuna.create_study(direction="minimize")
-    study.optimize(objective, n_trials=10)
+    # study = optuna.create_study(direction="minimize")
+    # study.optimize(objective, n_trials=10)
 
-    # Fetching the best parameters
-    best_params = study.best_params
-    best_score = study.best_value
+    # # Fetching the best parameters
+    # best_params = study.best_params
+    # best_score = study.best_value
 
-    # Output the best parameters and score
-    print(f"Best params: {best_params}")
-    print(f"Best score: {best_score}")
+    # # Output the best parameters and score
+    # print(f"Best params: {best_params}")
+    # print(f"Best score: {best_score}")
 
-    with open("data/best_params.json", "w") as file:
-        # Creating a dictionary to hold data
-        data_to_save = {"best_params": best_params, "best_score": best_score}
-        # Writing as a JSON formatted string for readability and ease of use
-        json.dump(data_to_save, file, indent=4)
+    # with open("data/best_params.json", "w") as file:
+    #     # Creating a dictionary to hold data
+    #     data_to_save = {"best_params": best_params, "best_score": best_score}
+    #     # Writing as a JSON formatted string for readability and ease of use
+    #     json.dump(data_to_save, file, indent=4)
 
 
     with open("data/best_params.json", "r") as file:

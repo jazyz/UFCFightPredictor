@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Red Fighter,Blue Fighter,Predicted Result,Probability
 Zhalgas Zhumagulov,Jerome Rivera,win,0.6497173496756996
 Omari Akhmedov,Brad Tavares,win,0.6214295807756834
@@ -1375,3 +1376,373 @@ Bryce Mitchell,Josh Emmett,win,0.6735603763711077
 Paddy Pimblett,Tony Ferguson,win,0.5949879645203564
 Stephen Thompson,Shavkat Rakhmonov,loss,0.7925416087327454
 Colby Covington,Leon Edwards,win,0.5375723999104067
+=======
+Red Fighter,Blue Fighter,Predicted Result,Probability,Actual Result
+Nate Landwehr,David Onama,win,0.49964297249281553,win
+Marlon Vera,Dominick Cruz,win,0.6068723492649266,win
+Amir Albazi,Francisco Figueiredo,win,0.7702267751637831,win
+Sean Woodson,Luis Saldana,win,0.639458047341715,draw
+Leonardo Santos,Jared Gordon,win,0.5310027337438928,loss
+Marcin Tybura,Alexandr Romanov,loss,0.6214742364073469,win
+Tyson Pedro,Harry Hunsucker,win,0.7774846482387933,win
+Jose Aldo,Merab Dvalishvili,loss,0.7149955682836631,loss
+Paulo Costa,Luke Rockhold,loss,0.5413460583927678,win
+Kamaru Usman,Leon Edwards,win,0.5715983889269888,loss
+John Makdessi,Nasrat Haqparast,win,0.7020524791975552,loss
+Charles Jourdain,Nathaniel Wood,loss,0.6362307200930919,loss
+Alessio Di Chirico,Roman Kopylov,loss,0.5573976511932495,loss
+Nassourdine Imavov,Joaquin Buckley,win,0.5222197577372419,win
+Robert Whittaker,Marvin Vettori,loss,0.5300433282421217,win
+Ciryl Gane,Tai Tuivasa,win,0.7942108359970453,win
+Jake Collier,Chris Barnett,win,0.745551902160592,loss
+Hakeem Dawodu,Julian Erosa,win,0.7221013625705727,loss
+Johnny Walker,Ion Cutelaba,loss,0.5013997636317444,win
+Li Jingliang,Daniel Rodriguez,loss,0.5604131384522046,loss
+Khamzat Chimaev,Kevin Holland,win,0.7435437907371053,win
+Nate Diaz,Tony Ferguson,loss,0.5230968597514447,win
+Damon Jackson,Pat Sabatini,loss,0.510560963961175,win
+Anthony Hernandez,Marc-Andre Barriault,win,0.6834563228415222,win
+Tanner Boser,Rodrigo Nascimento,win,0.8195146236957797,loss
+Andre Fili,Bill Algeo,loss,0.6213279529369478,win
+Chidi Njokuani,Gregory Rodrigues,loss,0.6230084077567742,loss
+Cory Sandhagen,Song Yadong,loss,0.5346726827204291,win
+Guido Cannetti,Randy Costa,loss,0.5231618487148841,win
+Krzysztof Jotko,Brendan Allen,loss,0.5821560605673837,loss
+Joaquim Silva,Jesse Ronson,win,0.5423774451187103,win
+Ilir Latifi,Aleksei Oleinik,win,0.6355562018825808,win
+Mike Davis,Viacheslav Borshchev,win,0.6287577533553008,win
+Raoni Barcelos,Trevin Jones,win,0.6599721182876768,win
+Randy Brown,Francisco Trinaldo,win,0.6449197403520412,win
+Nick Maximov,Jacob Malkoun,win,0.5301931979584128,loss
+Mana Martinez,Brandon Davis,win,0.6659419050490144,win
+Misha Cirkunov,Alonzo Menifield,loss,0.7579500092552864,loss
+Jordan Wright,Dusko Todorovic,win,0.5823778356224203,loss
+Cub Swanson,Jonathan Martinez,loss,0.5416668428312374,loss
+Muhammad Mokaev,Malcolm Gordon,win,0.6582679871397354,win
+Volkan Oezdemir,Nikita Krylov,win,0.5457887005626313,loss
+Makhmud Muradov,Caio Borralho,win,0.6915641577759228,loss
+Belal Muhammad,Sean Brady,win,0.5957744810832892,win
+Beneil Dariush,Mateusz Gamrot,win,0.6275882931911244,win
+Petr Yan,Sean O'Malley,win,0.5579220167942587,loss
+Aljamain Sterling,TJ Dillashaw,win,0.6661660169868103,win
+Charles Oliveira,Islam Makhachev,loss,0.6247010826889258,loss
+Chase Hooper,Steve Garcia,win,0.6004955508747952,loss
+Joseph Holmes,JunYong Park,loss,0.5064907840679785,loss
+Andrei Arlovski,Marcos Rogerio de Lima,loss,0.6583490525872769,loss
+Phil Hawes,Roman Dolidze,win,0.693682723339718,loss
+Dustin Jacoby,Khalil Rountree Jr.,win,0.765426495149643,loss
+Tim Means,Max Griffin,loss,0.5390099486016079,loss
+Calvin Kattar,Arnold Allen,loss,0.6829175433503131,loss
+Mario Bautista,Benito Lopez,win,0.7560711882055716,win
+Grant Dawson,Mark Madsen,win,0.6415525862928422,win
+Tagir Ulanbekov,Nate Maness,win,0.6016313367426119,win
+Darrick Minner,Shayilan Nuerdanbieke,win,0.5307130218579866,loss
+Neil Magny,Daniel Rodriguez,loss,0.6320913258840266,win
+Carlos Ulberg,Nicolae Negumereanu,win,0.7673838238751621,win
+Julio Arce,Montel Jackson,loss,0.5299838164622368,loss
+Michael Trizano,SeungWoo Choi,win,0.5288617844379293,win
+Matt Frevola,Ottman Azaitar,win,0.5318895323370797,win
+Andre Petroski,Wellington Turman,win,0.6090371767186292,win
+Dominick Reyes,Ryan Spann,win,0.5364511997374536,loss
+Brad Riddell,Renato Moicano,win,0.5788860314696227,loss
+Dan Hooker,Claudio Puelles,loss,0.5236204166022334,win
+Frankie Edgar,Chris Gutierrez,loss,0.7215853223818686,loss
+Dustin Poirier,Michael Chandler,win,0.6451936793254024,win
+Israel Adesanya,Alex Pereira,win,0.5247986263176119,loss
+Ricky Turcios,Kevin Natividad,win,0.558166362888779,win
+Vince Morales,Miles Johns,loss,0.5895685646077522,loss
+Jack Della Maddalena,Danny Roberts,win,0.7665219864785884,win
+Andre Fialho,Muslim Salikhov,loss,0.5651074408757498,loss
+Kennedy Nzechukwu,Ion Cutelaba,win,0.7316686694601952,win
+Darren Elkins,Jonathan Pearce,loss,0.6963678651708333,loss
+Michael Johnson,Marc Diakiese,loss,0.7235547061770358,win
+Clay Guida,Scott Holtzman,loss,0.5647235056513269,win
+Niko Price,Phil Rowe,win,0.504447731927535,loss
+Eryk Anders,Kyle Daukaus,loss,0.5783999555048306,win
+Jack Hermansson,Roman Dolidze,win,0.6481455451338823,loss
+Tai Tuivasa,Sergei Pavlovich,loss,0.6818540251296147,loss
+Matheus Nicolau,Matt Schnell,win,0.57064029528128,win
+Bryan Barberena,Rafael Dos Anjos,loss,0.5396762494556137,loss
+Stephen Thompson,Kevin Holland,loss,0.5979909466600732,win
+Billy Quarantillo,Alexander Hernandez,win,0.5961966225467897,win
+Chris Curtis,Joaquin Buckley,loss,0.5550653943358653,win
+Edmen Shahbazyan,Dalcha Lungiambula,win,0.7502147001512771,win
+Jairzinho Rozenstruik,Chris Daukaus,win,0.5232816404217583,win
+Bryce Mitchell,Ilia Topuria,win,0.6737053444827948,loss
+Darren Till,Dricus Du Plessis,loss,0.8051170974704617,loss
+Santiago Ponzinibbio,Alex Morono,loss,0.55254687216201,win
+Paddy Pimblett,Jared Gordon,loss,0.5992369553496284,win
+Jan Blachowicz,Magomed Ankalaev,loss,0.728951831261505,draw
+Sergey Morozov,Journey Newson,win,0.622200729681985,win
+David Dvorak,Manel Kape,loss,0.5696519971285916,loss
+Said Nurmagomedov,Saidyokub Kakhramonov,loss,0.6211925639839578,win
+Jake Matthews,Matthew Semelsberger,win,0.7298138132276076,loss
+Cody Brundage,Michal Oleksiejczuk,win,0.5131126824869419,loss
+Drew Dober,Bobby Green,loss,0.6977572387289668,win
+Alex Caceres,Julian Erosa,win,0.5114486343179006,win
+Arman Tsarukyan,Damir Ismagulov,win,0.5539295203145741,win
+Jared Cannonier,Sean Strickland,loss,0.6654639905003931,win
+Umar Nurmagomedov,Raoni Barcelos,win,0.7474113418068058,win
+Punahele Soriano,Roman Kopylov,win,0.5095436510505246,loss
+Dan Ige,Damon Jackson,win,0.5452600354293723,win
+Sean Strickland,Nassourdine Imavov,loss,0.5047188646979022,win
+Warlley Alves,Nicolas Dalby,win,0.7169678663380661,loss
+Shamil Abdurakhimov,Jailton Almeida,loss,0.7932535573882071,loss
+Paul Craig,Johnny Walker,loss,0.5303985418889782,loss
+Gilbert Burns,Neil Magny,win,0.6367775040803199,win
+Deiveson Figueiredo,Brandon Moreno,loss,0.55023296142152,loss
+Glover Teixeira,Jamahal Hill,win,0.6069258892057123,loss
+JunYong Park,Denis Tiuliulin,win,0.7616793277310316,win
+Dooho Choi,Kyle Nelson,win,0.586912214588631,draw
+Marcin Tybura,Blagoy Ivanov,win,0.5730509866882214,win
+Da Woon Jung,Devin Clark,win,0.7260532053012866,loss
+Derrick Lewis,Serghei Spivac,loss,0.7029675879876712,loss
+Josh Culibao,Melsik Baghdasaryan,win,0.5065143304933232,win
+Tyson Pedro,Modestas Bukauskas,win,0.7428113723790726,loss
+Jimmy Crute,Alonzo Menifield,win,0.5175764958111589,draw
+Justin Tafa,Parker Porter,win,0.6601138530203959,win
+Jack Della Maddalena,Randy Brown,win,0.5040478518207345,win
+Yair Rodriguez,Josh Emmett,win,0.5746176458409585,win
+Islam Makhachev,Alexander Volkanovski,win,0.5226300792656764,win
+Ovince Saint Preux,Philipe Lins,loss,0.5352928605949643,loss
+Jim Miller,Alexander Hernandez,win,0.6034926864002488,loss
+William Knight,Marcin Prachnio,loss,0.511594708179308,loss
+Ode Osbourne,Charles Johnson,loss,0.7015533978624129,win
+Augusto Sakai,Don'Tale Mayes,loss,0.5756852546915121,win
+Andre Muniz,Brendan Allen,win,0.6304831148340345,loss
+Ian Garry,Song Kenan,win,0.7615886262329934,win
+Julian Marquez,Marc-Andre Barriault,loss,0.5553433801924431,loss
+Derek Brunson,Dricus Du Plessis,loss,0.6211894242460083,loss
+Cody Garbrandt,Trevin Jones,win,0.7182867980726325,win
+Mateusz Gamrot,Jalin Turner,loss,0.5218507980448893,win
+Geoff Neal,Shavkat Rakhmonov,loss,0.6000892915880505,loss
+Jon Jones,Ciryl Gane,win,0.6967096314431233,win
+Carlston Harris,Jared Gooden,loss,0.5338392019174812,win
+Tyson Nam,Bruno Silva,win,0.49844650339888363,loss
+Victor Henry,Tony Gravely,loss,0.6259365845363699,win
+Raphael Assuncao,Davey Grant,win,0.5905402435630265,loss
+Mario Bautista,Guido Cannetti,win,0.7788745133287044,win
+Said Nurmagomedov,Jonathan Martinez,loss,0.5297734324155873,loss
+Nikita Krylov,Ryan Spann,win,0.595609087761123,win
+Alexander Volkov,Alexandr Romanov,loss,0.5732381225132468,win
+Petr Yan,Merab Dvalishvili,loss,0.6786499587724362,loss
+Jai Herbert,Ludovit Klein,loss,0.5952039104598345,draw
+Jake Hadley,Malcolm Gordon,loss,0.5171697417604275,win
+Jack Shore,Makwan Amirkhani,win,0.784497471414771,win
+Marvin Vettori,Roman Dolidze,win,0.7247253916882566,win
+Gunnar Nelson,Bryan Barberena,win,0.5946356648708049,win
+Justin Gaethje,Rafael Fiziev,win,0.645653286479375,win
+Leon Edwards,Kamaru Usman,win,0.5936417947198567,win
+CJ Vergara,Daniel Lacerda,win,0.6417837946719752,win
+Trevin Giles,Preston Parsons,loss,0.5057255884364074,win
+Daniel Pineda,Tucker Lutz,win,0.5652785521717669,win
+Chidi Njokuani,Albert Duraev,loss,0.548713078108169,loss
+Nate Landwehr,Austin Lingo,win,0.5781866461109038,win
+Marlon Vera,Cory Sandhagen,win,0.5324753069163327,loss
+Shayilan Nuerdanbieke,Steve Garcia,win,0.5209597164664095,loss
+Ignacio Bahamondes,Trey Ogden,win,0.6097997487843071,win
+Chris Curtis,Kelvin Gastelum,win,0.5424071328965463,loss
+Kevin Holland,Santiago Ponzinibbio,win,0.5087003334588038,win
+Rob Font,Adrian Yanez,win,0.5326964403601743,win
+Gilbert Burns,Jorge Masvidal,win,0.7978746827107016,win
+Alex Pereira,Israel Adesanya,loss,0.5400323250499384,loss
+Zak Cummings,Ed Herman,win,0.7381375173667326,win
+Brandon Royval,Matheus Nicolau,loss,0.6275661118353382,win
+Bill Algeo,TJ Brown,win,0.5506230465017323,win
+Clay Guida,Rafa Garcia,loss,0.709625229833745,loss
+Pedro Munhoz,Chris Gutierrez,loss,0.707785520283292,win
+Tanner Boser,Ion Cutelaba,win,0.7176394514385931,loss
+Dustin Jacoby,Azamat Murzakanov,loss,0.5244523169611085,loss
+Edson Barboza,Billy Quarantillo,loss,0.728857481536323,win
+Max Holloway,Arnold Allen,win,0.5268936808013467,win
+Brady Hiestand,Batgerel Danaa,win,0.5163297047584933,win
+Rani Yahya,Montel Jackson,loss,0.6536655605650531,loss
+Ricky Glenn,Christos Giagos,win,0.6236062819429,loss
+Jeremiah Wells,Matthew Semelsberger,win,0.5329711744713841,win
+Bobby Green,Jared Gordon,win,0.537429877849333,draw
+Brad Tavares,Bruno Silva,loss,0.553279040569167,loss
+Sergei Pavlovich,Curtis Blaydes,loss,0.5473863782721259,win
+Cody Durden,Charles Johnson,win,0.6223180666915783,win
+Martin Buday,Jake Collier,loss,0.504969314052231,win
+Marcos Rogerio de Lima,Waldo Cortes-Acosta,win,0.561207716638743,win
+Rodolfo Vieira,Cody Brundage,win,0.5511594526060793,win
+Caio Borralho,Michal Oleksiejczuk,loss,0.552751826758846,win
+Song Yadong,Ricky Simon,loss,0.7075115457446026,win
+Kennedy Nzechukwu,Devin Clark,win,0.6923186273983591,win
+Drew Dober,Matt Frevola,loss,0.6078159099588295,loss
+Kron Gracie,Charles Jourdain,loss,0.6591431320383925,loss
+Belal Muhammad,Gilbert Burns,win,0.6820417824747369,win
+Aljamain Sterling,Henry Cejudo,win,0.7371254750705706,win
+Bryan Battle,Gabe Green,win,0.5315581047166956,win
+Cody Stamann,Douglas Silva de Andrade,win,0.6100281313364417,loss
+Matt Brown,Court McGee,win,0.5171021855380722,win
+Tim Means,Alex Morono,loss,0.578897657317379,loss
+Carlos Ulberg,Ihor Potieria,win,0.7415281582351666,win
+Daniel Rodriguez,Ian Garry,win,0.5262230151452983,loss
+Anthony Smith,Johnny Walker,win,0.5254015035553034,loss
+Jairzinho Rozenstruik,Jailton Almeida,loss,0.6159009040810759,loss
+Ilir Latifi,Rodrigo Nascimento,win,0.5451217595595019,loss
+Maheshate,Viacheslav Borshchev,loss,0.5562324078939025,loss
+Diego Ferreira,Michael Johnson,win,0.6370478035535275,win
+Andre Fialho,Joaquin Buckley,loss,0.6449054359603424,loss
+Edmen Shahbazyan,Anthony Hernandez,loss,0.5345750052871422,loss
+Philipe Lins,Maxim Grishin,win,0.5095862655297934,win
+Andrei Arlovski,Don'Tale Mayes,win,0.6182723610085492,loss
+Daniel Santos,Johnny Munoz,loss,0.6163128492802368,win
+Abubakar Nurmagomedov,Elizeu Zaleski dos Santos,loss,0.5230334804144076,loss
+Tim Elliott,Victor Altamirano,loss,0.6087805628706731,win
+Alex Caceres,Daniel Pineda,win,0.6449809659039027,win
+Kai Kara-France,Amir Albazi,loss,0.5088927131178612,loss
+Aiemann Zahabi,Aoriqileng,win,0.5614962447840595,win
+Nassourdine Imavov,Chris Curtis,win,0.6900185850155689,draw
+Marc-Andre Barriault,Eryk Anders,win,0.594358563590836,win
+Dan Ige,Nate Landwehr,loss,0.5413334916429063,win
+Mike Malott,Adam Fugitt,win,0.7289437519915243,win
+Charles Oliveira,Beneil Dariush,loss,0.7131994601384657,win
+Zac Pauga,Modestas Bukauskas,win,0.6477249251902744,loss
+Dan Argueta,Ronnie Lawrence,win,0.7630126376879353,draw
+Nicolas Dalby,Muslim Salikhov,loss,0.661680492883437,win
+Arman Tsarukyan,Joaquim Silva,win,0.7078322486753056,win
+Marvin Vettori,Jared Cannonier,win,0.7620835494087145,loss
+Randy Brown,Wellington Turman,win,0.7423807960317265,win
+Neil Magny,Phil Rowe,loss,0.6005929510650859,win
+Brendan Allen,Bruno Silva,win,0.5686631278312155,win
+Josh Emmett,Ilia Topuria,loss,0.6765958087555665,loss
+Alexandr Romanov,Blagoy Ivanov,win,0.6465237454478362,win
+Kevin Lee,Rinat Fakhretdinov,loss,0.7238988827835783,loss
+Max Griffin,Michael Morales,loss,0.579760116022465,loss
+Damir Ismagulov,Grant Dawson,loss,0.5135306115940995,loss
+Jimmy Crute,Alonzo Menifield,win,0.6186009602267106,loss
+Robbie Lawler,Niko Price,loss,0.7536991540634512,win
+Jalin Turner,Dan Hooker,win,0.6119824636653748,loss
+Robert Whittaker,Dricus Du Plessis,loss,0.5873056800070359,loss
+Brandon Moreno,Alexandre Pantoja,win,0.6470543305553949,loss
+Alexander Volkanovski,Yair Rodriguez,win,0.7902660958658474,win
+Evan Elder,Genaro Valdez,win,0.6687744004616514,win
+Tucker Lutz,Melsik Baghdasaryan,loss,0.6362190895922271,loss
+Albert Duraev,JunYong Park,loss,0.5069794717214373,loss
+Makhmud Muradov,Bryan Barberena,win,0.5516669509786248,win
+Marc Diakiese,Joel Alvarez,loss,0.5651148585354953,loss
+Lerone Murphy,Josh Culibao,win,0.5542672793960143,win
+Jai Herbert,Fares Ziam,loss,0.6403340143000843,loss
+Paul Craig,Andre Muniz,loss,0.6008246649469868,win
+Nathaniel Wood,Andre Fili,win,0.7713493695599032,win
+Tom Aspinall,Marcin Tybura,win,0.8047980075722385,win
+Matthew Semelsberger,Uros Medic,loss,0.5030885616254439,loss
+Roman Kopylov,Claudio Ribeiro,win,0.650032471971805,win
+Michael Chiesa,Kevin Holland,loss,0.5416495761832255,loss
+Tony Ferguson,Bobby Green,loss,0.6870856186545632,loss
+Derrick Lewis,Marcos Rogerio de Lima,loss,0.5989540439509199,win
+Jan Blachowicz,Alex Pereira,loss,0.5869461916156669,loss
+Dustin Poirier,Justin Gaethje,win,0.5396572380217406,loss
+Cody Durden,Jake Hadley,win,0.6811117629170423,win
+Billy Quarantillo,Damon Jackson,win,0.6090437089774878,win
+Jeremiah Wells,Carlston Harris,win,0.582186629566871,loss
+Kyler Phillips,Raoni Barcelos,win,0.6664180555639071,win
+Ignacio Bahamondes,Ludovit Klein,win,0.7231416434217406,loss
+Tanner Boser,Aleksa Camur,win,0.5540834293525956,win
+Dustin Jacoby,Kennedy Nzechukwu,win,0.5746870724198707,win
+Cory Sandhagen,Rob Font,win,0.5206330556798685,win
+Josh Parisian,Martin Buday,loss,0.6339018552829164,loss
+Terrance McKinney,Mike Breeden,win,0.6238123034266211,win
+Josh Fremd,Jamie Pickett,win,0.7401902928637814,win
+AJ Dobson,Tafon Nchukwi,loss,0.5707845028191612,win
+Khalil Rountree Jr.,Chris Daukaus,win,0.4974196458450731,win
+Cub Swanson,Hakeem Dawodu,loss,0.5265537873464251,win
+Vicente Luque,Rafael Dos Anjos,win,0.5730643333443911,win
+Andre Petroski,Gerald Meerschaert,win,0.6726285259727594,win
+Brad Katona,Cody Gibson,win,0.5789070226264238,win
+Kurt Holobaugh,Austin Hubbard,loss,0.6823573775971298,win
+Gregory Rodrigues,Denis Tiuliulin,win,0.8163295073900385,win
+Chris Weidman,Brad Tavares,win,0.62181897661824,loss
+Marlon Vera,Pedro Munhoz,win,0.5211714028966996,win
+Da'Mon Blackshear,Mario Bautista,loss,0.6441215961150011,loss
+Neil Magny,Ian Garry,loss,0.7286169357850932,loss
+Aljamain Sterling,Sean O'Malley,win,0.7504791955256324,loss
+Chidi Njokuani,Michal Oleksiejczuk,loss,0.5260546831775841,loss
+Waldo Cortes-Acosta,Lukasz Brzeski,win,0.6335815155920169,win
+Giga Chikadze,Alex Caceres,win,0.5430764869449426,win
+Anthony Smith,Ryan Spann,win,0.5945810188890504,win
+Max Holloway,Chan Sung Jung,win,0.7845213038259955,win
+Ange Loosa,Rhys McKee,win,0.7444811773272434,win
+Benoit Saint Denis,Thiago Moises,win,0.5455356405860118,win
+Ciryl Gane,Serghei Spivac,win,0.5726264841518685,win
+Jamie Mullarkey,John Makdessi,win,0.6546934327952909,win
+Carlos Ulberg,Da Woon Jung,win,0.7103267303582655,win
+Tyson Pedro,Anton Turkalj,win,0.7593353800126863,win
+Tai Tuivasa,Alexander Volkov,loss,0.6616167083981445,loss
+Israel Adesanya,Sean Strickland,loss,0.5805791642244099,loss
+Roman Kopylov,Josh Fremd,win,0.5879501871271374,win
+Daniel Zellhuber,Christos Giagos,win,0.49955347603996914,win
+Kevin Holland,Jack Della Maddalena,loss,0.6685895716250249,loss
+Mohammed Usman,Jake Collier,win,0.539138844148031,win
+Jacob Malkoun,Cody Brundage,win,0.7765156258860115,loss
+Tim Means,Andre Fialho,win,0.6841453616298317,win
+Dan Argueta,Miles Johns,win,0.498305466206009,draw
+Ricardo Ramos,Charles Jourdain,loss,0.5788956429588767,loss
+Bryan Battle,AJ Fletcher,win,0.572293075792995,win
+Bryce Mitchell,Dan Ige,win,0.7759743137565779,win
+Rafael Fiziev,Mateusz Gamrot,loss,0.5258455494614602,loss
+Aoriqileng,Johnny Munoz,loss,0.5203385543986587,win
+Alexander Hernandez,Bill Algeo,loss,0.5528139622794469,loss
+Drew Dober,Ricky Glenn,win,0.5978714097484117,win
+Alex Morono,Joaquin Buckley,win,0.5521912286968822,loss
+Joe Pyfer,Abdul Razak Alhassan,win,0.5804134940107916,win
+Grant Dawson,Bobby Green,win,0.7608369421658947,loss
+Chris Gutierrez,Alatengheili,win,0.7013710093493639,win
+Darren Elkins,TJ Brown,win,0.5587794957344339,win
+Christian Rodriguez,Cameron Saaiman,loss,0.5369836713710803,win
+Andre Petroski,Michel Pereira,loss,0.5787197547924346,loss
+Jonathan Martinez,Adrian Yanez,win,0.6035729072131145,win
+Sodiq Yusuff,Edson Barboza,win,0.6376063438116931,loss
+Abu Azaitar,Sedriques Dumas,loss,0.7029998699663488,loss
+Javid Basharat,Victor Henry,win,0.7131009619327056,draw
+Tim Elliott,Muhammad Mokaev,loss,0.6224229945100548,loss
+Magomed Ankalaev,Johnny Walker,win,0.7600927734927867,draw
+Kamaru Usman,Khamzat Chimaev,win,0.5787209517594539,loss
+Islam Makhachev,Alexander Volkanovski,win,0.6448262336936378,win
+Vitor Petrino,Modestas Bukauskas,win,0.5374223111710766,win
+Rinat Fakhretdinov,Elizeu Zaleski dos Santos,win,0.7093157845357482,draw
+Caio Borralho,Abus Magomedov,win,0.7224143656069432,win
+Rodrigo Nascimento,Don'Tale Mayes,win,0.6980410646029244,win
+Gabriel Bonfim,Nicolas Dalby,win,0.650688933555106,loss
+Jailton Almeida,Derrick Lewis,win,0.8401953494142974,win
+John Castaneda,Kyung Ho Kang,win,0.5839665953675173,win
+Jared Gordon,Mark Madsen,win,0.7032645646816694,win
+Nazim Sadykhov,Viacheslav Borshchev,win,0.5111271859400173,draw
+Mateusz Rebecki,Roosevelt Roberts,win,0.8417705258258008,win
+Diego Lopes,Pat Sabatini,loss,0.7866120887142837,win
+Matt Frevola,Benoit Saint Denis,loss,0.7916570307359715,loss
+Sergei Pavlovich,Tom Aspinall,win,0.5332953212266035,loss
+Jiri Prochazka,Alex Pereira,loss,0.5686621692366449,loss
+Trey Ogden,Nikolas Motta,win,0.560692894573847,draw
+Christian Leroy Duncan,Denis Tiuliulin,win,0.6677028287623841,win
+Jonathan Pearce,Joanderson Brito,win,0.7376677491826611,loss
+Chase Hooper,Jordan Leavitt,loss,0.5481630649959445,win
+Michael Morales,Jake Matthews,win,0.6649008475568006,win
+Brendan Allen,Paul Craig,win,0.7381514315447119,win
+Wellington Turman,Jared Gooden,loss,0.538072522208539,loss
+Drakkar Klose,Joe Solecki,win,0.5567868693474222,win
+Punahele Soriano,Dustin Stoltzfus,win,0.6066050504511421,loss
+Clay Guida,Joaquim Silva,loss,0.5345272697808269,loss
+Sean Brady,Kelvin Gastelum,win,0.7353823542174486,win
+Rob Font,Deiveson Figueiredo,loss,0.5075015889872313,loss
+Jalin Turner,Bobby Green,win,0.493566612224541,win
+Beneil Dariush,Arman Tsarukyan,loss,0.5102676661605244,loss
+Tatsuro Taira,Carlos Hernandez,win,0.625207737305708,win
+Steve Garcia,Melquizael Costa,loss,0.5986961829701201,win
+JunYong Park,Andre Muniz,win,0.6983985976614226,loss
+Tim Elliott,Sumudaerji,loss,0.5403399924771044,win
+Nasrat Haqparast,Jamie Mullarkey,loss,0.5901122477008893,win
+Anthony Smith,Khalil Rountree Jr.,win,0.6015416894491142,loss
+Song Yadong,Chris Gutierrez,loss,0.6558200677549643,win
+Andre Fili,Lucas Almeida,win,0.6706480190306766,win
+Tagir Ulanbekov,Cody Durden,win,0.5194703729580475,win
+Cody Garbrandt,Brian Kelleher,win,0.6060383357207763,win
+Alonzo Menifield,Dustin Jacoby,loss,0.5859113651880784,win
+Josh Emmett,Bryce Mitchell,loss,0.7176868291428742,win
+Tony Ferguson,Paddy Pimblett,loss,0.6214671516388577,loss
+Shavkat Rakhmonov,Stephen Thompson,win,0.8047893924426571,win
+Alexandre Pantoja,Brandon Royval,win,0.5895025522659252,win
+Leon Edwards,Colby Covington,loss,0.514933169873943,win
+>>>>>>> 5f7db0cb04a02b1f7479b645e297ba97aea61107
