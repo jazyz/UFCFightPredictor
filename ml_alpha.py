@@ -149,22 +149,22 @@ def main():
 
         return best_score
 
-    study = optuna.create_study(direction="minimize")
-    study.optimize(objective, n_trials=10)
+    # study = optuna.create_study(direction="minimize")
+    # study.optimize(objective, n_trials=10)
 
-    # Fetching the best parameters
-    best_params = study.best_params
-    best_score = study.best_value
+    # # Fetching the best parameters
+    # best_params = study.best_params
+    # best_score = study.best_value
 
-    # Output the best parameters and score
-    print(f"Best params: {best_params}")
-    print(f"Best score: {best_score}")
+    # # Output the best parameters and score
+    # print(f"Best params: {best_params}")
+    # print(f"Best score: {best_score}")
 
-    with open("data/best_params.json", "w") as file:
-        # Creating a dictionary to hold data
-        data_to_save = {"best_params": best_params, "best_score": best_score}
-        # Writing as a JSON formatted string for readability and ease of use
-        json.dump(data_to_save, file, indent=4)
+    # with open("data/best_params.json", "w") as file:
+    #     # Creating a dictionary to hold data
+    #     data_to_save = {"best_params": best_params, "best_score": best_score}
+    #     # Writing as a JSON formatted string for readability and ease of use
+    #     json.dump(data_to_save, file, indent=4)
 
 
     with open("data/best_params.json", "r") as file:
