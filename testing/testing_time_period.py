@@ -2,6 +2,8 @@ import csv
 from datetime import datetime, timedelta
 import os
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('agg')
 
 # Check if running in Flask context
 try:
@@ -207,12 +209,17 @@ def process_dates(start_date, end_date):
         test.write("------ RESULT ------\n")
         test.write(f"Bankroll: {bankroll:.2f}\n")
     print(bankroll)
+    plot_bankrolls()
 
-# plt.figure(figsize=(10, 6))
-# plt.plot(bankrolls, marker='o')  # Plotting the bankrolls array
-# plt.title("Bankroll Over Time")
-# plt.xlabel("Time")
-# plt.ylabel("Bankroll")
-# plt.grid(True)
-# plt.show()
+def plot_bankrolls():
+    plt.figure(figsize=(10, 6))
+    plt.plot(bankrolls, marker='o')  # Plotting the bankrolls array
+    plt.title("Bankroll Over Time")
+    plt.xlabel("Time")
+    plt.ylabel("Bankroll")
+    plt.grid(True)
+    # plt.show()
+    plt.savefig(os.path.join("data", "bankroll_plot.png"))  # Save the plot as an image file
+    plt.close()  # Close the plot
 
+# process_dates('2021-01-01', '2022-01-01')

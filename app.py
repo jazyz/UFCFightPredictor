@@ -1,5 +1,5 @@
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from predict_fights_alpha import predict_fight
 from ml_alpha import main
 from testing.testing_time_period import process_dates
@@ -9,6 +9,7 @@ import pandas as pd
 from flask_cors import CORS
 import sys
 import csv
+import base64
 
 app = Flask(__name__)
 CORS(app)
@@ -117,6 +118,12 @@ def test():
         response = {"message": f"Error during testing: {e}"}
 
     return jsonify(response)
+
+@app.route('/get_bankroll_plot', methods=['GET'])
+def get_bankroll_plot():
+    with open(os.path.join("data", "bankroll_plot.png"), "rb") as image_file:
+        encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
+    return {"image": encoded_image}
 
 if __name__ == "__main__":
     app.run(debug=True)
