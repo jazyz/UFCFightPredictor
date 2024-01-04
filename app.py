@@ -2,7 +2,6 @@ import json
 from flask import Flask, request, jsonify
 from predict_fights_alpha import predict_fight
 from ml_alpha import main
-from oldModel.testing import runTests
 from testing.testing_time_period import process_dates
 import os
 import subprocess
@@ -10,6 +9,7 @@ import pandas as pd
 from flask_cors import CORS
 import sys
 import csv
+
 app = Flask(__name__)
 CORS(app)
 
