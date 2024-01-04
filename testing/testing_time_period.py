@@ -1,7 +1,5 @@
 import csv
 from datetime import datetime, timedelta
-import ml_alpha_testing  # Import ml_alpha_testing.py as a module
-from datetime import datetime
 from testing.ml_alpha_testing import main
 import os
 import matplotlib.pyplot as plt
