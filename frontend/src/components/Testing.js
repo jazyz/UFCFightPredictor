@@ -3,12 +3,24 @@ import axios from "axios";
 import { baseURL } from "../constants";
 
 const Testing = () => {
-  const [testFrom, setTestFrom] = useState(null);
-  const [testTo, setTestTo] = useState(null);
+  const [startYear, setStartYear] = useState(null);
+  const [endYear, setEndYear] = useState(null);
   const [results, setResults] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleTestClick = async () => {
+    if (![2021, 2022, 2023, 2024].includes(parseInt(startYear)) || ![2021, 2022, 2023, 2024].includes(parseInt(endYear))) {
+      alert("Please enter valid years: 2021, 2022, 2023, or 2024 for both start and end years.");
+      return;
+    }
+    if (parseInt(startYear) >= parseInt(endYear)) {
+      alert("Start year must be less than end year.");
+      return;
+    }
+
+    const testFrom = `${startYear}-01-01`;
+    const testTo = `${endYear}-01-01`;
+
     try {
       setIsLoading(true);
       console.log("Predicting fights...");
@@ -21,7 +33,6 @@ const Testing = () => {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-
       console.error("Error predicting fight:", error);
     }
   };
@@ -34,19 +45,19 @@ const Testing = () => {
         <div className="mb-4">
           <input
             className="w-full border rounded py-2 px-3"
-            type="text"
-            placeholder="Enter Testing From Date: Jan 1 2022"
-            value={testFrom}
-            onChange={(e) => setTestFrom(e.target.value)}
+            type="number"
+            placeholder="Enter Start Year (2021-2024)"
+            value={startYear}
+            onChange={(e) => setStartYear(e.target.value)}
           />
         </div>
         <div className="mb-4">
           <input
             className="w-full border rounded py-2 px-3"
-            type="text"
-            placeholder="Enter Testing To Date: Dec 31 2022"
-            value={testTo}
-            onChange={(e) => setTestTo(e.target.value)}
+            type="number"
+            placeholder="Enter End Year (2021-2024)"
+            value={endYear}
+            onChange={(e) => setEndYear(e.target.value)}
           />
         </div>
         <button

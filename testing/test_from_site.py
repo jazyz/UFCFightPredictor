@@ -210,7 +210,7 @@ def main(testFrom="Jan 22 2022", testTo="Dec 16 2023"):
             test.write(f"{fighter2_name}: {ft2_odds} {b_win_avg:.2f} {kc_b:.2f}\n")
 
             fraction = 0.05
-            max_fraction = 0.025
+            max_fraction = 0.05
             flat = 0.00
             if a_win_avg > b_win_avg:
                 if (winner_name == fighter1_name and winner_name != "draw/no contest"):
@@ -291,4 +291,4 @@ def main(testFrom="Jan 22 2022", testTo="Dec 16 2023"):
         test.write(f"Total favourite gain: ${favourite_gain:.2f}\n")
 
 if __name__ == "__main__":
-    main(testFrom="Aug 1 2023", testTo="Aug 31 2023")
+    main(testFrom="Jan 1 2021", testTo="Dec 31 2023")
