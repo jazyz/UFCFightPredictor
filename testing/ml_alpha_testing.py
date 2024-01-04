@@ -15,8 +15,7 @@ from sklearn.metrics import log_loss
 
 file_path = os.path.join("data", "detailed_fights.csv")
 
-split_date = ""
-def main():    # Step 1: Read the data
+def main(split_date = ""):    # Step 1: Read the data
     df = pd.read_csv(file_path)
     # df = df[(df['Red totalfights'] > 4) & (df['Blue totalfights'] > 4)]
     # Step 2: Preprocess the data
