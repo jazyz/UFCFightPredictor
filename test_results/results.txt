@@ -1508,3 +1508,4 @@ Favourite Loss: $76.85
 Underdog Gain: $597.70
 Underdog Loss: $362.38
 
+Best params: {'num_leaves': 26, 'learning_rate': 0.023682085904547304, 'min_child_samples': 74, 'subsample': 0.876124233883347, 'colsample_bytree': 0.7573503107255115}
