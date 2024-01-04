@@ -125,8 +125,8 @@ def process_fight(fight):
         test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.3f} {kc_a:.2f}\n")
         test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.3f} {kc_b:.2f}\n")
         test.flush()
-        fraction = 0.05
-        max_fraction = 0.05
+        fraction = 0.1
+        max_fraction = 0.1
         flat = 0.01
         if a_win > b_win:
 
@@ -191,7 +191,7 @@ def process_dates(start_date, end_date):
         test.write(f"Bankroll: {bankroll}\n")
     print(bankroll)
 
-process_dates('2021-01-01','2024-01-01')
+process_dates('2021-01-01','2022-01-01')
 
 plt.figure(figsize=(10, 6))
 plt.plot(bankrolls, marker='o')  # Plotting the bankrolls array

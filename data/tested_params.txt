@@ -39,3 +39,13 @@
     },
     "best_score": 0.723331205820306
 }
+{
+    "best_params": {
+        "num_leaves": 26,
+        "learning_rate": 0.023682085904547304,
+        "min_child_samples": 74,
+        "subsample": 0.876124233883347,
+        "colsample_bytree": 0.7573503107255115
+    },
+    "best_score": 0.7186100582065795
+}
