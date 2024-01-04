@@ -1,4 +1,6 @@
 import csv
+from datetime import datetime, timedelta
+import ml_alpha_testing  # Import ml_alpha_testing.py as a module
 from datetime import datetime
 from testing.ml_alpha_testing import main
 import os
@@ -125,8 +127,8 @@ def process_fight(fight):
         test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.3f} {kc_a:.2f}\n")
         test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.3f} {kc_b:.2f}\n")
         test.flush()
-        fraction = 0.1
-        max_fraction = 0.1
+        fraction = 0.05
+        max_fraction = 0.05
         flat = 0.01
         if a_win > b_win:
 
@@ -158,16 +160,27 @@ def process_fight(fight):
         bankrolls.append(bankroll)
     return
 
-def find_fights(start_date, end_date):
+def train_ml(start_date):
+    ml_alpha_testing.split_date = start_date  # Set the split_date in ml_alpha_testing
+    ml_alpha_testing.main()  # Call the main function of ml_alpha_testing
+    
+def find_fights(start_date, end_date, last_training_date):
     # Convert start_date and end_date from 'YYYY-MM-DD' to datetime objects
     start_date = datetime.strptime(start_date, '%Y-%m-%d')
     end_date = datetime.strptime(end_date, '%Y-%m-%d')
+    final_training_date = datetime.strptime('2023-12-01', '%Y-%m-%d')
+    retrain_time = timedelta(days=180)  
     filepath = 'data/fight_results_with_odds.csv'
+    
     with open(filepath, newline='', encoding='utf-8') as csvfile:
         fight_reader = csv.DictReader(csvfile)
         for row in fight_reader:
             event_date = datetime.strptime(row['event_date'], '%b %d %Y')
             if start_date <= event_date <= end_date:
+                if event_date >= (last_training_date + retrain_time) and event_date < final_training_date:
+                    last_training_date = event_date
+                    train_ml(last_training_date.strftime('%Y-%m-%d'))
+                    preload_ml_predictions()
                 process_fight(row)
 
 def train_ml(start_date):
@@ -177,12 +190,14 @@ def process_dates(start_date, end_date):
     with open(r"test_results/testing_time_period.txt", "w") as test:
         test.write(f"{start_date} to {end_date}\n")
     start_year = datetime.strptime(start_date, '%Y-%m-%d').year
-    split_date = f"{start_year}-01-01"
-    # train_ml(split_date)
-    # train_ml(start_date)
-    # train_ml("2021-01-01")
+    # split_date = f"{start_year}-01-01"
+    split_date = start_date
+    last_training_date = datetime.strptime(split_date, '%Y-%m-%d')  # Initialize last training date
+    train_ml(split_date)
     preload_ml_predictions()
-    find_fights(start_date, end_date)
+    
+    find_fights(start_date, end_date, last_training_date)  # Pass the last training date
+    
     with open(r"test_results/testing_time_period.txt", "a") as test:
         test.write(f"Bankroll: {bankroll}\n")
     with open(r"test_results/testing_time_period_results.txt", "a") as test:
