@@ -7,10 +7,16 @@ const Testing = () => {
   const [endYear, setEndYear] = useState(null);
   const [results, setResults] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [imageSrc, setImageSrc] = useState("");
 
   const handleTestClick = async () => {
-    if (![2021, 2022, 2023, 2024].includes(parseInt(startYear)) || ![2021, 2022, 2023, 2024].includes(parseInt(endYear))) {
-      alert("Please enter valid years: 2021, 2022, 2023, or 2024 for both start and end years.");
+    if (
+      ![2021, 2022, 2023, 2024].includes(parseInt(startYear)) ||
+      ![2021, 2022, 2023, 2024].includes(parseInt(endYear))
+    ) {
+      alert(
+        "Please enter valid years: 2021, 2022, 2023, or 2024 for both start and end years."
+      );
       return;
     }
     if (parseInt(startYear) >= parseInt(endYear)) {
@@ -30,6 +36,9 @@ const Testing = () => {
       });
       console.log(response.data);
       setResults(response.data.content);
+      const getImg = await axios.get(`${baseURL}/get_bankroll_plot`);
+      setImageSrc(`data:image/png;base64,${getImg.data.image}`);
+      console.log(imageSrc);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -70,6 +79,11 @@ const Testing = () => {
       <div className="mt-4 space-x-4">
         <pre className="text-wrap">{results}</pre>
       </div>
+      {imageSrc && (
+        <div className="mt-4 space-x-4">
+          <img src={imageSrc} alt="Bankroll Plot" />
+        </div>
+      )}
     </div>
   );
 };
