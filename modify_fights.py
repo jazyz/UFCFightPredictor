@@ -50,7 +50,6 @@ columns_to_delete = ["Red Sig. str. %", "Red Td %", "Blue Sig. str. %", "Blue Td
 df = df.drop(columns=columns_to_delete)
 df = df[~df['Title'].str.contains("Women")]
 df = df[~df['Title'].str.contains("Open")]
-df = df.dropna(subset=['Date'])
 #df = df[~df['Title'].str.contains("Title")]
 # Saving the modified DataFrame back to CSV or you can use it as is in your Python environment
 df.to_csv('data\modified_fight_details.csv', index=False)
