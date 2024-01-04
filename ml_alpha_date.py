@@ -147,10 +147,10 @@ def main():
             param,
             data,
             num_boost_round=100,
-            nfold=5,  # Or another number of folds
+            nfold=3,  # Or another number of folds
             stratified=True,
             shuffle=True,
-            callbacks=[lgb.early_stopping(stopping_rounds=30)],
+            callbacks=[lgb.early_stopping(stopping_rounds=20)],
         )
 
         print(cv_results.keys())
@@ -161,7 +161,7 @@ def main():
         return best_score
 
     study = optuna.create_study(direction="minimize")
-    study.optimize(objective, n_trials=5)
+    study.optimize(objective, n_trials=10)
 
     best_params = study.best_params
     best_score = study.best_value
