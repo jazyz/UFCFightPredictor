@@ -9,7 +9,7 @@ The new and improved UFC AI model is consistently averaging around $100 profit o
 ## Data
 
 ### Web Scraping
-All of the data was scraped from ufcstats.com. Previously, we had scraped data for each fighter as well as their fight histories and statistics, stored in an SQL database. However, in order to get more detailed fight statistics, we had to revamp the scraper entirely. We have now collected stats such as strike accuracy, control time, and submissions attempts for every fight from 1994 to 2023. The collected statistics are stored inside the data folder.
+All of the data was scraped from ufcstats.com. Previously, we had scraped data for each fighter as well as their fight histories and statistics, stored in an SQL database currently inside the instance folder. However, in order to get more detailed fight statistics, we had to revamp the scraper entirely. We have now collected stats such as strike accuracy, control time, and submissions attempts for every fight from 1994 to 2023. The newly collected statistics are stored inside the data folder.
 
 ### Data Processing and Cleaning 
 First, we need to clean the data, removing incomplete values, outdated fights, and duplicated data that was scraped. We also need to process all the data in a way which our machine learning model can understand, and retrieve all the raw numbers. This is done within modify_fights.py.
@@ -56,4 +56,3 @@ https://www.mma-ai.net/
 
 Tilburg University: 62% (RandomForest, Neural Network)
 http://arno.uvt.nl/show.cgi?fid=156304
-

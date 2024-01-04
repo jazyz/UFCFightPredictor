@@ -77,9 +77,18 @@ def closerToOdds(avb_win, avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob):
     b_win=bva_win
     if(abs(avb_win-odds1_prob) > abs(bva_lose-odds1_prob)):
         a_win=bva_lose
+        b_win=1-a_win
+    else:
+        a_win=avb_win
+        b_win=1-a_win
     if(abs(bva_win-odds2_prob) > abs(avb_lose-odds2_prob)):
         b_win=avb_lose
+        a_win=1-b_win
+    else:
+        b_win=bva_win
+        a_win=1-b_win
     return a_win, b_win
+
 
 def process_winner(winner_name, fighter_name, potential_return, bet, fighter_odds):
     global correctBets, favourite_gain, favourite_loss, underdog_gain, underdog_loss, totalBets, totalBetAmount
@@ -116,7 +125,7 @@ def processBet(bet, fighter_name, fighter_odds):
 with open(r"test_results\testing_alpha_clean.txt", "w") as test:
     urls = []
     urls.append("https://www.ufc.com/events")
-    for i in range(1,10):
+    for i in range(1,5):
         urls.append("https://www.ufc.com/events?page=" + str(i))    
     all_fight_card_links = []
     for url in urls:
@@ -218,7 +227,7 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
                     
                     # average AvB and BvA
                     # a_win = avg_win(avb_win, bva_lose)
-                    # b_win = avg_win(bva_win, avb_lose)
+                    # b_win = avg_win(bva_win, avb_lose) 
 
                     # choose AvB or BvA based on how close they are to odds
                     odds1_prob = 0
@@ -247,7 +256,7 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
                         if (kc_a > 0):
                             bet = bankroll * fraction * kc_a
                             bet = min(bet,max_fraction*bankroll)
-                            bet=10
+                            # bet=10
                             cardBet+=bet
                             nextBankroll+=processBet(bet, fighter1_name, fighter1_odds)
                         else:
@@ -262,7 +271,7 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
                         if (kc_b > 0):
                             bet = bankroll * fraction * kc_b
                             bet = min(bet,max_fraction*bankroll)
-                            bet=10
+                            # bet=10
                             cardBet+=bet
                             nextBankroll+=processBet(bet, fighter2_name, fighter2_odds)
                         else:

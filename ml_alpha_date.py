@@ -52,9 +52,9 @@ def main():
     df["Date"] = pd.to_datetime(df["Date"])
     df.sort_values(by="Date", inplace=True)
 
-    df = df[df["Date"] >= pd.to_datetime("2014-01-01")]
+    df = df[df["Date"] >= pd.to_datetime("2009-01-01")]
     
-    split_date = pd.to_datetime("2022-01-01")  
+    split_date = pd.to_datetime("2021-01-01")  
     # print(df.head())
     # Split based on the date
     train_df = df[df["Date"] < split_date]
@@ -146,11 +146,11 @@ def main():
         cv_results = lgb.cv(
             param,
             data,
-            num_boost_round=1000,
-            nfold=3,  # Or another number of folds
+            num_boost_round=100,
+            nfold=5,  # Or another number of folds
             stratified=True,
             shuffle=True,
-            callbacks=[lgb.early_stopping(stopping_rounds=20)],
+            callbacks=[lgb.early_stopping(stopping_rounds=30)],
         )
 
         print(cv_results.keys())
@@ -160,18 +160,18 @@ def main():
 
         return best_score
 
-    # study = optuna.create_study(direction="minimize")
-    # study.optimize(objective, n_trials=10)
+    study = optuna.create_study(direction="minimize")
+    study.optimize(objective, n_trials=5)
 
-    # best_params = study.best_params
-    # best_score = study.best_value
+    best_params = study.best_params
+    best_score = study.best_value
 
-    # print(f"Best params: {best_params}")
-    # print(f"Best score: {best_score}")
+    print(f"Best params: {best_params}")
+    print(f"Best score: {best_score}")
 
-    # with open("data/best_params.json", "w") as file:
-    #     data_to_save = {"best_params": best_params, "best_score": best_score}
-    #     json.dump(data_to_save, file, indent=4)
+    with open("data/best_params.json", "w") as file:
+        data_to_save = {"best_params": best_params, "best_score": best_score}
+        json.dump(data_to_save, file, indent=4)
 
     with open("data/best_params.json", "r") as file:
         data_loaded = json.load(file)

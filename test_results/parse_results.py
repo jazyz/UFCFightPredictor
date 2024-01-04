@@ -21,8 +21,8 @@ def graph_bankrolls(bankrolls):
     # Graphing the bankrolls
     plt.figure(figsize=(10, 6))
     plt.plot(bankrolls, marker='o')
-    plt.title('Bankroll Values Over Time')
-    plt.xlabel('Instance Number')
+    plt.title('Bankroll Values in each Trial')
+    plt.xlabel('Trial Number')
     plt.ylabel('Bankroll Value')
     plt.grid(True)
     plt.show()
