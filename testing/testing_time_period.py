@@ -1,6 +1,6 @@
 import csv
 from datetime import datetime
-import ml_alpha_testing  # Import ml_alpha_testing.py as a module
+from testing.ml_alpha_testing import main
 import os
 import matplotlib.pyplot as plt
 bankroll = 1000
@@ -171,8 +171,7 @@ def find_fights(start_date, end_date):
                 process_fight(row)
 
 def train_ml(start_date):
-    ml_alpha_testing.split_date = start_date  # Set the split_date in ml_alpha_testing
-    ml_alpha_testing.main()  # Call the main function of ml_alpha_testing
+    main(start_date)
 
 def process_dates(start_date, end_date):
     with open(r"test_results/testing_time_period.txt", "w") as test:
@@ -193,11 +192,11 @@ def process_dates(start_date, end_date):
 
 process_dates('2021-01-01','2022-01-01')
 
-plt.figure(figsize=(10, 6))
-plt.plot(bankrolls, marker='o')  # Plotting the bankrolls array
-plt.title("Bankroll Over Time")
-plt.xlabel("Time")
-plt.ylabel("Bankroll")
-plt.grid(True)
-plt.show()
+# plt.figure(figsize=(10, 6))
+# plt.plot(bankrolls, marker='o')  # Plotting the bankrolls array
+# plt.title("Bankroll Over Time")
+# plt.xlabel("Time")
+# plt.ylabel("Bankroll")
+# plt.grid(True)
+# plt.show()
 
