@@ -36,7 +36,7 @@ LightGBM allows you to fine-tune your model, setting parameters such as learning
 
 ## Testing
 
-To test our predictions on past fight cards from ufc.com, we use the testing folder. First, go to ml_alpha_testing.py. Edit the train/test split so that the test set contains all fight card fights which we want to evaluate. The train set should be disjoint from this test set. Then, edit testing_alpha_clean.py to set the range of event URLs to be tested. To perform tests, first run ml_alpha_testing.py, then testing_alpha_clean.py. The results will be written to test_results/testing_alpha_clean.txt, and the bankroll will be automatically graphed. By default, we set the test set to 10% of the fights in our database, which is around the past year of data.
+Go to testing/testing_time_period.py. At the bottom, run process_dates with the desired start and end dates. This will automatically simulate our predictions on the chosen time period and write the results to test_results/testing_time_period_results.txt. Note that we only have reliable odds data from 2021 onwards, so testing will only work for 2021 and onwards. You may also choose to graph the bankroll over time, by using the matplotlib code at the bottom.
 
 ## Results
 
