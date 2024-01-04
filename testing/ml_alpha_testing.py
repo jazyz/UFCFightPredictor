@@ -13,10 +13,11 @@ import numpy as np
 import optuna
 from sklearn.metrics import log_loss
 
-file_path = os.path.join("data", "detailed_fights.csv")
+split_date = pd.to_datetime("2021-01-01") 
+def main():
+    file_path = os.path.join("data", "detailed_fights.csv")
 
-split_date = ""
-def main():    # Step 1: Read the data
+    # Step 1: Read the dataa
     df = pd.read_csv(file_path)
     # df = df[(df['Red totalfights'] > 4) & (df['Blue totalfights'] > 4)]
     # Step 2: Preprocess the data
@@ -42,27 +43,23 @@ def main():    # Step 1: Read the data
     # Make sure to update the 'selected_columns' to reflect the dropped columns
     selected_columns = [column for column in selected_columns if column not in to_drop]
 
+    selected_columns.append("Date")
+            
     df = df[selected_columns]
-    X = df.drop(["Result"], axis=1)
-    y = df["Result"]
 
-    # Convert categorical variables if any
-    # X = pd.get_dummies(X)  # This line is optional and depends on your data
+    df["Date"] = pd.to_datetime(df["Date"])
+    df.sort_values(by="Date", inplace=True)
 
-    # Manual split based on percentage
-    split_index = int(len(df) * 0.8)
-    last_index = int(len(df) * 1)
-    X_train, X_test = X[:split_index], X[split_index:last_index]
-    y_train, y_test = y[:split_index], y[split_index:last_index]
+    df = df[df["Date"] >= pd.to_datetime("2009-01-01")] 
+    # print(df.head())
+    # Split based on the date
+    train_df = df[df["Date"] < split_date]
+    test_df = df[df["Date"] >= split_date]
 
-    seed = 42
-
-    # Determine the new start index for the training data to skip the first 20%
-    prune_index = int(len(X_train) * 0.1)
-
-
-    X_train = X_train[prune_index:]
-    y_train = y_train[prune_index:]
+    X_train = train_df.drop(["Result", "Date"], axis=1)
+    y_train = train_df["Result"]
+    X_test = test_df.drop(["Result", "Date"], axis=1)
+    y_test = test_df["Result"]
 
     # Prepare the train and test data for duplication and swapping
     X_train_swapped = X_train.copy()
@@ -97,8 +94,8 @@ def main():    # Step 1: Read the data
     best_params = data_loaded['best_params']
     best_score = data_loaded['best_score']
 
-    with open(os.path.join("test_results", "results.txt"), "a") as f:
-        f.write(f"Best params: {best_params}\n")
+    # with open(os.path.join("test_results", "results.txt"), "a") as f:
+    #     f.write(f"Best params: {best_params}\n")
 
     model = lgb.LGBMClassifier(**best_params)
     # model = lgb.LGBMClassifier(random_state=seed)
@@ -111,8 +108,13 @@ def main():    # Step 1: Read the data
     print(f"Extended Test Set Accuracy: {accuracy:.4f}")
 
     # Get the fighter names and actual results for the test set
-    df_with_details = pd.read_csv(file_path)[["Red Fighter", "Blue Fighter", "Result"]]
-    df_with_details = df_with_details.iloc[split_index:].reset_index(drop=True)
+    df_with_details = pd.read_csv(file_path)[
+        ["Red Fighter", "Blue Fighter", "Result", "Date"]
+    ]
+    df_with_details["Date"] = pd.to_datetime(df_with_details["Date"])
+    df_with_details.sort_values(by="Date", inplace=True)
+    df_with_details = df_with_details[df_with_details["Date"] >= split_date]
+    df_with_details.reset_index(drop=True, inplace=True)
 
     # Duplicate and swap 'Red' and 'Blue' in the second half of df_with_details
     df_with_details_swapped = df_with_details.copy()
@@ -156,5 +158,6 @@ def main():    # Step 1: Read the data
     # plt.ylabel("Feature")
     # plt.title("Feature Importance")
     # plt.show()
+
 if __name__ == "__main__":
     main()
