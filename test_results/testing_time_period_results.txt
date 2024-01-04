@@ -154,3 +154,9 @@ Bankroll: 1425.130948462806
 ------ RESULT ------
 Bankroll: 1388.9959635846117
 >>>>>>> 5a0f9d40bcd0353cfcddb52b29befb97f39263a6
+------ RESULT ------
+Bankroll: 1123.5132406660878
+------ RESULT ------
+Bankroll: 1262.2820019520138
+------ RESULT ------
+Bankroll: 1283.1952239210273

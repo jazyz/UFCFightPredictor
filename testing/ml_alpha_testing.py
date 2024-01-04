@@ -13,11 +13,10 @@ import numpy as np
 import optuna
 from sklearn.metrics import log_loss
 
-split_date = pd.to_datetime("2021-01-01") 
-def main():
-    file_path = os.path.join("data", "detailed_fights.csv")
+file_path = os.path.join("data", "detailed_fights.csv")
 
-def main(split_date = ""):    # Step 1: Read the data
+def main(split_date = "2021-01-01"):    # Step 1: Read the data
+    split_date = pd.to_datetime(split_date)
     df = pd.read_csv(file_path)
     # df = df[(df['Red totalfights'] > 4) & (df['Blue totalfights'] > 4)]
     # Step 2: Preprocess the data
