@@ -170,7 +170,7 @@ def find_fights(start_date, end_date, last_training_date):
     start_date = datetime.strptime(start_date, '%Y-%m-%d')
     end_date = datetime.strptime(end_date, '%Y-%m-%d')
     final_training_date = datetime.strptime('2023-12-01', '%Y-%m-%d')
-    retrain_time = timedelta(days=180)  
+    retrain_time = timedelta(days=182)  
     filepath = 'data/fight_results_with_odds.csv'
     
     with open(filepath, newline='', encoding='utf-8') as csvfile:
@@ -207,8 +207,6 @@ def process_dates(start_date, end_date):
         test.write("------ RESULT ------\n")
         test.write(f"Bankroll: {bankroll:.2f}\n")
     print(bankroll)
-
-process_dates('2021-01-01','2022-01-01')
 
 # plt.figure(figsize=(10, 6))
 # plt.plot(bankrolls, marker='o')  # Plotting the bankrolls array
