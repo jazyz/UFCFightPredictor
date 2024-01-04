@@ -1,8 +1,15 @@
 import csv
 from datetime import datetime, timedelta
-from testing.ml_alpha_testing import main
 import os
 import matplotlib.pyplot as plt
+
+# Check if running in Flask context
+try:
+    from testing.ml_alpha_testing import main
+except ImportError:
+    from ml_alpha_testing import main
+
+
 bankroll = 1000
 bankrolls = []
 def kelly_criterion(odds, prob_win):
@@ -71,7 +78,7 @@ def get_ml(p1, p2):
     return result
 
 def process_winner(winner_name, fighter_name, potential_return, bet, fighter_odds):
-    with open(r"test_results/testing_time_period.txt", "a") as test:
+    with open(os.path.join("test_results", "testing_time_period.txt"), "a") as test:
         if (winner_name == fighter_name):
             test.write(" (win)")
             return potential_return
@@ -83,7 +90,7 @@ def process_winner(winner_name, fighter_name, potential_return, bet, fighter_odd
             return -bet
 
 def processBet(bet, fighter_name, fighter_odds, winner_name):
-    with open(r"test_results/testing_time_period.txt", "a") as test:
+    with open(os.path.join("test_results", "testing_time_period.txt"), "a") as test:
         test.write(fighter_name)
         potential_return = pt(fighter_odds, bet)    
         test.write(f" ${bet:.2f} (bet) pt: ${bet + potential_return:.2f} +${potential_return:.2f} ")
@@ -97,7 +104,7 @@ def process_fight(fight):
     winner_name = fight['winner_name']
     fighter1_odds = fight['fighter1_odds']
     fighter2_odds = fight['fighter2_odds']
-    with open(r"test_results/testing_time_period.txt", "a") as test:
+    with open(os.path.join("test_results", "testing_time_period.txt"), "a") as test:
         fighter1_odds = fighter1_odds.replace('−', '-')
         fighter2_odds = fighter2_odds.replace('−', '-')
         if (get_ml(fighter1_name, fighter2_name) == None or get_ml(fighter2_name, fighter1_name) == None
@@ -157,10 +164,6 @@ def process_fight(fight):
         test.write("---\n")
         bankrolls.append(bankroll)
     return
-
-def train_ml(start_date):
-    ml_alpha_testing.split_date = start_date  # Set the split_date in ml_alpha_testing
-    ml_alpha_testing.main()  # Call the main function of ml_alpha_testing
     
 def find_fights(start_date, end_date, last_training_date):
     # Convert start_date and end_date from 'YYYY-MM-DD' to datetime objects
@@ -185,7 +188,9 @@ def train_ml(start_date):
     main(start_date)
 
 def process_dates(start_date, end_date):
-    with open(r"test_results/testing_time_period.txt", "w") as test:
+    global bankroll
+    bankroll = 1000
+    with open(os.path.join("test_results", "testing_time_period.txt"), "w") as test:
         test.write(f"{start_date} to {end_date}\n")
     start_year = datetime.strptime(start_date, '%Y-%m-%d').year
     # split_date = f"{start_year}-01-01"
@@ -196,11 +201,11 @@ def process_dates(start_date, end_date):
     
     find_fights(start_date, end_date, last_training_date)  # Pass the last training date
     
-    with open(r"test_results/testing_time_period.txt", "a") as test:
-        test.write(f"Bankroll: {bankroll}\n")
-    with open(r"test_results/testing_time_period_results.txt", "a") as test:
+    with open(os.path.join("test_results", "testing_time_period.txt"), "a") as test:
+        test.write(f"Bankroll: {bankroll:.2f}\n")
+    with open(os.path.join("test_results", "testing_time_period_results.txt"), "a") as test:
         test.write("------ RESULT ------\n")
-        test.write(f"Bankroll: {bankroll}\n")
+        test.write(f"Bankroll: {bankroll:.2f}\n")
     print(bankroll)
 
 process_dates('2021-01-01','2022-01-01')
