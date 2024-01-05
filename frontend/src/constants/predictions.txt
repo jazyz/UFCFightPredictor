@@ -1,6 +1,32 @@
-*** Bankroll: $1059.32 ***
-Fight Card: https://www.ufc.com/event/ufc-fight-night-september-23-2023
+*** Bankroll: $1000.00 ***
+Fight Card: https://www.ufc.com/event/ufc-fight-night-september-16-2023
+Alexa Grasso: +140 0.48 
+Valentina Shevchenko: -170 0.52
+Valentina Shevchenko (no bet) (split draw)
 ---
+Kevin Holland +124 0.24
+Jack Della Maddalena: -148 0.76
+Jack Della Maddalena $40.50 (bet) pt: $67.86 +$27.36 (correct)
+---
+Daniel Zellhuber: -285 0.76
+Christos Giagos: +230 0.24
+Daniel Zellhuber $7.60 (bet) pt: $10.27 +$2.67 (correct)
+---
+Loopy Godinez: -440 0.78
+Elise Reed: +340 0.22
+Loopy Godinez (no bet) (correct)
+---
+Roman Kopylov: -345 0.60
+Josh Fremd: +275 0.40
+Roman Kopylov (no bet) (correct)
+---
+Tracy Cortez: -118 0.70
+Jasmine Jasudavicius: -102 0.30
+Tracy Cortez $34.60 (bet) pt: $63.92 +$29.32 (correct)
+
+*** Bankroll: $1059.32 ***
+
+Fight Card: https://www.ufc.com/event/ufc-fight-night-september-23-2023
 Rafael Fiziev: -155 0.43 -0.46
 Mateusz Gamrot: +130 0.57 0.24
 Mateusz Gamrot $25.73 (bet) pt: $59.19 +$33.45 (correct)
@@ -45,7 +71,6 @@ Fighter Tamires Vidal has less than 5 fights.
 *** Bankroll: $1099.64 ***
 
 Fight Card: https://www.ufc.com/event/ufc-fight-night-october-07-2023
----
 Grant Dawson: -445 0.81 -0.04
 Bobby Green: +310 0.19 -0.07
 Grant Dawson $1.11 (bet) (loss)
@@ -78,6 +103,8 @@ Aoriqileng: -112 0.36 -0.35
 Johnny Munoz: -108 0.64 0.25
 Johnny Munoz $27.28 (bet) pt: $52.54 +$25.26 (no bet, too risky) (wrong)
 ---
+---
+---
 Montana De La Rosa: -130 0.64 0.17
 JJ Aldrich: +110 0.36 -0.22
 Montana De La Rosa $18.18 (bet) pt: $32.16 +$13.98 (no bet, too risky) (wrong)
@@ -91,6 +118,7 @@ Fight Card: https://www.ufc.com/event/ufc-fight-night-october-14-2023
 Sodiq Yusuff: -166 0.61 -0.03
 Edson Barboza: +140 0.39 -0.05
 Sodiq Yusuff (no bet)
+---
 ---
 Jonathan Martinez: -112 0.56 0.07
 Adrian Yanez: -108 0.44 -0.17
@@ -109,9 +137,13 @@ Darren Elkins: +170 0.52 0.23
 TJ Brown: -205 0.48 -0.58
 Darren Elkins $25.52 (bet) pt: $68.92 +$43.39 (correct)
 ---
+---
+---
+---
 Chris Gutierrez: -325 0.71 -0.23
 Alatengheili: +260 0.29 0.02
 Chris Gutierrez (no bet)
+---
 ---
 
 nice wins for a fight night, 84.41 / 41.56 = 2.03, +103% return
@@ -154,6 +186,8 @@ Rodrigo Nascimento: -205 0.50 -0.54
 Don'Tale Mayes: +164 0.50 0.20
 Don'Tale Mayes $19.59 (bet) pt: $51.72 +$32.13 (no bet, too risky) (wrong)
 ---
+---
+---
 Rinat Fakhretdinov: -340 0.82 0.22
 Elizeu Zaleski dos Santos: +270 0.18 -0.13
 Rinat Fakhretdinov $21.62 (bet) pt: $27.98 +$6.36 (draw, bet is void)
@@ -165,6 +199,8 @@ Vitor Petrino (no bet) (correct)
 Angela Hill: +114 0.22 -0.46
 Denise Gomes: -135 0.78 0.47
 Denise Gomes $46.14 (bet) pt: $80.32 +$34.18 (wrong)
+---
+---
 ---
 
 fight nights are always unreliable, since this event was in brazil, ufc usually likes 
@@ -192,6 +228,7 @@ Diego Lopes: +100 0.40 -0.20
 Pat Sabatini: -120 0.60 0.12
 Pat Sabatini $12.13 (bet) pt: $22.25 +$10.11 (wrong)
 ---
+---
 Tabatha Ricci: +142 0.23 -0.31
 Loopy Godinez: -170 0.77 0.38
 Loopy Godinez $37.37 (bet) pt: $59.35 +$21.98 (hit) (correct)
@@ -212,6 +249,7 @@ John Castaneda: -135 0.52 -0.12
 Kyung Ho Kang: +114 0.48 0.02
 John Castaneda (no bet) (correct)
 ---
+---
 Dennis Buzukja: +210 0.53 0.30
 Jamall Emmers: -258 0.47 -0.88
 Dennis Buzukja $29.37 (bet) pt: $91.06 +$61.69 (no bet, too risky) (wrong)
@@ -219,7 +257,6 @@ Dennis Buzukja $29.37 (bet) pt: $91.06 +$61.69 (no bet, too risky) (wrong)
 
 *** Bankroll: $958.11 ***
 Fight Card: https://www.ufc.com/event/ufc-fight-night-november-18-2023
----
 Brendan Allen: -425 0.72 -0.47
 Paul Craig: +330 0.28 0.06
 Brendan Allen (no bet) (correct)
@@ -232,9 +269,11 @@ Chase Hooper: -218 0.46 -0.70
 Jordan Leavitt: +180 0.54 0.28
 Jordan Leavitt $26.65 (bet) pt: $74.62 +$47.97 (wrong)
 ---
+---
 Luana Pinheiro: +195 0.49 0.23
 Amanda Ribas: -238 0.51 -0.66
 Amanda Ribas (no bet) (correct)
+---
 ---
 Jonathan Pearce: -130 0.63 0.15
 Joanderson Brito: +110 0.37 -0.21
@@ -243,6 +282,8 @@ Jonathan Pearce $14.56 (bet) pt: $25.76 +$11.20 (wrong)
 Chad Anheliger: +164 0.43 0.08
 Jose Johnson: -198 0.57 -0.29
 Jose Johnson (no bet) (correct)
+---
+---
 ---
 Jeka Saragih: +390 0.62 0.52
 Lucas Alexander: -520 0.38 -2.83
@@ -255,12 +296,13 @@ Ailin Perez $18.33 (bet) pt: $28.24 +$9.91 (hit, correct)
 Trey Ogden: +114 0.63 0.31
 Nikolas Motta: -135 0.37 -0.49
 Trey Ogden $29.84 (bet) pt: $63.85 +$34.02 (draw, void)
+---
+---
 
 great fight night weekend, hit on a massive underdog. predictor can find underdogs, but also accuracy has been very up lately
 
 *** Bankroll: $1148.47 ***
 Fight Card: https://www.ufc.com/event/ufc-fight-night-december-02-2023
----
 Beneil Dariush: +240 0.05 -0.35
 Arman Tsarukyan: -298 0.95 0.81
 Arman Tsarukyan $93.12 (bet) pt: $124.37 +$31.25 (hit) (correct)
@@ -288,7 +330,6 @@ Punahele Soriano (no bet)
 
 *** Bankroll: $1131.75 ***
 Fight Card: https://www.ufc.com/event/ufc-fight-night-december-09-2023
----
 Song Yadong: -380 0.64 -0.71
 Chris Gutierrez: +300 0.36 0.14
 Song Yadong (no bet) (correct)
@@ -305,9 +346,16 @@ Tim Elliott: - 0.43 0.00
 Sumudaerji: - 0.57 0.00
 Sumudaerji (no bet) (wrong)
 ---
+---
+---
+---
+---
+---
+
 Tatsuro Taira: -575 0.80 -0.35
 Carlos Hernandez: +425 0.20 0.01
 Tatsuro Taira (no bet) (correct)
+---
 ---
 
 *** Bankroll: $1136.14 ***
@@ -352,5 +400,48 @@ Tagir Ulanbekov: -166 0.43 -0.52
 Cody Durden: +140 0.57 0.27
 Cody Durden $30.33 (bet) pt: $72.79 +$42.46 (wrong)
 ---
+---
+---
 
 *** Bankroll: $1100.37 ***
+
+Fight Card: https://www.ufc.com/event/ufc-296
+---
+Leon Edwards: -162 0.53 -0.22
+Colby Covington: +136 0.47 0.07
+Leon Edwards (no bet)
+---
+Alexandre Pantoja: -192 0.53 -0.38
+Brandon Royval: +160 0.47 0.14
+Alexandre Pantoja (no bet)
+---
+Shavkat Rakhmonov: -625 0.66 -1.47
+Stephen Thompson: +455 0.34 0.20
+Shavkat Rakhmonov (no bet)
+---
+Tony Ferguson: +250 0.33 0.06
+Paddy Pimblett: -310 0.67 -0.35
+Paddy Pimblett (no bet)
+---
+Josh Emmett: +195 0.40 0.09
+Bryce Mitchell: -238 0.60 -0.35
+Bryce Mitchell (no bet)
+---
+Alonzo Menifield: +220 0.43 0.17
+Dustin Jacoby: -270 0.57 -0.60
+Dustin Jacoby (no bet)
+---
+---
+Cody Garbrandt: -192 0.55 -0.31
+Brian Kelleher: +160 0.45 0.11
+Cody Garbrandt (no bet)
+---
+---
+Tagir Ulanbekov: -192 0.39 -0.77
+Cody Durden: +160 0.61 0.36
+Cody Durden $39.90 (bet) pt: $103.74 +$63.84
+---
+Andre Fili: -166 0.57 -0.15
+Lucas Almeida: +140 0.43 0.03
+Andre Fili (no bet)
+---
