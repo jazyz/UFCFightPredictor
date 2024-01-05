@@ -190,8 +190,9 @@ def train_ml(start_date):
     main(start_date)
 
 def process_dates(start_date, end_date):
-    global bankroll
+    global bankroll, bankrolls
     bankroll = 1000
+    bankrolls = []
     with open(os.path.join("test_results", "testing_time_period.txt"), "w") as test:
         test.write(f"{start_date} to {end_date}\n")
     start_year = datetime.strptime(start_date, '%Y-%m-%d').year
@@ -215,7 +216,7 @@ def plot_bankrolls():
     plt.figure(figsize=(10, 6))
     plt.plot(bankrolls, marker='o')  # Plotting the bankrolls array
     plt.title("Bankroll Over Time")
-    plt.xlabel("Time")
+    plt.xlabel("Bet Number")
     plt.ylabel("Bankroll")
     plt.grid(True)
     # plt.show()
