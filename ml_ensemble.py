@@ -27,7 +27,7 @@ df["Result"] = label_encoder.fit_transform(df["Result"])
 
 selected_columns = df.columns.tolist()
 
-columns_to_remove = ["Red Fighter", "Blue Fighter", "Title"]
+columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date"]
 selected_columns = [col for col in selected_columns if col not in columns_to_remove]
 
 corr_matrix = df[selected_columns].corr().abs()
@@ -106,38 +106,16 @@ def objective(trial):
         'n_estimators': 100,  # Fixed number of estimators for simplicity
         'num_class': 3  # Replace with the actual number of classes in your dataset
     }
-
-    #     # Splitting data for validation
-    # X_train, X_valid, y_train, y_valid = train_test_split(X_train_extended, y_train_extended, test_size=0.2, stratify=y_train_extended)
-
-    # # Creating LightGBM datasets
-    # dtrain = lgb.Dataset(X_train, label=y_train)
-    # dvalid = lgb.Dataset(X_valid, label=y_valid)
-
-    # # Training model
-    # model = lgb.train(
-    #     param,
-    #     dtrain,
-    #     valid_sets=[dvalid],
-    #     callbacks=[lgb.early_stopping(stopping_rounds=30)]
-    # )
-
-    # # Making predictions
-    # preds = model.predict(X_valid, num_iteration=model.best_iteration)
-    # logloss = log_loss(y_valid, preds)
-
-    # return logloss
-
     data = lgb.Dataset(X_train_extended, label=y_train_extended)
     # Training model
     cv_results = lgb.cv(
         param,
         data,
         num_boost_round=1000,
-        nfold=5,  # Or another number of folds
+        nfold=3,  # Or another number of folds
         stratified=True,
         shuffle=True,
-        callbacks=[lgb.early_stopping(stopping_rounds=30)],
+        callbacks=[lgb.early_stopping(stopping_rounds=20)],
     )
 
     print(cv_results.keys())
@@ -147,39 +125,40 @@ def objective(trial):
 
     return best_score
 
-# Create the study object with maximization direction
-study1 = optuna.create_study(direction='minimize')
-study1.optimize(objective, n_trials=10)  # Adjust n_trials to your preference
+n_models = 5
 
-# Create and optimize the second study
-study2 = optuna.create_study(direction='minimize')
-study2.optimize(objective, n_trials=10)  # Adjust n_trials to your preference
+# Initialize an empty list to hold all studies and models
+studies = []
+models = []
 
-# Retrieve the best hyperparameters
-best_params1 = study1.best_params
-best_params2 = study2.best_params
+# Automatically create, optimize, and store studies and models
+for _ in range(n_models):
+    # Create the study object with a minimization direction
+    study = optuna.create_study(direction='minimize')
+    study.optimize(objective, n_trials=10)  # Adjust n_trials to your preference
 
-model1 = lgb.LGBMClassifier(**best_params1)
-model1.fit(X_train_extended, y_train_extended)
+    # Retrieve the best hyperparameters
+    best_params = study.best_params
 
-# Initialize and train the second LGBM model with best_params2
-model2 = lgb.LGBMClassifier(**best_params2)
-model2.fit(X_train_extended, y_train_extended)
+    # Initialize and train the LGBM model with best_params
+    model = lgb.LGBMClassifier(**best_params)
+    model.fit(X_train_extended, y_train_extended)
 
-# Make predictions with both models
-predicted_probabilities1 = model1.predict_proba(X_test)
-predicted_probabilities2 = model2.predict_proba(X_test)
+    # Append the study and model to their respective lists
+    studies.append(study)
+    models.append(model)
 
-# Ensemble predictions: Averaging the predicted probabilities from each model
-ensemble_predicted_probabilities = (predicted_probabilities1 + predicted_probabilities2) / 2
+# Make predictions with all models and average them
+predicted_probabilities = [model.predict_proba(X_test) for model in models]
+ensemble_predicted_probabilities = np.mean(predicted_probabilities, axis=0)
 
-# Convert probabilities to predicted class (optional, depending on needs)
 ensemble_preds = np.argmax(ensemble_predicted_probabilities, axis=1)
 
 # Evaluate the ensemble model
 accuracy = accuracy_score(y_test, ensemble_preds)
 logloss = log_loss(y_test, ensemble_predicted_probabilities)
-
+print(accuracy)
+print(logloss)
 # Get the fighter names and actual results for the test set
 df_with_details = pd.read_csv(file_path)[
     ["Red Fighter", "Blue Fighter", "Result"]
@@ -215,5 +194,6 @@ with open(os.path.join("data", "predicted_results.csv"), mode="w", newline="") a
                 actual_labels[i],
             ]
         )
+
 
 
