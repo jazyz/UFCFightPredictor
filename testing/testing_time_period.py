@@ -2,6 +2,8 @@ import csv
 from datetime import datetime, timedelta
 import os
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('agg')
 
 # Check if running in Flask context
 try:
@@ -97,7 +99,7 @@ def processBet(bet, fighter_name, fighter_odds, winner_name):
         test.flush()
         return process_winner(winner_name, fighter_name, potential_return, bet, fighter_odds)
 
-def process_fight(fight):
+def process_fight(fight, strategy=[0.05, 0.05, 0]):
     global bankroll, bankrolls
     fighter1_name = fight['fighter1_name']
     fighter2_name = fight['fighter2_name']
@@ -132,9 +134,15 @@ def process_fight(fight):
         test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.3f} {kc_a:.2f}\n")
         test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.3f} {kc_b:.2f}\n")
         test.flush()
-        fraction = 0.05
-        max_fraction = 0.05
-        flat = 0.01
+        # conservative strategy: 0.05, 0.05, 0
+        # normal strategy: 0.1, 0.1, 0
+        # risky strategy: 0.2, 0.2, 0
+        # kc strategy: don't do anything
+        # flat strategy: change parameter 3 to 0.01 (if 3rd parameter > 0 then flat all predictions)
+        # no limit strategy: change parameter 2 to 1.0
+        fraction = strategy[0]
+        max_fraction = strategy[1]
+        flat = strategy[2]
         if a_win > b_win:
 
             if (kc_a > 0):
@@ -188,8 +196,9 @@ def train_ml(start_date):
     main(start_date)
 
 def process_dates(start_date, end_date):
-    global bankroll
+    global bankroll, bankrolls
     bankroll = 1000
+    bankrolls = []
     with open(os.path.join("test_results", "testing_time_period.txt"), "w") as test:
         test.write(f"{start_date} to {end_date}\n")
     start_year = datetime.strptime(start_date, '%Y-%m-%d').year
@@ -207,12 +216,17 @@ def process_dates(start_date, end_date):
         test.write("------ RESULT ------\n")
         test.write(f"Bankroll: {bankroll:.2f}\n")
     print(bankroll)
+    plot_bankrolls()
 
-# plt.figure(figsize=(10, 6))
-# plt.plot(bankrolls, marker='o')  # Plotting the bankrolls array
-# plt.title("Bankroll Over Time")
-# plt.xlabel("Time")
-# plt.ylabel("Bankroll")
-# plt.grid(True)
-# plt.show()
+def plot_bankrolls():
+    plt.figure(figsize=(10, 6))
+    plt.plot(bankrolls, marker='o')  # Plotting the bankrolls array
+    plt.title("Bankroll Over Time")
+    plt.xlabel("Bet Number")
+    plt.ylabel("Bankroll")
+    plt.grid(True)
+    # plt.show()
+    plt.savefig(os.path.join("data", "bankroll_plot.png"))  # Save the plot as an image file
+    plt.close()  # Close the plot
 
+# process_dates('2021-01-01', '2022-01-01')
