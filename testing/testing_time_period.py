@@ -134,7 +134,11 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
         test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.3f} {kc_a:.2f}\n")
         test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.3f} {kc_b:.2f}\n")
         test.flush()
-        
+        # conservative strategy: 0.025, 0.025, 0
+        # normal strategy: 0.05, 0.05, 0
+        # risky strategy: 0.1, 0.1, 0
+        # kc strategy: don't do anything
+        # flat: 0.01, 0.015, 0.02 (if 3rd parameter > 0 then flat all predictions)
         fraction = strategy[0]
         max_fraction = strategy[1]
         flat = strategy[2]
@@ -143,7 +147,7 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
             if (kc_a > 0):
                 bet = bankroll * fraction * kc_a
                 bet = min(bet,max_fraction*bankroll)
-                if (flat > 0):
+                if flat>0:
                     bet = bankroll * flat
                 bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
             else:
@@ -156,13 +160,11 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
             if (kc_b > 0):
                 bet = bankroll * fraction * kc_b
                 bet = min(bet,max_fraction*bankroll)
-                if (flat > 0):
+                if flat>0:
                     bet = bankroll * flat
                 bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
             else:
-                bet = bankroll * flat
-                bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
-                # test.write(f"(no bet)")
+                test.write(f"(no bet)")
                 
             test.write("\n")
         test.write(f" *** {winner_name} *** \n")
@@ -227,4 +229,4 @@ def plot_bankrolls():
     plt.savefig(os.path.join("data", "bankroll_plot.png"))  # Save the plot as an image file
     plt.close()  # Close the plot
 
-# process_dates('2021-01-01', '2022-01-01')
+#process_dates('2021-01-01', '2024-01-01')
