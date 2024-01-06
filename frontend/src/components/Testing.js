@@ -11,14 +11,38 @@ const Testing = () => {
   const [selectedRow1, setSelectedRow1] = useState(null);
   const [selectedRow2, setSelectedRow2] = useState(null);
   const row1Buttons = ["Conservative", "Normal", "Risky"];
-  const row2Buttons = ["Kelly Criterion", "Flat", "No Limit"];
+  const row2Buttons = ["Kelly Criterion", "Flat"];
+  const [strategy, setStrategy] = useState([0.05, 0.05, 0]);
+
+  // # conservative strategy: 0.05, 0.05, 0
+  // # normal strategy: 0.1, 0.1, 0
+  // # risky strategy: 0.2, 0.2, 0
+  // # kc strategy: don't do anything
+  // # flat strategy: change parameter 3 to 0.01 (if 3rd parameter > 0 then flat all predictions)
+  // # conservative flat = 1% of bankroll per bet
+  // # normal flat = 1.5% of bankroll per bet
+  // # risky flat = 2% of bankroll per bet
 
   const handleButtonClick = (row, buttonIndex) => {
+    console.log(row, buttonIndex);
+    let updatedStrategy = [...strategy];
     if (row === 1) {
       setSelectedRow1(buttonIndex);
+      updatedStrategy[0] = [0.05, 0.1, 0.2][buttonIndex];
+      if (selectedRow2 === 1) {
+        updatedStrategy[2] = 0.005 * (buttonIndex + 1) + 0.005;
+      } else {
+        updatedStrategy[2] = 0;
+      }
     } else if (row === 2) {
       setSelectedRow2(buttonIndex);
+      if (buttonIndex === 1) {
+        updatedStrategy[2] = 0.005 * (selectedRow1 + 1) + 0.005;
+      }
     }
+    console.log(updatedStrategy);
+    setStrategy([...updatedStrategy]);
+    console.log(strategy);
   };
 
   const handleTestClick = async () => {
@@ -45,6 +69,7 @@ const Testing = () => {
       const response = await axios.post(`${baseURL}/test`, {
         testFrom_card: testFrom,
         testTo_card: testTo,
+        strategy: strategy,
       });
       console.log(response.data);
       setResults(response.data.content);
