@@ -1,4 +1,5 @@
 fighter_names
+<<<<<<< HEAD
 0    Conor McGregor*Jon Jones
 1    Jon Jones*Conor McGregor
 dtype: object
@@ -205,3 +206,21 @@ dtype: object
    probability_draw  probability_loss  probability_win  
 0          0.002668          0.400421         0.596911  
 1          0.012785          0.479189         0.508026  
+=======
+0    Rob Font*Cory Sandhagen
+1    Cory Sandhagen*Rob Font
+dtype: object
+Rob Font Cory Sandhagen
+[0.05, 0.05, 0.01]
+Extended Test Set Accuracy: 0.6268
+done
+Extended Test Set Accuracy: 0.6067
+done
+1151.1014350467017
+[0.05, 0.05, 0.015]
+Extended Test Set Accuracy: 0.6268
+done
+Extended Test Set Accuracy: 0.6067
+done
+1227.346460519359
+>>>>>>> 49af37f6f801afecaf472b09f014e88d8bd250cb
