@@ -111,7 +111,8 @@ def test():
         data = request.json
         testFrom_card = data.get("testFrom_card")
         testTo_card = data.get("testTo_card")
-        process_dates(testFrom_card, testTo_card)
+        strategy = data.get("strategy")
+        process_dates(testFrom_card, testTo_card, strategy)
 
         response = get_test_results()
     except Exception as e:

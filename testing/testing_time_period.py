@@ -134,12 +134,7 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
         test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.3f} {kc_a:.2f}\n")
         test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.3f} {kc_b:.2f}\n")
         test.flush()
-        # conservative strategy: 0.05, 0.05, 0
-        # normal strategy: 0.1, 0.1, 0
-        # risky strategy: 0.2, 0.2, 0
-        # kc strategy: don't do anything
-        # flat strategy: change parameter 3 to 0.01 (if 3rd parameter > 0 then flat all predictions)
-        # no limit strategy: change parameter 2 to 1.0
+        
         fraction = strategy[0]
         max_fraction = strategy[1]
         flat = strategy[2]
@@ -148,24 +143,26 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
             if (kc_a > 0):
                 bet = bankroll * fraction * kc_a
                 bet = min(bet,max_fraction*bankroll)
-                # bet = bankroll * flat
+                if (flat > 0):
+                    bet = bankroll * flat
                 bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
             else:
-                # bet = bankroll * flat
-                # bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
-                test.write(f"(no bet)")
+                bet = bankroll * flat
+                bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
+                # test.write(f"(no bet)")
             test.write("\n")
         else:
 
             if (kc_b > 0):
                 bet = bankroll * fraction * kc_b
                 bet = min(bet,max_fraction*bankroll)
-                # bet = bankroll * flat
+                if (flat > 0):
+                    bet = bankroll * flat
                 bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
             else:
-                # bet = bankroll * flat
-                # bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
-                test.write(f"(no bet)")
+                bet = bankroll * flat
+                bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
+                # test.write(f"(no bet)")
                 
             test.write("\n")
         test.write(f" *** {winner_name} *** \n")
@@ -173,7 +170,7 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
         bankrolls.append(bankroll)
     return
     
-def find_fights(start_date, end_date, last_training_date):
+def find_fights(start_date, end_date, last_training_date, strategy):
     # Convert start_date and end_date from 'YYYY-MM-DD' to datetime objects
     start_date = datetime.strptime(start_date, '%Y-%m-%d')
     end_date = datetime.strptime(end_date, '%Y-%m-%d')
@@ -190,12 +187,13 @@ def find_fights(start_date, end_date, last_training_date):
                     last_training_date = event_date
                     train_ml(last_training_date.strftime('%Y-%m-%d'))
                     preload_ml_predictions()
-                process_fight(row)
+                process_fight(row, strategy)
 
 def train_ml(start_date):
     main(start_date)
 
-def process_dates(start_date, end_date):
+def process_dates(start_date, end_date, strategy):
+    print(strategy)
     global bankroll, bankrolls
     bankroll = 1000
     bankrolls = []
@@ -208,7 +206,7 @@ def process_dates(start_date, end_date):
     train_ml(split_date)
     preload_ml_predictions()
     
-    find_fights(start_date, end_date, last_training_date)  # Pass the last training date
+    find_fights(start_date, end_date, last_training_date, strategy)  # Pass the last training date
     
     with open(os.path.join("test_results", "testing_time_period.txt"), "a") as test:
         test.write(f"Bankroll: {bankroll:.2f}\n")
