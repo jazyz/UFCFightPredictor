@@ -3609,28 +3609,28 @@ Journey Newson: 250 0.399 0.16
 (no bet)
  *** Sergey Morozov *** 
 ---
-Bankroll: 995.18
-Sean Strickland: 115 0.407 -0.11
-Nassourdine Imavov: -135 0.593 0.04
-Nassourdine Imavov $2.22 (bet) pt: $3.86 +$1.64  (loss)
+Bankroll: 1096.60
+Sean Strickland: 115 0.428 -0.07
+Nassourdine Imavov: -135 0.572 -0.01
+(no bet)
  *** Sean Strickland *** 
 ---
-Bankroll: 992.97
-Dan Ige: -125 0.513 -0.10
-Damon Jackson: 105 0.487 -0.00
+Bankroll: 1096.60
+Dan Ige: -125 0.548 -0.02
+Damon Jackson: 105 0.452 -0.07
 (no bet)
  *** Dan Ige *** 
 ---
-Bankroll: 992.97
-Punahele Soriano: -150 0.483 -0.29
-Roman Kopylov: 130 0.517 0.14
-Roman Kopylov $7.19 (bet) pt: $16.53 +$9.34  (win)
+Bankroll: 1096.60
+Punahele Soriano: -150 0.558 -0.10
+Roman Kopylov: 130 0.442 0.01
+(no bet)
  *** Roman Kopylov *** 
 ---
 ---
-Bankroll: 1002.31
-Umar Nurmagomedov: -975 0.770 -1.47
-Raoni Barcelos: 675 0.230 0.12
+Bankroll: 1096.60
+Umar Nurmagomedov: -975 0.752 -1.66
+Raoni Barcelos: 675 0.248 0.14
 (no bet)
  *** Umar Nurmagomedov *** 
 ---
@@ -3640,28 +3640,28 @@ Raoni Barcelos: 675 0.230 0.12
 ---
 ---
 ---
-Bankroll: 1002.31
-Glover Teixeira: 120 0.559 0.19
-Jamahal Hill: -140 0.441 -0.34
-Glover Teixeira $9.60 (bet) pt: $21.12 +$11.52  (loss)
+Bankroll: 1096.60
+Glover Teixeira: 120 0.548 0.17
+Jamahal Hill: -140 0.452 -0.32
+Glover Teixeira $32.90 (bet) pt: $72.38 +$39.48  (loss)
  *** Jamahal Hill *** 
 ---
-Bankroll: 992.71
-Deiveson Figueiredo: 105 0.499 0.02
-Brandon Moreno: -125 0.501 -0.12
+Bankroll: 1063.70
+Deiveson Figueiredo: 105 0.485 -0.01
+Brandon Moreno: -125 0.515 -0.09
 (no bet)
  *** Brandon Moreno *** 
 ---
-Bankroll: 992.71
-Gilbert Burns: -460 0.608 -1.19
-Neil Magny: 370 0.392 0.23
+Bankroll: 1063.70
+Gilbert Burns: -460 0.651 -0.95
+Neil Magny: 370 0.349 0.17
 (no bet)
  *** Gilbert Burns *** 
 ---
 ---
-Bankroll: 992.71
-Paul Craig: 165 0.471 0.15
-Johnny Walker: -195 0.529 -0.39
+Bankroll: 1063.70
+Paul Craig: 165 0.414 0.06
+Johnny Walker: -195 0.586 -0.22
 (no bet)
  *** Johnny Walker *** 
 ---
@@ -3669,43 +3669,43 @@ Johnny Walker: -195 0.529 -0.39
 ---
 ---
 ---
-Bankroll: 992.71
-Shamil Abdurakhimov: 675 0.264 0.16
-Jailton Almeida: -975 0.736 -1.84
+Bankroll: 1063.70
+Shamil Abdurakhimov: 675 0.184 0.06
+Jailton Almeida: -975 0.816 -0.98
 (no bet)
  *** Jailton Almeida *** 
 ---
 ---
 ---
-Bankroll: 992.71
-Warlley Alves: -125 0.610 0.12
-Nicolas Dalby: 105 0.390 -0.19
-Warlley Alves $6.12 (bet) pt: $11.02 +$4.90  (loss)
+Bankroll: 1063.70
+Warlley Alves: -125 0.641 0.19
+Nicolas Dalby: 105 0.359 -0.25
+Warlley Alves $31.91 (bet) pt: $57.44 +$25.53  (loss)
  *** Nicolas Dalby *** 
 ---
 ---
 ---
-Bankroll: 986.58
-Derrick Lewis: 255 0.247 -0.05
-Serghei Spivac: -305 0.753 0.00
-Serghei Spivac $0.08 (bet) pt: $0.10 +$0.03  (win)
+Bankroll: 1031.79
+Derrick Lewis: 255 0.255 -0.04
+Serghei Spivac: -305 0.745 -0.03
+(no bet)
  *** Serghei Spivac *** 
 ---
-Bankroll: 986.61
-Da Woon Jung: -275 0.716 -0.07
-Devin Clark: 230 0.284 -0.03
+Bankroll: 1031.79
+Da Woon Jung: -275 0.695 -0.15
+Devin Clark: 230 0.305 0.00
 (no bet)
  *** Devin Clark *** 
 ---
-Bankroll: 986.61
-Marcin Tybura: -135 0.485 -0.21
-Blagoy Ivanov: 115 0.515 0.09
-Blagoy Ivanov $4.63 (bet) pt: $9.95 +$5.32  (loss)
+Bankroll: 1031.79
+Marcin Tybura: -135 0.502 -0.17
+Blagoy Ivanov: 115 0.498 0.06
+(no bet)
  *** Marcin Tybura *** 
 ---
-Bankroll: 981.98
-Dooho Choi: -195 0.553 -0.32
-Kyle Nelson: 165 0.447 0.11
+Bankroll: 1031.79
+Dooho Choi: -195 0.567 -0.28
+Kyle Nelson: 165 0.433 0.09
 (no bet)
  *** draw/no contest *** 
 ---
@@ -3717,40 +3717,40 @@ Kyle Nelson: 165 0.447 0.11
 ---
 ---
 ---
-Bankroll: 981.98
-Yair Rodriguez: -165 0.555 -0.18
-Josh Emmett: 140 0.445 0.05
+Bankroll: 1031.79
+Yair Rodriguez: -165 0.567 -0.15
+Josh Emmett: 140 0.433 0.03
 (no bet)
  *** Yair Rodriguez *** 
 ---
-Bankroll: 981.98
-Jack Della Maddalena: -305 0.680 -0.30
-Randy Brown: 255 0.320 0.05
+Bankroll: 1031.79
+Jack Della Maddalena: -305 0.528 -0.91
+Randy Brown: 255 0.472 0.26
 (no bet)
  *** Jack Della Maddalena *** 
 ---
-Bankroll: 981.98
-Justin Tafa: -140 0.687 0.25
-Parker Porter: 120 0.313 -0.26
-Justin Tafa $12.19 (bet) pt: $20.89 +$8.71  (win)
+Bankroll: 1031.79
+Justin Tafa: -140 0.696 0.27
+Parker Porter: 120 0.304 -0.28
+Justin Tafa $30.95 (bet) pt: $53.06 +$22.11  (win)
  *** Justin Tafa *** 
 ---
-Bankroll: 990.69
-Jimmy Crute: -230 0.626 -0.23
-Alonzo Menifield: 195 0.374 0.05
+Bankroll: 1053.90
+Jimmy Crute: -230 0.575 -0.40
+Alonzo Menifield: 195 0.425 0.13
 (no bet)
  *** draw/no contest *** 
 ---
-Bankroll: 990.69
-Tyson Pedro: -250 0.704 -0.03
-Modestas Bukauskas: 210 0.296 -0.04
-(no bet)
+Bankroll: 1053.90
+Tyson Pedro: -250 0.737 0.08
+Modestas Bukauskas: 210 0.263 -0.09
+Tyson Pedro $31.62 (bet) pt: $44.26 +$12.65  (loss)
  *** Modestas Bukauskas *** 
 ---
-Bankroll: 990.69
-Josh Culibao: -110 0.491 -0.07
-Melsik Baghdasaryan: -110 0.509 -0.03
-(no bet)
+Bankroll: 1022.29
+Josh Culibao: -110 0.441 -0.17
+Melsik Baghdasaryan: -110 0.559 0.07
+Melsik Baghdasaryan $30.67 (bet) pt: $58.55 +$27.88  (loss)
  *** Josh Culibao *** 
 ---
 ---
@@ -3762,39 +3762,39 @@ Melsik Baghdasaryan: -110 0.509 -0.03
 ---
 ---
 ---
-Bankroll: 990.69
-William Knight: -115 0.545 0.02
-Marcin Prachnio: -105 0.455 -0.12
-William Knight $1.05 (bet) pt: $1.97 +$0.92  (loss)
+Bankroll: 991.62
+William Knight: -115 0.499 -0.08
+Marcin Prachnio: -105 0.501 -0.02
+(no bet)
  *** Marcin Prachnio *** 
 ---
-Bankroll: 989.63
-Jim Miller: 190 0.542 0.30
-Alexander Hernandez: -225 0.458 -0.76
-Jim Miller $14.90 (bet) pt: $43.20 +$28.31  (loss)
+Bankroll: 991.62
+Jim Miller: 190 0.557 0.32
+Alexander Hernandez: -225 0.443 -0.81
+Jim Miller $29.75 (bet) pt: $86.27 +$56.52  (loss)
  *** Alexander Hernandez *** 
 ---
 ---
 ---
 ---
-Bankroll: 974.73
-Ovince Saint Preux: 185 0.386 0.05
-Philipe Lins: -215 0.614 -0.22
+Bankroll: 961.87
+Ovince Saint Preux: 185 0.422 0.11
+Philipe Lins: -215 0.578 -0.33
 (no bet)
  *** Philipe Lins *** 
 ---
 ---
 ---
-Bankroll: 974.73
-Andre Muniz: -160 0.599 -0.04
-Brendan Allen: 130 0.401 -0.06
+Bankroll: 961.87
+Andre Muniz: -160 0.596 -0.05
+Brendan Allen: 130 0.404 -0.05
 (no bet)
  *** Brendan Allen *** 
 ---
-Bankroll: 974.73
-Augusto Sakai: -125 0.455 -0.23
-Don'Tale Mayes: 105 0.545 0.11
-Don'Tale Mayes $5.44 (bet) pt: $11.16 +$5.71  (loss)
+Bankroll: 961.87
+Augusto Sakai: -125 0.377 -0.40
+Don'Tale Mayes: 105 0.623 0.26
+Don'Tale Mayes $28.86 (bet) pt: $59.15 +$30.30  (loss)
  *** Augusto Sakai *** 
 ---
 ---
@@ -3805,43 +3805,43 @@ Don'Tale Mayes $5.44 (bet) pt: $11.16 +$5.71  (loss)
 ---
 ---
 ---
-Bankroll: 969.29
-Jon Jones: -165 0.716 0.25
-Ciryl Gane: 140 0.284 -0.23
-Jon Jones $11.93 (bet) pt: $19.16 +$7.23  (win)
+Bankroll: 933.01
+Jon Jones: -165 0.684 0.16
+Ciryl Gane: 140 0.316 -0.17
+Jon Jones $27.99 (bet) pt: $44.95 +$16.96  (win)
  *** Jon Jones *** 
 ---
 ---
-Bankroll: 976.52
-Geoff Neal: 390 0.354 0.19
-Shavkat Rakhmonov: -490 0.646 -1.09
+Bankroll: 949.98
+Geoff Neal: 390 0.369 0.21
+Shavkat Rakhmonov: -490 0.631 -1.18
 (no bet)
  *** Shavkat Rakhmonov *** 
 ---
-Bankroll: 976.52
-Mateusz Gamrot: -205 0.503 -0.52
-Jalin Turner: 175 0.497 0.21
+Bankroll: 949.98
+Mateusz Gamrot: -205 0.566 -0.32
+Jalin Turner: 175 0.434 0.11
 (no bet)
  *** Mateusz Gamrot *** 
 ---
 ---
-Bankroll: 976.52
-Cody Garbrandt: -175 0.634 -0.01
-Trevin Jones: 150 0.366 -0.06
-(no bet)
+Bankroll: 949.98
+Cody Garbrandt: -175 0.720 0.23
+Trevin Jones: 150 0.280 -0.20
+Cody Garbrandt $28.50 (bet) pt: $44.78 +$16.29  (win)
  *** Cody Garbrandt *** 
 ---
-Bankroll: 976.52
-Derek Brunson: 190 0.385 0.06
-Dricus Du Plessis: -225 0.615 -0.25
+Bankroll: 966.26
+Derek Brunson: 190 0.356 0.02
+Dricus Du Plessis: -225 0.644 -0.16
 (no bet)
  *** Dricus Du Plessis *** 
 ---
 ---
-Bankroll: 976.52
-Julian Marquez: 130 0.500 0.12
-Marc-Andre Barriault: -150 0.500 -0.25
-Julian Marquez $5.66 (bet) pt: $13.02 +$7.36  (loss)
+Bankroll: 966.26
+Julian Marquez: 130 0.432 -0.01
+Marc-Andre Barriault: -150 0.568 -0.08
+(no bet)
  *** Marc-Andre Barriault *** 
 ---
 ---
@@ -3849,33 +3849,33 @@ Julian Marquez $5.66 (bet) pt: $13.02 +$7.36  (loss)
 ---
 ---
 ---
-Bankroll: 970.87
-Petr Yan: -255 0.394 -1.15
-Merab Dvalishvili: 215 0.606 0.42
-Merab Dvalishvili $20.51 (bet) pt: $64.61 +$44.10  (win)
+Bankroll: 966.26
+Petr Yan: -255 0.286 -1.54
+Merab Dvalishvili: 215 0.714 0.58
+Merab Dvalishvili $28.99 (bet) pt: $91.31 +$62.32  (win)
  *** Merab Dvalishvili *** 
 ---
-Bankroll: 1014.96
-Alexander Volkov: 130 0.455 0.04
-Alexandr Romanov: -150 0.545 -0.14
+Bankroll: 1028.59
+Alexander Volkov: 130 0.463 0.05
+Alexandr Romanov: -150 0.537 -0.16
 (no bet)
  *** Alexander Volkov *** 
 ---
-Bankroll: 1014.96
-Nikita Krylov: -165 0.546 -0.20
-Ryan Spann: 140 0.454 0.06
+Bankroll: 1028.59
+Nikita Krylov: -165 0.553 -0.18
+Ryan Spann: 140 0.447 0.05
 (no bet)
  *** Nikita Krylov *** 
 ---
-Bankroll: 1014.96
-Said Nurmagomedov: -215 0.469 -0.67
-Jonathan Martinez: 185 0.531 0.28
-Jonathan Martinez $14.09 (bet) pt: $40.15 +$26.06  (win)
+Bankroll: 1028.59
+Said Nurmagomedov: -215 0.413 -0.85
+Jonathan Martinez: 185 0.587 0.36
+Jonathan Martinez $30.86 (bet) pt: $87.94 +$57.09  (win)
  *** Jonathan Martinez *** 
 ---
-Bankroll: 1041.02
-Mario Bautista: -950 0.727 -1.87
-Guido Cannetti: 650 0.273 0.16
+Bankroll: 1085.67
+Mario Bautista: -950 0.772 -1.40
+Guido Cannetti: 650 0.228 0.11
 (no bet)
  *** Mario Bautista *** 
 ---
@@ -3883,10 +3883,10 @@ Guido Cannetti: 650 0.273 0.16
 ---
 ---
 ---
-Bankroll: 1041.02
-Victor Henry: -140 0.491 -0.22
-Tony Gravely: 120 0.509 0.10
-Tony Gravely $5.20 (bet) pt: $11.43 +$6.24  (loss)
+Bankroll: 1085.67
+Victor Henry: -140 0.436 -0.35
+Tony Gravely: 120 0.564 0.20
+Tony Gravely $32.57 (bet) pt: $71.65 +$39.08  (loss)
  *** Victor Henry *** 
 ---
 ---
@@ -3914,22 +3914,22 @@ Rafael Fiziev: -240 0.430 -0.94
 Justin Gaethje $19.08 (bet) pt: $57.23 +$38.15  (win)
  *** Justin Gaethje *** 
 ---
-Bankroll: 1114.37
-Gunnar Nelson: -360 0.635 -0.68
-Bryan Barberena: 295 0.365 0.15
+Bankroll: 1113.34
+Gunnar Nelson: -360 0.625 -0.72
+Bryan Barberena: 295 0.375 0.16
 (no bet)
  *** Gunnar Nelson *** 
 ---
 ---
-Bankroll: 1114.37
-Marvin Vettori: -275 0.711 -0.08
-Roman Dolidze: 230 0.289 -0.02
+Bankroll: 1113.34
+Marvin Vettori: -275 0.692 -0.16
+Roman Dolidze: 230 0.308 0.01
 (no bet)
  *** Marvin Vettori *** 
 ---
-Bankroll: 1114.37
-Jack Shore: -500 0.815 -0.11
-Makwan Amirkhani: 400 0.185 -0.02
+Bankroll: 1113.34
+Jack Shore: -500 0.824 -0.06
+Makwan Amirkhani: 400 0.176 -0.03
 (no bet)
  *** Jack Shore *** 
 ---
@@ -3938,44 +3938,44 @@ Makwan Amirkhani: 400 0.185 -0.02
 ---
 ---
 ---
-Bankroll: 1114.37
-Jake Hadley: -410 0.629 -0.89
-Malcolm Gordon: 330 0.371 0.18
+Bankroll: 1113.34
+Jake Hadley: -410 0.686 -0.60
+Malcolm Gordon: 330 0.314 0.11
 (no bet)
  *** Jake Hadley *** 
 ---
 ---
-Bankroll: 1114.37
-Jai Herbert: 165 0.372 -0.01
-Ludovit Klein: -195 0.628 -0.10
+Bankroll: 1113.34
+Jai Herbert: 165 0.378 0.00
+Ludovit Klein: -195 0.622 -0.11
 (no bet)
  *** draw/no contest *** 
 ---
 ---
-Bankroll: 1114.37
-Marlon Vera: 140 0.487 0.12
-Cory Sandhagen: -165 0.513 -0.29
-(no bet)
+Bankroll: 1113.34
+Marlon Vera: 140 0.515 0.17
+Cory Sandhagen: -165 0.485 -0.36
+Marlon Vera $33.40 (bet) pt: $80.16 +$46.76  (loss)
  *** Cory Sandhagen *** 
 ---
 ---
-Bankroll: 1114.37
-Nate Landwehr: -200 0.640 -0.08
-Austin Lingo: 170 0.360 -0.02
+Bankroll: 1079.94
+Nate Landwehr: -200 0.608 -0.18
+Austin Lingo: 170 0.392 0.03
 (no bet)
  *** Nate Landwehr *** 
 ---
 ---
-Bankroll: 1114.37
-Chidi Njokuani: -150 0.487 -0.28
-Albert Duraev: 130 0.513 0.14
-Albert Duraev $7.70 (bet) pt: $17.72 +$10.01  (win)
+Bankroll: 1079.94
+Chidi Njokuani: -150 0.522 -0.20
+Albert Duraev: 130 0.478 0.08
+(no bet)
  *** Albert Duraev *** 
 ---
-Bankroll: 1124.38
-Daniel Pineda: 230 0.579 0.40
-Tucker Lutz: -275 0.421 -1.17
-Daniel Pineda $22.29 (bet) pt: $73.56 +$51.27  (win)
+Bankroll: 1079.94
+Daniel Pineda: 230 0.520 0.31
+Tucker Lutz: -275 0.480 -0.95
+Daniel Pineda $32.40 (bet) pt: $106.91 +$74.52  (win)
  *** Daniel Pineda *** 
 ---
 ---
@@ -3985,34 +3985,34 @@ Preston Parsons: -110 0.471 -0.11
 Trevin Giles $0.65 (bet) pt: $1.24 +$0.59  (win)
  *** Trevin Giles *** 
 ---
-Bankroll: 1176.24
-CJ Vergara: -250 0.625 -0.31
-Daniel Lacerda: 210 0.375 0.08
+Bankroll: 1119.82
+CJ Vergara: -250 0.632 -0.29
+Daniel Lacerda: 210 0.368 0.07
 (no bet)
  *** CJ Vergara *** 
 ---
 ---
-Bankroll: 1176.24
-Alex Pereira: 115 0.524 0.11
-Israel Adesanya: -135 0.476 -0.23
-Alex Pereira $6.45 (bet) pt: $13.87 +$7.42  (loss)
+Bankroll: 1119.82
+Alex Pereira: 115 0.496 0.06
+Israel Adesanya: -135 0.504 -0.17
+(no bet)
  *** Israel Adesanya *** 
 ---
-Bankroll: 1169.79
-Gilbert Burns: -490 0.675 -0.91
-Jorge Masvidal: 390 0.325 0.15
+Bankroll: 1119.82
+Gilbert Burns: -490 0.774 -0.33
+Jorge Masvidal: 390 0.226 0.03
 (no bet)
  *** Gilbert Burns *** 
 ---
-Bankroll: 1169.79
-Rob Font: 155 0.478 0.14
-Adrian Yanez: -180 0.522 -0.34
+Bankroll: 1119.82
+Rob Font: 155 0.487 0.16
+Adrian Yanez: -180 0.513 -0.36
 (no bet)
  *** Rob Font *** 
 ---
-Bankroll: 1169.79
-Kevin Holland: -245 0.549 -0.56
-Santiago Ponzinibbio: 205 0.451 0.18
+Bankroll: 1119.82
+Kevin Holland: -245 0.542 -0.58
+Santiago Ponzinibbio: 205 0.458 0.19
 (no bet)
  *** Kevin Holland *** 
 ---
@@ -4021,18 +4021,18 @@ Santiago Ponzinibbio: 205 0.451 0.18
 ---
 ---
 ---
-Bankroll: 1169.79
-Ignacio Bahamondes: -345 0.700 -0.34
-Trey Ogden: 285 0.300 0.05
+Bankroll: 1119.82
+Ignacio Bahamondes: -345 0.638 -0.61
+Trey Ogden: 285 0.362 0.14
 (no bet)
  *** Ignacio Bahamondes *** 
 ---
 ---
 ---
-Bankroll: 1169.79
-Max Holloway: -155 0.447 -0.41
-Arnold Allen: 135 0.553 0.22
-Arnold Allen $12.99 (bet) pt: $30.53 +$17.54  (loss)
+Bankroll: 1119.82
+Max Holloway: -155 0.535 -0.18
+Arnold Allen: 135 0.465 0.07
+(no bet)
  *** Max Holloway *** 
 ---
 ---
@@ -4048,29 +4048,29 @@ Arnold Allen $12.99 (bet) pt: $30.53 +$17.54  (loss)
 ---
 ---
 ---
-Bankroll: 1156.80
-Sergei Pavlovich: 120 0.446 -0.02
-Curtis Blaydes: -140 0.554 -0.07
+Bankroll: 1119.82
+Sergei Pavlovich: 120 0.424 -0.06
+Curtis Blaydes: -140 0.576 -0.02
 (no bet)
  *** Sergei Pavlovich *** 
 ---
-Bankroll: 1156.80
-Brad Tavares: -165 0.583 -0.10
-Bruno Silva: 140 0.417 0.00
+Bankroll: 1119.82
+Brad Tavares: -165 0.537 -0.23
+Bruno Silva: 140 0.463 0.08
 (no bet)
  *** Bruno Silva *** 
 ---
-Bankroll: 1156.80
-Bobby Green: -260 0.471 -0.90
-Jared Gordon: 220 0.529 0.31
-Jared Gordon $18.19 (bet) pt: $58.22 +$40.03  (loss)
+Bankroll: 1119.82
+Bobby Green: -260 0.538 -0.66
+Jared Gordon: 220 0.462 0.22
+(no bet)
  ***  *** 
 ---
 ---
-Bankroll: 1138.61
-Jeremiah Wells: -110 0.620 0.20
-Matthew Semelsberger: -110 0.380 -0.30
-Jeremiah Wells $11.55 (bet) pt: $22.05 +$10.50  (win)
+Bankroll: 1119.82
+Jeremiah Wells: -110 0.562 0.08
+Matthew Semelsberger: -110 0.438 -0.18
+Jeremiah Wells $33.59 (bet) pt: $64.13 +$30.54  (win)
  *** Jeremiah Wells *** 
 ---
 Bankroll: 1149.11
@@ -4079,9 +4079,9 @@ Christos Giagos: 135 0.440 0.03
 (no bet)
  *** Christos Giagos *** 
 ---
-Bankroll: 1149.11
-Rani Yahya: 450 0.372 0.23
-Montel Jackson: -600 0.628 -1.60
+Bankroll: 1115.85
+Rani Yahya: 450 0.370 0.23
+Montel Jackson: -600 0.630 -1.59
 (no bet)
  *** Montel Jackson *** 
 ---
@@ -4089,65 +4089,65 @@ Montel Jackson: -600 0.628 -1.60
 ---
 ---
 ---
-Bankroll: 1149.11
-Song Yadong: 100 0.368 -0.26
-Ricky Simon: -120 0.632 0.19
-Ricky Simon $10.97 (bet) pt: $20.12 +$9.14  (loss)
+Bankroll: 1115.85
+Song Yadong: 100 0.373 -0.25
+Ricky Simon: -120 0.627 0.18
+Ricky Simon $33.48 (bet) pt: $61.37 +$27.90  (loss)
  *** Song Yadong *** 
 ---
-Bankroll: 1138.14
-Caio Borralho: -365 0.562 -1.04
-Michal Oleksiejczuk: 300 0.438 0.25
+Bankroll: 1082.37
+Caio Borralho: -365 0.567 -1.01
+Michal Oleksiejczuk: 300 0.433 0.24
 (no bet)
  *** Caio Borralho *** 
 ---
-Bankroll: 1138.14
-Rodolfo Vieira: -230 0.550 -0.49
-Cody Brundage: 195 0.450 0.17
+Bankroll: 1082.37
+Rodolfo Vieira: -230 0.639 -0.19
+Cody Brundage: 195 0.361 0.03
 (no bet)
  *** Rodolfo Vieira *** 
 ---
 ---
-Bankroll: 1138.14
-Marcos Rogerio de Lima: -190 0.588 -0.19
-Waldo Cortes-Acosta: 160 0.412 0.04
+Bankroll: 1082.37
+Marcos Rogerio de Lima: -190 0.636 -0.06
+Waldo Cortes-Acosta: 160 0.364 -0.03
 (no bet)
  *** Marcos Rogerio de Lima *** 
 ---
 ---
-Bankroll: 1138.14
-Martin Buday: -105 0.496 -0.03
-Jake Collier: -115 0.504 -0.07
-(no bet)
+Bankroll: 1082.37
+Martin Buday: -105 0.624 0.23
+Jake Collier: -115 0.376 -0.34
+Martin Buday $32.47 (bet) pt: $63.40 +$30.92  (win)
  *** Martin Buday *** 
 ---
-Bankroll: 1138.14
-Cody Durden: 120 0.623 0.31
-Charles Johnson: -140 0.377 -0.50
-Cody Durden $17.58 (bet) pt: $38.67 +$21.10  (win)
+Bankroll: 1113.30
+Cody Durden: 120 0.610 0.29
+Charles Johnson: -140 0.390 -0.46
+Cody Durden $33.40 (bet) pt: $73.48 +$40.08  (win)
  *** Cody Durden *** 
 ---
 ---
 ---
 ---
-Bankroll: 1159.23
-Aljamain Sterling: -110 0.578 0.11
-Henry Cejudo: -110 0.422 -0.21
-Aljamain Sterling $6.58 (bet) pt: $12.56 +$5.98  (win)
+Bankroll: 1153.38
+Aljamain Sterling: -110 0.718 0.41
+Henry Cejudo: -110 0.282 -0.51
+Aljamain Sterling $34.60 (bet) pt: $66.06 +$31.46  (win)
  *** Aljamain Sterling *** 
 ---
-Bankroll: 1165.21
-Belal Muhammad: 105 0.591 0.20
-Gilbert Burns: -125 0.409 -0.33
-Belal Muhammad $11.77 (bet) pt: $24.14 +$12.36  (win)
+Bankroll: 1184.83
+Belal Muhammad: 105 0.664 0.34
+Gilbert Burns: -125 0.336 -0.49
+Belal Muhammad $35.54 (bet) pt: $72.87 +$37.32  (win)
  *** Belal Muhammad *** 
 ---
 ---
 ---
-Bankroll: 1177.57
-Kron Gracie: 145 0.347 -0.10
-Charles Jourdain: -170 0.653 0.06
-Charles Jourdain $3.75 (bet) pt: $5.96 +$2.21  (win)
+Bankroll: 1222.15
+Kron Gracie: 145 0.350 -0.10
+Charles Jourdain: -170 0.650 0.06
+Charles Jourdain $36.66 (bet) pt: $58.23 +$21.57  (win)
  *** Charles Jourdain *** 
 ---
 Bankroll: 1179.78
@@ -4156,10 +4156,10 @@ Matt Frevola: 180 0.554 0.31
 Matt Frevola $18.04 (bet) pt: $50.50 +$32.46  (win)
  *** Matt Frevola *** 
 ---
-Bankroll: 1212.25
-Kennedy Nzechukwu: -180 0.725 0.23
-Devin Clark: 155 0.275 -0.19
-Kennedy Nzechukwu $13.95 (bet) pt: $21.71 +$7.75  (win)
+Bankroll: 1310.88
+Kennedy Nzechukwu: -180 0.692 0.14
+Devin Clark: 155 0.308 -0.14
+Kennedy Nzechukwu $39.33 (bet) pt: $61.17 +$21.85  (win)
  *** Kennedy Nzechukwu *** 
 ---
 ---
@@ -4167,89 +4167,89 @@ Kennedy Nzechukwu $13.95 (bet) pt: $21.71 +$7.75  (win)
 ---
 ---
 ---
-Bankroll: 1220.00
-Jairzinho Rozenstruik: 400 0.427 0.28
-Jailton Almeida: -500 0.573 -1.56
+Bankroll: 1332.73
+Jairzinho Rozenstruik: 400 0.361 0.20
+Jailton Almeida: -500 0.639 -1.17
 (no bet)
  *** Jailton Almeida *** 
 ---
-Bankroll: 1220.00
-Anthony Smith: -110 0.466 -0.12
-Johnny Walker: -110 0.534 0.02
-Johnny Walker $1.25 (bet) pt: $2.39 +$1.14  (win)
+Bankroll: 1332.73
+Anthony Smith: -110 0.517 -0.02
+Johnny Walker: -110 0.483 -0.08
+(no bet)
  *** Johnny Walker *** 
 ---
 ---
-Bankroll: 1221.13
-Carlos Ulberg: -425 0.757 -0.28
-Ihor Potieria: 340 0.243 0.02
+Bankroll: 1332.73
+Carlos Ulberg: -425 0.765 -0.23
+Ihor Potieria: 340 0.235 0.01
 (no bet)
  *** Carlos Ulberg *** 
 ---
-Bankroll: 1221.13
-Tim Means: 185 0.368 0.03
-Alex Morono: -215 0.632 -0.16
+Bankroll: 1332.73
+Tim Means: 185 0.399 0.07
+Alex Morono: -215 0.601 -0.26
 (no bet)
  *** Alex Morono *** 
 ---
-Bankroll: 1221.13
-Matt Brown: 185 0.516 0.25
-Court McGee: -215 0.484 -0.62
-Matt Brown $15.51 (bet) pt: $44.21 +$28.70  (win)
+Bankroll: 1332.73
+Matt Brown: 185 0.502 0.23
+Court McGee: -215 0.498 -0.58
+Matt Brown $39.98 (bet) pt: $113.95 +$73.97  (win)
  *** Matt Brown *** 
 ---
 ---
-Bankroll: 1249.83
-Cody Stamann: -155 0.594 -0.04
-Douglas Silva de Andrade: 135 0.406 -0.03
+Bankroll: 1406.70
+Cody Stamann: -155 0.595 -0.03
+Douglas Silva de Andrade: 135 0.405 -0.04
 (no bet)
  *** Douglas Silva de Andrade *** 
 ---
 ---
-Bankroll: 1249.83
-Bryan Battle: 115 0.543 0.15
-Gabe Green: -135 0.457 -0.28
-Bryan Battle $9.15 (bet) pt: $19.68 +$10.53  (win)
+Bankroll: 1406.70
+Bryan Battle: 115 0.520 0.10
+Gabe Green: -135 0.480 -0.22
+Bryan Battle $42.20 (bet) pt: $90.73 +$48.53  (win)
  *** Bryan Battle *** 
 ---
 ---
 ---
 ---
 ---
-Bankroll: 1260.36
-Andre Fialho: 190 0.386 0.06
-Joaquin Buckley: -225 0.614 -0.25
+Bankroll: 1455.23
+Andre Fialho: 190 0.396 0.08
+Joaquin Buckley: -225 0.604 -0.29
 (no bet)
  *** Joaquin Buckley *** 
 ---
-Bankroll: 1260.36
-Diego Ferreira: -155 0.582 -0.07
-Michael Johnson: 135 0.418 -0.01
-(no bet)
+Bankroll: 1455.23
+Diego Ferreira: -155 0.623 0.04
+Michael Johnson: 135 0.377 -0.08
+Diego Ferreira $43.66 (bet) pt: $71.82 +$28.17  (win)
  *** Diego Ferreira *** 
 ---
 ---
 ---
 ---
-Bankroll: 1260.36
-Ilir Latifi: 180 0.502 0.23
-Rodrigo Nascimento: -210 0.498 -0.56
-Ilir Latifi $14.25 (bet) pt: $39.89 +$25.64  (loss)
+Bankroll: 1483.39
+Ilir Latifi: 180 0.494 0.21
+Rodrigo Nascimento: -210 0.506 -0.53
+(no bet)
  *** Rodrigo Nascimento *** 
 ---
 ---
 ---
 ---
-Bankroll: 1246.11
-Kai Kara-France: -110 0.412 -0.23
-Amir Albazi: -110 0.588 0.13
-Amir Albazi $8.38 (bet) pt: $16.00 +$7.62  (win)
+Bankroll: 1483.39
+Kai Kara-France: -110 0.497 -0.06
+Amir Albazi: -110 0.503 -0.04
+(no bet)
  *** Amir Albazi *** 
 ---
-Bankroll: 1253.73
-Alex Caceres: -180 0.624 -0.05
-Daniel Pineda: 155 0.376 -0.03
-(no bet)
+Bankroll: 1483.39
+Alex Caceres: -180 0.678 0.10
+Daniel Pineda: 155 0.322 -0.12
+Alex Caceres $44.50 (bet) pt: $69.22 +$24.72  (win)
  *** Alex Caceres *** 
 ---
 ---
@@ -4260,22 +4260,22 @@ Victor Altamirano $18.93 (bet) pt: $48.27 +$29.34  (loss)
  *** Tim Elliott *** 
 ---
 ---
-Bankroll: 1234.80
-Abubakar Nurmagomedov: -115 0.501 -0.07
-Elizeu Zaleski dos Santos: -105 0.499 -0.03
+Bankroll: 1462.87
+Abubakar Nurmagomedov: -115 0.512 -0.05
+Elizeu Zaleski dos Santos: -105 0.488 -0.05
 (no bet)
  *** Elizeu Zaleski dos Santos *** 
 ---
-Bankroll: 1234.80
-Daniel Santos: -215 0.422 -0.82
-Johnny Munoz: 185 0.578 0.35
-Johnny Munoz $21.59 (bet) pt: $61.54 +$39.95  (loss)
+Bankroll: 1462.87
+Daniel Santos: -215 0.433 -0.79
+Johnny Munoz: 185 0.567 0.33
+Johnny Munoz $43.89 (bet) pt: $125.08 +$81.19  (loss)
  *** Daniel Santos *** 
 ---
-Bankroll: 1213.21
-Andrei Arlovski: 115 0.660 0.36
-Don'Tale Mayes: -135 0.340 -0.55
-Andrei Arlovski $22.11 (bet) pt: $47.53 +$25.42  (loss)
+Bankroll: 1418.99
+Andrei Arlovski: 115 0.568 0.19
+Don'Tale Mayes: -135 0.432 -0.33
+Andrei Arlovski $42.57 (bet) pt: $91.52 +$48.96  (loss)
  *** Don'Tale Mayes *** 
 ---
 ---
@@ -4284,10 +4284,10 @@ Andrei Arlovski $22.11 (bet) pt: $47.53 +$25.42  (loss)
 ---
 ---
 ---
-Bankroll: 1191.10
-Charles Oliveira: 125 0.309 -0.24
-Beneil Dariush: -145 0.691 0.24
-Beneil Dariush $14.41 (bet) pt: $24.35 +$9.94  (loss)
+Bankroll: 1376.42
+Charles Oliveira: 125 0.328 -0.21
+Beneil Dariush: -145 0.672 0.20
+Beneil Dariush $41.29 (bet) pt: $69.77 +$28.48  (loss)
  *** Charles Oliveira *** 
 ---
 Bankroll: 1176.69
@@ -4302,46 +4302,46 @@ Nate Landwehr: 220 0.505 0.28
 Nate Landwehr $16.51 (bet) pt: $52.84 +$36.33  (loss)
  *** Dan Ige *** 
 ---
-Bankroll: 1160.17
-Marc-Andre Barriault: -135 0.600 0.06
-Eryk Anders: 115 0.400 -0.12
-Marc-Andre Barriault $3.54 (bet) pt: $6.16 +$2.62  (win)
+Bankroll: 1314.02
+Marc-Andre Barriault: -135 0.568 -0.01
+Eryk Anders: 115 0.432 -0.06
+(no bet)
  *** Marc-Andre Barriault *** 
 ---
-Bankroll: 1162.79
-Nassourdine Imavov: -155 0.651 0.11
-Chris Curtis: 135 0.349 -0.13
-Nassourdine Imavov $6.34 (bet) pt: $10.43 +$4.09  (loss)
+Bankroll: 1314.02
+Nassourdine Imavov: -155 0.657 0.13
+Chris Curtis: 135 0.343 -0.14
+Nassourdine Imavov $39.42 (bet) pt: $64.85 +$25.43  (loss)
  ***  *** 
 ---
 ---
-Bankroll: 1156.46
-Aiemann Zahabi: 100 0.628 0.26
-Aoriqileng: -120 0.372 -0.38
-Aiemann Zahabi $14.84 (bet) pt: $29.68 +$14.84  (win)
+Bankroll: 1274.60
+Aiemann Zahabi: 100 0.592 0.18
+Aoriqileng: -120 0.408 -0.30
+Aiemann Zahabi $38.24 (bet) pt: $76.48 +$38.24  (win)
  *** Aiemann Zahabi *** 
 ---
 ---
 ---
 ---
-Bankroll: 1171.29
-Marvin Vettori: -125 0.752 0.44
-Jared Cannonier: 105 0.248 -0.47
-Marvin Vettori $25.90 (bet) pt: $46.61 +$20.72  (loss)
+Bankroll: 1312.84
+Marvin Vettori: -125 0.720 0.37
+Jared Cannonier: 105 0.280 -0.41
+Marvin Vettori $39.39 (bet) pt: $70.89 +$31.51  (loss)
  *** Jared Cannonier *** 
 ---
-Bankroll: 1145.40
-Arman Tsarukyan: -1050 0.797 -1.33
-Joaquim Silva: 700 0.203 0.09
+Bankroll: 1273.45
+Arman Tsarukyan: -1050 0.752 -1.85
+Joaquim Silva: 700 0.248 0.14
 (no bet)
  *** Arman Tsarukyan *** 
 ---
 ---
 ---
 ---
-Bankroll: 1145.40
-Nicolas Dalby: 155 0.358 -0.06
-Muslim Salikhov: -180 0.642 -0.00
+Bankroll: 1273.45
+Nicolas Dalby: 155 0.378 -0.02
+Muslim Salikhov: -180 0.622 -0.06
 (no bet)
  *** Nicolas Dalby *** 
 ---
@@ -4349,10 +4349,10 @@ Muslim Salikhov: -180 0.642 -0.00
 ---
 ---
 ---
-Bankroll: 1145.40
-Dan Argueta: 160 0.677 0.47
-Ronnie Lawrence: -190 0.323 -0.96
-Dan Argueta $27.18 (bet) pt: $70.66 +$43.48  (loss)
+Bankroll: 1273.45
+Dan Argueta: 160 0.689 0.49
+Ronnie Lawrence: -190 0.311 -1.00
+Dan Argueta $38.20 (bet) pt: $99.33 +$61.13  (loss)
  ***  *** 
 ---
 Bankroll: 1118.22
@@ -4361,16 +4361,16 @@ Modestas Bukauskas: -195 0.501 -0.47
 (no bet)
  *** Modestas Bukauskas *** 
 ---
-Bankroll: 1118.22
-Josh Emmett: 285 0.335 0.10
-Ilia Topuria: -345 0.665 -0.49
+Bankroll: 1198.19
+Josh Emmett: 285 0.405 0.20
+Ilia Topuria: -345 0.595 -0.80
 (no bet)
  *** Ilia Topuria *** 
 ---
 ---
 ---
 ---
-Bankroll: 1118.22
+Bankroll: 1198.19
 Brendan Allen: -190 0.669 0.04
 Bruno Silva: 160 0.331 -0.09
 Brendan Allen $2.28 (bet) pt: $3.48 +$1.20  (win)
@@ -4382,9 +4382,9 @@ Phil Rowe: 140 0.469 0.09
 (no bet)
  *** Neil Magny *** 
 ---
-Bankroll: 1119.42
-Randy Brown: -230 0.688 -0.03
-Wellington Turman: 195 0.312 -0.04
+Bankroll: 1180.60
+Randy Brown: -230 0.674 -0.07
+Wellington Turman: 195 0.326 -0.02
 (no bet)
  *** Randy Brown *** 
 ---
@@ -4395,24 +4395,24 @@ Wellington Turman: 195 0.312 -0.04
 ---
 ---
 ---
-Bankroll: 1119.42
-Damir Ismagulov: -145 0.438 -0.38
-Grant Dawson: 125 0.562 0.21
-Grant Dawson $11.80 (bet) pt: $26.56 +$14.76  (win)
+Bankroll: 1180.60
+Damir Ismagulov: -145 0.439 -0.37
+Grant Dawson: 125 0.561 0.21
+Grant Dawson $35.42 (bet) pt: $79.69 +$44.27  (win)
  *** Grant Dawson *** 
 ---
-Bankroll: 1134.18
-Max Griffin: 170 0.353 -0.03
-Michael Morales: -200 0.647 -0.06
+Bankroll: 1224.87
+Max Griffin: 170 0.450 0.13
+Michael Morales: -200 0.550 -0.35
 (no bet)
  *** Michael Morales *** 
 ---
 ---
 ---
 ---
-Bankroll: 1134.18
-Kevin Lee: 190 0.463 0.18
-Rinat Fakhretdinov: -225 0.537 -0.51
+Bankroll: 1224.87
+Kevin Lee: 190 0.310 -0.05
+Rinat Fakhretdinov: -225 0.690 -0.01
 (no bet)
  *** Rinat Fakhretdinov *** 
 ---
@@ -4421,9 +4421,9 @@ Rinat Fakhretdinov: -225 0.537 -0.51
 ---
 ---
 ---
-Bankroll: 1134.18
-Alexander Volkanovski: -380 0.738 -0.26
-Yair Rodriguez: 290 0.262 0.01
+Bankroll: 1224.87
+Alexander Volkanovski: -380 0.762 -0.14
+Yair Rodriguez: 290 0.238 -0.02
 (no bet)
  *** Alexander Volkanovski *** 
 ---
@@ -5217,4 +5217,4 @@ Lucas Almeida: 140 0.400 -0.03
  *** Andre Fili *** 
 ---
 ---
-Bankroll: 1186.03
+Bankroll: 1188.58
