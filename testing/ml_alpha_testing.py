@@ -25,7 +25,7 @@ def main(split_date = "2021-01-01"):    # Step 1: Read the data
     df["Result"] = label_encoder.fit_transform(df["Result"])
     selected_columns = df.columns.tolist()
 
-    columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date"]
+    columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date", "Red age", "Blue age", "Red avg age", "Blue avg age", "age oppdiff", "avg age oppdiff"]
     selected_columns = [col for col in selected_columns if col not in columns_to_remove]
 
     corr_matrix = df[selected_columns].corr().abs()
