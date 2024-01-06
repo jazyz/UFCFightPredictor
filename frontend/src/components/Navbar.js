@@ -10,8 +10,8 @@ const Navbar = () => {
             <Link to="/">betUFC Predictor</Link>
           </div>
           <div className="space-x-4">
-            <Link to="/about" className="text-white">
-              About
+            <Link to="/predict" className="text-white">
+              Predict
             </Link>
             <Link to="/bets" className="text-white">
               Bets
