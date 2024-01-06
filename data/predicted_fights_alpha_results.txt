@@ -1,0 +1,17 @@
+fighter_names
+0    Rob Font*Cory Sandhagen
+1    Cory Sandhagen*Rob Font
+dtype: object
+Rob Font Cory Sandhagen
+[0.05, 0.05, 0.01]
+Extended Test Set Accuracy: 0.6268
+done
+Extended Test Set Accuracy: 0.6067
+done
+1151.1014350467017
+[0.05, 0.05, 0.015]
+Extended Test Set Accuracy: 0.6268
+done
+Extended Test Set Accuracy: 0.6067
+done
+1227.346460519359

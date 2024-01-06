@@ -164,7 +164,9 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
                     bet = bankroll * flat
                 bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
             else:
-                test.write(f"(no bet)")
+                bet = bankroll * flat
+                bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
+                # test.write(f"(no bet)")
                 
             test.write("\n")
         test.write(f" *** {winner_name} *** \n")
