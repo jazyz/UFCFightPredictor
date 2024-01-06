@@ -53,7 +53,7 @@ def main():
     # X = pd.get_dummies(X)  # This line is optional and depends on your data
 
     # Manual split based on percentage
-    split_index = int(len(df) * 0.9)
+    split_index = int(len(df) * 0.95)
     last_index = int(len(df) * 1)
     X_train, X_test = X[:split_index], X[split_index:last_index]
     y_train, y_test = y[:split_index], y[split_index:last_index]
