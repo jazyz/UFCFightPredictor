@@ -247,7 +247,7 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
 
                     fraction = 0.05
                     max_fraction = 0.05
-                    flat = 0.000
+                    flat = 0.01
                     totalPredictions += 1
                     if a_win > b_win:
                         if winner_name == fighter1_name:
@@ -256,7 +256,7 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
                         if (kc_a > 0):
                             bet = bankroll * fraction * kc_a
                             bet = min(bet,max_fraction*bankroll)
-                            # bet=10
+                            bet = bankroll * flat
                             cardBet+=bet
                             nextBankroll+=processBet(bet, fighter1_name, fighter1_odds)
                         else:
@@ -271,7 +271,7 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
                         if (kc_b > 0):
                             bet = bankroll * fraction * kc_b
                             bet = min(bet,max_fraction*bankroll)
-                            # bet=10
+                            bet = bankroll * flat
                             cardBet+=bet
                             nextBankroll+=processBet(bet, fighter2_name, fighter2_odds)
                         else:
