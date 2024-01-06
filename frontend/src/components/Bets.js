@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import raw from "../constants/predictions.txt";
 
-const Results = () => {
+const Bets = () => {
   let predictions = [];
   const [results, setResults] = useState(null);
   fetch(raw)
@@ -15,11 +15,12 @@ const Results = () => {
   return (
     <div className="container mx-auto mt-8">
       <h2 className="text-2xl font-semibold mb-4">
-        Results from UFC Predictor
+        Bets from UFC Predictor
       </h2>
+      <p className="text-md mb-4">Paper bets placed starting from September 16, 2023.</p>
       <pre className="text-wrap">{results}</pre>
     </div>
   );
 };
 
-export default Results;
+export default Bets;
