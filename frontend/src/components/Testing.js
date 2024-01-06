@@ -11,7 +11,7 @@ const Testing = () => {
   const [selectedRow1, setSelectedRow1] = useState(null);
   const [selectedRow2, setSelectedRow2] = useState(null);
   const row1Buttons = ["Conservative", "Normal", "Risky"];
-  const row2Buttons = ["Kelly Criterion", "Flat", "No Limit"];
+  const row2Buttons = ["Kelly Criterion", "Flat"];
 
   const handleButtonClick = (row, buttonIndex) => {
     if (row === 1) {
