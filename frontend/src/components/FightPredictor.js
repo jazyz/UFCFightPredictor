@@ -12,6 +12,17 @@ const FightPredictor = ({ nameOptions }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showAdvancedStats, setShowAdvancedStats] = useState(false);
 
+  const calculateAge = (dob) => {
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  };
+
   const toggleAdvancedStats = () => {
     setShowAdvancedStats(!showAdvancedStats);
   };
@@ -102,14 +113,14 @@ const FightPredictor = ({ nameOptions }) => {
                 <h3 className="text-xl font-semibold mb-2">
                   {fighter1_stats.Fighter}
                 </h3>
-                <p>Age: {fighter1_stats.dob}</p>
+                <p>Age: {fighter1_stats && calculateAge(fighter1_stats.dob)}</p>
                 <p>ELO: {parseFloat(fighter1_stats.elo).toFixed(2)}</p>
               </div>
               <div className="flex flex-col">
                 <h3 className="text-xl font-semibold mb-2">
                   {fighter2_stats.Fighter}
                 </h3>
-                <p>Age: {fighter2_stats.dob}</p>
+                <p>Age: {fighter2_stats && calculateAge(fighter2_stats.dob)}</p>
                 <p>ELO: {parseFloat(fighter2_stats.elo).toFixed(2)}</p>
               </div>
             </div>

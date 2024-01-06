@@ -6,6 +6,6 @@ The new and improved UFC AI model is consistently averaging around $100 profit o
 
 ## How to Use betUFC
 
-To predict the outcome of a fight, enter the names of 2 different fighters into the UFC Fight Predictor. Behind the scenes, the model will be trained and the result will be shown on screen. 
+To predict the outcome of a fight, enter the names of 2 different fighters into the UFC Fight Predictor. Behind the scenes, the model will be trained and the result will be shown on screen. The model does not take into account weight classes, so please enter 2 fighters in the same weight class for accuracy. The statistics of each fighter are up to date to what is currently available from ufcstats.com.
 
-To test the model on past UFC events, visit the testing page and enter the start year and end year. We will then simulate bets using the predicted results that the model gives us, making sure to only use data obtained before the time of each fight.
+To test the model on past UFC events, visit the testing page and enter the start year and end year. We will then simulate bets using the predicted results that the model gives us, making sure to only use data obtained before the time of each fight. The bankroll after each bet will be plotted at the top, and you can view the predictions below.

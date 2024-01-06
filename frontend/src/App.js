@@ -4,9 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import FightPredictor from './components/FightPredictor';
 import About from './components/About';
-import Results from './components/Results';
+import Bets from './components/Bets';
 import Testing from './components/Testing';
-import FightersPage from './components/FightersPage'; // Import the FightersPage
 import axios from 'axios';
 import { baseURL } from './constants';
 import { ToastContainer, toast } from 'react-toastify';
@@ -34,7 +33,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<FightPredictor nameOptions={nameOptions} />} />
         <Route path="/about" element={<About />} />
-        <Route path="/results" element={<Results />} />
+        <Route path="/bets" element={<Bets />} />
         <Route path="/testing" element={<Testing />} />
       </Routes>
       <ToastContainer />
