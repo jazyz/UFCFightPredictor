@@ -8,8 +8,8 @@ const Testing = () => {
   const [results, setResults] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
-  const [selectedRow1, setSelectedRow1] = useState(null);
-  const [selectedRow2, setSelectedRow2] = useState(null);
+  const [selectedRow1, setSelectedRow1] = useState(1);
+  const [selectedRow2, setSelectedRow2] = useState(0);
   const row1Buttons = ["Conservative", "Normal", "Risky"];
   const row2Buttons = ["Kelly Criterion", "Flat"];
   const [strategy, setStrategy] = useState([0.05, 0.05, 0]);
@@ -30,14 +30,14 @@ const Testing = () => {
       setSelectedRow1(buttonIndex);
       updatedStrategy[0] = [0.025, 0.05, 0.1][buttonIndex];
       if (selectedRow2 === 1) {
-        updatedStrategy[2] = 0.005 * (buttonIndex + 1) + 0.005;
+        updatedStrategy[2] = 0.005 * buttonIndex + 0.005;
       } else {
         updatedStrategy[2] = 0;
       }
     } else if (row === 2) {
       setSelectedRow2(buttonIndex);
       if (buttonIndex === 1) {
-        updatedStrategy[2] = 0.005 * (selectedRow1 + 1) + 0.005;
+        updatedStrategy[2] = 0.005 * selectedRow1 + 0.005;
       } else {
         updatedStrategy[2] = 0;
       }
@@ -88,7 +88,10 @@ const Testing = () => {
   return (
     <div className="container mx-auto mt-8">
       <h2 className="text-2xl font-semibold mb-4">Testing UFC Predictor</h2>
-      <p className="text-md mb-4">Note that testing may take a while, since the model retrains every 6 months of fights.</p>
+      <p className="text-md mb-4">
+        Note that testing may take a while, since the model retrains every 6
+        months of fights.
+      </p>
       <div className="flex row">
         <div className="bg-white p-8 shadow-md rounded-lg w-96 mr-8">
           <h2 className="text-2xl font-semibold mb-4">UFC Fight Predictor</h2>
