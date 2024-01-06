@@ -165,6 +165,53 @@ Bankroll: 1389.00
 ------ RESULT ------
 Bankroll: 1173.66
 ------ RESULT ------
+<<<<<<< HEAD
+Bankroll: 1004.04
+------ RESULT ------
+Bankroll: 1004.04
+------ RESULT ------
+Bankroll: 1120.49
+------ RESULT ------
+Bankroll: 1016.57
+------ RESULT ------
+Bankroll: 1016.57
+------ RESULT ------
+Bankroll: 1321.19
+------ RESULT ------
+Bankroll: 1173.66
+------ RESULT ------
+Bankroll: 1574.91
+------ RESULT ------
+Bankroll: 1333.35
+------ RESULT ------
+Bankroll: 0.00
+------ RESULT ------
+Bankroll: 0.00
+------ RESULT ------
+Bankroll: 1333.35
+------ RESULT ------
+Bankroll: 1333.35
+------ RESULT ------
+Bankroll: 103.26
+------ RESULT ------
+Bankroll: 103.26
+------ RESULT ------
+Bankroll: 103.26
+------ RESULT ------
+Bankroll: 745.64
+------ RESULT ------
+Bankroll: 1048.34
+------ RESULT ------
+Bankroll: 1080.10
+------ RESULT ------
+Bankroll: 1066.40
+------ RESULT ------
+Bankroll: 1080.10
+------ RESULT ------
+Bankroll: 1048.34
+------ RESULT ------
+Bankroll: 1048.34
+=======
 Bankroll: 1123.51
 ------ RESULT ------
 Bankroll: 1123.51
@@ -180,6 +227,7 @@ Bankroll: 1097.75
 Bankroll: 1162.65
 ------ RESULT ------
 Bankroll: 1188.58
+>>>>>>> 94699b124fed8663196ea53d6448661c63be6097
 ------ RESULT ------
 Bankroll: 1207.81
 ------ RESULT ------

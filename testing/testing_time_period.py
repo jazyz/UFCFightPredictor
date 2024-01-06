@@ -151,9 +151,9 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
                     bet = bankroll * flat
                 bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
             else:
-                # bet = bankroll * flat
-                # bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
-                test.write(f"(no bet)")
+                bet = bankroll * flat
+                bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
+                # test.write(f"(no bet)")
             test.write("\n")
         else:
 
@@ -172,7 +172,7 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
         bankrolls.append(bankroll)
     return
     
-def find_fights(start_date, end_date, last_training_date):
+def find_fights(start_date, end_date, last_training_date, strategy):
     # Convert start_date and end_date from 'YYYY-MM-DD' to datetime objects
     start_date = datetime.strptime(start_date, '%Y-%m-%d')
     end_date = datetime.strptime(end_date, '%Y-%m-%d')
@@ -189,12 +189,13 @@ def find_fights(start_date, end_date, last_training_date):
                     last_training_date = event_date
                     train_ml(last_training_date.strftime('%Y-%m-%d'))
                     preload_ml_predictions()
-                process_fight(row)
+                process_fight(row, strategy)
 
 def train_ml(start_date):
     main(start_date)
 
-def process_dates(start_date, end_date):
+def process_dates(start_date, end_date, strategy):
+    print(strategy)
     global bankroll, bankrolls
     bankroll = 1000
     bankrolls = []
@@ -207,7 +208,7 @@ def process_dates(start_date, end_date):
     train_ml(split_date)
     preload_ml_predictions()
     
-    find_fights(start_date, end_date, last_training_date)  # Pass the last training date
+    find_fights(start_date, end_date, last_training_date, strategy)  # Pass the last training date
     
     with open(os.path.join("test_results", "testing_time_period.txt"), "a") as test:
         test.write(f"Bankroll: {bankroll:.2f}\n")
