@@ -88,6 +88,7 @@ const Testing = () => {
   return (
     <div className="container mx-auto mt-8">
       <h2 className="text-2xl font-semibold mb-4">Testing UFC Predictor</h2>
+      <p className="text-md mb-4">Note that testing may take a while, since the model retrains every 6 months of fights.</p>
       <div className="flex row">
         <div className="bg-white p-8 shadow-md rounded-lg w-96 mr-8">
           <h2 className="text-2xl font-semibold mb-4">UFC Fight Predictor</h2>
