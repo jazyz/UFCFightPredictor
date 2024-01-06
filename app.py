@@ -21,6 +21,7 @@ def get_all_fighter_names():
     fighter_names = []
     for row in data:
         fighter_names.append(row['Fighter'])
+    # print(fighter_names)
     return jsonify(fighter_names)
 
 @app.route("/predict", methods=["POST"])
