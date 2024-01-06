@@ -229,4 +229,4 @@ def plot_bankrolls():
     plt.savefig(os.path.join("data", "bankroll_plot.png"))  # Save the plot as an image file
     plt.close()  # Close the plot
 
-#process_dates('2021-01-01', '2024-01-01')
+# process_dates('2021-01-01', '2024-01-01')

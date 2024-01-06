@@ -28,27 +28,20 @@ def main():
     df["Result"] = label_encoder.fit_transform(df["Result"])
 
     selected_columns = df.columns.tolist()
+    
+    def prune_features(selected_columns):
+        columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date"]
+        selected_columns = [col for col in selected_columns if col not in columns_to_remove]
+        corr_matrix = df[selected_columns].corr().abs()
+        upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
+        to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
+        df.drop(to_drop, axis=1, inplace=True)
+        selected_columns = [column for column in selected_columns if column not in to_drop]
+        selected_columns.append("Date")
+        return selected_columns
 
-    columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date"]
-    selected_columns = [col for col in selected_columns if col not in columns_to_remove]
-
-    corr_matrix = df[selected_columns].corr().abs()
-
-    # Select upper triangle of correlation matrix
-    upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
-
-    # Find features with correlation greater than 95%
-    to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
-
-    # Drop highly correlated features
-    df.drop(to_drop, axis=1, inplace=True)
-
-    # Make sure to update the 'selected_columns' to reflect the dropped columns
-    selected_columns = [column for column in selected_columns if column not in to_drop]
-    selected_columns.append("Date")
-        
+    selected_columns = prune_features(selected_columns)
     df = df[selected_columns]
-
     df["Date"] = pd.to_datetime(df["Date"])
     df.sort_values(by="Date", inplace=True)
 
@@ -160,19 +153,21 @@ def main():
 
         return best_score
 
-    study = optuna.create_study(direction="minimize")
-    study.optimize(objective, n_trials=10)
+    def run_study():
+        study = optuna.create_study(direction="minimize")
+        study.optimize(objective, n_trials=10)
 
-    best_params = study.best_params
-    best_score = study.best_value
+        best_params = study.best_params
+        best_score = study.best_value
 
-    print(f"Best params: {best_params}")
-    print(f"Best score: {best_score}")
+        print(f"Best params: {best_params}")
+        print(f"Best score: {best_score}")
 
-    with open("data/best_params.json", "w") as file:
-        data_to_save = {"best_params": best_params, "best_score": best_score}
-        json.dump(data_to_save, file, indent=4)
+        with open("data/best_params.json", "w") as file:
+            data_to_save = {"best_params": best_params, "best_score": best_score}
+            json.dump(data_to_save, file, indent=4)
 
+    run_study()
     with open("data/best_params.json", "r") as file:
         data_loaded = json.load(file)
 
@@ -194,44 +189,46 @@ def main():
     print(f"Log Loss: {logloss:.4f}")
 
     # Get the fighter names and actual results for the test set
-    df_with_details = pd.read_csv(file_path)[
-        ["Red Fighter", "Blue Fighter", "Result", "Date"]
-    ]
-    df_with_details["Date"] = pd.to_datetime(df_with_details["Date"])
-    df_with_details.sort_values(by="Date", inplace=True)
-    df_with_details = df_with_details[df_with_details["Date"] >= split_date]
-    df_with_details.reset_index(drop=True, inplace=True)
-    df_with_details["Result"] = label_encoder.fit_transform(df_with_details["Result"])
+    def print_results():
+        df_with_details = pd.read_csv(file_path)[
+            ["Red Fighter", "Blue Fighter", "Result", "Date"]
+        ]
+        df_with_details["Date"] = pd.to_datetime(df_with_details["Date"])
+        df_with_details.sort_values(by="Date", inplace=True)
+        df_with_details = df_with_details[df_with_details["Date"] >= split_date]
+        df_with_details.reset_index(drop=True, inplace=True)
+        df_with_details["Result"] = label_encoder.fit_transform(df_with_details["Result"])
 
-    # Convert the predicted and actual results back to the original labels if necessary.
-    predicted_labels = label_encoder.inverse_transform(y_pred)
-    actual_labels = label_encoder.inverse_transform(df_with_details["Result"])
+        # Convert the predicted and actual results back to the original labels if necessary.
+        predicted_labels = label_encoder.inverse_transform(y_pred)
+        actual_labels = label_encoder.inverse_transform(df_with_details["Result"])
 
-    with open(
-        os.path.join("data", "predicted_results.csv"), mode="w", newline=""
-    ) as file:
-        writer = csv.writer(file)
-        writer.writerow(
-            [
-                "Red Fighter",
-                "Blue Fighter",
-                "Predicted Result",
-                "Probability",
-                "Actual Result",
-            ]
-        )
-        for i in range(len(predicted_labels)):
-            max_probability = max(predicted_probabilities[i])
-
+        with open(
+            os.path.join("data", "predicted_results.csv"), mode="w", newline=""
+        ) as file:
+            writer = csv.writer(file)
             writer.writerow(
                 [
-                    df_with_details["Red Fighter"].iloc[i],
-                    df_with_details["Blue Fighter"].iloc[i],
-                    predicted_labels[i],
-                    max_probability,  # Formatting as a percentage
-                    actual_labels[i],
+                    "Red Fighter",
+                    "Blue Fighter",
+                    "Predicted Result",
+                    "Probability",
+                    "Actual Result",
                 ]
             )
+            for i in range(len(predicted_labels)):
+                max_probability = max(predicted_probabilities[i])
+
+                writer.writerow(
+                    [
+                        df_with_details["Red Fighter"].iloc[i],
+                        df_with_details["Blue Fighter"].iloc[i],
+                        predicted_labels[i],
+                        max_probability,  # Formatting as a percentage
+                        actual_labels[i],
+                    ]
+                )
+    print_results()
 
     feature_importances = model.feature_importances_
 
@@ -243,12 +240,12 @@ def main():
         "Importance", ascending=False
     )
 
-    # plt.figure(figsize=(10, 6))
-    # plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
-    # plt.xlabel("Importance")
-    # plt.ylabel("Feature")
-    # plt.title("Feature Importance")
-    # plt.show()
+    plt.figure(figsize=(10, 6))
+    plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
+    plt.xlabel("Importance")
+    plt.ylabel("Feature")
+    plt.title("Feature Importance")
+    plt.show()
 
     print("Top 10 Important Features:")
     print(feature_importance_df.head(10))
