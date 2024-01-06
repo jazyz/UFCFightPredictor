@@ -38,6 +38,8 @@ const Testing = () => {
       setSelectedRow2(buttonIndex);
       if (buttonIndex === 1) {
         updatedStrategy[2] = 0.005 * (selectedRow1 + 1) + 0.005;
+      } else {
+        updatedStrategy[2] = 0;
       }
     }
     console.log(updatedStrategy);
