@@ -28,7 +28,7 @@ const Testing = () => {
     let updatedStrategy = [...strategy];
     if (row === 1) {
       setSelectedRow1(buttonIndex);
-      updatedStrategy[0] = [0.05, 0.1, 0.2][buttonIndex];
+      updatedStrategy[0] = [0.025, 0.05, 0.1][buttonIndex];
       if (selectedRow2 === 1) {
         updatedStrategy[2] = 0.005 * (buttonIndex + 1) + 0.005;
       } else {
