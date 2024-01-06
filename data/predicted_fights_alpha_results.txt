@@ -1,0 +1,207 @@
+fighter_names
+0    Conor McGregor*Jon Jones
+1    Jon Jones*Conor McGregor
+dtype: object
+    Result  Red dob  Blue dob  Red totalfights  Blue totalfights      Red elo  \
+0  unknown     1988      1987               14                23  1101.823992   
+1  unknown     1987      1988               23                14  1260.814135   
+
+      Blue elo  Red losestreak  Blue losestreak  Red winstreak  \
+0  1260.814135               2                0              0   
+1  1101.823992               0                2             18   
+
+   Blue winstreak  Red titlewins  Blue titlewins    Red oppelo   Blue oppelo  \
+0              18              3              15  15295.556690  24741.710357   
+1               0             15               3  24741.710357  15295.556690   
+
+   Red wins  Blue wins  Red losses  Blue losses    Red KD   Blue KD  \
+0        10         21           4            1  0.500947  0.011537   
+1        21         10           1            4  0.011537  0.500947   
+
+   Red KD differential  Blue KD differential  Red Sig. str.  Blue Sig. str.  \
+0             0.500947              0.011537       9.054649        4.251520   
+1             0.011537              0.500947       4.251520        9.054649   
+
+   Red Sig. str. differential  Blue Sig. str. differential  Red Total str.  \
+0                    9.054649                     4.251520       11.078505   
+1                    4.251520                     9.054649        5.349705   
+
+   Blue Total str.  Red Total str. differential  Blue Total str. differential  \
+0         5.349705                    11.078505                      5.349705   
+1        11.078505                     5.349705                     11.078505   
+
+     Red Td   Blue Td  Red Td differential  Blue Td differential  \
+0  0.003222  0.217544             0.003222              0.217544   
+1  0.217544  0.003222             0.217544              0.003222   
+
+   Red Sub. att  Blue Sub. att  Red Sub. att differential  \
+0      0.038621       0.074126                   0.038621   
+1      0.074126       0.038621                   0.074126   
+
+   Blue Sub. att differential  Red Rev.  Blue Rev.  Red Rev. differential  \
+0                    0.074126  0.006854   0.000000               0.006854   
+1                    0.038621  0.000000   0.006854               0.000000   
+
+   Blue Rev. differential  Red Ctrl  Blue Ctrl  Red Ctrl differential  \
+0                0.000000  0.107443   0.252888               0.107443   
+1                0.006854  0.252888   0.107443               0.252888   
+
+   Blue Ctrl differential  Red Head  Blue Head  Red Head differential  \
+0                0.252888  7.513593   1.825378               7.513593   
+1                0.107443  1.825378   7.513593               1.825378   
+
+   Blue Head differential  Red Body  Blue Body  Red Body differential  \
+0                1.825378  0.755946   1.010048               0.755946   
+1                7.513593  1.010048   0.755946               1.010048   
+
+   Blue Body differential   Red Leg  Blue Leg  Red Leg differential  \
+0                1.010048  0.785110  1.416094              0.785110   
+1                0.755946  1.416094  0.785110              1.416094   
+
+   Blue Leg differential  Red Distance  Blue Distance  \
+0               1.416094      4.303851       2.985026   
+1               0.785110      2.985026       4.303851   
+
+   Red Distance differential  Blue Distance differential  Red Clinch  \
+0                   4.303851                    2.985026    0.966905   
+1                   2.985026                    4.303851    0.541247   
+
+   Blue Clinch  Red Clinch differential  Blue Clinch differential  Red Ground  \
+0     0.541247                 0.966905                  0.541247    3.783893   
+1     0.966905                 0.541247                  0.966905    0.725248   
+
+   Blue Ground  Red Ground differential  Blue Ground differential  \
+0     0.725248                 3.783893                  0.725248   
+1     3.783893                 0.725248                  3.783893   
+
+   Red Sig. str.%  Blue Sig. str.%  Red Sig. str.% differential  \
+0        0.399860         0.067617                     0.399860   
+1        0.067617         0.399860                     0.067617   
+
+   Blue Sig. str.% differential  Red Sig. str.% defense  \
+0                      0.067617                 26306.0   
+1                      0.399860                454080.0   
+
+   Blue Sig. str.% defense  Red Total str.% differential  \
+0                 454080.0                      0.410566   
+1                  26306.0                      0.073929   
+
+   Blue Total str.% differential   Red Td%  Blue Td%  Red Td% differential  \
+0                       0.073929  0.002382  0.084690              0.002382   
+1                       0.410566  0.084690  0.002382              0.084690   
+
+   Blue Td% differential  Red Td% defense  Blue Td% defense  \
+0               0.084690          27164.0         2146441.0   
+1               0.002382        2146441.0           27164.0   
+
+   Red Head% differential  Blue Head% differential  Red Body%  Blue Body%  \
+0                0.436769                 0.055288   0.077344    0.044928   
+1                0.055288                 0.436769   0.044928    0.077344   
+
+   Red Body% differential  Blue Body% differential  Red Body% defense  \
+0                0.077344                 0.044928            42629.0   
+1                0.044928                 0.077344           132189.0   
+
+   Blue Body% defense  Red Leg%  Blue Leg%  Red Leg% differential  \
+0            132189.0  0.302627   0.082690               0.302627   
+1             42629.0  0.082690   0.302627               0.082690   
+
+   Blue Leg% differential  Red Leg% defense  Blue Leg% defense  \
+0                0.082690           14642.0            72550.0   
+1                0.302627           72550.0            14642.0   
+
+   Red Distance% differential  Blue Distance% differential  Red Clinch%  \
+0                    0.312062                     0.057049     0.290742   
+1                    0.057049                     0.312062     0.038626   
+
+   Blue Clinch%  Red Clinch% differential  Blue Clinch% differential  \
+0      0.038626                  0.290742                   0.038626   
+1      0.290742                  0.038626                   0.290742   
+
+   Red Clinch% defense  Blue Clinch% defense  Red Ground%  Blue Ground%  \
+0              72281.0              249357.0     0.460195      0.038899   
+1             249357.0               72281.0     0.038899      0.460195   
+
+   Red Ground% differential  Blue Ground% differential  Red Ground% defense  \
+0                  0.460195                   0.038899              20484.0   
+1                  0.038899                   0.460195            1897174.0   
+
+   Blue Ground% defense  dob oppdiff  totalfights oppdiff  elo oppdiff  \
+0             1897174.0          1.0                 -9.0  -158.990143   
+1               20484.0         -1.0                  9.0   158.990143   
+
+   losestreak oppdiff  winstreak oppdiff  titlewins oppdiff  oppelo oppdiff  \
+0                 2.0              -18.0              -12.0    -9446.153667   
+1                -2.0               18.0               12.0     9446.153667   
+
+   wins oppdiff  losses oppdiff  KD oppdiff  KD differential oppdiff  \
+0         -11.0             3.0     0.48941                  0.48941   
+1          11.0            -3.0    -0.48941                 -0.48941   
+
+   Sig. str. oppdiff  Sig. str. differential oppdiff  Total str. oppdiff  \
+0           4.803129                        4.803129              5.7288   
+1          -4.803129                       -4.803129             -5.7288   
+
+   Total str. differential oppdiff  Td oppdiff  Td differential oppdiff  \
+0                           5.7288   -0.214321                -0.214321   
+1                          -5.7288    0.214321                 0.214321   
+
+   Sub. att oppdiff  Sub. att differential oppdiff  Rev. oppdiff  \
+0         -0.035505                      -0.035505      0.006854   
+1          0.035505                       0.035505     -0.006854   
+
+   Rev. differential oppdiff  Ctrl oppdiff  Ctrl differential oppdiff  \
+0                   0.006854     -0.145445                  -0.145445   
+1                  -0.006854      0.145445                   0.145445   
+
+   Head oppdiff  Head differential oppdiff  Body oppdiff  \
+0      5.688215                   5.688215     -0.254102   
+1     -5.688215                  -5.688215      0.254102   
+
+   Body differential oppdiff  Leg oppdiff  Leg differential oppdiff  \
+0                  -0.254102    -0.630984                 -0.630984   
+1                   0.254102     0.630984                  0.630984   
+
+   Distance oppdiff  Distance differential oppdiff  Clinch oppdiff  \
+0          1.318825                       1.318825        0.425658   
+1         -1.318825                      -1.318825       -0.425658   
+
+   Clinch differential oppdiff  Ground oppdiff  Ground differential oppdiff  \
+0                     0.425658        3.058646                     3.058646   
+1                    -0.425658       -3.058646                    -3.058646   
+
+   Sig. str.% oppdiff  Sig. str.% differential oppdiff  \
+0            0.332242                         0.332242   
+1           -0.332242                        -0.332242   
+
+   Sig. str.% defense oppdiff  Total str.% differential oppdiff  Td% oppdiff  \
+0                   -427774.0                          0.336637    -0.082309   
+1                    427774.0                         -0.336637     0.082309   
+
+   Td% differential oppdiff  Td% defense oppdiff  Head% differential oppdiff  \
+0                 -0.082309           -2119277.0                     0.38148   
+1                  0.082309            2119277.0                    -0.38148   
+
+   Body% oppdiff  Body% differential oppdiff  Body% defense oppdiff  \
+0       0.032416                    0.032416               -89560.0   
+1      -0.032416                   -0.032416                89560.0   
+
+   Leg% oppdiff  Leg% differential oppdiff  Leg% defense oppdiff  \
+0      0.219938                   0.219938              -57908.0   
+1     -0.219938                  -0.219938               57908.0   
+
+   Distance% differential oppdiff  Clinch% oppdiff  \
+0                        0.255012         0.252116   
+1                       -0.255012        -0.252116   
+
+   Clinch% differential oppdiff  Ground% oppdiff  \
+0                      0.252116         0.421296   
+1                     -0.252116        -0.421296   
+
+   Ground% differential oppdiff  Ground% defense oppdiff predicted_result  \
+0                      0.421296               -1876690.0              win   
+1                     -0.421296                1876690.0              win   
+
+   probability_draw  probability_loss  probability_win  
+0          0.002668          0.400421         0.596911  
+1          0.012785          0.479189         0.508026  
