@@ -75,7 +75,7 @@ for fight in fights:
 headers=get_csv_headers(file_path)
 
 hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins",]
-hardcoded_features_divide = ["oppelo","wins","losses"]
+hardcoded_features_divide = ["oppelo","wins","losses","avg age"]
 feature_list=[]
 feature_list.extend(hardcoded_features)
 feature_list.extend(hardcoded_features_divide)
@@ -157,13 +157,10 @@ def processFight(fight, Red, Blue):
         # if not (fight_date or fighter_stats[Red]['dob'] or fighter_stats[Blue]['dob']):
         #     print("BAD")
         #     return
-        # processed_fight['Red age'] = fight_date.year - fighter_stats[Red]['dob']
-        # processed_fight['Blue age'] = fight_date.year - fighter_stats[Blue]['dob']
-        # processed_fight['age oppdiff'] = processed_fight['Red age'] - processed_fight['Blue age'] 
-        # fighter_stats[Red]['avg age'] += processed_fight['Red age']
-        # fighter_stats[Blue]['avg age'] += processed_fight['Blue age']
-        # fighter_stats[Red]['age differential'] += processed_fight['age oppdiff']
-        # fighter_stats[Blue]['age differential'] += -processed_fight['age oppdiff']
+        processed_fight['Red age'] = fight_date.year - fighter_stats[Red]['dob']
+        processed_fight['Blue age'] = fight_date.year - fighter_stats[Blue]['dob']
+        processed_fight['age oppdiff'] = processed_fight['Red age'] - processed_fight['Blue age'] 
+
         for feature in feature_list:
             if feature in fighter_stats[Red] and feature in fighter_stats[Blue]:
                 processed_fight[f'Red {feature}'] = fighter_stats[Red][feature]
@@ -228,8 +225,8 @@ for fight in fights:
                 fighter_stats[Red][f"{feature} differential"] += (red_value - blue_value) * sqr(redfights)
                 fighter_stats[Blue][f"{feature} differential"] += (blue_value - red_value) * sqr(bluefights)
             else:
-                fighter_stats[Red][f"{feature} differential"] += (red_value - blue_value) * sqr(redfights)
-                fighter_stats[Blue][f"{feature} differential"] += (blue_value - red_value) * sqr(bluefights)
+                fighter_stats[Red][f"{feature} differential"] += (red_value - blue_value) * sqr(redfights) 
+                fighter_stats[Blue][f"{feature} differential"] += (blue_value - red_value) * sqr(bluefights) 
             
             fighter_stats[Red][f"{feature}"] += red_value * sqr(redfights) / getTime(fight)
             fighter_stats[Blue][f"{feature}"] += blue_value * sqr(bluefights) / getTime(fight)
@@ -252,7 +249,9 @@ for fight in fights:
     rating_b = fighter_stats[Blue]["elo"]
     fighter_stats[Red]["oppelo"]+=rating_b
     fighter_stats[Blue]["oppelo"]+=rating_a
-
+    fight_date=getDate(fight['Date'], "%B %d, %Y")
+    fighter_stats[Red]["avg age"]+=fight_date.year-fighter_stats[Red]["dob"]
+    fighter_stats[Blue]["avg age"]+=fight_date.year-fighter_stats[Blue]["dob"]
     if Result=='win':
         fighter_stats[Blue]["losestreak"]+=1
         fighter_stats[Red]["losestreak"]=0
