@@ -67,134 +67,102 @@ const FightPredictor = ({ nameOptions }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 shadow-md rounded-lg w-96">
-        <h2 className="text-2xl font-semibold mb-4">UFC Fight Predictor</h2>
-        <div className="mb-4">
-          <input
-            className="w-full border rounded py-2 px-3"
-            list="options-1"
-            type="text"
-            placeholder="Enter Fighter 1 Name"
-            value={fighterName1}
-            onChange={(e) => setFighterName1(e.target.value)}
-          />
-          <datalist id="options-1">
-            {nameOptions.map((option) => (
-              <option key={`${option}-1`} value={option} />
-            ))}
-          </datalist>
-        </div>
-        <div className="mb-4">
-          <input
-            className="w-full border rounded py-2 px-3"
-            list="options-2"
-            type="text"
-            placeholder="Enter Fighter 2 Name"
-            value={fighterName2}
-            onChange={(e) => setFighterName2(e.target.value)}
-          />
-          <datalist id="options-2">
-            {nameOptions.map((option) => (
-              <option key={`${option}-2`} value={option} />
-            ))}
-          </datalist>
-        </div>
-        <button
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-          onClick={handlePredictClick}
-        >
-          {isLoading ? "Gathering Data..." : "Predict"}
-        </button>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white p-6 shadow-lg rounded-lg max-w-md w-full space-y-8">
+        <h2 className="text-center text-3xl font-bold text-gray-900">UFC Fight Predictor</h2>
+        <form className="mt-8 space-y-6" action="#" method="POST">
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="fighter-1" className="sr-only">Fighter 1 Name</label>
+              <input
+                id="fighter-1"
+                name="fighter-1"
+                type="text"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Enter Fighter 1 Name"
+                value={fighterName1}
+                onChange={(e) => setFighterName1(e.target.value)}
+                list="options-1"
+              />
+              <datalist id="options-1">
+                {nameOptions.map((option, index) => (
+                  <option key={`option-1-${index}`} value={option} />
+                ))}
+              </datalist>
+            </div>
+            <div>
+              <label htmlFor="fighter-2" className="sr-only">Fighter 2 Name</label>
+              <input
+                id="fighter-2"
+                name="fighter-2"
+                type="text"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Enter Fighter 2 Name"
+                value={fighterName2}
+                onChange={(e) => setFighterName2(e.target.value)}
+                list="options-2"
+              />
+              <datalist id="options-2">
+                {nameOptions.map((option, index) => (
+                  <option key={`option-2-${index}`} value={option} />
+                ))}
+              </datalist>
+            </div>
+          </div>
+          <div>
+            <button
+              type="button"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              onClick={handlePredictClick}
+              disabled={isLoading}
+            >
+              {isLoading ? "Gathering Data..." : "Predict"}
+            </button>
+          </div>
+        </form>
         {predictedData && (
-          <div className="mt-4 space-x-4">
-            <div className="flex space-x-4">
-              <div className="flex flex-col">
-                <h3 className="text-xl font-semibold mb-2">
-                  {fighter1_stats.Fighter}
-                </h3>
+          <div className="mt-4 p-4 bg-blue-100 rounded-md">
+            <h3 className="text-lg font-semibold text-center">Prediction Results</h3>
+            <div className="flex justify-between items-center">
+              <div className="p-2">
+                <h4 className="text-md font-bold">{fighter1_stats.Fighter}</h4>
                 <p>Age: {fighter1_stats && calculateAge(fighter1_stats.dob)}</p>
                 <p>ELO: {parseFloat(fighter1_stats.elo).toFixed(2)}</p>
+                <p>Probability to Win: {(100*(predictedData[0].probability_win + predictedData[1].probability_loss) / 2).toFixed(2)}%</p>
               </div>
-              <div className="flex flex-col">
-                <h3 className="text-xl font-semibold mb-2">
-                  {fighter2_stats.Fighter}
-                </h3>
+              <div className="p-2">
+                <h4 className="text-md font-bold">{fighter2_stats.Fighter}</h4>
                 <p>Age: {fighter2_stats && calculateAge(fighter2_stats.dob)}</p>
                 <p>ELO: {parseFloat(fighter2_stats.elo).toFixed(2)}</p>
+                <p>Probability to Lose: {(100*(predictedData[1].probability_win + predictedData[0].probability_loss) / 2).toFixed(2)}%</p>
               </div>
-            </div>
-            <div className="mt-4">
-              <p>
-                Probability Win:{" "}
-                {(
-                  (100 *
-                    (predictedData[0].probability_win +
-                      predictedData[1].probability_loss)) /
-                  2
-                ).toFixed(2)}
-                %
-              </p>
-              <p>
-                Probability Lose:{" "}
-                {(
-                  (100 *
-                    (predictedData[1].probability_win +
-                      predictedData[0].probability_loss)) /
-                  2
-                ).toFixed(2)}
-                %
-              </p>
-              <p>
-                {fighter1_stats.Fighter}{" "}
-                {(
-                  (100 *
-                    (predictedData[0].probability_win +
-                      predictedData[1].probability_loss)) /
-                  2
-                ).toFixed(2) > 50
-                  ? "defeats"
-                  : "loses to"}{" "}
-                {fighter2_stats.Fighter}
-              </p>
             </div>
           </div>
         )}
-
-        {/* New: Advanced Stats Button */}
         <button
-          className="w-full mt-4 bg-gray-500 text-white py-2 rounded hover:bg-gray-600"
-          onClick={toggleAdvancedStats}
+        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        onClick={toggleAdvancedStats}
         >
-          {showAdvancedStats ? "Hide Advanced Stats" : "Show Advanced Stats"}
+        {showAdvancedStats ? "Hide Advanced Stats" : "Show Advanced Stats"}
         </button>
-
-        {/* New: Advanced Stats Box */}
         {showAdvancedStats && fighter1_stats && fighter2_stats && (
-          <div className="mt-4 space-x-4">
-            <div className="flex space-x-4">
-              <div className="flex flex-col">
+          <div className="mt-4 p-4 bg-gray-200 rounded-md">
+            <h3 className="text-lg font-semibold text-center">Advanced Stats</h3>
+            <div className="flex justify-between items-center">
+              <div className="p-2">
+                <h4 className="text-md font-bold">{fighter1_stats.Fighter}</h4>
                 <p>Win Streak: {fighter1_stats.winstreak}</p>
                 <p>Loss Streak: {fighter1_stats.losestreak}</p>
-                <p>
-                  Avg Opponent Elo:{" "}
-                  {(
-                    parseFloat(fighter1_stats.oppelo) /
-                    parseFloat(fighter1_stats.totalfights)
-                  ).toFixed(2)}
-                </p>
+                <p>Avg Opponent Elo: {(parseFloat(fighter1_stats.oppelo) / parseFloat(fighter1_stats.totalfights)).toFixed(2)}</p>
                 <p>Title Wins: {fighter1_stats.titlewins}</p>
               </div>
-              <div className="flex flex-col">
+              <div className="p-2">
+                <h4 className="text-md font-bold">{fighter2_stats.Fighter}</h4>
                 <p>Win Streak: {fighter2_stats.winstreak}</p>
                 <p>Loss Streak: {fighter2_stats.losestreak}</p>
-                <p>
-                  Avg Opponent Elo:{" "}
-                  {(
-                    parseFloat(fighter2_stats.oppelo) /
-                    parseFloat(fighter2_stats.totalfights)
-                  ).toFixed(2)}
-                </p>
+                <p>Avg Opponent Elo: {(parseFloat(fighter2_stats.oppelo) / parseFloat(fighter2_stats.totalfights)).toFixed(2)}</p>
                 <p>Title Wins: {fighter2_stats.titlewins}</p>
               </div>
             </div>
@@ -204,5 +172,6 @@ const FightPredictor = ({ nameOptions }) => {
     </div>
   );
 };
+
 
 export default FightPredictor;

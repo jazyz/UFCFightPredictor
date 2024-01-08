@@ -85,19 +85,19 @@ const Testing = () => {
     }
   };
 
+
   return (
-    <div className="container mx-auto mt-8">
-      <h2 className="text-2xl font-semibold mb-4">Testing UFC Predictor</h2>
-      <p className="text-md mb-4">
-        Note that testing may take a while, since the model retrains every 6
-        months of fights.
-      </p>
-      <div className="flex row">
-        <div className="bg-white p-8 shadow-md rounded-lg w-96 mr-8">
+    <div className="bg-white-100 p-4 sm:p-6 lg:p-8 w-full">
+      <div className="space-y-8 max-w-3xl mx-auto"> {/* Adjusted width here */}
+        <h2 className="text-3xl font-bold text-gray-900">Testing UFC Predictor</h2>
+        <p className="text-md">
+          Note that testing may take a while, since the model retrains every 6 months of fights.
+        </p>
+        <div className="bg-white p-8 shadow-md rounded-lg">
           <h2 className="text-2xl font-semibold mb-4">UFC Fight Predictor</h2>
           <div className="mb-4">
             <input
-              className="w-full border rounded py-2 px-3"
+              className="w-full border rounded py-2 px-3 border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               type="number"
               placeholder="Enter Start Year (2021-2024)"
               value={startYear}
@@ -106,7 +106,7 @@ const Testing = () => {
           </div>
           <div className="mb-4">
             <input
-              className="w-full border rounded py-2 px-3"
+              className="w-full border rounded py-2 px-3 border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               type="number"
               placeholder="Enter End Year (2021-2024)"
               value={endYear}
@@ -114,38 +114,35 @@ const Testing = () => {
             />
           </div>
           <button
-            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+            className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             onClick={handleTestClick}
+            disabled={isLoading}
           >
-            {isLoading ? "Gathering Data..." : "Predict"}
+            {isLoading ? "Testing..." : "Start Test"}
           </button>
         </div>
-        <div className="bg-white p-8 shadow-md rounded-lg w-96">
+        <div className="bg-white p-8 shadow-md rounded-lg">
           <h2 className="text-2xl font-semibold mb-4">Betting Strategy</h2>
-
-          {/* Row 1 Buttons */}
-          <div className="mb-4">
+          <div className="flex flex-wrap justify-center mb-4">
             {row1Buttons.map((name, index) => (
               <button
-                key={index}
-                className={`mr-2 p-2 border ${
-                  selectedRow1 === index ? "bg-blue-500 text-white" : "bg-white"
-                }`}
+                key={name}
+                className={`m-1 px-4 py-2 text-sm font-medium rounded-md ${
+                  selectedRow1 === index ? "bg-green-600 text-white" : "bg-green-300 text-green-900 hover:bg-green-400"
+                } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500`}
                 onClick={() => handleButtonClick(1, index)}
               >
                 {name}
               </button>
             ))}
           </div>
-
-          {/* Row 2 Buttons */}
-          <div>
+          <div className="flex flex-wrap justify-center">
             {row2Buttons.map((name, index) => (
               <button
-                key={index}
-                className={`mr-2 p-2 border ${
-                  selectedRow2 === index ? "bg-blue-500 text-white" : "bg-white"
-                }`}
+                key={name}
+                className={`m-1 px-4 py-2 text-sm font-medium rounded-md ${
+                  selectedRow2 === index ? "bg-red-600 text-white" : "bg-red-300 text-red-900 hover:bg-red-400"
+                } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500`}
                 onClick={() => handleButtonClick(2, index)}
               >
                 {name}
@@ -153,14 +150,16 @@ const Testing = () => {
             ))}
           </div>
         </div>
-      </div>
-      {imageSrc && (
-        <div className="mt-4 space-x-4">
-          <img src={imageSrc} alt="Bankroll Plot" />
-        </div>
-      )}
-      <div className="mt-4 space-x-4">
-        <pre className="text-wrap">{results}</pre>
+        {imageSrc && (
+          <div className="mt-4">
+            <img src={imageSrc} alt="Bankroll Plot" className="max-w-full h-auto" />
+          </div>
+        )}
+        {results && (
+          <div className="mt-4">
+            <pre className="text-wrap">{results}</pre>
+          </div>
+        )}
       </div>
     </div>
   );
