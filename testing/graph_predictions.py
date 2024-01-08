@@ -18,7 +18,7 @@ bankrolls = list(map(float, bankrolls))
 # Plot the graph
 plt.figure(figsize=(10, 6))
 plt.plot(range(1, len(bankrolls) + 1), bankrolls, marker='o')
-plt.xlabel('Weeks')
+plt.xlabel('Fight Cards')
 plt.ylabel('Bankroll ($)')
 plt.title('Bankroll Over Fight Cards')
 plt.grid(True)
