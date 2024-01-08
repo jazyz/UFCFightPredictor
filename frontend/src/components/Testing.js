@@ -88,8 +88,6 @@ const Testing = () => {
   return (
     <div className="bg-white-100 p-4 sm:p-6 lg:p-8 w-full">
       <div className="space-y-8 max-w-3xl mx-auto">
-        {" "}
-        {/* Adjusted width here */}
         <h2 className="text-3xl font-bold text-gray-900">
           Testing UFC Predictor
         </h2>
@@ -148,9 +146,9 @@ const Testing = () => {
                 key={name}
                 className={`m-1 px-4 py-2 text-sm font-medium rounded-md ${
                   selectedRow2 === index
-                    ? "bg-red-600 text-white"
-                    : "bg-red-300 text-red-900 hover:bg-red-400"
-                } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500`}
+                    ? "bg-blue-600 text-white"
+                    : "bg-blue-300 text-blue-900 hover:bg-blue-400"
+                } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}
                 onClick={() => handleButtonClick(2, index)}
               >
                 {name}
