@@ -24,21 +24,25 @@ const Bets = () => {
   }, []);
 
   return (
-    <div className="container mx-auto mt-8">
-      <h2 className="text-2xl font-semibold mb-4">Bets from UFC Predictor</h2>
-      <p className="text-md mb-4">
-        Paper bets placed starting from September 16, 2023.
-      </p>
-      {imageSrc && (
-        <div className="mt-4">
-          <img
-            src={imageSrc}
-            alt="Bankroll Plot"
-            className="max-w-full h-auto"
-          />
-        </div>
-      )}
-      <pre className="text-wrap">{results}</pre>
+    <div className="bg-white-100 p-4 sm:p-6 lg:p-8 w-full">
+      <div className="space-y-8 max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold text-gray-900">
+          Bets from UFC Predictor
+        </h2>
+        <p className="text-md mb-4">
+          Paper bets placed starting from September 16, 2023.
+        </p>
+        {imageSrc && (
+          <div className="mt-4">
+            <img
+              src={imageSrc}
+              alt="Bankroll Plot"
+              className="max-w-full h-auto"
+            />
+          </div>
+        )}
+        <pre className="text-wrap">{results}</pre>
+      </div>
     </div>
   );
 };
