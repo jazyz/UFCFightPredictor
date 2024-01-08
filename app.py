@@ -127,5 +127,11 @@ def get_bankroll_plot():
         encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
     return {"image": encoded_image}
 
+@app.route('/get_predictions_plot', methods=['GET'])
+def get_predictions_plot():
+    with open(os.path.join("data", "predictions_bankroll_plot.png"), "rb") as image_file:
+        encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
+    return {"image": encoded_image}
+
 if __name__ == "__main__":
     app.run(debug=True)
