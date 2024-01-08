@@ -11,13 +11,28 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="hidden md:flex space-x-4">
-          <Link to="/predict" className="text-white hover:text-gray-300">
+          <Link
+            to="/about"
+            className="text-white hover:text-gray-300 font-semibold"
+          >
+            About
+          </Link>
+          <Link
+            to="/predict"
+            className="text-white hover:text-gray-300 font-semibold"
+          >
             Predict
           </Link>
-          <Link to="/bets" className="text-white hover:text-gray-300">
+          <Link
+            to="/bets"
+            className="text-white hover:text-gray-300 font-semibold"
+          >
             Bets
           </Link>
-          <Link to="/testing" className="text-white hover:text-gray-300">
+          <Link
+            to="/testing"
+            className="text-white hover:text-gray-300 font-semibold"
+          >
             Testing
           </Link>
         </div>
