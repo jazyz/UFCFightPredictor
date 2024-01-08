@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Home from "./components/Home";
 import FightPredictor from "./components/FightPredictor";
 import About from "./components/About";
 import Bets from "./components/Bets";
@@ -31,7 +32,8 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<About />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="/predict"
           element={<FightPredictor nameOptions={nameOptions} />}

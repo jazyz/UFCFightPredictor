@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import raw from "../constants/about.md";
+import raw from "../constants/README.md";
 
 const About = () => {
   const [markdownContent, setMarkdownContent] = useState("");
