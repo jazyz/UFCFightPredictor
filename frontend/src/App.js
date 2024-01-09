@@ -33,7 +33,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        {/* <Route path="/about" element={<About />} /> */}
         <Route
           path="/predict"
           element={<FightPredictor nameOptions={nameOptions} />}
