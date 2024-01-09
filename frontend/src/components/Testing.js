@@ -76,7 +76,7 @@ const Testing = () => {
           strategy: strategy,
         },
         {
-          timeout: 600000, // Set timeout to 1 minute (adjust as needed)
+          timeout: 600000, // 10 minutes
         }
       );
       // console.log(response.data);
@@ -84,6 +84,7 @@ const Testing = () => {
       const getImg = await axios.get(`${baseURL}/get_bankroll_plot`);
       setImageSrc(`data:image/png;base64,${getImg.data.image}`);
       // console.log(imageSrc);
+      console.log("Done");
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
