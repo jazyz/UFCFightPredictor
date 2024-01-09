@@ -68,11 +68,17 @@ const Testing = () => {
     try {
       setIsLoading(true);
       console.log("Predicting fights...");
-      const response = await axios.post(`${baseURL}/test`, {
-        testFrom_card: testFrom,
-        testTo_card: testTo,
-        strategy: strategy,
-      });
+      const response = await axios.post(
+        `${baseURL}/test`,
+        {
+          testFrom_card: testFrom,
+          testTo_card: testTo,
+          strategy: strategy,
+        },
+        {
+          timeout: 60000, // Set timeout to 1 minute (adjust as needed)
+        }
+      );
       // console.log(response.data);
       setResults(response.data.content);
       const getImg = await axios.get(`${baseURL}/get_bankroll_plot`);
