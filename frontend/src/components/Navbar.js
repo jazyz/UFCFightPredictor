@@ -11,12 +11,12 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="hidden md:flex space-x-4">
-          <Link
+          {/* <Link
             to="/about"
             className="text-white hover:text-gray-300 font-semibold"
           >
             About
-          </Link>
+          </Link> */}
           <Link
             to="/predict"
             className="text-white hover:text-gray-300 font-semibold"
