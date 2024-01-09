@@ -84,6 +84,7 @@ const Testing = () => {
       const getImg = await axios.get(`${baseURL}/get_bankroll_plot`);
       setImageSrc(`data:image/png;base64,${getImg.data.image}`);
       // console.log(imageSrc);
+      console.log("Done");
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
