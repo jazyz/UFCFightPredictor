@@ -179,7 +179,7 @@ def find_fights(start_date, end_date, last_training_date, strategy):
     start_date = datetime.strptime(start_date, '%Y-%m-%d')
     end_date = datetime.strptime(end_date, '%Y-%m-%d')
     final_training_date = datetime.strptime('2023-12-01', '%Y-%m-%d')
-    retrain_time = timedelta(days=180)  
+    retrain_time = timedelta(days=365)  
     filepath = 'data/fight_results_with_odds.csv'
     
     with open(filepath, newline='', encoding='utf-8') as csvfile:
