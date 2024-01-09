@@ -109,23 +109,18 @@ def get_test_results():
 
 @app.route("/test", methods=["POST"])
 def test():
-    time.sleep(15)
+    try:
+        data = request.json
+        testFrom_card = data.get("testFrom_card")
+        testTo_card = data.get("testTo_card")
+        strategy = data.get("strategy")
+        process_dates(testFrom_card, testTo_card, strategy)
 
-    # Return a simple text response
-    return "Delayed response after 15 seconds!"
+        response = get_test_results()
+    except Exception as e:
+        response = {"message": f"Error during testing: {e}"}
 
-    # try:
-    #     data = request.json
-    #     testFrom_card = data.get("testFrom_card")
-    #     testTo_card = data.get("testTo_card")
-    #     strategy = data.get("strategy")
-    #     process_dates(testFrom_card, testTo_card, strategy)
-
-    #     response = get_test_results()
-    # except Exception as e:
-    #     response = {"message": f"Error during testing: {e}"}
-
-    # return jsonify(response)
+    return jsonify(response)
 
 @app.route('/get_bankroll_plot', methods=['GET'])
 def get_bankroll_plot():
