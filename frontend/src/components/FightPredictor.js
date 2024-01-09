@@ -10,7 +10,7 @@ const FightPredictor = ({ nameOptions }) => {
   const [fighter2_stats, setFighter2_stats] = useState(null);
   const [predictedData, setPredictedData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [showAdvancedStats, setShowAdvancedStats] = useState(false);
+  const [showExtraStats, setShowExtraStats] = useState(false);
 
   const calculateAge = (dob) => {
     const birthDate = new Date(dob);
@@ -23,8 +23,8 @@ const FightPredictor = ({ nameOptions }) => {
     return age;
   };
 
-  const toggleAdvancedStats = () => {
-    setShowAdvancedStats(!showAdvancedStats);
+  const toggleExtraStats = () => {
+    setShowExtraStats(!showExtraStats);
   };
 
   const handlePredictClick = async () => {
@@ -169,15 +169,13 @@ const FightPredictor = ({ nameOptions }) => {
         )}
         <button
           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          onClick={toggleAdvancedStats}
+          onClick={toggleExtraStats}
         >
-          {showAdvancedStats ? "Hide Advanced Stats" : "Show Advanced Stats"}
+          {showExtraStats ? "Hide Extra Stats" : "Show Extra Stats"}
         </button>
-        {showAdvancedStats && fighter1_stats && fighter2_stats && (
+        {showExtraStats && fighter1_stats && fighter2_stats && (
           <div className="mt-4 p-4 bg-gray-200 rounded-md">
-            <h3 className="text-lg font-semibold text-center">
-              Advanced Stats
-            </h3>
+            <h3 className="text-lg font-semibold text-center">Extra Stats</h3>
             <div className="flex justify-between items-center">
               <div className="p-2">
                 <h4 className="text-md font-bold">{fighter1_stats.Fighter}</h4>
