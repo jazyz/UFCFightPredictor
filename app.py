@@ -10,6 +10,7 @@ from flask_cors import CORS
 import sys
 import csv
 import base64
+import time
 
 app = Flask(__name__)
 CORS(app)
@@ -108,18 +109,23 @@ def get_test_results():
 
 @app.route("/test", methods=["POST"])
 def test():
-    try:
-        data = request.json
-        testFrom_card = data.get("testFrom_card")
-        testTo_card = data.get("testTo_card")
-        strategy = data.get("strategy")
-        process_dates(testFrom_card, testTo_card, strategy)
+    time.sleep(15)
 
-        response = get_test_results()
-    except Exception as e:
-        response = {"message": f"Error during testing: {e}"}
+    # Return a simple text response
+    return "Delayed response after 15 seconds!"
 
-    return jsonify(response)
+    # try:
+    #     data = request.json
+    #     testFrom_card = data.get("testFrom_card")
+    #     testTo_card = data.get("testTo_card")
+    #     strategy = data.get("strategy")
+    #     process_dates(testFrom_card, testTo_card, strategy)
+
+    #     response = get_test_results()
+    # except Exception as e:
+    #     response = {"message": f"Error during testing: {e}"}
+
+    # return jsonify(response)
 
 @app.route('/get_bankroll_plot', methods=['GET'])
 def get_bankroll_plot():
