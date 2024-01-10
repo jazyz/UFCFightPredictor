@@ -154,7 +154,7 @@ const FightPredictor = ({ nameOptions }) => {
                 <p>Age: {fighter2_stats && calculateAge(fighter2_stats.dob)}</p>
                 <p>ELO: {parseFloat(fighter2_stats.elo).toFixed(2)}</p>
                 <p>
-                  Probability to Lose:{" "}
+                  Probability to Win:{" "}
                   {(
                     (100 *
                       (predictedData[1].probability_win +
