@@ -15,7 +15,7 @@ def get_ml(p1, p2):
         return None
 
 # ***** CONSTANTS *****
-bankroll = 1000.00
+bankroll = 1100.37
 
 # ***** HELPER FUNCTIONS *****
 # kelly criterion function, conservative betting strategy
@@ -73,7 +73,7 @@ def processBet(bet, fighter_name, fighter_odds):
 with open(os.path.join("data", "betting_results.txt"), "w") as test:
     
     # paste the link to the fight card you want to bet on here
-    fight_card_link = "https://www.ufc.com/event/ufc-298"
+    fight_card_link = "https://www.ufc.com/event/ufc-fight-night-january-13-2024"
 
     response = requests.get(fight_card_link)
 
