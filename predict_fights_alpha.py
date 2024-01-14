@@ -27,7 +27,7 @@ input_csv_filename = os.path.join("data", "detailed_fighter_stats.csv")
 output_csv_filename = os.path.join("data", "predict_fights_alpha.csv")
 
 # starts from the most recent fight card and goes back in time, this is the last fight card to be processed
-end_fight_card = "http://www.ufcstats.com/event-details/a8e8587a06e73c87"
+end_fight_card = "http://www.ufcstats.com/event-details/010986ee359fb863"
 # end_fight_card = "http://www.ufcstats.com/event-details/5a558ba1ff5e9121"
 
 # same fields used in ml_alpha, detailed_fights.csv
@@ -154,7 +154,7 @@ def main():
     # response = requests.get(url)
 
     # to get one event, paste the url in event_urls and comment out the part below
-    event_urls = ["http://ufcstats.com/event-details/010986ee359fb863"]
+    event_urls = ["http://www.ufcstats.com/event-details/010986ee359fb863"]
 
     # if response.status_code == 200:
     #     soup = BeautifulSoup(response.text, 'html.parser')
