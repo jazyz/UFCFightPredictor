@@ -147,8 +147,8 @@ def predict_fight(fighter1_name, fighter2_name):
 # if you want a single fight card, paste the ufcstats.com url in event_urls and comment out the part below
 # or if you just want the most recent fight card, change end_fight_card to the most recent
 def main():
-    predict_fight("Alexander Volkanovski", "Ilia Topuria")
-    return
+    # predict_fight("Alexander Volkanovski", "Ilia Topuria")
+    # return
     # GET LIST OF EVENTS URLS
     # url = "http://www.ufcstats.com/statistics/events/completed?page=all"
     # response = requests.get(url)

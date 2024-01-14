@@ -6,7 +6,7 @@ import os
 
 # TODO: figure out how to do rematches 
 def get_ml(p1, p2):
-    with open(os.path.join("data", "predicted_fights_alpha_results_clean.csv"), mode='r') as file:
+    with open("data/fight_predictions.csv", mode='r') as file:
         reader = csv.DictReader(file)
         for row in reader:
             if (row["Red Fighter"] == p1 and row["Blue Fighter"] == p2):
@@ -73,7 +73,7 @@ def processBet(bet, fighter_name, fighter_odds):
 with open(os.path.join("data", "betting_results.txt"), "w") as test:
     
     # paste the link to the fight card you want to bet on here
-    fight_card_link = "https://www.ufc.com/event/ufc-298"
+    fight_card_link = "https://www.ufc.com/event/ufc-fight-night-january-13-2024"
 
     response = requests.get(fight_card_link)
 

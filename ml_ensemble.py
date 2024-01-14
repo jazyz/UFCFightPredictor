@@ -52,7 +52,7 @@ y = df["Result"]
 # X = pd.get_dummies(X)  # This line is optional and depends on your data
 
 # Manual split based on percentage
-split_index = int(len(df) * 0.85)
+split_index = int(len(df) * 0.95)
 last_index = int(len(df) * 1)
 X_train, X_test = X[:split_index], X[split_index:last_index]
 y_train, y_test = y[:split_index], y[split_index:last_index]
@@ -90,6 +90,7 @@ y_train_swapped = y_train_swapped.apply(lambda x: 2 if x == 1 else (1 if x == 2 
 X_train_extended = pd.concat([X_train, X_train_swapped], ignore_index=True)
 y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
 
+from sklearn.model_selection import TimeSeriesSplit
 
 def objective(trial):
     # Parameter suggestions by Optuna for tuning
@@ -103,21 +104,25 @@ def objective(trial):
         'min_child_samples': trial.suggest_int('min_child_samples', 10, 100),  # adjusted range to prevent overfitting
         'subsample': trial.suggest_float('subsample', 0.5, 1.0),  # subsample ratio of the training instance
         'colsample_bytree': trial.suggest_float('colsample_bytree', 0.5, 1.0),  # subsample ratio of columns when constructing each tree
-        'n_estimators': 100,  # Fixed number of estimators for simplicity
+        # 'n_estimators': 100,  # Fixed number of estimators for simplicity
         'num_class': 3  # Replace with the actual number of classes in your dataset
     }
     data = lgb.Dataset(X_train_extended, label=y_train_extended)
-    # Training model
+
+    # Initialize TimeSeriesSplit
+    tscv = TimeSeriesSplit(n_splits=5)  # Adjust the number of splits as needed
+
+    # Training model with time series cross-validation
     cv_results = lgb.cv(
         param,
         data,
         num_boost_round=1000,
-        nfold=3,  # Or another number of folds
-        stratified=True,
-        shuffle=True,
-        callbacks=[lgb.early_stopping(stopping_rounds=20)],
+        folds=tscv,  # Use TimeSeriesSplit object
+        stratified=False,  # Stratification is not relevant for time series data
+        shuffle=False,  # Do not shuffle time series data
+        callbacks=[lgb.early_stopping(stopping_rounds=30)],
     )
-
+    
     print(cv_results.keys())
 
     # Extract the best score
@@ -135,7 +140,7 @@ models = []
 for _ in range(n_models):
     # Create the study object with a minimization direction
     study = optuna.create_study(direction='minimize')
-    study.optimize(objective, n_trials=10)  # Adjust n_trials to your preference
+    study.optimize(objective, n_trials=30)  # Adjust n_trials to your preference
 
     # Retrieve the best hyperparameters
     best_params = study.best_params
@@ -194,6 +199,28 @@ with open(os.path.join("data", "predicted_results.csv"), mode="w", newline="") a
                 actual_labels[i],
             ]
         )
+
+import joblib
+# Directory for saving models
+model_save_dir = "saved_models"
+os.makedirs(model_save_dir, exist_ok=True)
+
+# Save each model
+for idx, model in enumerate(models):
+    model_filename = os.path.join(model_save_dir, f"lgbm_model_{idx}.joblib")
+    joblib.dump(model, model_filename)
+
+preprocessing_save_dir = "saved_preprocessing"
+os.makedirs(preprocessing_save_dir, exist_ok=True)
+
+# Save LabelEncoder
+label_encoder_filename = os.path.join(preprocessing_save_dir, "label_encoder.joblib")
+joblib.dump(label_encoder, label_encoder_filename)
+
+# Save the list of selected columns
+selected_columns_filename = os.path.join(preprocessing_save_dir, "selected_columns.json")
+with open(selected_columns_filename, "w") as file:
+    json.dump(selected_columns, file)
 
 
 
