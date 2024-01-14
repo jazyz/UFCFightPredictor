@@ -15,7 +15,7 @@ def get_ml(p1, p2):
         return None
 
 # ***** CONSTANTS *****
-bankroll = 1100.37
+bankroll = 1000.00
 
 # ***** HELPER FUNCTIONS *****
 # kelly criterion function, conservative betting strategy
