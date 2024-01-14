@@ -62,6 +62,6 @@ fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, 1]
 fighter_data['Probability Draw'] = ensemble_predicted_probabilities[:, 0]
 
 # Save or display the results1
-fighter_data.to_csv('data/fight_predictions.csv', index=False)
+fighter_data.to_csv('data/betting_predictions.csv', index=False)
 
 
