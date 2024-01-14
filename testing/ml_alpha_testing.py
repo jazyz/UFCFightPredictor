@@ -25,7 +25,7 @@ def main(split_date = "2021-01-01"):    # Step 1: Read the data
     df["Result"] = label_encoder.fit_transform(df["Result"])
     selected_columns = df.columns.tolist()
 
-    columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date", "Red age", "Blue age", "Red avg age", "Blue avg age", "age oppdiff", "avg age oppdiff"]
+    columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date"]
     selected_columns = [col for col in selected_columns if col not in columns_to_remove]
 
     corr_matrix = df[selected_columns].corr().abs()
@@ -72,7 +72,7 @@ def main(split_date = "2021-01-01"):    # Step 1: Read the data
     X_train_swapped.rename(columns=swap_red_blue, inplace=True)
 
     # Inverse the target variable for the swapped training data
-    y_train_swapped = y_train_swapped.apply(lambda x: 2 if x == 1 else (1 if x == 2 else 0))
+    y_train_swapped = y_train_swapped.apply(lambda x: 0 if x == 1 else 1)
 
     # Concatenate the original and the modified copy to form the extended training set
     X_train_extended = pd.concat([X_train, X_train_swapped], ignore_index=True)
@@ -82,7 +82,7 @@ def main(split_date = "2021-01-01"):    # Step 1: Read the data
     X_test_swapped = X_test.copy()
     y_test_swapped = y_test.copy()
     X_test_swapped.rename(columns=swap_red_blue, inplace=True)
-    y_test_swapped = y_test_swapped.apply(lambda x: 2 if x == 1 else (1 if x == 2 else 0))
+    y_test_swapped = y_test_swapped.apply(lambda x: 0 if x == 1 else 1)
     X_test_extended = pd.concat([X_test, X_test_swapped], ignore_index=True)
     y_test_extended = pd.concat([y_test, y_test_swapped], ignore_index=True)
 

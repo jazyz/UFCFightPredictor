@@ -43,24 +43,29 @@ df = df[selected_columns]
 X = df.drop(["Result"], axis=1)
 y = df["Result"]
 
-
 split_index = int(len(df) * 0.95)
 last_index = int(len(df) * 1)
 X_train, X_test = X[:split_index], X[split_index:last_index]
 y_train, y_test = y[:split_index], y[split_index:last_index]
 
 seed = 42
-prune_index = int(len(X_train) * 0.15)
+prune_index = int(len(X_train) * 0.3)
 
 
 X_train = X_train[prune_index:]
 y_train = y_train[prune_index:]
 
-win_count = y_train['Result'].value_counts()[1]  # Assuming 'win' is encoded as 1
-loss_count = y_train['Result'].value_counts()[0]  # Assuming 'loss' is encoded as 0
+win_count = y_train.value_counts()[1]  # Assuming 'win' is encoded as 1
+loss_count = y_train.value_counts()[0]  # Assuming 'loss' is encoded as 0
 
-print(f"Number of wins: {win_count}")
-print(f"Number of losses: {loss_count}")
+print(f"Number of wins in train: {win_count}")
+print(f"Number of losses in train: {loss_count}")
+
+win_count2 = y_test.value_counts()[1]  # Assuming 'win' is encoded as 1
+loss_count2 = y_test.value_counts()[0]  # Assuming 'loss' is encoded as 0
+
+print(f"Number of wins in test: {win_count2}")
+print(f"Number of losses in test: {loss_count2}")
 # X_train_swapped = X_train.copy()
 # y_train_swapped = y_train.copy()
 
@@ -123,7 +128,7 @@ models = []
 
 for _ in range(n_models):
     study = optuna.create_study(direction='minimize')
-    study.optimize(objective, n_trials=20)
+    study.optimize(objective, n_trials=25)
 
     best_params = study.best_params
 

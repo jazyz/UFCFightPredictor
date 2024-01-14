@@ -69,59 +69,53 @@ def main():
     X_train_swapped.rename(columns=swap_columns, inplace=True)
 
     y_train_swapped = y_train_swapped.apply(
-        lambda x: 2 if x == 1 else (1 if x == 2 else 0)
+        lambda x: 0 if x == 1 else 1
     )
 
     # Step 3: Concatenate the original and the modified copy to form the extended training set
     X_train_extended = pd.concat([X_train, X_train_swapped], ignore_index=True)
     y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
-
+    
+    from sklearn.model_selection import TimeSeriesSplit
     def objective(trial):
         param = {
-            "objective": "multiclass", 
-            "metric": "multi_logloss",
-            "verbosity": -1,
-            "boosting_type": "gbdt",
-            "num_leaves": trial.suggest_int(
-                "num_leaves", 20, 100
-            ),  
-            "learning_rate": trial.suggest_float(
-                "learning_rate", 0.02, 0.2, log=True
-            ),  
-            "min_child_samples": trial.suggest_int(
-                "min_child_samples", 10, 100
-            ),  
-            "subsample": trial.suggest_float(
-                "subsample", 0.5, 1.0
-            ),  
-            "colsample_bytree": trial.suggest_float(
-                "colsample_bytree", 0.5, 1.0
-            ),  
-            "n_estimators": 100,
-            "num_class": 3, 
+            'objective': 'multiclass',
+            'metric': 'multi_logloss',
+            'verbosity': -1,
+            'boosting_type': 'gbdt', 
+            'num_leaves': trial.suggest_int('num_leaves', 20, 100),
+            'learning_rate': trial.suggest_float('learning_rate', 0.02, 0.2, log=True),
+            'min_child_samples': trial.suggest_int('min_child_samples', 10, 100),  
+            'subsample': trial.suggest_float('subsample', 0.5, 1.0),  
+            'colsample_bytree': trial.suggest_float('colsample_bytree', 0.5, 1.0),  
+            'num_class': 2  
         }
-
         data = lgb.Dataset(X_train_extended, label=y_train_extended)
-        # Training model
+        # data = lgb.Dataset(X_train_extended, label=y_train_extended)
+
+        # Initialize TimeSeriesSplit
+        tscv = TimeSeriesSplit(n_splits=5)  # Adjust the number of splits as needed
+
+        # Training model with time series cross-validation
         cv_results = lgb.cv(
             param,
             data,
-            num_boost_round=100,
-            nfold=3, 
-            stratified=True,
-            shuffle=True,
-            callbacks=[lgb.early_stopping(stopping_rounds=20)],
+            num_boost_round=1000,
+            folds=tscv,  
+            stratified=False, 
+            shuffle=False, 
+            callbacks=[lgb.early_stopping(stopping_rounds=50)],
         )
-
+        
         print(cv_results.keys())
 
-        best_score = cv_results["valid multi_logloss-mean"][-1]
+        best_score = cv_results['valid multi_logloss-mean'][-1]
 
         return best_score
 
     def run_study():
         study = optuna.create_study(direction="minimize")
-        study.optimize(objective, n_trials=10)
+        study.optimize(objective, n_trials=30)
 
         best_params = study.best_params
         best_score = study.best_value
@@ -142,6 +136,7 @@ def main():
 
     model = lgb.LGBMClassifier(**best_params)
     # model = lgb.LGBMClassifier(random_state=seed)
+    X_train_extended = X_train_extended.drop("Red losses",axis=1)
     model.fit(X_train_extended, y_train_extended)
     # model.fit(X_train, y_train)
 
