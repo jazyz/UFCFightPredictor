@@ -50,9 +50,8 @@ new_data['Predicted Result'] = predicted_labels
 
 fighter_data = new_data[['Red Fighter', 'Blue Fighter']]
 
-fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, 2]
-fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, 1]
-fighter_data['Probability Draw'] = ensemble_predicted_probabilities[:, 0]
+fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, 1]
+fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, 0]
 
 fighter_data.to_csv('data/betting_predictions.csv', index=False)
 
