@@ -274,7 +274,6 @@ for fight in fights:
         fighter_stats[Red]["winstreak"]+=1
         fighter_stats[Blue]["winstreak"]=0
         fighter_stats[Red]["wins"]+=1 
-        fighter_stats[Blue]["losses"]+=1
         if title:
             fighter_stats[Red]["titlewins"]+=1
     if Result=='loss':
@@ -283,7 +282,6 @@ for fight in fights:
         fighter_stats[Blue]["winstreak"]+=1
         fighter_stats[Red]["winstreak"]=0
         fighter_stats[Blue]["wins"]+=1 
-        fighter_stats[Red]["losses"]+=1 
         if title:
             fighter_stats[Blue]["titlewins"]+=1
 

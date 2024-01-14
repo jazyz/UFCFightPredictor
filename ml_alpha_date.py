@@ -115,7 +115,7 @@ def main():
 
     def run_study():
         study = optuna.create_study(direction="minimize")
-        study.optimize(objective, n_trials=30)
+        study.optimize(objective, n_trials=1)
 
         best_params = study.best_params
         best_score = study.best_value
@@ -136,7 +136,6 @@ def main():
 
     model = lgb.LGBMClassifier(**best_params)
     # model = lgb.LGBMClassifier(random_state=seed)
-    X_train_extended = X_train_extended.drop("Red losses",axis=1)
     model.fit(X_train_extended, y_train_extended)
     # model.fit(X_train, y_train)
 

@@ -13,11 +13,10 @@ import numpy as np
 import optuna
 from sklearn.metrics import log_loss
 
-split_date = pd.to_datetime("2021-01-01") 
-def main():
-    file_path = os.path.join("data", "detailed_fights.csv")
+file_path = os.path.join("data", "detailed_fights.csv")
 
-    # Step 1: Read the dataa
+def main(split_date = "2021-01-01"):    # Step 1: Read the data
+    split_date = pd.to_datetime(split_date)
     df = pd.read_csv(file_path)
     # df = df[(df['Red totalfights'] > 4) & (df['Blue totalfights'] > 4)]
     # Step 2: Preprocess the data
@@ -73,7 +72,7 @@ def main():
     X_train_swapped.rename(columns=swap_red_blue, inplace=True)
 
     # Inverse the target variable for the swapped training data
-    y_train_swapped = y_train_swapped.apply(lambda x: 2 if x == 1 else (1 if x == 2 else 0))
+    y_train_swapped = y_train_swapped.apply(lambda x: 0 if x == 1 else 1)
 
     # Concatenate the original and the modified copy to form the extended training set
     X_train_extended = pd.concat([X_train, X_train_swapped], ignore_index=True)
@@ -83,7 +82,7 @@ def main():
     X_test_swapped = X_test.copy()
     y_test_swapped = y_test.copy()
     X_test_swapped.rename(columns=swap_red_blue, inplace=True)
-    y_test_swapped = y_test_swapped.apply(lambda x: 2 if x == 1 else (1 if x == 2 else 0))
+    y_test_swapped = y_test_swapped.apply(lambda x: 0 if x == 1 else 1)
     X_test_extended = pd.concat([X_test, X_test_swapped], ignore_index=True)
     y_test_extended = pd.concat([y_test, y_test_swapped], ignore_index=True)
 
