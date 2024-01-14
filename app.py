@@ -1,7 +1,7 @@
 import json
 from flask import Flask, request, jsonify, send_from_directory
 from predict_fights_alpha import predict_fight
-from ml_alpha import main
+from ml_web import main
 from testing.testing_time_period import process_dates
 import os
 import subprocess
