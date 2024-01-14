@@ -57,8 +57,15 @@ def closerToOdds(avb_win, avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob):
     b_win=bva_win
     if(abs(avb_win-odds1_prob) > abs(bva_lose-odds1_prob)):
         a_win=bva_lose
+        b_win=1-a_win
+
     if(abs(bva_win-odds2_prob) > abs(avb_lose-odds2_prob)):
         b_win=avb_lose
+        a_win=1-b_win
+
+    if a_win + b_win != 1:
+        a_win = avg_win(avb_win, bva_lose)
+        b_win = 1-a_win
     return a_win, b_win
 
 # if we bet on a fight, write the bet to the file

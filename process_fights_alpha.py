@@ -86,7 +86,7 @@ for fight in fights:
 headers=get_csv_headers(file_path)
 
 hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins"]
-hardcoded_features_divide = ["oppelo","wins","losses","avg age"]
+hardcoded_features_divide = ["oppelo","wins","avg age"]
 feature_list=[]
 feature_list.extend(hardcoded_features)
 feature_list.extend(hardcoded_features_divide)
