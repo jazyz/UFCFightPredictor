@@ -17,13 +17,9 @@ import os
 
 def main():
     file_path = os.path.join("data", "detailed_fights.csv")
-    # file_path = "predict_fights_alpha.csv"
 
-    # Step 1: Read the data
     df = pd.read_csv(file_path)
 
-    # Step 2: Preprocess the data
-    # Assuming 'Result' is the target variable and the rest are features
     label_encoder = LabelEncoder()
     df["Result"] = label_encoder.fit_transform(df["Result"])
 
@@ -58,14 +54,11 @@ def main():
     X_test = test_df.drop(["Result", "Date"], axis=1)
     y_test = test_df["Result"]
 
-    # Convert categorical variables if any
-    # X = pd.get_dummies(X)  # This line is optional and depends on your data
     seed = 42
-    # Step 1: Duplicate the training data
+
     X_train_swapped = X_train.copy()
     y_train_swapped = y_train.copy()
 
-    # Step 2: Rename the columns to swap 'Red' with 'Blue'
     swap_columns = {}
     for column in X_train.columns:
         if "Red" in column:
@@ -73,11 +66,8 @@ def main():
         elif "Blue" in column:
             swap_columns[column] = column.replace("Blue", "Red")
 
-    # Rename the columns in the copied DataFrame
     X_train_swapped.rename(columns=swap_columns, inplace=True)
 
-    # Inverse the target variable for the swapped data
-    # Assuming 'win', 'loss', and 'draw' are the possible values
     y_train_swapped = y_train_swapped.apply(
         lambda x: 2 if x == 1 else (1 if x == 2 else 0)
     )
@@ -87,60 +77,37 @@ def main():
     y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
 
     def objective(trial):
-        # Parameter suggestions by Optuna for tuning
         param = {
-            "objective": "multiclass",  # or 'binary' for binary classification
+            "objective": "multiclass", 
             "metric": "multi_logloss",
             "verbosity": -1,
-            "boosting_type": "gbdt",  # Default boosting type
+            "boosting_type": "gbdt",
             "num_leaves": trial.suggest_int(
                 "num_leaves", 20, 100
-            ),  # more conservative than default
+            ),  
             "learning_rate": trial.suggest_float(
                 "learning_rate", 0.02, 0.2, log=True
-            ),  # adjusted range for more granular learning rates
+            ),  
             "min_child_samples": trial.suggest_int(
                 "min_child_samples", 10, 100
-            ),  # adjusted range to prevent overfitting
+            ),  
             "subsample": trial.suggest_float(
                 "subsample", 0.5, 1.0
-            ),  # subsample ratio of the training instance
+            ),  
             "colsample_bytree": trial.suggest_float(
                 "colsample_bytree", 0.5, 1.0
-            ),  # subsample ratio of columns when constructing each tree
-            "n_estimators": 100,  # Fixed number of estimators for simplicity
-            "num_class": 3,  # Replace with the actual number of classes in your dataset
+            ),  
+            "n_estimators": 100,
+            "num_class": 3, 
         }
 
-        #     # Splitting data for validation
-        # X_train, X_valid, y_train, y_valid = train_test_split(X_train_extended, y_train_extended, test_size=0.2, stratify=y_train_extended)
-
-        # # Creating LightGBM datasets
-        # dtrain = lgb.Dataset(X_train, label=y_train)
-        # dvalid = lgb.Dataset(X_valid, label=y_valid)
-
-        # # Training model
-        # model = lgb.train(
-        #     param,
-        #     dtrain,
-        #     valid_sets=[dvalid],
-        #     callbacks=[lgb.early_stopping(stopping_rounds=30)]
-        # )
-
-        # # Making predictions
-        # preds = model.predict(X_valid, num_iteration=model.best_iteration)
-        # logloss = log_loss(y_valid, preds)
-
-        # return logloss
-
-        # data = lgb.Dataset(X_train_extended, label=y_train_extended)
         data = lgb.Dataset(X_train_extended, label=y_train_extended)
         # Training model
         cv_results = lgb.cv(
             param,
             data,
             num_boost_round=100,
-            nfold=3,  # Or another number of folds
+            nfold=3, 
             stratified=True,
             shuffle=True,
             callbacks=[lgb.early_stopping(stopping_rounds=20)],
@@ -148,7 +115,6 @@ def main():
 
         print(cv_results.keys())
 
-        # Extract the best score
         best_score = cv_results["valid multi_logloss-mean"][-1]
 
         return best_score
@@ -171,7 +137,6 @@ def main():
     with open("data/best_params.json", "r") as file:
         data_loaded = json.load(file)
 
-    # Extracting the best parameters and score from the loaded data
     best_params = data_loaded["best_params"]
     best_score = data_loaded["best_score"]
 
@@ -179,7 +144,7 @@ def main():
     # model = lgb.LGBMClassifier(random_state=seed)
     model.fit(X_train_extended, y_train_extended)
     # model.fit(X_train, y_train)
-    # Make predictions and evaluate the model
+
     y_pred = model.predict(X_test)
     predicted_probabilities = model.predict_proba(X_test)
     accuracy = accuracy_score(y_test, y_pred)
@@ -188,7 +153,6 @@ def main():
     print(f"Accuracy: {accuracy:.4f}")
     print(f"Log Loss: {logloss:.4f}")
 
-    # Get the fighter names and actual results for the test set
     def print_results():
         df_with_details = pd.read_csv(file_path)[
             ["Red Fighter", "Blue Fighter", "Result", "Date"]

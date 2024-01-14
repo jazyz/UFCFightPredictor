@@ -30,17 +30,13 @@ models = [load_model(os.path.join(model_save_dir, filename)) for filename in os.
 def preprocess_data(new_data, selected_columns):
     return new_data[selected_columns]
 
-# Load new data (example: 'new_data.csv')
 new_data = pd.read_csv('data/predict_fights_alpha.csv')
 
-# Preprocess new data
-# Assuming new_data is your dataframe for prediction
 X_new = preprocess_data(new_data, selected_columns)
-X_new = X_new.drop(['Result'], axis=1)  # Exclude 'Result' from the new data for predictions
-# Make predictions with all models
+X_new = X_new.drop(['Result'], axis=1)
+
 predicted_probabilities = [model.predict_proba(X_new) for model in models]
 
-# Average the predictions if using an ensemble approach
 ensemble_predicted_probabilities = np.mean(predicted_probabilities, axis=0)
 ensemble_preds = np.argmax(ensemble_predicted_probabilities, axis=1)
 
@@ -50,18 +46,14 @@ predicted_labels = label_encoder.inverse_transform(ensemble_preds)
 # Add predictions to the new data DataFrame
 new_data['Predicted Result'] = predicted_labels
 
-# # Save or display the predictions
 # new_data.to_csv('predictions.csv', index=False)
 
 fighter_data = new_data[['Red Fighter', 'Blue Fighter']]
 
-# Add the predicted probabilities to the fighter data
-# Assuming the order of probabilities is [Win, Lose, Draw]
 fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, 2]
 fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, 1]
 fighter_data['Probability Draw'] = ensemble_predicted_probabilities[:, 0]
 
-# Save or display the results1
 fighter_data.to_csv('data/betting_predictions.csv', index=False)
 
 
