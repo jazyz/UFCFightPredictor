@@ -46,8 +46,8 @@ const FightPredictor = ({ nameOptions }) => {
         fighter_name2: fighterName2,
       });
       console.log(response.data.message);
-      const training = await axios.post(`${baseURL}/train`);
-      console.log(training.data.message);
+      // const training = await axios.post(`${baseURL}/train`);
+      // console.log(training.data.message);
       const fighterStats = await axios.post(`${baseURL}/get_stats`, {
         fighter_name1: fighterName1,
         fighter_name2: fighterName2,
@@ -142,8 +142,8 @@ const FightPredictor = ({ nameOptions }) => {
                   Probability to Win:{" "}
                   {(
                     (100 *
-                      (predictedData[0].probability_win +
-                        predictedData[1].probability_loss)) /
+                      (predictedData[0]["Probability Win"] +
+                        predictedData[1]["Probability Lose"])) /
                     2
                   ).toFixed(2)}
                   %
@@ -157,8 +157,8 @@ const FightPredictor = ({ nameOptions }) => {
                   Probability to Win:{" "}
                   {(
                     (100 *
-                      (predictedData[1].probability_win +
-                        predictedData[0].probability_loss)) /
+                      (predictedData[1]["Probability Win"] +
+                        predictedData[0]["Probability Lose"])) /
                     2
                   ).toFixed(2)}
                   %

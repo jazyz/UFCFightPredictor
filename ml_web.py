@@ -1,312 +1,95 @@
-import csv
-import os
-import json
 import pandas as pd
-import sys
-import lightgbm as lgb
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
-from sklearn.model_selection import cross_val_score
 import numpy as np
-from sklearn.metrics import log_loss
-import optuna
+import joblib
+import json
 import os
 
 def main():
-    file_path = os.path.join("data", "detailed_fights.csv")
-    # file_path = "predict_fights_alpha.csv"
+    # Function to load a model
+    def load_model(model_path):
+        return joblib.load(model_path)
 
-    # Step 1: Read the data
-    df = pd.read_csv(file_path)
+    # Function to load preprocessing tools
+    def load_preprocessing_tools(label_encoder_path, selected_columns_path):
+        label_encoder = joblib.load(label_encoder_path)
+        with open(selected_columns_path, "r") as file:
+            selected_columns = json.load(file)
+        return label_encoder, selected_columns
 
-    # Step 2: Preprocess the data
-    # Assuming 'Result' is the target variable and the rest are features
-    label_encoder = LabelEncoder()
-    df["Result"] = label_encoder.fit_transform(df["Result"])
-
-    selected_columns = df.columns.tolist()
-
-    columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date"]
-    selected_columns = [col for col in selected_columns if col not in columns_to_remove]
-
-    corr_matrix = df[selected_columns].corr().abs()
-
-    # Select upper triangle of correlation matrix
-    upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
-
-    # Find features with correlation greater than 95%
-    to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
-
-    # Drop highly correlated features
-    df.drop(to_drop, axis=1, inplace=True)
-
-    # Make sure to update the 'selected_columns' to reflect the dropped columns
-    selected_columns = [column for column in selected_columns if column not in to_drop]
-
-    df = df[selected_columns]
-    X = df.drop(["Result"], axis=1)
-    y = df["Result"]
-
-    # Convert categorical variables if any
-    # X = pd.get_dummies(X)  # This line is optional and depends on your data
-
-    # Manual split based on percentage
-    split_index = int(len(df) * 0.95)
-    last_index = int(len(df) * 1)
-    X_train, X_test = X[:split_index], X[split_index:last_index]
-    y_train, y_test = y[:split_index], y[split_index:last_index]
-
-    seed = 42
-
-    # Determine the new start index for the training data to skip the first 20%
-    prune_index = int(len(X_train) * 0.1)
-
-
-    X_train = X_train[prune_index:]
-    y_train = y_train[prune_index:]
-
-
-    # Step 1: Duplicate the training data
-    X_train_swapped = X_train.copy()
-    y_train_swapped = y_train.copy()
-
-    # Step 2: Rename the columns to swap 'Red' with 'Blue'
-    swap_columns = {}
-    for column in X_train.columns:
-        if "Red" in column:
-            swap_columns[column] = column.replace("Red", "Blue")
-        elif "Blue" in column:
-            swap_columns[column] = column.replace("Blue", "Red")
-
-    # Rename the columns in the copied DataFrame
-    X_train_swapped.rename(columns=swap_columns, inplace=True)
-
-    # Inverse the target variable for the swapped data
-    # Assuming 'win', 'loss', and 'draw' are the possible values
-    y_train_swapped = y_train_swapped.apply(lambda x: 2 if x == 1 else (1 if x == 2 else 0))
-
-    # Step 3: Concatenate the original and the modified copy to form the extended training set
-    X_train_extended = pd.concat([X_train, X_train_swapped], ignore_index=True)
-    y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
-
-
-    def objective(trial):
-        # Parameter suggestions by Optuna for tuning
-        param = {
-            'objective': 'multiclass',  # or 'binary' for binary classification
-            'metric': 'multi_logloss',
-            'verbosity': -1,
-            'boosting_type': 'gbdt',    # Default boosting type
-            'num_leaves': trial.suggest_int('num_leaves', 20, 100),  # more conservative than default
-            'learning_rate': trial.suggest_float('learning_rate', 0.02, 0.2, log=True),  # adjusted range for more granular learning rates
-            'min_child_samples': trial.suggest_int('min_child_samples', 10, 100),  # adjusted range to prevent overfitting
-            'subsample': trial.suggest_float('subsample', 0.5, 1.0),  # subsample ratio of the training instance
-            'colsample_bytree': trial.suggest_float('colsample_bytree', 0.5, 1.0),  # subsample ratio of columns when constructing each tree
-            'n_estimators': 100,  # Fixed number of estimators for simplicity
-            'num_class': 3  # Replace with the actual number of classes in your dataset
-        }
-
-        #     # Splitting data for validation
-        # X_train, X_valid, y_train, y_valid = train_test_split(X_train_extended, y_train_extended, test_size=0.2, stratify=y_train_extended)
-
-        # # Creating LightGBM datasets
-        # dtrain = lgb.Dataset(X_train, label=y_train)
-        # dvalid = lgb.Dataset(X_valid, label=y_valid)
-
-        # # Training model
-        # model = lgb.train(
-        #     param,
-        #     dtrain,
-        #     valid_sets=[dvalid],
-        #     callbacks=[lgb.early_stopping(stopping_rounds=30)]
-        # )
-
-        # # Making predictions
-        # preds = model.predict(X_valid, num_iteration=model.best_iteration)
-        # logloss = log_loss(y_valid, preds)
-
-        # return logloss
-
-        # data = lgb.Dataset(X_train_extended, label=y_train_extended)
-        data = lgb.Dataset(X_train_extended, label=y_train_extended)
-        # Training model
-        cv_results = lgb.cv(
-            param,
-            data,
-            num_boost_round=1000,
-            nfold=3,  # Or another number of folds
-            stratified=True,
-            shuffle=True,
-            callbacks=[lgb.early_stopping(stopping_rounds=20)],
-        )
-
-        print(cv_results.keys())
-
-        # Extract the best score
-        best_score = cv_results['valid multi_logloss-mean'][-1]
-
-        return best_score
-
-    # study = optuna.create_study(direction="minimize")
-    # study.optimize(objective, n_trials=10)
-
-    # # Fetching the best parameters
-    # best_params = study.best_params
-    # best_score = study.best_value
-
-    # # Output the best parameters and score
-    # print(f"Best params: {best_params}")
-    # print(f"Best score: {best_score}")
-
-    # with open("data/best_params.json", "w") as file:
-    #     # Creating a dictionary to hold data
-    #     data_to_save = {"best_params": best_params, "best_score": best_score}
-    #     # Writing as a JSON formatted string for readability and ease of use
-    #     json.dump(data_to_save, file, indent=4)
-
-
-    with open("data/best_params.json", "r") as file:
-        data_loaded = json.load(file)
-
-    # Extracting the best parameters and score from the loaded data
-    best_params = data_loaded["best_params"]
-    best_score = data_loaded["best_score"]
-
-    model = lgb.LGBMClassifier(**best_params)
-    # model = lgb.LGBMClassifier(random_state=seed)
-    model.fit(X_train_extended, y_train_extended)
-    # model.fit(X_train, y_train)
-    # Make predictions and evaluate the model
-    y_pred = model.predict(X_test)
-    predicted_probabilities = model.predict_proba(X_test)
-    accuracy = accuracy_score(y_test, y_pred)
-    logloss = log_loss(y_test, predicted_probabilities)
-
-    print(f"Accuracy: {accuracy:.4f}")
-    print(f"Log Loss: {logloss:.4f}")
-
-    # Get the fighter names and actual results for the test set
-    df_with_details = pd.read_csv(file_path)[
-        ["Red Fighter", "Blue Fighter", "Result"]
-    ]
-    df_with_details = df_with_details.iloc[split_index:]  # Align with the test data split
-    df_with_details.reset_index(drop=True, inplace=True)
-    df_with_details["Result"] = label_encoder.fit_transform(df_with_details["Result"])
-
-    # Convert the predicted and actual results back to the original labels if necessary.
-    predicted_labels = label_encoder.inverse_transform(y_pred)
-    actual_labels = label_encoder.inverse_transform(df_with_details["Result"])
-
-    with open(os.path.join("data", "predicted_results.csv"), mode="w", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerow(
-            [
-                "Red Fighter",
-                "Blue Fighter",
-                "Predicted Result",
-                "Probability",
-                "Actual Result",
-            ]
-        )
-        for i in range(len(predicted_labels)):
-            max_probability = max(predicted_probabilities[i])
-
-            writer.writerow(
-                [
-                    df_with_details["Red Fighter"].iloc[i],
-                    df_with_details["Blue Fighter"].iloc[i],
-                    predicted_labels[i],
-                    max_probability,  # Formatting as a percentage
-                    actual_labels[i],
-                ]
-            )
-
-    feature_importances = model.feature_importances_
-
-    feature_importance_df = pd.DataFrame(
-        {"Feature": X_train.columns, "Importance": feature_importances}
+    # Load LabelEncoder and selected columns
+    preprocessing_save_dir = "saved_preprocessing"
+    label_encoder, selected_columns = load_preprocessing_tools(
+        os.path.join(preprocessing_save_dir, "label_encoder.joblib"),
+        os.path.join(preprocessing_save_dir, "selected_columns.json")
     )
 
-    feature_importance_df = feature_importance_df.sort_values("Importance", ascending=False)
+    # Load models
+    model_save_dir = "saved_models"
+    models = [load_model(os.path.join(model_save_dir, filename)) for filename in os.listdir(model_save_dir) if filename.endswith('.joblib')]
 
-    # plt.figure(figsize=(10, 6))
-    # plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
-    # plt.xlabel("Importance")
-    # plt.ylabel("Feature")
-    # plt.title("Feature Importance")
-    # plt.show()
+    # Function to preprocess new data
+    def preprocess_data(new_data, selected_columns):
+        return new_data[selected_columns]
 
-    print("Top 10 Important Features:")
-    print(feature_importance_df.head(10))
+    # Load new data (example: 'new_data.csv')
+    new_data = pd.read_csv('data/predict_fights_alpha.csv')
 
-    # ***** writing all detailed stats to predicted_fights_alpha_results.txt *****
-    output_file = open(os.path.join("data", "predicted_fights_alpha_results.txt"), "w")
-    original_stdout = sys.stdout
-    sys.stdout = output_file
-    pd.set_option("display.max_columns", None)  # Display all columns
-    pd.set_option("display.max_rows", None)     # Display all rows
+    # Preprocess new data
+    # Assuming new_data is your dataframe for prediction
+    X_new = preprocess_data(new_data, selected_columns)
+    X_new = X_new.drop(['Result'], axis=1)  # Exclude 'Result' from the new data for predictions
+    # Make predictions with all models
+    predicted_probabilities = [model.predict_proba(X_new) for model in models]
 
-    predict_data = pd.read_csv(os.path.join("data", "predict_fights_alpha.csv"))
-    predict_data.replace("--", pd.NA, inplace=True)
-    fighter_name_label = "fighter_names"
+    # Average the predictions if using an ensemble approach
+    ensemble_predicted_probabilities = np.mean(predicted_probabilities, axis=0)
+    ensemble_preds = np.argmax(ensemble_predicted_probabilities, axis=1)
 
-    print(f"{fighter_name_label}", file=output_file)
-    print(predict_data["Red Fighter"] + "*" + predict_data["Blue Fighter"], file=output_file)
+    # Convert predictions back to original labels
+    predicted_labels = label_encoder.inverse_transform(ensemble_preds)
 
-    predict_data.dropna(subset=selected_columns, inplace=True)
-    predict_data = predict_data[selected_columns]
+    # Add predictions to the new data DataFrame
+    new_data['Predicted Result'] = predicted_labels
 
-    X_predict = predict_data.drop(["Result"], axis=1)
+    # # Save or display the predictions
+    # new_data.to_csv('predictions.csv', index=False)
 
-    y_pred = model.predict(X_predict)
+    fighter_data = new_data[['Red Fighter', 'Blue Fighter']]
 
-    class_probabilities = model.predict_proba(X_predict)
+    # Add the predicted probabilities to the fighter data
+    # Assuming the order of probabilities is [Win, Lose, Draw]
+    fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, 2]
+    fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, 1]
+    fighter_data['Probability Draw'] = ensemble_predicted_probabilities[:, 0]
 
-    predicted_results = label_encoder.inverse_transform(y_pred)
+    # Save or display the results1
+    fighter_data.to_csv('data/fight_predictions.csv', index=False)
 
-    predict_data["predicted_result"] = predicted_results
-    for i, label in enumerate(label_encoder.classes_):
-        predict_data[f"probability_{label}"] = class_probabilities[:, i]
-
-    print(predict_data)
-
-    sys.stdout = original_stdout
-    output_file.close()
-
-    # Create a dictionary to store the predicted data and probabilities
-    predicted_data_dict = {
-        "predict_data": predict_data.to_dict(orient="records"),
-        "class_probabilities": class_probabilities.tolist(),
+    # Save the results as a JSON file
+    # Assuming the order of probabilities is [Win, Lose, Draw]
+    predict_data = []
+    for i in range(len(fighter_data)):
+        predict_data.append({
+            "Red Fighter": fighter_data.iloc[i]['Red Fighter'],
+            "Blue Fighter": fighter_data.iloc[i]['Blue Fighter'],
+            "Probability Win": fighter_data.iloc[i]['Probability Win'],
+            "Probability Lose": fighter_data.iloc[i]['Probability Lose'],
+            "Probability Draw": fighter_data.iloc[i]['Probability Draw'],
+        })
+    class_probabilities = {
+        "Win": ensemble_predicted_probabilities[:, 2].tolist(),
+        "Lose": ensemble_predicted_probabilities[:, 1].tolist(),
+        "Draw": ensemble_predicted_probabilities[:, 0].tolist(),
     }
-
-    # Save the dictionary as a JSON file
+    predicted_data_dict = {
+        "predict_data": predict_data,
+        "class_probabilities": class_probabilities,
+    }
     with open(os.path.join("data", "predicted_data.json"), "w") as json_file:
         json.dump(predicted_data_dict, json_file)
-
-    # ***** writing a clean version with just win and lose probabilities predicted_fights_alpha_results_clean.txt *****
-    # easier to use for betting
-    predict_data = pd.read_csv(os.path.join("data", "predict_fights_alpha.csv"))
-    with open(os.path.join("data", "predicted_fights_alpha_results_clean.csv"), mode="w", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerow(
-            [
-                "Red Fighter",
-                "Blue Fighter",
-                "Probability Win",
-                "Probability Lose",
-            ]
-        )
-        for i in range(len(predicted_results)):
-            writer.writerow(
-                [
-                    predict_data["Red Fighter"].iloc[i],
-                    predict_data["Blue Fighter"].iloc[i],
-                    class_probabilities[i][2],
-                    class_probabilities[i][1],
-                ]
-            )
+    
 
 if __name__ == "__main__":
     main()
+
+
