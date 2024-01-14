@@ -47,9 +47,8 @@ def main():
 
     fighter_data = new_data[['Red Fighter', 'Blue Fighter']]
 
-    fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, 2]
-    fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, 1]
-    fighter_data['Probability Draw'] = ensemble_predicted_probabilities[:, 0]
+    fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, 1]
+    fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, 0]
 
     fighter_data.to_csv('data/fight_predictions.csv', index=False)
 
@@ -60,12 +59,10 @@ def main():
             "Blue Fighter": fighter_data.iloc[i]['Blue Fighter'],
             "Probability Win": fighter_data.iloc[i]['Probability Win'],
             "Probability Lose": fighter_data.iloc[i]['Probability Lose'],
-            "Probability Draw": fighter_data.iloc[i]['Probability Draw'],
         })
     class_probabilities = {
-        "Win": ensemble_predicted_probabilities[:, 2].tolist(),
-        "Lose": ensemble_predicted_probabilities[:, 1].tolist(),
-        "Draw": ensemble_predicted_probabilities[:, 0].tolist(),
+        "Win": ensemble_predicted_probabilities[:, 1].tolist(),
+        "Lose": ensemble_predicted_probabilities[:, 0].tolist(),
     }
     predicted_data_dict = {
         "predict_data": predict_data,
