@@ -6,7 +6,7 @@ import os
 
 # TODO: figure out how to do rematches 
 def get_ml(p1, p2):
-    with open("data/fight_predictions.csv", mode='r') as file:
+    with open("data/betting_predictions.csv", mode='r') as file:
         reader = csv.DictReader(file)
         for row in reader:
             if (row["Red Fighter"] == p1 and row["Blue Fighter"] == p2):
