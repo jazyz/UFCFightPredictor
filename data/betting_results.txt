@@ -1,18 +1,36 @@
 Bankroll: $1000.00
 Fight Card: https://www.ufc.com/event/ufc-297
 ---
-Sean Strickland: -130 0.34 -0.52
-Dricus Du Plessis: 110 0.66 0.35
-Dricus Du Plessis $17.61 (bet) pt: $36.97 +$19.37 
+Sean Strickland: -130 0.53 -0.09
+Dricus Du Plessis: 110 0.47 -0.01
+Sean Strickland (no bet)
+---
+---
+Neil Magny: 205 0.26 -0.11
+Mike Malott: -250 0.74 0.10
+Mike Malott $4.99 (bet) pt: $6.98 +$2.00 
+---
+Chris Curtis: -166 0.52 -0.27
+Marc-Andre Barriault: 140 0.48 0.10
+Chris Curtis (no bet)
+---
+Arnold Allen: 140 0.58 0.27
+Movsar Evloev: -166 0.42 -0.53
+Arnold Allen $13.59 (bet) pt: $32.62 +$19.03 
+---
+Brad Katona: -192 0.45 -0.60
+Garrett Armfield: 160 0.55 0.26
+Garrett Armfield $13.20 (bet) pt: $34.33 +$21.12 
+---
+Charles Jourdain: -175 0.68 0.12
+Sean Woodson: 135 0.32 -0.19
+Charles Jourdain $6.24 (bet) pt: $9.80 +$3.56 
 ---
 ---
 ---
 ---
 ---
----
----
----
----
----
----
+Malcolm Gordon: -120 0.52 -0.06
+Jimmy Flick: 100 0.48 -0.04
+Malcolm Gordon (no bet)
 ---

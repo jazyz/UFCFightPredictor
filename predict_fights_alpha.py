@@ -42,7 +42,7 @@ file_path = os.path.join('data', 'modified_fight_details.csv')
 headers=get_csv_headers(file_path)
 
 hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins",]
-hardcoded_features_divide = ["oppelo","wins","losses"]
+hardcoded_features_divide = ["oppelo","wins","losses", "avg age"]
 
 feature_list=[]
 feature_list.extend(hardcoded_features)
@@ -84,6 +84,11 @@ def extract_fighter_stats(fighter_name, opponent_name):
 
 # process the 2 fighters stats into Red and Blue
 # same process as process_fights_alpha
+date_format="%Y-%m-%d %H:%M:%S"
+def convert_date(date_string):
+    datetime_object = datetime.strptime(date_string, date_format)
+    return datetime_object
+
 def process_fight(fighter_stats, opponent_stats, processed_fight):
     if int(fighter_stats["totalfights"]) >= 2 and int(opponent_stats["totalfights"]) >= 2:
         processed_fight["Result"] = "unknown"
@@ -91,10 +96,14 @@ def process_fight(fighter_stats, opponent_stats, processed_fight):
         processed_fight["Blue Fighter"] = opponent_stats["Fighter"]
        
         current_year = datetime.now().year
+        current_date = datetime.now()
         processed_fight['Red age'] = current_year - int(fighter_stats['dob'])
         processed_fight['Blue age'] = current_year - int(opponent_stats['dob'])
         processed_fight['age oppdiff'] = processed_fight['Red age'] - processed_fight['Blue age'] 
         
+        processed_fight['Red last_fight'] = (current_date-convert_date(fighter_stats["last_fight"])).days
+        processed_fight['Blue last_fight'] = (current_date-convert_date(opponent_stats["last_fight"])).days
+        processed_fight['last_fight oppdiff'] = processed_fight['Red last_fight'] - processed_fight['Blue last_fight']
         # print(f"Processing {fighter_stats['Fighter']} vs {opponent_stats['Fighter']}")
         for feature in feature_list:
             # print(feature)

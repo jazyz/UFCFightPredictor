@@ -31,13 +31,24 @@ def get_csv_headers(file_path):
         headers = next(csv_reader)
         return headers
     
-# rating
-K_FACTOR = 32
+def calculate_k_factor(number_of_fights):
+    # Adjust K-factor based on the number of fights
+    if number_of_fights < 5:
+        return 40
+    elif 5 <= number_of_fights < 10:
+        return 35
+    elif 10 <= number_of_fights < 20:
+        return 30
+    else:
+        return 25
 
 def calculate_expected_win_probability(rating_a, rating_b):
     return 1 / (1 + pow(10, (rating_b - rating_a) / 400))
 
-def update_elo_ratings(rating_a, rating_b, result):
+def update_elo_ratings(rating_a, rating_b, result, fights_a, fights_b):
+    K_FACTOR_A = calculate_k_factor(fights_a)
+    K_FACTOR_B = calculate_k_factor(fights_b)
+
     expected_win_probability = calculate_expected_win_probability(rating_a, rating_b)
 
     if result == "win":
@@ -47,8 +58,8 @@ def update_elo_ratings(rating_a, rating_b, result):
     else:  # Draw
         actual_score = 0.5
 
-    new_rating_a = rating_a + K_FACTOR * (actual_score - expected_win_probability)
-    new_rating_b = rating_b + K_FACTOR * ((1 - actual_score) - (1 - expected_win_probability))
+    new_rating_a = rating_a + K_FACTOR_A * (actual_score - expected_win_probability)
+    new_rating_b = rating_b + K_FACTOR_B * ((1 - actual_score) - (1 - expected_win_probability))
 
     return new_rating_a, new_rating_b
 
@@ -74,7 +85,7 @@ for fight in fights:
 # store it back into the dicts
 headers=get_csv_headers(file_path)
 
-hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins",]
+hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins"]
 hardcoded_features_divide = ["oppelo","wins","losses","avg age"]
 feature_list=[]
 feature_list.extend(hardcoded_features)
@@ -138,7 +149,8 @@ def processFight(fight, Red, Blue):
         Result = 'win'
     elif winner == Blue:
         Result = 'loss'
-
+    if Result == 'draw':
+        return
     # switch = random.choice([True, False])
     # if switch:
     #     Red, Blue = Blue, Red 
@@ -160,7 +172,9 @@ def processFight(fight, Red, Blue):
         processed_fight['Red age'] = fight_date.year - fighter_stats[Red]['dob']
         processed_fight['Blue age'] = fight_date.year - fighter_stats[Blue]['dob']
         processed_fight['age oppdiff'] = processed_fight['Red age'] - processed_fight['Blue age'] 
-
+        processed_fight['Red last_fight'] = (fight_date-fighter_stats[Red]["last_fight"]).days
+        processed_fight['Blue last_fight'] = (fight_date-fighter_stats[Blue]["last_fight"]).days
+        processed_fight['last_fight oppdiff'] = processed_fight['Red last_fight'] - processed_fight['Blue last_fight']
         for feature in feature_list:
             if feature in fighter_stats[Red] and feature in fighter_stats[Blue]:
                 processed_fight[f'Red {feature}'] = fighter_stats[Red][feature]
@@ -250,6 +264,8 @@ for fight in fights:
     fighter_stats[Red]["oppelo"]+=rating_b
     fighter_stats[Blue]["oppelo"]+=rating_a
     fight_date=getDate(fight['Date'], "%B %d, %Y")
+    fighter_stats[Red]["last_fight"]=fight_date
+    fighter_stats[Blue]["last_fight"]=fight_date
     fighter_stats[Red]["avg age"]+=fight_date.year-fighter_stats[Red]["dob"]
     fighter_stats[Blue]["avg age"]+=fight_date.year-fighter_stats[Blue]["dob"]
     if Result=='win':
@@ -271,7 +287,7 @@ for fight in fights:
         if title:
             fighter_stats[Blue]["titlewins"]+=1
 
-    new_rating_a, new_rating_b = update_elo_ratings(rating_a, rating_b, Result)
+    new_rating_a, new_rating_b = update_elo_ratings(rating_a, rating_b, Result, redfights, bluefights)
     fighter_stats[Red]["elo"]=new_rating_a
     fighter_stats[Blue]["elo"]=new_rating_b
     
