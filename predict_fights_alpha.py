@@ -154,7 +154,7 @@ def main():
     # response = requests.get(url)
 
     # to get one event, paste the url in event_urls and comment out the part below
-    event_urls = ["http://www.ufcstats.com/event-details/010986ee359fb863"]
+    event_urls = ["http://ufcstats.com/event-details/bd85ca0bb4f26cfc"]
 
     # if response.status_code == 200:
     #     soup = BeautifulSoup(response.text, 'html.parser')
