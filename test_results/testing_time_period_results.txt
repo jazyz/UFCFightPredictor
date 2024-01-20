@@ -438,6 +438,7 @@ Bankroll: 1455.34
 ------ RESULT ------
 Bankroll: 1974.04
 ------ RESULT ------
+<<<<<<< HEAD
 Bankroll: 785.68
 ------ RESULT ------
 Bankroll: 891.00
@@ -445,3 +446,16 @@ Bankroll: 891.00
 Bankroll: 841.83
 ------ RESULT ------
 Bankroll: 757.17
+=======
+Bankroll: 1876.46
+------ RESULT ------
+Bankroll: 1876.46
+------ RESULT ------
+Bankroll: 1876.46
+------ RESULT ------
+Bankroll: 1199.91
+------ RESULT ------
+Bankroll: 1042.21
+------ RESULT ------
+Bankroll: 1328.36
+>>>>>>> 293c5fb2e581232a3e94e5010b8dc80570eba64c
