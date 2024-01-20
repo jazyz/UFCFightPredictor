@@ -151,13 +151,13 @@ def processFight(fight, Red, Blue):
         Result = 'loss'
     if Result == 'draw':
         return
-    # switch = random.choice([True, False])
-    # if switch:
-    #     Red, Blue = Blue, Red 
-    #     if Result == 'win':
-    #         Result = 'loss'
-    #     elif Result == 'loss':
-    #         Result = 'win'
+    switch = random.choice([True, False])
+    if switch:
+        Red, Blue = Blue, Red 
+        if Result == 'win':
+            Result = 'loss'
+        elif Result == 'loss':
+            Result = 'win'
 
     processed_fight = {"Result": Result}
     if fighter_stats[Red]["totalfights"] >= 2 and fighter_stats[Blue]["totalfights"] >= 2:
