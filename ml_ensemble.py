@@ -26,7 +26,7 @@ selected_columns = df.columns.tolist()
 
 columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date"]
 selected_columns = [col for col in selected_columns if col not in columns_to_remove]
-selected_columns = [col for col in selected_columns if 'red' not in col.lower() and 'blue' not in col.lower()]
+# selected_columns = [col for col in selected_columns if 'red' not in col.lower() and 'blue' not in col.lower()]
 corr_matrix = df[selected_columns].corr().abs()
 
 upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
@@ -55,32 +55,32 @@ prune_index = int(len(X_train) * 0.3)
 X_train = X_train[prune_index:]
 y_train = y_train[prune_index:]
 
-win_count = y_train.value_counts()[1]  # Assuming 'win' is encoded as 1
-loss_count = y_train.value_counts()[0]  # Assuming 'loss' is encoded as 0
+# win_count = y_train.value_counts()[1]  # Assuming 'win' is encoded as 1
+# loss_count = y_train.value_counts()[0]  # Assuming 'loss' is encoded as 0
 
-print(f"Number of wins in train: {win_count}")
-print(f"Number of losses in train: {loss_count}")
+# print(f"Number of wins in train: {win_count}")
+# print(f"Number of losses in train: {loss_count}")
 
-win_count2 = y_test.value_counts()[1]  # Assuming 'win' is encoded as 1
-loss_count2 = y_test.value_counts()[0]  # Assuming 'loss' is encoded as 0
+# win_count2 = y_test.value_counts()[1]  # Assuming 'win' is encoded as 1
+# loss_count2 = y_test.value_counts()[0]  # Assuming 'loss' is encoded as 0
 
-print(f"Number of wins in test: {win_count2}")
-print(f"Number of losses in test: {loss_count2}")
-# X_train_swapped = X_train.copy()
-# y_train_swapped = y_train.copy()
+# print(f"Number of wins in test: {win_count2}")
+# print(f"Number of losses in test: {loss_count2}")
+X_train_swapped = X_train.copy()
+y_train_swapped = y_train.copy()
 
-# swap_columns = {}
-# for column in X_train.columns:
-#     if "Red" in column:
-#         swap_columns[column] = column.replace("Red", "Blue")
-#     elif "Blue" in column:
-#         swap_columns[column] = column.replace("Blue", "Red")
+swap_columns = {}
+for column in X_train.columns:
+    if "Red" in column:
+        swap_columns[column] = column.replace("Red", "Blue")
+    elif "Blue" in column:
+        swap_columns[column] = column.replace("Blue", "Red")
 
-# X_train_swapped.rename(columns=swap_columns, inplace=True)
-# y_train_swapped = y_train_swapped.apply(lambda x: 2 if x == 1 else (1 if x == 2 else 0))
+X_train_swapped.rename(columns=swap_columns, inplace=True)
+y_train_swapped = y_train_swapped.apply(lambda x: 0 if x == 1 else 1)
 
-# X_train_extended = pd.concat([X_train, X_train_swapped], ignore_index=True)
-# y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
+X_train_extended = pd.concat([X_train, X_train_swapped], ignore_index=True)
+y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
 
 from sklearn.model_selection import TimeSeriesSplit
 
@@ -97,8 +97,8 @@ def objective(trial):
         'colsample_bytree': trial.suggest_float('colsample_bytree', 0.5, 1.0),  
         'num_class': 2  
     }
-    data = lgb.Dataset(X_train, label=y_train)
-    # data = lgb.Dataset(X_train_extended, label=y_train_extended)
+    # data = lgb.Dataset(X_train, label=y_train)
+    data = lgb.Dataset(X_train_extended, label=y_train_extended)
 
     # Initialize TimeSeriesSplit
     tscv = TimeSeriesSplit(n_splits=5)  # Adjust the number of splits as needed
@@ -133,8 +133,8 @@ for _ in range(n_models):
     best_params = study.best_params
 
     model = lgb.LGBMClassifier(**best_params)
-    model.fit(X_train, y_train)
-    # model.fit(X_train_extended, y_train_extended)
+    # model.fit(X_train, y_train)
+    model.fit(X_train_extended, y_train_extended)
 
     studies.append(study)
     models.append(model)

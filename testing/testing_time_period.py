@@ -68,11 +68,12 @@ def preload_ml_predictions():
         reader = csv.DictReader(file)
         for row in reader:
             fighters = (row["Red Fighter"], row["Blue Fighter"])
-            fighters2 = (row["Blue Fighter"], row["Red Fighter"])
-            if row["Predicted Result"] == "win":
-                probability = float(row["Probability"])
-            else:  # if the predicted result is "loss"
-                probability = 1 - float(row["Probability"])
+            # fighters2 = (row["Blue Fighter"], row["Red Fighter"])
+            probability = float(row["Probability Win"])
+            # if row["Predicted Result"] == "win":
+            #     probability = float(row["Probability"])
+            # else:  # if the predicted result is "loss"
+            #     probability = 1 - float(row["Probability"])
             ml_predictions[fighters] = probability
             # ml_predictions[fighters2] = 1-probability
 
@@ -196,7 +197,8 @@ def find_fights(start_date, end_date, last_training_date, strategy):
                 process_fight(row, strategy)
 
 def train_ml(start_date):
-    main(start_date)
+    # main(start_date)
+    pass
 
 def process_dates(start_date, end_date, strategy):
     print(strategy)
@@ -233,4 +235,4 @@ def plot_bankrolls():
     plt.savefig(os.path.join("data", "bankroll_plot.png"))  # Save the plot as an image file
     plt.close()  # Close the plot
 
-process_dates('2021-01-01', '2024-01-01', strategy=[0.1,0.1,0.00])
+process_dates('2023-01-01', '2024-01-01', strategy=[0.1,0.1,0.00])

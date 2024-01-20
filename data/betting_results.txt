@@ -1,36 +1,36 @@
 Bankroll: $1000.00
 Fight Card: https://www.ufc.com/event/ufc-297
 ---
-Sean Strickland: -130 0.50 -0.15
-Dricus Du Plessis: 110 0.50 0.04
-Sean Strickland (no bet)
+Sean Strickland: -115 0.32 -0.46
+Dricus Du Plessis: -105 0.68 0.34
+Dricus Du Plessis $16.89 (bet) pt: $32.97 +$16.09 
 ---
 ---
-Neil Magny: 205 0.18 -0.22
-Mike Malott: -250 0.82 0.37
-Mike Malott $18.70 (bet) pt: $26.18 +$7.48 
+Neil Magny: 285 0.42 0.22
+Mike Malott: -360 0.58 -0.93
+Mike Malott (no bet)
 ---
-Chris Curtis: -166 0.56 -0.17
-Marc-Andre Barriault: 140 0.44 0.04
-Chris Curtis (no bet)
+Chris Curtis: -185 0.39 -0.74
+Marc-Andre Barriault: 160 0.61 0.37
+Marc-Andre Barriault $18.34 (bet) pt: $47.68 +$29.34 
 ---
-Arnold Allen: 140 0.61 0.34
-Movsar Evloev: -166 0.39 -0.63
-Arnold Allen $16.95 (bet) pt: $40.68 +$23.73 
+Arnold Allen: 160 0.46 0.13
+Movsar Evloev: -192 0.54 -0.36
+Movsar Evloev (no bet)
 ---
-Brad Katona: -192 0.48 -0.53
-Garrett Armfield: 160 0.52 0.23
-Garrett Armfield $11.35 (bet) pt: $29.52 +$18.16 
+Brad Katona: -218 0.32 -1.17
+Garrett Armfield: 180 0.68 0.51
+Garrett Armfield $25.33 (bet) pt: $70.92 +$45.59 
 ---
-Charles Jourdain: -175 0.66 0.06
-Sean Woodson: 135 0.34 -0.14
-Charles Jourdain $2.83 (bet) pt: $4.45 +$1.62 
----
----
+Charles Jourdain: -218 0.54 -0.47
+Sean Woodson: 180 0.46 0.16
+Charles Jourdain (no bet)
 ---
 ---
 ---
-Malcolm Gordon: -120 0.60 0.11
-Jimmy Flick: 100 0.40 -0.19
-Malcolm Gordon $5.47 (bet) pt: $10.04 +$4.56 
+---
+---
+Malcolm Gordon: -205 0.39 -0.85
+Jimmy Flick: 170 0.61 0.37
+Jimmy Flick $18.73 (bet) pt: $50.58 +$31.85 
 ---
