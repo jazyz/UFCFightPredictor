@@ -90,6 +90,8 @@ def objective(trial):
         'metric': 'multi_logloss',
         'verbosity': -1,
         'boosting_type': 'gbdt', 
+        'lambda_l1': trial.suggest_float('lambda_l1', 1e-8, 10.0, log=True),
+        'lambda_l2': trial.suggest_float('lambda_l2', 1e-8, 10.0, log=True),
         'num_leaves': trial.suggest_int('num_leaves', 20, 100),
         'learning_rate': trial.suggest_float('learning_rate', 0.02, 0.2, log=True),
         'min_child_samples': trial.suggest_int('min_child_samples', 10, 100),  
@@ -111,7 +113,7 @@ def objective(trial):
         folds=tscv,  
         stratified=False, 
         shuffle=False, 
-        callbacks=[lgb.early_stopping(stopping_rounds=50)],
+        callbacks=[lgb.early_stopping(stopping_rounds=30)],
     )
     
     print(cv_results.keys())
@@ -128,7 +130,7 @@ models = []
 
 for _ in range(n_models):
     study = optuna.create_study(direction='minimize')
-    study.optimize(objective, n_trials=25)
+    study.optimize(objective, n_trials=10)
 
     best_params = study.best_params
 
