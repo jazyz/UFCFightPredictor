@@ -26,7 +26,13 @@ selected_columns = df.columns.tolist()
 
 columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date"]
 selected_columns = [col for col in selected_columns if col not in columns_to_remove]
+
+low_importance_to_remove = [
+    
+]
+selected_columns = [col for col in selected_columns if col not in low_importance_to_remove]
 # selected_columns = [col for col in selected_columns if 'red' not in col.lower() and 'blue' not in col.lower()]
+selected_columns = [col for col in selected_columns if 'oppdiff' not in col]
 corr_matrix = df[selected_columns].corr().abs()
 
 upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
@@ -76,7 +82,12 @@ for column in X_train.columns:
     elif "Blue" in column:
         swap_columns[column] = column.replace("Blue", "Red")
 
+
 X_train_swapped.rename(columns=swap_columns, inplace=True)
+for column in X_train.columns:
+    if "oppdiff" in column:
+        X_train_swapped[column] = X_train[column] * -1
+
 y_train_swapped = y_train_swapped.apply(lambda x: 0 if x == 1 else 1)
 
 X_train_extended = pd.concat([X_train, X_train_swapped], ignore_index=True)
@@ -133,7 +144,7 @@ models = []
 
 for _ in range(n_models):
     study = optuna.create_study(direction='minimize')
-    study.optimize(objective, n_trials=10)
+    study.optimize(objective, n_trials=1)
 
     best_params = study.best_params
 
@@ -143,6 +154,45 @@ for _ in range(n_models):
 
     studies.append(study)
     models.append(model)
+
+import shap
+shap_values_list = []
+
+for model in models:
+    explainer = shap.TreeExplainer(model)
+    shap_values = explainer.shap_values(X_test)
+    shap_values_list.append(shap_values)
+
+shap_values_array = np.array(shap_values_list)  # Shape: [num_models, 2, num_samples, num_features]
+
+average_shap_values = np.mean(shap_values_array, axis=0)
+
+class_index = 0  # or 1
+
+# Summing SHAP values across all samples to get an overall measure of feature importance
+feature_importance = np.abs(average_shap_values[class_index]).mean(axis=0)
+
+# Sorting features by their importance
+sorted_feature_indices = np.argsort(feature_importance)[::-1]
+
+# Sorted feature names
+sorted_features = np.array(X_test.columns)[sorted_feature_indices]
+
+# Sorted SHAP values
+sorted_shap_values = average_shap_values[class_index][:, sorted_feature_indices]
+
+# Plotting
+shap.summary_plot(sorted_shap_values, features=X_test[sorted_features], plot_type='bar')
+
+threshold_percentile = 15
+threshold = np.percentile(feature_importance, threshold_percentile)
+
+# Get the features whose importance is below the threshold
+low_importance_features = X_test.columns[feature_importance < threshold]
+
+print("low importance")
+print(low_importance_features)
+
 
 predicted_probabilities = [model.predict_proba(X_test) for model in models]
 ensemble_predicted_probabilities = np.mean(predicted_probabilities, axis=0)
