@@ -31,7 +31,7 @@ def preprocess_data(new_data, selected_columns):
     return new_data[selected_columns]
 
 new_data = pd.read_csv('data/detailed_fights.csv')
-split_index = int(len(new_data) * 0.9)
+split_index = int(len(new_data) * 0.95)
 new_data = new_data[split_index:]
 
 X_new = preprocess_data(new_data, selected_columns)
