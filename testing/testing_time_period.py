@@ -154,9 +154,9 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
                     bet = bankroll * flat
                 bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
             else:
-                bet = bankroll * flat
-                bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
-                # test.write(f"(no bet)")
+                # bet = bankroll * flat
+                # bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
+                test.write(f"(no bet)")
             test.write("\n")
         else:
 
@@ -167,9 +167,9 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
                     bet = bankroll * flat
                 bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
             else:
-                bet = bankroll * flat
-                bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
-                # test.write(f"(no bet)")
+                # bet = bankroll * flat
+                # bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
+                test.write(f"(no bet)")
                 
             test.write("\n")
         test.write(f" *** {winner_name} *** \n")
@@ -235,4 +235,4 @@ def plot_bankrolls():
     plt.savefig(os.path.join("data", "bankroll_plot.png"))  # Save the plot as an image file
     plt.close()  # Close the plot
 
-process_dates('2023-01-01', '2024-01-01', strategy=[0.1,0.1,0.00])
+process_dates('2023-01-01', '2024-01-01', strategy=[0.05,0.05,0])

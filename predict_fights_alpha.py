@@ -156,14 +156,14 @@ def predict_fight(fighter1_name, fighter2_name):
 # if you want a single fight card, paste the ufcstats.com url in event_urls and comment out the part below
 # or if you just want the most recent fight card, change end_fight_card to the most recent
 def main():
-    # predict_fight("Alexander Volkanovski", "Ilia Topuria")
+    # predict_fight("Israel Adesanya", "Dricus Du Plessis")
     # return
     # GET LIST OF EVENTS URLS
     # url = "http://www.ufcstats.com/statistics/events/completed?page=all"
     # response = requests.get(url)
 
     # to get one event, paste the url in event_urls and comment out the part below
-    event_urls = ["http://ufcstats.com/event-details/bd85ca0bb4f26cfc"]
+    event_urls = ["http://ufcstats.com/event-details/6750e338922a099d"]
 
     # if response.status_code == 200:
     #     soup = BeautifulSoup(response.text, 'html.parser')

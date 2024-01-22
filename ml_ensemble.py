@@ -32,7 +32,7 @@ low_importance_to_remove = [
 ]
 selected_columns = [col for col in selected_columns if col not in low_importance_to_remove]
 # selected_columns = [col for col in selected_columns if 'red' not in col.lower() and 'blue' not in col.lower()]
-selected_columns = [col for col in selected_columns if 'oppdiff' not in col]
+# selected_columns = [col for col in selected_columns if 'oppdiff' not in col]
 corr_matrix = df[selected_columns].corr().abs()
 
 upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
@@ -144,7 +144,7 @@ models = []
 
 for _ in range(n_models):
     study = optuna.create_study(direction='minimize')
-    study.optimize(objective, n_trials=1)
+    study.optimize(objective, n_trials=25)
 
     best_params = study.best_params
 
