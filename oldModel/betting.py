@@ -4,13 +4,14 @@
 
 import requests
 from bs4 import BeautifulSoup
+import os
 
 bankroll = 1100.37
 # Create or open the predictions.txt file for writing
-with open("predictions.txt", "a") as predictions_file:
+with open(os.path.join("oldModel", "predictions.txt"), "a") as predictions_file:
 
     def ml_elo(p1, p2):
-        input_txt_filename = "ml_elo.txt"
+        input_txt_filename = os.path.join("oldModel", "ml_elo.txt")
         id = -1
         flag = False
         prob_win = 0
@@ -84,7 +85,7 @@ with open("predictions.txt", "a") as predictions_file:
         # Loop through each fight card link and scrape the odds
         for fight_card_link in fight_card_links:
             # insert event link you want to predict
-            if (fight_card_link != "https://www.ufc.com/event/ufc-296"):
+            if (fight_card_link != "https://www.ufc.com/event/ufc-297"):
                     continue
             
             response = requests.get(fight_card_link)
