@@ -38,10 +38,21 @@ X_new = preprocess_data(new_data, selected_columns)
 X_new = X_new.drop(['Result'], axis=1)
 
 X_swapped = X_new.copy()
+
+swap_columns = {}
 for column in X_new.columns:
-    X_swapped[column] = X_new[column] * -1
+    if "Red" in column:
+        swap_columns[column] = column.replace("Red", "Blue")
+    elif "Blue" in column:
+        swap_columns[column] = column.replace("Blue", "Red")
+
+X_swapped.rename(columns=swap_columns, inplace=True)
+for column in X_new.columns:
+    if "oppdiff" in column:
+        X_swapped[column] = X_new[column] * -1
 
 X_new = pd.concat([X_new, X_swapped], ignore_index=True)
+
 swapped_data = new_data.copy()
 swapped_data['Red Fighter'], swapped_data['Blue Fighter'] = new_data['Blue Fighter'], new_data['Red Fighter']
 new_data = pd.concat([new_data, swapped_data])
