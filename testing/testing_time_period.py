@@ -72,7 +72,7 @@ def preload_ml_predictions():
             probability = float(row["Probability Win"])
             # if row["Predicted Result"] == "win":
             #     probability = float(row["Probability"])
-            # else:  # if the predicted result is "loss"
+            # else: 
             #     probability = 1 - float(row["Probability"])
             ml_predictions[fighters] = probability
             # ml_predictions[fighters2] = 1-probability
@@ -82,10 +82,29 @@ def get_ml(p1, p2):
     result = ml_predictions.get((p1, p2))
     return result
 
+ev=0
+underdogs=0
+favourites=0
+underdogsHit=0
+favouritesHit=0
 def process_winner(winner_name, fighter_name, potential_return, bet, fighter_odds):
+    global ev,underdogs,favourites,underdogsHit,favouritesHit
+    betEV=0
+
+    if(fighter_odds<0):
+        favourites+=1
+        betEV=0.7*(potential_return)-0.3*bet 
+    else:
+        underdogs+=1
+        betEV=0.34*(potential_return)-0.66*bet 
+    ev+=betEV
     with open(os.path.join("test_results", "testing_time_period.txt"), "a") as test:
         if (winner_name == fighter_name):
             test.write(" (win)")
+            if(fighter_odds<0):
+                favouritesHit+=1
+            else:
+                underdogsHit+=1
             return potential_return
         elif (winner_name == "draw/no contest"):
             test.write(" (draw/no contest)")
@@ -94,10 +113,11 @@ def process_winner(winner_name, fighter_name, potential_return, bet, fighter_odd
             test.write(" (loss)")
             return -bet
 
+
 def processBet(bet, fighter_name, fighter_odds, winner_name):
     with open(os.path.join("test_results", "testing_time_period.txt"), "a") as test:
         test.write(fighter_name)
-        potential_return = pt(fighter_odds, bet)    
+        potential_return = pt(fighter_odds, bet)   
         test.write(f" ${bet:.2f} (bet) pt: ${bet + potential_return:.2f} +${potential_return:.2f} ")
         test.flush()
         return process_winner(winner_name, fighter_name, potential_return, bet, fighter_odds)
@@ -150,12 +170,12 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
             if (kc_a > 0):
                 bet = bankroll * fraction * kc_a
                 bet = min(bet,max_fraction*bankroll)
-                if flat>0:
-                    bet = bankroll * flat
+                # if flat>0:
+                #     bet = bankroll * flat
                 bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
             else:
-                # bet = bankroll * flat
-                # bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
+                bet = bankroll * flat
+                bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
                 test.write(f"(no bet)")
             test.write("\n")
         else:
@@ -163,12 +183,12 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
             if (kc_b > 0):
                 bet = bankroll * fraction * kc_b
                 bet = min(bet,max_fraction*bankroll)
-                if flat>0:
-                    bet = bankroll * flat
+                # if flat>0:
+                #     bet = bankroll * flat
                 bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
             else:
-                # bet = bankroll * flat
-                # bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
+                bet = bankroll * flat
+                bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
                 test.write(f"(no bet)")
                 
             test.write("\n")
@@ -222,6 +242,11 @@ def process_dates(start_date, end_date, strategy):
         test.write("------ RESULT ------\n")
         test.write(f"Bankroll: {bankroll:.2f}\n")
     print(bankroll)
+    print(ev)
+    print(favourites)
+    print(favouritesHit)
+    print(underdogs)
+    print(underdogsHit)
     plot_bankrolls()
 
 def plot_bankrolls():
@@ -235,4 +260,4 @@ def plot_bankrolls():
     plt.savefig(os.path.join("data", "bankroll_plot.png"))  # Save the plot as an image file
     plt.close()  # Close the plot
 
-process_dates('2023-01-01', '2024-01-01', strategy=[0.05,0.05,0.01])
+process_dates('2023-06-01', '2024-01-01', strategy=[0.05,0.05,0.01])

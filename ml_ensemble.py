@@ -32,7 +32,7 @@ low_importance_to_remove = [
 ]
 selected_columns = [col for col in selected_columns if col not in low_importance_to_remove]
 # selected_columns = [col for col in selected_columns if 'red' not in col.lower() and 'blue' not in col.lower()]
-# selected_columns = [col for col in selected_columns if 'oppdiff' not in col]
+selected_columns = [col for col in selected_columns if 'oppdiff' not in col]
 corr_matrix = df[selected_columns].corr().abs()
 
 upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
@@ -98,7 +98,8 @@ from sklearn.model_selection import TimeSeriesSplit
 def objective(trial):
     param = {
         'objective': 'multiclass',
-        'metric': 'multi_logloss',
+        # 'metric': 'multi_logloss',
+        'metric': 'multi_error',
         'verbosity': -1,
         'boosting_type': 'gbdt', 
         'lambda_l1': trial.suggest_float('lambda_l1', 1e-8, 10.0, log=True),
@@ -132,9 +133,14 @@ def objective(trial):
     
     print(cv_results.keys())
 
-    best_score = cv_results['valid multi_logloss-mean'][-1]
+    best_score = cv_results['valid multi_error-mean'][-1]
+    
+    best_accuracy = 1 - best_score  # Converting error rate to accuracy
 
-    return best_score
+    return best_accuracy 
+    # best_score = cv_results['valid multi_logloss-mean'][-1]
+
+    # return best_score
 
 n_models = 5
 
@@ -143,8 +149,8 @@ models = []
 
 
 for _ in range(n_models):
-    study = optuna.create_study(direction='minimize')
-    study.optimize(objective, n_trials=25)
+    study = optuna.create_study(direction='maximize')
+    study.optimize(objective, n_trials=10)
 
     best_params = study.best_params
 
