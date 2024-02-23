@@ -98,13 +98,13 @@ from sklearn.model_selection import TimeSeriesSplit
 def objective(trial):
     param = {
         'objective': 'multiclass',
-        # 'metric': 'multi_logloss',
-        'metric': 'multi_error',
+        'metric': 'multi_logloss',
+        # 'metric': 'multi_error',
         'verbosity': -1,
         'boosting_type': 'gbdt', 
         'lambda_l1': trial.suggest_float('lambda_l1', 1e-8, 10.0, log=True),
         'lambda_l2': trial.suggest_float('lambda_l2', 1e-8, 10.0, log=True),
-        'num_leaves': trial.suggest_int('num_leaves', 20, 70),
+        'num_leaves': trial.suggest_int('num_leaves', 20, 100),
         'learning_rate': trial.suggest_float('learning_rate', 0.02, 0.2, log=True),
         'min_child_samples': trial.suggest_int('min_child_samples', 10, 70),  
         'feature_fraction': trial.suggest_float('feature_fraction', 0.4, 1.0),
@@ -133,14 +133,14 @@ def objective(trial):
     
     print(cv_results.keys())
 
-    best_score = cv_results['valid multi_error-mean'][-1]
+    # best_score = cv_results['valid multi_error-mean'][-1]
     
-    best_accuracy = 1 - best_score  # Converting error rate to accuracy
+    # best_accuracy = 1 - best_score  # Converting error rate to accuracy
 
-    return best_accuracy 
-    # best_score = cv_results['valid multi_logloss-mean'][-1]
+    # return best_accuracy 
+    best_score = cv_results['valid multi_logloss-mean'][-1]
 
-    # return best_score
+    return best_score
 
 n_models = 5
 
