@@ -69,11 +69,11 @@ def preload_ml_predictions():
         for row in reader:
             fighters = (row["Red Fighter"], row["Blue Fighter"])
             # fighters2 = (row["Blue Fighter"], row["Red Fighter"])
-            probability = float(row["Probability Win"])
-            # if row["Predicted Result"] == "win":
-            #     probability = float(row["Probability"])
-            # else: 
-            #     probability = 1 - float(row["Probability"])
+            # probability = float(row["Probability Win"])
+            if row["Predicted Result"] == "win":
+                probability = float(row["Probability"])
+            else: 
+                probability = 1 - float(row["Probability"])
             ml_predictions[fighters] = probability
             # ml_predictions[fighters2] = 1-probability
 
@@ -170,26 +170,33 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
             if (kc_a > 0):
                 bet = bankroll * fraction * kc_a
                 bet = min(bet,max_fraction*bankroll)
+                bet=max(bet,bankroll*flat)
                 # if flat>0:
                 #     bet = bankroll * flat
                 bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
             else:
-                bet = bankroll * flat
-                bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
-                test.write(f"(no bet)")
+                if (kc_a>-0.5):
+                    bet = bankroll * flat
+                    bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
+                else:
+                    test.write(f"(no bet)")
             test.write("\n")
         else:
 
             if (kc_b > 0):
                 bet = bankroll * fraction * kc_b
                 bet = min(bet,max_fraction*bankroll)
+                bet=max(bet,bankroll*flat)
                 # if flat>0:
                 #     bet = bankroll * flat
                 bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
             else:
-                bet = bankroll * flat
-                bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
-                test.write(f"(no bet)")
+                if (kc_b>-0.5):
+                    bet = bankroll * flat
+                    bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
+                else:
+                    test.write(f"(no bet)")
+                
                 
             test.write("\n")
         test.write(f" *** {winner_name} *** \n")
@@ -217,7 +224,7 @@ def find_fights(start_date, end_date, last_training_date, strategy):
                 process_fight(row, strategy)
 
 def train_ml(start_date):
-    # main(start_date)
+    main(start_date)
     pass
 
 def process_dates(start_date, end_date, strategy):
@@ -260,4 +267,4 @@ def plot_bankrolls():
     plt.savefig(os.path.join("data", "bankroll_plot.png"))  # Save the plot as an image file
     plt.close()  # Close the plot
 
-process_dates('2023-06-01', '2024-01-01', strategy=[0.05,0.05,0.01])
+process_dates('2023-01-01', '2024-01-01', strategy=[0.05,0.05,0.005])

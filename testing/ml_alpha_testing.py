@@ -40,6 +40,7 @@ def main(split_date = "2021-01-01"):    # Step 1: Read the data
     df.drop(to_drop, axis=1, inplace=True)
 
     # Make sure to update the 'selected_columns' to reflect the dropped columns
+    selected_columns = [col for col in selected_columns if 'oppdiff' not in col]
     selected_columns = [column for column in selected_columns if column not in to_drop]
 
     selected_columns.append("Date")

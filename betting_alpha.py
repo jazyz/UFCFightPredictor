@@ -80,7 +80,7 @@ def processBet(bet, fighter_name, fighter_odds):
 with open(os.path.join("data", "betting_results.txt"), "w") as test:
     
     # paste the link to the fight card you want to bet on here
-    fight_card_link = "https://www.ufc.com/event/ufc-fight-night-february-24-2024"
+    fight_card_link = "https://www.ufc.com/event/ufc-299"
 
     response = requests.get(fight_card_link)
 

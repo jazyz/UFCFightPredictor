@@ -74,6 +74,7 @@ fighter_data = new_data[['Red Fighter', 'Blue Fighter']]
 
 fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, 1]
 fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, 0]
+fighter_data['Probability'] = np.maximum(fighter_data['Probability Win'],fighter_data['Probability Lose'])
 
 fighter_data.to_csv('data/predicted_results.csv', index=False)
 
