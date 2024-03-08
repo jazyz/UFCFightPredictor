@@ -150,7 +150,7 @@ models = []
 
 for _ in range(n_models):
     study = optuna.create_study(direction='minimize')
-    study.optimize(objective, n_trials=10)
+    study.optimize(objective, n_trials=1)
 
     best_params = study.best_params
 
