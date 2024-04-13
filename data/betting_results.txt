@@ -1,38 +1,43 @@
 Bankroll: $1010.73
-Fight Card: https://www.ufc.com/event/ufc-299
+Fight Card: https://www.ufc.com/event/ufc-300
 ---
-Sean O'Malley: -218 0.67 -0.06
-Marlon Vera: 180 0.33 -0.04
-Sean O'Malley (no bet)
----
----
----
-Gilbert Burns: 100 0.43 -0.13
-Jack Della Maddalena: -120 0.57 0.05
-Jack Della Maddalena $2.30 (bet) pt: $4.21 +$1.91 
----
-Petr Yan: -135 0.40 -0.41
-Song Yadong: 114 0.60 0.25
-Song Yadong $12.75 (bet) pt: $27.29 +$14.54 
----
-Curtis Blaydes: -112 0.52 -0.01
-Jailton Almeida: -108 0.48 -0.09
-Curtis Blaydes (no bet)
+Alex Pereira: -135 0.502 -0.171
+Jamahal Hill: 114 0.498 0.058
+Alex Pereira $5.05 (bet) pt: $8.80 +$3.74 
 ---
 ---
-Mateusz Gamrot: -345 0.67 -0.47
-Rafael Dos Anjos: 275 0.33 0.09
-Mateusz Gamrot (no bet)
+Justin Gaethje: -170 0.626 -0.009
+Max Holloway: 142 0.374 -0.068
+Justin Gaethje $5.05 (bet) pt: $8.03 +$2.97 
 ---
-Pedro Munhoz: 185 0.34 -0.02
-Kyler Phillips: -225 0.66 -0.09
-Kyler Phillips (no bet)
+Charles Oliveira: 185 0.339 -0.018
+Arman Tsarukyan: -225 0.661 -0.103
+Arman Tsarukyan $5.05 (bet) pt: $7.30 +$2.25 
 ---
----
-Michel Pereira: -148 0.57 -0.06
-Michal Oleksiejczuk: 124 0.43 -0.03
-Michel Pereira (no bet)
----
+Bo Nickal: -2100 0.619 -7.379
+Cody Brundage: 1100 0.381 0.325
+Bo Nickal (no bet)
 ---
 ---
+Calvin Kattar: 136 0.406 -0.031
+Aljamain Sterling: -162 0.594 -0.064
+Aljamain Sterling $5.05 (bet) pt: $8.17 +$3.12 
+---
+---
+Sodiq Yusuff: 120 0.503 0.089
+Diego Lopes: -142 0.497 -0.217
+Sodiq Yusuff $5.05 (bet) pt: $11.12 +$6.06 
+---
+Jalin Turner: -238 0.656 -0.164
+Renato Moicano: 195 0.344 0.008
+Jalin Turner $5.05 (bet) pt: $7.18 +$2.12 
+---
+---
+Bobby Green: -180 0.464 -0.501
+Jim Miller: 150 0.536 0.227
+Jim Miller $11.47 (bet) pt: $28.69 +$17.21 
+---
+Deiveson Figueiredo: -310 0.549 -0.850
+Cody Garbrandt: 250 0.451 0.232
+Deiveson Figueiredo (no bet)
 ---

@@ -80,7 +80,7 @@ def processBet(bet, fighter_name, fighter_odds):
 with open(os.path.join("data", "betting_results.txt"), "w") as test:
     
     # paste the link to the fight card you want to bet on here
-    fight_card_link = "https://www.ufc.com/event/ufc-299"
+    fight_card_link = "https://www.ufc.com/event/ufc-300"
 
     response = requests.get(fight_card_link)
 
@@ -156,27 +156,37 @@ with open(os.path.join("data", "betting_results.txt"), "w") as test:
                     kc_a = kelly_criterion(fighter1_odds, a_win)
                     kc_b = kelly_criterion(fighter2_odds, b_win)
 
-                test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.2f} {kc_a:.2f}\n")
-                test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.2f} {kc_b:.2f}\n")
+                test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.3f} {kc_a:.3f}\n")
+                test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.3f} {kc_b:.3f}\n")
 
                 fraction = 0.05
                 max_fraction = 0.05
-                flat = 0.000
+                flat = 0.005
                 if a_win > b_win:
                     if (kc_a > 0):
                         bet = bankroll * fraction * kc_a
                         bet = min(bet,max_fraction*bankroll)
+                        bet = max(bet,flat*bankroll)
                         processBet(bet, fighter1_name, fighter1_odds)
                     else:
-                        test.write(f"{fighter1_name} (no bet)")
+                        if (kc_a > -0.5):
+                            bet = flat*bankroll
+                            processBet(bet, fighter1_name, fighter1_odds)
+                        else:
+                            test.write(f"{fighter1_name} (no bet)")
                     test.write("\n")
                 else:
                     if (kc_b > 0):
                         bet = bankroll * fraction * kc_b
                         bet = min(bet,max_fraction*bankroll)
+                        bet = max(bet,flat*bankroll)
                         processBet(bet, fighter2_name, fighter2_odds)
                     else:
-                        test.write(f"{fighter2_name} (no bet)")
+                        if (kc_b > -0.5):
+                            bet = flat*bankroll
+                            processBet(bet, fighter2_name, fighter2_odds)
+                        else:
+                            test.write(f"{fighter2_name} (no bet)")
                         
                     test.write("\n")
                 test.write("---\n")
