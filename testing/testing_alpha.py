@@ -121,7 +121,7 @@ def check_winner(winner_name, fighter_name, potential_return, bet, fighter_odds)
 with open(os.path.join("test_results", "testing_alpha.txt"), "w") as test:
     urls = []
     urls.append("https://www.ufc.com/events")
-    for i in range(1, 8):
+    for i in range(1, 3):
         urls.append("https://www.ufc.com/events?page=" + str(i))    
     all_fight_card_links = []
     for url in urls:
@@ -312,7 +312,7 @@ with open(os.path.join("test_results", "testing_alpha.txt"), "w") as test:
                     test.write("---\n")
                 
             # most recent fight
-            if (fight_card_link == "https://www.ufc.com/event/ufc-296"):
+            if (fight_card_link == "https://www.ufc.com/event/ufc-304"):
                 break
             cnt += 1
 

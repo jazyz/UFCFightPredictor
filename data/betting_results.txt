@@ -1,43 +1,34 @@
-Bankroll: $1010.73
-Fight Card: https://www.ufc.com/event/ufc-300
+Bankroll: $100.00
+Fight Card: https://www.ufc.com/event/ufc-fight-night-august-03-2024
 ---
-Alex Pereira: -135 0.502 -0.171
-Jamahal Hill: 114 0.498 0.058
-Alex Pereira $5.05 (bet) pt: $8.80 +$3.74 
----
----
-Justin Gaethje: -170 0.626 -0.009
-Max Holloway: 142 0.374 -0.068
-Justin Gaethje $5.05 (bet) pt: $8.03 +$2.97 
----
-Charles Oliveira: 185 0.339 -0.018
-Arman Tsarukyan: -225 0.661 -0.103
-Arman Tsarukyan $5.05 (bet) pt: $7.30 +$2.25 
----
-Bo Nickal: -2100 0.619 -7.379
-Cody Brundage: 1100 0.381 0.325
-Bo Nickal (no bet)
+Cory Sandhagen: 245 0.548 0.364
+Umar Nurmagomedov: -305 0.452 -1.220
+Cory Sandhagen $1.82 (bet) pt: $6.27 +$4.46 
 ---
 ---
-Calvin Kattar: 136 0.406 -0.031
-Aljamain Sterling: -162 0.594 -0.064
-Aljamain Sterling $5.05 (bet) pt: $8.17 +$3.12 
+Marlon Vera: 124 0.391 -0.100
+Deiveson Figueiredo: -148 0.609 0.030
+Deiveson Figueiredo $0.50 (bet) pt: $0.84 +$0.34 
+---
+Tony Ferguson: 525 0.339 0.213
+Michael Chiesa: -750 0.661 -1.879
+Michael Chiesa (no bet)
 ---
 ---
-Sodiq Yusuff: 120 0.503 0.089
-Diego Lopes: -142 0.497 -0.217
-Sodiq Yusuff $5.05 (bet) pt: $11.12 +$6.06 
 ---
-Jalin Turner: -238 0.656 -0.164
-Renato Moicano: 195 0.344 0.008
-Jalin Turner $5.05 (bet) pt: $7.18 +$2.12 
+Azamat Murzakanov: 170 0.428 0.091
+Alonzo Menifield: -205 0.572 -0.304
+Alonzo Menifield $0.50 (bet) pt: $0.74 +$0.24 
 ---
 ---
-Bobby Green: -180 0.464 -0.501
-Jim Miller: 150 0.536 0.227
-Jim Miller $11.47 (bet) pt: $28.69 +$17.21 
 ---
-Deiveson Figueiredo: -310 0.549 -0.850
-Cody Garbrandt: 250 0.451 0.232
-Deiveson Figueiredo (no bet)
+---
+---
+Jai Herbert: -155 0.474 -0.341
+Rolando Bedoya: 130 0.526 0.161
+Rolando Bedoya $0.81 (bet) pt: $1.85 +$1.05 
+---
+Sedriques Dumas: -218 0.637 -0.154
+Denis Tiuliulin: 180 0.363 0.009
+Sedriques Dumas $0.50 (bet) pt: $0.73 +$0.23 
 ---
