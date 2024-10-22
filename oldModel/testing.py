@@ -32,7 +32,7 @@ underdog_gain = 0
 
 # allow users to pass in variables for website
 testFrom_card = "https://www.ufc.com/event/ufc-293" # default to end of somewhere in page 1
-testTo_card = "https://www.ufc.com/event/ufc-296" # default to most recent card
+testTo_card = "https://www.ufc.com/event/ufc-308" # default to most recent card
 
 def runTests(testFrom_card, testTo_card):
     global bankroll, correct_predictions, total_predictions, correct_bets, total_bets, correct_underdogs, total_underdogs, correct_favourites, total_favourites
