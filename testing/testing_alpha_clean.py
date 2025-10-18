@@ -122,7 +122,10 @@ def processBet(bet, fighter_name, fighter_odds):
     test.write(f" ${bet:.2f} (bet) pt: ${bet + potential_return:.2f} +${potential_return:.2f} ")
     return process_winner(winner_name, fighter_name, potential_return, bet, fighter_odds)
 
-with open(r"test_results\testing_alpha_clean.txt", "w") as test:
+# Create test_results directory if it doesn't exist
+os.makedirs("test_results", exist_ok=True)
+
+with open(os.path.join("test_results", "testing_alpha_clean.txt"), "w") as test:
     urls = []
     urls.append("https://www.ufc.com/events")
     for i in range(1,3):
@@ -144,6 +147,11 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
     all_fight_card_links.reverse()
     for fight_card_link in all_fight_card_links:
         print(fight_card_link)
+        
+        # Stop at UFC 296 (December 2023) - last event with complete data
+        if "ufc-296" in fight_card_link:
+            break
+            
         response = requests.get(fight_card_link)
 
         if response.status_code == 200:
@@ -299,7 +307,7 @@ with open(r"test_results\testing_alpha_clean.txt", "w") as test:
             test.write(f"Failed to retrieve the fight card page. Status code: {response.status_code}\n")
     else:
         test.write(f"Failed to retrieve the events page. Status code: {response.status_code}\n")
-    with open(r"test_results\results.txt", "a") as file:
+    with open(os.path.join("test_results", "results.txt"), "a") as file:
         file.write("------ RESULT ------\n")
         file.write(f"Bankroll: ${bankroll:.2f}\n")
         file.write(f"Min Bankroll: ${minBankroll:.2f}\n")

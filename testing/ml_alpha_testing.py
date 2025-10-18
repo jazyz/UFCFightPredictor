@@ -47,7 +47,7 @@ def main(split_date = "2021-01-01"):    # Step 1: Read the data
             
     df = df[selected_columns]
 
-    df["Date"] = pd.to_datetime(df["Date"])
+    df["Date"] = pd.to_datetime(df["Date"], format='mixed')
     df.sort_values(by="Date", inplace=True)
 
     df = df[df["Date"] >= pd.to_datetime("2009-01-01")] 
@@ -111,7 +111,7 @@ def main(split_date = "2021-01-01"):    # Step 1: Read the data
     df_with_details = pd.read_csv(file_path)[
         ["Red Fighter", "Blue Fighter", "Result", "Date"]
     ]
-    df_with_details["Date"] = pd.to_datetime(df_with_details["Date"])
+    df_with_details["Date"] = pd.to_datetime(df_with_details["Date"], format='mixed')
     df_with_details.sort_values(by="Date", inplace=True)
     df_with_details = df_with_details[df_with_details["Date"] >= split_date]
     df_with_details.reset_index(drop=True, inplace=True)

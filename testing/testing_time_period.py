@@ -267,4 +267,20 @@ def plot_bankrolls():
     plt.savefig(os.path.join("data", "bankroll_plot.png"))  # Save the plot as an image file
     plt.close()  # Close the plot
 
-process_dates('2023-01-01', '2024-01-01', strategy=[0.05,0.05,0.005])
+if __name__ == "__main__":
+    import sys
+    from datetime import datetime, timedelta
+    
+    # Check if command line arguments provided
+    if len(sys.argv) >= 3:
+        start_date = sys.argv[1]
+        end_date = sys.argv[2]
+    else:
+        # Default: last 1 year
+        end_date_dt = datetime.now()
+        start_date_dt = end_date_dt - timedelta(days=365)
+        start_date = start_date_dt.strftime('%Y-%m-%d')
+        end_date = end_date_dt.strftime('%Y-%m-%d')
+    
+    print(f"Backtesting period: {start_date} to {end_date}")
+    process_dates(start_date, end_date, strategy=[0.05,0.05,0.005])

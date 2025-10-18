@@ -7,7 +7,7 @@ import lightgbm as lgb
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt  # Commented out due to version conflicts
 from sklearn.model_selection import cross_val_score
 import numpy as np
 from sklearn.metrics import log_loss
@@ -38,7 +38,7 @@ def main():
 
     selected_columns = prune_features(selected_columns)
     df = df[selected_columns]
-    df["Date"] = pd.to_datetime(df["Date"])
+    df["Date"] = pd.to_datetime(df["Date"], format='mixed')  # Handle mixed date formats
     df.sort_values(by="Date", inplace=True)
 
     df = df[df["Date"] >= pd.to_datetime("2009-01-01")]
@@ -67,6 +67,12 @@ def main():
             swap_columns[column] = column.replace("Blue", "Red")
 
     X_train_swapped.rename(columns=swap_columns, inplace=True)
+    
+    # Align swapped data with original columns (add missing, drop extra)
+    for col in X_train.columns:
+        if col not in X_train_swapped.columns:
+            X_train_swapped[col] = 0  # Add missing columns with zeros
+    X_train_swapped = X_train_swapped[X_train.columns]  # Reorder to match
 
     y_train_swapped = y_train_swapped.apply(
         lambda x: 0 if x == 1 else 1
@@ -151,7 +157,7 @@ def main():
         df_with_details = pd.read_csv(file_path)[
             ["Red Fighter", "Blue Fighter", "Result", "Date"]
         ]
-        df_with_details["Date"] = pd.to_datetime(df_with_details["Date"])
+        df_with_details["Date"] = pd.to_datetime(df_with_details["Date"], format='mixed')
         df_with_details.sort_values(by="Date", inplace=True)
         df_with_details = df_with_details[df_with_details["Date"] >= split_date]
         df_with_details.reset_index(drop=True, inplace=True)
@@ -198,15 +204,37 @@ def main():
         "Importance", ascending=False
     )
 
-    plt.figure(figsize=(10, 6))
-    plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
-    plt.xlabel("Importance")
-    plt.ylabel("Feature")
-    plt.title("Feature Importance")
-    plt.show()
+    # plt.figure(figsize=(10, 6))
+    # plt.barh(feature_importance_df["Feature"], feature_importance_df["Importance"])
+    # plt.xlabel("Importance")
+    # plt.ylabel("Feature")
+    # plt.title("Feature Importance")
+    # plt.show()
 
     print("Top 10 Important Features:")
     print(feature_importance_df.head(10))
+
+    # Save the trained model
+    import joblib
+    model_save_dir = "saved_models"
+    os.makedirs(model_save_dir, exist_ok=True)
+    
+    model_filename = os.path.join(model_save_dir, "lgbm_single_model.joblib")
+    joblib.dump(model, model_filename)
+    print(f"\nModel saved to {model_filename}")
+    
+    # Save preprocessing tools
+    preprocessing_save_dir = "saved_preprocessing"
+    os.makedirs(preprocessing_save_dir, exist_ok=True)
+    
+    label_encoder_filename = os.path.join(preprocessing_save_dir, "label_encoder_single.joblib")
+    joblib.dump(label_encoder, label_encoder_filename)
+    
+    selected_columns_filename = os.path.join(preprocessing_save_dir, "selected_columns_single.json")
+    with open(selected_columns_filename, "w") as file:
+        json.dump(selected_columns, file)
+    
+    print(f"Preprocessing tools saved to {preprocessing_save_dir}/")
 
 
 if __name__ == "__main__":

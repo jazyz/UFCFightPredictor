@@ -136,9 +136,22 @@ def getTime(fight):
     return (float(fight['Round'])-1)*5 + float(fight['Time'])
 
 def getDate(date_string, date_format):
+    """Parse date with fallback for multiple formats"""
     try:
         return datetime.strptime(date_string, date_format)
     except ValueError:
+        # Try alternative formats if primary fails
+        alternative_formats = [
+            "%Y-%m-%d",      # ISO format: 2025-10-11
+            "%m/%d/%Y",      # US format: 10/11/2025
+            "%B %d, %Y",     # Full month: December 16, 2023
+            "%b %d, %Y"      # Short month: Dec 16, 2023
+        ]
+        for fmt in alternative_formats:
+            try:
+                return datetime.strptime(date_string, fmt)
+            except ValueError:
+                continue
         return None
     
 # PROCESS FIGHTS TO RED AND BLUE 
@@ -166,9 +179,12 @@ def processFight(fight, Red, Blue):
         processed_fight['Title'] = fight['Title']
         processed_fight['Date'] = fight['Date']
         fight_date=getDate(fight['Date'], "%B %d, %Y")
-        # if not (fight_date or fighter_stats[Red]['dob'] or fighter_stats[Blue]['dob']):
-        #     print("BAD")
-        #     return
+        
+        # Skip this fight if date parsing failed
+        if not fight_date:
+            print(f"Warning: Could not parse date '{fight['Date']}' for fight {Red} vs {Blue}")
+            return
+        
         processed_fight['Red age'] = fight_date.year - fighter_stats[Red]['dob']
         processed_fight['Blue age'] = fight_date.year - fighter_stats[Blue]['dob']
         processed_fight['age oppdiff'] = processed_fight['Red age'] - processed_fight['Blue age'] 
@@ -264,10 +280,16 @@ for fight in fights:
     fighter_stats[Red]["oppelo"]+=rating_b
     fighter_stats[Blue]["oppelo"]+=rating_a
     fight_date=getDate(fight['Date'], "%B %d, %Y")
-    fighter_stats[Red]["last_fight"]=fight_date
-    fighter_stats[Blue]["last_fight"]=fight_date
-    fighter_stats[Red]["avg age"]+=fight_date.year-fighter_stats[Red]["dob"]
-    fighter_stats[Blue]["avg age"]+=fight_date.year-fighter_stats[Blue]["dob"]
+    
+    # Skip updating date-dependent stats if date parsing failed
+    if not fight_date:
+        print(f"Warning: Could not parse date '{fight['Date']}' for ELO update {Red} vs {Blue}")
+        # Still update ELO but skip date-dependent features
+    else:
+        fighter_stats[Red]["last_fight"]=fight_date
+        fighter_stats[Blue]["last_fight"]=fight_date
+        fighter_stats[Red]["avg age"]+=fight_date.year-fighter_stats[Red]["dob"]
+        fighter_stats[Blue]["avg age"]+=fight_date.year-fighter_stats[Blue]["dob"]
     if Result=='win':
         fighter_stats[Blue]["losestreak"]+=1
         fighter_stats[Red]["losestreak"]=0

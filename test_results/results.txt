@@ -1563,4 +1563,14 @@ Favourite Gain: $183.31
 Favourite Loss: $178.71
 Underdog Gain: $314.71
 Underdog Loss: $229.44
+------ RESULT ------
+Bankroll: $1000.00
+Min Bankroll: $1000.00
+Max Bankroll: $1000.00
+Average Bankroll: $1000.00
+Max Card Bet: $80.00
+Favourite Gain: $0.00
+Favourite Loss: $0.00
+Underdog Gain: $0.00
+Underdog Loss: $0.00
 

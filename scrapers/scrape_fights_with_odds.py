@@ -7,6 +7,8 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 import os
+import pandas as pd
+from datetime import datetime
 
 def read_csv(file_path):
     data = []
@@ -15,6 +17,22 @@ def read_csv(file_path):
         for row in csv_reader:
             data.append(row)
     return data
+
+def get_existing_events():
+    """Get set of event names that are already scraped"""
+    odds_file = os.path.join('data', 'fight_results_with_odds.csv')
+    
+    if not os.path.exists(odds_file):
+        return set()
+    
+    try:
+        df = pd.read_csv(odds_file)
+        if len(df) == 0:
+            return set()
+        return set(df['event_name'].unique())
+    except Exception as e:
+        print(f"Warning: Could not read existing odds file: {e}")
+        return set()
 
 # TODO: handle rematches
 def findWinner(fighter1_name, fighter2_name):
@@ -35,8 +53,19 @@ def findWinner(fighter1_name, fighter2_name):
     return winner_name
 
 
-with open(os.path.join("data", "fight_results_with_odds.csv"), "w") as test:
-    test.write("event_name,event_date,fighter1_name,fighter2_name,winner_name,fighter1_odds,fighter2_odds\n")
+# Get existing events to skip
+existing_events = get_existing_events()
+print(f"Found {len(existing_events)} events already in database\n")
+
+# Determine mode: append if file exists and has data, write if new
+odds_file = os.path.join("data", "fight_results_with_odds.csv")
+file_exists = os.path.exists(odds_file) and os.path.getsize(odds_file) > 0
+file_mode = 'a' if file_exists else 'w'
+
+with open(odds_file, file_mode) as test:
+    # Only write header if creating new file
+    if not file_exists:
+        test.write("event_name,event_date,fighter1_name,fighter2_name,winner_name,fighter1_odds,fighter2_odds\n")
     urls = []
     urls.append("https://www.ufc.com/events")
     for i in range(1,20):
@@ -58,10 +87,19 @@ with open(os.path.join("data", "fight_results_with_odds.csv"), "w") as test:
     event_year = ""
 
     all_fight_card_links.reverse()
+    
+    events_processed = 0
+    events_skipped = 0
+    
     for fight_card_link in all_fight_card_links:
-        print(fight_card_link)
-
         event_name = fight_card_link.split("/")[-1]
+        
+        # Skip if already in database
+        if event_name in existing_events:
+            events_skipped += 1
+            continue
+        
+        print(fight_card_link)
         if event_name.startswith("ufc-fight-night"):
             event_year = event_name.split("-")[-1]
 
@@ -76,6 +114,15 @@ with open(os.path.join("data", "fight_results_with_odds.csv"), "w") as test:
                 event_date = element.get_text(strip=True).split("/")[0].strip().split(",")[1].strip()
             
             event_date = event_date + " " + event_year
+            
+            # Check if event is in the future
+            try:
+                event_datetime = datetime.strptime(event_date, '%b %d %Y')
+                if event_datetime > datetime.now():
+                    print(f"Reached future event ({event_date}), stopping scraper.")
+                    break
+            except ValueError:
+                print(f"Warning: Could not parse date '{event_date}' for {event_name}")
 
             odds_wrappers = soup.find_all(class_='c-listing-fight__odds-wrapper')
 
@@ -102,14 +149,21 @@ with open(os.path.join("data", "fight_results_with_odds.csv"), "w") as test:
             winners = []
             
             for i in range (0, len(blue_corner_elements)):
+                # Check both uppercase and lowercase class names (UFC changed this over time)
                 if (blue_corner_elements[i].find(class_='c-listing-fight__outcome--Win') 
-                    or red_corner_elements[i].find(class_='c-listing-fight__outcome--Loss')):
+                    or blue_corner_elements[i].find(class_='c-listing-fight__outcome--win')
+                    or red_corner_elements[i].find(class_='c-listing-fight__outcome--Loss')
+                    or red_corner_elements[i].find(class_='c-listing-fight__outcome--loss')):
                     winners.append("win")
                 elif (blue_corner_elements[i].find(class_='c-listing-fight__outcome--Loss')
-                      or red_corner_elements[i].find(class_='c-listing-fight__outcome--Win')):
+                      or blue_corner_elements[i].find(class_='c-listing-fight__outcome--loss')
+                      or red_corner_elements[i].find(class_='c-listing-fight__outcome--Win')
+                      or red_corner_elements[i].find(class_='c-listing-fight__outcome--win')):
                     winners.append("loss")
                 elif (blue_corner_elements[i].find(class_='c-listing-fight__outcome--Draw')
-                        or red_corner_elements[i].find(class_='c-listing-fight__outcome--Draw')):
+                        or blue_corner_elements[i].find(class_='c-listing-fight__outcome--draw')
+                        or red_corner_elements[i].find(class_='c-listing-fight__outcome--Draw')
+                        or red_corner_elements[i].find(class_='c-listing-fight__outcome--draw')):
                     winners.append("draw/no contest")
                 else:
                     winners.append("Fighter Name Not Found")
@@ -142,12 +196,15 @@ with open(os.path.join("data", "fight_results_with_odds.csv"), "w") as test:
                     fighter2_odds = fighter2_odds.replace('−', '-')
 
                     test.write(f"{event_name},{event_date},{fighter1_name},{fighter2_name},{winner_name},{fighter1_odds},{fighter2_odds}\n")
-                    
-
-            if (fight_card_link == "https://www.ufc.com/event/ufc-296"):
-                break
+                    events_processed += 1
 
         else:
-            test.write(f"Failed to retrieve the fight card page. Status code: {response.status_code}\n")
+            print(f"Failed to retrieve the fight card page. Status code: {response.status_code}")
     else:
-        test.write(f"Failed to retrieve the events page. Status code: {response.status_code}\n")
+        print(f"Failed to retrieve the events page. Status code: {response.status_code}")
+
+print("\n" + "="*60)
+print(f"Scraping completed!")
+print(f"Events processed: {events_processed}")
+print(f"Events skipped (already in DB): {events_skipped}")
+print("="*60)
