@@ -12,11 +12,13 @@ const Testing = () => {
   const [selectedRow2, setSelectedRow2] = useState(0);
   const row1Buttons = ["Conservative", "Normal", "Risky"];
   const row2Buttons = ["Kelly Criterion", "Flat"];
-  const [strategy, setStrategy] = useState([0.05, 0.05, 0]);
+  const [strategy, setStrategy] = useState([0.05, 0.05, 0, 0.05]);
+  const [minEdge, setMinEdge] = useState(5); // 5% minimum edge
 
-  // # conservative strategy: 0.05, 0.05, 0
-  // # normal strategy: 0.1, 0.1, 0
-  // # risky strategy: 0.2, 0.2, 0
+  // Strategy format: [kelly_fraction, max_fraction, flat_bet, min_edge]
+  // # conservative strategy: [0.025, 0.025, 0, 0.05]
+  // # normal strategy: [0.05, 0.05, 0, 0.05]
+  // # risky strategy: [0.1, 0.1, 0, 0.05]
   // # kc strategy: don't do anything
   // # flat strategy: change parameter 3 to 0.01 (if 3rd parameter > 0 then flat all predictions)
   // # conservative flat = 1% of bankroll per bet
@@ -29,6 +31,7 @@ const Testing = () => {
     if (row === 1) {
       setSelectedRow1(buttonIndex);
       updatedStrategy[0] = [0.025, 0.05, 0.1][buttonIndex];
+      updatedStrategy[1] = [0.025, 0.05, 0.1][buttonIndex]; // Match max_fraction
       if (selectedRow2 === 1) {
         updatedStrategy[2] = 0.005 * buttonIndex + 0.005;
       } else {
@@ -42,6 +45,8 @@ const Testing = () => {
         updatedStrategy[2] = 0;
       }
     }
+    // Preserve min_edge (4th parameter)
+    updatedStrategy[3] = minEdge / 100;
     // console.log(updatedStrategy);
     setStrategy([...updatedStrategy]);
     // console.log(strategy);
@@ -161,6 +166,27 @@ const Testing = () => {
                 {name}
               </button>
             ))}
+          </div>
+          <div className="mt-6 pt-4 border-t border-gray-200">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Minimum Edge Threshold: {minEdge}%
+            </label>
+            <input
+              type="range"
+              min="0"
+              max="15"
+              step="1"
+              value={minEdge}
+              onChange={(e) => {
+                const newEdge = Number(e.target.value);
+                setMinEdge(newEdge);
+                setStrategy([...strategy.slice(0, 3), newEdge / 100]);
+              }}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+            <p className="text-xs text-gray-500 mt-2">
+              Only bet when model edge exceeds {minEdge}% (recommended: 5%)
+            </p>
           </div>
         </div>
         {imageSrc && (

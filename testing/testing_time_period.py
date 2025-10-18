@@ -87,6 +87,9 @@ underdogs=0
 favourites=0
 underdogsHit=0
 favouritesHit=0
+total_wagered=0
+total_to_win=0
+num_bets=0
 def process_winner(winner_name, fighter_name, potential_return, bet, fighter_odds):
     global ev,underdogs,favourites,underdogsHit,favouritesHit
     betEV=0
@@ -115,11 +118,18 @@ def process_winner(winner_name, fighter_name, potential_return, bet, fighter_odd
 
 
 def processBet(bet, fighter_name, fighter_odds, winner_name):
+    global total_wagered, total_to_win, num_bets
     with open(os.path.join("test_results", "testing_time_period.txt"), "a") as test:
         test.write(fighter_name)
         potential_return = pt(fighter_odds, bet)   
         test.write(f" ${bet:.2f} (bet) pt: ${bet + potential_return:.2f} +${potential_return:.2f} ")
         test.flush()
+        
+        # Track totals
+        total_wagered += bet
+        total_to_win += (bet + potential_return)
+        num_bets += 1
+        
         return process_winner(winner_name, fighter_name, potential_return, bet, fighter_odds)
 
 def process_fight(fight, strategy=[0.05, 0.05, 0]):
@@ -153,49 +163,66 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
         # b_win = avg_win(bva_win, avb_lose)
         kc_a = kelly_criterion(fighter1_odds, a_win)
         kc_b = kelly_criterion(fighter2_odds, b_win)
+        
+        # Calculate edge (model probability - market implied probability)
+        edge_a = a_win - odds1_prob
+        edge_b = b_win - odds2_prob
+        min_edge = strategy[3] if len(strategy) > 3 else 0.05  # 5% minimum edge threshold (default)
+        
         test.write(f"Bankroll: {bankroll:.2f}\n")
-        test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.3f} {kc_a:.2f}\n")
-        test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.3f} {kc_b:.2f}\n")
+        test.write(f"{fighter1_name}: {fighter1_odds} prob={a_win:.3f} edge={edge_a:.3f} kc={kc_a:.2f}\n")
+        test.write(f"{fighter2_name}: {fighter2_odds} prob={b_win:.3f} edge={edge_b:.3f} kc={kc_b:.2f}\n")
         test.flush()
-        # conservative strategy: 0.025, 0.025, 0
-        # normal strategy: 0.05, 0.05, 0
-        # risky strategy: 0.1, 0.1, 0
-        # kc strategy: don't do anything
-        # flat: 0.01, 0.015, 0.02 (if 3rd parameter > 0 then flat all predictions)
+        # Strategy format: [kelly_fraction, max_fraction, flat_bet, min_edge]
+        # conservative strategy: [0.025, 0.025, 0, 0.05]
+        # normal strategy: [0.05, 0.05, 0, 0.05]
+        # risky strategy: [0.1, 0.1, 0, 0.05]
+        # no edge filter: [0.05, 0.05, 0, 0] - bet on any positive Kelly
+        # flat: [0.01, 0.015, 0.02, 0.05] - if 3rd parameter > 0 then flat all predictions
         fraction = strategy[0]
         max_fraction = strategy[1]
         flat = strategy[2]
         if a_win > b_win:
 
-            if (kc_a > 0):
+            if (kc_a > 0 and edge_a > min_edge):
                 bet = bankroll * fraction * kc_a
                 bet = min(bet,max_fraction*bankroll)
                 bet=max(bet,bankroll*flat)
+                test.write(f"[EDGE {edge_a:.1%}] ")
                 # if flat>0:
                 #     bet = bankroll * flat
                 bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
             else:
-                if (kc_a>-0.5):
+                if (kc_a>-0.5 and flat > 0):
                     bet = bankroll * flat
+                    test.write(f"[FLAT] ")
                     bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
                 else:
-                    test.write(f"(no bet)")
+                    if edge_a <= min_edge:
+                        test.write(f"(no bet - edge {edge_a:.1%} < {min_edge:.0%})")
+                    else:
+                        test.write(f"(no bet - kc {kc_a:.2f})")
             test.write("\n")
         else:
 
-            if (kc_b > 0):
+            if (kc_b > 0 and edge_b > min_edge):
                 bet = bankroll * fraction * kc_b
                 bet = min(bet,max_fraction*bankroll)
                 bet=max(bet,bankroll*flat)
+                test.write(f"[EDGE {edge_b:.1%}] ")
                 # if flat>0:
                 #     bet = bankroll * flat
                 bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
             else:
-                if (kc_b>-0.5):
+                if (kc_b>-0.5 and flat > 0):
                     bet = bankroll * flat
+                    test.write(f"[FLAT] ")
                     bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
                 else:
-                    test.write(f"(no bet)")
+                    if edge_b <= min_edge:
+                        test.write(f"(no bet - edge {edge_b:.1%} < {min_edge:.0%})")
+                    else:
+                        test.write(f"(no bet - kc {kc_b:.2f})")
                 
                 
             test.write("\n")
@@ -229,9 +256,17 @@ def train_ml(start_date):
 
 def process_dates(start_date, end_date, strategy):
     print(strategy)
-    global bankroll, bankrolls
+    global bankroll, bankrolls, total_wagered, total_to_win, num_bets, ev, underdogs, favourites, underdogsHit, favouritesHit
     bankroll = 1000
     bankrolls = []
+    total_wagered = 0
+    total_to_win = 0
+    num_bets = 0
+    ev = 0
+    underdogs = 0
+    favourites = 0
+    underdogsHit = 0
+    favouritesHit = 0
     with open(os.path.join("test_results", "testing_time_period.txt"), "w") as test:
         test.write(f"{start_date} to {end_date}\n")
     start_year = datetime.strptime(start_date, '%Y-%m-%d').year
@@ -243,17 +278,36 @@ def process_dates(start_date, end_date, strategy):
     
     find_fights(start_date, end_date, last_training_date, strategy)  # Pass the last training date
     
+    # Calculate profit/loss and ROI
+    profit_loss = bankroll - 1000
+    roi = (profit_loss / total_wagered * 100) if total_wagered > 0 else 0
+    avg_bet = total_wagered / num_bets if num_bets > 0 else 0
+    
     with open(os.path.join("test_results", "testing_time_period.txt"), "a") as test:
-        test.write(f"Bankroll: {bankroll:.2f}\n")
+        test.write("\n" + "="*60 + "\n")
+        test.write("BETTING SUMMARY\n")
+        test.write("="*60 + "\n")
+        test.write(f"Number of Bets: {num_bets}\n")
+        test.write(f"Total Wagered: ${total_wagered:.2f}\n")
+        test.write(f"Total To Win: ${total_to_win:.2f}\n")
+        test.write(f"Average Bet Size: ${avg_bet:.2f}\n")
+        test.write(f"\nStarting Bankroll: $1000.00\n")
+        test.write(f"Final Bankroll: ${bankroll:.2f}\n")
+        test.write(f"Profit/Loss: ${profit_loss:.2f}\n")
+        test.write(f"ROI: {roi:.2f}%\n")
+        test.write(f"\nFavourites: {favouritesHit}/{favourites} ({(favouritesHit/favourites*100 if favourites > 0 else 0):.1f}%)\n")
+        test.write(f"Underdogs: {underdogsHit}/{underdogs} ({(underdogsHit/underdogs*100 if underdogs > 0 else 0):.1f}%)\n")
+        test.write("="*60 + "\n")
+        
     with open(os.path.join("test_results", "testing_time_period_results.txt"), "a") as test:
         test.write("------ RESULT ------\n")
-        test.write(f"Bankroll: {bankroll:.2f}\n")
-    print(bankroll)
-    print(ev)
-    print(favourites)
-    print(favouritesHit)
-    print(underdogs)
-    print(underdogsHit)
+        test.write(f"Bets: {num_bets} | Wagered: ${total_wagered:.2f} | To Win: ${total_to_win:.2f}\n")
+        test.write(f"Final Bankroll: ${bankroll:.2f} | P/L: ${profit_loss:.2f} | ROI: {roi:.2f}%\n")
+    
+    print(f"\n{'='*60}")
+    print(f"Bets: {num_bets} | Wagered: ${total_wagered:.2f} | To Win: ${total_to_win:.2f}")
+    print(f"Final Bankroll: ${bankroll:.2f} | P/L: ${profit_loss:.2f} | ROI: {roi:.2f}%")
+    print(f"{'='*60}\n")
     plot_bankrolls()
 
 def plot_bankrolls():
@@ -283,4 +337,6 @@ if __name__ == "__main__":
         end_date = end_date_dt.strftime('%Y-%m-%d')
     
     print(f"Backtesting period: {start_date} to {end_date}")
-    process_dates(start_date, end_date, strategy=[0.05,0.05,0.005])
+    # Strategy: [kelly_fraction, max_fraction, flat_bet, min_edge]
+    # With 5% edge filter (matching Event Predictor)
+    process_dates(start_date, end_date, strategy=[0.05, 0.05, 0, 0.1])

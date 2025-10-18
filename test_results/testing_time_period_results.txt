@@ -621,3 +621,9 @@ Bankroll: 1000.00
 Bankroll: 5549.62
 ------ RESULT ------
 Bankroll: 4054.32
+------ RESULT ------
+Bankroll: 3921.64
+------ RESULT ------
+Bankroll: 3981.78
+------ RESULT ------
+Bankroll: 3542.09
