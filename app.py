@@ -137,6 +137,27 @@ def get_predictions_plot():
         encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
     return {"image": encoded_image}
 
+@app.route("/predict_event", methods=["POST"])
+def predict_event_endpoint():
+    """Predict all fights from a UFC event URL"""
+    try:
+        data = request.json
+        event_url = data.get("event_url")
+        
+        if not event_url:
+            return jsonify({"error": "No event URL provided"}), 400
+        
+        # Import and run prediction
+        from predict_event import predict_event
+        result = predict_event(event_url)
+        
+        if "error" in result:
+            return jsonify(result), 400
+        
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 # test to see if flask is running
 @app.route("/test_flask", methods=["GET"])
 def test_flask():

@@ -21,7 +21,13 @@ const Navbar = () => {
             to="/predict"
             className="text-white hover:text-gray-300 font-semibold"
           >
-            Predict
+            Predict Fight
+          </Link>
+          <Link
+            to="/event"
+            className="text-white hover:text-gray-300 font-semibold"
+          >
+            Predict Event
           </Link>
           <Link
             to="/bets"
