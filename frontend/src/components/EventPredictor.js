@@ -12,6 +12,7 @@ const EventPredictor = () => {
   const [customOdds, setCustomOdds] = useState({}); // {fightIndex: {red: odds, blue: odds}}
   const [kellyFraction, setKellyFraction] = useState(0.05); // Default 5% (normal strategy)
   const [maxFraction, setMaxFraction] = useState(0.05); // Max 5% per bet
+  const [minEdge, setMinEdge] = useState(0.05); // Default 5% minimum edge
 
   const handlePredict = async () => {
     if (!eventUrl.trim()) {
@@ -118,8 +119,6 @@ const EventPredictor = () => {
     const redEdge = prediction.red_win_prob - redImplied;
     const blueEdge = prediction.blue_win_prob - blueImplied;
 
-    const minEdge = 0.05; // Minimum 5% edge to recommend bet
-
     if (redEdge > minEdge) {
       const kelly = calculateKellyBet(prediction.red_win_prob, redOdds);
       return {
@@ -224,7 +223,7 @@ const EventPredictor = () => {
               <div className="mt-4 pt-4 border-t border-gray-200">
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">Betting Settings</h3>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                   {/* Bankroll */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -274,24 +273,41 @@ const EventPredictor = () => {
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                     />
                   </div>
+                  
+                  {/* Minimum Edge */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Min Edge (%)
+                    </label>
+                    <input
+                      type="number"
+                      value={minEdge * 100}
+                      onChange={(e) => setMinEdge(Number(e.target.value) / 100)}
+                      placeholder="5"
+                      min="0"
+                      max="20"
+                      step="0.5"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    />
+                  </div>
                 </div>
                 
                 <div className="mt-3 space-y-2">
                   <div className="flex gap-2">
                     <button
-                      onClick={() => { setKellyFraction(0.025); setMaxFraction(0.025); }}
+                      onClick={() => { setKellyFraction(0.025); setMaxFraction(0.025); setMinEdge(0.03); }}
                       className={`px-3 py-1 text-xs rounded-md font-medium ${kellyFraction === 0.025 ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
                     >
                       Conservative (2.5%)
                     </button>
                     <button
-                      onClick={() => { setKellyFraction(0.05); setMaxFraction(0.05); }}
+                      onClick={() => { setKellyFraction(0.05); setMaxFraction(0.05); setMinEdge(0.05); }}
                       className={`px-3 py-1 text-xs rounded-md font-medium ${kellyFraction === 0.05 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
                     >
                       Normal (5%)
                     </button>
                     <button
-                      onClick={() => { setKellyFraction(0.1); setMaxFraction(0.1); }}
+                      onClick={() => { setKellyFraction(0.1); setMaxFraction(0.1); setMinEdge(0.08); }}
                       className={`px-3 py-1 text-xs rounded-md font-medium ${kellyFraction === 0.1 ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
                     >
                       Risky (10%)
@@ -299,7 +315,7 @@ const EventPredictor = () => {
                   </div>
                   <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
                     <p className="text-xs text-blue-700">
-                      <span className="font-semibold">Formula:</span> Bet = Bankroll × {(kellyFraction * 100).toFixed(1)}% × Raw Kelly %, capped at {(maxFraction * 100).toFixed(0)}% of bankroll
+                      <span className="font-semibold">Formula:</span> Bet = Bankroll × {(kellyFraction * 100).toFixed(1)}% × Raw Kelly %, capped at {(maxFraction * 100).toFixed(0)}% of bankroll. Only bets with ≥{(minEdge * 100).toFixed(1)}% edge are recommended.
                     </p>
                   </div>
                 </div>
@@ -318,7 +334,6 @@ const EventPredictor = () => {
                 const blueKelly = blueOdds ? calculateKellyBet(prediction.blue_win_prob, blueOdds, bankroll, kellyFraction, maxFraction) : null;
                 
                 // Determine which bet has more edge (if any)
-                const minEdge = 0.05; // 5% minimum edge
                 let bestBet = null;
                 if (redKelly && redKelly.edge > minEdge && redKelly.fraction > 0) {
                   if (!bestBet || redKelly.edge > bestBet.edge) {
@@ -457,7 +472,6 @@ const EventPredictor = () => {
 
             {/* Betting Summary Calculator */}
             {(() => {
-              const minEdge = 0.05;
               let totalWagered = 0;
               let totalToWin = 0;
               let numBets = 0;
