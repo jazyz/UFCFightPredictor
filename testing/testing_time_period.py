@@ -1,15 +1,27 @@
 import csv
 from datetime import datetime, timedelta
 import os
+import sys
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('agg')
 
-# Check if running in Flask context
+# Add parent directory to path for proper imports
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
+# Import the training function
 try:
     from testing.ml_alpha_testing import main
 except ImportError:
-    from ml_alpha_testing import main
+    try:
+        from ml_alpha_testing import main
+    except ImportError:
+        # If both fail, try adding testing directory to path
+        testing_dir = os.path.dirname(os.path.abspath(__file__))
+        sys.path.insert(0, testing_dir)
+        from ml_alpha_testing import main
 
 
 bankroll = 1000

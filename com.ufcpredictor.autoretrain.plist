@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Job Label (unique identifier) -->
+    <key>Label</key>
+    <string>com.ufcpredictor.autoretrain</string>
+    
+    <!-- Program to run -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/aalex_xuu/Desktop/UFCFightPredictor/.venv/bin/python</string>
+        <string>/Users/aalex_xuu/Desktop/UFCFightPredictor/auto_retrain.py</string>
+    </array>
+    
+    <!-- Working directory -->
+    <key>WorkingDirectory</key>
+    <string>/Users/aalex_xuu/Desktop/UFCFightPredictor</string>
+    
+    <!-- Schedule: Monday and Friday at 2:00 AM -->
+    <key>StartCalendarInterval</key>
+    <array>
+        <!-- Monday at 2 AM -->
+        <dict>
+            <key>Weekday</key>
+            <integer>1</integer>
+            <key>Hour</key>
+            <integer>2</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <!-- Friday at 2 AM -->
+        <dict>
+            <key>Weekday</key>
+            <integer>5</integer>
+            <key>Hour</key>
+            <integer>2</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+    </array>
+    
+    <!-- Standard output log -->
+    <key>StandardOutPath</key>
+    <string>/Users/aalex_xuu/Desktop/UFCFightPredictor/logs/launchd_output.log</string>
+    
+    <!-- Standard error log -->
+    <key>StandardErrorPath</key>
+    <string>/Users/aalex_xuu/Desktop/UFCFightPredictor/logs/launchd_error.log</string>
+    
+    <!-- Run at load if the scheduled time was missed (key feature!) -->
+    <key>RunAtLoad</key>
+    <false/>
+    
+    <!-- Keep job loaded -->
+    <key>KeepAlive</key>
+    <false/>
+</dict>
+</plist>

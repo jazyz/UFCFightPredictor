@@ -627,3 +627,6 @@ Bankroll: 3921.64
 Bankroll: 3981.78
 ------ RESULT ------
 Bankroll: 3542.09
+------ RESULT ------
+Bets: 92 | Wagered: $3668.91 | To Win: $9522.27
+Final Bankroll: $3542.68 | P/L: $2542.68 | ROI: 69.30%

@@ -1,307 +1,256 @@
-2024-10-18 to 2025-10-18
+2024-10-21 to 2025-10-21
 Bankroll: 1000.00
-Anthony Hernandez: -135 prob=0.534 edge=-0.040 kc=-0.09
-Michel Pereira: 114 prob=0.466 edge=-0.001 kc=-0.00
-(no bet - edge -4.0% < 10%)
- *** Anthony Hernandez *** 
----
-Bankroll: 1000.00
-Rob Font: 380 prob=0.376 edge=0.167 kc=0.21
-Kyler Phillips: -500 prob=0.624 edge=-0.209 kc=-1.25
-(no bet - edge -20.9% < 10%)
- *** Rob Font *** 
----
-Bankroll: 1000.00
-Charles Johnson: -238 prob=0.621 edge=-0.083 kc=-0.28
-Sumudaerji: 195 prob=0.379 edge=0.040 kc=0.06
-(no bet - edge -8.3% < 10%)
- *** Charles Johnson *** 
----
-Bankroll: 1000.00
-Jake Hadley: -500 prob=0.662 edge=-0.171 kc=-1.03
-Cameron Smotherman: 380 prob=0.338 edge=0.130 kc=0.16
-(no bet - edge -17.1% < 10%)
- *** Cameron Smotherman *** 
----
-Bankroll: 1000.00
-Darren Elkins: -122 prob=0.774 edge=0.224 kc=0.50
-Daniel Pineda: 102 prob=0.226 edge=-0.269 kc=-0.53
-Darren Elkins $24.92 (bet) pt: $45.34 +$20.42  (win)[EDGE 22.4%] 
- *** Darren Elkins *** 
----
-Bankroll: 1020.42
-Matheus Nicolau: 180 prob=0.544 edge=0.187 kc=0.29
-Asu Almabayev: -218 prob=0.456 edge=-0.230 kc=-0.73
-Matheus Nicolau $14.85 (bet) pt: $41.58 +$26.73  (loss)[EDGE 18.7%] 
- *** Asu Almabayev *** 
----
-Bankroll: 1005.57
-Brad Katona: 180 prob=0.208 edge=-0.149 kc=-0.23
-Jean Matsumoto: -218 prob=0.792 edge=0.106 kc=0.34
-Jean Matsumoto $17.03 (bet) pt: $24.84 +$7.81  (win)[EDGE 10.6%] 
- *** Jean Matsumoto *** 
----
----
----
----
-Bankroll: 1013.38
-Austen Lane: 270 prob=0.402 edge=0.132 kc=0.18
-Robelis Despaigne: -340 prob=0.598 edge=-0.175 kc=-0.77
-(no bet - edge -17.5% < 10%)
- *** Austen Lane *** 
----
-Bankroll: 1013.38
-Ilia Topuria: -238 prob=0.570 edge=-0.134 kc=-0.45
-Max Holloway: 195 prob=0.430 edge=0.091 kc=0.14
-(no bet - edge -13.4% < 10%)
+Ilia Topuria: -238 prob=0.597 edge=-0.107 kc=-0.36
+Max Holloway: 195 prob=0.403 edge=0.064 kc=0.10
+(no bet - edge -10.7% < 10%)
  *** Ilia Topuria *** 
 ---
-Bankroll: 1013.38
-Robert Whittaker: 185 prob=0.234 edge=-0.117 kc=-0.18
-Khamzat Chimaev: -225 prob=0.766 edge=0.074 kc=0.24
-(no bet - edge 7.4% < 10%)
+Bankroll: 1000.00
+Robert Whittaker: 185 prob=0.131 edge=-0.220 kc=-0.34
+Khamzat Chimaev: -225 prob=0.869 edge=0.177 kc=0.58
+Khamzat Chimaev $28.77 (bet) pt: $41.56 +$12.79  (win)[EDGE 17.7%] 
  *** Khamzat Chimaev *** 
 ---
 ---
-Bankroll: 1013.38
-Lerone Murphy: -258 prob=0.803 edge=0.083 kc=0.30
-Dan Ige: 210 prob=0.197 edge=-0.126 kc=-0.19
-(no bet - edge 8.3% < 10%)
+Bankroll: 1012.79
+Lerone Murphy: -258 prob=0.793 edge=0.072 kc=0.26
+Dan Ige: 210 prob=0.207 edge=-0.115 kc=-0.17
+(no bet - edge 7.2% < 10%)
  *** Lerone Murphy *** 
 ---
-Bankroll: 1013.38
-Shara Magomedov: -180 prob=0.689 edge=0.046 kc=0.13
-Armen Petrosyan: 150 prob=0.311 edge=-0.089 kc=-0.15
-(no bet - edge 4.6% < 10%)
+Bankroll: 1012.79
+Shara Magomedov: -180 prob=0.685 edge=0.042 kc=0.12
+Armen Petrosyan: 150 prob=0.315 edge=-0.085 kc=-0.14
+(no bet - edge 4.2% < 10%)
  *** Shara Magomedov *** 
 ---
-Bankroll: 1013.38
-Ibo Aslan: 100 prob=0.844 edge=0.344 kc=0.69
-Rafael Cerqueira: -120 prob=0.156 edge=-0.390 kc=-0.86
-Ibo Aslan $34.90 (bet) pt: $69.80 +$34.90  (win)[EDGE 34.4%] 
+Bankroll: 1012.79
+Ibo Aslan: 100 prob=0.888 edge=0.388 kc=0.78
+Rafael Cerqueira: -120 prob=0.112 edge=-0.434 kc=-0.95
+Ibo Aslan $39.34 (bet) pt: $78.67 +$39.34  (win)[EDGE 38.8%] 
  *** Ibo Aslan *** 
 ---
-Bankroll: 1048.28
-Geoff Neal: -310 prob=0.571 edge=-0.185 kc=-0.76
-Rafael Dos Anjos: 250 prob=0.429 edge=0.143 kc=0.20
-(no bet - edge -18.5% < 10%)
+Bankroll: 1052.12
+Geoff Neal: -310 prob=0.535 edge=-0.221 kc=-0.91
+Rafael Dos Anjos: 250 prob=0.465 edge=0.180 kc=0.25
+(no bet - edge -22.1% < 10%)
  *** Geoff Neal *** 
 ---
 ---
-Bankroll: 1048.28
-Abus Magomedov: -155 prob=0.437 edge=-0.171 kc=-0.44
-Brunno Ferreira: 130 prob=0.563 edge=0.128 kc=0.23
-Brunno Ferreira $11.91 (bet) pt: $27.40 +$15.49  (loss)[EDGE 12.8%] 
+Bankroll: 1052.12
+Abus Magomedov: -155 prob=0.354 edge=-0.254 kc=-0.65
+Brunno Ferreira: 130 prob=0.646 edge=0.211 kc=0.37
+Brunno Ferreira $19.66 (bet) pt: $45.22 +$25.56  (loss)[EDGE 21.1%] 
  *** Abus Magomedov *** 
 ---
-Bankroll: 1036.37
-Kennedy Nzechukwu: -750 prob=0.877 edge=-0.006 kc=-0.05
-Chris Barnett: 525 prob=0.123 edge=-0.037 kc=-0.04
-(no bet - edge -0.6% < 10%)
+Bankroll: 1032.46
+Kennedy Nzechukwu: -750 prob=0.807 edge=-0.076 kc=-0.64
+Chris Barnett: 525 prob=0.193 edge=0.033 kc=0.04
+(no bet - edge -7.6% < 10%)
  *** Kennedy Nzechukwu *** 
 ---
-Bankroll: 1036.37
-Farid Basharat: -750 prob=0.802 edge=-0.081 kc=-0.69
-Victor Hugo: 525 prob=0.198 edge=0.038 kc=0.05
-(no bet - edge -8.1% < 10%)
+Bankroll: 1032.46
+Farid Basharat: -750 prob=0.831 edge=-0.051 kc=-0.43
+Victor Hugo: 525 prob=0.169 edge=0.009 kc=0.01
+(no bet - edge -5.1% < 10%)
  *** Farid Basharat *** 
 ---
-Bankroll: 1036.37
-Ismail Naurdiev: -170 prob=0.765 edge=0.135 kc=0.36
-Bruno Silva: 142 prob=0.235 edge=-0.178 kc=-0.30
-Ismail Naurdiev $18.89 (bet) pt: $30.01 +$11.11  (win)[EDGE 13.5%] 
+Bankroll: 1032.46
+Ismail Naurdiev: -170 prob=0.704 edge=0.075 kc=0.20
+Bruno Silva: 142 prob=0.296 edge=-0.118 kc=-0.20
+(no bet - edge 7.5% < 10%)
  *** Ismail Naurdiev *** 
 ---
-Bankroll: 1047.48
-Rinat Fakhretdinov: -230 prob=0.919 edge=0.222 kc=0.73
-Carlos Leal: 190 prob=0.081 edge=-0.264 kc=-0.40
-Rinat Fakhretdinov $38.42 (bet) pt: $55.12 +$16.70  (win)[EDGE 22.2%] 
+Bankroll: 1032.46
+Rinat Fakhretdinov: -230 prob=0.886 edge=0.189 kc=0.62
+Carlos Leal: 190 prob=0.114 edge=-0.231 kc=-0.35
+Rinat Fakhretdinov $32.23 (bet) pt: $46.24 +$14.01  (win)[EDGE 18.9%] 
  *** Rinat Fakhretdinov *** 
 ---
-Bankroll: 1064.18
-Brandon Moreno: -175 prob=0.812 edge=0.175 kc=0.48
-Amir Albazi: 145 prob=0.188 edge=-0.220 kc=-0.37
-Brandon Moreno $25.67 (bet) pt: $40.34 +$14.67  (win)[EDGE 17.5%] 
+Bankroll: 1046.47
+Brandon Moreno: -175 prob=0.762 edge=0.126 kc=0.35
+Amir Albazi: 145 prob=0.238 edge=-0.170 kc=-0.29
+Brandon Moreno $18.12 (bet) pt: $28.48 +$10.36  (win)[EDGE 12.6%] 
  *** Brandon Moreno *** 
 ---
 ---
-Bankroll: 1078.85
-Caio Machado: -148 prob=0.064 edge=-0.532 kc=-1.32
-Brendson Ribeiro: 124 prob=0.936 edge=0.489 kc=0.88
-Brendson Ribeiro $47.67 (bet) pt: $106.78 +$59.11  (win)[EDGE 48.9%] 
+Bankroll: 1056.83
+Caio Machado: -148 prob=0.062 edge=-0.535 kc=-1.33
+Brendson Ribeiro: 124 prob=0.938 edge=0.492 kc=0.89
+Brendson Ribeiro $46.94 (bet) pt: $105.14 +$58.20  (win)[EDGE 49.2%] 
  *** Brendson Ribeiro *** 
 ---
 ---
-Bankroll: 1137.96
-Marc-Andre Barriault: -198 prob=0.496 edge=-0.168 kc=-0.50
-Dustin Stoltzfus: 164 prob=0.504 edge=0.125 kc=0.20
-Dustin Stoltzfus $11.44 (bet) pt: $30.20 +$18.76  (win)[EDGE 12.5%] 
+Bankroll: 1115.03
+Marc-Andre Barriault: -198 prob=0.507 edge=-0.157 kc=-0.47
+Dustin Stoltzfus: 164 prob=0.493 edge=0.114 kc=0.18
+(no bet - edge -15.7% < 10%)
  *** Dustin Stoltzfus *** 
 ---
-Bankroll: 1156.73
-Mike Malott: -310 prob=0.664 edge=-0.092 kc=-0.38
-Trevin Giles: 250 prob=0.336 edge=0.050 kc=0.07
-(no bet - edge -9.2% < 10%)
+Bankroll: 1115.03
+Mike Malott: -310 prob=0.748 edge=-0.008 kc=-0.03
+Trevin Giles: 250 prob=0.252 edge=-0.034 kc=-0.05
+(no bet - edge -0.8% < 10%)
  *** Mike Malott *** 
 ---
-Bankroll: 1156.73
-Aiemann Zahabi: -162 prob=0.642 edge=0.023 kc=0.06
-Pedro Munhoz: 136 prob=0.358 edge=-0.065 kc=-0.11
-(no bet - edge 2.3% < 10%)
+Bankroll: 1115.03
+Aiemann Zahabi: -162 prob=0.633 edge=0.014 kc=0.04
+Pedro Munhoz: 136 prob=0.367 edge=-0.056 kc=-0.10
+(no bet - edge 1.4% < 10%)
  *** Aiemann Zahabi *** 
 ---
-Bankroll: 1156.73
-Charles Jourdain: -125 prob=0.463 edge=-0.093 kc=-0.21
-Victor Henry: 105 prob=0.537 edge=0.050 kc=0.10
-(no bet - edge 5.0% < 10%)
+Bankroll: 1115.03
+Charles Jourdain: -125 prob=0.524 edge=-0.031 kc=-0.07
+Victor Henry: 105 prob=0.476 edge=-0.012 kc=-0.02
+(no bet - edge -3.1% < 10%)
  *** Charles Jourdain *** 
 ---
-Bankroll: 1156.73
-Jack Shore: 240 prob=0.348 edge=0.054 kc=0.08
-Youssef Zalal: -298 prob=0.652 edge=-0.097 kc=-0.38
-(no bet - edge -9.7% < 10%)
+Bankroll: 1115.03
+Jack Shore: 240 prob=0.361 edge=0.067 kc=0.09
+Youssef Zalal: -298 prob=0.639 edge=-0.110 kc=-0.44
+(no bet - edge -11.0% < 10%)
  *** Youssef Zalal *** 
 ---
-Bankroll: 1156.73
-Alexandr Romanov: -135 prob=0.700 edge=0.126 kc=0.29
-Rodrigo Nascimento: 114 prob=0.300 edge=-0.167 kc=-0.31
-Alexandr Romanov $17.06 (bet) pt: $29.70 +$12.64  (win)[EDGE 12.6%] 
+Bankroll: 1115.03
+Alexandr Romanov: -135 prob=0.621 edge=0.047 kc=0.11
+Rodrigo Nascimento: 114 prob=0.379 edge=-0.088 kc=-0.17
+(no bet - edge 4.7% < 10%)
  *** Alexandr Romanov *** 
 ---
-Bankroll: 1169.36
-Serhiy Sidey: -135 prob=0.461 edge=-0.114 kc=-0.27
-Garrett Armfield: 114 prob=0.539 edge=0.072 kc=0.13
-(no bet - edge 7.2% < 10%)
+Bankroll: 1115.03
+Serhiy Sidey: -135 prob=0.454 edge=-0.121 kc=-0.28
+Garrett Armfield: 114 prob=0.546 edge=0.079 kc=0.15
+(no bet - edge 7.9% < 10%)
  *** Serhiy Sidey *** 
 ---
-Bankroll: 1169.36
-Chad Anheliger: 205 prob=0.435 edge=0.107 kc=0.16
-Cody Gibson: -250 prob=0.565 edge=-0.149 kc=-0.52
-(no bet - edge -14.9% < 10%)
+Bankroll: 1115.03
+Chad Anheliger: 205 prob=0.485 edge=0.157 kc=0.23
+Cody Gibson: -250 prob=0.515 edge=-0.200 kc=-0.70
+(no bet - edge -20.0% < 10%)
  *** Cody Gibson *** 
 ---
 ---
-Bankroll: 1169.36
-Neil Magny: 550 prob=0.095 edge=-0.058 kc=-0.07
-Carlos Prates: -800 prob=0.905 edge=0.016 kc=0.14
-(no bet - edge 1.6% < 10%)
+Bankroll: 1115.03
+Neil Magny: 550 prob=0.143 edge=-0.011 kc=-0.01
+Carlos Prates: -800 prob=0.857 edge=-0.032 kc=-0.29
+(no bet - edge -3.2% < 10%)
  *** Carlos Prates *** 
 ---
-Bankroll: 1169.36
-Gerald Meerschaert: 260 prob=0.452 edge=0.174 kc=0.24
-Reinier de Ridder: -325 prob=0.548 edge=-0.216 kc=-0.92
-(no bet - edge -21.6% < 10%)
+Bankroll: 1115.03
+Gerald Meerschaert: 260 prob=0.378 edge=0.100 kc=0.14
+Reinier de Ridder: -325 prob=0.622 edge=-0.143 kc=-0.61
+(no bet - edge -14.3% < 10%)
  *** Reinier de Ridder *** 
 ---
-Bankroll: 1169.36
-Gaston Bolanos: 185 prob=0.667 edge=0.316 kc=0.49
-Cortavious Romious: -225 prob=0.333 edge=-0.359 kc=-1.17
-Gaston Bolanos $28.47 (bet) pt: $81.15 +$52.68  (win)[EDGE 31.6%] 
+Bankroll: 1115.03
+Gaston Bolanos: 185 prob=0.708 edge=0.357 kc=0.55
+Cortavious Romious: -225 prob=0.292 edge=-0.400 kc=-1.30
+Gaston Bolanos $30.63 (bet) pt: $87.30 +$56.67  (win)[EDGE 35.7%] 
  *** Gaston Bolanos *** 
 ---
 ---
 ---
 ---
 ---
-Bankroll: 1222.04
-Matthew Semelsberger: 136 prob=0.402 edge=-0.022 kc=-0.04
-Charles Radtke: -162 prob=0.598 edge=-0.020 kc=-0.05
-(no bet - edge -2.0% < 10%)
+Bankroll: 1171.70
+Matthew Semelsberger: 136 prob=0.382 edge=-0.042 kc=-0.07
+Charles Radtke: -162 prob=0.618 edge=-0.000 kc=-0.00
+(no bet - edge -0.0% < 10%)
  *** Charles Radtke *** 
 ---
-Bankroll: 1222.04
-Cody Stamann: 210 prob=0.480 edge=0.158 kc=0.23
-Da'Mon Blackshear: -258 prob=0.520 edge=-0.201 kc=-0.72
-(no bet - edge -20.1% < 10%)
+Bankroll: 1171.70
+Cody Stamann: 210 prob=0.392 edge=0.069 kc=0.10
+Da'Mon Blackshear: -258 prob=0.608 edge=-0.112 kc=-0.40
+(no bet - edge -11.2% < 10%)
  *** Da'Mon Blackshear *** 
 ---
-Bankroll: 1222.04
-Tresean Gore: -180 prob=0.867 edge=0.224 kc=0.63
-Antonio Trocoli: 150 prob=0.133 edge=-0.267 kc=-0.44
-Tresean Gore $38.29 (bet) pt: $59.57 +$21.27  (win)[EDGE 22.4%] 
+Bankroll: 1171.70
+Tresean Gore: -180 prob=0.808 edge=0.165 kc=0.46
+Antonio Trocoli: 150 prob=0.192 edge=-0.208 kc=-0.35
+Tresean Gore $27.09 (bet) pt: $42.13 +$15.05  (win)[EDGE 16.5%] 
  *** Tresean Gore *** 
 ---
 ---
-Bankroll: 1243.32
-Jon Jones: -625 prob=0.885 edge=0.023 kc=0.17
-Stipe Miocic: 455 prob=0.115 edge=-0.065 kc=-0.08
-(no bet - edge 2.3% < 10%)
+Bankroll: 1186.75
+Jon Jones: -625 prob=0.792 edge=-0.070 kc=-0.51
+Stipe Miocic: 455 prob=0.208 edge=0.028 kc=0.03
+(no bet - edge -7.0% < 10%)
  *** Jon Jones *** 
 ---
-Bankroll: 1243.32
-Charles Oliveira: -250 prob=0.787 edge=0.073 kc=0.25
-Michael Chandler: 205 prob=0.213 edge=-0.115 kc=-0.17
-(no bet - edge 7.3% < 10%)
+Bankroll: 1186.75
+Charles Oliveira: -250 prob=0.829 edge=0.115 kc=0.40
+Michael Chandler: 205 prob=0.171 edge=-0.157 kc=-0.23
+Charles Oliveira $23.90 (bet) pt: $33.46 +$9.56  (win)[EDGE 11.5%] 
  *** Charles Oliveira *** 
 ---
-Bankroll: 1243.32
-Bo Nickal: -1100 prob=0.884 edge=-0.032 kc=-0.39
-Paul Craig: 700 prob=0.116 edge=-0.009 kc=-0.01
-(no bet - edge -3.2% < 10%)
+Bankroll: 1196.31
+Bo Nickal: -1100 prob=0.759 edge=-0.158 kc=-1.90
+Paul Craig: 700 prob=0.241 edge=0.116 kc=0.13
+(no bet - edge -15.8% < 10%)
  *** Bo Nickal *** 
 ---
 ---
-Bankroll: 1243.32
-Mauricio Ruffy: -1000 prob=0.870 edge=-0.039 kc=-0.43
-James Llontop: 650 prob=0.130 edge=-0.003 kc=-0.00
-(no bet - edge -3.9% < 10%)
+Bankroll: 1196.31
+Mauricio Ruffy: -1000 prob=0.928 edge=0.019 kc=0.21
+James Llontop: 650 prob=0.072 edge=-0.061 kc=-0.07
+(no bet - edge 1.9% < 10%)
  *** Mauricio Ruffy *** 
 ---
-Bankroll: 1243.32
-Jonathan Martinez: -102 prob=0.546 edge=0.041 kc=0.08
-Marcus McGhee: -118 prob=0.454 edge=-0.087 kc=-0.19
-(no bet - edge 4.1% < 10%)
+Bankroll: 1196.31
+Jonathan Martinez: -102 prob=0.649 edge=0.144 kc=0.29
+Marcus McGhee: -118 prob=0.351 edge=-0.190 kc=-0.41
+Jonathan Martinez $17.38 (bet) pt: $34.43 +$17.04  (loss)[EDGE 14.4%] 
  *** Marcus McGhee *** 
 ---
-Bankroll: 1243.32
-Jim Miller: 190 prob=0.427 edge=0.082 kc=0.13
-Damon Jackson: -230 prob=0.573 edge=-0.124 kc=-0.41
-(no bet - edge -12.4% < 10%)
+Bankroll: 1178.92
+Jim Miller: 190 prob=0.480 edge=0.135 kc=0.21
+Damon Jackson: -230 prob=0.520 edge=-0.177 kc=-0.58
+(no bet - edge -17.7% < 10%)
  *** Jim Miller *** 
 ---
-Bankroll: 1243.32
-David Onama: -1450 prob=0.951 edge=0.015 kc=0.24
-Roberto Romero: 850 prob=0.049 edge=-0.056 kc=-0.06
+Bankroll: 1178.92
+David Onama: -1450 prob=0.950 edge=0.015 kc=0.23
+Roberto Romero: 850 prob=0.050 edge=-0.055 kc=-0.06
 (no bet - edge 1.5% < 10%)
  *** David Onama *** 
 ---
-Bankroll: 1243.32
-Marcin Tybura: -110 prob=0.425 edge=-0.099 kc=-0.21
-Jhonata Diniz: -120 prob=0.575 edge=0.030 kc=0.07
-(no bet - edge 3.0% < 10%)
+Bankroll: 1178.92
+Marcin Tybura: -110 prob=0.220 edge=-0.304 kc=-0.64
+Jhonata Diniz: -120 prob=0.780 edge=0.234 kc=0.52
+Jhonata Diniz $30.38 (bet) pt: $55.69 +$25.31  (loss)[EDGE 23.4%] 
  *** Marcin Tybura *** 
 ---
-Bankroll: 1243.32
-Mickey Gall: -142 prob=0.590 edge=0.004 kc=0.01
-Ramiz Brahimaj: 120 prob=0.410 edge=-0.045 kc=-0.08
-(no bet - edge 0.4% < 10%)
+Bankroll: 1148.55
+Mickey Gall: -142 prob=0.605 edge=0.019 kc=0.05
+Ramiz Brahimaj: 120 prob=0.395 edge=-0.060 kc=-0.11
+(no bet - edge 1.9% < 10%)
  *** Ramiz Brahimaj *** 
 ---
-Bankroll: 1243.32
-Bassil Hafez: 240 prob=0.225 edge=-0.069 kc=-0.10
-Oban Elliott: -298 prob=0.775 edge=0.026 kc=0.10
-(no bet - edge 2.6% < 10%)
+Bankroll: 1148.55
+Bassil Hafez: 240 prob=0.181 edge=-0.113 kc=-0.16
+Oban Elliott: -298 prob=0.819 edge=0.070 kc=0.28
+(no bet - edge 7.0% < 10%)
  *** Oban Elliott *** 
 ---
 ---
-Bankroll: 1243.32
-Petr Yan: -278 prob=0.654 edge=-0.081 kc=-0.31
-Deiveson Figueiredo: 225 prob=0.346 edge=0.038 kc=0.06
-(no bet - edge -8.1% < 10%)
+Bankroll: 1148.55
+Petr Yan: -278 prob=0.721 edge=-0.015 kc=-0.06
+Deiveson Figueiredo: 225 prob=0.279 edge=-0.028 kc=-0.04
+(no bet - edge -1.5% < 10%)
  *** Petr Yan *** 
 ---
 ---
-Bankroll: 1243.32
-Song Kenan: 142 prob=0.356 edge=-0.057 kc=-0.10
-Muslim Salikhov: -170 prob=0.644 edge=0.014 kc=0.04
-(no bet - edge 1.4% < 10%)
+Bankroll: 1148.55
+Song Kenan: 142 prob=0.271 edge=-0.142 kc=-0.24
+Muslim Salikhov: -170 prob=0.729 edge=0.099 kc=0.27
+(no bet - edge 9.9% < 10%)
  *** Muslim Salikhov *** 
 ---
 ---
-Bankroll: 1243.32
-Volkan Oezdemir: 225 prob=0.256 edge=-0.052 kc=-0.07
-Carlos Ulberg: -278 prob=0.744 edge=0.008 kc=0.03
-(no bet - edge 0.8% < 10%)
+Bankroll: 1148.55
+Volkan Oezdemir: 225 prob=0.281 edge=-0.027 kc=-0.04
+Carlos Ulberg: -278 prob=0.719 edge=-0.016 kc=-0.06
+(no bet - edge -1.6% < 10%)
  *** Carlos Ulberg *** 
 ---
 ---
@@ -310,1047 +259,1052 @@ Carlos Ulberg: -278 prob=0.744 edge=0.008 kc=0.03
 ---
 ---
 ---
-Bankroll: 1243.32
-Xiao Long: -110 prob=0.646 edge=0.122 kc=0.26
-Quang Le: -110 prob=0.354 edge=-0.169 kc=-0.36
-Xiao Long $15.91 (bet) pt: $30.37 +$14.46  (win)[EDGE 12.2%] 
+Bankroll: 1148.55
+Xiao Long: -110 prob=0.740 edge=0.216 kc=0.45
+Quang Le: -110 prob=0.260 edge=-0.263 kc=-0.55
+Xiao Long $26.02 (bet) pt: $49.68 +$23.66  (win)[EDGE 21.6%] 
  *** Xiao Long *** 
 ---
 ---
-Bankroll: 1257.78
-Alexandre Pantoja: -285 prob=0.954 edge=0.214 kc=0.82
-Kai Asakura: 230 prob=0.046 edge=-0.257 kc=-0.37
-Alexandre Pantoja $51.79 (bet) pt: $69.96 +$18.17  (win)[EDGE 21.4%] 
+Bankroll: 1172.20
+Alexandre Pantoja: -285 prob=0.933 edge=0.192 kc=0.74
+Kai Asakura: 230 prob=0.067 edge=-0.236 kc=-0.34
+Alexandre Pantoja $43.43 (bet) pt: $58.67 +$15.24  (win)[EDGE 19.2%] 
  *** Alexandre Pantoja *** 
 ---
-Bankroll: 1275.95
-Shavkat Rakhmonov: -375 prob=0.811 edge=0.021 kc=0.10
-Ian Machado Garry: 295 prob=0.189 edge=-0.064 kc=-0.09
-(no bet - edge 2.1% < 10%)
+Bankroll: 1187.44
+Shavkat Rakhmonov: -375 prob=0.840 edge=0.051 kc=0.24
+Ian Machado Garry: 295 prob=0.160 edge=-0.093 kc=-0.13
+(no bet - edge 5.1% < 10%)
  *** Shavkat Rakhmonov *** 
 ---
-Bankroll: 1275.95
-Ciryl Gane: -345 prob=0.511 edge=-0.264 kc=-1.18
-Alexander Volkov: 275 prob=0.489 edge=0.222 kc=0.30
-(no bet - edge -26.4% < 10%)
+Bankroll: 1187.44
+Ciryl Gane: -345 prob=0.522 edge=-0.253 kc=-1.13
+Alexander Volkov: 275 prob=0.478 edge=0.211 kc=0.29
+(no bet - edge -25.3% < 10%)
  *** Ciryl Gane *** 
 ---
-Bankroll: 1275.95
-Bryce Mitchell: -800 prob=0.928 edge=0.039 kc=0.35
-Kron Gracie: 550 prob=0.072 edge=-0.081 kc=-0.10
-(no bet - edge 3.9% < 10%)
+Bankroll: 1187.44
+Bryce Mitchell: -800 prob=0.911 edge=0.022 kc=0.20
+Kron Gracie: 550 prob=0.089 edge=-0.065 kc=-0.08
+(no bet - edge 2.2% < 10%)
  *** Bryce Mitchell *** 
 ---
-Bankroll: 1275.95
-Nate Landwehr: -142 prob=0.558 edge=-0.029 kc=-0.07
-Dooho Choi: 120 prob=0.442 edge=-0.013 kc=-0.02
-(no bet - edge -2.9% < 10%)
+Bankroll: 1187.44
+Nate Landwehr: -142 prob=0.405 edge=-0.182 kc=-0.44
+Dooho Choi: 120 prob=0.595 edge=0.140 kc=0.26
+Dooho Choi $15.29 (bet) pt: $33.64 +$18.35  (win)[EDGE 14.0%] 
  *** Dooho Choi *** 
 ---
-Bankroll: 1275.95
-Dominick Reyes: -340 prob=0.602 edge=-0.171 kc=-0.75
-Anthony Smith: 270 prob=0.398 edge=0.128 kc=0.18
-(no bet - edge -17.1% < 10%)
+Bankroll: 1205.79
+Dominick Reyes: -340 prob=0.566 edge=-0.206 kc=-0.91
+Anthony Smith: 270 prob=0.434 edge=0.163 kc=0.22
+(no bet - edge -20.6% < 10%)
  *** Dominick Reyes *** 
 ---
-Bankroll: 1275.95
-Vicente Luque: 136 prob=0.654 edge=0.231 kc=0.40
-Themba Gorimbo: -162 prob=0.346 edge=-0.273 kc=-0.71
-Vicente Luque $25.53 (bet) pt: $60.26 +$34.73  (win)[EDGE 23.1%] 
+Bankroll: 1205.79
+Vicente Luque: 136 prob=0.668 edge=0.244 kc=0.42
+Themba Gorimbo: -162 prob=0.332 edge=-0.286 kc=-0.75
+Vicente Luque $25.54 (bet) pt: $60.27 +$34.73  (win)[EDGE 24.4%] 
  *** Vicente Luque *** 
 ---
-Bankroll: 1310.68
-Movsar Evloev: -250 prob=0.753 edge=0.039 kc=0.14
-Aljamain Sterling: 205 prob=0.247 edge=-0.081 kc=-0.12
-(no bet - edge 3.9% < 10%)
+Bankroll: 1240.52
+Movsar Evloev: -250 prob=0.740 edge=0.026 kc=0.09
+Aljamain Sterling: 205 prob=0.260 edge=-0.068 kc=-0.10
+(no bet - edge 2.6% < 10%)
  *** Movsar Evloev *** 
 ---
-Bankroll: 1310.68
-Randy Brown: 190 prob=0.662 edge=0.317 kc=0.48
-Bryan Battle: -230 prob=0.338 edge=-0.359 kc=-1.18
-Randy Brown $31.68 (bet) pt: $91.88 +$60.20  (loss)[EDGE 31.7%] 
+Bankroll: 1240.52
+Randy Brown: 190 prob=0.693 edge=0.348 kc=0.53
+Bryan Battle: -230 prob=0.307 edge=-0.390 kc=-1.29
+Randy Brown $32.97 (bet) pt: $95.62 +$62.65  (loss)[EDGE 34.8%] 
  *** Bryan Battle *** 
 ---
-Bankroll: 1279.00
-Chris Weidman: -115 prob=0.517 edge=-0.017 kc=-0.04
-Eryk Anders: -105 prob=0.483 edge=-0.030 kc=-0.06
-(no bet - edge -1.7% < 10%)
+Bankroll: 1207.55
+Chris Weidman: -115 prob=0.642 edge=0.107 kc=0.23
+Eryk Anders: -105 prob=0.358 edge=-0.154 kc=-0.32
+Chris Weidman $13.84 (bet) pt: $25.88 +$12.04  (loss)[EDGE 10.7%] 
  *** Eryk Anders *** 
 ---
-Bankroll: 1279.00
-Cody Durden: 124 prob=0.178 edge=-0.269 kc=-0.49
-Joshua Van: -148 prob=0.822 edge=0.226 kc=0.56
-Joshua Van $35.78 (bet) pt: $59.95 +$24.17  (win)[EDGE 22.6%] 
+Bankroll: 1193.71
+Cody Durden: 124 prob=0.265 edge=-0.182 kc=-0.33
+Joshua Van: -148 prob=0.735 edge=0.138 kc=0.34
+Joshua Van $20.48 (bet) pt: $34.32 +$13.84  (win)[EDGE 13.8%] 
  *** Joshua Van *** 
 ---
-Bankroll: 1303.17
-Michael Chiesa: 102 prob=0.563 edge=0.068 kc=0.13
-Max Griffin: -122 prob=0.437 edge=-0.113 kc=-0.25
-(no bet - edge 6.8% < 10%)
+Bankroll: 1207.55
+Michael Chiesa: 102 prob=0.598 edge=0.103 kc=0.20
+Max Griffin: -122 prob=0.402 edge=-0.147 kc=-0.33
+Michael Chiesa $12.26 (bet) pt: $24.76 +$12.50  (win)[EDGE 10.3%] 
  *** Michael Chiesa *** 
 ---
-Bankroll: 1303.17
-Clay Guida: 675 prob=0.155 edge=0.026 kc=0.03
-Chase Hooper: -1050 prob=0.845 edge=-0.068 kc=-0.78
-(no bet - edge -6.8% < 10%)
+Bankroll: 1220.05
+Clay Guida: 675 prob=0.281 edge=0.152 kc=0.18
+Chase Hooper: -1050 prob=0.719 edge=-0.195 kc=-2.24
+(no bet - edge -19.5% < 10%)
  *** Chase Hooper *** 
 ---
-Bankroll: 1303.17
-Kennedy Nzechukwu: -600 prob=0.796 edge=-0.061 kc=-0.43
-Lukasz Brzeski: 440 prob=0.204 edge=0.019 kc=0.02
-(no bet - edge -6.1% < 10%)
+Bankroll: 1220.05
+Kennedy Nzechukwu: -600 prob=0.575 edge=-0.282 kc=-1.97
+Lukasz Brzeski: 440 prob=0.425 edge=0.239 kc=0.29
+(no bet - edge -28.2% < 10%)
  *** Kennedy Nzechukwu *** 
 ---
 ---
-Bankroll: 1303.17
-Cub Swanson: 124 prob=0.544 edge=0.097 kc=0.18
-Billy Quarantillo: -148 prob=0.456 edge=-0.141 kc=-0.35
-(no bet - edge 9.7% < 10%)
+Bankroll: 1220.05
+Cub Swanson: 124 prob=0.493 edge=0.046 kc=0.08
+Billy Quarantillo: -148 prob=0.507 edge=-0.090 kc=-0.22
+(no bet - edge -9.0% < 10%)
  *** Cub Swanson *** 
 ---
 ---
-Bankroll: 1303.17
-Vitor Petrino: -340 prob=0.603 edge=-0.170 kc=-0.75
-Dustin Jacoby: 270 prob=0.397 edge=0.127 kc=0.17
-(no bet - edge -17.0% < 10%)
+Bankroll: 1220.05
+Vitor Petrino: -340 prob=0.529 edge=-0.244 kc=-1.07
+Dustin Jacoby: 270 prob=0.471 edge=0.201 kc=0.27
+(no bet - edge -24.4% < 10%)
  *** Dustin Jacoby *** 
 ---
-Bankroll: 1303.17
-Adrian Yanez: 185 prob=0.363 edge=0.012 kc=0.02
-Daniel Marcos: -225 prob=0.637 edge=-0.055 kc=-0.18
-(no bet - edge -5.5% < 10%)
+Bankroll: 1220.05
+Adrian Yanez: 185 prob=0.471 edge=0.120 kc=0.19
+Daniel Marcos: -225 prob=0.529 edge=-0.163 kc=-0.53
+(no bet - edge -16.3% < 10%)
  *** Daniel Marcos *** 
 ---
-Bankroll: 1303.17
-Navajo Stirling: -750 prob=0.846 edge=-0.037 kc=-0.31
-Tuco Tokkos: 525 prob=0.154 edge=-0.006 kc=-0.01
-(no bet - edge -3.7% < 10%)
+Bankroll: 1220.05
+Navajo Stirling: -750 prob=0.823 edge=-0.059 kc=-0.50
+Tuco Tokkos: 525 prob=0.177 edge=0.017 kc=0.02
+(no bet - edge -5.9% < 10%)
  *** Navajo Stirling *** 
 ---
-Bankroll: 1303.17
-Michael Johnson: -230 prob=0.757 edge=0.060 kc=0.20
-Ottman Azaitar: 190 prob=0.243 edge=-0.102 kc=-0.16
-(no bet - edge 6.0% < 10%)
+Bankroll: 1220.05
+Michael Johnson: -230 prob=0.714 edge=0.017 kc=0.05
+Ottman Azaitar: 190 prob=0.286 edge=-0.058 kc=-0.09
+(no bet - edge 1.7% < 10%)
  *** Michael Johnson *** 
 ---
 ---
-Bankroll: 1303.17
-Sean Woodson: -155 prob=0.782 edge=0.174 kc=0.44
-Fernando Padilla: 130 prob=0.218 edge=-0.217 kc=-0.38
-Sean Woodson $28.98 (bet) pt: $47.67 +$18.69  (win)[EDGE 17.4%] 
+Bankroll: 1220.05
+Sean Woodson: -155 prob=0.738 edge=0.130 kc=0.33
+Fernando Padilla: 130 prob=0.262 edge=-0.172 kc=-0.30
+Sean Woodson $20.17 (bet) pt: $33.18 +$13.01  (win)[EDGE 13.0%] 
  *** Sean Woodson *** 
 ---
-Bankroll: 1321.86
-Miles Johns: 200 prob=0.643 edge=0.309 kc=0.46
-Felipe Lima: -245 prob=0.357 edge=-0.353 kc=-1.22
-Miles Johns $30.66 (bet) pt: $91.99 +$61.33  (loss)[EDGE 30.9%] 
+Bankroll: 1233.07
+Miles Johns: 200 prob=0.536 edge=0.203 kc=0.30
+Felipe Lima: -245 prob=0.464 edge=-0.246 kc=-0.85
+Miles Johns $18.77 (bet) pt: $56.30 +$37.54  (loss)[EDGE 20.3%] 
  *** Felipe Lima *** 
 ---
 ---
-Bankroll: 1291.20
-Davey Grant: -122 prob=0.209 edge=-0.341 kc=-0.76
-Ramon Taveras: 102 prob=0.791 edge=0.296 kc=0.59
-Ramon Taveras $37.89 (bet) pt: $76.53 +$38.64  (loss)[EDGE 29.6%] 
+Bankroll: 1214.30
+Davey Grant: -122 prob=0.322 edge=-0.228 kc=-0.51
+Ramon Taveras: 102 prob=0.678 edge=0.183 kc=0.36
+Ramon Taveras $22.04 (bet) pt: $44.51 +$22.48  (loss)[EDGE 18.3%] 
  *** Davey Grant *** 
 ---
 ---
 ---
-Bankroll: 1253.31
-Santiago Ponzinibbio: -135 prob=0.611 edge=0.037 kc=0.09
-Carlston Harris: 114 prob=0.389 edge=-0.079 kc=-0.15
-(no bet - edge 3.7% < 10%)
+Bankroll: 1192.26
+Santiago Ponzinibbio: -135 prob=0.560 edge=-0.014 kc=-0.03
+Carlston Harris: 114 prob=0.440 edge=-0.027 kc=-0.05
+(no bet - edge -1.4% < 10%)
  *** Santiago Ponzinibbio *** 
 ---
-Bankroll: 1253.31
-Cesar Almeida: -258 prob=0.559 edge=-0.162 kc=-0.58
-Abdul Razak Alhassan: 210 prob=0.441 edge=0.119 kc=0.18
-(no bet - edge -16.2% < 10%)
+Bankroll: 1192.26
+Cesar Almeida: -258 prob=0.652 edge=-0.069 kc=-0.25
+Abdul Razak Alhassan: 210 prob=0.348 edge=0.026 kc=0.04
+(no bet - edge -6.9% < 10%)
  *** Cesar Almeida *** 
 ---
-Bankroll: 1253.31
-Chris Curtis: 210 prob=0.338 edge=0.015 kc=0.02
-Roman Kopylov: -258 prob=0.662 edge=-0.059 kc=-0.21
-(no bet - edge -5.9% < 10%)
+Bankroll: 1192.26
+Chris Curtis: 210 prob=0.433 edge=0.110 kc=0.16
+Roman Kopylov: -258 prob=0.567 edge=-0.153 kc=-0.55
+(no bet - edge -15.3% < 10%)
  *** Roman Kopylov *** 
 ---
-Bankroll: 1253.31
-Christian Rodriguez: 215 prob=0.719 edge=0.402 kc=0.59
-Austin Bashi: -265 prob=0.281 edge=-0.445 kc=-1.63
-Christian Rodriguez $36.88 (bet) pt: $116.19 +$79.30  (win)[EDGE 40.2%] 
+Bankroll: 1192.26
+Christian Rodriguez: 215 prob=0.657 edge=0.340 kc=0.50
+Austin Bashi: -265 prob=0.343 edge=-0.383 kc=-1.40
+Christian Rodriguez $29.69 (bet) pt: $93.51 +$63.83  (win)[EDGE 34.0%] 
  *** Christian Rodriguez *** 
 ---
 ---
-Bankroll: 1332.61
-Jose Johnson: -185 prob=0.510 edge=-0.139 kc=-0.40
-Felipe Bunes: 154 prob=0.490 edge=0.096 kc=0.16
-(no bet - edge -13.9% < 10%)
+Bankroll: 1256.09
+Jose Johnson: -185 prob=0.427 edge=-0.222 kc=-0.63
+Felipe Bunes: 154 prob=0.573 edge=0.179 kc=0.30
+Felipe Bunes $18.55 (bet) pt: $47.13 +$28.57  (win)[EDGE 17.9%] 
  *** Felipe Bunes *** 
 ---
-Bankroll: 1332.61
-Marco Tulio: -500 prob=0.798 edge=-0.035 kc=-0.21
-Ihor Potieria: 380 prob=0.202 edge=-0.006 kc=-0.01
-(no bet - edge -3.5% < 10%)
+Bankroll: 1284.66
+Marco Tulio: -500 prob=0.813 edge=-0.021 kc=-0.12
+Ihor Potieria: 380 prob=0.187 edge=-0.021 kc=-0.03
+(no bet - edge -2.1% < 10%)
  *** Marco Tulio *** 
 ---
 ---
-Bankroll: 1332.61
-Preston Parsons: 410 prob=0.558 edge=0.362 kc=0.45
-Jacobe Smith: -550 prob=0.442 edge=-0.404 kc=-2.62
-Preston Parsons $29.96 (bet) pt: $152.82 +$122.85  (loss)[EDGE 36.2%] 
+Bankroll: 1284.66
+Preston Parsons: 410 prob=0.551 edge=0.355 kc=0.44
+Jacobe Smith: -550 prob=0.449 edge=-0.398 kc=-2.58
+Preston Parsons $28.40 (bet) pt: $144.81 +$116.42  (loss)[EDGE 35.5%] 
  *** Jacobe Smith *** 
 ---
 ---
-Bankroll: 1302.65
-Magomed Gadzhiyasulov: -225 prob=0.488 edge=-0.205 kc=-0.67
-Bruno Lopes: 185 prob=0.512 edge=0.162 kc=0.25
-Bruno Lopes $16.21 (bet) pt: $46.20 +$29.99  (win)[EDGE 16.2%] 
+Bankroll: 1256.27
+Magomed Gadzhiyasulov: -225 prob=0.569 edge=-0.123 kc=-0.40
+Bruno Lopes: 185 prob=0.431 edge=0.080 kc=0.12
+(no bet - edge -12.3% < 10%)
  *** Bruno Lopes *** 
 ---
 ---
-Bankroll: 1332.64
-Nurullo Aliev: -650 prob=0.457 edge=-0.410 kc=-3.07
-Joe Solecki: 470 prob=0.543 edge=0.368 kc=0.45
-Joe Solecki $29.72 (bet) pt: $169.41 +$139.69  (loss)[EDGE 36.8%] 
+Bankroll: 1256.27
+Nurullo Aliev: -650 prob=0.604 edge=-0.263 kc=-1.97
+Joe Solecki: 470 prob=0.396 edge=0.221 kc=0.27
+(no bet - edge -26.3% < 10%)
  *** Nurullo Aliev *** 
 ---
-Bankroll: 1302.92
-Islam Makhachev: -1200 prob=0.895 edge=-0.028 kc=-0.36
-Renato Moicano: 750 prob=0.105 edge=-0.013 kc=-0.01
-(no bet - edge -2.8% < 10%)
+Bankroll: 1256.27
+Islam Makhachev: -1200 prob=0.883 edge=-0.040 kc=-0.52
+Renato Moicano: 750 prob=0.117 edge=-0.001 kc=-0.00
+(no bet - edge -4.0% < 10%)
  *** Islam Makhachev *** 
 ---
-Bankroll: 1302.92
-Merab Dvalishvili: 210 prob=0.415 edge=0.092 kc=0.14
-Umar Nurmagomedov: -258 prob=0.585 edge=-0.135 kc=-0.48
-(no bet - edge -13.5% < 10%)
+Bankroll: 1256.27
+Merab Dvalishvili: 210 prob=0.390 edge=0.068 kc=0.10
+Umar Nurmagomedov: -258 prob=0.610 edge=-0.111 kc=-0.40
+(no bet - edge -11.1% < 10%)
  *** Merab Dvalishvili *** 
 ---
 ---
-Bankroll: 1302.92
-Jailton Almeida: -485 prob=0.699 edge=-0.130 kc=-0.76
-Serghei Spivac: 370 prob=0.301 edge=0.089 kc=0.11
-(no bet - edge -13.0% < 10%)
+Bankroll: 1256.27
+Jailton Almeida: -485 prob=0.557 edge=-0.272 kc=-1.59
+Serghei Spivac: 370 prob=0.443 edge=0.230 kc=0.29
+(no bet - edge -27.2% < 10%)
  *** Jailton Almeida *** 
 ---
-Bankroll: 1302.92
-Kevin Holland: 102 prob=0.498 edge=0.003 kc=0.01
-Reinier de Ridder: -122 prob=0.502 edge=-0.048 kc=-0.11
-(no bet - edge -4.8% < 10%)
+Bankroll: 1256.27
+Kevin Holland: 102 prob=0.448 edge=-0.047 kc=-0.09
+Reinier de Ridder: -122 prob=0.552 edge=0.003 kc=0.01
+(no bet - edge 0.3% < 10%)
  *** Reinier de Ridder *** 
 ---
-Bankroll: 1302.92
-Payton Talbott: -1100 prob=0.786 edge=-0.131 kc=-1.57
-Raoni Barcelos: 700 prob=0.214 edge=0.089 kc=0.10
-(no bet - edge -13.1% < 10%)
+Bankroll: 1256.27
+Payton Talbott: -1100 prob=0.771 edge=-0.146 kc=-1.75
+Raoni Barcelos: 700 prob=0.229 edge=0.104 kc=0.12
+(no bet - edge -14.6% < 10%)
  *** Raoni Barcelos *** 
 ---
-Bankroll: 1302.92
-Zachary Reese: 160 prob=0.324 edge=-0.060 kc=-0.10
-Azamat Bekoev: -192 prob=0.676 edge=0.018 kc=0.05
-(no bet - edge 1.8% < 10%)
+Bankroll: 1256.27
+Zachary Reese: 160 prob=0.659 edge=0.274 kc=0.45
+Azamat Bekoev: -192 prob=0.341 edge=-0.316 kc=-0.92
+Zachary Reese $27.96 (bet) pt: $72.70 +$44.74  (loss)[EDGE 27.4%] 
  *** Azamat Bekoev *** 
 ---
 ---
-Bankroll: 1302.92
-Grant Dawson: -245 prob=0.771 edge=0.061 kc=0.21
-Diego Ferreira: 200 prob=0.229 edge=-0.105 kc=-0.16
-(no bet - edge 6.1% < 10%)
+Bankroll: 1228.31
+Grant Dawson: -245 prob=0.749 edge=0.038 kc=0.13
+Diego Ferreira: 200 prob=0.251 edge=-0.082 kc=-0.12
+(no bet - edge 3.8% < 10%)
  *** Grant Dawson *** 
 ---
 ---
-Bankroll: 1302.92
-Rinya Nakamura: -650 prob=0.691 edge=-0.175 kc=-1.31
-Muin Gafurov: 470 prob=0.309 edge=0.133 kc=0.16
-(no bet - edge -17.5% < 10%)
+Bankroll: 1228.31
+Rinya Nakamura: -650 prob=0.729 edge=-0.138 kc=-1.04
+Muin Gafurov: 470 prob=0.271 edge=0.096 kc=0.12
+(no bet - edge -13.8% < 10%)
  *** Muin Gafurov *** 
 ---
-Bankroll: 1302.92
-Ricky Turcios: 225 prob=0.367 edge=0.059 kc=0.09
-Benardo Sopaj: -278 prob=0.633 edge=-0.102 kc=-0.39
-(no bet - edge -10.2% < 10%)
+Bankroll: 1228.31
+Ricky Turcios: 225 prob=0.456 edge=0.148 kc=0.21
+Benardo Sopaj: -278 prob=0.544 edge=-0.191 kc=-0.72
+(no bet - edge -19.1% < 10%)
  *** Benardo Sopaj *** 
 ---
-Bankroll: 1302.92
-Tagir Ulanbekov: -310 prob=0.639 edge=-0.117 kc=-0.48
-Clayton Carpenter: 250 prob=0.361 edge=0.075 kc=0.11
-(no bet - edge -11.7% < 10%)
+Bankroll: 1228.31
+Tagir Ulanbekov: -310 prob=0.576 edge=-0.180 kc=-0.74
+Clayton Carpenter: 250 prob=0.424 edge=0.138 kc=0.19
+(no bet - edge -18.0% < 10%)
  *** Tagir Ulanbekov *** 
 ---
-Bankroll: 1302.92
-Israel Adesanya: -162 prob=0.527 edge=-0.091 kc=-0.24
-Nassourdine Imavov: 136 prob=0.473 edge=0.049 kc=0.09
-(no bet - edge -9.1% < 10%)
+Bankroll: 1228.31
+Israel Adesanya: -162 prob=0.419 edge=-0.199 kc=-0.52
+Nassourdine Imavov: 136 prob=0.581 edge=0.157 kc=0.27
+Nassourdine Imavov $16.77 (bet) pt: $39.57 +$22.80  (win)[EDGE 15.7%] 
  *** Nassourdine Imavov *** 
 ---
-Bankroll: 1302.92
-Shara Magomedov: -200 prob=0.714 edge=0.047 kc=0.14
-Michael Page: 154 prob=0.286 edge=-0.107 kc=-0.18
-(no bet - edge 4.7% < 10%)
+Bankroll: 1251.11
+Shara Magomedov: -200 prob=0.653 edge=-0.014 kc=-0.04
+Michael Page: 154 prob=0.347 edge=-0.047 kc=-0.08
+(no bet - edge -1.4% < 10%)
  *** Michael Page *** 
 ---
-Bankroll: 1302.92
-Sergei Pavlovich: -310 prob=0.694 edge=-0.062 kc=-0.25
-Jairzinho Rozenstruik: 250 prob=0.306 edge=0.020 kc=0.03
-(no bet - edge -6.2% < 10%)
+Bankroll: 1251.11
+Sergei Pavlovich: -310 prob=0.671 edge=-0.085 kc=-0.35
+Jairzinho Rozenstruik: 250 prob=0.329 edge=0.043 kc=0.06
+(no bet - edge -8.5% < 10%)
  *** Sergei Pavlovich *** 
 ---
-Bankroll: 1302.92
-Said Nurmagomedov: -162 prob=0.585 edge=-0.034 kc=-0.09
-Vinicius Oliveira: 136 prob=0.415 edge=-0.008 kc=-0.01
-(no bet - edge -3.4% < 10%)
+Bankroll: 1251.11
+Said Nurmagomedov: -162 prob=0.542 edge=-0.076 kc=-0.20
+Vinicius Oliveira: 136 prob=0.458 edge=0.034 kc=0.06
+(no bet - edge -7.6% < 10%)
  *** Vinicius Oliveira *** 
 ---
 ---
-Bankroll: 1302.92
-Muhammad Naimov: -340 prob=0.791 edge=0.019 kc=0.08
-Kaan Ofli: 270 prob=0.209 edge=-0.062 kc=-0.08
-(no bet - edge 1.9% < 10%)
+Bankroll: 1251.11
+Muhammad Naimov: -340 prob=0.807 edge=0.035 kc=0.15
+Kaan Ofli: 270 prob=0.193 edge=-0.078 kc=-0.11
+(no bet - edge 3.5% < 10%)
  *** Muhammad Naimov *** 
 ---
-Bankroll: 1302.92
-Shamil Gaziev: -345 prob=0.606 edge=-0.170 kc=-0.76
-Thomas Petersen: 275 prob=0.394 edge=0.128 kc=0.17
-(no bet - edge -17.0% < 10%)
+Bankroll: 1251.11
+Shamil Gaziev: -345 prob=0.645 edge=-0.130 kc=-0.58
+Thomas Petersen: 275 prob=0.355 edge=0.088 kc=0.12
+(no bet - edge -13.0% < 10%)
  *** Shamil Gaziev *** 
 ---
 ---
 ---
-Bankroll: 1302.92
-Bogdan Grad: -105 prob=0.701 edge=0.189 kc=0.39
-Lucas Alexander: -115 prob=0.299 edge=-0.236 kc=-0.51
-Bogdan Grad $25.25 (bet) pt: $49.29 +$24.04  (loss)[EDGE 18.9%] 
+Bankroll: 1251.11
+Bogdan Grad: -105 prob=0.847 edge=0.335 kc=0.69
+Lucas Alexander: -115 prob=0.153 edge=-0.382 kc=-0.82
+Bogdan Grad $42.99 (bet) pt: $83.94 +$40.95  (loss)[EDGE 33.5%] 
  ***  *** 
 ---
-Bankroll: 1277.67
-Hamdy Abdelwahab: -115 prob=0.258 edge=-0.277 kc=-0.60
-Jamal Pogues: -105 prob=0.742 edge=0.230 kc=0.47
-Jamal Pogues $30.09 (bet) pt: $58.75 +$28.66  (loss)[EDGE 23.0%] 
+Bankroll: 1208.12
+Hamdy Abdelwahab: -115 prob=0.246 edge=-0.288 kc=-0.62
+Jamal Pogues: -105 prob=0.754 edge=0.241 kc=0.49
+Jamal Pogues $29.89 (bet) pt: $58.36 +$28.47  (loss)[EDGE 24.1%] 
  ***  *** 
 ---
-Bankroll: 1247.59
-Dricus Du Plessis: -218 prob=0.621 edge=-0.064 kc=-0.20
-Sean Strickland: 180 prob=0.379 edge=0.022 kc=0.03
-(no bet - edge -6.4% < 10%)
+Bankroll: 1178.22
+Dricus Du Plessis: -218 prob=0.751 edge=0.065 kc=0.21
+Sean Strickland: 180 prob=0.249 edge=-0.108 kc=-0.17
+(no bet - edge 6.5% < 10%)
  *** Dricus Du Plessis *** 
 ---
 ---
-Bankroll: 1247.59
-Justin Tafa: 136 prob=0.575 edge=0.151 kc=0.26
-Tallison Teixeira: -162 prob=0.425 edge=-0.193 kc=-0.51
-Justin Tafa $16.36 (bet) pt: $38.60 +$22.24  (loss)[EDGE 15.1%] 
+Bankroll: 1178.22
+Justin Tafa: 136 prob=0.606 edge=0.182 kc=0.32
+Tallison Teixeira: -162 prob=0.394 edge=-0.224 kc=-0.59
+Justin Tafa $18.59 (bet) pt: $43.88 +$25.29  (loss)[EDGE 18.2%] 
  *** Tallison Teixeira *** 
 ---
 ---
-Bankroll: 1231.23
-Jake Matthews: -245 prob=0.907 edge=0.197 kc=0.68
-Francisco Prado: 200 prob=0.093 edge=-0.240 kc=-0.36
-Jake Matthews $41.82 (bet) pt: $58.89 +$17.07  (win)[EDGE 19.7%] 
+Bankroll: 1159.63
+Jake Matthews: -245 prob=0.891 edge=0.181 kc=0.62
+Francisco Prado: 200 prob=0.109 edge=-0.225 kc=-0.34
+Jake Matthews $36.22 (bet) pt: $51.01 +$14.78  (win)[EDGE 18.1%] 
  *** Jake Matthews *** 
 ---
-Bankroll: 1248.30
-Jack Jenkins: 190 prob=0.512 edge=0.167 kc=0.25
-Gabriel Santos: -230 prob=0.488 edge=-0.208 kc=-0.69
-Jack Jenkins $15.88 (bet) pt: $46.05 +$30.17  (loss)[EDGE 16.7%] 
+Bankroll: 1174.41
+Jack Jenkins: 190 prob=0.505 edge=0.160 kc=0.24
+Gabriel Santos: -230 prob=0.495 edge=-0.202 kc=-0.67
+Jack Jenkins $14.37 (bet) pt: $41.69 +$27.31  (loss)[EDGE 16.0%] 
  *** Gabriel Santos *** 
 ---
-Bankroll: 1232.42
-Tom Nolan: -102 prob=0.615 edge=0.110 kc=0.22
-Viacheslav Borshchev: -118 prob=0.385 edge=-0.156 kc=-0.34
-Tom Nolan $13.71 (bet) pt: $27.14 +$13.44  (win)[EDGE 11.0%] 
+Bankroll: 1160.04
+Tom Nolan: -102 prob=0.722 edge=0.217 kc=0.44
+Viacheslav Borshchev: -118 prob=0.278 edge=-0.263 kc=-0.57
+Tom Nolan $25.44 (bet) pt: $50.39 +$24.95  (win)[EDGE 21.7%] 
  *** Tom Nolan *** 
 ---
 ---
 ---
 ---
 ---
-Bankroll: 1245.86
-Quillan Salkilld: -650 prob=0.831 edge=-0.036 kc=-0.27
-Anshul Jubli: 470 prob=0.169 edge=-0.007 kc=-0.01
-(no bet - edge -3.6% < 10%)
+Bankroll: 1184.98
+Quillan Salkilld: -650 prob=0.829 edge=-0.038 kc=-0.29
+Anshul Jubli: 470 prob=0.171 edge=-0.004 kc=-0.00
+(no bet - edge -3.8% < 10%)
  *** Quillan Salkilld *** 
 ---
-Bankroll: 1245.86
-Jared Cannonier: 200 prob=0.351 edge=0.018 kc=0.03
-Gregory Rodrigues: -245 prob=0.649 edge=-0.061 kc=-0.21
-(no bet - edge -6.1% < 10%)
+Bankroll: 1184.98
+Jared Cannonier: 200 prob=0.280 edge=-0.053 kc=-0.08
+Gregory Rodrigues: -245 prob=0.720 edge=0.010 kc=0.03
+(no bet - edge 1.0% < 10%)
  *** Jared Cannonier *** 
 ---
-Bankroll: 1245.86
-Calvin Kattar: 360 prob=0.283 edge=0.066 kc=0.08
-Youssef Zalal: -470 prob=0.717 edge=-0.108 kc=-0.61
-(no bet - edge -10.8% < 10%)
+Bankroll: 1184.98
+Calvin Kattar: 360 prob=0.340 edge=0.123 kc=0.16
+Youssef Zalal: -470 prob=0.660 edge=-0.165 kc=-0.94
+(no bet - edge -16.5% < 10%)
  *** Youssef Zalal *** 
 ---
-Bankroll: 1245.86
-Edmen Shahbazyan: -380 prob=0.957 edge=0.165 kc=0.79
-Dylan Budka: 300 prob=0.043 edge=-0.207 kc=-0.28
-Edmen Shahbazyan $49.42 (bet) pt: $62.42 +$13.00  (win)[EDGE 16.5%] 
+Bankroll: 1184.98
+Edmen Shahbazyan: -380 prob=0.962 edge=0.171 kc=0.82
+Dylan Budka: 300 prob=0.038 edge=-0.212 kc=-0.28
+Edmen Shahbazyan $48.58 (bet) pt: $61.37 +$12.78  (win)[EDGE 17.1%] 
  *** Edmen Shahbazyan *** 
 ---
-Bankroll: 1258.86
-Ismael Bonfim: -218 prob=0.583 edge=-0.102 kc=-0.33
-Nazim Sadykhov: 180 prob=0.417 edge=0.060 kc=0.09
-(no bet - edge -10.2% < 10%)
+Bankroll: 1197.77
+Ismael Bonfim: -218 prob=0.503 edge=-0.182 kc=-0.58
+Nazim Sadykhov: 180 prob=0.497 edge=0.139 kc=0.22
+(no bet - edge -18.2% < 10%)
  *** Nazim Sadykhov *** 
 ---
-Bankroll: 1258.86
-Rodolfo Vieira: -285 prob=0.410 edge=-0.330 kc=-1.27
-Andre Petroski: 230 prob=0.590 edge=0.287 kc=0.41
-Andre Petroski $25.92 (bet) pt: $85.54 +$59.62  (win)[EDGE 28.7%] 
+Bankroll: 1197.77
+Rodolfo Vieira: -285 prob=0.491 edge=-0.249 kc=-0.96
+Andre Petroski: 230 prob=0.509 edge=0.206 kc=0.30
+Andre Petroski $17.68 (bet) pt: $58.34 +$40.66  (win)[EDGE 20.6%] 
  *** Andre Petroski *** 
 ---
 ---
 ---
-Bankroll: 1318.48
-Rafael Estevam: -500 prob=0.575 edge=-0.259 kc=-1.55
-Jesus Aguilar: 380 prob=0.425 edge=0.217 kc=0.27
-(no bet - edge -25.9% < 10%)
+Bankroll: 1238.43
+Rafael Estevam: -500 prob=0.512 edge=-0.321 kc=-1.93
+Jesus Aguilar: 380 prob=0.488 edge=0.279 kc=0.35
+(no bet - edge -32.1% < 10%)
  *** Rafael Estevam *** 
 ---
-Bankroll: 1318.48
-Gabriel Bonfim: -218 prob=0.603 edge=-0.082 kc=-0.26
-Khaos Williams: 180 prob=0.397 edge=0.040 kc=0.06
-(no bet - edge -8.2% < 10%)
+Bankroll: 1238.43
+Gabriel Bonfim: -218 prob=0.637 edge=-0.048 kc=-0.15
+Khaos Williams: 180 prob=0.363 edge=0.005 kc=0.01
+(no bet - edge -4.8% < 10%)
  *** Gabriel Bonfim *** 
 ---
-Bankroll: 1318.48
-Vince Morales: 120 prob=0.450 edge=-0.004 kc=-0.01
-Elijah Smith: -142 prob=0.550 edge=-0.037 kc=-0.09
-(no bet - edge -3.7% < 10%)
+Bankroll: 1238.43
+Vince Morales: 120 prob=0.443 edge=-0.012 kc=-0.02
+Elijah Smith: -142 prob=0.557 edge=-0.029 kc=-0.07
+(no bet - edge -2.9% < 10%)
  *** Elijah Smith *** 
 ---
-Bankroll: 1318.48
-Don'Tale Mayes: -180 prob=0.402 edge=-0.240 kc=-0.67
-Valter Walker: 150 prob=0.598 edge=0.198 kc=0.33
-Valter Walker $21.70 (bet) pt: $54.25 +$32.55  (win)[EDGE 19.8%] 
+Bankroll: 1238.43
+Don'Tale Mayes: -180 prob=0.521 edge=-0.122 kc=-0.34
+Valter Walker: 150 prob=0.479 edge=0.079 kc=0.13
+(no bet - edge -12.2% < 10%)
  *** Valter Walker *** 
 ---
 ---
-Bankroll: 1351.03
-Henry Cejudo: 210 prob=0.287 edge=-0.036 kc=-0.05
-Song Yadong: -258 prob=0.713 edge=-0.007 kc=-0.03
-(no bet - edge -0.7% < 10%)
+Bankroll: 1238.43
+Henry Cejudo: 210 prob=0.314 edge=-0.008 kc=-0.01
+Song Yadong: -258 prob=0.686 edge=-0.035 kc=-0.13
+(no bet - edge -3.5% < 10%)
  *** Song Yadong *** 
 ---
-Bankroll: 1351.03
-Brendan Allen: 260 prob=0.501 edge=0.224 kc=0.31
-Anthony Hernandez: -325 prob=0.499 edge=-0.266 kc=-1.13
-Brendan Allen $20.91 (bet) pt: $75.27 +$54.36  (loss)[EDGE 22.4%] 
+Bankroll: 1238.43
+Brendan Allen: 260 prob=0.488 edge=0.210 kc=0.29
+Anthony Hernandez: -325 prob=0.512 edge=-0.253 kc=-1.07
+(no bet - edge -25.3% < 10%)
  *** Anthony Hernandez *** 
 ---
-Bankroll: 1330.12
-Rob Font: 130 prob=0.434 edge=-0.001 kc=-0.00
-Jean Matsumoto: -155 prob=0.566 edge=-0.042 kc=-0.11
-(no bet - edge -4.2% < 10%)
+Bankroll: 1238.43
+Rob Font: 130 prob=0.490 edge=0.056 kc=0.10
+Jean Matsumoto: -155 prob=0.510 edge=-0.098 kc=-0.25
+(no bet - edge -9.8% < 10%)
  *** Rob Font *** 
 ---
-Bankroll: 1330.12
-Jean Silva: -470 prob=0.754 edge=-0.071 kc=-0.40
-Melsik Baghdasaryan: 360 prob=0.246 edge=0.029 kc=0.04
-(no bet - edge -7.1% < 10%)
+Bankroll: 1238.43
+Jean Silva: -470 prob=0.746 edge=-0.079 kc=-0.45
+Melsik Baghdasaryan: 360 prob=0.254 edge=0.037 kc=0.05
+(no bet - edge -7.9% < 10%)
  *** Jean Silva *** 
 ---
-Bankroll: 1330.12
-Alonzo Menifield: -238 prob=0.683 edge=-0.021 kc=-0.07
-Julius Walker: 195 prob=0.317 edge=-0.022 kc=-0.03
-(no bet - edge -2.1% < 10%)
+Bankroll: 1238.43
+Alonzo Menifield: -238 prob=0.680 edge=-0.024 kc=-0.08
+Julius Walker: 195 prob=0.320 edge=-0.019 kc=-0.03
+(no bet - edge -2.4% < 10%)
  *** Alonzo Menifield *** 
 ---
-Bankroll: 1330.12
-Ion Cutelaba: 150 prob=0.186 edge=-0.214 kc=-0.36
-Ibo Aslan: -180 prob=0.814 edge=0.171 kc=0.48
-Ibo Aslan $31.88 (bet) pt: $49.60 +$17.71  (loss)[EDGE 17.1%] 
+Bankroll: 1238.43
+Ion Cutelaba: 150 prob=0.464 edge=0.064 kc=0.11
+Ibo Aslan: -180 prob=0.536 edge=-0.107 kc=-0.30
+(no bet - edge -10.7% < 10%)
  *** Ion Cutelaba *** 
 ---
-Bankroll: 1298.24
-Andre Fili: 110 prob=0.395 edge=-0.082 kc=-0.16
-Melquizael Costa: -130 prob=0.605 edge=0.040 kc=0.09
-(no bet - edge 4.0% < 10%)
+Bankroll: 1238.43
+Andre Fili: 110 prob=0.396 edge=-0.080 kc=-0.15
+Melquizael Costa: -130 prob=0.604 edge=0.039 kc=0.09
+(no bet - edge 3.9% < 10%)
  *** Melquizael Costa *** 
 ---
-Bankroll: 1298.24
-Mansur Abdul-Malik: -1350 prob=0.877 edge=-0.054 kc=-0.79
-Nick Klein: 800 prob=0.123 edge=0.012 kc=0.01
-(no bet - edge -5.4% < 10%)
+Bankroll: 1238.43
+Mansur Abdul-Malik: -1350 prob=0.872 edge=-0.059 kc=-0.86
+Nick Klein: 800 prob=0.128 edge=0.017 kc=0.02
+(no bet - edge -5.9% < 10%)
  *** Mansur Abdul-Malik *** 
 ---
-Bankroll: 1298.24
-Ricky Simon: 200 prob=0.690 edge=0.357 kc=0.54
-Javid Basharat: -245 prob=0.310 edge=-0.400 kc=-1.38
-Ricky Simon $34.76 (bet) pt: $104.28 +$69.52  (win)[EDGE 35.7%] 
+Bankroll: 1238.43
+Ricky Simon: 200 prob=0.766 edge=0.433 kc=0.65
+Javid Basharat: -245 prob=0.234 edge=-0.476 kc=-1.64
+Ricky Simon $40.18 (bet) pt: $120.53 +$80.35  (win)[EDGE 43.3%] 
  *** Ricky Simon *** 
 ---
-Bankroll: 1367.76
-Nikolay Veretennikov: -108 prob=0.376 edge=-0.143 kc=-0.30
-Austin Vanderford: -112 prob=0.624 edge=0.095 kc=0.20
-(no bet - edge 9.5% < 10%)
+Bankroll: 1318.78
+Nikolay Veretennikov: -108 prob=0.290 edge=-0.230 kc=-0.48
+Austin Vanderford: -112 prob=0.710 edge=0.182 kc=0.39
+Austin Vanderford $25.44 (bet) pt: $48.15 +$22.71  (win)[EDGE 18.2%] 
  *** Austin Vanderford *** 
 ---
-Bankroll: 1367.76
-Nursulton Ruziboev: -298 prob=0.745 edge=-0.004 kc=-0.02
-Eric McConico: 240 prob=0.255 edge=-0.039 kc=-0.05
-(no bet - edge -0.4% < 10%)
+Bankroll: 1341.50
+Nursulton Ruziboev: -298 prob=0.751 edge=0.002 kc=0.01
+Eric McConico: 240 prob=0.249 edge=-0.045 kc=-0.06
+(no bet - edge 0.2% < 10%)
  *** Nursulton Ruziboev *** 
 ---
-Bankroll: 1367.76
-Modestas Bukauskas: -270 prob=0.956 edge=0.226 kc=0.84
-Rafael Cerqueira: 220 prob=0.044 edge=-0.268 kc=-0.39
-Modestas Bukauskas $57.15 (bet) pt: $78.32 +$21.17  (win)[EDGE 22.6%] 
+Bankroll: 1341.50
+Modestas Bukauskas: -270 prob=0.960 edge=0.231 kc=0.85
+Rafael Cerqueira: 220 prob=0.040 edge=-0.273 kc=-0.40
+Modestas Bukauskas $57.26 (bet) pt: $78.47 +$21.21  (win)[EDGE 23.1%] 
  *** Modestas Bukauskas *** 
 ---
-Bankroll: 1388.93
-Manel Kape: -218 prob=0.615 edge=-0.071 kc=-0.23
-Asu Almabayev: 180 prob=0.385 edge=0.028 kc=0.04
-(no bet - edge -7.1% < 10%)
+Bankroll: 1362.70
+Manel Kape: -218 prob=0.533 edge=-0.152 kc=-0.48
+Asu Almabayev: 180 prob=0.467 edge=0.109 kc=0.17
+(no bet - edge -15.2% < 10%)
  *** Manel Kape *** 
 ---
-Bankroll: 1388.93
-Cody Brundage: -105 prob=0.513 edge=0.000 kc=0.00
-Julian Marquez: -115 prob=0.487 edge=-0.047 kc=-0.10
-(no bet - edge 0.0% < 10%)
+Bankroll: 1362.70
+Cody Brundage: -105 prob=0.564 edge=0.052 kc=0.11
+Julian Marquez: -115 prob=0.436 edge=-0.099 kc=-0.21
+(no bet - edge 5.2% < 10%)
  *** Cody Brundage *** 
 ---
-Bankroll: 1388.93
-Nasrat Haqparast: 215 prob=0.592 edge=0.275 kc=0.40
-Esteban Ribovics: -265 prob=0.408 edge=-0.318 kc=-1.16
-Nasrat Haqparast $27.96 (bet) pt: $88.08 +$60.12  (win)[EDGE 27.5%] 
+Bankroll: 1362.70
+Nasrat Haqparast: 215 prob=0.629 edge=0.311 kc=0.46
+Esteban Ribovics: -265 prob=0.371 edge=-0.355 kc=-1.29
+Nasrat Haqparast $31.06 (bet) pt: $97.85 +$66.79  (win)[EDGE 31.1%] 
  *** Nasrat Haqparast *** 
 ---
-Bankroll: 1449.05
-Hyder Amil: 185 prob=0.354 edge=0.003 kc=0.00
-William Gomis: -225 prob=0.646 edge=-0.046 kc=-0.15
-(no bet - edge -4.6% < 10%)
+Bankroll: 1429.49
+Hyder Amil: 185 prob=0.311 edge=-0.040 kc=-0.06
+William Gomis: -225 prob=0.689 edge=-0.003 kc=-0.01
+(no bet - edge -0.3% < 10%)
  *** Hyder Amil *** 
 ---
-Bankroll: 1449.05
-Danny Barlow: -278 prob=0.651 edge=-0.084 kc=-0.32
-Sam Patterson: 225 prob=0.349 edge=0.041 kc=0.06
-(no bet - edge -8.4% < 10%)
+Bankroll: 1429.49
+Danny Barlow: -278 prob=0.541 edge=-0.194 kc=-0.73
+Sam Patterson: 225 prob=0.459 edge=0.151 kc=0.22
+(no bet - edge -19.4% < 10%)
  *** Sam Patterson *** 
 ---
-Bankroll: 1449.05
-Austen Lane: 410 prob=0.183 edge=-0.013 kc=-0.02
-Mario Pinto: -550 prob=0.817 edge=-0.029 kc=-0.19
-(no bet - edge -2.9% < 10%)
+Bankroll: 1429.49
+Austen Lane: 410 prob=0.198 edge=0.002 kc=0.00
+Mario Pinto: -550 prob=0.802 edge=-0.044 kc=-0.28
+(no bet - edge -4.4% < 10%)
  *** Mario Pinto *** 
 ---
-Bankroll: 1449.05
-Ricardo Ramos: 310 prob=0.296 edge=0.052 kc=0.07
-Chepe Mariscal: -395 prob=0.704 edge=-0.094 kc=-0.47
-(no bet - edge -9.4% < 10%)
+Bankroll: 1429.49
+Ricardo Ramos: 310 prob=0.309 edge=0.065 kc=0.09
+Chepe Mariscal: -395 prob=0.691 edge=-0.107 kc=-0.53
+(no bet - edge -10.7% < 10%)
  *** Chepe Mariscal *** 
 ---
-Bankroll: 1449.05
-Danny Silva: -250 prob=0.801 edge=0.087 kc=0.30
-Lucas Almeida: 205 prob=0.199 edge=-0.129 kc=-0.19
-(no bet - edge 8.7% < 10%)
+Bankroll: 1429.49
+Danny Silva: -250 prob=0.779 edge=0.065 kc=0.23
+Lucas Almeida: 205 prob=0.221 edge=-0.107 kc=-0.16
+(no bet - edge 6.5% < 10%)
  *** Danny Silva *** 
 ---
 ---
-Bankroll: 1449.05
-Charles Johnson: -135 prob=0.479 edge=-0.096 kc=-0.22
-Ramazan Temirov: 114 prob=0.521 edge=0.054 kc=0.10
-(no bet - edge 5.4% < 10%)
+Bankroll: 1429.49
+Charles Johnson: -135 prob=0.560 edge=-0.015 kc=-0.03
+Ramazan Temirov: 114 prob=0.440 edge=-0.027 kc=-0.05
+(no bet - edge -1.5% < 10%)
  *** Ramazan Temirov *** 
 ---
-Bankroll: 1449.05
-Alex Pereira: -120 prob=0.387 edge=-0.158 kc=-0.35
-Magomed Ankalaev: 100 prob=0.613 edge=0.113 kc=0.23
-Magomed Ankalaev $16.34 (bet) pt: $32.68 +$16.34  (win)[EDGE 11.3%] 
+Bankroll: 1429.49
+Alex Pereira: -120 prob=0.377 edge=-0.169 kc=-0.37
+Magomed Ankalaev: 100 prob=0.623 edge=0.123 kc=0.25
+Magomed Ankalaev $17.63 (bet) pt: $35.26 +$17.63  (win)[EDGE 12.3%] 
  *** Magomed Ankalaev *** 
 ---
-Bankroll: 1465.38
-Justin Gaethje: 136 prob=0.460 edge=0.036 kc=0.06
-Rafael Fiziev: -162 prob=0.540 edge=-0.078 kc=-0.20
-(no bet - edge -7.8% < 10%)
+Bankroll: 1447.12
+Justin Gaethje: 136 prob=0.536 edge=0.113 kc=0.20
+Rafael Fiziev: -162 prob=0.464 edge=-0.155 kc=-0.40
+Justin Gaethje $14.13 (bet) pt: $33.34 +$19.22  (win)[EDGE 11.3%] 
  *** Justin Gaethje *** 
 ---
-Bankroll: 1465.38
-Jalin Turner: 120 prob=0.356 edge=-0.099 kc=-0.18
-Ignacio Bahamondes: -142 prob=0.644 edge=0.057 kc=0.14
-(no bet - edge 5.7% < 10%)
+Bankroll: 1466.34
+Jalin Turner: 120 prob=0.345 edge=-0.110 kc=-0.20
+Ignacio Bahamondes: -142 prob=0.655 edge=0.068 kc=0.17
+(no bet - edge 6.8% < 10%)
  *** Ignacio Bahamondes *** 
 ---
 ---
-Bankroll: 1465.38
-King Green: 400 prob=0.233 edge=0.033 kc=0.04
-Mauricio Ruffy: -535 prob=0.767 edge=-0.076 kc=-0.48
-(no bet - edge -7.6% < 10%)
+Bankroll: 1466.34
+King Green: 400 prob=0.230 edge=0.030 kc=0.04
+Mauricio Ruffy: -535 prob=0.770 edge=-0.072 kc=-0.46
+(no bet - edge -7.2% < 10%)
  *** Mauricio Ruffy *** 
 ---
-Bankroll: 1465.38
-Joshua Van: -148 prob=0.721 edge=0.125 kc=0.31
-Rei Tsuruya: 124 prob=0.279 edge=-0.168 kc=-0.30
-Joshua Van $22.64 (bet) pt: $37.93 +$15.29  (win)[EDGE 12.5%] 
+Bankroll: 1466.34
+Joshua Van: -148 prob=0.784 edge=0.187 kc=0.46
+Rei Tsuruya: 124 prob=0.216 edge=-0.230 kc=-0.42
+Joshua Van $33.98 (bet) pt: $56.94 +$22.96  (win)[EDGE 18.7%] 
  *** Joshua Van *** 
 ---
-Bankroll: 1480.68
-Brunno Ferreira: 114 prob=0.680 edge=0.213 kc=0.40
-Armen Petrosyan: -135 prob=0.320 edge=-0.255 kc=-0.60
-Brunno Ferreira $29.60 (bet) pt: $63.35 +$33.75  (win)[EDGE 21.3%] 
+Bankroll: 1489.30
+Brunno Ferreira: 114 prob=0.693 edge=0.225 kc=0.42
+Armen Petrosyan: -135 prob=0.307 edge=-0.267 kc=-0.63
+Brunno Ferreira $31.49 (bet) pt: $67.39 +$35.90  (win)[EDGE 22.5%] 
  *** Brunno Ferreira *** 
 ---
-Bankroll: 1514.42
-Alex Morono: 525 prob=0.609 edge=0.449 kc=0.53
-Carlos Leal: -750 prob=0.391 edge=-0.492 kc=-4.18
-Alex Morono $40.49 (bet) pt: $253.05 +$212.56  (loss)[EDGE 44.9%] 
+Bankroll: 1525.20
+Alex Morono: 525 prob=0.658 edge=0.498 kc=0.59
+Carlos Leal: -750 prob=0.342 edge=-0.540 kc=-4.59
+Alex Morono $45.17 (bet) pt: $282.32 +$237.15  (loss)[EDGE 49.8%] 
  *** Carlos Leal *** 
 ---
-Bankroll: 1473.94
-Mairon Santos: -265 prob=0.648 edge=-0.078 kc=-0.29
-Francis Marshall: 215 prob=0.352 edge=0.035 kc=0.05
-(no bet - edge -7.8% < 10%)
+Bankroll: 1480.03
+Mairon Santos: -265 prob=0.686 edge=-0.040 kc=-0.15
+Francis Marshall: 215 prob=0.314 edge=-0.003 kc=-0.00
+(no bet - edge -4.0% < 10%)
  *** Mairon Santos *** 
 ---
+Bankroll: 1480.03
+Djorden Santos: -185 prob=0.472 edge=-0.177 kc=-0.51
+Ozzy Diaz: 154 prob=0.528 edge=0.135 kc=0.22
+Ozzy Diaz $16.42 (bet) pt: $41.70 +$25.28  (win)[EDGE 13.5%] 
+ *** Ozzy Diaz *** 
 ---
-Bankroll: 1473.94
-Marvin Vettori: -148 prob=0.540 edge=-0.057 kc=-0.14
-Roman Dolidze: 124 prob=0.460 edge=0.014 kc=0.03
-(no bet - edge -5.7% < 10%)
+Bankroll: 1505.31
+Marvin Vettori: -148 prob=0.519 edge=-0.077 kc=-0.19
+Roman Dolidze: 124 prob=0.481 edge=0.034 kc=0.06
+(no bet - edge -7.7% < 10%)
  *** Roman Dolidze *** 
 ---
-Bankroll: 1473.94
-Chidi Njokuani: 160 prob=0.406 edge=0.021 kc=0.03
-Elizeu Zaleski dos Santos: -192 prob=0.594 edge=-0.063 kc=-0.19
-(no bet - edge -6.3% < 10%)
+Bankroll: 1505.31
+Chidi Njokuani: 160 prob=0.463 edge=0.078 kc=0.13
+Elizeu Zaleski dos Santos: -192 prob=0.537 edge=-0.120 kc=-0.35
+(no bet - edge -12.0% < 10%)
  *** Chidi Njokuani *** 
 ---
-Bankroll: 1473.94
-Alexander Hernandez: -205 prob=0.808 edge=0.136 kc=0.41
-Kurt Holobaugh: 170 prob=0.192 edge=-0.178 kc=-0.28
-Alexander Hernandez $30.55 (bet) pt: $45.45 +$14.90  (win)[EDGE 13.6%] 
+Bankroll: 1505.31
+Alexander Hernandez: -205 prob=0.670 edge=-0.002 kc=-0.01
+Kurt Holobaugh: 170 prob=0.330 edge=-0.040 kc=-0.06
+(no bet - edge -0.2% < 10%)
  *** Alexander Hernandez *** 
 ---
-Bankroll: 1488.84
-Da'Mon Blackshear: -485 prob=0.833 edge=0.004 kc=0.02
-Cody Gibson: 370 prob=0.167 edge=-0.046 kc=-0.06
-(no bet - edge 0.4% < 10%)
+Bankroll: 1505.31
+Da'Mon Blackshear: -485 prob=0.390 edge=-0.439 kc=-2.57
+Cody Gibson: 370 prob=0.610 edge=0.397 kc=0.50
+Cody Gibson $37.95 (bet) pt: $178.37 +$140.42  (loss)[EDGE 39.7%] 
  *** Da'Mon Blackshear *** 
 ---
 ---
 ---
 ---
-Bankroll: 1488.84
-SuYoung You: -625 prob=0.941 edge=0.079 kc=0.57
-AJ Cunningham: 455 prob=0.059 edge=-0.121 kc=-0.15
-(no bet - edge 7.9% < 10%)
+Bankroll: 1467.36
+SuYoung You: -625 prob=0.903 edge=0.041 kc=0.30
+AJ Cunningham: 455 prob=0.097 edge=-0.083 kc=-0.10
+(no bet - edge 4.1% < 10%)
  *** SuYoung You *** 
 ---
 ---
 ---
-Bankroll: 1488.84
-Daniel Barez: 285 prob=0.131 edge=-0.129 kc=-0.17
-Andre Lima: -360 prob=0.869 edge=0.086 kc=0.40
-(no bet - edge 8.6% < 10%)
+Bankroll: 1467.36
+Daniel Barez: 285 prob=0.171 edge=-0.089 kc=-0.12
+Andre Lima: -360 prob=0.829 edge=0.047 kc=0.21
+(no bet - edge 4.7% < 10%)
  *** Andre Lima *** 
 ---
 ---
 ---
-Bankroll: 1488.84
-Leon Edwards: 130 prob=0.389 edge=-0.046 kc=-0.08
-Sean Brady: -155 prob=0.611 edge=0.003 kc=0.01
-(no bet - edge 0.3% < 10%)
+Bankroll: 1467.36
+Leon Edwards: 130 prob=0.428 edge=-0.007 kc=-0.01
+Sean Brady: -155 prob=0.572 edge=-0.036 kc=-0.09
+(no bet - edge -3.6% < 10%)
  *** Sean Brady *** 
 ---
 ---
-Bankroll: 1488.84
-Gunnar Nelson: -148 prob=0.606 edge=0.009 kc=0.02
-Kevin Holland: 124 prob=0.394 edge=-0.052 kc=-0.09
-(no bet - edge 0.9% < 10%)
+Bankroll: 1467.36
+Gunnar Nelson: -148 prob=0.596 edge=-0.001 kc=-0.00
+Kevin Holland: 124 prob=0.404 edge=-0.042 kc=-0.08
+(no bet - edge -0.1% < 10%)
  *** Kevin Holland *** 
 ---
 ---
-Bankroll: 1488.84
-Jordan Vucenic: -345 prob=0.152 edge=-0.623 kc=-2.77
-Chris Duncan: 275 prob=0.848 edge=0.581 kc=0.79
-Chris Duncan $58.99 (bet) pt: $221.22 +$162.23  (win)[EDGE 58.1%] 
+Bankroll: 1467.36
+Jordan Vucenic: -345 prob=0.175 edge=-0.601 kc=-2.67
+Chris Duncan: 275 prob=0.825 edge=0.559 kc=0.76
+Chris Duncan $55.88 (bet) pt: $209.56 +$153.68  (win)[EDGE 55.9%] 
  *** Chris Duncan *** 
 ---
-Bankroll: 1651.07
-Nathaniel Wood: 160 prob=0.707 edge=0.322 kc=0.52
-Morgan Charriere: -192 prob=0.293 edge=-0.365 kc=-1.06
-Nathaniel Wood $43.25 (bet) pt: $112.44 +$69.20  (win)[EDGE 32.2%] 
+Bankroll: 1621.04
+Nathaniel Wood: 160 prob=0.683 edge=0.298 kc=0.48
+Morgan Charriere: -192 prob=0.317 edge=-0.340 kc=-0.99
+Nathaniel Wood $39.27 (bet) pt: $102.09 +$62.83  (win)[EDGE 29.8%] 
  *** Nathaniel Wood *** 
 ---
-Bankroll: 1720.26
-Jai Herbert: -120 prob=0.374 edge=-0.171 kc=-0.38
-Chris Padilla: 100 prob=0.626 edge=0.126 kc=0.25
-Chris Padilla $21.68 (bet) pt: $43.37 +$21.68  (win)[EDGE 12.6%] 
+Bankroll: 1683.86
+Jai Herbert: -120 prob=0.309 edge=-0.236 kc=-0.52
+Chris Padilla: 100 prob=0.691 edge=0.191 kc=0.38
+Chris Padilla $32.12 (bet) pt: $64.25 +$32.12  (win)[EDGE 19.1%] 
  *** Chris Padilla *** 
 ---
 ---
-Bankroll: 1741.95
-Marcin Tybura: -135 prob=0.236 edge=-0.339 kc=-0.80
-Mick Parkin: 114 prob=0.764 edge=0.297 kc=0.56
-Mick Parkin $48.56 (bet) pt: $103.93 +$55.36  (loss)[EDGE 29.7%] 
+Bankroll: 1715.99
+Marcin Tybura: -135 prob=0.237 edge=-0.337 kc=-0.79
+Mick Parkin: 114 prob=0.763 edge=0.296 kc=0.56
+Mick Parkin $47.63 (bet) pt: $101.92 +$54.30  (loss)[EDGE 29.6%] 
  *** Marcin Tybura *** 
 ---
 ---
 ---
 ---
 ---
-Bankroll: 1693.38
-Brandon Moreno: -265 prob=0.589 edge=-0.137 kc=-0.50
-Steve Erceg: 215 prob=0.411 edge=0.093 kc=0.14
-(no bet - edge -13.7% < 10%)
+Bankroll: 1668.36
+Brandon Moreno: -265 prob=0.810 edge=0.084 kc=0.31
+Steve Erceg: 215 prob=0.190 edge=-0.128 kc=-0.19
+(no bet - edge 8.4% < 10%)
  *** Brandon Moreno *** 
 ---
-Bankroll: 1693.38
-Manuel Torres: -122 prob=0.509 edge=-0.040 kc=-0.09
-Drew Dober: 102 prob=0.491 edge=-0.004 kc=-0.01
-(no bet - edge -4.0% < 10%)
+Bankroll: 1668.36
+Manuel Torres: -122 prob=0.567 edge=0.017 kc=0.04
+Drew Dober: 102 prob=0.433 edge=-0.062 kc=-0.12
+(no bet - edge 1.7% < 10%)
  *** Manuel Torres *** 
 ---
-Bankroll: 1693.38
-Edgar Chairez: -270 prob=0.730 edge=0.000 kc=0.00
-CJ Vergara: 220 prob=0.270 edge=-0.043 kc=-0.06
-(no bet - edge 0.0% < 10%)
+Bankroll: 1668.36
+Edgar Chairez: -270 prob=0.772 edge=0.043 kc=0.16
+CJ Vergara: 220 prob=0.228 edge=-0.085 kc=-0.12
+(no bet - edge 4.3% < 10%)
  *** Edgar Chairez *** 
 ---
-Bankroll: 1693.38
-Raul Rosas Jr.: -470 prob=0.705 edge=-0.119 kc=-0.68
-Vince Morales: 360 prob=0.295 edge=0.077 kc=0.10
-(no bet - edge -11.9% < 10%)
+Bankroll: 1668.36
+Raul Rosas Jr.: -470 prob=0.790 edge=-0.035 kc=-0.20
+Vince Morales: 360 prob=0.210 edge=-0.007 kc=-0.01
+(no bet - edge -3.5% < 10%)
  *** Raul Rosas Jr. *** 
 ---
-Bankroll: 1693.38
-David Martinez: -700 prob=0.919 edge=0.044 kc=0.35
-Saimon Oliveira: 500 prob=0.081 edge=-0.086 kc=-0.10
-(no bet - edge 4.4% < 10%)
+Bankroll: 1668.36
+David Martinez: -700 prob=0.926 edge=0.051 kc=0.41
+Saimon Oliveira: 500 prob=0.074 edge=-0.093 kc=-0.11
+(no bet - edge 5.1% < 10%)
  *** David Martinez *** 
 ---
-Bankroll: 1693.38
-Ronaldo Rodriguez: -198 prob=0.306 edge=-0.358 kc=-1.07
-Kevin Borjas: 164 prob=0.694 edge=0.315 kc=0.51
-Kevin Borjas $42.90 (bet) pt: $113.26 +$70.36  (win)[EDGE 31.5%] 
+Bankroll: 1668.36
+Ronaldo Rodriguez: -198 prob=0.330 edge=-0.335 kc=-1.00
+Kevin Borjas: 164 prob=0.670 edge=0.292 kc=0.47
+Kevin Borjas $39.16 (bet) pt: $103.38 +$64.22  (win)[EDGE 29.2%] 
  *** Kevin Borjas *** 
 ---
-Bankroll: 1763.74
-Jose Daniel Medina: 370 prob=0.105 edge=-0.107 kc=-0.14
-Ateba Gautier: -485 prob=0.895 edge=0.066 kc=0.38
-(no bet - edge 6.6% < 10%)
+Bankroll: 1732.58
+Jose Daniel Medina: 370 prob=0.086 edge=-0.126 kc=-0.16
+Ateba Gautier: -485 prob=0.914 edge=0.084 kc=0.49
+(no bet - edge 8.4% < 10%)
  *** Ateba Gautier *** 
 ---
-Bankroll: 1763.74
-Christian Rodriguez: -218 prob=0.371 edge=-0.315 kc=-1.00
-Melquizael Costa: 180 prob=0.629 edge=0.272 kc=0.42
-Melquizael Costa $37.32 (bet) pt: $104.50 +$67.18  (win)[EDGE 27.2%] 
+Bankroll: 1732.58
+Christian Rodriguez: -218 prob=0.326 edge=-0.360 kc=-1.14
+Melquizael Costa: 180 prob=0.674 edge=0.317 kc=0.49
+Melquizael Costa $42.70 (bet) pt: $119.57 +$76.86  (win)[EDGE 31.7%] 
  *** Melquizael Costa *** 
 ---
 ---
-Bankroll: 1830.92
-Rafa Garcia: -355 prob=0.729 edge=-0.052 kc=-0.24
-Vinc Pichel: 280 prob=0.271 edge=0.008 kc=0.01
-(no bet - edge -5.2% < 10%)
+Bankroll: 1809.44
+Rafa Garcia: -355 prob=0.754 edge=-0.026 kc=-0.12
+Vinc Pichel: 280 prob=0.246 edge=-0.018 kc=-0.02
+(no bet - edge -2.6% < 10%)
  *** Rafa Garcia *** 
 ---
-Bankroll: 1830.92
-Jamall Emmers: -500 prob=0.815 edge=-0.019 kc=-0.11
-Gabriel Miranda: 380 prob=0.185 edge=-0.023 kc=-0.03
-(no bet - edge -1.9% < 10%)
+Bankroll: 1809.44
+Jamall Emmers: -500 prob=0.694 edge=-0.139 kc=-0.83
+Gabriel Miranda: 380 prob=0.306 edge=0.097 kc=0.12
+(no bet - edge -13.9% < 10%)
  *** Jamall Emmers *** 
 ---
-Bankroll: 1830.92
+Bankroll: 1809.44
 MarQuel Mederos: -162 prob=0.776 edge=0.158 kc=0.41
 Austin Hubbard: 136 prob=0.224 edge=-0.200 kc=-0.35
-MarQuel Mederos $37.93 (bet) pt: $61.34 +$23.41  (win)[EDGE 15.8%] 
+MarQuel Mederos $37.35 (bet) pt: $60.41 +$23.06  (win)[EDGE 15.8%] 
  *** MarQuel Mederos *** 
 ---
-Bankroll: 1854.33
-Josh Emmett: 250 prob=0.141 edge=-0.145 kc=-0.20
-Lerone Murphy: -310 prob=0.859 edge=0.103 kc=0.42
-Lerone Murphy $39.23 (bet) pt: $51.88 +$12.65  (win)[EDGE 10.3%] 
+Bankroll: 1832.50
+Josh Emmett: 250 prob=0.201 edge=-0.084 kc=-0.12
+Lerone Murphy: -310 prob=0.799 edge=0.043 kc=0.17
+(no bet - edge 4.3% < 10%)
  *** Lerone Murphy *** 
 ---
-Bankroll: 1866.99
-Pat Sabatini: 185 prob=0.590 edge=0.239 kc=0.37
-Joanderson Brito: -225 prob=0.410 edge=-0.282 kc=-0.92
-Pat Sabatini $34.41 (bet) pt: $98.07 +$63.66  (win)[EDGE 23.9%] 
+Bankroll: 1832.50
+Pat Sabatini: 185 prob=0.497 edge=0.146 kc=0.23
+Joanderson Brito: -225 prob=0.503 edge=-0.190 kc=-0.62
+(no bet - edge -19.0% < 10%)
  *** Pat Sabatini *** 
 ---
-Bankroll: 1930.65
-Cortavious Romious: 114 prob=0.253 edge=-0.214 kc=-0.40
-ChangHo Lee: -135 prob=0.747 edge=0.173 kc=0.41
-ChangHo Lee $39.16 (bet) pt: $68.16 +$29.01  (win)[EDGE 17.3%] 
+Bankroll: 1832.50
+Cortavious Romious: 114 prob=0.230 edge=-0.238 kc=-0.45
+ChangHo Lee: -135 prob=0.770 edge=0.196 kc=0.46
+ChangHo Lee $42.20 (bet) pt: $73.46 +$31.26  (win)[EDGE 19.6%] 
  *** ChangHo Lee *** 
 ---
-Bankroll: 1959.65
-Brad Tavares: -170 prob=0.509 edge=-0.121 kc=-0.33
-Gerald Meerschaert: 142 prob=0.491 edge=0.078 kc=0.13
-(no bet - edge -12.1% < 10%)
+Bankroll: 1863.76
+Brad Tavares: -170 prob=0.592 edge=-0.037 kc=-0.10
+Gerald Meerschaert: 142 prob=0.408 edge=-0.006 kc=-0.01
+(no bet - edge -3.7% < 10%)
  *** Brad Tavares *** 
 ---
-Bankroll: 1959.65
-Ode Osbourne: 210 prob=0.885 edge=0.562 kc=0.83
-Luis Gurule: -258 prob=0.115 edge=-0.605 kc=-2.17
-Ode Osbourne $81.28 (bet) pt: $251.96 +$170.68  (win)[EDGE 56.2%] 
+Bankroll: 1863.76
+Ode Osbourne: 210 prob=0.879 edge=0.557 kc=0.82
+Luis Gurule: -258 prob=0.121 edge=-0.600 kc=-2.15
+Ode Osbourne $76.56 (bet) pt: $237.34 +$160.78  (win)[EDGE 55.7%] 
  *** Ode Osbourne *** 
 ---
 ---
 ---
 ---
 ---
-Bankroll: 2130.33
-Victor Henry: -205 prob=0.844 edge=0.171 kc=0.52
-Pedro Falcao: 170 prob=0.156 edge=-0.214 kc=-0.34
-Victor Henry $55.71 (bet) pt: $82.89 +$27.18  (win)[EDGE 17.1%] 
+Bankroll: 2024.54
+Victor Henry: -205 prob=0.806 edge=0.134 kc=0.41
+Pedro Falcao: 170 prob=0.194 edge=-0.177 kc=-0.28
+Victor Henry $41.40 (bet) pt: $61.59 +$20.19  (win)[EDGE 13.4%] 
  *** Victor Henry *** 
 ---
-Bankroll: 2157.51
-Martin Buday: -162 prob=0.786 edge=0.168 kc=0.44
-Uran Satybaldiev: 136 prob=0.214 edge=-0.210 kc=-0.36
-Martin Buday $47.41 (bet) pt: $76.67 +$29.26  (win)[EDGE 16.8%] 
+Bankroll: 2044.73
+Martin Buday: -162 prob=0.782 edge=0.164 kc=0.43
+Uran Satybaldiev: 136 prob=0.218 edge=-0.206 kc=-0.36
+Martin Buday $43.83 (bet) pt: $70.89 +$27.06  (win)[EDGE 16.4%] 
  *** Martin Buday *** 
 ---
 ---
-Bankroll: 2186.77
-Alexander Volkanovski: -162 prob=0.586 edge=-0.032 kc=-0.08
-Diego Lopes: 136 prob=0.414 edge=-0.010 kc=-0.02
-(no bet - edge -3.2% < 10%)
+Bankroll: 2071.79
+Alexander Volkanovski: -162 prob=0.506 edge=-0.113 kc=-0.30
+Diego Lopes: 136 prob=0.494 edge=0.071 kc=0.12
+(no bet - edge -11.3% < 10%)
  *** Alexander Volkanovski *** 
 ---
-Bankroll: 2186.77
-Michael Chandler: 136 prob=0.140 edge=-0.284 kc=-0.49
-Paddy Pimblett: -162 prob=0.860 edge=0.242 kc=0.63
-Paddy Pimblett $69.22 (bet) pt: $111.95 +$42.73  (win)[EDGE 24.2%] 
+Bankroll: 2071.79
+Michael Chandler: 136 prob=0.173 edge=-0.251 kc=-0.43
+Paddy Pimblett: -162 prob=0.827 edge=0.209 kc=0.55
+Paddy Pimblett $56.62 (bet) pt: $91.57 +$34.95  (win)[EDGE 20.9%] 
  *** Paddy Pimblett *** 
 ---
 ---
-Bankroll: 2229.50
-Bryce Mitchell: 164 prob=0.711 edge=0.332 kc=0.53
-Jean Silva: -198 prob=0.289 edge=-0.375 kc=-1.12
-Bryce Mitchell $59.55 (bet) pt: $157.21 +$97.66  (loss)[EDGE 33.2%] 
+Bankroll: 2106.74
+Bryce Mitchell: 164 prob=0.685 edge=0.307 kc=0.49
+Jean Silva: -198 prob=0.315 edge=-0.350 kc=-1.04
+Bryce Mitchell $51.99 (bet) pt: $137.26 +$85.27  (loss)[EDGE 30.7%] 
  *** Jean Silva *** 
 ---
-Bankroll: 2169.96
-Nikita Krylov: -166 prob=0.405 edge=-0.219 kc=-0.58
-Dominick Reyes: 140 prob=0.595 edge=0.178 kc=0.31
-Dominick Reyes $33.14 (bet) pt: $79.54 +$46.40  (win)[EDGE 17.8%] 
+Bankroll: 2054.75
+Nikita Krylov: -166 prob=0.448 edge=-0.176 kc=-0.47
+Dominick Reyes: 140 prob=0.552 edge=0.136 kc=0.23
+Dominick Reyes $23.91 (bet) pt: $57.39 +$33.48  (win)[EDGE 13.6%] 
  *** Dominick Reyes *** 
 ---
-Bankroll: 2216.35
-Dan Ige: 170 prob=0.364 edge=-0.006 kc=-0.01
-Sean Woodson: -205 prob=0.636 edge=-0.036 kc=-0.11
-(no bet - edge -3.6% < 10%)
+Bankroll: 2088.22
+Dan Ige: 170 prob=0.347 edge=-0.023 kc=-0.04
+Sean Woodson: -205 prob=0.653 edge=-0.019 kc=-0.06
+(no bet - edge -1.9% < 10%)
  *** Dan Ige *** 
 ---
 ---
-Bankroll: 2216.35
-Jim Miller: 525 prob=0.230 edge=0.070 kc=0.08
-Chase Hooper: -750 prob=0.770 edge=-0.113 kc=-0.96
-(no bet - edge -11.3% < 10%)
+Bankroll: 2088.22
+Jim Miller: 525 prob=0.218 edge=0.058 kc=0.07
+Chase Hooper: -750 prob=0.782 edge=-0.100 kc=-0.85
+(no bet - edge -10.0% < 10%)
  *** Chase Hooper *** 
 ---
-Bankroll: 2216.35
-Darren Elkins: 230 prob=0.650 edge=0.347 kc=0.50
-Julian Erosa: -285 prob=0.350 edge=-0.390 kc=-1.50
-Darren Elkins $55.19 (bet) pt: $182.12 +$126.93  (loss)[EDGE 34.7%] 
+Bankroll: 2088.22
+Darren Elkins: 230 prob=0.573 edge=0.270 kc=0.39
+Julian Erosa: -285 prob=0.427 edge=-0.313 kc=-1.21
+Darren Elkins $40.42 (bet) pt: $133.40 +$92.97  (loss)[EDGE 27.0%] 
  *** Julian Erosa *** 
 ---
-Bankroll: 2161.16
-Sedriques Dumas: 150 prob=0.232 edge=-0.168 kc=-0.28
-Michal Oleksiejczuk: -180 prob=0.768 edge=0.125 kc=0.35
-Michal Oleksiejczuk $37.88 (bet) pt: $58.92 +$21.04  (win)[EDGE 12.5%] 
+Bankroll: 2047.80
+Sedriques Dumas: 150 prob=0.296 edge=-0.104 kc=-0.17
+Michal Oleksiejczuk: -180 prob=0.704 edge=0.062 kc=0.17
+(no bet - edge 6.2% < 10%)
  *** Michal Oleksiejczuk *** 
 ---
-Bankroll: 2182.21
-Sumudaerji: -148 prob=0.926 edge=0.329 kc=0.82
-Mitch Raposo: 124 prob=0.074 edge=-0.373 kc=-0.67
-Sumudaerji $89.12 (bet) pt: $149.33 +$60.21  (win)[EDGE 32.9%] 
+Bankroll: 2047.80
+Sumudaerji: -148 prob=0.909 edge=0.312 kc=0.77
+Mitch Raposo: 124 prob=0.091 edge=-0.355 kc=-0.64
+Sumudaerji $79.21 (bet) pt: $132.73 +$53.52  (win)[EDGE 31.2%] 
  *** Sumudaerji *** 
 ---
-Bankroll: 2242.42
-Tresean Gore: 410 prob=0.313 edge=0.117 kc=0.15
-Marco Tulio: -550 prob=0.687 edge=-0.159 kc=-1.03
-(no bet - edge -15.9% < 10%)
+Bankroll: 2101.32
+Tresean Gore: 410 prob=0.431 edge=0.235 kc=0.29
+Marco Tulio: -550 prob=0.569 edge=-0.277 kc=-1.80
+(no bet - edge -27.7% < 10%)
  *** Marco Tulio *** 
 ---
 ---
-Bankroll: 2242.42
-Ian Machado Garry: -130 prob=0.412 edge=-0.153 kc=-0.35
-Carlos Prates: 110 prob=0.588 edge=0.111 kc=0.21
-Carlos Prates $23.87 (bet) pt: $50.12 +$26.25  (loss)[EDGE 11.1%] 
+Bankroll: 2101.32
+Ian Machado Garry: -130 prob=0.344 edge=-0.222 kc=-0.51
+Carlos Prates: 110 prob=0.656 edge=0.180 kc=0.34
+Carlos Prates $36.16 (bet) pt: $75.94 +$39.78  (loss)[EDGE 18.0%] 
  *** Ian Machado Garry *** 
 ---
-Bankroll: 2218.55
-Anthony Smith: 390 prob=0.364 edge=0.160 kc=0.20
-Zhang Mingyang: -520 prob=0.636 edge=-0.203 kc=-1.26
-(no bet - edge -20.3% < 10%)
+Bankroll: 2065.16
+Anthony Smith: 390 prob=0.378 edge=0.173 kc=0.22
+Zhang Mingyang: -520 prob=0.622 edge=-0.216 kc=-1.34
+(no bet - edge -21.6% < 10%)
  *** Zhang Mingyang *** 
 ---
-Bankroll: 2218.55
-Giga Chikadze: 145 prob=0.364 edge=-0.044 kc=-0.07
-David Onama: -175 prob=0.636 edge=-0.000 kc=-0.00
-(no bet - edge -0.0% < 10%)
+Bankroll: 2065.16
+Giga Chikadze: 145 prob=0.365 edge=-0.043 kc=-0.07
+David Onama: -175 prob=0.635 edge=-0.001 kc=-0.00
+(no bet - edge -0.1% < 10%)
  *** David Onama *** 
 ---
-Bankroll: 2218.55
-Michel Pereira: -142 prob=0.452 edge=-0.135 kc=-0.33
-Abus Magomedov: 120 prob=0.548 edge=0.094 kc=0.17
-(no bet - edge 9.4% < 10%)
+Bankroll: 2065.16
+Michel Pereira: -142 prob=0.585 edge=-0.002 kc=-0.01
+Abus Magomedov: 120 prob=0.415 edge=-0.039 kc=-0.07
+(no bet - edge -0.2% < 10%)
  *** Abus Magomedov *** 
 ---
-Bankroll: 2218.55
-Randy Brown: -238 prob=0.663 edge=-0.042 kc=-0.14
-Nicolas Dalby: 200 prob=0.337 edge=0.004 kc=0.01
-(no bet - edge -4.2% < 10%)
+Bankroll: 2065.16
+Randy Brown: -238 prob=0.690 edge=-0.014 kc=-0.05
+Nicolas Dalby: 200 prob=0.310 edge=-0.024 kc=-0.04
+(no bet - edge -1.4% < 10%)
  *** Randy Brown *** 
 ---
-Bankroll: 2218.55
-Ikram Aliskerov: -550 prob=0.391 edge=-0.455 kc=-2.96
-Andre Muniz: 410 prob=0.609 edge=0.413 kc=0.51
-Andre Muniz $56.96 (bet) pt: $290.49 +$233.53  (loss)[EDGE 41.3%] 
+Bankroll: 2065.16
+Ikram Aliskerov: -550 prob=0.448 edge=-0.398 kc=-2.59
+Andre Muniz: 410 prob=0.552 edge=0.356 kc=0.44
+Andre Muniz $45.67 (bet) pt: $232.92 +$187.25  (loss)[EDGE 35.6%] 
  *** Ikram Aliskerov *** 
 ---
-Bankroll: 2161.59
-Matt Schnell: -258 prob=0.705 edge=-0.016 kc=-0.06
-Jimmy Flick: 210 prob=0.295 edge=-0.028 kc=-0.04
-(no bet - edge -1.6% < 10%)
+Bankroll: 2019.48
+Matt Schnell: -258 prob=0.671 edge=-0.049 kc=-0.18
+Jimmy Flick: 210 prob=0.329 edge=0.006 kc=0.01
+(no bet - edge -4.9% < 10%)
  *** Matt Schnell *** 
 ---
 ---
-Bankroll: 2161.59
-Chris Gutierrez: -148 prob=0.629 edge=0.033 kc=0.08
-John Castaneda: 124 prob=0.371 edge=-0.076 kc=-0.14
-(no bet - edge 3.3% < 10%)
+Bankroll: 2019.48
+Chris Gutierrez: -148 prob=0.550 edge=-0.047 kc=-0.12
+John Castaneda: 124 prob=0.450 edge=0.004 kc=0.01
+(no bet - edge -4.7% < 10%)
  *** Chris Gutierrez *** 
 ---
 ---
 ---
 ---
-Bankroll: 2161.59
-Timmy Cuamba: -102 prob=0.831 edge=0.326 kc=0.66
-Roberto Romero: -118 prob=0.169 edge=-0.373 kc=-0.81
-Timmy Cuamba $71.27 (bet) pt: $141.15 +$69.88  (win)[EDGE 32.6%] 
+Bankroll: 2019.48
+Timmy Cuamba: -102 prob=0.763 edge=0.258 kc=0.52
+Roberto Romero: -118 prob=0.237 edge=-0.304 kc=-0.66
+Timmy Cuamba $52.63 (bet) pt: $104.23 +$51.60  (win)[EDGE 25.8%] 
  *** Timmy Cuamba *** 
 ---
 ---
-Bankroll: 2231.47
-Cory Sandhagen: -500 prob=0.682 edge=-0.151 kc=-0.91
-Deiveson Figueiredo: 380 prob=0.318 edge=0.110 kc=0.14
-(no bet - edge -15.1% < 10%)
+Bankroll: 2071.08
+Cory Sandhagen: -500 prob=0.630 edge=-0.203 kc=-1.22
+Deiveson Figueiredo: 380 prob=0.370 edge=0.161 kc=0.20
+(no bet - edge -20.3% < 10%)
  *** Cory Sandhagen *** 
 ---
-Bankroll: 2231.47
-Reinier de Ridder: 260 prob=0.142 edge=-0.135 kc=-0.19
-Bo Nickal: -325 prob=0.858 edge=0.093 kc=0.40
-(no bet - edge 9.3% < 10%)
+Bankroll: 2071.08
+Reinier de Ridder: 260 prob=0.252 edge=-0.026 kc=-0.04
+Bo Nickal: -325 prob=0.748 edge=-0.017 kc=-0.07
+(no bet - edge -1.7% < 10%)
  *** Reinier de Ridder *** 
 ---
-Bankroll: 2231.47
-Santiago Ponzinibbio: -122 prob=0.358 edge=-0.192 kc=-0.43
-Daniel Rodriguez: 102 prob=0.642 edge=0.147 kc=0.29
-Daniel Rodriguez $32.55 (bet) pt: $65.74 +$33.20  (win)[EDGE 14.7%] 
+Bankroll: 2071.08
+Santiago Ponzinibbio: -122 prob=0.507 edge=-0.043 kc=-0.10
+Daniel Rodriguez: 102 prob=0.493 edge=-0.002 kc=-0.00
+(no bet - edge -4.3% < 10%)
  *** Daniel Rodriguez *** 
 ---
-Bankroll: 2264.67
-Montel Jackson: -198 prob=0.630 edge=-0.035 kc=-0.10
-Daniel Marcos: 164 prob=0.370 edge=-0.009 kc=-0.01
-(no bet - edge -3.5% < 10%)
+Bankroll: 2071.08
+Montel Jackson: -198 prob=0.624 edge=-0.040 kc=-0.12
+Daniel Marcos: 164 prob=0.376 edge=-0.003 kc=-0.01
+(no bet - edge -4.0% < 10%)
  *** Montel Jackson *** 
 ---
-Bankroll: 2264.67
-Cameron Smotherman: 114 prob=0.476 edge=0.009 kc=0.02
-Serhiy Sidey: -135 prob=0.524 edge=-0.051 kc=-0.12
-(no bet - edge -5.1% < 10%)
+Bankroll: 2071.08
+Cameron Smotherman: 114 prob=0.385 edge=-0.082 kc=-0.15
+Serhiy Sidey: -135 prob=0.615 edge=0.040 kc=0.09
+(no bet - edge 4.0% < 10%)
  *** Serhiy Sidey *** 
 ---
-Bankroll: 2264.67
-Jeremy Stephens: 425 prob=0.379 edge=0.188 kc=0.23
-Mason Jones: -575 prob=0.621 edge=-0.230 kc=-1.56
-(no bet - edge -23.0% < 10%)
+Bankroll: 2071.08
+Jeremy Stephens: 425 prob=0.284 edge=0.093 kc=0.12
+Mason Jones: -575 prob=0.716 edge=-0.136 kc=-0.92
+(no bet - edge -13.6% < 10%)
  *** Mason Jones *** 
 ---
 ---
-Bankroll: 2264.67
-Ryan Loder: 310 prob=0.205 edge=-0.039 kc=-0.05
-Azamat Bekoev: -395 prob=0.795 edge=-0.003 kc=-0.01
-(no bet - edge -0.3% < 10%)
+Bankroll: 2071.08
+Ryan Loder: 310 prob=0.270 edge=0.026 kc=0.03
+Azamat Bekoev: -395 prob=0.730 edge=-0.068 kc=-0.34
+(no bet - edge -6.8% < 10%)
  *** Azamat Bekoev *** 
 ---
 ---
-Bankroll: 2264.67
-Gaston Bolanos: -142 prob=0.802 edge=0.216 kc=0.52
-Quang Le: 120 prob=0.198 edge=-0.257 kc=-0.47
-Gaston Bolanos $59.06 (bet) pt: $100.64 +$41.59  (loss)[EDGE 21.6%] 
+Bankroll: 2071.08
+Gaston Bolanos: -142 prob=0.615 edge=0.028 kc=0.07
+Quang Le: 120 prob=0.385 edge=-0.069 kc=-0.13
+(no bet - edge 2.8% < 10%)
  *** Quang Le *** 
 ---
-Bankroll: 2205.61
-Thomas Petersen: -265 prob=0.502 edge=-0.224 kc=-0.82
-Don'Tale Mayes: 215 prob=0.498 edge=0.181 kc=0.26
-(no bet - edge -22.4% < 10%)
+Bankroll: 2071.08
+Thomas Petersen: -265 prob=0.560 edge=-0.166 kc=-0.61
+Don'Tale Mayes: 215 prob=0.440 edge=0.123 kc=0.18
+(no bet - edge -16.6% < 10%)
  *** Thomas Petersen *** 
 ---
 ---
-Bankroll: 2205.61
-Belal Muhammad: -185 prob=0.287 edge=-0.362 kc=-1.03
-Jack Della Maddalena: 154 prob=0.713 edge=0.319 kc=0.53
-Jack Della Maddalena $58.01 (bet) pt: $147.35 +$89.34  (win)[EDGE 31.9%] 
+Bankroll: 2071.08
+Belal Muhammad: -185 prob=0.252 edge=-0.398 kc=-1.13
+Jack Della Maddalena: 154 prob=0.748 edge=0.355 kc=0.59
+Jack Della Maddalena $60.59 (bet) pt: $153.90 +$93.31  (win)[EDGE 35.5%] 
  *** Jack Della Maddalena *** 
 ---
 ---
 ---
 ---
 ---
-Bankroll: 2294.95
-Mike Malott: -205 prob=0.666 edge=-0.006 kc=-0.02
-Charles Radtke: 170 prob=0.334 edge=-0.036 kc=-0.06
-(no bet - edge -0.6% < 10%)
+Bankroll: 2164.39
+Mike Malott: -205 prob=0.692 edge=0.019 kc=0.06
+Charles Radtke: 170 prob=0.308 edge=-0.062 kc=-0.10
+(no bet - edge 1.9% < 10%)
  *** Mike Malott *** 
 ---
 ---
-Bankroll: 2294.95
-Modestas Bukauskas: 105 prob=0.644 edge=0.156 kc=0.31
-Ion Cutelaba: -125 prob=0.356 edge=-0.200 kc=-0.45
-Modestas Bukauskas $35.03 (bet) pt: $71.81 +$36.78  (win)[EDGE 15.6%] 
+Bankroll: 2164.39
+Modestas Bukauskas: 105 prob=0.516 edge=0.028 kc=0.06
+Ion Cutelaba: -125 prob=0.484 edge=-0.072 kc=-0.16
+(no bet - edge 2.8% < 10%)
  *** Modestas Bukauskas *** 
 ---
-Bankroll: 2331.73
-Navajo Stirling: -310 prob=0.900 edge=0.144 kc=0.59
-Ivan Erslan: 250 prob=0.100 edge=-0.186 kc=-0.26
-Navajo Stirling $68.94 (bet) pt: $91.17 +$22.24  (win)[EDGE 14.4%] 
+Bankroll: 2164.39
+Navajo Stirling: -310 prob=0.893 edge=0.137 kc=0.56
+Ivan Erslan: 250 prob=0.107 edge=-0.178 kc=-0.25
+Navajo Stirling $60.62 (bet) pt: $80.17 +$19.55  (win)[EDGE 13.7%] 
  *** Navajo Stirling *** 
 ---
-Bankroll: 2353.97
-Marc-Andre Barriault: -162 prob=0.376 edge=-0.242 kc=-0.63
-Bruno Silva: 136 prob=0.624 edge=0.200 kc=0.35
-Bruno Silva $40.86 (bet) pt: $96.42 +$55.56  (loss)[EDGE 20.0%] 
+Bankroll: 2183.95
+Marc-Andre Barriault: -162 prob=0.240 edge=-0.378 kc=-0.99
+Bruno Silva: 136 prob=0.760 edge=0.336 kc=0.58
+Bruno Silva $63.75 (bet) pt: $150.44 +$86.69  (loss)[EDGE 33.6%] 
  *** Marc-Andre Barriault *** 
 ---
-Bankroll: 2313.11
-Daniel Santos: 120 prob=0.639 edge=0.184 kc=0.34
-JeongYeong Lee: -142 prob=0.361 edge=-0.225 kc=-0.55
-Daniel Santos $39.01 (bet) pt: $85.82 +$46.81  (win)[EDGE 18.4%] 
+Bankroll: 2120.20
+Daniel Santos: 120 prob=0.598 edge=0.143 kc=0.26
+JeongYeong Lee: -142 prob=0.402 edge=-0.185 kc=-0.45
+Daniel Santos $27.85 (bet) pt: $61.27 +$33.42  (win)[EDGE 14.3%] 
  *** Daniel Santos *** 
 ---
-Bankroll: 2359.92
-Brad Katona: 124 prob=0.627 edge=0.180 kc=0.33
-Bekzat Almakhan: -148 prob=0.373 edge=-0.224 kc=-0.55
-Brad Katona $38.45 (bet) pt: $86.14 +$47.68  (loss)[EDGE 18.0%] 
+Bankroll: 2153.62
+Brad Katona: 124 prob=0.575 edge=0.129 kc=0.23
+Bekzat Almakhan: -148 prob=0.425 edge=-0.172 kc=-0.43
+Brad Katona $25.03 (bet) pt: $56.06 +$31.03  (loss)[EDGE 12.9%] 
  *** Bekzat Almakhan *** 
 ---
-Bankroll: 2321.47
-Gilbert Burns: 575 prob=0.182 edge=0.034 kc=0.04
-Michael Morales: -850 prob=0.818 edge=-0.076 kc=-0.73
-(no bet - edge -7.6% < 10%)
+Bankroll: 2128.60
+Gilbert Burns: 575 prob=0.193 edge=0.045 kc=0.05
+Michael Morales: -850 prob=0.807 edge=-0.087 kc=-0.83
+(no bet - edge -8.7% < 10%)
  *** Michael Morales *** 
 ---
-Bankroll: 2321.47
-Sodiq Yusuff: 110 prob=0.465 edge=-0.011 kc=-0.02
-Mairon Santos: -130 prob=0.535 edge=-0.031 kc=-0.07
-(no bet - edge -3.1% < 10%)
+Bankroll: 2128.60
+Sodiq Yusuff: 110 prob=0.430 edge=-0.046 kc=-0.09
+Mairon Santos: -130 prob=0.570 edge=0.005 kc=0.01
+(no bet - edge 0.5% < 10%)
  *** Mairon Santos *** 
 ---
-Bankroll: 2321.47
-Dustin Stoltzfus: 250 prob=0.163 edge=-0.123 kc=-0.17
-Nursulton Ruziboev: -310 prob=0.837 edge=0.081 kc=0.33
-(no bet - edge 8.1% < 10%)
+Bankroll: 2128.60
+Dustin Stoltzfus: 250 prob=0.258 edge=-0.028 kc=-0.04
+Nursulton Ruziboev: -310 prob=0.742 edge=-0.014 kc=-0.06
+(no bet - edge -1.4% < 10%)
  *** Nursulton Ruziboev *** 
 ---
-Bankroll: 2321.47
-Julian Erosa: 160 prob=0.254 edge=-0.131 kc=-0.21
-Melquizael Costa: -192 prob=0.746 edge=0.089 kc=0.26
-(no bet - edge 8.9% < 10%)
+Bankroll: 2128.60
+Julian Erosa: 160 prob=0.352 edge=-0.033 kc=-0.05
+Melquizael Costa: -192 prob=0.648 edge=-0.009 kc=-0.03
+(no bet - edge -0.9% < 10%)
  *** Melquizael Costa *** 
 ---
 ---
@@ -1360,324 +1314,324 @@ Melquizael Costa: -192 prob=0.746 edge=0.089 kc=0.26
 ---
 ---
 ---
-Bankroll: 2321.47
-Mateusz Gamrot: -155 prob=0.516 edge=-0.092 kc=-0.23
-Ludovit Klein: 130 prob=0.484 edge=0.049 kc=0.09
-(no bet - edge -9.2% < 10%)
+Bankroll: 2128.60
+Mateusz Gamrot: -155 prob=0.406 edge=-0.202 kc=-0.51
+Ludovit Klein: 130 prob=0.594 edge=0.159 kc=0.28
+Ludovit Klein $29.93 (bet) pt: $68.84 +$38.91  (loss)[EDGE 15.9%] 
  *** Mateusz Gamrot *** 
 ---
-Bankroll: 2321.47
-Billy Ray Goff: -395 prob=0.170 edge=-0.628 kc=-3.11
-Ramiz Brahimaj: 310 prob=0.830 edge=0.586 kc=0.78
-Ramiz Brahimaj $89.99 (bet) pt: $368.96 +$278.97  (win)[EDGE 58.6%] 
+Bankroll: 2098.66
+Billy Ray Goff: -395 prob=0.095 edge=-0.703 kc=-3.48
+Ramiz Brahimaj: 310 prob=0.905 edge=0.661 kc=0.87
+Ramiz Brahimaj $91.69 (bet) pt: $375.92 +$284.23  (win)[EDGE 66.1%] 
  *** Ramiz Brahimaj *** 
 ---
-Bankroll: 2600.44
-Dustin Jacoby: -192 prob=0.463 edge=-0.194 kc=-0.57
-Bruno Lopes: 160 prob=0.537 edge=0.152 kc=0.25
-Bruno Lopes $32.10 (bet) pt: $83.46 +$51.36  (loss)[EDGE 15.2%] 
+Bankroll: 2382.90
+Dustin Jacoby: -192 prob=0.567 edge=-0.091 kc=-0.26
+Bruno Lopes: 160 prob=0.433 edge=0.048 kc=0.08
+(no bet - edge -9.1% < 10%)
  *** Dustin Jacoby *** 
 ---
 ---
 ---
-Bankroll: 2568.34
-Jafel Filho: 105 prob=0.538 edge=0.050 kc=0.10
-Allan Nascimento: -125 prob=0.462 edge=-0.094 kc=-0.21
-(no bet - edge 5.0% < 10%)
+Bankroll: 2382.90
+Jafel Filho: 105 prob=0.548 edge=0.060 kc=0.12
+Allan Nascimento: -125 prob=0.452 edge=-0.103 kc=-0.23
+(no bet - edge 6.0% < 10%)
  *** Allan Nascimento *** 
 ---
-Bankroll: 2568.34
-Kurt Holobaugh: 195 prob=0.148 edge=-0.191 kc=-0.29
-Jordan Leavitt: -238 prob=0.852 edge=0.148 kc=0.50
-Jordan Leavitt $64.37 (bet) pt: $91.42 +$27.05  (win)[EDGE 14.8%] 
+Bankroll: 2382.90
+Kurt Holobaugh: 195 prob=0.195 edge=-0.144 kc=-0.22
+Jordan Leavitt: -238 prob=0.805 edge=0.101 kc=0.34
+Jordan Leavitt $40.53 (bet) pt: $57.56 +$17.03  (win)[EDGE 10.1%] 
  *** Jordan Leavitt *** 
 ---
-Bankroll: 2595.39
-Bolaji Oki: -375 prob=0.836 edge=0.046 kc=0.22
-Michael Aswell Jr.: 295 prob=0.164 edge=-0.089 kc=-0.12
-(no bet - edge 4.6% < 10%)
+Bankroll: 2399.93
+Bolaji Oki: -375 prob=0.756 edge=-0.034 kc=-0.16
+Michael Aswell Jr.: 295 prob=0.244 edge=-0.009 kc=-0.01
+(no bet - edge -3.4% < 10%)
  *** Bolaji Oki *** 
 ---
 ---
-Bankroll: 2595.39
-Merab Dvalishvili: -325 prob=0.703 edge=-0.061 kc=-0.26
-Sean O'Malley: 260 prob=0.297 edge=0.019 kc=0.03
-(no bet - edge -6.1% < 10%)
+Bankroll: 2399.93
+Merab Dvalishvili: -325 prob=0.690 edge=-0.074 kc=-0.32
+Sean O'Malley: 260 prob=0.310 edge=0.032 kc=0.04
+(no bet - edge -7.4% < 10%)
  *** Merab Dvalishvili *** 
 ---
 ---
-Bankroll: 2595.39
-Kelvin Gastelum: 285 prob=0.446 edge=0.186 kc=0.25
-Joe Pyfer: -360 prob=0.554 edge=-0.229 kc=-1.05
-(no bet - edge -22.9% < 10%)
+Bankroll: 2399.93
+Kelvin Gastelum: 285 prob=0.414 edge=0.154 kc=0.21
+Joe Pyfer: -360 prob=0.586 edge=-0.197 kc=-0.90
+(no bet - edge -19.7% < 10%)
  *** Joe Pyfer *** 
 ---
-Bankroll: 2595.39
-Mario Bautista: 150 prob=0.957 edge=0.557 kc=0.93
-Patchy Mix: -180 prob=0.043 edge=-0.600 kc=-1.68
-Mario Bautista $120.39 (bet) pt: $300.98 +$180.59  (win)[EDGE 55.7%] 
+Bankroll: 2399.93
+Mario Bautista: 150 prob=0.937 edge=0.537 kc=0.89
+Patchy Mix: -180 prob=0.063 edge=-0.580 kc=-1.62
+Mario Bautista $107.36 (bet) pt: $268.41 +$161.05  (win)[EDGE 53.7%] 
  *** Mario Bautista *** 
 ---
-Bankroll: 2775.98
-Vicente Luque: 154 prob=0.519 edge=0.126 kc=0.21
-Kevin Holland: -185 prob=0.481 edge=-0.168 kc=-0.48
-Vicente Luque $28.75 (bet) pt: $73.01 +$44.27  (loss)[EDGE 12.6%] 
+Bankroll: 2560.97
+Vicente Luque: 154 prob=0.493 edge=0.100 kc=0.16
+Kevin Holland: -185 prob=0.507 edge=-0.142 kc=-0.41
+(no bet - edge -14.2% < 10%)
  *** Kevin Holland *** 
 ---
-Bankroll: 2747.23
-Bruno Silva: 525 prob=0.115 edge=-0.045 kc=-0.05
-Joshua Van: -750 prob=0.885 edge=0.002 kc=0.02
-(no bet - edge 0.2% < 10%)
+Bankroll: 2560.97
+Bruno Silva: 525 prob=0.137 edge=-0.023 kc=-0.03
+Joshua Van: -750 prob=0.863 edge=-0.019 kc=-0.16
+(no bet - edge -1.9% < 10%)
  *** Joshua Van *** 
 ---
-Bankroll: 2747.23
-Azamat Murzakanov: -700 prob=0.835 edge=-0.040 kc=-0.32
-Brendson Ribeiro: 500 prob=0.165 edge=-0.001 kc=-0.00
-(no bet - edge -4.0% < 10%)
+Bankroll: 2560.97
+Azamat Murzakanov: -700 prob=0.823 edge=-0.052 kc=-0.41
+Brendson Ribeiro: 500 prob=0.177 edge=0.010 kc=0.01
+(no bet - edge -5.2% < 10%)
  *** Azamat Murzakanov *** 
 ---
 ---
-Bankroll: 2747.23
-Khaos Williams: -185 prob=0.634 edge=-0.015 kc=-0.04
-Andreas Gustafsson: 154 prob=0.366 edge=-0.028 kc=-0.05
-(no bet - edge -1.5% < 10%)
+Bankroll: 2560.97
+Khaos Williams: -185 prob=0.754 edge=0.105 kc=0.30
+Andreas Gustafsson: 154 prob=0.246 edge=-0.148 kc=-0.24
+Khaos Williams $38.27 (bet) pt: $58.95 +$20.68  (loss)[EDGE 10.5%] 
  *** Andreas Gustafsson *** 
 ---
 ---
-Bankroll: 2747.23
-Jeka Saragih: 390 prob=0.287 edge=0.083 kc=0.10
-JooSang Yoo: -520 prob=0.713 edge=-0.126 kc=-0.78
-(no bet - edge -12.6% < 10%)
+Bankroll: 2522.71
+Jeka Saragih: 390 prob=0.304 edge=0.100 kc=0.13
+JooSang Yoo: -520 prob=0.696 edge=-0.143 kc=-0.89
+(no bet - edge -14.3% < 10%)
  *** JooSang Yoo *** 
 ---
-Bankroll: 2747.23
-Quillan Salkilld: -395 prob=0.691 edge=-0.107 kc=-0.53
-Yanal Ashmouz: 310 prob=0.309 edge=0.065 kc=0.09
-(no bet - edge -10.7% < 10%)
+Bankroll: 2522.71
+Quillan Salkilld: -395 prob=0.645 edge=-0.153 kc=-0.76
+Yanal Ashmouz: 310 prob=0.355 edge=0.111 kc=0.15
+(no bet - edge -15.3% < 10%)
  *** Quillan Salkilld *** 
 ---
 ---
-Bankroll: 2747.23
-Kamaru Usman: 225 prob=0.451 edge=0.143 kc=0.21
-Joaquin Buckley: -278 prob=0.549 edge=-0.186 kc=-0.70
-(no bet - edge -18.6% < 10%)
+Bankroll: 2522.71
+Kamaru Usman: 225 prob=0.444 edge=0.136 kc=0.20
+Joaquin Buckley: -278 prob=0.556 edge=-0.180 kc=-0.68
+(no bet - edge -18.0% < 10%)
  *** Kamaru Usman *** 
 ---
 ---
-Bankroll: 2747.23
-Edmen Shahbazyan: -185 prob=0.516 edge=-0.133 kc=-0.38
-Andre Petroski: 154 prob=0.484 edge=0.090 kc=0.15
-(no bet - edge -13.3% < 10%)
+Bankroll: 2522.71
+Edmen Shahbazyan: -185 prob=0.636 edge=-0.013 kc=-0.04
+Andre Petroski: 154 prob=0.364 edge=-0.029 kc=-0.05
+(no bet - edge -1.3% < 10%)
  *** Edmen Shahbazyan *** 
 ---
-Bankroll: 2747.23
-Cody Garbrandt: 154 prob=0.423 edge=0.030 kc=0.05
-Raoni Barcelos: -185 prob=0.577 edge=-0.072 kc=-0.21
-(no bet - edge -7.2% < 10%)
+Bankroll: 2522.71
+Cody Garbrandt: 154 prob=0.381 edge=-0.012 kc=-0.02
+Raoni Barcelos: -185 prob=0.619 edge=-0.031 kc=-0.09
+(no bet - edge -3.1% < 10%)
  *** Raoni Barcelos *** 
 ---
 ---
-Bankroll: 2747.23
-Alonzo Menifield: 500 prob=0.159 edge=-0.007 kc=-0.01
-Oumar Sy: -700 prob=0.841 edge=-0.034 kc=-0.27
-(no bet - edge -3.4% < 10%)
+Bankroll: 2522.71
+Alonzo Menifield: 500 prob=0.154 edge=-0.012 kc=-0.01
+Oumar Sy: -700 prob=0.846 edge=-0.029 kc=-0.23
+(no bet - edge -2.9% < 10%)
  *** Alonzo Menifield *** 
 ---
 ---
-Bankroll: 2747.23
-Michael Chiesa: -345 prob=0.772 edge=-0.004 kc=-0.02
-Court McGee: 275 prob=0.228 edge=-0.038 kc=-0.05
-(no bet - edge -0.4% < 10%)
+Bankroll: 2522.71
+Michael Chiesa: -345 prob=0.756 edge=-0.019 kc=-0.09
+Court McGee: 275 prob=0.244 edge=-0.023 kc=-0.03
+(no bet - edge -1.9% < 10%)
  *** Michael Chiesa *** 
 ---
 ---
-Bankroll: 2747.23
-Cody Durden: 154 prob=0.459 edge=0.065 kc=0.11
-Jose Ochoa: -185 prob=0.541 edge=-0.108 kc=-0.31
-(no bet - edge -10.8% < 10%)
+Bankroll: 2522.71
+Cody Durden: 154 prob=0.522 edge=0.128 kc=0.21
+Jose Ochoa: -185 prob=0.478 edge=-0.171 kc=-0.49
+Cody Durden $26.63 (bet) pt: $67.64 +$41.01  (loss)[EDGE 12.8%] 
  *** Jose Ochoa *** 
 ---
-Bankroll: 2747.23
-Ricky Simon: -175 prob=0.599 edge=-0.038 kc=-0.10
-Cameron Smotherman: 145 prob=0.401 edge=-0.007 kc=-0.01
-(no bet - edge -3.8% < 10%)
+Bankroll: 2496.08
+Ricky Simon: -175 prob=0.302 edge=-0.334 kc=-0.92
+Cameron Smotherman: 145 prob=0.698 edge=0.290 kc=0.49
+Cameron Smotherman $61.14 (bet) pt: $149.79 +$88.65  (loss)[EDGE 29.0%] 
  *** Ricky Simon *** 
 ---
 ---
 ---
-Bankroll: 2747.23
-Jamahal Hill: 130 prob=0.547 edge=0.113 kc=0.20
-Khalil Rountree Jr.: -155 prob=0.453 edge=-0.155 kc=-0.40
-Jamahal Hill $27.39 (bet) pt: $62.99 +$35.60  (loss)[EDGE 11.3%] 
+Bankroll: 2434.94
+Jamahal Hill: 130 prob=0.643 edge=0.208 kc=0.37
+Khalil Rountree Jr.: -155 prob=0.357 edge=-0.251 kc=-0.64
+Jamahal Hill $44.91 (bet) pt: $103.29 +$58.38  (loss)[EDGE 20.8%] 
  *** Khalil Rountree Jr. *** 
 ---
 ---
 ---
 ---
-Bankroll: 2719.84
-Nazim Sadykhov: -395 prob=0.692 edge=-0.106 kc=-0.52
-Nikolas Motta: 310 prob=0.308 edge=0.064 kc=0.08
-(no bet - edge -10.6% < 10%)
+Bankroll: 2390.03
+Nazim Sadykhov: -395 prob=0.706 edge=-0.092 kc=-0.46
+Nikolas Motta: 310 prob=0.294 edge=0.050 kc=0.07
+(no bet - edge -9.2% < 10%)
  *** Nazim Sadykhov *** 
 ---
-Bankroll: 2719.84
-Muhammad Naimov: -225 prob=0.713 edge=0.021 kc=0.07
-Bogdan Grad: 185 prob=0.287 edge=-0.064 kc=-0.10
-(no bet - edge 2.1% < 10%)
+Bankroll: 2390.03
+Muhammad Naimov: -225 prob=0.694 edge=0.002 kc=0.01
+Bogdan Grad: 185 prob=0.306 edge=-0.045 kc=-0.07
+(no bet - edge 0.2% < 10%)
  *** Muhammad Naimov *** 
 ---
 ---
-Bankroll: 2719.84
-Ismail Naurdiev: 185 prob=0.400 edge=0.049 kc=0.08
-JunYong Park: -225 prob=0.600 edge=-0.092 kc=-0.30
-(no bet - edge -9.2% < 10%)
+Bankroll: 2390.03
+Ismail Naurdiev: 185 prob=0.352 edge=0.001 kc=0.00
+JunYong Park: -225 prob=0.648 edge=-0.044 kc=-0.14
+(no bet - edge -4.4% < 10%)
  *** JunYong Park *** 
 ---
 ---
 ---
-Bankroll: 2719.84
-Tagir Ulanbekov: -290 prob=0.703 edge=-0.041 kc=-0.16
-Azat Maksum: 235 prob=0.297 edge=-0.001 kc=-0.00
-(no bet - edge -4.1% < 10%)
+Bankroll: 2390.03
+Tagir Ulanbekov: -290 prob=0.722 edge=-0.022 kc=-0.09
+Azat Maksum: 235 prob=0.278 edge=-0.020 kc=-0.03
+(no bet - edge -2.2% < 10%)
  ***  *** 
 ---
-Bankroll: 2719.84
-Hamdy Abdelwahab: -198 prob=0.678 edge=0.014 kc=0.04
-Mohammed Usman: 164 prob=0.322 edge=-0.057 kc=-0.09
-(no bet - edge 1.4% < 10%)
+Bankroll: 2390.03
+Hamdy Abdelwahab: -198 prob=0.637 edge=-0.028 kc=-0.08
+Mohammed Usman: 164 prob=0.363 edge=-0.015 kc=-0.02
+(no bet - edge -2.8% < 10%)
  ***  *** 
 ---
-Bankroll: 2719.84
-Ilia Topuria: -440 prob=0.903 edge=0.088 kc=0.48
-Charles Oliveira: 340 prob=0.097 edge=-0.130 kc=-0.17
-(no bet - edge 8.8% < 10%)
+Bankroll: 2390.03
+Ilia Topuria: -440 prob=0.782 edge=-0.032 kc=-0.17
+Charles Oliveira: 340 prob=0.218 edge=-0.010 kc=-0.01
+(no bet - edge -3.2% < 10%)
  *** Ilia Topuria *** 
 ---
-Bankroll: 2719.84
-Alexandre Pantoja: -238 prob=0.613 edge=-0.092 kc=-0.31
-Kai Kara-France: 195 prob=0.387 edge=0.048 kc=0.07
-(no bet - edge -9.2% < 10%)
+Bankroll: 2390.03
+Alexandre Pantoja: -238 prob=0.607 edge=-0.097 kc=-0.33
+Kai Kara-France: 195 prob=0.393 edge=0.054 kc=0.08
+(no bet - edge -9.7% < 10%)
  *** Alexandre Pantoja *** 
 ---
-Bankroll: 2719.84
-Brandon Royval: -102 prob=0.432 edge=-0.073 kc=-0.15
-Joshua Van: -118 prob=0.568 edge=0.027 kc=0.06
-(no bet - edge 2.7% < 10%)
+Bankroll: 2390.03
+Brandon Royval: -102 prob=0.362 edge=-0.143 kc=-0.29
+Joshua Van: -118 prob=0.638 edge=0.097 kc=0.21
+(no bet - edge 9.7% < 10%)
  *** Joshua Van *** 
 ---
-Bankroll: 2719.84
-Beneil Dariush: -105 prob=0.494 edge=-0.018 kc=-0.04
-Renato Moicano: -115 prob=0.506 edge=-0.029 kc=-0.06
-(no bet - edge -2.9% < 10%)
+Bankroll: 2390.03
+Beneil Dariush: -105 prob=0.483 edge=-0.029 kc=-0.06
+Renato Moicano: -115 prob=0.517 edge=-0.018 kc=-0.04
+(no bet - edge -1.8% < 10%)
  *** Beneil Dariush *** 
 ---
-Bankroll: 2719.84
-Payton Talbott: 150 prob=0.378 edge=-0.022 kc=-0.04
-Felipe Lima: -180 prob=0.622 edge=-0.021 kc=-0.06
-(no bet - edge -2.1% < 10%)
+Bankroll: 2390.03
+Payton Talbott: 150 prob=0.615 edge=0.215 kc=0.36
+Felipe Lima: -180 prob=0.385 edge=-0.258 kc=-0.72
+Payton Talbott $42.76 (bet) pt: $106.89 +$64.14  (win)[EDGE 21.5%] 
  *** Payton Talbott *** 
 ---
-Bankroll: 2719.84
-Jack Hermansson: 164 prob=0.249 edge=-0.130 kc=-0.21
-Gregory Rodrigues: -198 prob=0.751 edge=0.086 kc=0.26
-(no bet - edge 8.6% < 10%)
+Bankroll: 2454.17
+Jack Hermansson: 164 prob=0.333 edge=-0.046 kc=-0.07
+Gregory Rodrigues: -198 prob=0.667 edge=0.003 kc=0.01
+(no bet - edge 0.3% < 10%)
  *** Gregory Rodrigues *** 
 ---
 ---
 ---
-Bankroll: 2719.84
-Terrance McKinney: -166 prob=0.604 edge=-0.020 kc=-0.05
-Viacheslav Borshchev: 140 prob=0.396 edge=-0.021 kc=-0.04
-(no bet - edge -2.0% < 10%)
+Bankroll: 2454.17
+Terrance McKinney: -166 prob=0.546 edge=-0.078 kc=-0.21
+Viacheslav Borshchev: 140 prob=0.454 edge=0.037 kc=0.06
+(no bet - edge -7.8% < 10%)
  *** Terrance McKinney *** 
 ---
-Bankroll: 2719.84
-Niko Price: 1100 prob=0.550 edge=0.466 kc=0.51
-Jacobe Smith: -2100 prob=0.450 edge=-0.504 kc=-11.09
-Niko Price $69.20 (bet) pt: $830.35 +$761.15  (loss)[EDGE 46.6%] 
+Bankroll: 2454.17
+Niko Price: 1100 prob=0.526 edge=0.442 kc=0.48
+Jacobe Smith: -2100 prob=0.474 edge=-0.480 kc=-10.56
+Niko Price $59.21 (bet) pt: $710.50 +$651.29  (loss)[EDGE 44.2%] 
  *** Jacobe Smith *** 
 ---
 ---
-Bankroll: 2650.65
-Derrick Lewis: 210 prob=0.333 edge=0.010 kc=0.02
-Tallison Teixeira: -280 prob=0.667 edge=-0.070 kc=-0.27
-(no bet - edge -7.0% < 10%)
+Bankroll: 2394.96
+Derrick Lewis: 210 prob=0.524 edge=0.201 kc=0.30
+Tallison Teixeira: -280 prob=0.476 edge=-0.261 kc=-0.99
+Derrick Lewis $35.59 (bet) pt: $110.34 +$74.75  (win)[EDGE 20.1%] 
  *** Derrick Lewis *** 
 ---
-Bankroll: 2650.65
-Stephen Thompson: 320 prob=0.300 edge=0.062 kc=0.08
-Gabriel Bonfim: -410 prob=0.700 edge=-0.104 kc=-0.53
-(no bet - edge -10.4% < 10%)
+Bankroll: 2469.71
+Stephen Thompson: 320 prob=0.267 edge=0.029 kc=0.04
+Gabriel Bonfim: -410 prob=0.733 edge=-0.071 kc=-0.36
+(no bet - edge -7.1% < 10%)
  *** Gabriel Bonfim *** 
 ---
-Bankroll: 2650.65
-Calvin Kattar: 105 prob=0.487 edge=-0.001 kc=-0.00
-Steve Garcia: -125 prob=0.513 edge=-0.042 kc=-0.09
-(no bet - edge -4.2% < 10%)
+Bankroll: 2469.71
+Calvin Kattar: 105 prob=0.444 edge=-0.044 kc=-0.09
+Steve Garcia: -125 prob=0.556 edge=0.001 kc=0.00
+(no bet - edge 0.1% < 10%)
  *** Steve Garcia *** 
 ---
-Bankroll: 2650.65
-Nate Landwehr: 220 prob=0.319 edge=0.007 kc=0.01
-Morgan Charriere: -270 prob=0.681 edge=-0.049 kc=-0.18
-(no bet - edge -4.9% < 10%)
+Bankroll: 2469.71
+Nate Landwehr: 220 prob=0.251 edge=-0.062 kc=-0.09
+Morgan Charriere: -270 prob=0.749 edge=0.020 kc=0.07
+(no bet - edge 2.0% < 10%)
  *** Morgan Charriere *** 
 ---
-Bankroll: 2650.65
-Vitor Petrino: -750 prob=0.936 edge=0.053 kc=0.45
-Austen Lane: 525 prob=0.064 edge=-0.096 kc=-0.11
-(no bet - edge 5.3% < 10%)
+Bankroll: 2469.71
+Vitor Petrino: -750 prob=0.886 edge=0.004 kc=0.03
+Austen Lane: 525 prob=0.114 edge=-0.046 kc=-0.06
+(no bet - edge 0.4% < 10%)
  *** Vitor Petrino *** 
 ---
-Bankroll: 2650.65
-Junior Tafa: -162 prob=0.489 edge=-0.130 kc=-0.34
-Tuco Tokkos: 136 prob=0.511 edge=0.088 kc=0.15
-(no bet - edge 8.8% < 10%)
+Bankroll: 2469.71
+Junior Tafa: -162 prob=0.535 edge=-0.083 kc=-0.22
+Tuco Tokkos: 136 prob=0.465 edge=0.041 kc=0.07
+(no bet - edge -8.3% < 10%)
  *** Tuco Tokkos *** 
 ---
-Bankroll: 2650.65
-Max Griffin: 260 prob=0.511 edge=0.233 kc=0.32
-Chris Curtis: -325 prob=0.489 edge=-0.276 kc=-1.17
-Max Griffin $42.76 (bet) pt: $153.94 +$111.18  (loss)[EDGE 23.3%] 
+Bankroll: 2469.71
+Max Griffin: 260 prob=0.474 edge=0.196 kc=0.27
+Chris Curtis: -325 prob=0.526 edge=-0.238 kc=-1.01
+(no bet - edge -23.8% < 10%)
  *** Chris Curtis *** 
 ---
-Bankroll: 2607.89
-Jake Matthews: 124 prob=0.830 edge=0.383 kc=0.69
-Chidi Njokuani: -148 prob=0.170 edge=-0.426 kc=-1.06
-Jake Matthews $90.29 (bet) pt: $202.24 +$111.95  (win)[EDGE 38.3%] 
+Bankroll: 2469.71
+Jake Matthews: 124 prob=0.600 edge=0.153 kc=0.28
+Chidi Njokuani: -148 prob=0.400 edge=-0.196 kc=-0.49
+Jake Matthews $34.15 (bet) pt: $76.50 +$42.35  (win)[EDGE 15.3%] 
  *** Jake Matthews *** 
 ---
 ---
-Bankroll: 2719.84
-Kennedy Nzechukwu: -205 prob=0.566 edge=-0.106 kc=-0.32
-Valter Walker: 170 prob=0.434 edge=0.064 kc=0.10
-(no bet - edge -10.6% < 10%)
+Bankroll: 2512.05
+Kennedy Nzechukwu: -205 prob=0.583 edge=-0.089 kc=-0.27
+Valter Walker: 170 prob=0.417 edge=0.047 kc=0.07
+(no bet - edge -8.9% < 10%)
  *** Valter Walker *** 
 ---
-Bankroll: 2719.84
-Mitch Ramirez: 650 prob=0.097 edge=-0.036 kc=-0.04
-Mike Davis: -1000 prob=0.903 edge=-0.006 kc=-0.07
-(no bet - edge -0.6% < 10%)
+Bankroll: 2512.05
+Mitch Ramirez: 650 prob=0.091 edge=-0.042 kc=-0.05
+Mike Davis: -1000 prob=0.909 edge=-0.000 kc=-0.00
+(no bet - edge -0.0% < 10%)
  *** Mike Davis *** 
 ---
 ---
-Bankroll: 2719.84
-Max Holloway: -118 prob=0.578 edge=0.036 kc=0.08
-Dustin Poirier: -102 prob=0.422 edge=-0.083 kc=-0.17
-(no bet - edge 3.6% < 10%)
+Bankroll: 2512.05
+Max Holloway: -118 prob=0.731 edge=0.189 kc=0.41
+Dustin Poirier: -102 prob=0.269 edge=-0.236 kc=-0.48
+Max Holloway $51.87 (bet) pt: $95.84 +$43.96  (win)[EDGE 18.9%] 
  *** Max Holloway *** 
 ---
-Bankroll: 2719.84
-Paulo Costa: 200 prob=0.373 edge=0.040 kc=0.06
-Roman Kopylov: -245 prob=0.627 edge=-0.083 kc=-0.29
-(no bet - edge -8.3% < 10%)
+Bankroll: 2556.02
+Paulo Costa: 200 prob=0.314 edge=-0.019 kc=-0.03
+Roman Kopylov: -245 prob=0.686 edge=-0.025 kc=-0.08
+(no bet - edge -2.5% < 10%)
  *** Paulo Costa *** 
 ---
 ---
 ---
-Bankroll: 2719.84
-Michael Johnson: 275 prob=0.466 edge=0.199 kc=0.27
-Daniel Zellhuber: -345 prob=0.534 edge=-0.241 kc=-1.07
-(no bet - edge -24.1% < 10%)
+Bankroll: 2556.02
+Michael Johnson: 275 prob=0.427 edge=0.160 kc=0.22
+Daniel Zellhuber: -345 prob=0.573 edge=-0.202 kc=-0.90
+(no bet - edge -20.2% < 10%)
  *** Michael Johnson *** 
 ---
 ---
@@ -1689,10 +1643,10 @@ Daniel Zellhuber: -345 prob=0.534 edge=-0.241 kc=-1.07
 ---
 ---
 ---
-Bankroll: 2719.84
-Robert Whittaker: -162 prob=0.665 edge=0.047 kc=0.12
-Reinier de Ridder: 136 prob=0.335 edge=-0.089 kc=-0.15
-(no bet - edge 4.7% < 10%)
+Bankroll: 2556.02
+Robert Whittaker: -162 prob=0.539 edge=-0.079 kc=-0.21
+Reinier de Ridder: 136 prob=0.461 edge=0.037 kc=0.06
+(no bet - edge -7.9% < 10%)
  *** Reinier de Ridder *** 
 ---
 ---
@@ -1730,90 +1684,90 @@ Reinier de Ridder: 136 prob=0.335 edge=-0.089 kc=-0.15
 ---
 ---
 ---
-Bankroll: 2719.84
-Dricus Du Plessis: 215 prob=0.385 edge=0.068 kc=0.10
-Khamzat Chimaev: -265 prob=0.615 edge=-0.111 kc=-0.41
-(no bet - edge -11.1% < 10%)
+Bankroll: 2556.02
+Dricus Du Plessis: 215 prob=0.294 edge=-0.024 kc=-0.04
+Khamzat Chimaev: -265 prob=0.706 edge=-0.020 kc=-0.07
+(no bet - edge -2.0% < 10%)
  *** Khamzat Chimaev *** 
 ---
 ---
-Bankroll: 2719.84
-Geoff Neal: 180 prob=0.195 edge=-0.162 kc=-0.25
-Carlos Prates: -218 prob=0.805 edge=0.119 kc=0.38
-Carlos Prates $51.62 (bet) pt: $75.30 +$23.68  (win)[EDGE 11.9%] 
+Bankroll: 2556.02
+Geoff Neal: 180 prob=0.199 edge=-0.158 kc=-0.25
+Carlos Prates: -218 prob=0.801 edge=0.115 kc=0.37
+Carlos Prates $46.76 (bet) pt: $68.20 +$21.45  (win)[EDGE 11.5%] 
  *** Carlos Prates *** 
 ---
-Bankroll: 2743.52
-Jared Cannonier: 180 prob=0.326 edge=-0.032 kc=-0.05
-Michael Page: -218 prob=0.674 edge=-0.011 kc=-0.04
-(no bet - edge -1.1% < 10%)
+Bankroll: 2577.46
+Jared Cannonier: 180 prob=0.498 edge=0.141 kc=0.22
+Michael Page: -218 prob=0.502 edge=-0.184 kc=-0.58
+(no bet - edge -18.4% < 10%)
  *** Michael Page *** 
 ---
-Bankroll: 2743.52
-Tim Elliott: 250 prob=0.944 edge=0.658 kc=0.92
-Kai Asakura: -310 prob=0.056 edge=-0.700 kc=-2.87
-Tim Elliott $126.41 (bet) pt: $442.43 +$316.02  (win)[EDGE 65.8%] 
+Bankroll: 2577.46
+Tim Elliott: 250 prob=0.932 edge=0.646 kc=0.90
+Kai Asakura: -310 prob=0.068 edge=-0.688 kc=-2.82
+Tim Elliott $116.59 (bet) pt: $408.08 +$291.49  (win)[EDGE 64.6%] 
  *** Tim Elliott *** 
 ---
 ---
-Bankroll: 3059.54
-Gerald Meerschaert: 180 prob=0.498 edge=0.141 kc=0.22
-Michal Oleksiejczuk: -218 prob=0.502 edge=-0.183 kc=-0.58
-(no bet - edge -18.3% < 10%)
+Bankroll: 2868.95
+Gerald Meerschaert: 180 prob=0.490 edge=0.133 kc=0.21
+Michal Oleksiejczuk: -218 prob=0.510 edge=-0.175 kc=-0.56
+(no bet - edge -17.5% < 10%)
  *** Michal Oleksiejczuk *** 
 ---
 ---
-Bankroll: 3059.54
-Chase Hooper: -325 prob=0.691 edge=-0.073 kc=-0.31
-Alexander Hernandez: 260 prob=0.309 edge=0.031 kc=0.04
-(no bet - edge -7.3% < 10%)
+Bankroll: 2868.95
+Chase Hooper: -325 prob=0.686 edge=-0.079 kc=-0.34
+Alexander Hernandez: 260 prob=0.314 edge=0.036 kc=0.05
+(no bet - edge -7.9% < 10%)
  *** Alexander Hernandez *** 
 ---
-Bankroll: 3059.54
-Edson Barboza: -135 prob=0.336 edge=-0.238 kc=-0.56
-Drakkar Klose: 114 prob=0.664 edge=0.196 kc=0.37
-Drakkar Klose $56.39 (bet) pt: $120.68 +$64.29  (win)[EDGE 19.6%] 
+Bankroll: 2868.95
+Edson Barboza: -135 prob=0.412 edge=-0.162 kc=-0.38
+Drakkar Klose: 114 prob=0.588 edge=0.120 kc=0.23
+Drakkar Klose $32.38 (bet) pt: $69.29 +$36.91  (win)[EDGE 12.0%] 
  *** Drakkar Klose *** 
 ---
 ---
 ---
-Bankroll: 3123.83
-Johnny Walker: 270 prob=0.110 edge=-0.160 kc=-0.22
-Zhang Mingyang: -340 prob=0.890 edge=0.117 kc=0.52
-Zhang Mingyang $80.71 (bet) pt: $104.45 +$23.74  (loss)[EDGE 11.7%] 
+Bankroll: 2905.86
+Johnny Walker: 270 prob=0.428 edge=0.158 kc=0.22
+Zhang Mingyang: -340 prob=0.572 edge=-0.201 kc=-0.88
+(no bet - edge -20.1% < 10%)
  *** Johnny Walker *** 
 ---
-Bankroll: 3043.12
-Brian Ortega: 225 prob=0.208 edge=-0.099 kc=-0.14
-Aljamain Sterling: -278 prob=0.792 edge=0.056 kc=0.21
-(no bet - edge 5.6% < 10%)
+Bankroll: 2905.86
+Brian Ortega: 225 prob=0.306 edge=-0.002 kc=-0.00
+Aljamain Sterling: -278 prob=0.694 edge=-0.041 kc=-0.16
+(no bet - edge -4.1% < 10%)
  *** Aljamain Sterling *** 
 ---
 ---
-Bankroll: 3043.12
-Sumudaerji: -166 prob=0.587 edge=-0.037 kc=-0.10
-Kevin Borjas: 140 prob=0.413 edge=-0.004 kc=-0.01
-(no bet - edge -3.7% < 10%)
+Bankroll: 2905.86
+Sumudaerji: -166 prob=0.624 edge=-0.000 kc=-0.00
+Kevin Borjas: 140 prob=0.376 edge=-0.040 kc=-0.07
+(no bet - edge -0.0% < 10%)
  *** Sumudaerji *** 
 ---
 ---
-Bankroll: 3043.12
-Maheshate: 110 prob=0.461 edge=-0.015 kc=-0.03
-Gauge Young: -130 prob=0.539 edge=-0.026 kc=-0.06
-(no bet - edge -2.6% < 10%)
+Bankroll: 2905.86
+Maheshate: 110 prob=0.521 edge=0.045 kc=0.09
+Gauge Young: -130 prob=0.479 edge=-0.086 kc=-0.20
+(no bet - edge 4.5% < 10%)
  *** Gauge Young *** 
 ---
 ---
-Bankroll: 3043.12
-Rongzhu: -250 prob=0.612 edge=-0.102 kc=-0.36
-Austin Hubbard: 205 prob=0.388 edge=0.060 kc=0.09
-(no bet - edge -10.2% < 10%)
+Bankroll: 2905.86
+Rongzhu: -250 prob=0.752 edge=0.037 kc=0.13
+Austin Hubbard: 205 prob=0.248 edge=-0.079 kc=-0.12
+(no bet - edge 3.7% < 10%)
  *** Rongzhu *** 
 ---
-Bankroll: 3043.12
-Michel Pereira: -265 prob=0.761 edge=0.035 kc=0.13
-Kyle Daukaus: 215 prob=0.239 edge=-0.079 kc=-0.12
-(no bet - edge 3.5% < 10%)
+Bankroll: 2905.86
+Michel Pereira: -265 prob=0.769 edge=0.043 kc=0.16
+Kyle Daukaus: 215 prob=0.231 edge=-0.087 kc=-0.13
+(no bet - edge 4.3% < 10%)
  *** Kyle Daukaus *** 
 ---
 ---
@@ -1832,49 +1786,49 @@ Kyle Daukaus: 215 prob=0.239 edge=-0.079 kc=-0.12
 ---
 ---
 ---
-Bankroll: 3043.12
-Diego Lopes: -238 prob=0.720 edge=0.015 kc=0.05
-Jean Silva: 195 prob=0.280 edge=-0.059 kc=-0.09
-(no bet - edge 1.5% < 10%)
+Bankroll: 2905.86
+Diego Lopes: -238 prob=0.593 edge=-0.111 kc=-0.37
+Jean Silva: 195 prob=0.407 edge=0.068 kc=0.10
+(no bet - edge -11.1% < 10%)
  *** Diego Lopes *** 
 ---
-Bankroll: 3043.12
-Rob Font: -130 prob=0.334 edge=-0.231 kc=-0.53
-David Martinez: 110 prob=0.666 edge=0.189 kc=0.36
-David Martinez $55.03 (bet) pt: $115.57 +$60.54  (win)[EDGE 18.9%] 
+Bankroll: 2905.86
+Rob Font: -130 prob=0.417 edge=-0.148 kc=-0.34
+David Martinez: 110 prob=0.583 edge=0.106 kc=0.20
+David Martinez $29.50 (bet) pt: $61.95 +$32.45  (win)[EDGE 10.6%] 
  *** David Martinez *** 
 ---
-Bankroll: 3103.66
-Rafa Garcia: 200 prob=0.527 edge=0.194 kc=0.29
-Jared Gordon: -245 prob=0.473 edge=-0.237 kc=-0.82
-Rafa Garcia $45.14 (bet) pt: $135.43 +$90.29  (win)[EDGE 19.4%] 
+Bankroll: 2938.31
+Rafa Garcia: 200 prob=0.624 edge=0.291 kc=0.44
+Jared Gordon: -245 prob=0.376 edge=-0.334 kc=-1.15
+Rafa Garcia $64.13 (bet) pt: $192.40 +$128.27  (win)[EDGE 29.1%] 
  *** Rafa Garcia *** 
 ---
-Bankroll: 3193.95
-Kelvin Gastelum: -258 prob=0.903 edge=0.183 kc=0.65
-Dustin Stoltzfus: 210 prob=0.097 edge=-0.226 kc=-0.33
-Kelvin Gastelum $104.36 (bet) pt: $144.81 +$40.45  (win)[EDGE 18.3%] 
+Bankroll: 3066.57
+Kelvin Gastelum: -258 prob=0.825 edge=0.105 kc=0.37
+Dustin Stoltzfus: 210 prob=0.175 edge=-0.148 kc=-0.22
+Kelvin Gastelum $57.43 (bet) pt: $79.69 +$22.26  (win)[EDGE 10.5%] 
  *** Kelvin Gastelum *** 
 ---
 ---
-Bankroll: 3234.40
-Alexander Hernandez: -130 prob=0.600 edge=0.035 kc=0.08
-Diego Ferreira: 110 prob=0.400 edge=-0.076 kc=-0.15
-(no bet - edge 3.5% < 10%)
+Bankroll: 3088.83
+Alexander Hernandez: -130 prob=0.575 edge=0.009 kc=0.02
+Diego Ferreira: 110 prob=0.425 edge=-0.051 kc=-0.10
+(no bet - edge 0.9% < 10%)
  *** Alexander Hernandez *** 
 ---
 ---
-Bankroll: 3234.40
-Claudio Puelles: -115 prob=0.637 edge=0.102 kc=0.22
-Joaquim Silva: -105 prob=0.363 edge=-0.149 kc=-0.31
-Claudio Puelles $35.49 (bet) pt: $66.35 +$30.86  (loss)[EDGE 10.2%] 
+Bankroll: 3088.83
+Claudio Puelles: -115 prob=0.554 edge=0.019 kc=0.04
+Joaquim Silva: -105 prob=0.446 edge=-0.066 kc=-0.14
+(no bet - edge 1.9% < 10%)
  *** Joaquim Silva *** 
 ---
 ---
-Bankroll: 3198.90
-Jesus Aguilar: 180 prob=0.952 edge=0.594 kc=0.92
-Luis Gurule: -218 prob=0.048 edge=-0.637 kc=-2.03
-Jesus Aguilar $147.89 (bet) pt: $414.10 +$266.20  (win)[EDGE 59.4%] 
+Bankroll: 3088.83
+Jesus Aguilar: 180 prob=0.951 edge=0.593 kc=0.92
+Luis Gurule: -218 prob=0.049 edge=-0.636 kc=-2.02
+Jesus Aguilar $142.58 (bet) pt: $399.23 +$256.65  (win)[EDGE 59.3%] 
  *** Jesus Aguilar *** 
 ---
 ---
@@ -1893,62 +1847,62 @@ Jesus Aguilar $147.89 (bet) pt: $414.10 +$266.20  (win)[EDGE 59.4%]
 ---
 ---
 ---
-Bankroll: 3465.11
-Magomed Ankalaev: -285 prob=0.613 edge=-0.128 kc=-0.49
-Alex Pereira: 230 prob=0.387 edge=0.084 kc=0.12
-(no bet - edge -12.8% < 10%)
+Bankroll: 3345.48
+Magomed Ankalaev: -285 prob=0.656 edge=-0.084 kc=-0.32
+Alex Pereira: 230 prob=0.344 edge=0.041 kc=0.06
+(no bet - edge -8.4% < 10%)
  *** Alex Pereira *** 
 ---
-Bankroll: 3465.11
-Merab Dvalishvili: -380 prob=0.838 edge=0.047 kc=0.22
-Cory Sandhagen: 300 prob=0.162 edge=-0.088 kc=-0.12
-(no bet - edge 4.7% < 10%)
+Bankroll: 3345.48
+Merab Dvalishvili: -380 prob=0.719 edge=-0.073 kc=-0.35
+Cory Sandhagen: 300 prob=0.281 edge=0.031 kc=0.04
+(no bet - edge -7.3% < 10%)
  *** Merab Dvalishvili *** 
 ---
 ---
-Bankroll: 3465.11
-Josh Emmett: 330 prob=0.257 edge=0.025 kc=0.03
-Youssef Zalal: -425 prob=0.743 edge=-0.067 kc=-0.35
-(no bet - edge -6.7% < 10%)
+Bankroll: 3345.48
+Josh Emmett: 330 prob=0.365 edge=0.132 kc=0.17
+Youssef Zalal: -425 prob=0.635 edge=-0.174 kc=-0.92
+(no bet - edge -17.4% < 10%)
  *** Youssef Zalal *** 
 ---
-Bankroll: 3465.11
-Abus Magomedov: 200 prob=0.312 edge=-0.022 kc=-0.03
-Joe Pyfer: -245 prob=0.688 edge=-0.022 kc=-0.08
-(no bet - edge -2.2% < 10%)
+Bankroll: 3345.48
+Abus Magomedov: 200 prob=0.418 edge=0.084 kc=0.13
+Joe Pyfer: -245 prob=0.582 edge=-0.128 kc=-0.44
+(no bet - edge -12.8% < 10%)
  *** Joe Pyfer *** 
 ---
 ---
-Bankroll: 3465.11
-Daniel Santos: -142 prob=0.757 edge=0.170 kc=0.41
-JooSang Yoo: 120 prob=0.243 edge=-0.211 kc=-0.39
-Daniel Santos $71.25 (bet) pt: $121.43 +$50.18  (win)[EDGE 17.0%] 
+Bankroll: 3345.48
+Daniel Santos: -142 prob=0.725 edge=0.139 kc=0.34
+JooSang Yoo: 120 prob=0.275 edge=-0.180 kc=-0.33
+Daniel Santos $56.13 (bet) pt: $95.66 +$39.53  (win)[EDGE 13.9%] 
  *** Daniel Santos *** 
 ---
 ---
-Bankroll: 3515.28
-Edmen Shahbazyan: -298 prob=0.616 edge=-0.133 kc=-0.53
-Andre Muniz: 240 prob=0.384 edge=0.090 kc=0.13
-(no bet - edge -13.3% < 10%)
+Bankroll: 3385.01
+Edmen Shahbazyan: -298 prob=0.590 edge=-0.159 kc=-0.63
+Andre Muniz: 240 prob=0.410 edge=0.116 kc=0.16
+(no bet - edge -15.9% < 10%)
  *** Edmen Shahbazyan *** 
 ---
-Bankroll: 3515.28
-Punahele Soriano: -290 prob=0.857 edge=0.113 kc=0.44
-Nikolay Veretennikov: 235 prob=0.143 edge=-0.156 kc=-0.22
-Punahele Soriano $77.74 (bet) pt: $104.54 +$26.81  (win)[EDGE 11.3%] 
+Bankroll: 3385.01
+Punahele Soriano: -290 prob=0.737 edge=-0.006 kc=-0.02
+Nikolay Veretennikov: 235 prob=0.263 edge=-0.036 kc=-0.05
+(no bet - edge -0.6% < 10%)
  *** Punahele Soriano *** 
 ---
 ---
-Bankroll: 3542.09
-Chris Gutierrez: 350 prob=0.336 edge=0.114 kc=0.15
-Farid Basharat: -455 prob=0.664 edge=-0.156 kc=-0.87
-(no bet - edge -15.6% < 10%)
+Bankroll: 3385.01
+Chris Gutierrez: 350 prob=0.291 edge=0.069 kc=0.09
+Farid Basharat: -455 prob=0.709 edge=-0.111 kc=-0.61
+(no bet - edge -11.1% < 10%)
  *** Farid Basharat *** 
 ---
-Bankroll: 3542.09
-Ramiz Brahimaj: 240 prob=0.488 edge=0.194 kc=0.27
-Austin Vanderford: -298 prob=0.512 edge=-0.237 kc=-0.94
-(no bet - edge -23.7% < 10%)
+Bankroll: 3385.01
+Ramiz Brahimaj: 240 prob=0.568 edge=0.274 kc=0.39
+Austin Vanderford: -298 prob=0.432 edge=-0.317 kc=-1.26
+Ramiz Brahimaj $65.70 (bet) pt: $223.36 +$157.67  (win)[EDGE 27.4%] 
  *** Ramiz Brahimaj *** 
 ---
 ---
@@ -1964,4 +1918,33 @@ Austin Vanderford: -298 prob=0.512 edge=-0.237 kc=-0.94
 ---
 ---
 ---
-Bankroll: 3542.09
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+
+============================================================
+BETTING SUMMARY
+============================================================
+Number of Bets: 92
+Total Wagered: $3668.91
+Total To Win: $9522.27
+Average Bet Size: $39.88
+
+Starting Bankroll: $1000.00
+Final Bankroll: $3542.68
+Profit/Loss: $2542.68
+ROI: 69.30%
+
+Favourites: 28/34 (82.4%)
+Underdogs: 36/58 (62.1%)
+============================================================
