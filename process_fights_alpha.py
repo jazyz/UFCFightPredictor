@@ -137,22 +137,22 @@ def getTime(fight):
 
 def getDate(date_string, date_format):
     """Parse date with fallback for multiple formats"""
-    try:
-        return datetime.strptime(date_string, date_format)
-    except ValueError:
-        # Try alternative formats if primary fails
-        alternative_formats = [
-            "%Y-%m-%d",      # ISO format: 2025-10-11
-            "%m/%d/%Y",      # US format: 10/11/2025
-            "%B %d, %Y",     # Full month: December 16, 2023
-            "%b %d, %Y"      # Short month: Dec 16, 2023
-        ]
-        for fmt in alternative_formats:
-            try:
-                return datetime.strptime(date_string, fmt)
-            except ValueError:
-                continue
-        return None
+    # Try multiple date formats
+    formats_to_try = [
+        date_format,           # Primary format passed in (e.g., "%B %d, %Y")
+        "%b %d, %Y",          # Short month (e.g., "Dec 16, 2023")
+        "%Y-%m-%d",           # ISO format (e.g., "2025-10-18")
+        "%m/%d/%Y",           # US format (e.g., "10/18/2025")
+    ]
+    
+    for fmt in formats_to_try:
+        try:
+            return datetime.strptime(date_string, fmt)
+        except ValueError:
+            continue
+    
+    print(f"Warning: Could not parse date: {date_string}")
+    return None
     
 # PROCESS FIGHTS TO RED AND BLUE 
 def processFight(fight, Red, Blue):

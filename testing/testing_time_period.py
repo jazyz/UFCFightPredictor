@@ -144,7 +144,7 @@ def processBet(bet, fighter_name, fighter_odds, winner_name):
         
         return process_winner(winner_name, fighter_name, potential_return, bet, fighter_odds)
 
-def process_fight(fight, strategy=[0.05, 0.05, 0]):
+def process_fight(fight, strategy=[0.05, 0.05, 0, 0.05]):
     global bankroll, bankrolls
     fighter1_name = fight['fighter1_name']
     fighter2_name = fight['fighter2_name']
@@ -154,8 +154,37 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
     with open(os.path.join("test_results", "testing_time_period.txt"), "a") as test:
         fighter1_odds = fighter1_odds.replace('−', '-')
         fighter2_odds = fighter2_odds.replace('−', '-')
-        if (get_ml(fighter1_name, fighter2_name) == None or get_ml(fighter2_name, fighter1_name) == None
-            or fighter1_odds == "-" or fighter2_odds == "-"):
+        
+        # Check if predictions are available
+        avb_win = get_ml(fighter1_name, fighter2_name)
+        bva_win = get_ml(fighter2_name, fighter1_name)
+        
+        if avb_win == None or bva_win == None:
+            # No predictions available
+            test.write("---\n")
+            return
+        
+        # Have predictions but no odds
+        if fighter1_odds == "-" or fighter2_odds == "-":
+            avb_win = float(avb_win)
+            avb_lose = 1 - avb_win
+            bva_win = float(bva_win)
+            bva_lose = 1 - bva_win
+            a_win = avg_win(avb_win, bva_lose)
+            b_win = 1 - a_win
+            
+            test.write(f"[NO ODDS AVAILABLE]\n")
+            test.write(f"{fighter1_name}: prob={a_win:.3f} ({a_win:.1%})\n")
+            test.write(f"{fighter2_name}: prob={b_win:.3f} ({b_win:.1%})\n")
+            predicted_winner = fighter1_name if a_win > b_win else fighter2_name
+            test.write(f"Predicted: {predicted_winner}\n")
+            test.write(f" *** {winner_name} *** ")
+            if winner_name == predicted_winner:
+                test.write("✓ CORRECT\n")
+            elif winner_name == "draw/no contest":
+                test.write("(draw/no contest)\n")
+            else:
+                test.write("✗ WRONG\n")
             test.write("---\n")
             return
         fighter1_odds = int(fighter1_odds)
@@ -247,7 +276,7 @@ def find_fights(start_date, end_date, last_training_date, strategy):
     # Convert start_date and end_date from 'YYYY-MM-DD' to datetime objects
     start_date = datetime.strptime(start_date, '%Y-%m-%d')
     end_date = datetime.strptime(end_date, '%Y-%m-%d')
-    final_training_date = datetime.strptime('2023-12-01', '%Y-%m-%d')
+    final_training_date = datetime.strptime(start_date.strftime('%Y-%m-%d'), '%Y-%m-%d')
     retrain_time = timedelta(days=182)  
     filepath = 'data/fight_results_with_odds.csv'
     
@@ -351,4 +380,4 @@ if __name__ == "__main__":
     print(f"Backtesting period: {start_date} to {end_date}")
     # Strategy: [kelly_fraction, max_fraction, flat_bet, min_edge]
     # With 5% edge filter (matching Event Predictor)
-    process_dates(start_date, end_date, strategy=[0.05, 0.05, 0, 0.1])
+    process_dates(start_date, end_date, strategy=[0.05, 0.05, 0, 0.0])

@@ -106,10 +106,13 @@ def run_data_processing():
         raise
 
 
-def run_feature_engineering():
+def run_feature_engineering(force=False):
     """
     Run feature engineering on the full dataset.
     This computes weighted averages, ELO ratings, etc.
+    
+    Args:
+        force: If True, always run feature engineering regardless of file timestamps
     
     Returns:
         True if successful
@@ -120,25 +123,35 @@ def run_feature_engineering():
     
     try:
         # Check if we need full reprocessing
-        if needs_full_reprocess():
+        should_run = force or needs_full_reprocess()
+        
+        if should_run:
+            if force:
+                logging.info("Force feature engineering enabled")
             logging.info("Running full feature engineering (process_fights_alpha.py)")
             
             # Run as subprocess to avoid import conflicts
             import subprocess
             result = subprocess.run(
-                ['python', 'process_fights_alpha.py'],
+                [sys.executable, 'process_fights_alpha.py'],
                 capture_output=True,
                 text=True,
-                timeout=600  # 10 minute timeout
+                timeout=600,  # 10 minute timeout
+                cwd=os.path.dirname(os.path.abspath(__file__))
             )
             
             if result.returncode == 0:
                 logging.info("✓ Feature engineering completed")
+                # Log output for debugging
+                if result.stdout:
+                    logging.debug(f"Process output: {result.stdout[:500]}")
                 return True
             else:
                 logging.error(f"Feature engineering failed with exit code {result.returncode}")
                 if result.stderr:
                     logging.error(f"Error output: {result.stderr[:500]}")
+                if result.stdout:
+                    logging.error(f"Standard output: {result.stdout[:500]}")
                 raise Exception("Feature engineering subprocess failed")
         else:
             logging.info("✓ Feature engineering up to date - skipping")
@@ -421,6 +434,8 @@ def main():
                        help='Skip model training (for testing pipeline)')
     parser.add_argument('--force-process', action='store_true',
                        help='Force processing even if no new scrapes (useful after fixing bugs)')
+    parser.add_argument('--force-features', action='store_true',
+                       help='Force feature engineering even if file timestamps suggest skip')
     parser.add_argument('--dry-run', action='store_true',
                        help='Run without making changes')
     
@@ -463,7 +478,9 @@ def main():
             return 0
         
         # Step 3: Feature engineering
-        run_feature_engineering()
+        # Force run if new fights were processed or if --force-features flag is set
+        force_feature_eng = (new_processed > 0 or args.force_process or args.force_features)
+        run_feature_engineering(force=force_feature_eng)
         
         # Step 4: Train model
         if not args.skip_training:
