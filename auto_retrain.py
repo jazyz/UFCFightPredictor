@@ -201,7 +201,7 @@ def run_model_training(skip_hyperparameter_tuning=True):
         # For now, we'll run it as-is
         import subprocess
         result = subprocess.run(
-            ['python', 'ml_alpha_date.py'],
+            [sys.executable, 'ml_alpha_date.py'],
             capture_output=True,
             text=True,
             timeout=1800  # 30 minute timeout

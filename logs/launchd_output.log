@@ -1,0 +1,423 @@
+2025-10-24 11:04:45,568 [INFO] ╔====================================================================╗
+2025-10-24 11:04:45,569 [INFO] ║               UFC FIGHT PREDICTOR AUTO-RETRAIN                     ║
+2025-10-24 11:04:45,569 [INFO] ║                    Started: 2025-10-24 11:04:45                     ║
+2025-10-24 11:04:45,569 [INFO] ╚====================================================================╝
+2025-10-24 11:04:45,569 [INFO] ======================================================================
+2025-10-24 11:04:45,569 [INFO] STEP 1: SCRAPING NEW FIGHTS
+2025-10-24 11:04:45,569 [INFO] ======================================================================
+Last scraped date: October 18, 2025
+
+============================================================
+Starting Incremental UFC Fight Scraper
+============================================================
+Error fetching events: HTTPConnectionPool(host='ufcstats.com', port=80): Max retries exceeded with url: /statistics/events/completed?page=all (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x11916d550>: Failed to resolve 'ufcstats.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+✓ No new fights to scrape. Database is up to date!
+2025-10-24 11:04:45,642 [INFO] ✓ Scraping completed: 0 new fights added
+2025-10-24 11:04:45,642 [INFO] 
+======================================================================
+2025-10-24 11:04:45,642 [INFO] NO NEW FIGHTS - Skipping remaining steps
+2025-10-24 11:04:45,642 [INFO] ======================================================================
+2025-10-24 11:04:45,643 [INFO] 
+======================================================================
+2025-10-24 11:04:45,643 [INFO] STEP 6: NOTIFICATION
+2025-10-24 11:04:45,643 [INFO] ======================================================================
+2025-10-24 11:04:45,643 [INFO] ✓ Auto-retraining success: No new fights to process
+2025-10-24 11:04:45,643 [INFO] Log file: logs/auto_retrain_20251024_110445.log
+2025-10-27 02:00:03,266 [INFO] ╔====================================================================╗
+2025-10-27 02:00:03,266 [INFO] ║               UFC FIGHT PREDICTOR AUTO-RETRAIN                     ║
+2025-10-27 02:00:03,266 [INFO] ║                    Started: 2025-10-27 02:00:03                     ║
+2025-10-27 02:00:03,266 [INFO] ╚====================================================================╝
+2025-10-27 02:00:03,266 [INFO] ======================================================================
+2025-10-27 02:00:03,266 [INFO] STEP 1: SCRAPING NEW FIGHTS
+2025-10-27 02:00:03,266 [INFO] ======================================================================
+Last scraped date: October 18, 2025
+
+============================================================
+Starting Incremental UFC Fight Scraper
+============================================================
+Found 753 total events on page
+  ✓ New event: October 25, 2025 (14 fights)
+  ✗ Reached already-scraped date: October 18, 2025
+
+Total new events to scrape: 1
+
+Processing event: October 25, 2025
+  Scraping fight 1/14... ✓
+  Scraping fight 2/14... ✓
+  Scraping fight 3/14... ✓
+  Scraping fight 4/14... ✓
+  Scraping fight 5/14... ✓
+  Scraping fight 6/14... ✓
+  Scraping fight 7/14... ✓
+  Scraping fight 8/14... ✓
+  Scraping fight 9/14... ✓
+  Scraping fight 10/14... ✓
+  Scraping fight 11/14... ✓
+  Scraping fight 12/14... ✓
+  Scraping fight 13/14... ✓
+  Scraping fight 14/14... ✓
+
+============================================================
+✓ Successfully scraped 14 new fights!
+============================================================
+
+2025-10-27 02:00:05,206 [INFO] ✓ Scraping completed: 14 new fights added
+2025-10-27 02:00:05,207 [INFO] 
+======================================================================
+2025-10-27 02:00:05,207 [INFO] STEP 2: PROCESSING NEW DATA
+2025-10-27 02:00:05,207 [INFO] ======================================================================
+
+============================================================
+Processing New Fights
+============================================================
+Found 28 new fights to process (out of 8578 total)
+Appending 22 new fights to data/modified_fight_details.csv
+✓ Successfully processed 22 new fights
+============================================================
+
+2025-10-27 02:00:05,396 [INFO] ✓ Processing completed: 22 new fights processed
+2025-10-27 02:00:05,396 [INFO] 
+======================================================================
+2025-10-27 02:00:05,396 [INFO] STEP 3: FEATURE ENGINEERING
+2025-10-27 02:00:05,396 [INFO] ======================================================================
+2025-10-27 02:00:05,396 [INFO] Force feature engineering enabled
+2025-10-27 02:00:05,396 [INFO] Running full feature engineering (process_fights_alpha.py)
+2025-10-27 02:00:11,461 [INFO] ✓ Feature engineering completed
+2025-10-27 02:00:11,462 [INFO] 
+======================================================================
+2025-10-27 02:00:11,462 [INFO] STEP 4: MODEL TRAINING
+2025-10-27 02:00:11,462 [INFO] ======================================================================
+2025-10-27 02:00:11,462 [INFO] Backing up existing models to saved_models/backup_20251027_020011
+2025-10-27 02:00:11,463 [INFO] Training model (this may take several minutes)...
+2025-10-27 02:00:11,466 [ERROR] ✗ Model training failed: [Errno 2] No such file or directory: 'python'
+2025-10-27 02:00:11,467 [ERROR] 
+
+FATAL ERROR: [Errno 2] No such file or directory: 'python'
+Traceback (most recent call last):
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/auto_retrain.py", line 487, in main
+    accuracy = run_model_training()
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/auto_retrain.py", line 203, in run_model_training
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/subprocess.py", line 1950, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'python'
+2025-10-27 02:00:11,469 [INFO] 
+======================================================================
+2025-10-27 02:00:11,469 [INFO] STEP 6: NOTIFICATION
+2025-10-27 02:00:11,469 [INFO] ======================================================================
+2025-10-27 02:00:11,469 [INFO] ✗ Auto-retraining failure: [Errno 2] No such file or directory: 'python'
+2025-10-27 02:00:11,469 [INFO] Log file: logs/auto_retrain_20251027_020003.log
+2025-10-31 02:00:05,393 [INFO] ╔====================================================================╗
+2025-10-31 02:00:05,394 [INFO] ║               UFC FIGHT PREDICTOR AUTO-RETRAIN                     ║
+2025-10-31 02:00:05,394 [INFO] ║                    Started: 2025-10-31 02:00:05                     ║
+2025-10-31 02:00:05,394 [INFO] ╚====================================================================╝
+2025-10-31 02:00:05,394 [INFO] ======================================================================
+2025-10-31 02:00:05,394 [INFO] STEP 1: SCRAPING NEW FIGHTS
+2025-10-31 02:00:05,394 [INFO] ======================================================================
+Last scraped date: October 25, 2025
+
+============================================================
+Starting Incremental UFC Fight Scraper
+============================================================
+Found 753 total events on page
+  ✗ Reached already-scraped date: October 25, 2025
+
+Total new events to scrape: 0
+
+✓ No new fights to scrape. Database is up to date!
+2025-10-31 02:00:05,978 [INFO] ✓ Scraping completed: 0 new fights added
+2025-10-31 02:00:05,979 [INFO] 
+======================================================================
+2025-10-31 02:00:05,979 [INFO] NO NEW FIGHTS - Skipping remaining steps
+2025-10-31 02:00:05,979 [INFO] ======================================================================
+2025-10-31 02:00:05,979 [INFO] 
+======================================================================
+2025-10-31 02:00:05,979 [INFO] STEP 6: NOTIFICATION
+2025-10-31 02:00:05,979 [INFO] ======================================================================
+2025-10-31 02:00:05,979 [INFO] ✓ Auto-retraining success: No new fights to process
+2025-10-31 02:00:05,979 [INFO] Log file: logs/auto_retrain_20251031_020005.log
+2025-11-03 02:00:06,358 [INFO] ╔====================================================================╗
+2025-11-03 02:00:06,358 [INFO] ║               UFC FIGHT PREDICTOR AUTO-RETRAIN                     ║
+2025-11-03 02:00:06,358 [INFO] ║                    Started: 2025-11-03 02:00:06                     ║
+2025-11-03 02:00:06,358 [INFO] ╚====================================================================╝
+2025-11-03 02:00:06,358 [INFO] ======================================================================
+2025-11-03 02:00:06,358 [INFO] STEP 1: SCRAPING NEW FIGHTS
+2025-11-03 02:00:06,358 [INFO] ======================================================================
+Last scraped date: November 01, 2025
+
+============================================================
+Starting Incremental UFC Fight Scraper
+============================================================
+Found 754 total events on page
+  ✗ Reached already-scraped date: November 01, 2025
+
+Total new events to scrape: 0
+
+✓ No new fights to scrape. Database is up to date!
+2025-11-03 02:00:06,898 [INFO] ✓ Scraping completed: 0 new fights added
+2025-11-03 02:00:06,898 [INFO] 
+======================================================================
+2025-11-03 02:00:06,898 [INFO] NO NEW FIGHTS - Skipping remaining steps
+2025-11-03 02:00:06,898 [INFO] ======================================================================
+2025-11-03 02:00:06,898 [INFO] 
+======================================================================
+2025-11-03 02:00:06,898 [INFO] STEP 6: NOTIFICATION
+2025-11-03 02:00:06,898 [INFO] ======================================================================
+2025-11-03 02:00:06,898 [INFO] ✓ Auto-retraining success: No new fights to process
+2025-11-03 02:00:06,898 [INFO] Log file: logs/auto_retrain_20251103_020006.log
+2025-11-07 03:28:37,221 [INFO] ╔====================================================================╗
+2025-11-07 03:28:37,221 [INFO] ║               UFC FIGHT PREDICTOR AUTO-RETRAIN                     ║
+2025-11-07 03:28:37,221 [INFO] ║                    Started: 2025-11-07 03:28:37                     ║
+2025-11-07 03:28:37,221 [INFO] ╚====================================================================╝
+2025-11-07 03:28:37,222 [INFO] ======================================================================
+2025-11-07 03:28:37,222 [INFO] STEP 1: SCRAPING NEW FIGHTS
+2025-11-07 03:28:37,222 [INFO] ======================================================================
+Last scraped date: November 01, 2025
+
+============================================================
+Starting Incremental UFC Fight Scraper
+============================================================
+Found 754 total events on page
+  ✗ Reached already-scraped date: November 01, 2025
+
+Total new events to scrape: 0
+
+✓ No new fights to scrape. Database is up to date!
+2025-11-07 03:28:39,330 [INFO] ✓ Scraping completed: 0 new fights added
+2025-11-07 03:28:39,330 [INFO] 
+======================================================================
+2025-11-07 03:28:39,330 [INFO] NO NEW FIGHTS - Skipping remaining steps
+2025-11-07 03:28:39,330 [INFO] ======================================================================
+2025-11-07 03:28:39,330 [INFO] 
+======================================================================
+2025-11-07 03:28:39,330 [INFO] STEP 6: NOTIFICATION
+2025-11-07 03:28:39,330 [INFO] ======================================================================
+2025-11-07 03:28:39,330 [INFO] ✓ Auto-retraining success: No new fights to process
+2025-11-07 03:28:39,330 [INFO] Log file: logs/auto_retrain_20251107_032837.log
+2025-11-10 02:07:53,945 [INFO] ╔====================================================================╗
+2025-11-10 02:07:53,946 [INFO] ║               UFC FIGHT PREDICTOR AUTO-RETRAIN                     ║
+2025-11-10 02:07:53,946 [INFO] ║                    Started: 2025-11-10 02:07:53                     ║
+2025-11-10 02:07:53,946 [INFO] ╚====================================================================╝
+2025-11-10 02:07:53,946 [INFO] ======================================================================
+2025-11-10 02:07:53,946 [INFO] STEP 1: SCRAPING NEW FIGHTS
+2025-11-10 02:07:53,946 [INFO] ======================================================================
+Last scraped date: November 01, 2025
+
+============================================================
+Starting Incremental UFC Fight Scraper
+============================================================
+Found 755 total events on page
+  ✓ New event: November 08, 2025 (12 fights)
+  ✗ Reached already-scraped date: November 01, 2025
+
+Total new events to scrape: 1
+
+Processing event: November 08, 2025
+  Scraping fight 1/12... ✓
+  Scraping fight 2/12... ✓
+  Scraping fight 3/12... ✓
+  Scraping fight 4/12... ✓
+  Scraping fight 5/12... ✓
+  Scraping fight 6/12... ✓
+  Scraping fight 7/12... ✓
+  Scraping fight 8/12... ✓
+  Scraping fight 9/12... ✓
+  Scraping fight 10/12... ✓
+  Scraping fight 11/12... ✓
+  Scraping fight 12/12... ✓
+
+============================================================
+✓ Successfully scraped 12 new fights!
+============================================================
+
+2025-11-10 02:07:59,159 [INFO] ✓ Scraping completed: 12 new fights added
+2025-11-10 02:07:59,160 [INFO] 
+======================================================================
+2025-11-10 02:07:59,160 [INFO] STEP 2: PROCESSING NEW DATA
+2025-11-10 02:07:59,160 [INFO] ======================================================================
+
+============================================================
+Processing New Fights
+============================================================
+Found 12 new fights to process (out of 8603 total)
+Appending 10 new fights to data/modified_fight_details.csv
+✓ Successfully processed 10 new fights
+============================================================
+
+2025-11-10 02:07:59,366 [INFO] ✓ Processing completed: 10 new fights processed
+2025-11-10 02:07:59,367 [INFO] 
+======================================================================
+2025-11-10 02:07:59,367 [INFO] STEP 3: FEATURE ENGINEERING
+2025-11-10 02:07:59,367 [INFO] ======================================================================
+2025-11-10 02:07:59,367 [INFO] Force feature engineering enabled
+2025-11-10 02:07:59,367 [INFO] Running full feature engineering (process_fights_alpha.py)
+2025-11-10 02:08:05,590 [INFO] ✓ Feature engineering completed
+2025-11-10 02:08:05,591 [INFO] 
+======================================================================
+2025-11-10 02:08:05,591 [INFO] STEP 4: MODEL TRAINING
+2025-11-10 02:08:05,591 [INFO] ======================================================================
+2025-11-10 02:08:05,592 [INFO] Backing up existing models to saved_models/backup_20251110_020805
+2025-11-10 02:08:05,593 [INFO] Training model (this may take several minutes)...
+2025-11-10 02:08:05,598 [ERROR] ✗ Model training failed: [Errno 2] No such file or directory: 'python'
+2025-11-10 02:08:05,598 [ERROR] 
+
+FATAL ERROR: [Errno 2] No such file or directory: 'python'
+Traceback (most recent call last):
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/auto_retrain.py", line 487, in main
+    accuracy = run_model_training()
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/auto_retrain.py", line 203, in run_model_training
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/subprocess.py", line 1950, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'python'
+2025-11-10 02:08:05,601 [INFO] 
+======================================================================
+2025-11-10 02:08:05,601 [INFO] STEP 6: NOTIFICATION
+2025-11-10 02:08:05,601 [INFO] ======================================================================
+2025-11-10 02:08:05,601 [INFO] ✗ Auto-retraining failure: [Errno 2] No such file or directory: 'python'
+2025-11-10 02:08:05,601 [INFO] Log file: logs/auto_retrain_20251110_020753.log
+2025-11-14 03:00:21,144 [INFO] ╔====================================================================╗
+2025-11-14 03:00:21,144 [INFO] ║               UFC FIGHT PREDICTOR AUTO-RETRAIN                     ║
+2025-11-14 03:00:21,144 [INFO] ║                    Started: 2025-11-14 03:00:21                     ║
+2025-11-14 03:00:21,144 [INFO] ╚====================================================================╝
+2025-11-14 03:00:21,144 [INFO] ======================================================================
+2025-11-14 03:00:21,145 [INFO] STEP 1: SCRAPING NEW FIGHTS
+2025-11-14 03:00:21,145 [INFO] ======================================================================
+Last scraped date: November 08, 2025
+
+============================================================
+Starting Incremental UFC Fight Scraper
+============================================================
+Error fetching events: HTTPConnectionPool(host='ufcstats.com', port=80): Max retries exceeded with url: /statistics/events/completed?page=all (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x1403a2990>: Failed to resolve 'ufcstats.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+✓ No new fights to scrape. Database is up to date!
+2025-11-14 03:00:21,233 [INFO] ✓ Scraping completed: 0 new fights added
+2025-11-14 03:00:21,233 [INFO] 
+======================================================================
+2025-11-14 03:00:21,233 [INFO] NO NEW FIGHTS - Skipping remaining steps
+2025-11-14 03:00:21,233 [INFO] ======================================================================
+2025-11-14 03:00:21,233 [INFO] 
+======================================================================
+2025-11-14 03:00:21,233 [INFO] STEP 6: NOTIFICATION
+2025-11-14 03:00:21,233 [INFO] ======================================================================
+2025-11-14 03:00:21,233 [INFO] ✓ Auto-retraining success: No new fights to process
+2025-11-14 03:00:21,233 [INFO] Log file: logs/auto_retrain_20251114_030021.log
+2025-11-17 02:21:52,572 [INFO] ╔====================================================================╗
+2025-11-17 02:21:52,573 [INFO] ║               UFC FIGHT PREDICTOR AUTO-RETRAIN                     ║
+2025-11-17 02:21:52,573 [INFO] ║                    Started: 2025-11-17 02:21:52                     ║
+2025-11-17 02:21:52,573 [INFO] ╚====================================================================╝
+2025-11-17 02:21:52,573 [INFO] ======================================================================
+2025-11-17 02:21:52,573 [INFO] STEP 1: SCRAPING NEW FIGHTS
+2025-11-17 02:21:52,573 [INFO] ======================================================================
+Last scraped date: November 08, 2025
+
+============================================================
+Starting Incremental UFC Fight Scraper
+============================================================
+Found 756 total events on page
+  ✓ New event: November 15, 2025 (14 fights)
+  ✗ Reached already-scraped date: November 08, 2025
+
+Total new events to scrape: 1
+
+Processing event: November 15, 2025
+  Scraping fight 1/14... ✓
+  Scraping fight 2/14... ✓
+  Scraping fight 3/14... ✓
+  Scraping fight 4/14... ✓
+  Scraping fight 5/14... ✓
+  Scraping fight 6/14... ✓
+  Scraping fight 7/14... ✓
+  Scraping fight 8/14... ✓
+  Scraping fight 9/14... ✓
+  Scraping fight 10/14... ✓
+  Scraping fight 11/14... ✓
+  Scraping fight 12/14... ✗ HTTPConnectionPool(host='ufcstats.com', port=80): Read timed out. (read timeout=10)
+  Scraping fight 13/14... ✓
+  Scraping fight 14/14... ✓
+
+============================================================
+✓ Successfully scraped 13 new fights!
+============================================================
+
+2025-11-17 05:13:43,573 [INFO] ✓ Scraping completed: 13 new fights added
+2025-11-17 05:13:43,574 [INFO] 
+======================================================================
+2025-11-17 05:13:43,574 [INFO] STEP 2: PROCESSING NEW DATA
+2025-11-17 05:13:43,574 [INFO] ======================================================================
+
+============================================================
+Processing New Fights
+============================================================
+Found 13 new fights to process (out of 8616 total)
+Appending 11 new fights to data/modified_fight_details.csv
+✓ Successfully processed 11 new fights
+============================================================
+
+2025-11-17 05:13:43,789 [INFO] ✓ Processing completed: 11 new fights processed
+2025-11-17 05:13:43,790 [INFO] 
+======================================================================
+2025-11-17 05:13:43,790 [INFO] STEP 3: FEATURE ENGINEERING
+2025-11-17 05:13:43,790 [INFO] ======================================================================
+2025-11-17 05:13:43,790 [INFO] Force feature engineering enabled
+2025-11-17 05:13:43,790 [INFO] Running full feature engineering (process_fights_alpha.py)
+2025-11-17 05:13:50,178 [INFO] ✓ Feature engineering completed
+2025-11-17 05:13:50,178 [INFO] 
+======================================================================
+2025-11-17 05:13:50,179 [INFO] STEP 4: MODEL TRAINING
+2025-11-17 05:13:50,179 [INFO] ======================================================================
+2025-11-17 05:13:50,179 [INFO] Backing up existing models to saved_models/backup_20251117_051350
+2025-11-17 05:13:50,179 [INFO] Training model (this may take several minutes)...
+2025-11-17 05:30:54,163 [ERROR] Model training failed: Traceback (most recent call last):
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/ml_alpha_date.py", line 6, in <module>
+    import lightgbm as lgb
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/.venv/lib/python3.11/site-packages/lightgbm/__init__.py", line 8, in <module>
+    from .basic import Booster, Dataset, Sequence, register_logger
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/.venv/lib/python3.11/site-packages/lightgbm/basic.py", line 221, in <module>
+    _LIB = _load_lib()
+           ^^^^^^^^^^^
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/.venv/lib/python3.11/site-packages/lightgbm/basic.py", line 206, in _load_lib
+    lib = ctypes.cdll.LoadLibrary(lib_path[0])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ctypes/__init__.py", line 454, in LoadLibrary
+    return self._dlltype(name)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ctypes/__init__.py", line 376, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: dlopen(/Users/aalex_xuu/Desktop/UFCFightPredictor/.venv/lib/python3.11/site-packages/lightgbm/lib/lib_lightgbm.so, 0x0006): Library not loaded: @rpath/libomp.dylib
+  Referenced from: <97F50367-8270-3CAC-8F8E-9789105325A9> /Users/aalex_xuu/Desktop/UFCFightPredictor/.venv/lib/python3.11/site-packages/lightgbm/lib/lib_lightgbm.so
+  Reason: tried: '/usr/lib/libomp.dylib' (no such file, not in dyld cache)
+
+2025-11-17 05:30:54,163 [ERROR] ✗ Model training failed: Model training failed
+2025-11-17 05:30:54,163 [ERROR] 
+
+FATAL ERROR: Model training failed
+Traceback (most recent call last):
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/auto_retrain.py", line 487, in main
+    accuracy = run_model_training()
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/auto_retrain.py", line 223, in run_model_training
+    raise Exception("Model training failed")
+Exception: Model training failed
+2025-11-17 05:30:54,164 [INFO] 
+======================================================================
+2025-11-17 05:30:54,164 [INFO] STEP 6: NOTIFICATION
+2025-11-17 05:30:54,164 [INFO] ======================================================================
+2025-11-17 05:30:54,164 [INFO] ✗ Auto-retraining failure: Model training failed
+2025-11-17 05:30:54,164 [INFO] Log file: logs/auto_retrain_20251117_022152.log

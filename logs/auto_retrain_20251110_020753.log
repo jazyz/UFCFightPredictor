@@ -1,0 +1,51 @@
+2025-11-10 02:07:53,945 [INFO] ╔====================================================================╗
+2025-11-10 02:07:53,946 [INFO] ║               UFC FIGHT PREDICTOR AUTO-RETRAIN                     ║
+2025-11-10 02:07:53,946 [INFO] ║                    Started: 2025-11-10 02:07:53                     ║
+2025-11-10 02:07:53,946 [INFO] ╚====================================================================╝
+2025-11-10 02:07:53,946 [INFO] ======================================================================
+2025-11-10 02:07:53,946 [INFO] STEP 1: SCRAPING NEW FIGHTS
+2025-11-10 02:07:53,946 [INFO] ======================================================================
+2025-11-10 02:07:59,159 [INFO] ✓ Scraping completed: 12 new fights added
+2025-11-10 02:07:59,160 [INFO] 
+======================================================================
+2025-11-10 02:07:59,160 [INFO] STEP 2: PROCESSING NEW DATA
+2025-11-10 02:07:59,160 [INFO] ======================================================================
+2025-11-10 02:07:59,366 [INFO] ✓ Processing completed: 10 new fights processed
+2025-11-10 02:07:59,367 [INFO] 
+======================================================================
+2025-11-10 02:07:59,367 [INFO] STEP 3: FEATURE ENGINEERING
+2025-11-10 02:07:59,367 [INFO] ======================================================================
+2025-11-10 02:07:59,367 [INFO] Force feature engineering enabled
+2025-11-10 02:07:59,367 [INFO] Running full feature engineering (process_fights_alpha.py)
+2025-11-10 02:08:05,590 [INFO] ✓ Feature engineering completed
+2025-11-10 02:08:05,591 [INFO] 
+======================================================================
+2025-11-10 02:08:05,591 [INFO] STEP 4: MODEL TRAINING
+2025-11-10 02:08:05,591 [INFO] ======================================================================
+2025-11-10 02:08:05,592 [INFO] Backing up existing models to saved_models/backup_20251110_020805
+2025-11-10 02:08:05,593 [INFO] Training model (this may take several minutes)...
+2025-11-10 02:08:05,598 [ERROR] ✗ Model training failed: [Errno 2] No such file or directory: 'python'
+2025-11-10 02:08:05,598 [ERROR] 
+
+FATAL ERROR: [Errno 2] No such file or directory: 'python'
+Traceback (most recent call last):
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/auto_retrain.py", line 487, in main
+    accuracy = run_model_training()
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/auto_retrain.py", line 203, in run_model_training
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/subprocess.py", line 1950, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'python'
+2025-11-10 02:08:05,601 [INFO] 
+======================================================================
+2025-11-10 02:08:05,601 [INFO] STEP 6: NOTIFICATION
+2025-11-10 02:08:05,601 [INFO] ======================================================================
+2025-11-10 02:08:05,601 [INFO] ✗ Auto-retraining failure: [Errno 2] No such file or directory: 'python'
+2025-11-10 02:08:05,601 [INFO] Log file: logs/auto_retrain_20251110_020753.log

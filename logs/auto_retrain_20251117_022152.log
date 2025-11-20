@@ -1,0 +1,64 @@
+2025-11-17 02:21:52,572 [INFO] ╔====================================================================╗
+2025-11-17 02:21:52,573 [INFO] ║               UFC FIGHT PREDICTOR AUTO-RETRAIN                     ║
+2025-11-17 02:21:52,573 [INFO] ║                    Started: 2025-11-17 02:21:52                     ║
+2025-11-17 02:21:52,573 [INFO] ╚====================================================================╝
+2025-11-17 02:21:52,573 [INFO] ======================================================================
+2025-11-17 02:21:52,573 [INFO] STEP 1: SCRAPING NEW FIGHTS
+2025-11-17 02:21:52,573 [INFO] ======================================================================
+2025-11-17 05:13:43,573 [INFO] ✓ Scraping completed: 13 new fights added
+2025-11-17 05:13:43,574 [INFO] 
+======================================================================
+2025-11-17 05:13:43,574 [INFO] STEP 2: PROCESSING NEW DATA
+2025-11-17 05:13:43,574 [INFO] ======================================================================
+2025-11-17 05:13:43,789 [INFO] ✓ Processing completed: 11 new fights processed
+2025-11-17 05:13:43,790 [INFO] 
+======================================================================
+2025-11-17 05:13:43,790 [INFO] STEP 3: FEATURE ENGINEERING
+2025-11-17 05:13:43,790 [INFO] ======================================================================
+2025-11-17 05:13:43,790 [INFO] Force feature engineering enabled
+2025-11-17 05:13:43,790 [INFO] Running full feature engineering (process_fights_alpha.py)
+2025-11-17 05:13:50,178 [INFO] ✓ Feature engineering completed
+2025-11-17 05:13:50,178 [INFO] 
+======================================================================
+2025-11-17 05:13:50,179 [INFO] STEP 4: MODEL TRAINING
+2025-11-17 05:13:50,179 [INFO] ======================================================================
+2025-11-17 05:13:50,179 [INFO] Backing up existing models to saved_models/backup_20251117_051350
+2025-11-17 05:13:50,179 [INFO] Training model (this may take several minutes)...
+2025-11-17 05:30:54,163 [ERROR] Model training failed: Traceback (most recent call last):
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/ml_alpha_date.py", line 6, in <module>
+    import lightgbm as lgb
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/.venv/lib/python3.11/site-packages/lightgbm/__init__.py", line 8, in <module>
+    from .basic import Booster, Dataset, Sequence, register_logger
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/.venv/lib/python3.11/site-packages/lightgbm/basic.py", line 221, in <module>
+    _LIB = _load_lib()
+           ^^^^^^^^^^^
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/.venv/lib/python3.11/site-packages/lightgbm/basic.py", line 206, in _load_lib
+    lib = ctypes.cdll.LoadLibrary(lib_path[0])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ctypes/__init__.py", line 454, in LoadLibrary
+    return self._dlltype(name)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ctypes/__init__.py", line 376, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: dlopen(/Users/aalex_xuu/Desktop/UFCFightPredictor/.venv/lib/python3.11/site-packages/lightgbm/lib/lib_lightgbm.so, 0x0006): Library not loaded: @rpath/libomp.dylib
+  Referenced from: <97F50367-8270-3CAC-8F8E-9789105325A9> /Users/aalex_xuu/Desktop/UFCFightPredictor/.venv/lib/python3.11/site-packages/lightgbm/lib/lib_lightgbm.so
+  Reason: tried: '/usr/lib/libomp.dylib' (no such file, not in dyld cache)
+
+2025-11-17 05:30:54,163 [ERROR] ✗ Model training failed: Model training failed
+2025-11-17 05:30:54,163 [ERROR] 
+
+FATAL ERROR: Model training failed
+Traceback (most recent call last):
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/auto_retrain.py", line 487, in main
+    accuracy = run_model_training()
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aalex_xuu/Desktop/UFCFightPredictor/auto_retrain.py", line 223, in run_model_training
+    raise Exception("Model training failed")
+Exception: Model training failed
+2025-11-17 05:30:54,164 [INFO] 
+======================================================================
+2025-11-17 05:30:54,164 [INFO] STEP 6: NOTIFICATION
+2025-11-17 05:30:54,164 [INFO] ======================================================================
+2025-11-17 05:30:54,164 [INFO] ✗ Auto-retraining failure: Model training failed
+2025-11-17 05:30:54,164 [INFO] Log file: logs/auto_retrain_20251117_022152.log

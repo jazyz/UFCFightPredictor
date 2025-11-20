@@ -283,7 +283,17 @@ def find_fights(start_date, end_date, last_training_date, strategy):
     with open(filepath, newline='', encoding='utf-8') as csvfile:
         fight_reader = csv.DictReader(csvfile)
         for row in fight_reader:
-            event_date = datetime.strptime(row['event_date'], '%b %d %Y')
+            try:
+                # Strip whitespace and parse date
+                date_str = row['event_date'].strip()
+                # Skip if date is malformed (missing year or incomplete)
+                if not date_str or len(date_str.split()) < 3:
+                    continue
+                event_date = datetime.strptime(date_str, '%b %d %Y')
+            except (ValueError, KeyError) as e:
+                # Skip fights with malformed dates
+                continue
+            
             if start_date <= event_date <= end_date:
                 if event_date >= (last_training_date + retrain_time) and event_date < final_training_date:
                     last_training_date = event_date
@@ -349,6 +359,8 @@ def process_dates(start_date, end_date, strategy):
     print(f"Bets: {num_bets} | Wagered: ${total_wagered:.2f} | To Win: ${total_to_win:.2f}")
     print(f"Final Bankroll: ${bankroll:.2f} | P/L: ${profit_loss:.2f} | ROI: {roi:.2f}%")
     print(f"{'='*60}\n")
+    # Output final bankroll as plain number for auto_retrain parsing
+    print(bankroll)
     plot_bankrolls()
 
 def plot_bankrolls():
