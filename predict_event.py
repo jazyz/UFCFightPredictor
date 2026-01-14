@@ -287,7 +287,7 @@ def get_event_odds(fights):
 
 if __name__ == "__main__":
     # Test with UFC 322
-    test_url = "http://ufcstats.com/event-details/38e5d9dcb0fddc42"
+    test_url = "http://ufcstats.com/event-details/92c96df8bdab5fea"
     result = predict_event(test_url)
     
     if "error" in result:
