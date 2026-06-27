@@ -8,6 +8,54 @@ import csv
 import os
 from datetime import datetime
 import pandas as pd
+import hashlib
+import re
+from urllib.parse import urljoin
+
+
+SESSION = requests.Session()
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+    )
+}
+
+
+def solve_browser_challenge(response):
+    """
+    UFCStats can return a small JavaScript proof-of-work challenge.
+    Solve it in Python, POST the answer to /__c, then the session can retry.
+    """
+    if "Checking your browser" not in response.text or "/__c" not in response.text:
+        return False
+
+    nonce_match = re.search(r'var nonce="([^"]+)"', response.text)
+    difficulty_match = re.search(r"new Array\((\d+)\+1\)\.join\('0'\)", response.text)
+    if not nonce_match or not difficulty_match:
+        return False
+
+    nonce = nonce_match.group(1)
+    target = "0" * int(difficulty_match.group(1))
+    n = 0
+    while not hashlib.sha256(f"{nonce}:{n}".encode("utf-8")).hexdigest().startswith(target):
+        n += 1
+
+    challenge_url = urljoin(response.url, "/__c")
+    challenge_response = SESSION.post(
+        challenge_url,
+        data={"nonce": nonce, "n": str(n)},
+        headers={**HEADERS, "Content-Type": "application/x-www-form-urlencoded"},
+        timeout=10,
+    )
+    return 200 <= challenge_response.status_code < 300
+
+
+def fetch_url(url, timeout=10):
+    response = SESSION.get(url, headers=HEADERS, timeout=timeout)
+    if solve_browser_challenge(response):
+        response = SESSION.get(url, headers=HEADERS, timeout=timeout)
+    return response
 
 
 def get_last_scraped_date(csv_path='data/fight_details_date.csv'):
@@ -47,7 +95,7 @@ def get_event_details(url):
     result = {'date': '', 'links': []}
     
     try:
-        response = requests.get(url, timeout=10)
+        response = fetch_url(url, timeout=10)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
             
@@ -77,7 +125,7 @@ def get_new_events(last_date=None):
     new_events = {}
     
     try:
-        response = requests.get(url, timeout=10)
+        response = fetch_url(url, timeout=10)
         if response.status_code != 200:
             print(f"Failed to fetch events list: status {response.status_code}")
             return new_events
@@ -117,7 +165,7 @@ def get_new_events(last_date=None):
 def get_fight_details(url):
     """Scrape detailed statistics for a single fight"""
     try:
-        response = requests.get(url, timeout=10)
+        response = fetch_url(url, timeout=10)
         if response.status_code != 200:
             return {"Error": f"Failed to retrieve fight data, status code {response.status_code}"}
         

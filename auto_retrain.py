@@ -11,7 +11,7 @@ This script orchestrates the entire pipeline:
 6. Sends notifications
 
 Usage:
-    python auto_retrain.py [--force-full-scrape] [--skip-scrape] [--dry-run]
+    .venv/bin/python auto_retrain.py [--force-full-scrape] [--skip-scrape] [--dry-run]
 """
 
 import os
@@ -106,7 +106,7 @@ def run_data_processing():
         raise
 
 
-def run_feature_engineering():
+def run_feature_engineering(force=False):
     """
     Run feature engineering on the full dataset.
     This computes weighted averages, ELO ratings, etc.
@@ -120,13 +120,16 @@ def run_feature_engineering():
     
     try:
         # Check if we need full reprocessing
-        if needs_full_reprocess():
+        if force:
+            logging.info("Force feature engineering enabled")
+
+        if force or needs_full_reprocess():
             logging.info("Running full feature engineering (process_fights_alpha.py)")
             
             # Run as subprocess to avoid import conflicts
             import subprocess
             result = subprocess.run(
-                ['python', 'process_fights_alpha.py'],
+                [sys.executable, 'process_fights_alpha.py'],
                 capture_output=True,
                 text=True,
                 timeout=600  # 10 minute timeout
@@ -165,45 +168,46 @@ def run_model_training(skip_hyperparameter_tuning=True):
     logging.info("="*70)
     
     try:
-        # Backup existing model
-        model_dir = 'saved_models'
-        if os.path.exists(model_dir):
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        # Backup existing model artifacts
+        artifact_dirs = ['saved_models', 'saved_preprocessing']
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        for model_dir in artifact_dirs:
+            if not os.path.exists(model_dir):
+                continue
+
             backup_dir = f'{model_dir}/backup_{timestamp}'
-            logging.info(f"Backing up existing models to {backup_dir}")
+            logging.info(f"Backing up existing artifacts from {model_dir} to {backup_dir}")
             os.makedirs(backup_dir, exist_ok=True)
-            
+
             import shutil
             for file in os.listdir(model_dir):
-                if file.endswith('.txt') or file.endswith('.pkl'):
+                if file.endswith(('.txt', '.pkl', '.joblib', '.json')):
                     src = os.path.join(model_dir, file)
                     dst = os.path.join(backup_dir, file)
                     if os.path.isfile(src):
                         shutil.copy2(src, dst)
+
+        logging.info("Training final production model (this may take several minutes)...")
+
+        command = [sys.executable, 'train_final_model.py']
+        if os.path.exists(os.path.join('data', 'best_params.json')):
+            command.extend(['--params', os.path.join('data', 'best_params.json')])
         
-        logging.info("Training model (this may take several minutes)...")
+        # Train through today; the scraper only adds completed fights it can find.
+        command.extend(['--train-through', datetime.now().strftime('%Y-%m-%d')])
         
-        # Import and run model training
-        # Note: You may want to modify ml_alpha_date.py to accept parameters
-        # For now, we'll run it as-is
         import subprocess
         result = subprocess.run(
-            ['python', 'ml_alpha_date.py'],
+            command,
             capture_output=True,
             text=True,
             timeout=1800  # 30 minute timeout
         )
         
         if result.returncode == 0:
-            # Extract accuracy from output
-            output = result.stdout
-            for line in output.split('\n'):
-                if 'Accuracy:' in line:
-                    accuracy = float(line.split(':')[1].strip())
-                    logging.info(f"✓ Model training completed - Accuracy: {accuracy:.4f}")
-                    return accuracy
-            
-            logging.info("✓ Model training completed")
+            logging.info("✓ Final model training completed")
+            if result.stdout:
+                logging.info(result.stdout[-1000:])
             return None
         else:
             logging.error(f"Model training failed: {result.stderr}")
@@ -214,12 +218,12 @@ def run_model_training(skip_hyperparameter_tuning=True):
         raise
 
 
-def validate_model(min_accuracy=0.60):
+def validate_model(min_training_rows=500):
     """
-    Validate that the new model meets minimum standards.
+    Validate that the production model artifacts were written correctly.
     
     Args:
-        min_accuracy: Minimum acceptable accuracy
+        min_training_rows: Minimum acceptable number of training rows
     
     Returns:
         True if model passes validation
@@ -229,36 +233,40 @@ def validate_model(min_accuracy=0.60):
     logging.info("="*70)
     
     try:
-        # Check if best_params.json exists and is recent
-        params_path = 'data/best_params.json'
-        if os.path.exists(params_path):
-            with open(params_path, 'r') as f:
-                data = json.load(f)
-                
-            best_score = data.get('best_score')
-            if best_score:
-                logging.info(f"Model log loss: {best_score:.4f}")
-        
-        # Check if predicted_results.csv was created
-        results_path = 'data/predicted_results.csv'
-        if os.path.exists(results_path):
-            import pandas as pd
-            df = pd.read_csv(results_path)
-            
-            correct = (df['Predicted Result'] == df['Actual Result']).sum()
-            total = len(df)
-            accuracy = correct / total
-            
-            logging.info(f"Test accuracy: {accuracy:.4f} ({correct}/{total})")
-            
-            if accuracy < min_accuracy:
-                logging.warning(f"⚠ Model accuracy {accuracy:.4f} below threshold {min_accuracy}")
-                return False
-            else:
-                logging.info(f"✓ Model validation passed")
-                return True
-        
-        logging.info("✓ Model validation completed")
+        required_files = [
+            'saved_models/lgbm_single_model.joblib',
+            'saved_models/lgbm_single_model_metadata.json',
+            'saved_preprocessing/label_encoder_single.joblib',
+            'saved_preprocessing/selected_columns_single.json',
+        ]
+
+        missing = [path for path in required_files if not os.path.exists(path)]
+        if missing:
+            logging.error(f"Missing model artifacts: {missing}")
+            return False
+
+        with open('saved_models/lgbm_single_model_metadata.json', 'r') as f:
+            metadata = json.load(f)
+
+        training_rows = metadata.get('training_rows', 0)
+        feature_columns = metadata.get('feature_columns', 0)
+        max_feature_date = metadata.get('max_feature_date_used')
+
+        logging.info(f"Training rows: {training_rows}")
+        logging.info(f"Feature columns: {feature_columns}")
+        logging.info(f"Max feature date used: {max_feature_date}")
+
+        if training_rows < min_training_rows:
+            logging.warning(
+                f"Model trained on only {training_rows} rows; minimum is {min_training_rows}"
+            )
+            return False
+
+        if feature_columns == 0:
+            logging.warning("Model has no feature columns")
+            return False
+
+        logging.info("✓ Model artifact validation passed")
         return True
         
     except Exception as e:
@@ -280,27 +288,53 @@ def run_odds_scraper():
     try:
         import subprocess
         
-        logging.info("Running odds scraper...")
-        
-        result = subprocess.run(
+        logging.info("Running UFC.com odds scraper...")
+
+        ufc_result = subprocess.run(
             [sys.executable, 'scrapers/scrape_fights_with_odds.py'],
             cwd=os.path.dirname(os.path.abspath(__file__)),
             capture_output=True,
             text=True,
             timeout=600  # 10 minute timeout
         )
-        
-        if result.returncode == 0:
-            logging.info("✓ Odds scraping completed successfully")
-            return True
+
+        success = False
+        if ufc_result.returncode == 0:
+            logging.info("✓ UFC.com odds scraping completed successfully")
+            success = True
         else:
-            logging.warning(f"⚠ Odds scraping failed with exit code {result.returncode}")
-            if result.stderr:
-                logging.warning(f"Error: {result.stderr[:200]}")
-            return False
-        
+            logging.warning(f"⚠ UFC.com odds scraping failed with exit code {ufc_result.returncode}")
+            if ufc_result.stderr:
+                logging.warning(f"Error: {ufc_result.stderr[:200]}")
+
+        logging.info("Running BestFightOdds missing-odds backfill...")
+        bfo_result = subprocess.run(
+            [
+                sys.executable,
+                'scrapers/backfill_bestfightodds.py',
+                '--report',
+                os.path.join('data', 'bestfightodds_backfill_report.json'),
+            ],
+            cwd=os.path.dirname(os.path.abspath(__file__)),
+            capture_output=True,
+            text=True,
+            timeout=900  # 15 minute timeout
+        )
+
+        if bfo_result.returncode == 0:
+            logging.info("✓ BestFightOdds backfill completed successfully")
+            if bfo_result.stdout:
+                logging.info(bfo_result.stdout[-1000:])
+            success = True
+        else:
+            logging.warning(f"⚠ BestFightOdds backfill failed with exit code {bfo_result.returncode}")
+            if bfo_result.stderr:
+                logging.warning(f"Error: {bfo_result.stderr[:500]}")
+
+        return success
+
     except subprocess.TimeoutExpired:
-        logging.warning("⚠ Odds scraping timed out after 10 minutes")
+        logging.warning("⚠ Odds scraping/backfill timed out")
         return False
         
     except Exception as e:
@@ -333,44 +367,60 @@ def run_backtesting():
         
         logging.info(f"Running backtest from {start_str} to {end_str}...")
         
-        # Run testing script with date range arguments
+        summary_path = os.path.join('test_results', 'no_leakage_backtest_summary.json')
+
+        # Run leakage-safe rolling evaluator with date range arguments
         result = subprocess.run(
-            [sys.executable, 'testing/testing_time_period.py', start_str, end_str],
+            [
+                sys.executable,
+                'testing/no_leakage_backtest.py',
+                '--start-date',
+                start_str,
+                '--end-date',
+                end_str,
+                '--output-dir',
+                'test_results',
+            ],
             cwd=os.path.dirname(os.path.abspath(__file__)),
             capture_output=True,
             text=True,
-            timeout=300  # 5 minute timeout
+            timeout=900  # 15 minute timeout
         )
         
         if result.returncode == 0:
-            # Parse results from output
-            output_lines = result.stdout.strip().split('\n')
-            
-            # Look for bankroll result
-            bankroll = None
-            for line in reversed(output_lines):
-                if line.replace('.', '').replace('-', '').isdigit():
-                    try:
-                        bankroll = float(line)
-                        break
-                    except:
-                        continue
-            
-            if bankroll:
-                profit_pct = ((bankroll - 1000) / 1000) * 100
-                logging.info(f"✓ Backtesting completed")
-                logging.info(f"  Starting bankroll: $1000")
+            if not os.path.exists(summary_path):
+                logging.info("✓ Backtesting completed (summary file missing)")
+                return {'success': True}
+
+            with open(summary_path, 'r') as f:
+                summary = json.load(f)
+
+            bankroll = summary.get('final_bankroll')
+            profit_pct = summary.get('profit_pct')
+            accuracy = summary.get('accuracy')
+            predicted_fights = summary.get('predicted_fights')
+            skipped_fights = summary.get('skipped_fights')
+
+            logging.info(f"✓ Leakage-safe backtesting completed")
+            logging.info(f"  Predicted fights: {predicted_fights}")
+            logging.info(f"  Skipped fights: {skipped_fights}")
+            if accuracy is not None:
+                logging.info(f"  Accuracy: {accuracy:.4f}")
+            if bankroll is not None and profit_pct is not None:
                 logging.info(f"  Final bankroll: ${bankroll:.2f}")
                 logging.info(f"  Profit: {profit_pct:+.2f}%")
-                
-                return {
-                    'success': True,
-                    'bankroll': bankroll,
-                    'profit_pct': profit_pct
-                }
-            else:
-                logging.info("✓ Backtesting completed (no results available)")
-                return {'success': True}
+
+            for warning in summary.get('strict_coverage_messages', []):
+                logging.warning(f"Coverage warning: {warning}")
+
+            return {
+                'success': True,
+                'bankroll': bankroll,
+                'profit_pct': profit_pct,
+                'accuracy': accuracy,
+                'predicted_fights': predicted_fights,
+                'skipped_fights': skipped_fights,
+            }
         else:
             logging.warning(f"⚠ Backtesting failed with exit code {result.returncode}")
             if result.stderr:
@@ -463,7 +513,7 @@ def main():
             return 0
         
         # Step 3: Feature engineering
-        run_feature_engineering()
+        run_feature_engineering(force=args.force_process or args.force_full_scrape)
         
         # Step 4: Train model
         if not args.skip_training:

@@ -15,6 +15,67 @@ The auto-retraining system enables **automatic incremental updates** to your UFC
 
 ## Quick Start
 
+## Leak-Safe Current-Day Retrain + Evaluation
+
+As of June 27, 2026, the past-year evaluation window is:
+
+```bash
+2025-06-27 to 2026-06-27
+```
+
+Use this sequence when you want to update the deployable model and honestly evaluate it:
+
+```bash
+# 1. Pull new completed fights, process them, rebuild chronological features,
+#    train the final production model, scrape odds, and run the safe backtest.
+.venv/bin/python auto_retrain.py --force-process
+
+# 2. Or run the leakage-safe backtest directly for the current past-year window.
+.venv/bin/python testing/no_leakage_backtest.py \
+  --start-date 2025-06-27 \
+  --end-date 2026-06-27
+
+# 3. Or train only the final deployable model after data is current.
+.venv/bin/python train_final_model.py \
+  --train-through 2026-06-27 \
+  --params data/best_params.json
+```
+
+The safe evaluator writes:
+
+```bash
+test_results/no_leakage_backtest.csv
+test_results/no_leakage_backtest_summary.json
+```
+
+Leakage guarantees in `testing/no_leakage_backtest.py`:
+
+- each event-date model trains only on fights with `Date < event_date`
+- feature pruning/correlation filtering is fit only on that event's training rows
+- test rows are never used to fit the label encoder, feature selection, or model
+- the default backtest does not read `data/best_params.json`, because that file may have been tuned using future data
+- betting odds and winners are used only after prediction for scoring and bankroll simulation
+
+Before trusting a current-day run, check the coverage warnings in `no_leakage_backtest_summary.json`. If local `data/detailed_fights.csv` or `data/fight_results_with_odds.csv` stops well before the requested end date, rerun scraping first.
+
+Odds coverage now has three layers:
+
+- `scrapers/scrape_fights_with_odds.py` pulls the UFC.com odds table when available
+- `scrapers/backfill_bestfightodds.py` repairs missing or dash-only odds from BestFightOdds fighter/event pages
+- `data/supplemental_fight_odds.csv` stores audited fallback lines from MMA Mania and FightOdds GraphQL for rare rows that public event pages miss
+
+To run the odds repair directly:
+
+```bash
+.venv/bin/python scrapers/backfill_bestfightodds.py \
+  --start-date 2022-02-05 \
+  --end-date 2026-06-27 \
+  --date-tolerance-days 8 \
+  --report data/bestfightodds_backfill_all_report.json
+```
+
+The backfill report lists raw BestFightOdds misses separately from true post-supplemental misses. For the June 27, 2026 audit, `data/fight_results_with_odds.csv` had 2,314 rows, zero dash/bad odds rows, zero duplicate normalized date/fighter-pair keys, and zero supported feature rows without odds.
+
 ### 1. Make Scripts Executable
 
 ```bash
@@ -27,7 +88,7 @@ chmod +x auto_retrain.py
 Before scheduling, test that everything works:
 
 ```bash
-python auto_retrain.py
+.venv/bin/python auto_retrain.py
 ```
 
 This will:
@@ -102,7 +163,7 @@ Choose your schedule:
 **File**: `process_fights_alpha.py` (existing script)
 
 **What it does**:
-- Recomputes ELO ratings chronologically
+- Deduplicates exact fight rows and recomputes ELO ratings chronologically
 - Generates 180+ features per fight
 - Creates weighted averages of fighter stats
 - Outputs to `data/detailed_fights.csv`
@@ -111,13 +172,17 @@ Choose your schedule:
 
 ### Model Training
 
-**File**: `ml_alpha_date.py` (existing script)
+**File**: `train_final_model.py`
 
 **What it does**:
-- Trains LightGBM on full dataset
+- Trains LightGBM on all completed feature rows through an as-of date
 - Uses data augmentation (red/blue swapping)
-- Applies feature pruning
+- Applies feature pruning on the training data being fit
 - Saves model to `saved_models/`
+- Saves preprocessing files to `saved_preprocessing/`
+
+For honest historical evaluation, use `testing/no_leakage_backtest.py` instead of
+evaluating the final model on fights it was allowed to train on.
 
 ---
 
@@ -126,23 +191,23 @@ Choose your schedule:
 ### Basic Usage
 
 ```bash
-python auto_retrain.py
+.venv/bin/python auto_retrain.py
 ```
 
 ### Advanced Options
 
 ```bash
 # Skip scraping (testing only)
-python auto_retrain.py --skip-scrape
+.venv/bin/python auto_retrain.py --skip-scrape
 
 # Force scrape all fights from scratch
-python auto_retrain.py --force-full-scrape
+.venv/bin/python auto_retrain.py --force-full-scrape
 
 # Skip training (test pipeline only)
-python auto_retrain.py --skip-training
+.venv/bin/python auto_retrain.py --skip-training
 
 # Dry run (preview without changes)
-python auto_retrain.py --dry-run
+.venv/bin/python auto_retrain.py --dry-run
 ```
 
 ---
@@ -240,7 +305,7 @@ crontab -r
 **Solution**: 
 ```bash
 # Retry manually
-python auto_retrain.py
+.venv/bin/python auto_retrain.py
 
 # Check UFC stats site
 curl -I http://ufcstats.com/statistics/events/completed?page=all
@@ -282,10 +347,16 @@ python utils/incremental_processing.py
 ls -lh data/detailed_fights.csv
 
 # Run feature engineering manually
-python process_fights_alpha.py
+.venv/bin/python process_fights_alpha.py
 
 # Check Python dependencies
-pip install -r requirements.txt
+.venv/bin/pip install -r requirements.txt
+
+# macOS LightGBM also needs OpenMP at runtime
+brew install libomp
+
+# Try final training manually
+.venv/bin/python train_final_model.py --params data/best_params.json
 ```
 
 ---
@@ -305,7 +376,7 @@ pip install -r requirements.txt
 sudo launchctl list | grep cron
 
 # Test command manually
-cd /path/to/UFCFightPredictor && python auto_retrain.py
+cd /path/to/UFCFightPredictor && .venv/bin/python auto_retrain.py
 
 # Check cron logs (if available)
 grep CRON /var/log/system.log
@@ -436,7 +507,7 @@ UFCFightPredictor/
 
 1. **Test the system**:
    ```bash
-   python auto_retrain.py --skip-training
+   .venv/bin/python auto_retrain.py --skip-training
    ```
 
 2. **Schedule it**:
@@ -463,13 +534,13 @@ A: No, but avoid running both simultaneously. The system backs up models before 
 A: Yes! Just update the paths in `setup_cron.sh` and ensure Python dependencies are installed.
 
 **Q: What if I want to force a full rescrape?**  
-A: Run `python auto_retrain.py --force-full-scrape`
+A: Run `.venv/bin/python auto_retrain.py --force-full-scrape`
 
 **Q: How do I disable auto-retraining temporarily?**  
 A: Comment out the cron line: `crontab -e` then add `#` before the line.
 
 **Q: Does this work with the ensemble model?**  
-A: Currently uses `ml_alpha_date.py`. You can modify `auto_retrain.py` to use `ml_ensemble.py` instead.
+A: The auto-retrain path now trains the single production model with `train_final_model.py`. You can still adapt `auto_retrain.py` to call `ml_ensemble.py` if you want the scheduled job to publish the ensemble instead.
 
 ---
 
@@ -477,9 +548,9 @@ A: Currently uses `ml_alpha_date.py`. You can modify `auto_retrain.py` to use `m
 
 For issues or questions:
 1. Check the logs: `logs/auto_retrain_*.log`
-2. Run with verbose output: `python auto_retrain.py`
+2. Run with verbose output: `.venv/bin/python auto_retrain.py`
 3. Test individual components:
-   - `python scrapers/scrape_incremental.py`
+   - `.venv/bin/python scrapers/scrape_incremental.py`
    - `python utils/incremental_processing.py`
 
 Happy auto-retraining! 🥊🤖

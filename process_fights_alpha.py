@@ -1,10 +1,13 @@
 import csv
 import random
+import unicodedata
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from models import db, Fighter, Fight
 import os
+
+random.seed(42)
 
 # retrieve data from Flask database
 app = Flask(__name__)
@@ -18,12 +21,55 @@ def query_fighter_by_name(name):
 
 file_path = os.path.join('data', 'modified_fight_details.csv')
 
-def reverse_csv_to_dict(file_path):
+def parse_date_for_sort(date_string):
+    if not date_string:
+        return datetime.max
+
+    for date_format in ("%B %d, %Y", "%Y-%m-%d", "%m/%d/%Y", "%b %d, %Y"):
+        try:
+            return datetime.strptime(date_string, date_format)
+        except ValueError:
+            continue
+
+    return datetime.max
+
+
+def csv_to_chronological_dict(file_path):
     with open(file_path, mode='r') as file:
         csv_reader = csv.DictReader(file)
-        # return list(csv_reader)
-        reversed_rows = list(csv_reader)[::-1]
-        return reversed_rows
+        rows = list(csv_reader)
+
+    def normalize_name(name):
+        ascii_name = unicodedata.normalize("NFKD", str(name)).encode("ascii", "ignore").decode("ascii")
+        return " ".join(ascii_name.strip().lower().split())
+
+    def normalized_date(date_string):
+        parsed = parse_date_for_sort(date_string)
+        if parsed == datetime.max:
+            return str(date_string).strip()
+        return parsed.date().isoformat()
+
+    unique_rows = []
+    seen = set()
+    for row in rows:
+        key = (
+            normalized_date(row.get('Date', '')),
+            row.get('Title', ''),
+            frozenset({
+                normalize_name(row.get('Red Fighter', '')),
+                normalize_name(row.get('Blue Fighter', '')),
+            }),
+            normalize_name(row.get('Winner', '')),
+            row.get('Method', ''),
+            row.get('Round', ''),
+            row.get('Time', ''),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        unique_rows.append(row)
+
+    return sorted(unique_rows, key=lambda row: parse_date_for_sort(row.get('Date', '')))
 
 def get_csv_headers(file_path):
     with open(file_path, mode='r') as file:
@@ -71,7 +117,7 @@ def split_at_first_space(text):
     
 fighter_stats = dict()
 
-fights = reverse_csv_to_dict(file_path)
+fights = csv_to_chronological_dict(file_path)
 
 all_fighters = set()
 for fight in fights:
