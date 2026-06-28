@@ -1,0 +1,229 @@
+{
+  "predictions_path": "test_results/residual_shrinkage_audit/holdout_shrinkage_predictions.csv",
+  "ledger_path": "test_results/nested_edge_long/ledgers/regularized_lgbm_2022_2026/no_leakage_backtest.csv",
+  "fights": 704,
+  "seed": 20260628,
+  "iterations": 20000,
+  "market_null_iterations": 20000,
+  "fixed_policy": {
+    "min_edge": 0.02,
+    "min_probability": 0.6,
+    "max_underdog_odds": 300.0,
+    "stake_units": 1.0
+  },
+  "policies": {
+    "selected_shrinkage": {
+      "fights": 704,
+      "bets": 399,
+      "events_with_bets": 100,
+      "profit": 4.551322191409852,
+      "roi": 0.011406822534861786,
+      "actual_win_rate": 0.7418546365914787,
+      "mean_probability": 0.7539914383474384,
+      "mean_market_probability": 0.7053891822761647,
+      "mean_edge": 0.04860225607127395,
+      "actual_minus_market": 0.036465454315314005,
+      "positive_folds": 3,
+      "folds_with_bets": 5,
+      "folds": [
+        {
+          "fold": 1,
+          "bets": 109,
+          "profit": 3.6424870386510153,
+          "roi": 0.033417312281201976,
+          "events": 23
+        },
+        {
+          "fold": 2,
+          "bets": 72,
+          "profit": 5.958407781000798,
+          "roi": 0.08275566362501108,
+          "events": 19
+        },
+        {
+          "fold": 3,
+          "bets": 98,
+          "profit": -5.057838655804306,
+          "roi": -0.05161059852861537,
+          "events": 23
+        },
+        {
+          "fold": 4,
+          "bets": 60,
+          "profit": 4.293208610691018,
+          "roi": 0.07155347684485029,
+          "events": 18
+        },
+        {
+          "fold": 5,
+          "bets": 60,
+          "profit": -4.284942583128668,
+          "roi": -0.07141570971881113,
+          "events": 17
+        }
+      ],
+      "event_bootstrap": {
+        "events": 100,
+        "iterations": 20000,
+        "profit_ci_95": [
+          -19.69061363228577,
+          27.923810998821107
+        ],
+        "prob_profit_le_zero": 0.35415
+      },
+      "market_null": {
+        "iterations": 20000,
+        "observed_profit": 4.551322191409852,
+        "null_mean_profit": -16.902526495499252,
+        "null_profit_ci_95": [
+          -41.673904875617836,
+          7.939958529539645
+        ],
+        "p_value_observed_or_better": 0.046197690115494225,
+        "prob_null_profitable": 0.0918
+      }
+    },
+    "fixed_half_residual": {
+      "fights": 704,
+      "bets": 288,
+      "events_with_bets": 96,
+      "profit": 8.393668483471776,
+      "roi": 0.029144682234277002,
+      "actual_win_rate": 0.7569444444444444,
+      "mean_probability": 0.739391139025461,
+      "mean_market_probability": 0.7091064746896438,
+      "mean_edge": 0.03028466433581725,
+      "actual_minus_market": 0.04783796975480059,
+      "positive_folds": 3,
+      "folds_with_bets": 5,
+      "folds": [
+        {
+          "fold": 1,
+          "bets": 80,
+          "profit": 4.710221191134126,
+          "roi": 0.05887776488917658,
+          "events": 22
+        },
+        {
+          "fold": 2,
+          "bets": 48,
+          "profit": 6.7035699878267945,
+          "roi": 0.13965770807972488,
+          "events": 19
+        },
+        {
+          "fold": 3,
+          "bets": 67,
+          "profit": -3.455083571873986,
+          "roi": -0.05156841152050726,
+          "events": 22
+        },
+        {
+          "fold": 4,
+          "bets": 44,
+          "profit": 2.7361951081743574,
+          "roi": 0.062186252458508125,
+          "events": 17
+        },
+        {
+          "fold": 5,
+          "bets": 49,
+          "profit": -2.3012342317895147,
+          "roi": -0.046963963914071725,
+          "events": 16
+        }
+      ],
+      "event_bootstrap": {
+        "events": 96,
+        "iterations": 20000,
+        "profit_ci_95": [
+          -11.209124750542419,
+          27.451917689936536
+        ],
+        "prob_profit_le_zero": 0.1971
+      },
+      "market_null": {
+        "iterations": 20000,
+        "observed_profit": 8.393668483471776,
+        "null_mean_profit": -12.29711695437245,
+        "null_profit_ci_95": [
+          -33.52212501332107,
+          8.118028500137472
+        ],
+        "p_value_observed_or_better": 0.023648817559122043,
+        "prob_null_profitable": 0.12315
+      }
+    },
+    "unshrunk_meta": {
+      "fights": 704,
+      "bets": 418,
+      "events_with_bets": 102,
+      "profit": 3.401886297961987,
+      "roi": 0.008138483966416237,
+      "actual_win_rate": 0.7392344497607656,
+      "mean_probability": 0.7567332395678285,
+      "mean_market_probability": 0.7042024438773514,
+      "mean_edge": 0.052530795690477125,
+      "actual_minus_market": 0.03503200588341415,
+      "positive_folds": 3,
+      "folds_with_bets": 5,
+      "folds": [
+        {
+          "fold": 1,
+          "bets": 109,
+          "profit": 3.6424870386510153,
+          "roi": 0.033417312281201976,
+          "events": 23
+        },
+        {
+          "fold": 2,
+          "bets": 72,
+          "profit": 5.958407781000798,
+          "roi": 0.08275566362501108,
+          "events": 19
+        },
+        {
+          "fold": 3,
+          "bets": 98,
+          "profit": -5.057838655804306,
+          "roi": -0.05161059852861537,
+          "events": 23
+        },
+        {
+          "fold": 4,
+          "bets": 71,
+          "profit": 2.352226259065507,
+          "roi": 0.03312994731078179,
+          "events": 18
+        },
+        {
+          "fold": 5,
+          "bets": 68,
+          "profit": -3.493396124951026,
+          "roi": -0.05137347242575038,
+          "events": 19
+        }
+      ],
+      "event_bootstrap": {
+        "events": 102,
+        "iterations": 20000,
+        "profit_ci_95": [
+          -21.181479751514345,
+          27.782978728907118
+        ],
+        "prob_profit_le_zero": 0.38855
+      },
+      "market_null": {
+        "iterations": 20000,
+        "observed_profit": 3.401886297961987,
+        "null_mean_profit": -17.874083529280387,
+        "null_profit_ci_95": [
+          -43.22592986458571,
+          7.3885657420958575
+        ],
+        "p_value_observed_or_better": 0.04869756512174391,
+        "prob_null_profitable": 0.0814
+      }
+    }
+  }
+}

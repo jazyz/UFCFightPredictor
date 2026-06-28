@@ -563,6 +563,34 @@ half-residual diagnostic. It still is not a live edge claim: event-bootstrap
 uncertainty crosses zero, one of five folds is negative, and the negative fold
 is the most recent 2026 holdout.
 
+### Residual Shrinkage Fixed PnL Audit
+
+Residual shrinkage fixed-policy PnL audit:
+
+```text
+testing/residual_shrinkage_fixed_pnl_audit.py
+test_results/residual_shrinkage_fixed_pnl_audit/RESIDUAL_SHRINKAGE_FIXED_PNL_AUDIT_SUMMARY.md
+test_results/residual_shrinkage_fixed_pnl_audit/residual_shrinkage_fixed_pnl_audit.json
+```
+
+This audit applies the already frozen residual-meta paper thresholds to the
+out-of-sample shrinkage probabilities. It does not select new betting
+thresholds from the shrinkage holdout outcomes. Fixed rule: best residual edge,
+minimum edge `0.02`, minimum probability `0.60`, maximum underdog odds `+300`,
+flat `1u`.
+
+| Probability Policy | Bets | Profit | ROI | Actual - Market | Positive Folds | Bootstrap P(profit <= 0) | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| selected shrinkage | 399 | +4.55u | 1.14% | +3.65% | 3 / 5 | 0.354 | 0.046 |
+| fixed half residual | 288 | +8.39u | 2.91% | +4.78% | 3 / 5 | 0.197 | 0.024 |
+| unshrunk residual meta | 418 | +3.40u | 0.81% | +3.50% | 3 / 5 | 0.389 | 0.049 |
+
+Interpretation: this is directionally supportive but not enough for a live
+edge claim. The best conditional market-null p-value is `0.024` for fixed-half
+residual, or about `0.071` after a simple correction across the three
+probability policies. Event-bootstrap profit intervals still cross zero, and
+only `3/5` folds are positive for every policy.
+
 ### Residual Meta PnL Audit
 
 Residual meta PnL audit:
@@ -972,6 +1000,11 @@ The most honest read:
   the capped-grid selected scale has market-null p-value `0.005`, or about
   `0.015` after a simple three-policy correction, but event-bootstrap
   uncertainty still crosses zero and the latest 2026 fold is negative
+- fixed-threshold shrinkage PnL is positive but still weak: selected shrinkage
+  produced `+4.55u`, fixed-half residual `+8.39u`, and unshrunk meta `+3.40u`;
+  the best conditional market-null p-value is `0.024`, or about `0.071` after
+  a simple three-policy correction, while event-bootstrap profit uncertainty
+  still crosses zero
 - nested residual-meta PnL tests are positive across objective sensitivities,
   but their best selection-adjusted market-null p-value is only `0.066`
   before correcting for three inspected objectives
