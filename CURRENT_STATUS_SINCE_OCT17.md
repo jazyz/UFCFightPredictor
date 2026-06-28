@@ -550,17 +550,19 @@ with grids over model label, minimum edge, minimum model probability, and a
 
 Results across seven forward folds:
 
-| Selection Objective | Bets | Profit | Flat ROI | Actual - Market | Positive Folds | Market-Null p |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| profit | 373 | -3.49u | -0.93% | +2.47% | 4 / 7 | 0.342 |
-| ROI | 161 | +10.15u | +6.30% | +5.07% | 4 / 7 | 0.107 |
-| actual - market | 167 | +15.22u | +9.11% | +6.72% | 5 / 7 | 0.090 |
+| Selection Objective | Bets | Profit | Flat ROI | Actual - Market | Positive Folds | Market-Null p | Selection-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| profit | 373 | -3.49u | -0.93% | +2.47% | 4 / 7 | 0.342 | 0.360 |
+| ROI | 161 | +10.15u | +6.30% | +5.07% | 4 / 7 | 0.107 | 0.130 |
+| actual - market | 167 | +15.22u | +9.11% | +6.72% | 5 / 7 | 0.090 | 0.076 |
 
 Interpretation: the forward-selected disagreement rule family is promising but
-still not a real edge claim. The profit objective went slightly negative, and
-the best uncorrected market-null p-value was only `0.090`. Since three
-selection objectives were inspected, a simple Bonferroni adjustment puts the
-best p-value around `0.27`.
+still not a real edge claim. The profit objective went slightly negative. The
+best conditional market-null p-value was `0.090`; the stricter
+selection-adjusted market-null p-value, which reruns policy selection under
+market-simulated outcomes, was `0.076`. Since three selection objectives were
+inspected, a simple Bonferroni adjustment puts the best selection-adjusted
+p-value around `0.23`.
 
 ### Outcome Universe Audit
 
@@ -634,7 +636,8 @@ The most honest read:
 - edge-only model/market disagreement is negative in flat-bet tests; the more
   interesting pockets require both positive edge and a model-probability floor
 - forward-selected simple disagreement policies remain weak after objective
-  sensitivity; the best uncorrected market-null p-value is `0.090`
+  sensitivity; the best selection-adjusted market-null p-value is `0.076`
+  before correcting for three inspected objectives
 - profitable PnL variants remain sensitive to model policy and threshold search
 - the best disagreement pockets are not uniformly stable by year, with the
   regularized `model P >= 0.60, edge >= 0.08` slice losing in 2023

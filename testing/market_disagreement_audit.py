@@ -134,6 +134,17 @@ def load_ledger(path: Path, label: str) -> pd.DataFrame:
                 "model_label": label,
                 "event_date": event_date,
                 "period": event_date.to_period("Y").year if pd.notna(event_date) else None,
+                "fight_key": "|".join(
+                    [
+                        event_date.date().isoformat() if pd.notna(event_date) else "",
+                        fighter1,
+                        fighter2,
+                    ]
+                ),
+                "fighter1_key": fighter1,
+                "fighter2_key": fighter2,
+                "fighter1_market_probability": market1,
+                "fighter2_market_probability": market2,
                 "red_model_probability": red_model,
                 "red_market_probability": red_market,
                 "red_won": winner == red,

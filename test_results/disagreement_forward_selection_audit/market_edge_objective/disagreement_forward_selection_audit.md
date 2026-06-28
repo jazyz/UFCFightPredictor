@@ -25,7 +25,24 @@ Minimum development bets: 35
 | actual - market | 6.72% |
 | positive folds | 5 / 7 |
 | market-null p-value | 0.090 |
+| selection-adjusted market-null p-value | 0.076 |
 | event-bootstrap P(profit <= 0) | 0.124 |
+
+## Selection-Adjusted Market Null
+
+This null simulates fight outcomes from de-vigged market probabilities
+and reruns the same fold-level policy selection in each simulated
+world. It asks how often the policy search itself finds holdout
+profit at least as high as the observed result.
+
+| Metric | Value |
+| --- | ---: |
+| iterations | 2000 |
+| observed profit | +15.22u |
+| null mean profit | -7.65u |
+| null 95% profit interval | -40.69u to +24.17u |
+| p-value observed or better | 0.076 |
+| probability null profitable | 0.333 |
 
 ## Selected Policy Counts
 

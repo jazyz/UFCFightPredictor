@@ -33,6 +33,7 @@
   "step_days": 182,
   "min_dev_bets": 35,
   "iterations": 20000,
+  "selection_null_iterations": 2000,
   "seed": 20260628,
   "aggregate": {
     "folds": 7,
@@ -72,6 +73,39 @@
     ],
     "p_value_observed_or_better": 0.3424828758562072,
     "prob_null_profitable": 0.28565
+  },
+  "selection_adjusted_market_null": {
+    "iterations": 2000,
+    "observed_profit": -3.4867046681371505,
+    "null_mean_profit": -9.278564406496981,
+    "null_profit_ci_95": [
+      -43.81510268133772,
+      27.498396785493604
+    ],
+    "p_value_observed_or_better": 0.36031984007996004,
+    "prob_null_profitable": 0.289,
+    "selected_policy_counts": {
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.16, \"min_probability\": 0.5, \"model_label\": \"regularized_lgbm\"}": 516,
+      "{\"max_underdog_odds\": null, \"min_edge\": 0.16, \"min_probability\": 0.5, \"model_label\": \"baseline_default\"}": 406,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.12, \"min_probability\": 0.5, \"model_label\": \"regularized_lgbm\"}": 376,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.16, \"min_probability\": 0.5, \"model_label\": \"baseline_default\"}": 368,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.05, \"min_probability\": 0.65, \"model_label\": \"regularized_lgbm\"}": 355,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.08, \"min_probability\": 0.65, \"model_label\": \"regularized_lgbm\"}": 344,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.0, \"min_probability\": 0.65, \"model_label\": \"regularized_lgbm\"}": 331,
+      "{\"max_underdog_odds\": null, \"min_edge\": 0.16, \"min_probability\": 0.5, \"model_label\": \"regularized_lgbm\"}": 327,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.02, \"min_probability\": 0.65, \"model_label\": \"regularized_lgbm\"}": 313,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.16, \"min_probability\": 0.55, \"model_label\": \"regularized_lgbm\"}": 302,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.0, \"min_probability\": 0.5, \"model_label\": \"regularized_lgbm\"}": 292,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.08, \"min_probability\": 0.6, \"model_label\": \"regularized_lgbm\"}": 267,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.08, \"min_probability\": 0.5, \"model_label\": \"regularized_lgbm\"}": 264,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.16, \"min_probability\": 0.65, \"model_label\": \"baseline_default\"}": 259,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.12, \"min_probability\": 0.5, \"model_label\": \"baseline_default\"}": 251,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.16, \"min_probability\": 0.6, \"model_label\": \"baseline_default\"}": 248,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.0, \"min_probability\": 0.65, \"model_label\": \"baseline_default\"}": 240,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.12, \"min_probability\": 0.65, \"model_label\": \"baseline_default\"}": 240,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.05, \"min_probability\": 0.5, \"model_label\": \"regularized_lgbm\"}": 233,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.08, \"min_probability\": 0.65, \"model_label\": \"baseline_default\"}": 232
+    }
   },
   "event_bootstrap": {
     "events": 136,

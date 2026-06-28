@@ -69,6 +69,15 @@ def parse_args():
     parser.add_argument("--threshold", action="append", type=float)
     parser.add_argument("--min-probability", action="append", type=float)
     parser.add_argument("--iterations", type=int, default=20000)
+    parser.add_argument(
+        "--selection-null-iterations",
+        type=int,
+        default=2000,
+        help=(
+            "market-null simulations that rerun fold-level policy selection; "
+            "set to 0 to skip"
+        ),
+    )
     parser.add_argument("--seed", type=int, default=20260628)
     parser.add_argument(
         "--output-dir",
@@ -206,6 +215,29 @@ def objective_score(summary: dict, min_dev_bets: int, objective: str) -> tuple:
     if objective == "market_edge":
         return (market_edge, roi, summary["profit"], summary["bets"])
     return (summary["profit"], roi, market_edge, summary["bets"])
+
+
+def simulated_objective_score(
+    profit: float,
+    win_count: int,
+    bet_count: int,
+    mean_market_probability: float,
+    min_dev_bets: int,
+    objective: str,
+) -> tuple:
+    if bet_count < min_dev_bets:
+        return (-math.inf,)
+    roi = profit / bet_count if bet_count else -math.inf
+    market_edge = (
+        win_count / bet_count - mean_market_probability
+        if bet_count and np.isfinite(mean_market_probability)
+        else -math.inf
+    )
+    if objective == "roi":
+        return (roi, profit, market_edge, bet_count)
+    if objective == "market_edge":
+        return (market_edge, roi, profit, bet_count)
+    return (profit, roi, market_edge, bet_count)
 
 
 def select_policy_for_fold(
@@ -367,6 +399,144 @@ def event_bootstrap(bets: pd.DataFrame, iterations: int, rng) -> dict | None:
     }
 
 
+def precompute_policy_windows(
+    df: pd.DataFrame,
+    policies: list[DisagreementPolicy],
+    fold_specs: list[tuple[int, pd.Timestamp, pd.Timestamp, pd.Timestamp, pd.Timestamp]],
+) -> list[dict]:
+    event_days = df["event_date"].dt.floor("D").to_numpy(dtype="datetime64[D]")
+    model_labels = df["model_label"].astype(str).to_numpy()
+    selected_edge = df["selected_edge"].astype(float).to_numpy()
+    selected_model_probability = df["selected_model_probability"].astype(float).to_numpy()
+    selected_market_probability = df["selected_market_probability"].astype(float).to_numpy()
+    selected_odds = df["selected_odds"].astype(float).to_numpy()
+
+    policy_base_masks = []
+    for policy in policies:
+        mask = (
+            (model_labels == policy.model_label)
+            & (selected_edge >= policy.min_edge)
+            & (selected_model_probability >= policy.min_probability)
+        )
+        if policy.max_underdog_odds is not None:
+            mask &= selected_odds <= policy.max_underdog_odds
+        policy_base_masks.append(mask)
+
+    fold_windows = []
+    for fold_index, dev_start, dev_end, holdout_start, holdout_end in fold_specs:
+        dev_start_day = np.datetime64(dev_start.date())
+        dev_end_day = np.datetime64(dev_end.date())
+        holdout_start_day = np.datetime64(holdout_start.date())
+        holdout_end_day = np.datetime64(holdout_end.date())
+        dev_date_mask = (event_days >= dev_start_day) & (event_days <= dev_end_day)
+        holdout_date_mask = (event_days >= holdout_start_day) & (event_days <= holdout_end_day)
+
+        candidates = []
+        for policy, base_mask in zip(policies, policy_base_masks):
+            dev_indices = np.flatnonzero(base_mask & dev_date_mask)
+            holdout_indices = np.flatnonzero(base_mask & holdout_date_mask)
+            candidates.append(
+                {
+                    "policy": policy,
+                    "dev_indices": dev_indices,
+                    "holdout_indices": holdout_indices,
+                    "dev_bets": int(len(dev_indices)),
+                    "holdout_bets": int(len(holdout_indices)),
+                    "dev_mean_market_probability": float(np.mean(selected_market_probability[dev_indices]))
+                    if len(dev_indices)
+                    else math.nan,
+                }
+            )
+        fold_windows.append({"fold_index": fold_index, "candidates": candidates})
+    return fold_windows
+
+
+def fight_level_market_draws(df: pd.DataFrame, rng) -> np.ndarray:
+    fight_keys = df["fight_key"].astype(str)
+    unique_fights, inverse = np.unique(fight_keys.to_numpy(), return_inverse=True)
+    fighter1_market = (
+        df.groupby("fight_key", sort=True)["fighter1_market_probability"]
+        .first()
+        .reindex(unique_fights)
+        .astype(float)
+        .to_numpy()
+    )
+    fighter1_market = np.clip(fighter1_market, 1e-12, 1.0 - 1e-12)
+    fighter1_wins = rng.random(len(unique_fights)) < fighter1_market
+    selected_side = df["selected_side"].astype(int).to_numpy()
+    return np.where(selected_side == 1, fighter1_wins[inverse], ~fighter1_wins[inverse])
+
+
+def selection_adjusted_market_null(
+    df: pd.DataFrame,
+    policies: list[DisagreementPolicy],
+    fold_specs: list[tuple[int, pd.Timestamp, pd.Timestamp, pd.Timestamp, pd.Timestamp]],
+    observed_profit: float,
+    iterations: int,
+    rng,
+    min_dev_bets: int,
+    objective: str,
+) -> dict | None:
+    if iterations <= 0:
+        return None
+    if df.empty or not policies or not fold_specs:
+        return None
+
+    fold_windows = precompute_policy_windows(df, policies, fold_specs)
+    multiples = np.array([net_odds(value) for value in df["selected_odds"]], dtype=float)
+    if not np.isfinite(multiples).all():
+        return None
+
+    profits = np.empty(iterations, dtype=float)
+    selected_policy_counts = Counter()
+    cursor = 0
+    while cursor < iterations:
+        simulated_won = fight_level_market_draws(df, rng)
+        simulated_profit = np.where(simulated_won, multiples, -1.0)
+        aggregate_profit = 0.0
+
+        for fold in fold_windows:
+            best_candidate = None
+            best_score = (-math.inf,)
+            for candidate in fold["candidates"]:
+                dev_indices = candidate["dev_indices"]
+                if candidate["dev_bets"] < min_dev_bets:
+                    continue
+                dev_profit = float(simulated_profit[dev_indices].sum())
+                dev_wins = int(simulated_won[dev_indices].sum())
+                score = simulated_objective_score(
+                    dev_profit,
+                    dev_wins,
+                    candidate["dev_bets"],
+                    candidate["dev_mean_market_probability"],
+                    min_dev_bets,
+                    objective,
+                )
+                if score > best_score:
+                    best_score = score
+                    best_candidate = candidate
+
+            if best_candidate is None or not np.isfinite(best_score[0]):
+                continue
+            selected_policy_counts[json.dumps(asdict(best_candidate["policy"]), sort_keys=True)] += 1
+            holdout_indices = best_candidate["holdout_indices"]
+            if len(holdout_indices):
+                aggregate_profit += float(simulated_profit[holdout_indices].sum())
+
+        profits[cursor] = aggregate_profit
+        cursor += 1
+
+    return {
+        "iterations": int(iterations),
+        "observed_profit": float(observed_profit),
+        "null_mean_profit": float(np.mean(profits)),
+        "null_profit_ci_95": [float(x) for x in np.percentile(profits, [2.5, 97.5])],
+        "p_value_observed_or_better": float((np.sum(profits >= observed_profit) + 1) / (iterations + 1)),
+        "prob_null_profitable": float(np.mean(profits > 0)),
+        "selected_policy_counts": dict(selected_policy_counts.most_common(20)),
+    }
+
+
 def fmt_pct(value) -> str:
     if value is None or not np.isfinite(value):
         return ""
@@ -402,6 +572,7 @@ def policy_label(policy: dict) -> str:
 def markdown_report(result: dict) -> str:
     aggregate = result["aggregate"]
     market_null = result.get("market_null_flat") or {}
+    selection_null = result.get("selection_adjusted_market_null") or {}
     bootstrap = result.get("event_bootstrap") or {}
     lines = [
         "# Disagreement Forward-Selection Audit",
@@ -431,13 +602,40 @@ def markdown_report(result: dict) -> str:
         f"| actual - market | {fmt_pct(aggregate['actual_minus_market'])} |",
         f"| positive folds | {aggregate['positive_folds']} / {aggregate['folds']} |",
         f"| market-null p-value | {fmt_p(market_null.get('p_value_observed_or_better'))} |",
+        f"| selection-adjusted market-null p-value | {fmt_p(selection_null.get('p_value_observed_or_better'))} |",
         f"| event-bootstrap P(profit <= 0) | {fmt_p(bootstrap.get('prob_profit_le_zero'))} |",
         "",
-        "## Selected Policy Counts",
-        "",
-        "| Policy | Folds |",
-        "| --- | ---: |",
     ]
+    if selection_null:
+        lines.extend(
+            [
+                "## Selection-Adjusted Market Null",
+                "",
+                "This null simulates fight outcomes from de-vigged market probabilities",
+                "and reruns the same fold-level policy selection in each simulated",
+                "world. It asks how often the policy search itself finds holdout",
+                "profit at least as high as the observed result.",
+                "",
+                "| Metric | Value |",
+                "| --- | ---: |",
+                f"| iterations | {selection_null['iterations']} |",
+                f"| observed profit | {fmt_units(selection_null['observed_profit'])} |",
+                f"| null mean profit | {fmt_units(selection_null['null_mean_profit'])} |",
+                f"| null 95% profit interval | {fmt_units(selection_null['null_profit_ci_95'][0])} to {fmt_units(selection_null['null_profit_ci_95'][1])} |",
+                f"| p-value observed or better | {fmt_p(selection_null['p_value_observed_or_better'])} |",
+                f"| probability null profitable | {fmt_p(selection_null['prob_null_profitable'])} |",
+                "",
+            ]
+        )
+
+    lines.extend(
+        [
+            "## Selected Policy Counts",
+            "",
+            "| Policy | Folds |",
+            "| --- | ---: |",
+        ]
+    )
 
     for policy_json, count in sorted(
         aggregate["selected_policies"].items(),
@@ -499,22 +697,26 @@ def main():
     frames = [load_ledger(Path(csv_path), label) for label, csv_path in args.ledger]
     combined = pd.concat(frames, ignore_index=True)
     combined["event_date"] = pd.to_datetime(combined["event_date"], errors="coerce")
-    combined = combined.dropna(subset=["event_date"]).sort_values("event_date")
+    combined = combined.dropna(subset=["event_date"]).sort_values("event_date").reset_index(drop=True)
 
     folds = []
     selected_holdout_rows = []
     skipped_folds = []
-    for fold_index, (dev_start, dev_end, holdout_start, holdout_end) in enumerate(
-        iter_folds(
-            args.first_holdout_start,
-            args.last_holdout_end,
-            args.dev_days,
-            args.holdout_days,
-            args.min_holdout_days,
-            args.step_days,
-        ),
-        start=1,
-    ):
+    fold_specs = [
+        (fold_index, dev_start, dev_end, holdout_start, holdout_end)
+        for fold_index, (dev_start, dev_end, holdout_start, holdout_end) in enumerate(
+            iter_folds(
+                args.first_holdout_start,
+                args.last_holdout_end,
+                args.dev_days,
+                args.holdout_days,
+                args.min_holdout_days,
+                args.step_days,
+            ),
+            start=1,
+        )
+    ]
+    for fold_index, dev_start, dev_end, holdout_start, holdout_end in fold_specs:
         selected_policy, candidates = select_policy_for_fold(
             combined,
             labels,
@@ -582,6 +784,17 @@ def main():
     rng = np.random.default_rng(args.seed)
     market_null = market_null_flat(selected_holdouts, args.iterations, rng)
     bootstrap = event_bootstrap(selected_holdouts, args.iterations, rng)
+    policies = list(policy_grid(labels, thresholds, min_probabilities))
+    selection_null = selection_adjusted_market_null(
+        combined,
+        policies,
+        fold_specs,
+        aggregate["profit"],
+        args.selection_null_iterations,
+        rng,
+        args.min_dev_bets,
+        args.selection_objective,
+    )
     result = {
         "ledgers": [{"label": label, "csv_path": csv_path} for label, csv_path in args.ledger],
         "selection_objective": args.selection_objective,
@@ -596,9 +809,11 @@ def main():
         "step_days": args.step_days or args.holdout_days,
         "min_dev_bets": args.min_dev_bets,
         "iterations": args.iterations,
+        "selection_null_iterations": args.selection_null_iterations,
         "seed": args.seed,
         "aggregate": aggregate,
         "market_null_flat": market_null,
+        "selection_adjusted_market_null": selection_null,
         "event_bootstrap": bootstrap,
         "folds": folds,
         "skipped_folds": skipped_folds,
@@ -618,6 +833,10 @@ def main():
     print(f"Aggregate holdout profit: {fmt_units(aggregate['profit'])}")
     print(f"Aggregate holdout ROI: {fmt_pct(aggregate['roi'])}")
     print(f"Market-null p-value: {fmt_p((market_null or {}).get('p_value_observed_or_better'))}")
+    print(
+        "Selection-adjusted market-null p-value: "
+        f"{fmt_p((selection_null or {}).get('p_value_observed_or_better'))}"
+    )
     print(f"Selected holdout bets: {csv_path}")
     print(f"Summary: {json_path}")
     print(f"Report: {md_path}")
