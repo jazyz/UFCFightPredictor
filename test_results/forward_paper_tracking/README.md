@@ -40,3 +40,18 @@ test_results/forward_paper_tracking/settled/
 
 Current status: no post-freeze outcomes have been scored yet, so no live edge
 claim is proven.
+
+## Residual-Meta Paper Policy
+
+A separate residual-meta paper policy is frozen here:
+
+```text
+test_results/frozen_residual_meta_paper_policy/frozen_residual_meta_paper_policy.md
+test_results/frozen_residual_meta_paper_policy/frozen_residual_meta_paper_policy.json
+```
+
+That policy uses the frozen residual probability transform, a minimum residual
+edge of `0.02`, a minimum meta probability of `0.60`, max underdog odds of
+`+300`, and a flat `1u` paper stake. Keep residual-meta paper ledgers separate
+from the main frozen forward policy ledgers so future evidence remains
+auditable.

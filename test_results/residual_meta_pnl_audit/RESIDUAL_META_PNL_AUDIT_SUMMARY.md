@@ -44,6 +44,7 @@ Frozen-style residual settings:
 | profit | 363 | +7.46u | +2.06% | +4.10% | 4 / 5 | 0.066 | 0.258 |
 | ROI | 304 | +4.31u | +1.42% | +3.56% | 4 / 5 | 0.144 | 0.344 |
 | actual - market | 311 | +6.67u | +2.14% | +4.08% | 4 / 5 | 0.083 | 0.265 |
+| fixed edge>=0.02, p>=0.60 | 354 | +2.44u | +0.69% | +3.19% | 3 / 5 | 0.117 | 0.421 |
 
 Output reports:
 
@@ -51,6 +52,7 @@ Output reports:
 test_results/residual_meta_pnl_audit/profit_objective/residual_meta_pnl_audit.md
 test_results/residual_meta_pnl_audit/roi_objective/residual_meta_pnl_audit.md
 test_results/residual_meta_pnl_audit/market_edge_objective/residual_meta_pnl_audit.md
+test_results/residual_meta_pnl_audit/fixed_edge02_prob60/residual_meta_pnl_audit.md
 ```
 
 ## Interpretation
@@ -68,3 +70,27 @@ p-value around `0.20`.
 Practical read: the residual meta transform is worth paper tracking, but the
 current nested PnL evidence is weaker than the log-loss evidence. Do not promote
 or increase staking from this audit alone.
+
+## Frozen Paper Policy
+
+A conservative residual-meta paper policy has been frozen:
+
+```text
+testing/freeze_residual_meta_paper_policy.py
+test_results/frozen_residual_meta_paper_policy/frozen_residual_meta_paper_policy.md
+test_results/frozen_residual_meta_paper_policy/frozen_residual_meta_paper_policy.json
+```
+
+Frozen rule:
+
+- use the frozen residual probability transform from
+  `test_results/frozen_market_residual_meta/`
+- bet the side with the largest residual edge
+- minimum residual edge: `0.02`
+- minimum meta probability: `0.60`
+- maximum underdog odds: `+300`
+- stake: `1u` flat paper stake
+
+This policy is intentionally paper-only. Its fixed-policy historical diagnostic
+was only `+2.44u` with market-null p-value `0.117`, so it should be used to
+collect future evidence rather than to justify staking.

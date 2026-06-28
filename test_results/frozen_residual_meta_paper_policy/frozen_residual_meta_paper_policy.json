@@ -1,0 +1,65 @@
+{
+  "as_of_date": "2026-06-28",
+  "transform_path": "test_results/frozen_market_residual_meta/frozen_market_residual_meta.json",
+  "source_audit": "test_results/residual_meta_pnl_audit/fixed_edge02_prob60/residual_meta_pnl_audit.json",
+  "transform_summary": {
+    "model_label": "regularized_lgbm",
+    "dev_start": "2024-06-28",
+    "dev_end": "2026-06-27",
+    "c": 0.25,
+    "intercept": -0.006770455641009297,
+    "coefficients": {
+      "market_logit": 1.2151022213638574,
+      "regularized_lgbm_logit_delta": 0.31975697055364133
+    }
+  },
+  "policy": {
+    "side_policy": "best_residual_edge",
+    "min_edge": 0.02,
+    "min_probability": 0.6,
+    "max_underdog_odds": 300.0,
+    "stake_units": 1.0,
+    "settlement": "flat_units"
+  },
+  "historical_diagnostics": {
+    "aggregate": {
+      "folds": 5,
+      "fights": 704,
+      "bets": 354,
+      "events_with_bets": 99,
+      "profit": 2.4403823731146397,
+      "roi": 0.006893735517272993,
+      "actual_win_rate": 0.7372881355932204,
+      "mean_market_probability": 0.7054294943061249,
+      "actual_minus_market": 0.03185864128709548,
+      "positive_folds": 3,
+      "selected_policies": {
+        "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.02, \"min_probability\": 0.6}": 5
+      }
+    },
+    "event_bootstrap": {
+      "events": 99,
+      "iterations": 20000,
+      "profit_ci_95": [
+        -19.768454165289434,
+        23.790531111884917
+      ],
+      "prob_profit_le_zero": 0.4214
+    },
+    "market_null": {
+      "iterations": 1000,
+      "observed_profit": 2.4403823731146397,
+      "null_mean_profit": -3.8731564323272414,
+      "null_profit_ci_95": [
+        -17.986548147895945,
+        7.771434260056173
+      ],
+      "p_value_observed_or_better": 0.11688311688311688,
+      "prob_null_profitable": 0.252,
+      "selected_policy_counts": {
+        "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.02, \"min_probability\": 0.6}": 3249
+      }
+    }
+  },
+  "freeze_warning": "This residual-meta paper policy is frozen for future paper tracking. Do not alter transform coefficients, thresholds, side-selection rule, or stake size after future outcomes are known."
+}

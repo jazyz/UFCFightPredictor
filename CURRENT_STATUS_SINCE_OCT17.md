@@ -503,6 +503,7 @@ Results:
 | profit | 363 | +7.46u | +2.06% | +4.10% | 4 / 5 | 0.066 | 0.258 |
 | ROI | 304 | +4.31u | +1.42% | +3.56% | 4 / 5 | 0.144 | 0.344 |
 | actual - market | 311 | +6.67u | +2.14% | +4.08% | 4 / 5 | 0.083 | 0.265 |
+| fixed edge>=0.02, p>=0.60 | 354 | +2.44u | +0.69% | +3.19% | 3 / 5 | 0.117 | 0.421 |
 
 Interpretation: the residual meta probabilities produce positive PnL across
 all three objective sensitivities, which is directionally consistent with the
@@ -510,6 +511,21 @@ log-loss edge. The monetization evidence is still weaker than the probability
 evidence: the best selection-adjusted market-null p-value is `0.066` before
 correcting for three inspected objectives, and the event-bootstrap uncertainty
 still crosses zero.
+
+Frozen residual-meta paper policy:
+
+```text
+testing/freeze_residual_meta_paper_policy.py
+test_results/frozen_residual_meta_paper_policy/frozen_residual_meta_paper_policy.md
+test_results/frozen_residual_meta_paper_policy/frozen_residual_meta_paper_policy.json
+```
+
+As of `2026-06-28`, a conservative residual-meta paper policy has also been
+frozen: best residual edge, minimum residual edge `0.02`, minimum meta
+probability `0.60`, max underdog odds `+300`, and flat `1u` paper stake. The
+fixed-policy historical diagnostic was only `+2.44u` with market-null p-value
+`0.117`, so this is a future-evidence collection contract, not a live staking
+recommendation.
 
 ### Frozen Forward Paper-Tracking Policy
 
@@ -769,16 +785,21 @@ The most honest read:
   uncertainty still crosses zero
 - the best residual-meta PnL result has market-null p-value `0.066`, or about
   `0.20` after a simple three-objective correction
+- the frozen residual-meta paper policy is intentionally conservative and
+  historically weak; it exists to collect clean post-freeze evidence, not to
+  justify live staking now
 - this is promising but still below a strong live-edge threshold
 
 Recommendation:
 
 Do not materially increase staking based only on these backtests. Use the
-frozen forward betting artifact above as the current PnL paper-tracking policy,
-and use the frozen residual transform as the current probability paper-tracking
-contract. A real edge claim needs future out-of-sample results that beat
-market-null and bootstrap tests after the model params, probability transform,
-selection objective, strategy grid, and staking policy have been frozen.
+frozen forward betting artifact above as the current main PnL paper-tracking
+policy, use the frozen residual transform as the current probability
+paper-tracking contract, and use the frozen residual-meta paper policy only as
+a secondary residual-signal monitor. A real edge claim needs future
+out-of-sample results that beat market-null and bootstrap tests after the model
+params, probability transform, selection objective, strategy grid, and staking
+policy have been frozen.
 
 ## Independent PnL Investigation Update
 
