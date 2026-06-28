@@ -515,6 +515,54 @@ model-after-market probability signal. It still does not prove a live betting
 edge: the 2026 slice is negative, monetized PnL remains weak, and the
 half-strength residual control was slightly better than the observed residual.
 
+### Residual Shrinkage Audit
+
+Residual shrinkage audit:
+
+```text
+testing/residual_shrinkage_audit.py
+test_results/residual_shrinkage_audit/RESIDUAL_SHRINKAGE_AUDIT_SUMMARY.md
+test_results/residual_shrinkage_audit/residual_shrinkage_audit.json
+test_results/residual_shrinkage_audit_expanded/RESIDUAL_SHRINKAGE_AUDIT_SUMMARY.md
+```
+
+This audit tests whether the post-hoc half-residual hint can be converted into
+a rule selected without future holdout outcomes. Each outer fold fits the
+residual meta model on the first part of the development window, chooses a
+residual scale on the later development slice, refits on the full development
+window, then applies the chosen scale to the future holdout.
+
+Primary capped-grid protocol:
+
+| Policy | Fights | Log Loss | Delta LL | Positive Folds | Bootstrap P(delta <= 0) | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| market | 704 | 0.6009 | 0.0000 | 0 / 5 | n/a | n/a |
+| selected shrinkage, grid 0.00-1.00 | 704 | 0.5971 | +0.0038 | 4 / 5 | 0.140 | 0.005 |
+| fixed half residual | 704 | 0.5979 | +0.0030 | 4 / 5 | 0.051 | 0.015 |
+| unshrunk residual meta | 704 | 0.5979 | +0.0030 | 4 / 5 | 0.218 | 0.015 |
+
+Selected shrinkage by outer fold:
+
+| Fold | Holdout Window | Selected Scale | Holdout Delta LL |
+| ---: | --- | ---: | ---: |
+| 1 | 2024-02-05 to 2024-08-04 | 1.00 | +0.0070 |
+| 2 | 2024-08-05 to 2025-02-02 | 1.00 | +0.0077 |
+| 3 | 2025-02-03 to 2025-08-03 | 1.00 | +0.0026 |
+| 4 | 2025-08-04 to 2026-02-01 | 0.75 | +0.0053 |
+| 5 | 2026-02-02 to 2026-06-27 | 0.75 | -0.0047 |
+
+Expanded-grid sensitivity (`0.00` to `1.50`) also stayed positive:
+selected-scale Delta LL `+0.0035`, market-null p-value `0.007`, and
+bootstrap `P(delta <= 0) = 0.217`.
+
+Interpretation: this is the strongest probability-translation evidence so far
+that the model has some incremental information after market prices. The
+market-null p-value reruns the inner shrinkage selection under simulated market
+outcomes, which is a better guard against selection overfit than the earlier
+half-residual diagnostic. It still is not a live edge claim: event-bootstrap
+uncertainty crosses zero, one of five folds is negative, and the negative fold
+is the most recent 2026 holdout.
+
 ### Residual Meta PnL Audit
 
 Residual meta PnL audit:
@@ -895,6 +943,10 @@ The most honest read:
   model-after-market log-loss signal
 - residual negative controls support that signal: sign-flipped residuals lose
   badly, and residual permutations rarely match the observed log-loss gain
+- nested residual-shrinkage selection strengthens the probability evidence:
+  the capped-grid selected scale has market-null p-value `0.005`, or about
+  `0.015` after a simple three-policy correction, but event-bootstrap
+  uncertainty still crosses zero and the latest 2026 fold is negative
 - nested residual-meta PnL tests are positive across objective sensitivities,
   but their best selection-adjusted market-null p-value is only `0.066`
   before correcting for three inspected objectives
@@ -918,9 +970,10 @@ The most honest read:
   fight-stat features, while remaining out of supervised labels
 - the best raw market-null p-value is `0.048` from the exploratory ROI
   objective, or about `0.096` after a simple two-objective correction
-- the best probability-residual result has market-null p-value `0.012`, or
-  about `0.048` after a simple four-variant correction, but its event-bootstrap
-  uncertainty still crosses zero
+- the earlier unshrunk probability-residual result had market-null p-value
+  `0.012`, or about `0.048` after a simple four-variant correction; the newer
+  nested shrinkage audit is stronger on market-null but still not decisive on
+  event-bootstrap stability
 - the best residual-meta PnL result has market-null p-value `0.066`, or about
   `0.20` after a simple three-objective correction
 - the frozen residual-meta paper policy is intentionally conservative and
