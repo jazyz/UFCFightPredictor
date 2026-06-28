@@ -858,14 +858,16 @@ men's fights.
 | Run | Training Universe | Evaluation Universe | Fights | Accuracy | Model LL | Market LL | Profit | Market-Null p |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | current regularized men-only | men only | men only | 580 | 65.0% | 0.632 | 0.600 | $611.97 | 0.034 |
-| women-included training, men-only eval | all prior fights | men only | 581 | 65.7% | 0.633 | 0.600 | $733.69 | 0.013 |
+| women-included training, men-only eval | all prior fights | men only | 580 | 65.9% | 0.633 | 0.600 | $733.69 | 0.013 |
 
 Interpretation: including women's fights in the training history changed the
 saved men-only PnL ledger in a favorable direction, but it did not create a
 probability edge over the market. In both runs, model log loss is worse than
 de-vigged market log loss; the women-included-training run has event-bootstrap
-`P(model not better than market on log loss) = 0.9977`. Treat this as an
-exploratory counterfactual, not a production-policy change.
+`P(model not better than market on log loss) = 0.9977`. The backtest filter was
+also hardened so `Women` excludes known women-vs-women catchweight rows whose
+titles do not contain `Women`. Treat the PnL improvement as an exploratory
+counterfactual, not a production-policy change.
 
 ## Current Bottom Line
 

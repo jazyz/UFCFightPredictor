@@ -13,7 +13,7 @@ These p-values are conditional on the saved bet decisions and do not remove manu
 
 | Run | Window | Fights | Bets | Accuracy | Model LL | Market LL | Profit | ROI/Staked | Market-null p | Bootstrap profit CI |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| regularized_train_all_eval_men_2y | 2024-06-27 to 2026-06-27 | 581 | 428 | 65.7% | 0.633 | 0.600 | $733.69 | 14.4% | 0.013 | $11.32 to $1,475.00 |
+| regularized_train_all_eval_men_2y | 2024-06-27 to 2026-06-27 | 580 | 428 | 65.9% | 0.633 | 0.600 | $733.69 | 14.4% | 0.013 | $11.32 to $1,475.00 |
 
 ## Highest PnL Runs
 

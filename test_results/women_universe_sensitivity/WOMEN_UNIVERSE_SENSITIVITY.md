@@ -12,11 +12,14 @@ letting women's fights into training changes men-only evaluation.
 | Run | Feature Table | Training Universe | Evaluation Universe | Fights | Accuracy | Model LL | Market LL | Profit | ROI/Staked | Market-Null p | Bootstrap Profit CI |
 | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
 | current regularized men-only | `data/detailed_fights.csv` | men only | men only | 580 | 65.0% | 0.632 | 0.600 | $611.97 | 11.5% | 0.034 | $-111.50 to $1,331.47 |
-| women-included training, men-only eval | `test_results/womens_retrain/detailed_fights_womens_included.csv` | all prior fights | men only | 581 | 65.7% | 0.633 | 0.600 | $733.69 | 14.4% | 0.013 | $11.32 to $1,475.00 |
+| women-included training, men-only eval | `test_results/womens_retrain/detailed_fights_womens_included.csv` | all prior fights | men only | 580 | 65.9% | 0.633 | 0.600 | $733.69 | 14.4% | 0.013 | $11.32 to $1,475.00 |
 
 Both rows use the regularized LightGBM params from
 `test_results/regularized_lgbm_params.json`, the 2024-06-27 to 2026-06-27
 window, and 20,000 market-null/bootstrap iterations in the statistical audit.
+The men-only evaluation filter now treats `Women` as a universe concept, not
+only a title substring, so known women-vs-women catchweight rows such as
+`Catch Weight Bout` are excluded too.
 
 ## Interpretation
 
@@ -26,7 +29,7 @@ market-null p-value improved from `0.034` to `0.013`.
 
 That is not enough to claim a better edge. In both runs, model probabilities
 still lose to the de-vigged market on log loss. The women-included-training run
-has model LL `0.633` versus market LL `0.600`; event bootstrap estimates
+has model LL `0.6327` versus market LL `0.5995`; event bootstrap estimates
 `P(model not better than market on log loss) = 0.9977`.
 
 Practical read: the current production claim remains men-only, and that is

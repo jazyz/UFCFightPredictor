@@ -18,15 +18,15 @@
       "final_bankroll": 1733.6896619257886,
       "summary_profit_pct": 73.36896619257887,
       "prediction": {
-        "fights": 581,
-        "model_accuracy": 0.657487091222031,
-        "model_accuracy_p_vs_50": 1.3333222453238492e-14,
-        "model_log_loss": 0.6328277977224892,
-        "model_brier": 0.220802304021988,
+        "fights": 580,
+        "model_accuracy": 0.6586206896551724,
+        "model_accuracy_p_vs_50": 9.085546012241693e-15,
+        "model_log_loss": 0.6326937937505392,
+        "model_brier": 0.2207369621437955,
         "model_calibration": {
-          "ece": 0.05017704640199136,
-          "mean_probability": 0.5114123372796927,
-          "actual_rate": 0.4750430292598967,
+          "ece": 0.05114050024467007,
+          "mean_probability": 0.511446886451471,
+          "actual_rate": 0.47413793103448276,
           "bins": [
             {
               "bin": "0.1-0.2",
@@ -51,10 +51,10 @@
             },
             {
               "bin": "0.4-0.5",
-              "n": 134,
-              "mean_probability": 0.45412791823344784,
-              "actual_rate": 0.3805970149253731,
-              "gap": -0.07353090330807471
+              "n": 133,
+              "mean_probability": 0.45384787387694486,
+              "actual_rate": 0.37593984962406013,
+              "gap": -0.07790802425288473
             },
             {
               "bin": "0.5-0.6",
