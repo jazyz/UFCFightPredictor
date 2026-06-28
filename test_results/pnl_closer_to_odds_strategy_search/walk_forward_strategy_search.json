@@ -1,0 +1,2275 @@
+{
+  "dev_start": "2024-06-27",
+  "dev_end": "2025-06-26",
+  "holdout_start": "2025-06-27",
+  "holdout_end": "2026-06-27",
+  "candidate_count": 576,
+  "min_dev_bets": 40,
+  "selected_strategy": {
+    "model_label": "average_default",
+    "side_policy": "predicted_winner",
+    "model_weight": 1.0,
+    "min_edge": 0.02,
+    "min_probability": 0.6,
+    "min_kelly": 0.1,
+    "max_underdog_odds": null,
+    "kelly_fraction": 0.05,
+    "max_fraction": 0.05
+  },
+  "dev_summary": {
+    "strategy": {
+      "model_label": "average_default",
+      "side_policy": "predicted_winner",
+      "model_weight": 1.0,
+      "min_edge": 0.02,
+      "min_probability": 0.6,
+      "min_kelly": 0.1,
+      "max_underdog_odds": null,
+      "kelly_fraction": 0.05,
+      "max_fraction": 0.05
+    },
+    "start_date": "2024-06-27",
+    "end_date": "2025-06-26",
+    "starting_bankroll": 1000.0,
+    "final_bankroll": 1453.4747409230374,
+    "profit": 453.47474092303764,
+    "profit_pct": 45.34747409230374,
+    "bets": 68,
+    "events_with_bets": 32,
+    "total_staked": 1271.9279822490173,
+    "roi_on_staked": 0.35652548513101007,
+    "max_drawdown": 0.08139471877461676,
+    "fights": 282
+  },
+  "holdout_summary": {
+    "strategy": {
+      "model_label": "average_default",
+      "side_policy": "predicted_winner",
+      "model_weight": 1.0,
+      "min_edge": 0.02,
+      "min_probability": 0.6,
+      "min_kelly": 0.1,
+      "max_underdog_odds": null,
+      "kelly_fraction": 0.05,
+      "max_fraction": 0.05
+    },
+    "start_date": "2025-06-27",
+    "end_date": "2026-06-27",
+    "starting_bankroll": 1000.0,
+    "final_bankroll": 1095.7041963340675,
+    "profit": 95.70419633406752,
+    "profit_pct": 9.570419633406754,
+    "bets": 82,
+    "events_with_bets": 34,
+    "total_staked": 1591.2550161616216,
+    "roi_on_staked": 0.06014384580852562,
+    "max_drawdown": 0.16089972462032415,
+    "fights": 298
+  },
+  "selected_dev_csv": "test_results/pnl_closer_to_odds_strategy_search/selected_dev/no_leakage_backtest.csv",
+  "selected_dev_summary": "test_results/pnl_closer_to_odds_strategy_search/selected_dev/no_leakage_backtest_summary.json",
+  "selected_holdout_csv": "test_results/pnl_closer_to_odds_strategy_search/selected_holdout/no_leakage_backtest.csv",
+  "selected_holdout_summary": "test_results/pnl_closer_to_odds_strategy_search/selected_holdout/no_leakage_backtest_summary.json",
+  "top_dev_candidates": [
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.6,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.6,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1453.4747409230374,
+        "profit": 453.47474092303764,
+        "profit_pct": 45.34747409230374,
+        "bets": 68,
+        "events_with_bets": 32,
+        "total_staked": 1271.9279822490173,
+        "roi_on_staked": 0.35652548513101007,
+        "max_drawdown": 0.08139471877461676,
+        "fights": 282
+      },
+      "score": [
+        453.47474092303764,
+        0.35652548513101007,
+        -0.08139471877461676,
+        68
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.6,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.6,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1453.4747409230374,
+        "profit": 453.47474092303764,
+        "profit_pct": 45.34747409230374,
+        "bets": 68,
+        "events_with_bets": 32,
+        "total_staked": 1271.9279822490173,
+        "roi_on_staked": 0.35652548513101007,
+        "max_drawdown": 0.08139471877461676,
+        "fights": 282
+      },
+      "score": [
+        453.47474092303764,
+        0.35652548513101007,
+        -0.08139471877461676,
+        68
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.6,
+        "min_kelly": 0.0,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.6,
+          "min_kelly": 0.0,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1452.383358675554,
+        "profit": 452.38335867555384,
+        "profit_pct": 45.238335867555406,
+        "bets": 90,
+        "events_with_bets": 37,
+        "total_staked": 1335.3380507330567,
+        "roi_on_staked": 0.33877815316294646,
+        "max_drawdown": 0.08152308787280066,
+        "fights": 282
+      },
+      "score": [
+        452.38335867555384,
+        0.33877815316294646,
+        -0.08152308787280066,
+        90
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.6,
+        "min_kelly": 0.0,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.6,
+          "min_kelly": 0.0,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1452.383358675554,
+        "profit": 452.38335867555384,
+        "profit_pct": 45.238335867555406,
+        "bets": 90,
+        "events_with_bets": 37,
+        "total_staked": 1335.3380507330567,
+        "roi_on_staked": 0.33877815316294646,
+        "max_drawdown": 0.08152308787280066,
+        "fights": 282
+      },
+      "score": [
+        452.38335867555384,
+        0.33877815316294646,
+        -0.08152308787280066,
+        90
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.6,
+        "min_kelly": 0.0,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.6,
+          "min_kelly": 0.0,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1429.60547974677,
+        "profit": 429.6054797467703,
+        "profit_pct": 42.960547974677,
+        "bets": 56,
+        "events_with_bets": 32,
+        "total_staked": 1170.8625717579464,
+        "roi_on_staked": 0.36691366699146916,
+        "max_drawdown": 0.07908120434984618,
+        "fights": 282
+      },
+      "score": [
+        429.6054797467703,
+        0.36691366699146916,
+        -0.07908120434984618,
+        56
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.6,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.6,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1429.60547974677,
+        "profit": 429.6054797467703,
+        "profit_pct": 42.960547974677,
+        "bets": 56,
+        "events_with_bets": 32,
+        "total_staked": 1170.8625717579464,
+        "roi_on_staked": 0.36691366699146916,
+        "max_drawdown": 0.07908120434984618,
+        "fights": 282
+      },
+      "score": [
+        429.6054797467703,
+        0.36691366699146916,
+        -0.07908120434984618,
+        56
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.6,
+        "min_kelly": 0.0,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.6,
+          "min_kelly": 0.0,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1429.60547974677,
+        "profit": 429.6054797467703,
+        "profit_pct": 42.960547974677,
+        "bets": 56,
+        "events_with_bets": 32,
+        "total_staked": 1170.8625717579464,
+        "roi_on_staked": 0.36691366699146916,
+        "max_drawdown": 0.07908120434984618,
+        "fights": 282
+      },
+      "score": [
+        429.6054797467703,
+        0.36691366699146916,
+        -0.07908120434984618,
+        56
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.6,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.6,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1429.60547974677,
+        "profit": 429.6054797467703,
+        "profit_pct": 42.960547974677,
+        "bets": 56,
+        "events_with_bets": 32,
+        "total_staked": 1170.8625717579464,
+        "roi_on_staked": 0.36691366699146916,
+        "max_drawdown": 0.07908120434984618,
+        "fights": 282
+      },
+      "score": [
+        429.6054797467703,
+        0.36691366699146916,
+        -0.07908120434984618,
+        56
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1372.8803586039314,
+        "profit": 372.88035860393074,
+        "profit_pct": 37.288035860393144,
+        "bets": 141,
+        "events_with_bets": 42,
+        "total_staked": 1886.7728876066549,
+        "roi_on_staked": 0.1976286393837916,
+        "max_drawdown": 0.10529461878534323,
+        "fights": 282
+      },
+      "score": [
+        372.88035860393074,
+        0.1976286393837916,
+        -0.10529461878534323,
+        141
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1372.8803586039314,
+        "profit": 372.88035860393074,
+        "profit_pct": 37.288035860393144,
+        "bets": 141,
+        "events_with_bets": 42,
+        "total_staked": 1886.7728876066549,
+        "roi_on_staked": 0.1976286393837916,
+        "max_drawdown": 0.10529461878534323,
+        "fights": 282
+      },
+      "score": [
+        372.88035860393074,
+        0.1976286393837916,
+        -0.10529461878534323,
+        141
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1370.0684997087649,
+        "profit": 370.068499708765,
+        "profit_pct": 37.00684997087649,
+        "bets": 108,
+        "events_with_bets": 39,
+        "total_staked": 1782.006304677272,
+        "roi_on_staked": 0.20766957935975752,
+        "max_drawdown": 0.10707665611188716,
+        "fights": 282
+      },
+      "score": [
+        370.068499708765,
+        0.20766957935975752,
+        -0.10707665611188716,
+        108
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1370.0684997087649,
+        "profit": 370.068499708765,
+        "profit_pct": 37.00684997087649,
+        "bets": 108,
+        "events_with_bets": 39,
+        "total_staked": 1782.006304677272,
+        "roi_on_staked": 0.20766957935975752,
+        "max_drawdown": 0.10707665611188716,
+        "fights": 282
+      },
+      "score": [
+        370.068499708765,
+        0.20766957935975752,
+        -0.10707665611188716,
+        108
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1362.8374557231957,
+        "profit": 362.83745572319594,
+        "profit_pct": 36.28374557231957,
+        "bets": 94,
+        "events_with_bets": 39,
+        "total_staked": 1681.4368449684864,
+        "roi_on_staked": 0.2157901183199041,
+        "max_drawdown": 0.10387745639283424,
+        "fights": 282
+      },
+      "score": [
+        362.83745572319594,
+        0.2157901183199041,
+        -0.10387745639283424,
+        94
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1362.8374557231957,
+        "profit": 362.83745572319594,
+        "profit_pct": 36.28374557231957,
+        "bets": 94,
+        "events_with_bets": 39,
+        "total_staked": 1681.4368449684864,
+        "roi_on_staked": 0.2157901183199041,
+        "max_drawdown": 0.10387745639283424,
+        "fights": 282
+      },
+      "score": [
+        362.83745572319594,
+        0.2157901183199041,
+        -0.10387745639283424,
+        94
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1362.8374557231957,
+        "profit": 362.83745572319594,
+        "profit_pct": 36.28374557231957,
+        "bets": 94,
+        "events_with_bets": 39,
+        "total_staked": 1681.4368449684864,
+        "roi_on_staked": 0.2157901183199041,
+        "max_drawdown": 0.10387745639283424,
+        "fights": 282
+      },
+      "score": [
+        362.83745572319594,
+        0.2157901183199041,
+        -0.10387745639283424,
+        94
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1362.8374557231957,
+        "profit": 362.83745572319594,
+        "profit_pct": 36.28374557231957,
+        "bets": 94,
+        "events_with_bets": 39,
+        "total_staked": 1681.4368449684864,
+        "roi_on_staked": 0.2157901183199041,
+        "max_drawdown": 0.10387745639283424,
+        "fights": 282
+      },
+      "score": [
+        362.83745572319594,
+        0.2157901183199041,
+        -0.10387745639283424,
+        94
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1335.718559540439,
+        "profit": 335.71855954043883,
+        "profit_pct": 33.5718559540439,
+        "bets": 84,
+        "events_with_bets": 36,
+        "total_staked": 1311.3918318068095,
+        "roi_on_staked": 0.2560017161902652,
+        "max_drawdown": 0.07738145573891024,
+        "fights": 282
+      },
+      "score": [
+        335.71855954043883,
+        0.2560017161902652,
+        -0.07738145573891024,
+        84
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1335.718559540439,
+        "profit": 335.71855954043883,
+        "profit_pct": 33.5718559540439,
+        "bets": 84,
+        "events_with_bets": 36,
+        "total_staked": 1311.3918318068095,
+        "roi_on_staked": 0.2560017161902652,
+        "max_drawdown": 0.07738145573891024,
+        "fights": 282
+      },
+      "score": [
+        335.71855954043883,
+        0.2560017161902652,
+        -0.07738145573891024,
+        84
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1331.8558567064472,
+        "profit": 331.8558567064475,
+        "profit_pct": 33.18558567064472,
+        "bets": 89,
+        "events_with_bets": 36,
+        "total_staked": 1401.400550593349,
+        "roi_on_staked": 0.23680300151583408,
+        "max_drawdown": 0.08869381994151773,
+        "fights": 282
+      },
+      "score": [
+        331.8558567064475,
+        0.23680300151583408,
+        -0.08869381994151773,
+        89
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1331.8558567064472,
+        "profit": 331.8558567064475,
+        "profit_pct": 33.18558567064472,
+        "bets": 89,
+        "events_with_bets": 36,
+        "total_staked": 1401.400550593349,
+        "roi_on_staked": 0.23680300151583408,
+        "max_drawdown": 0.08869381994151773,
+        "fights": 282
+      },
+      "score": [
+        331.8558567064475,
+        0.23680300151583408,
+        -0.08869381994151773,
+        89
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.6,
+        "min_kelly": 0.1,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.6,
+          "min_kelly": 0.1,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1329.029790908621,
+        "profit": 329.02979090862084,
+        "profit_pct": 32.9029790908621,
+        "bets": 67,
+        "events_with_bets": 32,
+        "total_staked": 1212.8515212558298,
+        "roi_on_staked": 0.2712861262423381,
+        "max_drawdown": 0.08139471877461676,
+        "fights": 282
+      },
+      "score": [
+        329.02979090862084,
+        0.2712861262423381,
+        -0.08139471877461676,
+        67
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.6,
+        "min_kelly": 0.1,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.6,
+          "min_kelly": 0.1,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1329.029790908621,
+        "profit": 329.02979090862084,
+        "profit_pct": 32.9029790908621,
+        "bets": 67,
+        "events_with_bets": 32,
+        "total_staked": 1212.8515212558298,
+        "roi_on_staked": 0.2712861262423381,
+        "max_drawdown": 0.08139471877461676,
+        "fights": 282
+      },
+      "score": [
+        329.02979090862084,
+        0.2712861262423381,
+        -0.08139471877461676,
+        67
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.6,
+        "min_kelly": 0.0,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.6,
+          "min_kelly": 0.0,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1328.031851639822,
+        "profit": 328.03185163982147,
+        "profit_pct": 32.80318516398219,
+        "bets": 89,
+        "events_with_bets": 37,
+        "total_staked": 1274.9533186539263,
+        "roi_on_staked": 0.25728930372615666,
+        "max_drawdown": 0.08152308787280066,
+        "fights": 282
+      },
+      "score": [
+        328.03185163982147,
+        0.25728930372615666,
+        -0.08152308787280066,
+        89
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.6,
+        "min_kelly": 0.0,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.6,
+          "min_kelly": 0.0,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1328.031851639822,
+        "profit": 328.03185163982147,
+        "profit_pct": 32.80318516398219,
+        "bets": 89,
+        "events_with_bets": 37,
+        "total_staked": 1274.9533186539263,
+        "roi_on_staked": 0.25728930372615666,
+        "max_drawdown": 0.08152308787280066,
+        "fights": 282
+      },
+      "score": [
+        328.03185163982147,
+        0.25728930372615666,
+        -0.08152308787280066,
+        89
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1317.409285295703,
+        "profit": 317.4092852957031,
+        "profit_pct": 31.740928529570304,
+        "bets": 109,
+        "events_with_bets": 40,
+        "total_staked": 1376.4799157109237,
+        "roi_on_staked": 0.23059492672057458,
+        "max_drawdown": 0.08060127096377488,
+        "fights": 282
+      },
+      "score": [
+        317.4092852957031,
+        0.23059492672057458,
+        -0.08060127096377488,
+        109
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1317.409285295703,
+        "profit": 317.4092852957031,
+        "profit_pct": 31.740928529570304,
+        "bets": 109,
+        "events_with_bets": 40,
+        "total_staked": 1376.4799157109237,
+        "roi_on_staked": 0.23059492672057458,
+        "max_drawdown": 0.08060127096377488,
+        "fights": 282
+      },
+      "score": [
+        317.4092852957031,
+        0.23059492672057458,
+        -0.08060127096377488,
+        109
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1314.3869591684545,
+        "profit": 314.3869591684549,
+        "profit_pct": 31.43869591684545,
+        "bets": 72,
+        "events_with_bets": 35,
+        "total_staked": 1213.1708015380082,
+        "roi_on_staked": 0.25914484487253403,
+        "max_drawdown": 0.07902731087074354,
+        "fights": 282
+      },
+      "score": [
+        314.3869591684549,
+        0.25914484487253403,
+        -0.07902731087074354,
+        72
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1314.3869591684545,
+        "profit": 314.3869591684549,
+        "profit_pct": 31.43869591684545,
+        "bets": 72,
+        "events_with_bets": 35,
+        "total_staked": 1213.1708015380082,
+        "roi_on_staked": 0.25914484487253403,
+        "max_drawdown": 0.07902731087074354,
+        "fights": 282
+      },
+      "score": [
+        314.3869591684549,
+        0.25914484487253403,
+        -0.07902731087074354,
+        72
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1314.3869591684545,
+        "profit": 314.3869591684549,
+        "profit_pct": 31.43869591684545,
+        "bets": 72,
+        "events_with_bets": 35,
+        "total_staked": 1213.1708015380082,
+        "roi_on_staked": 0.25914484487253403,
+        "max_drawdown": 0.07902731087074354,
+        "fights": 282
+      },
+      "score": [
+        314.3869591684549,
+        0.25914484487253403,
+        -0.07902731087074354,
+        72
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1314.3869591684545,
+        "profit": 314.3869591684549,
+        "profit_pct": 31.43869591684545,
+        "bets": 72,
+        "events_with_bets": 35,
+        "total_staked": 1213.1708015380082,
+        "roi_on_staked": 0.25914484487253403,
+        "max_drawdown": 0.07902731087074354,
+        "fights": 282
+      },
+      "score": [
+        314.3869591684549,
+        0.25914484487253403,
+        -0.07902731087074354,
+        72
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1313.9200897931544,
+        "profit": 313.9200897931541,
+        "profit_pct": 31.392008979315438,
+        "bets": 148,
+        "events_with_bets": 42,
+        "total_staked": 1983.6665355575533,
+        "roi_on_staked": 0.15825245028137752,
+        "max_drawdown": 0.10529461878534323,
+        "fights": 282
+      },
+      "score": [
+        313.9200897931541,
+        0.15825245028137752,
+        -0.10529461878534323,
+        148
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1313.9200897931544,
+        "profit": 313.9200897931541,
+        "profit_pct": 31.392008979315438,
+        "bets": 148,
+        "events_with_bets": 42,
+        "total_staked": 1983.6665355575533,
+        "roi_on_staked": 0.15825245028137752,
+        "max_drawdown": 0.10529461878534323,
+        "fights": 282
+      },
+      "score": [
+        313.9200897931541,
+        0.15825245028137752,
+        -0.10529461878534323,
+        148
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1313.599530206586,
+        "profit": 313.5995302065853,
+        "profit_pct": 31.359953020658597,
+        "bets": 114,
+        "events_with_bets": 40,
+        "total_staked": 1464.5118650038755,
+        "roi_on_staked": 0.21413246126603108,
+        "max_drawdown": 0.09147465584880554,
+        "fights": 282
+      },
+      "score": [
+        313.5995302065853,
+        0.21413246126603108,
+        -0.09147465584880554,
+        114
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1313.599530206586,
+        "profit": 313.5995302065853,
+        "profit_pct": 31.359953020658597,
+        "bets": 114,
+        "events_with_bets": 40,
+        "total_staked": 1464.5118650038755,
+        "roi_on_staked": 0.21413246126603108,
+        "max_drawdown": 0.09147465584880554,
+        "fights": 282
+      },
+      "score": [
+        313.5995302065853,
+        0.21413246126603108,
+        -0.09147465584880554,
+        114
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1311.22899011439,
+        "profit": 311.22899011438966,
+        "profit_pct": 31.122899011438992,
+        "bets": 115,
+        "events_with_bets": 39,
+        "total_staked": 1882.5335057081268,
+        "roi_on_staked": 0.16532454225685558,
+        "max_drawdown": 0.10707665611188716,
+        "fights": 282
+      },
+      "score": [
+        311.22899011438966,
+        0.16532454225685558,
+        -0.10707665611188716,
+        115
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1311.22899011439,
+        "profit": 311.22899011438966,
+        "profit_pct": 31.122899011438992,
+        "bets": 115,
+        "events_with_bets": 39,
+        "total_staked": 1882.5335057081268,
+        "roi_on_staked": 0.16532454225685558,
+        "max_drawdown": 0.10707665611188716,
+        "fights": 282
+      },
+      "score": [
+        311.22899011438966,
+        0.16532454225685558,
+        -0.10707665611188716,
+        115
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1310.5859442047283,
+        "profit": 310.5859442047279,
+        "profit_pct": 31.058594420472836,
+        "bets": 77,
+        "events_with_bets": 35,
+        "total_staked": 1303.443300907756,
+        "roi_on_staked": 0.23828113120718544,
+        "max_drawdown": 0.09285159867053985,
+        "fights": 282
+      },
+      "score": [
+        310.5859442047279,
+        0.23828113120718544,
+        -0.09285159867053985,
+        77
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1310.5859442047283,
+        "profit": 310.5859442047279,
+        "profit_pct": 31.058594420472836,
+        "bets": 77,
+        "events_with_bets": 35,
+        "total_staked": 1303.443300907756,
+        "roi_on_staked": 0.23828113120718544,
+        "max_drawdown": 0.09285159867053985,
+        "fights": 282
+      },
+      "score": [
+        310.5859442047279,
+        0.23828113120718544,
+        -0.09285159867053985,
+        77
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1310.5859442047283,
+        "profit": 310.5859442047279,
+        "profit_pct": 31.058594420472836,
+        "bets": 77,
+        "events_with_bets": 35,
+        "total_staked": 1303.443300907756,
+        "roi_on_staked": 0.23828113120718544,
+        "max_drawdown": 0.09285159867053985,
+        "fights": 282
+      },
+      "score": [
+        310.5859442047279,
+        0.23828113120718544,
+        -0.09285159867053985,
+        77
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1310.5859442047283,
+        "profit": 310.5859442047279,
+        "profit_pct": 31.058594420472836,
+        "bets": 77,
+        "events_with_bets": 35,
+        "total_staked": 1303.443300907756,
+        "roi_on_staked": 0.23828113120718544,
+        "max_drawdown": 0.09285159867053985,
+        "fights": 282
+      },
+      "score": [
+        310.5859442047279,
+        0.23828113120718544,
+        -0.09285159867053985,
+        77
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.6,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.6,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1307.4356938413873,
+        "profit": 307.43569384138766,
+        "profit_pct": 30.74356938413873,
+        "bets": 55,
+        "events_with_bets": 31,
+        "total_staked": 927.5733746205492,
+        "roi_on_staked": 0.3314408350359918,
+        "max_drawdown": 0.06691943726881973,
+        "fights": 282
+      },
+      "score": [
+        307.43569384138766,
+        0.3314408350359918,
+        -0.06691943726881973,
+        55
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "closer_to_odds",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.02,
+        "min_probability": 0.6,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "closer_to_odds",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.02,
+          "min_probability": 0.6,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1307.4356938413873,
+        "profit": 307.43569384138766,
+        "profit_pct": 30.74356938413873,
+        "bets": 55,
+        "events_with_bets": 31,
+        "total_staked": 927.5733746205492,
+        "roi_on_staked": 0.3314408350359918,
+        "max_drawdown": 0.06691943726881973,
+        "fights": 282
+      },
+      "score": [
+        307.43569384138766,
+        0.3314408350359918,
+        -0.06691943726881973,
+        55
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.6,
+        "min_kelly": 0.0,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.6,
+          "min_kelly": 0.0,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1307.2041902999083,
+        "profit": 307.2041902999085,
+        "profit_pct": 30.72041902999083,
+        "bets": 55,
+        "events_with_bets": 32,
+        "total_staked": 1114.3995975492708,
+        "roi_on_staked": 0.2756678941516991,
+        "max_drawdown": 0.07908120434984618,
+        "fights": 282
+      },
+      "score": [
+        307.2041902999085,
+        0.2756678941516991,
+        -0.07908120434984618,
+        55
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.6,
+        "min_kelly": 0.1,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.6,
+          "min_kelly": 0.1,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1307.2041902999083,
+        "profit": 307.2041902999085,
+        "profit_pct": 30.72041902999083,
+        "bets": 55,
+        "events_with_bets": 32,
+        "total_staked": 1114.3995975492708,
+        "roi_on_staked": 0.2756678941516991,
+        "max_drawdown": 0.07908120434984618,
+        "fights": 282
+      },
+      "score": [
+        307.2041902999085,
+        0.2756678941516991,
+        -0.07908120434984618,
+        55
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.6,
+        "min_kelly": 0.0,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.6,
+          "min_kelly": 0.0,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1307.2041902999083,
+        "profit": 307.2041902999085,
+        "profit_pct": 30.72041902999083,
+        "bets": 55,
+        "events_with_bets": 32,
+        "total_staked": 1114.3995975492708,
+        "roi_on_staked": 0.2756678941516991,
+        "max_drawdown": 0.07908120434984618,
+        "fights": 282
+      },
+      "score": [
+        307.2041902999085,
+        0.2756678941516991,
+        -0.07908120434984618,
+        55
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.6,
+        "min_kelly": 0.1,
+        "max_underdog_odds": 300.0,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.6,
+          "min_kelly": 0.1,
+          "max_underdog_odds": 300.0,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1307.2041902999083,
+        "profit": 307.2041902999085,
+        "profit_pct": 30.72041902999083,
+        "bets": 55,
+        "events_with_bets": 32,
+        "total_staked": 1114.3995975492708,
+        "roi_on_staked": 0.2756678941516991,
+        "max_drawdown": 0.07908120434984618,
+        "fights": 282
+      },
+      "score": [
+        307.2041902999085,
+        0.2756678941516991,
+        -0.07908120434984618,
+        55
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1304.3084934350748,
+        "profit": 304.3084934350734,
+        "profit_pct": 30.430849343507475,
+        "bets": 101,
+        "events_with_bets": 39,
+        "total_staked": 1784.7905119315242,
+        "roi_on_staked": 0.17050095874038834,
+        "max_drawdown": 0.10387745639283424,
+        "fights": 282
+      },
+      "score": [
+        304.3084934350734,
+        0.17050095874038834,
+        -0.10387745639283424,
+        101
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "predicted_winner",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "predicted_winner",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1304.3084934350748,
+        "profit": 304.3084934350734,
+        "profit_pct": 30.430849343507475,
+        "bets": 101,
+        "events_with_bets": 39,
+        "total_staked": 1784.7905119315242,
+        "roi_on_staked": 0.17050095874038834,
+        "max_drawdown": 0.10387745639283424,
+        "fights": 282
+      },
+      "score": [
+        304.3084934350734,
+        0.17050095874038834,
+        -0.10387745639283424,
+        101
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.0,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.0,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1304.3084934350748,
+        "profit": 304.3084934350734,
+        "profit_pct": 30.430849343507475,
+        "bets": 101,
+        "events_with_bets": 39,
+        "total_staked": 1784.7905119315242,
+        "roi_on_staked": 0.17050095874038834,
+        "max_drawdown": 0.10387745639283424,
+        "fights": 282
+      },
+      "score": [
+        304.3084934350734,
+        0.17050095874038834,
+        -0.10387745639283424,
+        101
+      ]
+    },
+    {
+      "strategy": {
+        "model_label": "average_default",
+        "side_policy": "best_edge",
+        "model_weight": 1.0,
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "min_kelly": 0.1,
+        "max_underdog_odds": null,
+        "kelly_fraction": 0.05,
+        "max_fraction": 0.05
+      },
+      "summary": {
+        "strategy": {
+          "model_label": "average_default",
+          "side_policy": "best_edge",
+          "model_weight": 1.0,
+          "min_edge": 0.08,
+          "min_probability": 0.5,
+          "min_kelly": 0.1,
+          "max_underdog_odds": null,
+          "kelly_fraction": 0.05,
+          "max_fraction": 0.05
+        },
+        "start_date": "2024-06-27",
+        "end_date": "2025-06-26",
+        "starting_bankroll": 1000.0,
+        "final_bankroll": 1304.3084934350748,
+        "profit": 304.3084934350734,
+        "profit_pct": 30.430849343507475,
+        "bets": 101,
+        "events_with_bets": 39,
+        "total_staked": 1784.7905119315242,
+        "roi_on_staked": 0.17050095874038834,
+        "max_drawdown": 0.10387745639283424,
+        "fights": 282
+      },
+      "score": [
+        304.3084934350734,
+        0.17050095874038834,
+        -0.10387745639283424,
+        101
+      ]
+    }
+  ]
+}

@@ -505,7 +505,11 @@ def red_win_probability(model, frame):
     return float(probabilities[0][win_position])
 
 
-def probability_for_order(model, fight_row, feature_columns, fighter1_name, fighter2_name):
+def bounded_probability(value):
+    return max(0.0, min(1.0, float(value)))
+
+
+def matchup_probability_components(model, fight_row, feature_columns, fighter1_name, fighter2_name):
     row_red = normalize_name(fight_row["Red Fighter"])
     row_blue = normalize_name(fight_row["Blue Fighter"])
     fighter1 = normalize_name(fighter1_name)
@@ -523,8 +527,70 @@ def probability_for_order(model, fight_row, feature_columns, fighter1_name, figh
     fighter2_frame = swap_feature_frame(fighter1_frame, feature_columns)
     p_fighter1_direct = red_win_probability(model, fighter1_frame)
     p_fighter2_direct = red_win_probability(model, fighter2_frame)
-    p_fighter1 = (p_fighter1_direct + (1 - p_fighter2_direct)) / 2
-    return max(0.0, min(1.0, p_fighter1))
+    p_fighter1_mirrored = 1 - p_fighter2_direct
+    p_fighter1_average = (p_fighter1_direct + p_fighter1_mirrored) / 2
+
+    return {
+        "direct": bounded_probability(p_fighter1_direct),
+        "mirrored": bounded_probability(p_fighter1_mirrored),
+        "average": bounded_probability(p_fighter1_average),
+        "opponent_direct": bounded_probability(p_fighter2_direct),
+    }
+
+
+def closer_to_odds_probability(components, odds1, odds2):
+    if odds1 is None or odds2 is None:
+        return components["average"]
+
+    avb_win = components["direct"]
+    avb_lose = 1 - avb_win
+    bva_win = components["opponent_direct"]
+    bva_lose = 1 - bva_win
+    odds1_prob = odds_to_prob(odds1)
+    odds2_prob = odds_to_prob(odds2)
+
+    a_win = avb_win
+    b_win = bva_win
+    if abs(avb_win - odds1_prob) > abs(bva_lose - odds1_prob):
+        a_win = bva_lose
+        b_win = 1 - a_win
+
+    if abs(bva_win - odds2_prob) > abs(avb_lose - odds2_prob):
+        b_win = avb_lose
+        a_win = 1 - b_win
+
+    if a_win + b_win != 1:
+        a_win = (avb_win + bva_lose) / 2
+
+    return bounded_probability(a_win)
+
+
+def probability_for_order(
+    model,
+    fight_row,
+    feature_columns,
+    fighter1_name,
+    fighter2_name,
+    policy="average",
+    odds1=None,
+    odds2=None,
+):
+    components = matchup_probability_components(
+        model,
+        fight_row,
+        feature_columns,
+        fighter1_name,
+        fighter2_name,
+    )
+    if policy == "average":
+        return components["average"]
+    if policy == "direct":
+        return components["direct"]
+    if policy == "mirrored":
+        return components["mirrored"]
+    if policy == "closer-to-odds":
+        return closer_to_odds_probability(components, odds1, odds2)
+    raise ValueError(f"unknown probability policy: {policy}")
 
 
 def build_feature_index(features_df, start_date, end_date):
@@ -828,6 +894,8 @@ def run_backtest(args):
             odds1 = odds2 = None
             fighter1 = fighter2 = ""
             p_fighter1 = None
+            p_fighter1_direct = ""
+            p_fighter1_mirrored = ""
             bet_candidate = ""
             bet_market_probability = ""
             bet_edge = ""
@@ -850,7 +918,23 @@ def run_backtest(args):
                 if odds1 is None or odds2 is None:
                     no_bet_reason = "missing odds"
                 else:
-                    p_fighter1 = probability_for_order(model, row, feature_columns, fighter1, fighter2)
+                    fighter1_components = matchup_probability_components(
+                        model,
+                        row,
+                        feature_columns,
+                        fighter1,
+                        fighter2,
+                    )
+                    p_fighter1_direct = fighter1_components["direct"]
+                    p_fighter1_mirrored = fighter1_components["mirrored"]
+                    if args.bet_probability_policy == "closer-to-odds":
+                        p_fighter1 = closer_to_odds_probability(
+                            fighter1_components,
+                            odds1,
+                            odds2,
+                        )
+                    else:
+                        p_fighter1 = fighter1_components[args.bet_probability_policy]
                     (
                         bet_candidate,
                         bet_odds,
@@ -901,6 +985,8 @@ def run_backtest(args):
                     "fighter2_odds": odds2,
                     "fighter1_win_probability": p_fighter1 if p_fighter1 is not None else "",
                     "fighter2_win_probability": (1 - p_fighter1) if p_fighter1 is not None else "",
+                    "fighter1_direct_win_probability": p_fighter1_direct,
+                    "fighter1_mirrored_win_probability": p_fighter1_mirrored,
                     "bet_candidate": bet_candidate,
                     "bet_on": bet_on if bet > 0 else "",
                     "bet_probability": bet_probability if bet > 0 else "",
@@ -986,6 +1072,7 @@ def run_backtest(args):
         "final_bankroll": bankroll,
         "profit_pct": final_profit_pct,
         "strategy": args.strategy,
+        "bet_probability_policy": args.bet_probability_policy,
         "min_edge": args.min_edge,
         "min_kelly": args.min_kelly,
         "max_underdog_odds": args.max_underdog_odds,
@@ -1063,6 +1150,15 @@ def parse_args():
     parser.add_argument("--correlation-threshold", type=float, default=0.95)
     parser.add_argument("--starting-bankroll", type=float, default=1000.0)
     parser.add_argument("--strategy", type=parse_strategy, default=[0.05, 0.05, 0.005])
+    parser.add_argument(
+        "--bet-probability-policy",
+        choices=["average", "direct", "mirrored", "closer-to-odds"],
+        default="average",
+        help=(
+            "probability source for betting decisions; closer-to-odds reproduces "
+            "testing_time_period.py's market-odds-aware probability selection"
+        ),
+    )
     parser.add_argument(
         "--min-edge",
         type=float,
