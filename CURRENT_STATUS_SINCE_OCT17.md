@@ -631,6 +631,43 @@ residual, or about `0.071` after a simple correction across the three
 probability policies. Event-bootstrap profit intervals still cross zero, and
 only `3/5` folds are positive for every policy.
 
+### Residual Event-Cap Audit
+
+Residual event-cap audit:
+
+```text
+testing/residual_event_cap_audit.py
+test_results/residual_event_cap_audit/residual_event_cap_audit.md
+test_results/residual_event_cap_audit/residual_event_cap_audit.json
+```
+
+This diagnostic applies simple per-event bet caps to the fixed residual
+paper-policy bets. Within each event, bets are ranked by residual edge; cap
+`1` keeps only the highest-edge bet on each card, and cap `all` keeps the
+original fixed-policy bet set. This is exploratory because the cap family is
+being inspected after the historical ledger exists.
+
+Selected-shrinkage cap results:
+
+| Cap/Event | Bets | Events | Profit | ROI | Positive Folds | Bootstrap P(profit <= 0) | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 100 | 100 | +11.92u | 11.92% | 4 / 5 | 0.021 | 0.006 |
+| 2 | 196 | 100 | +15.75u | 8.04% | 4 / 5 | 0.026 | 0.003 |
+| 3 | 279 | 100 | +17.45u | 6.25% | 4 / 5 | 0.022 | 0.003 |
+| 5 | 374 | 100 | +8.32u | 2.22% | 3 / 5 | 0.238 | 0.026 |
+| all | 399 | 100 | +4.55u | 1.14% | 3 / 5 | 0.350 | 0.044 |
+
+The best historical cap across all 15 inspected policy/cap variants was
+`unshrunk_meta|cap=3`, with `+17.52u`. A market-null simulation that reruns the
+same 15-way variant selection under simulated fight outcomes gave a
+selection-adjusted p-value of `0.011`.
+
+Interpretation: per-event caps are a promising risk-control direction because
+lower-ranked same-card bets appear dilutive. But this still should not be
+promoted as a live edge claim: the cap family was discovered on the same
+historical residual ledger. The honest next step is to freeze one simple capped
+variant before future outcomes and paper-track it unchanged.
+
 ### Residual Meta PnL Audit
 
 Residual meta PnL audit:
@@ -1096,6 +1133,12 @@ The most honest read:
   the best conditional market-null p-value is `0.024`, or about `0.071` after
   a simple three-policy correction, while event-bootstrap profit uncertainty
   still crosses zero
+- per-event risk caps are the most promising PnL translation so far:
+  selected-shrinkage cap `3` produced `+17.45u` with market-null p-value
+  `0.003`, and the best variant across 15 inspected policy/cap combinations
+  had selection-adjusted market-null p-value `0.011`; this is still discovery
+  evidence, not a live edge claim, because the cap family was inspected after
+  the historical ledger existed
 - nested residual-meta PnL tests are positive across objective sensitivities,
   but their best selection-adjusted market-null p-value is only `0.066`
   before correcting for three inspected objectives
