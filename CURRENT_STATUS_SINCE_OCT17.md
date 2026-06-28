@@ -895,6 +895,7 @@ Women-universe sensitivity artifacts:
 
 ```text
 test_results/women_universe_sensitivity/WOMEN_UNIVERSE_SENSITIVITY.md
+test_results/women_universe_sensitivity/WOMEN_UNIVERSE_LONG_NESTED_AUDIT.md
 test_results/women_universe_sensitivity/regularized_train_all_eval_men_2y/no_leakage_backtest_summary.json
 test_results/women_universe_sensitivity/regularized_train_all_eval_men_2y_audit/edge_audit.md
 ```
@@ -916,6 +917,30 @@ de-vigged market log loss; the women-included-training run has event-bootstrap
 also hardened so `Women` excludes known women-vs-women catchweight rows whose
 titles do not contain `Women`. Treat the PnL improvement as an exploratory
 counterfactual, not a production-policy change.
+
+Long-window sensitivity for the same women-included-training / men-only-eval
+idea:
+
+| Window | Fights | Accuracy | Model LL | Market LL | Profit | Market-Null p | Bootstrap Profit CI |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| 2022-02-05 to 2026-06-27 | 1249 | 64.5% | 0.641 | 0.601 | $364.11 | 0.057 | $-376.02 to $1,119.67 |
+
+Interpretation: the long-window result weakens the women-included-training
+case. It remains directionally profitable, but no longer clears `p < 0.05`, the
+bootstrap profit interval crosses zero, and model probabilities still lose
+badly to market log loss.
+
+Nested strategy sensitivity allowing the women-trained model to compete against
+the existing baseline and regularized men-only ledgers:
+
+| Objective | Fights | Bets | Profit | Positive Folds | Women-Train Folds Selected | Market-Null p | Bootstrap Profit CI |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| profit | 962 | 237 | $234.50 | 5 / 7 | 2 / 7 | 0.170 | $-345.64 to $822.43 |
+| ROI | 962 | 140 | $95.31 | 4 / 7 | 2 / 7 | 0.155 | $-193.36 to $396.21 |
+
+Interpretation: this is also directionally positive but weak. It does not
+support replacing the frozen men-only production policy with a women-included
+training variant.
 
 ## Current Bottom Line
 
@@ -963,8 +988,10 @@ The most honest read:
   regularized `model P >= 0.60, edge >= 0.08` slice losing in 2023
 - the women's-fight investigation does not require a production change:
   production backtests already exclude women's fights; women-included training
-  improved the saved men-only PnL ledger but still failed to beat market log
-  loss, while women-only evaluation also failed to beat market evidence
+  improved the saved two-year men-only PnL ledger but still failed to beat
+  market log loss, the longer 2022-2026 window weakened the PnL evidence, and
+  nested strategy selection with a women-trained candidate remained weak;
+  women-only evaluation also failed to beat market evidence
 - the non-binary outcome handling is now audited beyond fight counts:
   draw/no-contest/overturned bouts update `last_fight` and weighted cumulative
   fight-stat features, while remaining out of supervised labels
