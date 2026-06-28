@@ -15,5 +15,28 @@ before future fight outcomes are known. They should be scored later without
 changing the frozen policy, model candidate set, prediction source, strategy
 grid, or staking rules.
 
+After outcomes are known, create a winner template:
+
+```bash
+.venv/bin/python testing/settle_forward_paper_ledger.py \
+  test_results/forward_paper_tracking/latest_forward_paper_bets.csv \
+  --write-outcome-template test_results/forward_paper_tracking/outcomes_template.csv
+```
+
+Fill the `winner` column, then settle and audit the pre-outcome ledger:
+
+```bash
+.venv/bin/python testing/settle_forward_paper_ledger.py \
+  test_results/forward_paper_tracking/latest_forward_paper_bets.csv \
+  --outcomes test_results/forward_paper_tracking/outcomes_template.csv \
+  --require-all-resolved
+```
+
+The settled outputs are written under:
+
+```text
+test_results/forward_paper_tracking/settled/
+```
+
 Current status: no post-freeze outcomes have been scored yet, so no live edge
 claim is proven.

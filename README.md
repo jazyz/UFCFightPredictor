@@ -74,6 +74,10 @@ will be used as evidence. Current backtests are not strong enough to claim a
 proven live edge, so treat these as forward paper-tracking recommendations
 until post-freeze evidence accumulates.
 
+After the card, use `testing/settle_forward_paper_ledger.py` to generate a
+winner template, fill the `winner` column, and settle the archived ledger. The
+settlement report includes fixed-stake market-null and event-bootstrap checks.
+
 ## Other Studies
 
 Stanford University: 62.6%

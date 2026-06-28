@@ -28,6 +28,7 @@ BANKROLL = 100
 LEDGER_COLUMNS = [
     "generated_at_utc",
     "fight_card_link",
+    "event_key",
     "bankroll",
     "policy_path",
     "policy_as_of_date",
@@ -236,6 +237,7 @@ def run_metadata(policy, prediction_metadata, strategy, generated_at_utc):
     return {
         "generated_at_utc": generated_at_utc,
         "fight_card_link": FIGHT_CARD_LINK,
+        "event_key": FIGHT_CARD_LINK,
         "bankroll": BANKROLL,
         "policy_path": POLICY_PATH,
         "policy_as_of_date": policy.get("as_of_date", ""),

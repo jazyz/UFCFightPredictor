@@ -543,6 +543,9 @@ Operational PnL implementation update:
   `test_results/forward_paper_tracking/latest_forward_paper_bets.json`
 - `test_results/forward_paper_tracking/README.md` documents that future ledgers
   only count as evidence if generated and archived before outcomes are known
+- `testing/settle_forward_paper_ledger.py` predefines how archived forward
+  ledgers are settled after outcomes are known and reports fixed-stake
+  market-null plus event-bootstrap checks
 
 Validation:
 
@@ -555,6 +558,8 @@ Validation:
   blended candidate and stake
 - a synthetic forward-ledger smoke test wrote CSV/JSON paper-bet ledgers under
   `/private/tmp`
+- a synthetic settlement smoke test generated an outcome template, settled all
+  rows, and wrote settled CSV/JSON/Markdown evidence under `/private/tmp`
 
 Current operational caveat: the checked-in `data/predict_fights_alpha.csv` is
 stale and fails the live feature-range guard with out-of-training-range values.
