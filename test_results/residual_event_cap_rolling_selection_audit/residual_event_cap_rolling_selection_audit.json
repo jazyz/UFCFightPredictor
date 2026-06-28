@@ -1,0 +1,593 @@
+{
+  "capped_bets_path": "test_results/residual_event_cap_audit/capped_fixed_policy_bets.csv",
+  "fixed_bets_path": "test_results/residual_meta_pnl_audit/fixed_edge02_prob60/selected_holdout_bets.csv",
+  "caps": [
+    "1",
+    "2",
+    "3",
+    "5",
+    "all"
+  ],
+  "min_dev_bets": 35,
+  "iterations": 20000,
+  "seed": 20260628,
+  "summaries": [
+    {
+      "objective": "profit",
+      "eval_folds": 4,
+      "bets": 170,
+      "events": 76,
+      "profit": 9.518351477753328,
+      "roi": 0.05599030281031369,
+      "positive_eval_folds": 3,
+      "selections": [
+        {
+          "eval_fold": 2,
+          "selected_policy": "frozen_residual_meta",
+          "selected_cap": "3",
+          "dev_profit": 7.366980713091914,
+          "dev_bets": 67,
+          "dev_roi": 0.10995493601629723,
+          "eval_bets": 44,
+          "eval_events": 19,
+          "eval_profit": 6.977209454129518,
+          "eval_roi": 0.15857294213930723
+        },
+        {
+          "eval_fold": 3,
+          "selected_policy": "frozen_residual_meta",
+          "selected_cap": "3",
+          "dev_profit": 14.344190167221432,
+          "dev_bets": 111,
+          "dev_roi": 0.12922693844343633,
+          "eval_bets": 60,
+          "eval_events": 23,
+          "eval_profit": 3.7061969956615286,
+          "eval_roi": 0.06176994992769214
+        },
+        {
+          "eval_fold": 4,
+          "selected_policy": "frozen_residual_meta",
+          "selected_cap": "2",
+          "dev_profit": 20.30323755707257,
+          "dev_bets": 125,
+          "dev_roi": 0.16242590045658056,
+          "eval_bets": 33,
+          "eval_events": 17,
+          "eval_profit": 0.8344180616185278,
+          "eval_roi": 0.025285395806622056
+        },
+        {
+          "eval_fold": 5,
+          "selected_policy": "frozen_residual_meta",
+          "selected_cap": "2",
+          "dev_profit": 21.1376556186911,
+          "dev_bets": 158,
+          "dev_roi": 0.13378263049804492,
+          "eval_bets": 33,
+          "eval_events": 17,
+          "eval_profit": -1.999473033656248,
+          "eval_roi": -0.06059009192897721
+        }
+      ],
+      "family": "frozen_residual_meta_caps",
+      "variants": 5,
+      "event_bootstrap": {
+        "iterations": 20000,
+        "events": 76,
+        "profit_ci_95": [
+          -3.697434652853918,
+          22.667509375847015
+        ],
+        "roi_ci_95": [
+          -0.021729520939041968,
+          0.13340155290128766
+        ],
+        "prob_profit_le_zero": 0.0833
+      },
+      "rolling_market_null": {
+        "iterations": 20000,
+        "observed_profit": 9.518351477753328,
+        "null_mean_profit": -5.992931458066957,
+        "null_profit_ci_95": [
+          -20.431953637829718,
+          8.262134308086146
+        ],
+        "p_value_observed_or_better": 0.017399130043497826,
+        "prob_null_profitable": 0.20175,
+        "selected_variant_frequency": {
+          "frozen_residual_meta|cap=2": 19990,
+          "frozen_residual_meta|cap=1": 34328,
+          "frozen_residual_meta|cap=all": 8251,
+          "frozen_residual_meta|cap=5": 6485,
+          "frozen_residual_meta|cap=3": 10946
+        }
+      }
+    },
+    {
+      "objective": "roi",
+      "eval_folds": 4,
+      "bets": 145,
+      "events": 76,
+      "profit": 11.894062382099495,
+      "roi": 0.08202801642827239,
+      "positive_eval_folds": 3,
+      "selections": [
+        {
+          "eval_fold": 2,
+          "selected_policy": "frozen_residual_meta",
+          "selected_cap": "2",
+          "dev_profit": 7.244120202935354,
+          "dev_bets": 46,
+          "dev_roi": 0.15748087397685553,
+          "eval_bets": 35,
+          "eval_events": 19,
+          "eval_profit": 6.533962730726612,
+          "eval_roi": 0.18668464944933177
+        },
+        {
+          "eval_fold": 3,
+          "selected_policy": "frozen_residual_meta",
+          "selected_cap": "2",
+          "dev_profit": 13.778082933661967,
+          "dev_bets": 81,
+          "dev_roi": 0.17009978930446873,
+          "eval_bets": 44,
+          "eval_events": 23,
+          "eval_profit": 6.525154623410603,
+          "eval_roi": 0.14829896871387735
+        },
+        {
+          "eval_fold": 4,
+          "selected_policy": "frozen_residual_meta",
+          "selected_cap": "2",
+          "dev_profit": 20.30323755707257,
+          "dev_bets": 125,
+          "dev_roi": 0.16242590045658056,
+          "eval_bets": 33,
+          "eval_events": 17,
+          "eval_profit": 0.8344180616185278,
+          "eval_roi": 0.025285395806622056
+        },
+        {
+          "eval_fold": 5,
+          "selected_policy": "frozen_residual_meta",
+          "selected_cap": "2",
+          "dev_profit": 21.1376556186911,
+          "dev_bets": 158,
+          "dev_roi": 0.13378263049804492,
+          "eval_bets": 33,
+          "eval_events": 17,
+          "eval_profit": -1.999473033656248,
+          "eval_roi": -0.06059009192897721
+        }
+      ],
+      "family": "frozen_residual_meta_caps",
+      "variants": 5,
+      "event_bootstrap": {
+        "iterations": 20000,
+        "events": 76,
+        "profit_ci_95": [
+          -2.2453628289207614,
+          25.413687580201707
+        ],
+        "roi_ci_95": [
+          -0.015375193888406519,
+          0.1758396489520114
+        ],
+        "prob_profit_le_zero": 0.0478
+      },
+      "rolling_market_null": {
+        "iterations": 20000,
+        "observed_profit": 11.894062382099495,
+        "null_mean_profit": -7.23363669126922,
+        "null_profit_ci_95": [
+          -26.10857120210854,
+          8.272486736404739
+        ],
+        "p_value_observed_or_better": 0.007699615019249037,
+        "prob_null_profitable": 0.21045,
+        "selected_variant_frequency": {
+          "frozen_residual_meta|cap=all": 15834,
+          "frozen_residual_meta|cap=3": 12487,
+          "frozen_residual_meta|cap=2": 18317,
+          "frozen_residual_meta|cap=1": 22440,
+          "frozen_residual_meta|cap=5": 10922
+        }
+      }
+    },
+    {
+      "objective": "profit",
+      "eval_folds": 4,
+      "bets": 210,
+      "events": 77,
+      "profit": 12.149216124193812,
+      "roi": 0.05785341011520863,
+      "positive_eval_folds": 3,
+      "selections": [
+        {
+          "eval_fold": 2,
+          "selected_policy": "selected_shrinkage",
+          "selected_cap": "3",
+          "dev_profit": 5.297422206528125,
+          "dev_bets": 69,
+          "dev_roi": 0.07677423487721921,
+          "eval_bets": 53,
+          "eval_events": 19,
+          "eval_profit": 6.740262760290445,
+          "eval_roi": 0.12717476906208386
+        },
+        {
+          "eval_fold": 3,
+          "selected_policy": "selected_shrinkage",
+          "selected_cap": "3",
+          "dev_profit": 12.03768496681857,
+          "dev_bets": 122,
+          "dev_roi": 0.09866954890834893,
+          "eval_bets": 64,
+          "eval_events": 23,
+          "eval_profit": 3.7372119891607207,
+          "eval_roi": 0.05839393733063626
+        },
+        {
+          "eval_fold": 4,
+          "selected_policy": "selected_shrinkage",
+          "selected_cap": "3",
+          "dev_profit": 15.77489695597929,
+          "dev_bets": 186,
+          "dev_roi": 0.0848112739568779,
+          "eval_bets": 47,
+          "eval_events": 18,
+          "eval_profit": 3.2088257001352387,
+          "eval_roi": 0.06827288723691997
+        },
+        {
+          "eval_fold": 5,
+          "selected_policy": "selected_shrinkage",
+          "selected_cap": "3",
+          "dev_profit": 18.98372265611453,
+          "dev_bets": 233,
+          "dev_roi": 0.08147520453268038,
+          "eval_bets": 46,
+          "eval_events": 17,
+          "eval_profit": -1.537084325392595,
+          "eval_roi": -0.03341487663896946
+        }
+      ],
+      "family": "selected_shrinkage_caps",
+      "variants": 5,
+      "event_bootstrap": {
+        "iterations": 20000,
+        "events": 77,
+        "profit_ci_95": [
+          -3.774012549198547,
+          27.704004365903835
+        ],
+        "roi_ci_95": [
+          -0.017979437104736467,
+          0.1330391195774021
+        ],
+        "prob_profit_le_zero": 0.0677
+      },
+      "rolling_market_null": {
+        "iterations": 20000,
+        "observed_profit": 12.149216124193812,
+        "null_mean_profit": -6.408665449718556,
+        "null_profit_ci_95": [
+          -21.43476545204257,
+          8.391109655960378
+        ],
+        "p_value_observed_or_better": 0.007749612519374031,
+        "prob_null_profitable": 0.19095,
+        "selected_variant_frequency": {
+          "selected_shrinkage|cap=3": 10997,
+          "selected_shrinkage|cap=all": 8247,
+          "selected_shrinkage|cap=1": 34895,
+          "selected_shrinkage|cap=5": 6067,
+          "selected_shrinkage|cap=2": 19794
+        }
+      }
+    },
+    {
+      "objective": "roi",
+      "eval_folds": 4,
+      "bets": 111,
+      "events": 77,
+      "profit": 6.831086807337828,
+      "roi": 0.06154132258862908,
+      "positive_eval_folds": 3,
+      "selections": [
+        {
+          "eval_fold": 2,
+          "selected_policy": "selected_shrinkage",
+          "selected_cap": "3",
+          "dev_profit": 5.297422206528125,
+          "dev_bets": 69,
+          "dev_roi": 0.07677423487721921,
+          "eval_bets": 53,
+          "eval_events": 19,
+          "eval_profit": 6.740262760290445,
+          "eval_roi": 0.12717476906208386
+        },
+        {
+          "eval_fold": 3,
+          "selected_policy": "selected_shrinkage",
+          "selected_cap": "1",
+          "dev_profit": 11.833268919217709,
+          "dev_bets": 42,
+          "dev_roi": 0.2817444980766121,
+          "eval_bets": 23,
+          "eval_events": 23,
+          "eval_profit": 0.8565600762599349,
+          "eval_roi": 0.03724174244608413
+        },
+        {
+          "eval_fold": 4,
+          "selected_policy": "selected_shrinkage",
+          "selected_cap": "1",
+          "dev_profit": 12.689828995477644,
+          "dev_bets": 65,
+          "dev_roi": 0.19522813839196376,
+          "eval_bets": 18,
+          "eval_events": 18,
+          "eval_profit": 3.8022134085516037,
+          "eval_roi": 0.21123407825286689
+        },
+        {
+          "eval_fold": 5,
+          "selected_policy": "selected_shrinkage",
+          "selected_cap": "1",
+          "dev_profit": 16.49204240402925,
+          "dev_bets": 83,
+          "dev_roi": 0.19869930607264155,
+          "eval_bets": 17,
+          "eval_events": 17,
+          "eval_profit": -4.567949437764157,
+          "eval_roi": -0.26870290810377395
+        }
+      ],
+      "family": "selected_shrinkage_caps",
+      "variants": 5,
+      "event_bootstrap": {
+        "iterations": 20000,
+        "events": 77,
+        "profit_ci_95": [
+          -5.123463421513754,
+          18.850139688361484
+        ],
+        "roi_ci_95": [
+          -0.047520000476805754,
+          0.16708231956945713
+        ],
+        "prob_profit_le_zero": 0.13215
+      },
+      "rolling_market_null": {
+        "iterations": 20000,
+        "observed_profit": 6.831086807337828,
+        "null_mean_profit": -7.899063776322504,
+        "null_profit_ci_95": [
+          -28.284358299345588,
+          8.686575198258636
+        ],
+        "p_value_observed_or_better": 0.04244787760611969,
+        "prob_null_profitable": 0.19715,
+        "selected_variant_frequency": {
+          "selected_shrinkage|cap=3": 12907,
+          "selected_shrinkage|cap=2": 18247,
+          "selected_shrinkage|cap=all": 15149,
+          "selected_shrinkage|cap=1": 22538,
+          "selected_shrinkage|cap=5": 11159
+        }
+      }
+    },
+    {
+      "objective": "profit",
+      "eval_folds": 4,
+      "bets": 189,
+      "events": 76,
+      "profit": 10.81323025318995,
+      "roi": 0.05721285848248651,
+      "positive_eval_folds": 3,
+      "selections": [
+        {
+          "eval_fold": 2,
+          "selected_policy": "fixed_half_residual",
+          "selected_cap": "3",
+          "dev_profit": 6.200505839748207,
+          "dev_bets": 59,
+          "dev_roi": 0.10509331931776622,
+          "eval_bets": 42,
+          "eval_events": 19,
+          "eval_profit": 7.3477379094140725,
+          "eval_roi": 0.17494614070033507
+        },
+        {
+          "eval_fold": 3,
+          "selected_policy": "fixed_half_residual",
+          "selected_cap": "3",
+          "dev_profit": 13.548243749162278,
+          "dev_bets": 101,
+          "dev_roi": 0.1341410272194285,
+          "eval_bets": 50,
+          "eval_events": 22,
+          "eval_profit": 1.8199827591789153,
+          "eval_roi": 0.03639965518357831
+        },
+        {
+          "eval_fold": 4,
+          "selected_policy": "unshrunk_meta",
+          "selected_cap": "3",
+          "dev_profit": 15.77489695597929,
+          "dev_bets": 186,
+          "dev_roi": 0.0848112739568779,
+          "eval_bets": 51,
+          "eval_events": 18,
+          "eval_profit": 3.18259390998956,
+          "eval_roi": 0.062403802156658035
+        },
+        {
+          "eval_fold": 5,
+          "selected_policy": "selected_shrinkage",
+          "selected_cap": "3",
+          "dev_profit": 18.98372265611453,
+          "dev_bets": 233,
+          "dev_roi": 0.08147520453268038,
+          "eval_bets": 46,
+          "eval_events": 17,
+          "eval_profit": -1.537084325392595,
+          "eval_roi": -0.03341487663896946
+        }
+      ],
+      "family": "all_shrinkage_policy_caps",
+      "variants": 15,
+      "event_bootstrap": {
+        "iterations": 20000,
+        "events": 76,
+        "profit_ci_95": [
+          -5.422804761653484,
+          26.184599931999085
+        ],
+        "roi_ci_95": [
+          -0.02858060150521595,
+          0.13990314464642592
+        ],
+        "prob_profit_le_zero": 0.08965
+      },
+      "rolling_market_null": {
+        "iterations": 20000,
+        "observed_profit": 10.81323025318995,
+        "null_mean_profit": -6.550426808203489,
+        "null_profit_ci_95": [
+          -21.795118571028745,
+          8.215170479629627
+        ],
+        "p_value_observed_or_better": 0.011149442527873607,
+        "prob_null_profitable": 0.18925,
+        "selected_variant_frequency": {
+          "fixed_half_residual|cap=2": 8758,
+          "fixed_half_residual|cap=1": 13937,
+          "selected_shrinkage|cap=1": 2268,
+          "fixed_half_residual|cap=3": 5241,
+          "unshrunk_meta|cap=3": 6370,
+          "fixed_half_residual|cap=5": 3921,
+          "unshrunk_meta|cap=1": 14475,
+          "fixed_half_residual|cap=all": 4437,
+          "unshrunk_meta|cap=5": 3783,
+          "unshrunk_meta|cap=all": 5499,
+          "selected_shrinkage|cap=3": 561,
+          "unshrunk_meta|cap=2": 9070,
+          "selected_shrinkage|cap=all": 418,
+          "selected_shrinkage|cap=5": 367,
+          "selected_shrinkage|cap=2": 895
+        }
+      }
+    },
+    {
+      "objective": "roi",
+      "eval_folds": 4,
+      "bets": 100,
+      "events": 77,
+      "profit": 6.278561956461454,
+      "roi": 0.06278561956461454,
+      "positive_eval_folds": 3,
+      "selections": [
+        {
+          "eval_fold": 2,
+          "selected_policy": "fixed_half_residual",
+          "selected_cap": "3",
+          "dev_profit": 6.200505839748207,
+          "dev_bets": 59,
+          "dev_roi": 0.10509331931776622,
+          "eval_bets": 42,
+          "eval_events": 19,
+          "eval_profit": 7.3477379094140725,
+          "eval_roi": 0.17494614070033507
+        },
+        {
+          "eval_fold": 3,
+          "selected_policy": "unshrunk_meta",
+          "selected_cap": "1",
+          "dev_profit": 11.833268919217709,
+          "dev_bets": 42,
+          "dev_roi": 0.2817444980766121,
+          "eval_bets": 23,
+          "eval_events": 23,
+          "eval_profit": 0.8565600762599349,
+          "eval_roi": 0.03724174244608413
+        },
+        {
+          "eval_fold": 4,
+          "selected_policy": "unshrunk_meta",
+          "selected_cap": "1",
+          "dev_profit": 12.689828995477644,
+          "dev_bets": 65,
+          "dev_roi": 0.19522813839196376,
+          "eval_bets": 18,
+          "eval_events": 18,
+          "eval_profit": 2.6422134085516036,
+          "eval_roi": 0.14678963380842242
+        },
+        {
+          "eval_fold": 5,
+          "selected_policy": "selected_shrinkage",
+          "selected_cap": "1",
+          "dev_profit": 16.49204240402925,
+          "dev_bets": 83,
+          "dev_roi": 0.19869930607264155,
+          "eval_bets": 17,
+          "eval_events": 17,
+          "eval_profit": -4.567949437764157,
+          "eval_roi": -0.26870290810377395
+        }
+      ],
+      "family": "all_shrinkage_policy_caps",
+      "variants": 15,
+      "event_bootstrap": {
+        "iterations": 20000,
+        "events": 77,
+        "profit_ci_95": [
+          -5.747083516069201,
+          18.18847741858272
+        ],
+        "roi_ci_95": [
+          -0.05871316230919889,
+          0.1808907263436938
+        ],
+        "prob_profit_le_zero": 0.15005
+      },
+      "rolling_market_null": {
+        "iterations": 20000,
+        "observed_profit": 6.278561956461454,
+        "null_mean_profit": -7.4742637885606165,
+        "null_profit_ci_95": [
+          -26.981429028946852,
+          8.48227260556616
+        ],
+        "p_value_observed_or_better": 0.047297635118244086,
+        "prob_null_profitable": 0.20515,
+        "selected_variant_frequency": {
+          "unshrunk_meta|cap=2": 8480,
+          "unshrunk_meta|cap=1": 11556,
+          "selected_shrinkage|cap=1": 1571,
+          "unshrunk_meta|cap=all": 8840,
+          "fixed_half_residual|cap=5": 4421,
+          "fixed_half_residual|cap=1": 9756,
+          "fixed_half_residual|cap=2": 8094,
+          "fixed_half_residual|cap=3": 5486,
+          "fixed_half_residual|cap=all": 5768,
+          "unshrunk_meta|cap=5": 5967,
+          "unshrunk_meta|cap=3": 6732,
+          "selected_shrinkage|cap=3": 755,
+          "selected_shrinkage|cap=5": 623,
+          "selected_shrinkage|cap=all": 994,
+          "selected_shrinkage|cap=2": 957
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "summary_json": "test_results/residual_event_cap_rolling_selection_audit/residual_event_cap_rolling_selection_audit.json",
+    "report_md": "test_results/residual_event_cap_rolling_selection_audit/residual_event_cap_rolling_selection_audit.md",
+    "selected_bets_csv": "test_results/residual_event_cap_rolling_selection_audit/rolling_selected_bets.csv"
+  }
+}

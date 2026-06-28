@@ -4,6 +4,7 @@ Process only new fights instead of reprocessing entire dataset
 """
 import pandas as pd
 import os
+import unicodedata
 from datetime import datetime
 
 
@@ -54,6 +55,7 @@ def process_new_fights_only(input_path='data/fight_details_date.csv',
         return 0
     
     df = pd.read_csv(input_path)
+    known_women = known_women_fighter_names(df)
     
     # Filter to only new fights
     if last_processed_date:
@@ -73,7 +75,7 @@ def process_new_fights_only(input_path='data/fight_details_date.csv',
     df = df.reset_index(drop=True)
     
     # Apply the same transformations as modify_fights.py
-    df = apply_data_transformations(df)
+    df = apply_data_transformations(df, known_women=known_women)
     
     # Append to existing file or create new one
     output_exists = os.path.exists(output_path)
@@ -91,7 +93,34 @@ def process_new_fights_only(input_path='data/fight_details_date.csv',
     return len(df)
 
 
-def apply_data_transformations(df):
+def canonical_name(value):
+    ascii_name = unicodedata.normalize("NFKD", str(value)).encode("ascii", "ignore").decode("ascii")
+    return " ".join(ascii_name.strip().lower().split())
+
+
+def known_women_fighter_names(source_df):
+    required_columns = {"Title", "Red Fighter", "Blue Fighter"}
+    if not required_columns.issubset(source_df.columns):
+        return set()
+
+    women_title = source_df["Title"].fillna("").str.contains("Women", case=False, regex=False)
+    women_rows = source_df[women_title]
+    return set(women_rows["Red Fighter"].map(canonical_name)) | set(
+        women_rows["Blue Fighter"].map(canonical_name)
+    )
+
+
+def known_women_pair_mask(source_df, known_women):
+    required_columns = {"Red Fighter", "Blue Fighter"}
+    if not known_women or not required_columns.issubset(source_df.columns):
+        return pd.Series(False, index=source_df.index)
+
+    red = source_df["Red Fighter"].map(canonical_name)
+    blue = source_df["Blue Fighter"].map(canonical_name)
+    return red.isin(known_women) & blue.isin(known_women)
+
+
+def apply_data_transformations(df, known_women=None):
     """
     Apply the same transformations as modify_fights.py
     (Converting ratios, times, filtering, etc.)
@@ -153,8 +182,12 @@ def apply_data_transformations(df):
     if existing_cols_to_delete:
         df = df.drop(columns=existing_cols_to_delete)
     
-    # Filter out women's fights and open weight
-    df = df[~df['Title'].str.contains("Women", na=False)]
+    # Filter out women's fights and open weight.  Use fighter identity too, so
+    # women-vs-women catchweights whose titles omit "Women" stay out of the
+    # production universe during incremental updates.
+    women_title = df['Title'].str.contains("Women", case=False, regex=False, na=False)
+    women_pair = known_women_pair_mask(df, known_women or set())
+    df = df[~(women_title | women_pair)]
     df = df[~df['Title'].str.contains("Open", na=False)]
     
     return df

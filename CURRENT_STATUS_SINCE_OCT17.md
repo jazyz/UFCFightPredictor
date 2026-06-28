@@ -668,6 +668,40 @@ promoted as a live edge claim: the cap family was discovered on the same
 historical residual ledger. The honest next step is to freeze one simple capped
 variant before future outcomes and paper-track it unchanged.
 
+### Residual Event-Cap Rolling Selection Audit
+
+Rolling cap-selection audit:
+
+```text
+testing/residual_event_cap_rolling_selection_audit.py
+test_results/residual_event_cap_rolling_selection_audit/residual_event_cap_rolling_selection_audit.md
+test_results/residual_event_cap_rolling_selection_audit/residual_event_cap_rolling_selection_audit.json
+test_results/residual_event_cap_rolling_selection_audit/rolling_selected_bets.csv
+```
+
+This is a stricter check than the static event-cap audit: for each evaluation
+fold after fold 1, it selects a cap/policy using only prior folds, then scores
+that selected variant on the next fold. Minimum development bets: `35`.
+Market-null simulations rerun the same rolling selection under simulated
+market outcomes.
+
+| Family | Objective | Variants | Eval Folds | Bets | Profit | ROI | Positive Folds | Bootstrap P(profit <= 0) | Rolling Market-Null p |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| frozen residual-meta caps | profit | 5 | 4 | 170 | +9.52u | 5.60% | 3 / 4 | 0.083 | 0.017 |
+| frozen residual-meta caps | ROI | 5 | 4 | 145 | +11.89u | 8.20% | 3 / 4 | 0.048 | 0.008 |
+| selected-shrinkage caps | profit | 5 | 4 | 210 | +12.15u | 5.79% | 3 / 4 | 0.068 | 0.008 |
+| selected-shrinkage caps | ROI | 5 | 4 | 111 | +6.83u | 6.15% | 3 / 4 | 0.132 | 0.042 |
+| all shrinkage policy caps | profit | 15 | 4 | 189 | +10.81u | 5.72% | 3 / 4 | 0.090 | 0.011 |
+| all shrinkage policy caps | ROI | 15 | 4 | 100 | +6.28u | 6.28% | 3 / 4 | 0.150 | 0.047 |
+
+Interpretation: the cap idea survives a rolling prior-fold selection check,
+which meaningfully reduces the concern that cap `3` is pure full-sample
+overfit. The caveats remain material: only four evaluation folds are available,
+the latest fold is still negative for every rolling selector, and this remains
+historical evidence rather than post-freeze proof. It does, however,
+strengthen the case for the frozen capped residual policy as the next
+paper-tracked hypothesis.
+
 ### Frozen Residual Event-Cap Paper Policy
 
 Frozen capped residual policy:
@@ -1085,6 +1119,12 @@ more than `totalfights`: when the latest prior fight was non-binary, `last_fight
 matched the non-binary date, and cumulative weighted `Sig. str.`, `Total str.`,
 and `Td` features matched the calculation that includes non-binary bouts.
 
+Follow-up implementation hardening: `utils/incremental_processing.py` now uses
+the full raw scrape to learn known women's fighters before filtering a new
+incremental batch. That makes the incremental production path match
+`modify_fights.py` and the backtest universe filter for hidden women-vs-women
+catchweights whose title omits `Women`.
+
 ### Women Universe Sensitivity
 
 Women-universe sensitivity artifacts:
@@ -1190,6 +1230,11 @@ The most honest read:
   the frozen residual transform, fixed thresholds, flat `1u`, and max `3`
   bets per event ranked by residual edge; this is for future paper tracking
   only, not live staking
+- rolling prior-fold cap selection is positive and market-null resistant:
+  the frozen residual-meta cap family made `+9.52u` to `+11.89u` depending on
+  objective, selected-shrinkage caps made `+12.15u` under the profit objective,
+  and rolling market-null p-values ranged from `0.008` to `0.047`; the latest
+  fold remained negative, so this still needs post-freeze evidence
 - nested residual-meta PnL tests are positive across objective sensitivities,
   but their best selection-adjusted market-null p-value is only `0.066`
   before correcting for three inspected objectives
@@ -1302,12 +1347,20 @@ Operational PnL implementation update:
 - `testing/settle_forward_paper_ledger.py` predefines how archived forward
   ledgers are settled after outcomes are known and reports fixed-stake
   market-null plus event-bootstrap checks
+- `testing/score_frozen_residual_event_cap_policy.py` generates separate
+  pre-outcome paper ledgers for the frozen capped residual policy:
+  `test_results/forward_paper_tracking/latest_residual_event_cap_paper_bets.csv`
+  and `.json`
 
 Validation:
 
 - compile check passed for `betting_alpha.py`, `ml_web.py`,
   `predict_single_model.py`, `load_ensemble.py`, and
   `utils/production_predictions.py`
+- compile check passed for `testing/score_frozen_residual_event_cap_policy.py`
+- compile check passed for `utils/incremental_processing.py`,
+  `testing/residual_event_cap_rolling_selection_audit.py`,
+  `testing/outcome_universe_audit.py`, and `testing/no_leakage_backtest.py`
 - a temporary in-range prediction input generated canonical prediction outputs
   under `/private/tmp/ufc_forward_prediction_smoke`
 - a direct frozen-policy betting smoke test selected the expected model/market
@@ -1316,6 +1369,17 @@ Validation:
   `/private/tmp`
 - a synthetic settlement smoke test generated an outcome template, settled all
   rows, and wrote settled CSV/JSON/Markdown evidence under `/private/tmp`
+- a capped residual scorer smoke test wrote a compatible pre-outcome ledger,
+  generated a settlement outcome template, and settled a synthetic result under
+  `/private/tmp`
+- a five-fight capped residual scorer smoke test exercised the event cap itself:
+  the scorer placed exactly three paper bets and marked two otherwise eligible
+  candidates as `event cap 3 reached`
+- an incremental-processing smoke test confirmed a new women-vs-women
+  catchweight row is excluded even when its title omits `Women`
+- the residual event-cap rolling selection audit regenerated cleanly; best
+  result was selected-shrinkage caps with profit objective, `+12.15u`,
+  rolling market-null p `0.008`
 
 Current operational caveat: the checked-in `data/predict_fights_alpha.csv` is
 stale and fails the live feature-range guard with out-of-training-range values.

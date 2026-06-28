@@ -55,3 +55,31 @@ edge of `0.02`, a minimum meta probability of `0.60`, max underdog odds of
 `+300`, and a flat `1u` paper stake. Keep residual-meta paper ledgers separate
 from the main frozen forward policy ledgers so future evidence remains
 auditable.
+
+## Capped Residual Event Policy
+
+The current strongest residual paper-tracking contract is frozen here:
+
+```text
+test_results/frozen_residual_event_cap_paper_policy/frozen_residual_event_cap_paper_policy.md
+test_results/frozen_residual_event_cap_paper_policy/frozen_residual_event_cap_paper_policy.json
+```
+
+It uses the same frozen residual probability transform and fixed thresholds,
+but caps exposure at the top `3` residual-edge bets per event. Generate
+pre-outcome paper ledgers with:
+
+```bash
+.venv/bin/python testing/score_frozen_residual_event_cap_policy.py \
+  --fights path/to/fight_card_odds.csv \
+  --event-key unique-event-key \
+  --fight-card-link https://example.com/card \
+  --output-csv test_results/forward_paper_tracking/latest_residual_event_cap_paper_bets.csv \
+  --output-json test_results/forward_paper_tracking/latest_residual_event_cap_paper_bets.json
+```
+
+The input CSV must include `fighter1`, `fighter2`, `fighter1_odds`, and
+`fighter2_odds`; optional `fight_index`, `event_key`, and `fight_card_link`
+columns are preserved in the ledger. Archive the generated CSV/JSON before
+outcomes are known. After the card, settle it with the same
+`testing/settle_forward_paper_ledger.py` workflow above.
