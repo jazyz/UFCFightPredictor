@@ -397,6 +397,64 @@ Interpretation: the earlier 15% model / 85% market blend result did not hold
 up on the longer split. On long-history development data, pure market was the
 selected log-loss forecaster.
 
+### Market Residual Meta Audit
+
+Residual meta audit:
+
+```text
+testing/market_residual_meta_audit.py
+test_results/market_residual_meta_audit/MARKET_RESIDUAL_META_AUDIT_SUMMARY.md
+```
+
+This audit asks a narrower probability question: after controlling for the
+de-vigged market logit, do the saved leak-safe model probabilities contain
+incremental information about future fight outcomes?
+
+It aligns the baseline-default and regularized-LGBM long ledgers by fight,
+then trains only a small logistic meta-model inside each forward development
+window. The primary residual feature is:
+
+```text
+logit(model probability) - logit(market probability)
+```
+
+Primary protocol:
+
+- aligned fights: `1220`
+- development window: `730` days
+- holdout window: `182` days
+- forward folds: `5`
+- logistic L2 inverse regularization: `C = 1.0`
+- market-null simulations: `1000`
+
+Primary holdout results:
+
+| Variant | Market LL | Meta LL | Delta LL | Positive Folds | Bootstrap P(delta <= 0) | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| market recalibrated | 0.6009 | 0.6011 | -0.0002 | 3 / 5 | 0.519 | 0.160 |
+| market + baseline residual | 0.6009 | 0.5993 | +0.0015 | 4 / 5 | 0.346 | 0.030 |
+| market + regularized residual | 0.6009 | 0.5979 | +0.0030 | 4 / 5 | 0.218 | 0.012 |
+| market + both residuals | 0.6009 | 0.5983 | +0.0026 | 4 / 5 | 0.259 | 0.012 |
+
+The strongest primary variant is `market + regularized residual`. Its
+uncorrected market-null p-value is `0.012`; a simple Bonferroni correction
+across four primary variants gives about `0.048`. The average regularized
+residual coefficient across folds was positive at `+0.2616`.
+
+Sensitivity checks kept the regularized residual positive:
+
+| Config | Market LL | Meta LL | Delta LL | Positive Folds | Bootstrap P(delta <= 0) | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 730d dev, C=1.0 | 0.6009 | 0.5979 | +0.0030 | 4 / 5 | 0.218 | 0.012 |
+| 365d dev, C=1.0 | 0.6009 | 0.5962 | +0.0047 | 4 / 5 | 0.126 | 0.003 |
+| 730d dev, C=0.25 | 0.6009 | 0.5981 | +0.0028 | 4 / 5 | 0.173 | 0.012 |
+
+Interpretation: this is the strongest current evidence that the model has a
+small probability edge after controlling for market price. It still should not
+be treated as a live betting edge claim by itself: the absolute log-loss gain
+is small, event-bootstrap intervals still cross zero, and the transform has
+not yet been frozen and paper-tracked on future cards.
+
 ### Frozen Forward Paper-Tracking Policy
 
 Freeze artifact:
@@ -632,7 +690,8 @@ The most honest read:
 - de-vigged market probabilities still beat standalone model probabilities on
   raw holdout log loss
 - the longer market-blend audit selected pure market probability, not a model
-  residual
+  residual, but the newer residual meta audit finds a small positive
+  model-after-market log-loss signal
 - edge-only model/market disagreement is negative in flat-bet tests; the more
   interesting pockets require both positive edge and a model-probability floor
 - forward-selected simple disagreement policies remain weak after objective
@@ -646,15 +705,20 @@ The most honest read:
   women-included experiment failed to beat market evidence
 - the best raw market-null p-value is `0.048` from the exploratory ROI
   objective, or about `0.096` after a simple two-objective correction
-- this is promising but below a strong statistical-evidence threshold
+- the best probability-residual result has market-null p-value `0.012`, or
+  about `0.048` after a simple four-variant correction, but its event-bootstrap
+  uncertainty still crosses zero
+- this is promising but still below a strong live-edge threshold
 
 Recommendation:
 
 Do not materially increase staking based only on these backtests. Use the
-frozen forward artifact above as the current paper-tracking policy. A real edge
-claim needs future out-of-sample results that beat market-null and bootstrap
-tests after the model params, selection objective, strategy grid, and staking
-policy have been frozen.
+frozen forward artifact above as the current paper-tracking policy, and treat
+the residual meta transform as the next candidate to freeze before any future
+results are inspected. A real edge claim needs future out-of-sample results
+that beat market-null and bootstrap tests after the model params, probability
+transform, selection objective, strategy grid, and staking policy have been
+frozen.
 
 ## Independent PnL Investigation Update
 
