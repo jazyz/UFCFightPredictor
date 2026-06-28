@@ -527,6 +527,50 @@ fixed-policy historical diagnostic was only `+2.44u` with market-null p-value
 `0.117`, so this is a future-evidence collection contract, not a live staking
 recommendation.
 
+### Residual Signal Slice Audit
+
+Residual slice audit:
+
+```text
+testing/residual_signal_slice_audit.py
+test_results/residual_signal_slice_audit/RESIDUAL_SIGNAL_SLICE_AUDIT_SUMMARY.md
+```
+
+This diagnostic decomposes the residual log-loss signal and the fixed
+residual-meta paper-policy bets. It does not retrain, select thresholds, or
+change the frozen policy.
+
+Key probability-signal slices:
+
+| Slice | Fights | Delta LL |
+| --- | ---: | ---: |
+| aggregate | 704 | +0.0030 |
+| market P 0.50-0.60 | 105 | +0.0264 |
+| market P 0.60-0.70 | 131 | -0.0143 |
+| market P 0.70-0.80 | 83 | +0.0101 |
+| residual edge 0.05-0.08 | 219 | +0.0234 |
+| residual edge >=0.08 | 38 | -0.0310 |
+| 2024 | 275 | +0.0098 |
+| 2025 | 285 | +0.0018 |
+| 2026 | 144 | -0.0077 |
+
+Fixed paper-policy bet slices:
+
+| Slice | Bets | Profit | ROI |
+| --- | ---: | ---: | ---: |
+| aggregate | 354 | +2.44u | +0.69% |
+| market P 0.50-0.60 | 42 | +7.93u | +18.87% |
+| market P 0.60-0.70 | 135 | -6.91u | -5.12% |
+| market P 0.70-0.80 | 122 | +4.10u | +3.36% |
+| market P >=0.80 | 55 | -2.68u | -4.87% |
+| 2024 | 144 | +11.60u | +8.06% |
+| 2025 | 143 | -4.64u | -3.25% |
+| 2026 | 67 | -4.52u | -6.74% |
+
+Interpretation: the residual signal is not broad or monotonic. Larger residual
+edges were not automatically better, and the fixed paper-policy profit was
+mostly a 2024 phenomenon. This strengthens the paper-track-only conclusion.
+
 ### Frozen Forward Paper-Tracking Policy
 
 Freeze artifact:
@@ -767,6 +811,9 @@ The most honest read:
 - nested residual-meta PnL tests are positive across objective sensitivities,
   but their best selection-adjusted market-null p-value is only `0.066`
   before correcting for three inspected objectives
+- residual signal slices are uneven: the probability edge was negative in
+  2026, negative for market P `0.60-0.70`, and negative for extreme residual
+  edge `>=0.08`; fixed-policy PnL was also negative in 2025 and 2026
 - edge-only model/market disagreement is negative in flat-bet tests; the more
   interesting pockets require both positive edge and a model-probability floor
 - forward-selected simple disagreement policies remain weak after objective

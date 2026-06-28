@@ -1,0 +1,567 @@
+{
+  "variant": "market_plus_regularized_lgbm",
+  "prediction_path": "test_results/market_residual_meta_audit/holdout_meta_predictions.csv",
+  "bet_path": "test_results/residual_meta_pnl_audit/fixed_edge02_prob60/selected_holdout_bets.csv",
+  "prediction": {
+    "aggregate": {
+      "fights": 704,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.5978903895335758,
+      "market_minus_meta_log_loss": 0.0029932852518994553,
+      "market_minus_meta_brier": 0.0016401241222837517
+    },
+    "by_market_bin": [
+      {
+        "slice": "<0.40",
+        "fights": 250,
+        "market_log_loss": 0.5600302095663687,
+        "meta_log_loss": 0.5576162039804238,
+        "market_minus_meta_log_loss": 0.0024140055859450333,
+        "market_minus_meta_brier": 0.0009694069198120489,
+        "mean_market_probability": 0.2862741817029496,
+        "mean_meta_probability": 0.26545171830028164,
+        "actual_rate": 0.252,
+        "share_of_total_delta": 0.28638977901724766
+      },
+      {
+        "slice": "0.40-0.50",
+        "fights": 102,
+        "market_log_loss": 0.6895666934498682,
+        "meta_log_loss": 0.6903632126836896,
+        "market_minus_meta_log_loss": -0.0007965192338212759,
+        "market_minus_meta_brier": -0.0003704398528141019,
+        "mean_market_probability": 0.4487689659025865,
+        "mean_meta_probability": 0.4576929203459839,
+        "actual_rate": 0.4411764705882353,
+        "share_of_total_delta": -0.038554553155785765
+      },
+      {
+        "slice": "0.50-0.60",
+        "fights": 105,
+        "market_log_loss": 0.6763274893713742,
+        "meta_log_loss": 0.6499090567838478,
+        "market_minus_meta_log_loss": 0.026418432587526238,
+        "market_minus_meta_brier": 0.012792111967574758,
+        "mean_market_probability": 0.5539422804350267,
+        "mean_meta_probability": 0.5804426415336708,
+        "actual_rate": 0.580952380952381,
+        "share_of_total_delta": 1.316362740917165
+      },
+      {
+        "slice": "0.60-0.70",
+        "fights": 131,
+        "market_log_loss": 0.6652713802649889,
+        "meta_log_loss": 0.6795386871069872,
+        "market_minus_meta_log_loss": -0.014267306841998366,
+        "market_minus_meta_brier": -0.00545737176280498,
+        "mean_market_probability": 0.6511443165623152,
+        "mean_meta_probability": 0.701734797388214,
+        "actual_rate": 0.6335877862595419,
+        "share_of_total_delta": -0.8869365090864246
+      },
+      {
+        "slice": "0.70-0.80",
+        "fights": 83,
+        "market_log_loss": 0.4893295727016489,
+        "meta_log_loss": 0.4792265465377974,
+        "market_minus_meta_log_loss": 0.010103026163851524,
+        "market_minus_meta_brier": 0.004325534666104841,
+        "mean_market_probability": 0.7456644382051005,
+        "mean_meta_probability": 0.8023661762439748,
+        "actual_rate": 0.8192771084337349,
+        "share_of_total_delta": 0.39793194535640763
+      },
+      {
+        "slice": ">=0.80",
+        "fights": 33,
+        "market_log_loss": 0.4211957634106384,
+        "meta_log_loss": 0.4259973699041965,
+        "market_minus_meta_log_loss": -0.004801606493558075,
+        "market_minus_meta_brier": -0.0011271186616003534,
+        "mean_market_probability": 0.8420784163323625,
+        "mean_meta_probability": 0.8912932158520332,
+        "actual_rate": 0.8484848484848485,
+        "share_of_total_delta": -0.07519340304860964
+      }
+    ],
+    "by_abs_edge_bin": [
+      {
+        "slice": "<0.01",
+        "fights": 96,
+        "market_log_loss": 0.664677615361106,
+        "meta_log_loss": 0.6654885695444324,
+        "market_minus_meta_log_loss": -0.0008109541833262613,
+        "market_minus_meta_brier": -0.0003302037972000183,
+        "mean_market_probability": 0.4204101609014736,
+        "mean_meta_probability": 0.4192732586105261,
+        "actual_rate": 0.4375,
+        "share_of_total_delta": -0.036944244218788724
+      },
+      {
+        "slice": "0.01-0.02",
+        "fights": 77,
+        "market_log_loss": 0.6332816503951644,
+        "meta_log_loss": 0.6305900101433071,
+        "market_minus_meta_log_loss": 0.00269164025185726,
+        "market_minus_meta_brier": 0.0007667353194393286,
+        "mean_market_probability": 0.4125124202745689,
+        "mean_meta_probability": 0.4116734164928902,
+        "actual_rate": 0.33766233766233766,
+        "share_of_total_delta": 0.09835285573270068
+      },
+      {
+        "slice": "0.02-0.03",
+        "fights": 91,
+        "market_log_loss": 0.5797534056596972,
+        "meta_log_loss": 0.5754092671952452,
+        "market_minus_meta_log_loss": 0.004344138464451946,
+        "market_minus_meta_brier": 0.0012461896077835724,
+        "mean_market_probability": 0.4480204347614777,
+        "mean_meta_probability": 0.4466729842768929,
+        "actual_rate": 0.4065934065934066,
+        "share_of_total_delta": 0.18759630789745363
+      },
+      {
+        "slice": "0.03-0.05",
+        "fights": 183,
+        "market_log_loss": 0.6413900093562204,
+        "meta_log_loss": 0.6543331068023138,
+        "market_minus_meta_log_loss": -0.012943097446093439,
+        "market_minus_meta_brier": -0.003966168244387867,
+        "mean_market_probability": 0.45522702650580066,
+        "mean_meta_probability": 0.45724295187810876,
+        "actual_rate": 0.4371584699453552,
+        "share_of_total_delta": -1.1240057828051344
+      },
+      {
+        "slice": "0.05-0.08",
+        "fights": 219,
+        "market_log_loss": 0.5205999035275406,
+        "meta_log_loss": 0.49717734074788517,
+        "market_minus_meta_log_loss": 0.023422562779655456,
+        "market_minus_meta_brier": 0.009356505062978283,
+        "mean_market_probability": 0.6049777931086913,
+        "mean_meta_probability": 0.6461959535819277,
+        "actual_rate": 0.6621004566210046,
+        "share_of_total_delta": 2.4342084264278196
+      },
+      {
+        "slice": ">=0.08",
+        "fights": 38,
+        "market_log_loss": 0.6922910103718024,
+        "meta_log_loss": 0.7233016129199876,
+        "market_minus_meta_log_loss": -0.031010602548185374,
+        "market_minus_meta_brier": -0.008141072298827249,
+        "mean_market_probability": 0.5735838700208152,
+        "mean_meta_probability": 0.6353081717558628,
+        "actual_rate": 0.47368421052631576,
+        "share_of_total_delta": -0.5592075630340512
+      }
+    ],
+    "by_edge_direction": [
+      {
+        "slice": "meta_down_on_red",
+        "fights": 279,
+        "market_log_loss": 0.5804879698489052,
+        "meta_log_loss": 0.5729001755835617,
+        "market_minus_meta_log_loss": 0.007587794265343575,
+        "market_minus_meta_brier": 0.0035732562468057142,
+        "mean_market_probability": 0.33945563405884605,
+        "mean_meta_probability": 0.30910352367402577,
+        "actual_rate": 0.2939068100358423,
+        "share_of_total_delta": 1.0046134428412195
+      },
+      {
+        "slice": "meta_up_on_red",
+        "fights": 425,
+        "market_log_loss": 0.6142728552026587,
+        "meta_log_loss": 0.6142957299854672,
+        "market_minus_meta_log_loss": -2.287478280856573e-05,
+        "market_minus_meta_brier": 0.0003710797393622755,
+        "mean_market_probability": 0.6018292684016837,
+        "mean_meta_probability": 0.6486835974483905,
+        "actual_rate": 0.6258823529411764,
+        "share_of_total_delta": -0.004613442841219313
+      }
+    ],
+    "by_market_side": [
+      {
+        "slice": "red_market_favorite",
+        "fights": 352,
+        "market_log_loss": 0.6042009997883402,
+        "meta_log_loss": 0.5996981123374858,
+        "market_minus_meta_log_loss": 0.004502887450854343,
+        "market_minus_meta_brier": 0.002699092378186896,
+        "mean_market_probability": 0.6623368779128761,
+        "mean_meta_probability": 0.7070534220745979,
+        "actual_rate": 0.6818181818181818,
+        "share_of_total_delta": 0.7521647741385383
+      },
+      {
+        "slice": "red_market_underdog",
+        "fights": 352,
+        "market_log_loss": 0.59756634978261,
+        "meta_log_loss": 0.5960826667296655,
+        "market_minus_meta_log_loss": 0.0014836830529445675,
+        "market_minus_meta_brier": 0.0005811558663806073,
+        "mean_market_probability": 0.33336073848807163,
+        "mean_meta_probability": 0.3211579757112522,
+        "actual_rate": 0.3068181818181818,
+        "share_of_total_delta": 0.24783522586146167
+      }
+    ],
+    "by_year": [
+      {
+        "slice": "2024",
+        "fights": 275,
+        "market_log_loss": 0.5799981976485432,
+        "meta_log_loss": 0.5701632907326509,
+        "market_minus_meta_log_loss": 0.009834906915892293,
+        "market_minus_meta_brier": 0.0037871292297528836,
+        "mean_market_probability": 0.4857049956028475,
+        "mean_meta_probability": 0.5000332107880568,
+        "actual_rate": 0.5163636363636364,
+        "share_of_total_delta": 1.2834595405107323
+      },
+      {
+        "slice": "2025",
+        "fights": 285,
+        "market_log_loss": 0.6136244678636285,
+        "meta_log_loss": 0.611847829350947,
+        "market_minus_meta_log_loss": 0.001776638512681699,
+        "market_minus_meta_brier": 0.0010334358397383213,
+        "mean_market_probability": 0.5074892420509546,
+        "mean_meta_probability": 0.5268719309214309,
+        "actual_rate": 0.49473684210526314,
+        "share_of_total_delta": 0.24028306726516122
+      },
+      {
+        "slice": "2026",
+        "fights": 144,
+        "market_log_loss": 0.6155529816284094,
+        "meta_log_loss": 0.6232173466329057,
+        "market_minus_meta_log_loss": -0.0076643650044961615,
+        "market_minus_meta_brier": -0.0012593220168034924,
+        "mean_market_probability": 0.5019600916515868,
+        "mean_meta_probability": 0.5157137412589985,
+        "actual_rate": 0.4513888888888889,
+        "share_of_total_delta": -0.5237426077758932
+      }
+    ],
+    "by_title_group": [
+      {
+        "slice": "bantam_or_fly",
+        "fights": 159,
+        "market_log_loss": 0.5944706727121969,
+        "meta_log_loss": 0.5927869404749566,
+        "market_minus_meta_log_loss": 0.001683732237240366,
+        "market_minus_meta_brier": 0.0024007140806612125,
+        "mean_market_probability": 0.4885308026421259,
+        "mean_meta_probability": 0.5030196761337533,
+        "actual_rate": 0.4716981132075472,
+        "share_of_total_delta": 0.12704260384258415
+      },
+      {
+        "slice": "catch_or_open",
+        "fights": 8,
+        "market_log_loss": 0.5804259695280333,
+        "meta_log_loss": 0.550492104195729,
+        "market_minus_meta_log_loss": 0.029933865332304188,
+        "market_minus_meta_brier": 0.011153683313217342,
+        "mean_market_probability": 0.43812122193880765,
+        "mean_meta_probability": 0.439167849564845,
+        "actual_rate": 0.5,
+        "share_of_total_delta": 0.11364020865652923
+      },
+      {
+        "slice": "heavy_or_lhw",
+        "fights": 106,
+        "market_log_loss": 0.6152927796618817,
+        "meta_log_loss": 0.61460089577542,
+        "market_minus_meta_log_loss": 0.0006918838864619971,
+        "market_minus_meta_brier": 0.00066514536108909,
+        "mean_market_probability": 0.505420635674931,
+        "mean_meta_probability": 0.5241025579051073,
+        "actual_rate": 0.5566037735849056,
+        "share_of_total_delta": 0.03480313102393875
+      },
+      {
+        "slice": "light_or_feather",
+        "fights": 216,
+        "market_log_loss": 0.6245527018706686,
+        "meta_log_loss": 0.6276382550539678,
+        "market_minus_meta_log_loss": -0.003085553183299093,
+        "market_minus_meta_brier": -0.0013242220990179793,
+        "mean_market_probability": 0.5099444942436189,
+        "mean_meta_probability": 0.5301857612150391,
+        "actual_rate": 0.4675925925925926,
+        "share_of_total_delta": -0.31627584340729936
+      },
+      {
+        "slice": "middle_or_welter",
+        "fights": 215,
+        "market_log_loss": 0.5755043910850559,
+        "meta_log_loss": 0.5653033293893108,
+        "market_minus_meta_log_loss": 0.010201061695745108,
+        "market_minus_meta_brier": 0.0041824694970666485,
+        "mean_market_probability": 0.4910771880900499,
+        "mean_meta_probability": 0.5040090472485762,
+        "actual_rate": 0.5069767441860465,
+        "share_of_total_delta": 1.0407898998842477
+      }
+    ]
+  },
+  "betting": {
+    "aggregate": {
+      "bets": 354,
+      "profit": 2.440382373114633,
+      "roi": 0.006893735517272974,
+      "actual_win_rate": 0.7372881355932204,
+      "mean_market_probability": 0.7054294943061249,
+      "actual_minus_market": 0.03185864128709548
+    },
+    "by_market_bin": [
+      {
+        "slice": "0.50-0.60",
+        "bets": 42,
+        "profit": 7.9267110285742906,
+        "roi": 0.18873121496605455,
+        "actual_win_rate": 0.7142857142857143,
+        "mean_market_probability": 0.5762239491528309,
+        "actual_minus_market": 0.13806176513288337,
+        "mean_edge": 0.04497617983228405,
+        "events": 36
+      },
+      {
+        "slice": "0.60-0.70",
+        "bets": 135,
+        "profit": -6.906232008036451,
+        "roi": -0.05115727413360334,
+        "actual_win_rate": 0.6444444444444445,
+        "mean_market_probability": 0.6532722593821675,
+        "actual_minus_market": -0.008827814937723,
+        "mean_edge": 0.04570236763909287,
+        "events": 81
+      },
+      {
+        "slice": "0.70-0.80",
+        "bets": 122,
+        "profit": 4.096910550355616,
+        "roi": 0.03358123401930833,
+        "actual_win_rate": 0.8032786885245902,
+        "mean_market_probability": 0.7457638821148082,
+        "actual_minus_market": 0.057514806409782016,
+        "mean_edge": 0.043650449077099154,
+        "events": 71
+      },
+      {
+        "slice": ">=0.80",
+        "bets": 55,
+        "profit": -2.6770071977788215,
+        "roi": -0.048672858141433115,
+        "actual_win_rate": 0.8363636363636363,
+        "mean_market_probability": 0.842648845188184,
+        "actual_minus_market": -0.006285208824547639,
+        "mean_edge": 0.03658616624419505,
+        "events": 41
+      }
+    ],
+    "by_edge_bin": [
+      {
+        "slice": "0.02-0.03",
+        "bets": 66,
+        "profit": -5.730746656423418,
+        "roi": -0.0868294947942942,
+        "actual_win_rate": 0.696969696969697,
+        "mean_market_probability": 0.7250931534805858,
+        "actual_minus_market": -0.028123456510888767,
+        "mean_edge": 0.024936607242682998,
+        "events": 49
+      },
+      {
+        "slice": "0.03-0.05",
+        "bets": 185,
+        "profit": 7.048871704320558,
+        "roi": 0.03810200921254356,
+        "actual_win_rate": 0.7567567567567568,
+        "mean_market_probability": 0.7047009946253536,
+        "actual_minus_market": 0.05205576213140317,
+        "mean_edge": 0.0412057034091145,
+        "events": 85
+      },
+      {
+        "slice": "0.05-0.08",
+        "bets": 99,
+        "profit": 1.6717633163884011,
+        "roi": 0.016886498145337384,
+        "actual_win_rate": 0.7373737373737373,
+        "mean_market_probability": 0.6964924255497714,
+        "actual_minus_market": 0.04088131182396593,
+        "mean_edge": 0.05812939799544431,
+        "events": 58
+      },
+      {
+        "slice": ">=0.08",
+        "bets": 4,
+        "profit": -0.549505991170906,
+        "roi": -0.1373764977927265,
+        "actual_win_rate": 0.5,
+        "mean_market_probability": 0.6358646798829359,
+        "actual_minus_market": -0.13586467988293593,
+        "mean_edge": 0.09318287620451152,
+        "events": 4
+      }
+    ],
+    "by_probability_bin": [
+      {
+        "slice": "0.60-0.65",
+        "bets": 49,
+        "profit": 5.64296647248885,
+        "roi": 0.11516258107120103,
+        "actual_win_rate": 0.673469387755102,
+        "mean_market_probability": 0.5811063245240818,
+        "actual_minus_market": 0.09236306323102017,
+        "mean_edge": 0.04253850173431712,
+        "events": 43
+      },
+      {
+        "slice": "0.65-0.70",
+        "bets": 64,
+        "profit": 4.243809054891269,
+        "roi": 0.06630951648267608,
+        "actual_win_rate": 0.703125,
+        "mean_market_probability": 0.63533209602472,
+        "actual_minus_market": 0.06779290397528004,
+        "mean_edge": 0.04122993749661928,
+        "events": 53
+      },
+      {
+        "slice": "0.70-0.80",
+        "bets": 141,
+        "profit": -4.11117938507058,
+        "roi": -0.029157300603337447,
+        "actual_win_rate": 0.7163120567375887,
+        "mean_market_probability": 0.7036193163766817,
+        "actual_minus_market": 0.012692740360906951,
+        "mean_edge": 0.04654293963157955,
+        "events": 76
+      },
+      {
+        "slice": ">=0.80",
+        "bets": 100,
+        "profit": -3.3352137691949046,
+        "roi": -0.033352137691949044,
+        "actual_win_rate": 0.82,
+        "mean_market_probability": 0.8137625332799401,
+        "actual_minus_market": 0.00623746672005987,
+        "mean_edge": 0.04110756042252403,
+        "events": 63
+      }
+    ],
+    "by_odds_side": [
+      {
+        "slice": "favorite",
+        "bets": 354,
+        "profit": 2.440382373114633,
+        "roi": 0.006893735517272974,
+        "actual_win_rate": 0.7372881355932204,
+        "mean_market_probability": 0.7054294943061249,
+        "actual_minus_market": 0.03185864128709548,
+        "mean_edge": 0.043492692415452804,
+        "events": 99
+      }
+    ],
+    "by_year": [
+      {
+        "slice": "2024",
+        "bets": 144,
+        "profit": 11.601151833276354,
+        "roi": 0.08056355439775247,
+        "actual_win_rate": 0.7847222222222222,
+        "mean_market_probability": 0.7004674247401099,
+        "actual_minus_market": 0.08425479748211229,
+        "mean_edge": 0.04091075514188661,
+        "events": 39
+      },
+      {
+        "slice": "2025",
+        "bets": 143,
+        "profit": -4.642777418517185,
+        "roi": -0.03246697495466563,
+        "actual_win_rate": 0.7062937062937062,
+        "mean_market_probability": 0.7007570523296215,
+        "actual_minus_market": 0.005536653964084759,
+        "mean_edge": 0.04381287040794675,
+        "events": 41
+      },
+      {
+        "slice": "2026",
+        "bets": 67,
+        "profit": -4.517992041644533,
+        "roi": -0.06743271703947064,
+        "actual_win_rate": 0.7014925373134329,
+        "mean_market_probability": 0.7260667662486051,
+        "actual_minus_market": -0.02457422893517225,
+        "mean_edge": 0.04835856576570503,
+        "events": 19
+      }
+    ],
+    "by_title_group": [
+      {
+        "slice": "bantam_or_fly",
+        "bets": 79,
+        "profit": 4.444992303971864,
+        "roi": 0.05626572536673245,
+        "actual_win_rate": 0.7721518987341772,
+        "mean_market_probability": 0.7123024212054337,
+        "actual_minus_market": 0.05984947752874348,
+        "mean_edge": 0.04248170670279905,
+        "events": 49
+      },
+      {
+        "slice": "catch_or_open",
+        "bets": 4,
+        "profit": 1.5988952702747452,
+        "roi": 0.3997238175686863,
+        "actual_win_rate": 1.0,
+        "mean_market_probability": 0.6858310021577996,
+        "actual_minus_market": 0.3141689978422004,
+        "mean_edge": 0.04051732270748718,
+        "events": 4
+      },
+      {
+        "slice": "heavy_or_lhw",
+        "bets": 54,
+        "profit": -3.4607514247923463,
+        "roi": -0.06408798934800641,
+        "actual_win_rate": 0.7037037037037037,
+        "mean_market_probability": 0.7169817435148658,
+        "actual_minus_market": -0.013278039811162046,
+        "mean_edge": 0.04516168518795406,
+        "events": 41
+      },
+      {
+        "slice": "light_or_feather",
+        "bets": 105,
+        "profit": -7.83782856954338,
+        "roi": -0.07464598637660362,
+        "actual_win_rate": 0.6761904761904762,
+        "mean_market_probability": 0.7004133397916632,
+        "actual_minus_market": -0.024222863601186972,
+        "mean_edge": 0.043911704130858716,
+        "events": 68
+      },
+      {
+        "slice": "middle_or_welter",
+        "bets": 112,
+        "profit": 7.6950747932037515,
+        "roi": 0.06870602493931921,
+        "actual_win_rate": 0.7767857142857143,
+        "mean_market_probability": 0.7004143827908962,
+        "actual_minus_market": 0.07637133149481812,
+        "mean_edge": 0.04311454518597798,
+        "events": 72
+      }
+    ]
+  }
+}
