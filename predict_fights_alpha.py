@@ -4,6 +4,8 @@ import csv
 import os
 from datetime import datetime
 
+from utils.name_matching import lookup_keys
+
 # ****** HELPER FUNCTIONS ******
 def get_csv_headers(file_path):
     with open(file_path, mode='r') as file:
@@ -19,6 +21,10 @@ def split_at_first_space(text):
 def sqrSum(n):
     x = float(n)
     return x*(x+1)*(2*x+1)//6
+
+
+def names_match(left_name, right_name):
+    return bool(set(lookup_keys(left_name)) & set(lookup_keys(right_name)))
 
 # ****** CONSTANTS ******
 # where to read stats from
@@ -64,9 +70,9 @@ def extract_fighter_stats(fighter_name, opponent_name):
     with open(input_csv_filename, mode="r", newline="") as input_file:
         csv_reader = csv.DictReader(input_file)
         for row in csv_reader:
-            if row["Fighter"] == fighter_name:
+            if names_match(row["Fighter"], fighter_name):
                 fighter_stats = row
-            elif row["Fighter"] == opponent_name:
+            elif names_match(row["Fighter"], opponent_name):
                 opponent_stats = row
 
     if fighter_stats is None or opponent_stats is None:
@@ -115,11 +121,23 @@ def process_fight(fighter_stats, opponent_stats, processed_fight):
                     processed_fight[f'Blue {feature} differential'] = opponent_stats[f'{feature} differential']
                     processed_fight[f'Red {feature}'] = float(fighter_stats[feature]) / sqrSum(fighter_stats["totalfights"])
                     processed_fight[f'Blue {feature}'] = float(opponent_stats[feature]) / sqrSum(opponent_stats["totalfights"])
-                    processed_fight[f'Red {feature} differential'] = float(fighter_stats[feature]) / sqrSum(fighter_stats["totalfights"])
-                    processed_fight[f'Blue {feature} differential'] = float(opponent_stats[feature]) / sqrSum(opponent_stats["totalfights"])
+                    processed_fight[f'Red {feature} differential'] = (
+                        float(fighter_stats[f'{feature} differential'])
+                        / sqrSum(fighter_stats["totalfights"])
+                    )
+                    processed_fight[f'Blue {feature} differential'] = (
+                        float(opponent_stats[f'{feature} differential'])
+                        / sqrSum(opponent_stats["totalfights"])
+                    )
                     if "%" in feature:
-                        processed_fight[f'Red {feature} defense'] = sqrSum(float(fighter_stats[f"{feature} defense"]) / float(fighter_stats["totalfights"]))
-                        processed_fight[f'Blue {feature} defense'] = sqrSum(float(opponent_stats[f"{feature} defense"]) / float(opponent_stats["totalfights"]))
+                        processed_fight[f'Red {feature} defense'] = (
+                            float(fighter_stats[f"{feature} defense"])
+                            / sqrSum(fighter_stats["totalfights"])
+                        )
+                        processed_fight[f'Blue {feature} defense'] = (
+                            float(opponent_stats[f"{feature} defense"])
+                            / sqrSum(opponent_stats["totalfights"])
+                        )
         for feature in feature_list:
             # Basic feature difference
             red_key = f'Red {feature}'

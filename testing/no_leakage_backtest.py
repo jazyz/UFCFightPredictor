@@ -15,8 +15,8 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import re
-import unicodedata
+import sys
+from collections import Counter, defaultdict
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -25,9 +25,18 @@ import pandas as pd
 from sklearn.metrics import accuracy_score, log_loss
 from sklearn.preprocessing import LabelEncoder
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from utils.feature_sanitization import sanitize_age_features
+from utils.name_matching import canonical_name as normalize_name
+
 
 ID_COLUMNS = {"Red Fighter", "Blue Fighter", "Title", "Date"}
 TARGET_COLUMN = "Result"
+DEFAULT_FIGHT_DETAILS_SOURCE = os.path.join("data", "fight_details_date.csv")
+DEFAULT_EXCLUDED_TITLE_PATTERNS = ("Women",)
 
 DEFAULT_PARAMS = {
     "objective": "binary",
@@ -43,16 +52,6 @@ DEFAULT_PARAMS = {
     "n_jobs": -1,
 }
 
-NAME_ALIASES = {
-    "king green": "bobby green",
-    "asu almabayev": "asu almabaev",
-    "carlos leal": "carlos leal miranda",
-    "michael aswell jr": "michael aswell",
-    "sean o malley": "sean omalley",
-    "shara magomedov": "sharabutdin magomedov",
-}
-
-
 def parse_date(value):
     return pd.to_datetime(value, format="mixed", errors="coerce")
 
@@ -61,18 +60,6 @@ def default_dates():
     end_date = datetime.now().date()
     start_date = end_date - timedelta(days=365)
     return start_date.isoformat(), end_date.isoformat()
-
-
-def normalize_name(name):
-    ascii_name = unicodedata.normalize("NFKD", str(name)).encode("ascii", "ignore").decode("ascii")
-    cleaned = re.sub(r"[^a-z0-9]+", " ", ascii_name.strip().lower())
-    parts = [
-        part
-        for part in cleaned.split()
-        if part not in {"jr", "sr", "ii", "iii", "iv"}
-    ]
-    normalized = " ".join(parts)
-    return NAME_ALIASES.get(normalized, normalized)
 
 
 def normalize_result(value):
@@ -84,22 +71,294 @@ def normalize_result(value):
     return None
 
 
+def is_non_binary_outcome(value):
+    normalized = str(value).strip().lower()
+    return normalized in {
+        "draw",
+        "draw/no contest",
+        "draw / no contest",
+        "no contest",
+        "nc",
+        "overturned",
+    }
+
+
 def load_feature_data(path, min_date):
     df = pd.read_csv(path)
     df["Date"] = parse_date(df["Date"])
     df[TARGET_COLUMN] = df[TARGET_COLUMN].map(normalize_result)
     df = df.dropna(subset=["Date", TARGET_COLUMN, "Red Fighter", "Blue Fighter"])
     df = df[df["Date"] >= pd.Timestamp(min_date)]
+    df = sanitize_age_features(df)
     df = df.sort_values("Date").reset_index(drop=True)
     return df
 
 
-def load_odds_data(path, start_date, end_date):
+def fight_pair_key(left_name, right_name):
+    return frozenset({normalize_name(left_name), normalize_name(right_name)})
+
+
+def build_excluded_fight_index(path, title_patterns):
+    if not path or not title_patterns:
+        return set(), defaultdict(set), set()
+
+    source_path = Path(path)
+    if not source_path.exists():
+        return set(), defaultdict(set), set()
+
+    df = pd.read_csv(source_path)
+    required_columns = {"Date", "Title", "Red Fighter", "Blue Fighter"}
+    if not required_columns.issubset(df.columns):
+        return set(), defaultdict(set), set()
+
+    excluded_mask = pd.Series(False, index=df.index)
+    titles = df["Title"].fillna("")
+    for pattern in title_patterns:
+        excluded_mask |= titles.str.contains(pattern, case=False, na=False)
+
+    df = df[excluded_mask].copy()
+    df["Date"] = parse_date(df["Date"])
+    df = df.dropna(subset=["Date", "Red Fighter", "Blue Fighter"])
+
+    excluded_keys = set()
+    dates_by_pair = defaultdict(set)
+    fighter_keys = set()
+    for _, row in df.iterrows():
+        event_date = row["Date"].date()
+        pair_key = fight_pair_key(row["Red Fighter"], row["Blue Fighter"])
+        excluded_keys.add((event_date, pair_key))
+        dates_by_pair[pair_key].add(event_date)
+        fighter_keys.add(normalize_name(row["Red Fighter"]))
+        fighter_keys.add(normalize_name(row["Blue Fighter"]))
+
+    return excluded_keys, dates_by_pair, fighter_keys
+
+
+def repair_odds_dates_from_features(odds_df, features_df):
+    feature_dates_by_pair = {}
+    exact_feature_keys = set()
+
+    for _, row in features_df.dropna(subset=["Date", "Red Fighter", "Blue Fighter"]).iterrows():
+        event_date = row["Date"].date()
+        pair_key = fight_pair_key(row["Red Fighter"], row["Blue Fighter"])
+        exact_feature_keys.add((event_date, pair_key))
+        feature_dates_by_pair.setdefault(pair_key, set()).add(event_date)
+
+    repaired = odds_df.copy()
+    repairs = []
+    for index, row in repaired.iterrows():
+        if pd.isna(row["event_date"]):
+            continue
+
+        current_date = row["event_date"].date()
+        pair_key = fight_pair_key(row["fighter1_name"], row["fighter2_name"])
+        if (current_date, pair_key) in exact_feature_keys:
+            continue
+
+        candidate_dates = sorted(feature_dates_by_pair.get(pair_key, set()))
+        if not candidate_dates:
+            continue
+
+        same_month_day = [
+            candidate
+            for candidate in candidate_dates
+            if candidate != current_date
+            and (candidate.month, candidate.day) == (current_date.month, current_date.day)
+            and 300 <= abs((candidate - current_date).days) <= 400
+        ]
+        nearby_dates = [
+            candidate
+            for candidate in candidate_dates
+            if candidate != current_date and abs((candidate - current_date).days) <= 1
+        ]
+
+        repaired_date = None
+        repair_reason = ""
+        if len(same_month_day) == 1:
+            repaired_date = same_month_day[0]
+            repair_reason = "same month/day year correction"
+        elif len(nearby_dates) == 1:
+            repaired_date = nearby_dates[0]
+            repair_reason = "nearby feature date correction"
+
+        if repaired_date is None:
+            continue
+
+        repaired.at[index, "event_date"] = pd.Timestamp(repaired_date)
+        repairs.append(
+            {
+                "event_name": row["event_name"],
+                "fighter1_name": row["fighter1_name"],
+                "fighter2_name": row["fighter2_name"],
+                "old_event_date": current_date.isoformat(),
+                "new_event_date": repaired_date.isoformat(),
+                "reason": repair_reason,
+            }
+        )
+
+    return repaired, repairs
+
+
+def is_excluded_universe_row(
+    row,
+    excluded_fight_keys,
+    excluded_dates_by_pair,
+    excluded_fighter_keys,
+):
+    if pd.isna(row["event_date"]):
+        return False
+
+    current_date = row["event_date"].date()
+    fighter1_key = normalize_name(row["fighter1_name"])
+    fighter2_key = normalize_name(row["fighter2_name"])
+    if fighter1_key in excluded_fighter_keys and fighter2_key in excluded_fighter_keys:
+        return True
+
+    if not excluded_fight_keys:
+        return False
+
+    pair_key = frozenset({fighter1_key, fighter2_key})
+    if (current_date, pair_key) in excluded_fight_keys:
+        return True
+
+    candidate_dates = excluded_dates_by_pair.get(pair_key, set())
+    for candidate in candidate_dates:
+        days_apart = abs((candidate - current_date).days)
+        if days_apart <= 1:
+            return True
+        if (
+            (candidate.month, candidate.day) == (current_date.month, current_date.day)
+            and 300 <= days_apart <= 400
+        ):
+            return True
+
+    return False
+
+
+def filter_excluded_universe_rows(
+    odds_df,
+    excluded_fight_keys,
+    excluded_dates_by_pair,
+    excluded_fighter_keys,
+):
+    if not excluded_fight_keys and not excluded_fighter_keys:
+        return odds_df, 0
+
+    excluded_mask = odds_df.apply(
+        lambda row: is_excluded_universe_row(
+            row,
+            excluded_fight_keys,
+            excluded_dates_by_pair,
+            excluded_fighter_keys,
+        ),
+        axis=1,
+    )
+    excluded_rows = int(excluded_mask.sum())
+    return odds_df[~excluded_mask].copy(), excluded_rows
+
+
+def format_american_odds(value):
+    value = int(round(float(value)))
+    return f"+{value}" if value > 0 else str(value)
+
+
+def deduplicate_odds_rows(odds_df):
+    groups = {}
+    order = []
+    for _, row in odds_df.iterrows():
+        key = (
+            row["event_date"].date(),
+            tuple(sorted(fight_pair_key(row["fighter1_name"], row["fighter2_name"]))),
+        )
+        if key not in groups:
+            order.append(key)
+            groups[key] = []
+        groups[key].append(row)
+
+    deduped_rows = []
+    removed_rows = 0
+    for key in order:
+        rows = groups[key]
+        if len(rows) == 1:
+            deduped_rows.append(rows[0].to_dict())
+            continue
+
+        removed_rows += len(rows) - 1
+        first = rows[0].to_dict()
+        odds_by_fighter = defaultdict(list)
+        display_by_fighter = {}
+        winner_counts = Counter()
+
+        for row in rows:
+            fighter1_key = normalize_name(row["fighter1_name"])
+            fighter2_key = normalize_name(row["fighter2_name"])
+            display_by_fighter.setdefault(fighter1_key, row["fighter1_name"])
+            display_by_fighter.setdefault(fighter2_key, row["fighter2_name"])
+
+            fighter1_odds = parse_odds(row["fighter1_odds"])
+            fighter2_odds = parse_odds(row["fighter2_odds"])
+            if fighter1_odds is not None:
+                odds_by_fighter[fighter1_key].append(fighter1_odds)
+            if fighter2_odds is not None:
+                odds_by_fighter[fighter2_key].append(fighter2_odds)
+
+            winner_key = normalize_name(row["winner_name"])
+            if winner_key:
+                winner_counts[winner_key] += 1
+                display_by_fighter.setdefault(winner_key, row["winner_name"])
+
+        fighter1_key = normalize_name(first["fighter1_name"])
+        fighter2_key = normalize_name(first["fighter2_name"])
+        if odds_by_fighter[fighter1_key]:
+            first["fighter1_odds"] = format_american_odds(np.median(odds_by_fighter[fighter1_key]))
+        if odds_by_fighter[fighter2_key]:
+            first["fighter2_odds"] = format_american_odds(np.median(odds_by_fighter[fighter2_key]))
+        if winner_counts:
+            winner_key = winner_counts.most_common(1)[0][0]
+            first["winner_name"] = display_by_fighter.get(winner_key, first["winner_name"])
+
+        deduped_rows.append(first)
+
+    return pd.DataFrame(deduped_rows, columns=odds_df.columns), removed_rows
+
+
+def load_odds_data(
+    path,
+    start_date,
+    end_date,
+    features_df=None,
+    return_repairs=False,
+    excluded_fight_keys=None,
+    excluded_dates_by_pair=None,
+    excluded_fighter_keys=None,
+):
     df = pd.read_csv(path)
     df["event_date"] = parse_date(df["event_date"])
     df = df.dropna(subset=["event_date", "fighter1_name", "fighter2_name", "winner_name"])
+    repairs = []
+    if features_df is not None:
+        df, repairs = repair_odds_dates_from_features(df, features_df)
     df = df[(df["event_date"] >= pd.Timestamp(start_date)) & (df["event_date"] <= pd.Timestamp(end_date))]
+    df, excluded_universe_rows = filter_excluded_universe_rows(
+        df,
+        excluded_fight_keys or set(),
+        excluded_dates_by_pair or defaultdict(set),
+        excluded_fighter_keys or set(),
+    )
+    non_binary_rows = int(df["winner_name"].map(is_non_binary_outcome).sum())
+    df = df[~df["winner_name"].map(is_non_binary_outcome)].copy()
+    df, deduplicated_rows = deduplicate_odds_rows(df)
     df = df.sort_values(["event_date", "event_name"]).reset_index(drop=True)
+    df.attrs["deduplicated_rows"] = deduplicated_rows
+    df.attrs["non_binary_rows"] = non_binary_rows
+    df.attrs["excluded_universe_rows"] = excluded_universe_rows
+    if return_repairs:
+        repairs_in_window = [
+            repair
+            for repair in repairs
+            if pd.Timestamp(start_date) <= pd.Timestamp(repair["new_event_date"]) <= pd.Timestamp(end_date)
+        ]
+        return df, repairs_in_window
     return df
 
 
@@ -130,6 +389,33 @@ def numeric_frame(df, columns):
     return df[columns].apply(pd.to_numeric, errors="coerce")
 
 
+def swap_column_name(column):
+    return column.replace("Red", "__SIDE__").replace("Blue", "Red").replace("__SIDE__", "Blue")
+
+
+def close_side_feature_pairs(feature_columns, usable_columns):
+    usable_set = set(usable_columns)
+    selected = list(feature_columns)
+    selected_set = set(selected)
+    restored_columns = []
+
+    for column in list(selected):
+        if "oppdiff" in column:
+            continue
+
+        counterpart = swap_column_name(column)
+        if counterpart == column:
+            continue
+        if counterpart not in usable_set or counterpart in selected_set:
+            continue
+
+        selected.append(counterpart)
+        selected_set.add(counterpart)
+        restored_columns.append(counterpart)
+
+    return selected, restored_columns
+
+
 def select_columns_from_training(train_df, correlation_threshold):
     selected_columns = base_feature_columns(train_df)
     train_x = numeric_frame(train_df, selected_columns)
@@ -151,11 +437,10 @@ def select_columns_from_training(train_df, correlation_threshold):
         if any(upper_tri[column] > correlation_threshold)
     ]
     feature_columns = [column for column in usable_columns if column not in to_drop]
+    feature_columns, restored_columns = close_side_feature_pairs(feature_columns, usable_columns)
+    if restored_columns:
+        to_drop = [column for column in to_drop if column not in restored_columns]
     return feature_columns, to_drop
-
-
-def swap_column_name(column):
-    return column.replace("Red", "__SIDE__").replace("Blue", "Red").replace("__SIDE__", "Blue")
 
 
 def swap_feature_frame(frame, feature_columns):
@@ -165,8 +450,11 @@ def swap_feature_frame(frame, feature_columns):
             data[column] = -pd.to_numeric(frame[column], errors="coerce")
         else:
             source_column = swap_column_name(column)
-            if source_column in frame.columns:
-                data[column] = frame[source_column]
+            if source_column != column:
+                if source_column in frame.columns:
+                    data[column] = frame[source_column]
+                else:
+                    data[column] = np.nan
             elif column in frame.columns:
                 data[column] = frame[column]
             else:
@@ -360,13 +648,30 @@ def strict_coverage_check(features_df, odds_df, end_date):
 def run_backtest(args):
     params, param_source = load_model_params(args.params)
     features_df = load_feature_data(args.features, args.min_training_date)
-    odds_df = load_odds_data(args.odds, args.start_date, args.end_date)
+    excluded_title_patterns = [] if args.include_womens_fights else list(DEFAULT_EXCLUDED_TITLE_PATTERNS)
+    excluded_fight_keys, excluded_dates_by_pair, excluded_fighter_keys = build_excluded_fight_index(
+        args.fight_details_source,
+        excluded_title_patterns,
+    )
+    odds_df, odds_date_repairs = load_odds_data(
+        args.odds,
+        args.start_date,
+        args.end_date,
+        features_df=features_df,
+        return_repairs=True,
+        excluded_fight_keys=excluded_fight_keys,
+        excluded_dates_by_pair=excluded_dates_by_pair,
+        excluded_fighter_keys=excluded_fighter_keys,
+    )
+    odds_rows_deduplicated = odds_df.attrs.get("deduplicated_rows", 0)
+    odds_rows_non_binary = odds_df.attrs.get("non_binary_rows", 0)
+    odds_rows_excluded_universe = odds_df.attrs.get("excluded_universe_rows", 0)
 
     coverage_messages = strict_coverage_check(features_df, odds_df, args.end_date)
     if args.strict_end_date and coverage_messages:
         raise SystemExit("Strict end-date check failed: " + "; ".join(coverage_messages))
 
-    _, duplicate_feature_keys, duplicate_feature_count = build_feature_index(
+    feature_index, duplicate_feature_keys, duplicate_feature_count = build_feature_index(
         features_df, args.start_date, args.end_date
     )
     odds_index, duplicate_odds_keys = build_odds_index(odds_df)
@@ -378,12 +683,32 @@ def run_backtest(args):
     bankroll = args.starting_bankroll
     predictions = []
     skipped = []
+    odds_rows_missing_features = []
+    odds_rows_duplicate_features = []
     y_true = []
     y_prob = []
     y_pred = []
     models_fit = 0
     fights_with_odds = 0
     bettable_fights = 0
+
+    for _, odds_row in odds_df.iterrows():
+        key = (
+            odds_row["event_date"].date(),
+            frozenset({
+                normalize_name(odds_row["fighter1_name"]),
+                normalize_name(odds_row["fighter2_name"]),
+            }),
+        )
+        if key in duplicate_feature_keys:
+            odds_rows_duplicate_features.append(odds_row)
+            skipped.append((odds_row, "ambiguous duplicate feature rows for odds fight"))
+        elif key not in feature_index:
+            odds_rows_missing_features.append(odds_row)
+            skipped.append((odds_row, "missing feature row for odds fight"))
+    odds_rows_with_features = (
+        len(odds_df) - len(odds_rows_missing_features) - len(odds_rows_duplicate_features)
+    )
 
     for event_date, event_fights in eval_df.groupby(eval_df["Date"].dt.date, sort=True):
         train_df = features_df[features_df["Date"] < pd.Timestamp(event_date)]
@@ -533,13 +858,25 @@ def run_backtest(args):
         "min_training_date": args.min_training_date,
         "features_path": args.features,
         "odds_path": args.odds,
+        "fight_details_source": args.fight_details_source,
+        "excluded_title_patterns": excluded_title_patterns,
         "param_source": param_source,
         "strict_coverage_messages": coverage_messages,
         "feature_data_max_date": None if features_df.empty else features_df["Date"].max().date().isoformat(),
         "odds_data_max_date": None if odds_df.empty else odds_df["event_date"].max().date().isoformat(),
+        "odds_rows_date_repaired": len(odds_date_repairs),
+        "odds_rows_excluded_universe": odds_rows_excluded_universe,
+        "odds_rows_deduplicated": odds_rows_deduplicated,
+        "odds_rows_non_binary_excluded": odds_rows_non_binary,
         "models_fit": models_fit,
         "predicted_fights": len(predictions),
         "skipped_fights": len(skipped_rows),
+        "feature_rows_in_window": len(eval_df),
+        "odds_rows_in_window": len(odds_df),
+        "odds_rows_with_features": odds_rows_with_features,
+        "odds_rows_missing_features": len(odds_rows_missing_features),
+        "odds_rows_duplicate_features": len(odds_rows_duplicate_features),
+        "odds_feature_coverage": (odds_rows_with_features / len(odds_df)) if len(odds_df) else None,
         "duplicate_feature_keys": duplicate_feature_count,
         "duplicate_odds_keys": len(duplicate_odds_keys),
         "fights_with_odds": fights_with_odds,
@@ -555,6 +892,7 @@ def run_backtest(args):
             "summary_json": str(summary_path),
         },
         "skipped": skipped_rows[:100],
+        "odds_date_repairs": odds_date_repairs[:100],
     }
 
     with open(summary_path, "w") as file:
@@ -569,6 +907,12 @@ def run_backtest(args):
     print(f"Models fit: {models_fit}")
     print(f"Predicted fights: {len(predictions)}")
     print(f"Skipped fights: {len(skipped_rows)}")
+    print(f"Odds rows in window: {len(odds_df)}")
+    print(f"Odds rows date-repaired: {len(odds_date_repairs)}")
+    print(f"Odds rows excluded by universe: {odds_rows_excluded_universe}")
+    print(f"Odds rows deduplicated: {odds_rows_deduplicated}")
+    print(f"Odds rows non-binary excluded: {odds_rows_non_binary}")
+    print(f"Odds rows missing feature rows: {len(odds_rows_missing_features)}")
     if accuracy is not None:
         print(f"Accuracy: {accuracy:.4f}")
         print(f"Log loss: {loss:.4f}")
@@ -597,6 +941,12 @@ def parse_args():
     parser.add_argument("--end-date", default=end_default, help="inclusive YYYY-MM-DD end date")
     parser.add_argument("--features", default=os.path.join("data", "detailed_fights.csv"))
     parser.add_argument("--odds", default=os.path.join("data", "fight_results_with_odds.csv"))
+    parser.add_argument("--fight-details-source", default=DEFAULT_FIGHT_DETAILS_SOURCE)
+    parser.add_argument(
+        "--include-womens-fights",
+        action="store_true",
+        help="include women's bouts in odds coverage/PnL instead of treating them as out of universe",
+    )
     parser.add_argument("--params", default=None, help="optional LightGBM params JSON")
     parser.add_argument("--output-dir", default="test_results")
     parser.add_argument("--min-training-date", default="2009-01-01")

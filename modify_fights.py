@@ -1,7 +1,14 @@
+from pathlib import Path
+
 import pandas as pd
 
+
+DATA_DIR = Path("data")
+INPUT_CSV = DATA_DIR / "fight_details_date.csv"
+OUTPUT_CSV = DATA_DIR / "modified_fight_details.csv"
+
 # Reading the data from data\fight_details.csv file
-df = pd.read_csv(r'data\fight_details_date.csv')
+df = pd.read_csv(INPUT_CSV)
 
 # Function to convert "x of y" strings to a tuple of (x, x/y)
 def convert_ratio(value):
@@ -48,10 +55,8 @@ df = df.drop(list(rows_to_delete))
 # Deleting the old percentage columns as specified
 columns_to_delete = ["Red Sig. str. %", "Red Td %", "Blue Sig. str. %", "Blue Td %", "Red Sig. str", "Blue Sig. str", "Red Sig. str%", "Blue Sig. str%"]
 df = df.drop(columns=columns_to_delete)
-df = df[~df['Title'].str.contains("Women")]
-df = df[~df['Title'].str.contains("Open")]
+df = df[~df['Title'].str.contains("Women", na=False)]
+df = df[~df['Title'].str.contains("Open", na=False)]
 #df = df[~df['Title'].str.contains("Title")]
 # Saving the modified DataFrame back to CSV or you can use it as is in your Python environment
-df.to_csv('data\modified_fight_details.csv', index=False)
-
-
+df.to_csv(OUTPUT_CSV, index=False)

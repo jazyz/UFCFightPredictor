@@ -1,11 +1,16 @@
 import csv
 import random
 import unicodedata
+from collections import defaultdict
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from models import db, Fighter, Fight
 import os
+import pandas as pd
+
+from utils.feature_sanitization import sanitize_age_features
+from utils.name_matching import lookup_keys, normalize_name as normalize_fighter_name
 
 random.seed(42)
 
@@ -15,9 +20,35 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///detailedfighters.db"
 db.init_app(app)
 
 # ********** HELPER FUNCTIONS **********
+fighter_lookup = {}
+
+
+def valid_dob(value):
+    return bool(value and str(value).strip() not in {"", "--"})
+
+
+def build_fighter_lookup():
+    lookup = {}
+    for fighter in Fighter.query.all():
+        for key in lookup_keys(fighter.name):
+            current = lookup.get(key)
+            if current is None or (not valid_dob(current.DOB) and valid_dob(fighter.DOB)):
+                lookup[key] = fighter
+    return lookup
+
+
 def query_fighter_by_name(name):
+    for key in lookup_keys(name):
+        fighter = fighter_lookup.get(key)
+        if fighter:
+            return fighter
     fighter = Fighter.query.filter_by(name=name).first() 
     return fighter
+
+
+def canonical_fighter_key(name):
+    keys = lookup_keys(name)
+    return keys[-1] if keys else normalize_fighter_name(name)
 
 file_path = os.path.join('data', 'modified_fight_details.csv')
 
@@ -116,16 +147,14 @@ def split_at_first_space(text):
     return parts[0], parts[1] if len(parts) > 1 else ""
     
 fighter_stats = dict()
+fighter_display_names = dict()
 
 fights = csv_to_chronological_dict(file_path)
 
-all_fighters = set()
+fighter_raw_names = defaultdict(set)
 for fight in fights:
-    Red = fight['Red Fighter']
-    Blue = fight['Blue Fighter']
-    all_fighters.add(Red)
-    all_fighters.add(Blue)
-    pass
+    for fighter in (fight['Red Fighter'], fight['Blue Fighter']):
+        fighter_raw_names[canonical_fighter_key(fighter)].add(fighter)
 
 # retrieve all total strike numbers from head, body, leg, distance, clinch, ground, sig.str
 # store it back into the dicts
@@ -146,7 +175,8 @@ for column in headers:
 feature_list.extend(header_features)
 
 with app.app_context():
-    for fighter in all_fighters:
+    fighter_lookup = build_fighter_lookup()
+    for fighter, raw_names in fighter_raw_names.items():
         fighter_stats[fighter] = {}
         for feature in feature_list:
             fighter_stats[fighter][feature]=0
@@ -156,7 +186,12 @@ with app.app_context():
                 fighter_stats[fighter][f"{feature} defense"]=0
         fighter_stats[fighter]["elo"]=1000
         # get DOB        
-        fighter_object = query_fighter_by_name(fighter)
+        fighter_object = None
+        for raw_name in sorted(raw_names):
+            fighter_object = query_fighter_by_name(raw_name)
+            if fighter_object:
+                break
+        fighter_display_names[fighter] = fighter_object.name if fighter_object else sorted(raw_names)[0]
         if fighter_object:
             date_format = "%b %d, %Y"  # Format like "Oct 01, 1990"
             try:
@@ -204,22 +239,26 @@ def getDate(date_string, date_format):
 def processFight(fight, Red, Blue):
     winner = fight['Winner']
     Result='draw'
-    if winner == Red:
+    red_key = canonical_fighter_key(Red)
+    blue_key = canonical_fighter_key(Blue)
+    winner_key = canonical_fighter_key(winner)
+    if winner_key == red_key:
         Result = 'win'
-    elif winner == Blue:
+    elif winner_key == blue_key:
         Result = 'loss'
     if Result == 'draw':
         return
     switch = random.choice([True, False])
     if switch:
         Red, Blue = Blue, Red 
+        red_key, blue_key = blue_key, red_key
         if Result == 'win':
             Result = 'loss'
         elif Result == 'loss':
             Result = 'win'
 
     processed_fight = {"Result": Result}
-    if fighter_stats[Red]["totalfights"] >= 2 and fighter_stats[Blue]["totalfights"] >= 2:
+    if fighter_stats[red_key]["totalfights"] >= 2 and fighter_stats[blue_key]["totalfights"] >= 2:
         processed_fight['Red Fighter'] = Red
         processed_fight['Blue Fighter'] = Blue
         processed_fight['Title'] = fight['Title']
@@ -231,35 +270,37 @@ def processFight(fight, Red, Blue):
             print(f"Warning: Could not parse date '{fight['Date']}' for fight {Red} vs {Blue}")
             return
         
-        processed_fight['Red age'] = fight_date.year - fighter_stats[Red]['dob']
-        processed_fight['Blue age'] = fight_date.year - fighter_stats[Blue]['dob']
+        processed_fight['Red age'] = fight_date.year - fighter_stats[red_key]['dob']
+        processed_fight['Blue age'] = fight_date.year - fighter_stats[blue_key]['dob']
         processed_fight['age oppdiff'] = processed_fight['Red age'] - processed_fight['Blue age'] 
-        processed_fight['Red last_fight'] = (fight_date-fighter_stats[Red]["last_fight"]).days
-        processed_fight['Blue last_fight'] = (fight_date-fighter_stats[Blue]["last_fight"]).days
+        processed_fight['Red last_fight'] = (fight_date-fighter_stats[red_key]["last_fight"]).days
+        processed_fight['Blue last_fight'] = (fight_date-fighter_stats[blue_key]["last_fight"]).days
         processed_fight['last_fight oppdiff'] = processed_fight['Red last_fight'] - processed_fight['Blue last_fight']
         for feature in feature_list:
-            if feature in fighter_stats[Red] and feature in fighter_stats[Blue]:
-                processed_fight[f'Red {feature}'] = fighter_stats[Red][feature]
-                processed_fight[f'Blue {feature}'] = fighter_stats[Blue][feature]
+            if feature in fighter_stats[red_key] and feature in fighter_stats[blue_key]:
+                processed_fight[f'Red {feature}'] = fighter_stats[red_key][feature]
+                processed_fight[f'Blue {feature}'] = fighter_stats[blue_key][feature]
                 if feature in header_features:
-                    processed_fight[f'Red {feature} differential'] = fighter_stats[Red][f'{feature} differential']
-                    processed_fight[f'Blue {feature} differential'] = fighter_stats[Blue][f'{feature} differential']
-                    processed_fight[f'Red {feature}'] /= sqrSum(fighter_stats[Red]["totalfights"])
-                    processed_fight[f'Blue {feature}'] /= sqrSum(fighter_stats[Blue]["totalfights"])
-                    processed_fight[f'Red {feature} differential'] /= sqrSum(fighter_stats[Red]["totalfights"])
-                    processed_fight[f'Blue {feature} differential'] /= sqrSum(fighter_stats[Blue]["totalfights"])
+                    red_weight = sqrSum(fighter_stats[red_key]["totalfights"])
+                    blue_weight = sqrSum(fighter_stats[blue_key]["totalfights"])
+                    processed_fight[f'Red {feature} differential'] = fighter_stats[red_key][f'{feature} differential']
+                    processed_fight[f'Blue {feature} differential'] = fighter_stats[blue_key][f'{feature} differential']
+                    processed_fight[f'Red {feature}'] /= red_weight
+                    processed_fight[f'Blue {feature}'] /= blue_weight
+                    processed_fight[f'Red {feature} differential'] /= red_weight
+                    processed_fight[f'Blue {feature} differential'] /= blue_weight
                     if "%" in feature:
-                        processed_fight[f'Red {feature} defense'] = sqrSum(fighter_stats[Red][f"{feature} defense"] / fighter_stats[Red]["totalfights"])
-                        processed_fight[f'Blue {feature} defense'] = sqrSum(fighter_stats[Blue][f"{feature} defense"] / fighter_stats[Blue]["totalfights"])
+                        processed_fight[f'Red {feature} defense'] = fighter_stats[red_key][f"{feature} defense"] / red_weight
+                        processed_fight[f'Blue {feature} defense'] = fighter_stats[blue_key][f"{feature} defense"] / blue_weight
                 if feature in hardcoded_features_divide:
-                    processed_fight[f'Red {feature}'] /= fighter_stats[Red]["totalfights"]
-                    processed_fight[f'Blue {feature}'] /= fighter_stats[Blue]["totalfights"]
+                    processed_fight[f'Red {feature}'] /= fighter_stats[red_key]["totalfights"]
+                    processed_fight[f'Blue {feature}'] /= fighter_stats[blue_key]["totalfights"]
         for feature in feature_list:
             # Basic feature difference
-            red_key = f'Red {feature}'
-            blue_key = f'Blue {feature}'
-            if red_key in processed_fight and blue_key in processed_fight:
-                processed_fight[f'{feature} oppdiff'] = processed_fight[red_key] - processed_fight[blue_key]
+            red_column = f'Red {feature}'
+            blue_column = f'Blue {feature}'
+            if red_column in processed_fight and blue_column in processed_fight:
+                processed_fight[f'{feature} oppdiff'] = processed_fight[red_column] - processed_fight[blue_column]
 
             # Differential feature difference
             red_diff_key = f'Red {feature} differential'
@@ -278,10 +319,12 @@ def processFight(fight, Red, Blue):
 print(header_features)
 for fight in fights:
     count+=1
-    Red = fight['Red Fighter']
-    Blue = fight['Blue Fighter']
+    red_name = fight['Red Fighter']
+    blue_name = fight['Blue Fighter']
+    Red = canonical_fighter_key(red_name)
+    Blue = canonical_fighter_key(blue_name)
 
-    processFight(fight, Red, Blue)
+    processFight(fight, red_name, blue_name)
 
     ### update stats
     fighter_stats[Red]["totalfights"] += 1
@@ -312,10 +355,11 @@ for fight in fights:
         except:
             pass
     winner = fight['Winner']
+    winner_key = canonical_fighter_key(winner)
     Result='draw'
-    if winner == Red:
+    if winner_key == Red:
         Result = 'win'
-    elif winner == Blue:
+    elif winner_key == Blue:
         Result = 'loss'
 
     title=False
@@ -377,9 +421,13 @@ def export_fighter_stats(fighter_stats, filename=os.path.join('data', 'detailed_
             writer.writeheader()
 
             for fighter, stats in fighter_stats.items():
-                row = {'Fighter': fighter}  # Start with fighter name
+                row = {'Fighter': fighter_display_names.get(fighter, fighter)}  # Start with fighter name
                 row.update(stats)  # Add the stats
                 writer.writerow(row)
+
+# Keep any still-missing DOBs from becoming impossible age outliers in exports.
+if processed_fights:
+    processed_fights = sanitize_age_features(pd.DataFrame(processed_fights)).to_dict("records")
 
 # Assuming your processed_fights and fighter_stats are ready
 export_processed_fights(processed_fights)
@@ -389,7 +437,7 @@ def write_to_text_file(data, file_path, is_fighter_stats=False):
     with open(file_path, 'w') as file:
         if is_fighter_stats:
             for fighter, stats in data.items():
-                file.write(f"Fighter: {fighter}\n")
+                file.write(f"Fighter: {fighter_display_names.get(fighter, fighter)}\n")
                 for stat, value in stats.items():
                     file.write(f"  {stat}: {value}\n")
                 file.write("\n")
