@@ -16,7 +16,8 @@ Current branch:
 feature/auto-retraining
 ```
 
-Commits on this branch since that baseline:
+Notable commits on this branch since that baseline through the regularized
+model update:
 
 ```text
 9903615 Add leak-safe retraining backtest
@@ -24,10 +25,12 @@ f3259e9 Fix leak-safe backtest coverage joins
 3fe505d Audit DOB handling for PnL backtests
 be2b19c add doc
 577e88a Improve live betting PNL path
+b5695b7 Improve UFC model PnL with regularized LGBM
 ```
 
-Note: other later commits exist in `git log --all`, but the list above is the
-direct ancestry from the Oct 17 baseline to the current branch HEAD.
+Note: other later commits exist in `git log --all`. The list above highlights
+the main direct-ancestry changes from the Oct 17 baseline through the current
+regularized-model work.
 
 ## Major Changes Since Oct 17
 
@@ -113,38 +116,17 @@ AUTO_RETRAIN_GUIDE.md
 These document the leak-safe backtester, retraining flow, DOB/age fixes, odds
 coverage fixes, and PnL diagnostics.
 
-## Current Worktree Before Commit
+## Current Worktree Status
 
-As of this status update, `git status --short` shows no tracked-file
-modifications. The current uncommitted worktree consists of generated audit,
-diagnostic, and retraining artifacts under `test_results/`, plus `tester.py`.
+As of this status update, the regularized LGBM implementation, backtest ledgers,
+audit outputs, retrained single-model artifact, and summary documentation have
+been committed and pushed on `feature/auto-retraining`.
 
-Untracked result groups to be committed:
+Primary regularized-model documentation:
 
 ```text
-test_results/feature_regression_audit_oct17/
-test_results/pnl_after_first4_1y/
-test_results/pnl_after_first4_2y/
-test_results/pnl_diag_age_nan_1y/
-test_results/pnl_diag_age_nan_2y/
-test_results/pnl_diag_all_missing_dobs_resolved_1y/
-test_results/pnl_diag_all_missing_dobs_resolved_1y_no_flat/
-test_results/pnl_diag_best_params_1y/
-test_results/pnl_diag_dob_backfilled_1y/
-test_results/pnl_diag_dob_backfilled_2y/
-test_results/pnl_diag_exclude_7_dobs_1y/
-test_results/pnl_diag_excluded_dob_policy_1y/
-test_results/pnl_diag_excluded_dob_policy_2y/
-test_results/pnl_diag_patched_1y/
-test_results/pnl_no_blank_winner_stats_1y/
-test_results/pnl_no_blank_winner_stats_audit/
-test_results/pnl_policy_smoke_closer/
-test_results/womens_retrain/
-tester.py
+test_results/regularized_lgbm_summary.md
 ```
-
-The latest audit-specific scratch outputs from independent analysis were written
-under `/private/tmp` and are intentionally not part of the repository.
 
 ## Current Statistical Status
 
@@ -249,6 +231,100 @@ Holdout inference:
 Interpretation: the selected strategy improved holdout PnL slightly, but the
 improvement is not statistically convincing.
 
+### Regularized LGBM Model Update
+
+Main report:
+
+```text
+test_results/regularized_lgbm_summary.md
+```
+
+Committed change:
+
+```text
+b5695b7 Improve UFC model PnL with regularized LGBM
+```
+
+The new production single-model artifact was retrained through `2026-06-27`
+using:
+
+```text
+test_results/regularized_lgbm_params.json
+```
+
+This config is deliberately more regularized than the earlier default:
+
+- fewer leaves: `num_leaves = 15`
+- larger leaf support: `min_child_samples = 90`
+- lower learning rate: `learning_rate = 0.035`
+- row subsampling: `subsample = 0.75`
+- feature subsampling: `colsample_bytree = 0.70`
+- L1/L2 penalties: `reg_alpha = 0.05`, `reg_lambda = 1.5`
+
+Important caveat: this was a hypothesis-driven manual config chosen after
+diagnosing model overconfidence. It was not selected by a fully nested,
+pre-registered hyperparameter search, so the result still has model-selection
+bias risk.
+
+Leak-safe two-year comparison:
+
+| Run | Window | Accuracy | Log Loss | Final Bankroll | Profit |
+| --- | --- | ---: | ---: | ---: | ---: |
+| baseline default | 2024-06-27 to 2026-06-27 | 62.59% | 0.6399 | $1402.38 | +40.24% |
+| regularized LGBM | 2024-06-27 to 2026-06-27 | 65.00% | 0.6318 | $1611.97 | +61.20% |
+
+Recent holdout slice:
+
+| Run | Window | Accuracy | Log Loss | Plain-Strategy ROI on Staked |
+| --- | --- | ---: | ---: | ---: |
+| baseline default | 2025-06-27 to 2026-06-27 | 61.74% | 0.6596 | 4.0% |
+| regularized LGBM | 2025-06-27 to 2026-06-27 | 64.43% | 0.6418 | 10.2% |
+
+Regularized-only walk-forward strategy search selected:
+
+```json
+{
+  "model_label": "regularized_lgbm",
+  "side_policy": "predicted_winner",
+  "model_weight": 1.0,
+  "min_edge": 0.16,
+  "min_probability": 0.5,
+  "min_kelly": 0.0,
+  "max_underdog_odds": 300.0,
+  "kelly_fraction": 0.05,
+  "max_fraction": 0.05
+}
+```
+
+Selected-strategy holdout result:
+
+- profit: `$198.17` (`+19.82%`)
+- bets: `51`
+- ROI on staked: `19.32%`
+- max drawdown: `9.29%`
+- market-null p-value: `0.0717`
+
+Market log-loss note:
+
+The standalone regularized model still trails de-vigged market probabilities on
+holdout log loss (`0.6418` model vs `0.6127` market). However, a dev-selected
+15% model / 85% market logit blend beats the market slightly on holdout:
+
+| Probability | Dev Log Loss | Holdout Log Loss |
+| --- | ---: | ---: |
+| model only | 0.6215 | 0.6418 |
+| market only | 0.5854 | 0.6127 |
+| 15% model / 85% market logit blend | 0.5843 | 0.6112 |
+
+Feature-importance export:
+
+```text
+test_results/regularized_lgbm_feature_importance.csv
+```
+
+Top features remain mostly matchup deltas, led by `oppelo oppdiff`,
+`elo oppdiff`, `age oppdiff`, `wins oppdiff`, and `avg age oppdiff`.
+
 ## Current Bottom Line
 
 The repo is now much better instrumented than it was on Oct 17:
@@ -259,22 +335,27 @@ The repo is now much better instrumented than it was on Oct 17:
 - market-null simulations and event bootstraps exist
 - walk-forward strategy search exists
 
-However, the current evidence does not prove a live betting edge.
+The regularized LGBM update improved the current leak-safe metrics materially,
+but the evidence still does not prove a live betting edge.
 
 The most honest read:
 
-- the model may contain weak predictive signal
-- the raw probabilities are overconfident relative to market odds
-- profitable PnL variants are sensitive to feature policy and threshold search
-- the full-DOB and walk-forward holdout tests do not clear statistical evidence
-  thresholds
+- the model likely contains weak predictive signal
+- regularization reduced, but did not eliminate, calibration weakness
+- de-vigged market probabilities still beat standalone model probabilities on
+  raw holdout log loss
+- a market/model blend can slightly beat market holdout log loss
+- profitable PnL variants remain sensitive to model policy and threshold search
+- the best current market-null p-value (`0.0717`) is promising but below a
+  strong statistical-evidence threshold
 
 Recommendation:
 
-Do not increase staking based on the current backtests. Treat the selected
-walk-forward strategy, at most, as a cautious risk-control heuristic to paper
-track on future cards. A real edge claim needs future out-of-sample results
-that beat market-null and bootstrap tests after the strategy is frozen.
+Do not materially increase staking based only on these backtests. Treat the
+regularized strategy and the 15% model / 85% market logit blend as frozen
+forward paper-tracking candidates. A real edge claim needs future
+out-of-sample results that beat market-null and bootstrap tests after the model
+params, probability blend, and betting policy are frozen.
 
 ## Independent PnL Investigation Update
 
