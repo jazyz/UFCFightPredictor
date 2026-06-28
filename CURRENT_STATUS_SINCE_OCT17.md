@@ -563,6 +563,46 @@ half-residual diagnostic. It still is not a live edge claim: event-bootstrap
 uncertainty crosses zero, one of five folds is negative, and the negative fold
 is the most recent 2026 holdout.
 
+### Residual Edge Concentration Audit
+
+Residual edge concentration audit:
+
+```text
+testing/residual_edge_concentration_audit.py
+test_results/residual_edge_concentration_audit/residual_edge_concentration_audit.md
+test_results/residual_edge_concentration_audit/residual_edge_concentration_audit.json
+```
+
+This audit checks whether the residual-shrinkage probability gain is broad or
+carried by a small number of events/fights. It reads the selected-shrinkage
+holdout predictions and computes per-fight/event log-loss deltas versus the
+de-vigged market.
+
+Policy concentration:
+
+| Policy | Fights | Events | Delta LL | Positive Fights | Positive Events | Events To Erase Edge |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| selected shrinkage | 704 | 102 | +0.0038 | 65.8% | 63.7% | 7 |
+| fixed half residual | 704 | 102 | +0.0030 | 65.8% | 64.7% | 11 |
+| unshrunk meta | 704 | 102 | +0.0030 | 65.8% | 62.7% | 5 |
+
+Removal sensitivity:
+
+| Policy | Remove Top Events | Remaining Delta LL | Remaining Sum Delta |
+| --- | ---: | ---: | ---: |
+| selected shrinkage | 1 | +0.0031 | +2.1669 |
+| selected shrinkage | 3 | +0.0019 | +1.2687 |
+| selected shrinkage | 5 | +0.0007 | +0.4979 |
+| selected shrinkage | 10 | -0.0020 | -1.2202 |
+| fixed half residual | 10 | +0.0000 | +0.0295 |
+| unshrunk meta | 5 | -0.0003 | -0.1817 |
+
+Interpretation: the residual probability edge is positive, but not broad or
+high-margin. Removing only the top seven selected-shrinkage events erases the
+aggregate log-loss edge; removing the top ten makes it clearly negative. This
+does not invalidate the residual signal, but it does make the live-edge claim
+more fragile and reinforces the paper-tracking-only stance.
+
 ### Residual Shrinkage Fixed PnL Audit
 
 Residual shrinkage fixed-policy PnL audit:
@@ -1048,6 +1088,9 @@ The most honest read:
   the capped-grid selected scale has market-null p-value `0.005`, or about
   `0.015` after a simple three-policy correction, but event-bootstrap
   uncertainty still crosses zero and the latest 2026 fold is negative
+- residual edge concentration is a major caveat: removing only the top seven
+  selected-shrinkage events erases the probability edge, and removing the top
+  ten makes the aggregate log-loss delta negative
 - fixed-threshold shrinkage PnL is positive but still weak: selected shrinkage
   produced `+4.55u`, fixed-half residual `+8.39u`, and unshrunk meta `+3.40u`;
   the best conditional market-null p-value is `0.024`, or about `0.071` after

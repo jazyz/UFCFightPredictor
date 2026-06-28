@@ -1,0 +1,1345 @@
+{
+  "input": "test_results/residual_shrinkage_audit/holdout_shrinkage_predictions.csv",
+  "rows": 704,
+  "top_k": 10,
+  "policies": [
+    "selected_shrinkage",
+    "fixed_half_residual",
+    "unshrunk_meta"
+  ],
+  "summaries": [
+    {
+      "policy": "selected_shrinkage",
+      "probability_column": "selected_probability",
+      "fights": 704,
+      "events": 102,
+      "market": {
+        "fights": 704,
+        "accuracy": 0.6875,
+        "log_loss": 0.6008836747854751,
+        "brier": 0.20666902045861074
+      },
+      "candidate": {
+        "fights": 704,
+        "accuracy": 0.6931818181818182,
+        "log_loss": 0.5971286967901079,
+        "brier": 0.20485482564506868
+      },
+      "sum_delta": 2.64350450873848,
+      "mean_delta": 0.003754977995367159,
+      "positive_fight_fraction": 0.6576704545454546,
+      "positive_event_fraction": 0.6372549019607843,
+      "positive_event_sum": 11.273845633376258,
+      "negative_event_sum": -8.630341124637777,
+      "top_positive_event_sum": 3.8637457585950004,
+      "top_positive_event_share_of_positive_sum": 0.34271763905976926,
+      "top_positive_event_share_of_net_sum": 1.4615998368161809,
+      "min_top_events_to_zero": {
+        "events": 7,
+        "fights": 62,
+        "remaining_sum_delta": -0.22040788038377074,
+        "remaining_mean_delta": -0.0003433144554264342
+      },
+      "removal": [
+        {
+          "removed_top_events": 1,
+          "removed_fights": 9,
+          "remaining_fights": 695,
+          "remaining_sum_delta": 2.166887650124381,
+          "remaining_mean_delta": 0.003117823957013498
+        },
+        {
+          "removed_top_events": 3,
+          "removed_fights": 25,
+          "remaining_fights": 679,
+          "remaining_sum_delta": 1.2687252737197898,
+          "remaining_mean_delta": 0.001868520285301605
+        },
+        {
+          "removed_top_events": 5,
+          "removed_fights": 39,
+          "remaining_fights": 665,
+          "remaining_sum_delta": 0.49791178164807226,
+          "remaining_mean_delta": 0.0007487395212752966
+        },
+        {
+          "removed_top_events": 10,
+          "removed_fights": 81,
+          "remaining_fights": 623,
+          "remaining_sum_delta": -1.2202412498565205,
+          "remaining_mean_delta": -0.0019586536915835
+        }
+      ],
+      "by_year": [
+        {
+          "year": 2024,
+          "fights": 275,
+          "sum_delta": 2.7045994018703805,
+          "mean_delta": 0.009834906915892293
+        },
+        {
+          "year": 2025,
+          "fights": 285,
+          "sum_delta": 0.46173134075178174,
+          "mean_delta": 0.0016201099675501114
+        },
+        {
+          "year": 2026,
+          "fights": 144,
+          "sum_delta": -0.5228262338836827,
+          "mean_delta": -0.003630737735303352
+        }
+      ],
+      "by_fold": [
+        {
+          "fold": 1,
+          "fights": 165,
+          "sum_delta": 1.159036728426272,
+          "mean_delta": 0.007024465020765284
+        },
+        {
+          "fold": 2,
+          "fights": 130,
+          "sum_delta": 1.0065735892511938,
+          "mean_delta": 0.0077428737634707215
+        },
+        {
+          "fold": 3,
+          "fights": 150,
+          "sum_delta": 0.3941849226057889,
+          "mean_delta": 0.0026278994840385926
+        },
+        {
+          "fold": 4,
+          "fights": 130,
+          "sum_delta": 0.6934636544621792,
+          "mean_delta": 0.005334335803555224
+        },
+        {
+          "fold": 5,
+          "fights": 129,
+          "sum_delta": -0.6097543860069543,
+          "mean_delta": -0.004726778186100421
+        }
+      ],
+      "top_events": [
+        {
+          "event_date": "2024-08-03",
+          "fights": 9,
+          "sum_delta": 0.47661685861409897,
+          "mean_delta": 0.052957428734899885
+        },
+        {
+          "event_date": "2026-06-27",
+          "fights": 7,
+          "sum_delta": 0.4572439630393928,
+          "mean_delta": 0.06532056614848468
+        },
+        {
+          "event_date": "2025-04-26",
+          "fights": 9,
+          "sum_delta": 0.4409184133651981,
+          "mean_delta": 0.04899093481835534
+        },
+        {
+          "event_date": "2025-06-07",
+          "fights": 6,
+          "sum_delta": 0.3898069784151126,
+          "mean_delta": 0.06496782973585209
+        },
+        {
+          "event_date": "2024-06-01",
+          "fights": 8,
+          "sum_delta": 0.3810065136566048,
+          "mean_delta": 0.0476258142070756
+        },
+        {
+          "event_date": "2024-10-26",
+          "fights": 10,
+          "sum_delta": 0.3599003290254815,
+          "mean_delta": 0.03599003290254815
+        },
+        {
+          "event_date": "2024-12-07",
+          "fights": 13,
+          "sum_delta": 0.3584193330063621,
+          "mean_delta": 0.027570717923566315
+        },
+        {
+          "event_date": "2024-06-29",
+          "fights": 6,
+          "sum_delta": 0.343455963743831,
+          "mean_delta": 0.05724266062397184
+        },
+        {
+          "event_date": "2024-02-17",
+          "fights": 6,
+          "sum_delta": 0.33169375451083566,
+          "mean_delta": 0.05528229241847261
+        },
+        {
+          "event_date": "2025-05-10",
+          "fights": 7,
+          "sum_delta": 0.32468365121808296,
+          "mean_delta": 0.04638337874544042
+        }
+      ],
+      "bottom_events": [
+        {
+          "event_date": "2025-01-18",
+          "fights": 8,
+          "sum_delta": -0.8255586085256962,
+          "mean_delta": -0.10319482606571202
+        },
+        {
+          "event_date": "2025-07-19",
+          "fights": 9,
+          "sum_delta": -0.6537305409564245,
+          "mean_delta": -0.07263672677293605
+        },
+        {
+          "event_date": "2025-07-26",
+          "fights": 8,
+          "sum_delta": -0.6364589043593354,
+          "mean_delta": -0.07955736304491692
+        },
+        {
+          "event_date": "2026-05-09",
+          "fights": 12,
+          "sum_delta": -0.4592258690511118,
+          "mean_delta": -0.03826882242092598
+        },
+        {
+          "event_date": "2024-10-19",
+          "fights": 6,
+          "sum_delta": -0.4161595401338548,
+          "mean_delta": -0.06935992335564246
+        },
+        {
+          "event_date": "2025-03-01",
+          "fights": 6,
+          "sum_delta": -0.40794896342987935,
+          "mean_delta": -0.0679914939049799
+        },
+        {
+          "event_date": "2025-08-23",
+          "fights": 9,
+          "sum_delta": -0.3743171354558883,
+          "mean_delta": -0.04159079282843203
+        },
+        {
+          "event_date": "2026-04-25",
+          "fights": 7,
+          "sum_delta": -0.3477404145313472,
+          "mean_delta": -0.04967720207590674
+        },
+        {
+          "event_date": "2025-02-15",
+          "fights": 7,
+          "sum_delta": -0.3469805817505341,
+          "mean_delta": -0.04956865453579058
+        },
+        {
+          "event_date": "2025-10-11",
+          "fights": 7,
+          "sum_delta": -0.3141443871067485,
+          "mean_delta": -0.044877769586678364
+        }
+      ],
+      "top_fights": [
+        {
+          "event_date": "2025-09-13",
+          "title": "Lightweight Bout",
+          "red_fighter": "Rafa Garcia",
+          "blue_fighter": "Jared Gordon",
+          "winner_name": "Rafa Garcia",
+          "market_probability": 0.3194444444444444,
+          "candidate_probability": 0.3877450887419427,
+          "delta": 0.19376476003850085
+        },
+        {
+          "event_date": "2025-07-12",
+          "title": "Welterweight Bout",
+          "red_fighter": "Jake Matthews",
+          "blue_fighter": "Chidi Njokuani",
+          "winner_name": "Jake Matthews",
+          "market_probability": 0.4279403644395361,
+          "candidate_probability": 0.507581934714204,
+          "delta": 0.17067429514530974
+        },
+        {
+          "event_date": "2026-04-11",
+          "title": "Heavyweight Bout",
+          "red_fighter": "Josh Hokit",
+          "blue_fighter": "Curtis Blaydes",
+          "winner_name": "Josh Hokit",
+          "market_probability": 0.5064069707842132,
+          "candidate_probability": 0.5950076558605273,
+          "delta": 0.16123363634844
+        },
+        {
+          "event_date": "2026-05-02",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Colby Thicknesse",
+          "blue_fighter": "Vince Morales",
+          "winner_name": "Colby Thicknesse",
+          "market_probability": 0.5436105476673427,
+          "candidate_probability": 0.6347889209850754,
+          "delta": 0.1550594502851178
+        },
+        {
+          "event_date": "2026-06-27",
+          "title": "Lightweight Bout",
+          "red_fighter": "Nazim Sadykhov",
+          "blue_fighter": "Matheus Camilo",
+          "winner_name": "Matheus Camilo",
+          "market_probability": 0.627642789523509,
+          "candidate_probability": 0.5669376185735904,
+          "delta": 0.15102814883414706
+        },
+        {
+          "event_date": "2026-06-06",
+          "title": "Welterweight Bout",
+          "red_fighter": "Gabriel Bonfim",
+          "blue_fighter": "Belal Muhammad",
+          "winner_name": "Gabriel Bonfim",
+          "market_probability": 0.4869927159209156,
+          "candidate_probability": 0.5584556800369046,
+          "delta": 0.1369260940807464
+        },
+        {
+          "event_date": "2025-12-06",
+          "title": "Lightweight Bout",
+          "red_fighter": "Fares Ziam",
+          "blue_fighter": "Nazim Sadykhov",
+          "winner_name": "Fares Ziam",
+          "market_probability": 0.5634920634920635,
+          "candidate_probability": 0.6439200158830093,
+          "delta": 0.1334212703796257
+        },
+        {
+          "event_date": "2025-03-08",
+          "title": "Lightweight Bout",
+          "red_fighter": "Ignacio Bahamondes",
+          "blue_fighter": "Jalin Turner",
+          "winner_name": "Ignacio Bahamondes",
+          "market_probability": 0.5634920634920635,
+          "candidate_probability": 0.6386321155429968,
+          "delta": 0.12517532049068308
+        },
+        {
+          "event_date": "2026-04-25",
+          "title": "Heavyweight Bout",
+          "red_fighter": "Marcus Buchecha",
+          "blue_fighter": "Ryan Spann",
+          "winner_name": "Ryan Spann",
+          "market_probability": 0.5776397515527951,
+          "candidate_probability": 0.521526084819498,
+          "delta": 0.12474307650394256
+        },
+        {
+          "event_date": "2025-11-22",
+          "title": "Middleweight Bout",
+          "red_fighter": "Ryan Loder",
+          "blue_fighter": "Ismail Naurdiev",
+          "winner_name": "Ismail Naurdiev",
+          "market_probability": 0.4616656250630002,
+          "candidate_probability": 0.3912592477204849,
+          "delta": 0.12291260109985763
+        }
+      ],
+      "bottom_fights": [
+        {
+          "event_date": "2025-01-18",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Payton Talbott",
+          "blue_fighter": "Raoni Barcelos",
+          "winner_name": "Raoni Barcelos",
+          "market_probability": 0.8800000000000001,
+          "candidate_probability": 0.9272182925271826,
+          "delta": -0.5000270901310286
+        },
+        {
+          "event_date": "2026-03-28",
+          "title": "Lightweight Bout",
+          "red_fighter": "Chase Hooper",
+          "blue_fighter": "Lance Gibson Jr.",
+          "winner_name": "Lance Gibson Jr.",
+          "market_probability": 0.7581951888321078,
+          "candidate_probability": 0.8408592412906262,
+          "delta": -0.41834174978861327
+        },
+        {
+          "event_date": "2024-03-02",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Aiemann Zahabi",
+          "blue_fighter": "Javid Basharat",
+          "winner_name": "Aiemann Zahabi",
+          "market_probability": 0.136986301369863,
+          "candidate_probability": 0.0908573497176899,
+          "delta": -0.41059023977854725
+        },
+        {
+          "event_date": "2024-10-19",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Kyler Phillips",
+          "blue_fighter": "Rob Font",
+          "winner_name": "Rob Font",
+          "market_probability": 0.7999999999999999,
+          "candidate_probability": 0.8662628962956345,
+          "delta": -0.4024414063226551
+        },
+        {
+          "event_date": "2025-01-18",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Rinya Nakamura",
+          "blue_fighter": "Muin Gafurov",
+          "winner_name": "Muin Gafurov",
+          "market_probability": 0.8316498316498315,
+          "candidate_probability": 0.8867161912702819,
+          "delta": -0.3961498939664603
+        },
+        {
+          "event_date": "2026-05-09",
+          "title": "UFC Middleweight Title Bout",
+          "red_fighter": "Khamzat Chimaev",
+          "blue_fighter": "Sean Strickland",
+          "winner_name": "Sean Strickland",
+          "market_probability": 0.7894736842105263,
+          "candidate_probability": 0.8569578792153045,
+          "delta": -0.3864715231053657
+        },
+        {
+          "event_date": "2026-05-30",
+          "title": "Light Heavyweight Bout",
+          "red_fighter": "Zhang Mingyang",
+          "blue_fighter": "Alonzo Menifield",
+          "winner_name": "Alonzo Menifield",
+          "market_probability": 0.6781609195402298,
+          "candidate_probability": 0.7782759294001721,
+          "delta": -0.3726179869286841
+        },
+        {
+          "event_date": "2025-07-19",
+          "title": "Lightweight Bout",
+          "red_fighter": "Daniel Zellhuber",
+          "blue_fighter": "Michael Johnson",
+          "winner_name": "Michael Johnson",
+          "market_probability": 0.7440690150970525,
+          "candidate_probability": 0.8186273742131939,
+          "delta": -0.3443541968716839
+        },
+        {
+          "event_date": "2024-03-16",
+          "title": "Light Heavyweight Bout",
+          "red_fighter": "Ovince Saint Preux",
+          "blue_fighter": "Kennedy Nzechukwu",
+          "winner_name": "Ovince Saint Preux",
+          "market_probability": 0.1999999999999999,
+          "candidate_probability": 0.1443453753230223,
+          "delta": -0.3261084988946643
+        },
+        {
+          "event_date": "2024-05-04",
+          "title": "Light Heavyweight Bout",
+          "red_fighter": "Anthony Smith",
+          "blue_fighter": "Vitor Petrino",
+          "winner_name": "Anthony Smith",
+          "market_probability": 0.182741116751269,
+          "candidate_probability": 0.1332347038764612,
+          "delta": -0.31595822491544845
+        }
+      ]
+    },
+    {
+      "policy": "fixed_half_residual",
+      "probability_column": "fixed_half_probability",
+      "fights": 704,
+      "events": 102,
+      "market": {
+        "fights": 704,
+        "accuracy": 0.6875,
+        "log_loss": 0.6008836747854751,
+        "brier": 0.20666902045861074
+      },
+      "candidate": {
+        "fights": 704,
+        "accuracy": 0.6960227272727273,
+        "log_loss": 0.5978574501583388,
+        "brier": 0.20529098064105156
+      },
+      "sum_delta": 2.130462137503993,
+      "mean_delta": 0.003026224627136354,
+      "positive_fight_fraction": 0.6576704545454546,
+      "positive_event_fraction": 0.6470588235294118,
+      "positive_event_sum": 6.497982502190638,
+      "negative_event_sum": -4.367520364686646,
+      "top_positive_event_sum": 2.1009578390853303,
+      "top_positive_event_share_of_positive_sum": 0.32332463782059173,
+      "top_positive_event_share_of_net_sum": 0.9861512214184527,
+      "min_top_events_to_zero": {
+        "events": 11,
+        "fights": 88,
+        "remaining_sum_delta": -0.14477007330454142,
+        "remaining_mean_delta": -0.0002350163527671127
+      },
+      "removal": [
+        {
+          "removed_top_events": 1,
+          "removed_fights": 7,
+          "remaining_fights": 697,
+          "remaining_sum_delta": 1.8209186569006728,
+          "remaining_mean_delta": 0.0026125088334299465
+        },
+        {
+          "removed_top_events": 3,
+          "removed_fights": 25,
+          "remaining_fights": 679,
+          "remaining_sum_delta": 1.3545631519767563,
+          "remaining_mean_delta": 0.00199493836815428
+        },
+        {
+          "removed_top_events": 5,
+          "removed_fights": 39,
+          "remaining_fights": 665,
+          "remaining_sum_delta": 0.9548658838777486,
+          "remaining_mean_delta": 0.0014358885471845845
+        },
+        {
+          "removed_top_events": 10,
+          "removed_fights": 82,
+          "remaining_fights": 622,
+          "remaining_sum_delta": 0.029504298418662867,
+          "remaining_mean_delta": 4.743456337405606e-05
+        }
+      ],
+      "by_year": [
+        {
+          "year": 2024,
+          "fights": 275,
+          "sum_delta": 1.619635473918427,
+          "mean_delta": 0.005889583541521553
+        },
+        {
+          "year": 2025,
+          "fights": 285,
+          "sum_delta": 0.6751195817327285,
+          "mean_delta": 0.0023688406376586963
+        },
+        {
+          "year": 2026,
+          "fights": 144,
+          "sum_delta": -0.16429291814716274,
+          "mean_delta": -0.00114092304268863
+        }
+      ],
+      "by_fold": [
+        {
+          "fold": 1,
+          "fights": 165,
+          "sum_delta": 0.7630759334321398,
+          "mean_delta": 0.004624702626861453
+        },
+        {
+          "fold": 2,
+          "fights": 130,
+          "sum_delta": 0.6504713798839175,
+          "mean_delta": 0.005003625999107058
+        },
+        {
+          "fold": 3,
+          "fights": 150,
+          "sum_delta": 0.40133571717743755,
+          "mean_delta": 0.0026755714478495837
+        },
+        {
+          "fold": 4,
+          "fights": 130,
+          "sum_delta": 0.5481642280928355,
+          "mean_delta": 0.004216647908406427
+        },
+        {
+          "fold": 5,
+          "fights": 129,
+          "sum_delta": -0.23258512108233742,
+          "mean_delta": -0.0018029854347468017
+        }
+      ],
+      "top_events": [
+        {
+          "event_date": "2026-06-27",
+          "fights": 7,
+          "sum_delta": 0.3095434806033204,
+          "mean_delta": 0.044220497229045766
+        },
+        {
+          "event_date": "2024-08-03",
+          "fights": 9,
+          "sum_delta": 0.24223948384384045,
+          "mean_delta": 0.02691549820487116
+        },
+        {
+          "event_date": "2025-04-26",
+          "fights": 9,
+          "sum_delta": 0.22411602108007614,
+          "mean_delta": 0.02490178012000846
+        },
+        {
+          "event_date": "2024-06-01",
+          "fights": 8,
+          "sum_delta": 0.20142408244543256,
+          "mean_delta": 0.02517801030567907
+        },
+        {
+          "event_date": "2025-06-07",
+          "fights": 6,
+          "sum_delta": 0.19827318565357505,
+          "mean_delta": 0.03304553094226251
+        },
+        {
+          "event_date": "2025-09-13",
+          "fights": 6,
+          "sum_delta": 0.19144066618502065,
+          "mean_delta": 0.03190677769750344
+        },
+        {
+          "event_date": "2025-11-22",
+          "fights": 8,
+          "sum_delta": 0.1874949917138272,
+          "mean_delta": 0.0234368739642284
+        },
+        {
+          "event_date": "2024-12-07",
+          "fights": 13,
+          "sum_delta": 0.18622081102467003,
+          "mean_delta": 0.014324677771128464
+        },
+        {
+          "event_date": "2024-10-26",
+          "fights": 10,
+          "sum_delta": 0.18527756422471417,
+          "mean_delta": 0.01852775642247142
+        },
+        {
+          "event_date": "2024-06-29",
+          "fights": 6,
+          "sum_delta": 0.17492755231085388,
+          "mean_delta": 0.02915459205180898
+        }
+      ],
+      "bottom_events": [
+        {
+          "event_date": "2025-01-18",
+          "fights": 8,
+          "sum_delta": -0.35960847358965065,
+          "mean_delta": -0.04495105919870633
+        },
+        {
+          "event_date": "2025-07-19",
+          "fights": 9,
+          "sum_delta": -0.29192226574052055,
+          "mean_delta": -0.03243580730450228
+        },
+        {
+          "event_date": "2025-07-26",
+          "fights": 8,
+          "sum_delta": -0.29054842084204724,
+          "mean_delta": -0.036318552605255905
+        },
+        {
+          "event_date": "2026-05-09",
+          "fights": 12,
+          "sum_delta": -0.27926201753858393,
+          "mean_delta": -0.023271834794881995
+        },
+        {
+          "event_date": "2025-08-23",
+          "fights": 9,
+          "sum_delta": -0.23432909840519414,
+          "mean_delta": -0.026036566489466017
+        },
+        {
+          "event_date": "2026-04-25",
+          "fights": 7,
+          "sum_delta": -0.21505921828158298,
+          "mean_delta": -0.03072274546879757
+        },
+        {
+          "event_date": "2025-10-11",
+          "fights": 7,
+          "sum_delta": -0.2038608966069983,
+          "mean_delta": -0.029122985229571186
+        },
+        {
+          "event_date": "2026-05-30",
+          "fights": 6,
+          "sum_delta": -0.18998748544280353,
+          "mean_delta": -0.03166458090713392
+        },
+        {
+          "event_date": "2025-03-01",
+          "fights": 6,
+          "sum_delta": -0.18785366522343244,
+          "mean_delta": -0.031308944203905405
+        },
+        {
+          "event_date": "2024-10-19",
+          "fights": 6,
+          "sum_delta": -0.18680681788352055,
+          "mean_delta": -0.031134469647253426
+        }
+      ],
+      "top_fights": [
+        {
+          "event_date": "2025-09-13",
+          "title": "Lightweight Bout",
+          "red_fighter": "Rafa Garcia",
+          "blue_fighter": "Jared Gordon",
+          "winner_name": "Rafa Garcia",
+          "market_probability": 0.3194444444444444,
+          "candidate_probability": 0.3649782073094433,
+          "delta": 0.1332542699032606
+        },
+        {
+          "event_date": "2026-04-11",
+          "title": "Heavyweight Bout",
+          "red_fighter": "Josh Hokit",
+          "blue_fighter": "Curtis Blaydes",
+          "winner_name": "Josh Hokit",
+          "market_probability": 0.5064069707842132,
+          "candidate_probability": 0.5654740941684225,
+          "delta": 0.11032384791086436
+        },
+        {
+          "event_date": "2026-05-02",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Colby Thicknesse",
+          "blue_fighter": "Vince Morales",
+          "winner_name": "Colby Thicknesse",
+          "market_probability": 0.5436105476673427,
+          "candidate_probability": 0.6043961298791646,
+          "delta": 0.10599674168351247
+        },
+        {
+          "event_date": "2026-06-27",
+          "title": "Lightweight Bout",
+          "red_fighter": "Nazim Sadykhov",
+          "blue_fighter": "Matheus Camilo",
+          "winner_name": "Matheus Camilo",
+          "market_probability": 0.627642789523509,
+          "candidate_probability": 0.5871726755568967,
+          "delta": 0.10317576815964513
+        },
+        {
+          "event_date": "2026-06-06",
+          "title": "Welterweight Bout",
+          "red_fighter": "Gabriel Bonfim",
+          "blue_fighter": "Belal Muhammad",
+          "winner_name": "Gabriel Bonfim",
+          "market_probability": 0.4869927159209156,
+          "candidate_probability": 0.5346346919982417,
+          "delta": 0.09333452904478123
+        },
+        {
+          "event_date": "2025-12-06",
+          "title": "Lightweight Bout",
+          "red_fighter": "Fares Ziam",
+          "blue_fighter": "Nazim Sadykhov",
+          "winner_name": "Fares Ziam",
+          "market_probability": 0.5634920634920635,
+          "candidate_probability": 0.6171106984193606,
+          "delta": 0.09089517271044223
+        },
+        {
+          "event_date": "2025-07-12",
+          "title": "Welterweight Bout",
+          "red_fighter": "Jake Matthews",
+          "blue_fighter": "Chidi Njokuani",
+          "winner_name": "Jake Matthews",
+          "market_probability": 0.4279403644395361,
+          "candidate_probability": 0.4677611495768701,
+          "delta": 0.08897395103347672
+        },
+        {
+          "event_date": "2026-04-25",
+          "title": "Heavyweight Bout",
+          "red_fighter": "Marcus Buchecha",
+          "blue_fighter": "Ryan Spann",
+          "winner_name": "Ryan Spann",
+          "market_probability": 0.5776397515527951,
+          "candidate_probability": 0.5402306403972637,
+          "delta": 0.08486635240231111
+        },
+        {
+          "event_date": "2025-11-22",
+          "title": "Middleweight Bout",
+          "red_fighter": "Ryan Loder",
+          "blue_fighter": "Ismail Naurdiev",
+          "winner_name": "Ismail Naurdiev",
+          "market_probability": 0.4616656250630002,
+          "candidate_probability": 0.41472804016799,
+          "delta": 0.08359674595208888
+        },
+        {
+          "event_date": "2026-05-16",
+          "title": "Welterweight Bout",
+          "red_fighter": "Nikolay Veretennikov",
+          "blue_fighter": "Khaos Williams",
+          "winner_name": "Khaos Williams",
+          "market_probability": 0.4712041884816754,
+          "candidate_probability": 0.4276616788487546,
+          "delta": 0.07912791929740648
+        }
+      ],
+      "bottom_fights": [
+        {
+          "event_date": "2026-03-28",
+          "title": "Lightweight Bout",
+          "red_fighter": "Chase Hooper",
+          "blue_fighter": "Lance Gibson Jr.",
+          "winner_name": "Lance Gibson Jr.",
+          "market_probability": 0.7581951888321078,
+          "candidate_probability": 0.8133045571377867,
+          "delta": -0.25865219391549377
+        },
+        {
+          "event_date": "2026-05-09",
+          "title": "UFC Middleweight Title Bout",
+          "red_fighter": "Khamzat Chimaev",
+          "blue_fighter": "Sean Strickland",
+          "winner_name": "Sean Strickland",
+          "market_probability": 0.7894736842105263,
+          "candidate_probability": 0.8344631475470452,
+          "delta": -0.2404168174747674
+        },
+        {
+          "event_date": "2026-05-30",
+          "title": "Light Heavyweight Bout",
+          "red_fighter": "Zhang Mingyang",
+          "blue_fighter": "Alonzo Menifield",
+          "winner_name": "Alonzo Menifield",
+          "market_probability": 0.6781609195402298,
+          "candidate_probability": 0.744904259446858,
+          "delta": -0.23241274265965162
+        },
+        {
+          "event_date": "2025-01-18",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Payton Talbott",
+          "blue_fighter": "Raoni Barcelos",
+          "winner_name": "Raoni Barcelos",
+          "market_probability": 0.8800000000000001,
+          "candidate_probability": 0.9036091462635912,
+          "delta": -0.21908042391979254
+        },
+        {
+          "event_date": "2026-06-14",
+          "title": "UFC Lightweight Title Bout",
+          "red_fighter": "Justin Gaethje",
+          "blue_fighter": "Ilia Topuria",
+          "winner_name": "Justin Gaethje",
+          "market_probability": 0.2116788321167883,
+          "candidate_probability": 0.1742566421470858,
+          "delta": -0.19454101573517724
+        },
+        {
+          "event_date": "2024-03-02",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Aiemann Zahabi",
+          "blue_fighter": "Javid Basharat",
+          "winner_name": "Aiemann Zahabi",
+          "market_probability": 0.136986301369863,
+          "candidate_probability": 0.1139218255437764,
+          "delta": -0.18436845850515837
+        },
+        {
+          "event_date": "2024-10-19",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Kyler Phillips",
+          "blue_fighter": "Rob Font",
+          "winner_name": "Rob Font",
+          "market_probability": 0.7999999999999999,
+          "candidate_probability": 0.8331314481478171,
+          "delta": -0.18111097872625992
+        },
+        {
+          "event_date": "2025-01-18",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Rinya Nakamura",
+          "blue_fighter": "Muin Gafurov",
+          "winner_name": "Muin Gafurov",
+          "market_probability": 0.8316498316498315,
+          "candidate_probability": 0.8591830114600567,
+          "delta": -0.17858505191822638
+        },
+        {
+          "event_date": "2026-04-25",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Jafel Filho",
+          "blue_fighter": "Cody Durden",
+          "winner_name": "Cody Durden",
+          "market_probability": 0.8340707964601769,
+          "candidate_probability": 0.8586431055972951,
+          "delta": -0.16027335433670054
+        },
+        {
+          "event_date": "2025-10-18",
+          "title": "Flyweight Bout",
+          "red_fighter": "HyunSung Park",
+          "blue_fighter": "Bruno Silva",
+          "winner_name": "Bruno Silva",
+          "market_probability": 0.6628630705394191,
+          "candidate_probability": 0.7126776817535343,
+          "delta": -0.15988452100971728
+        }
+      ]
+    },
+    {
+      "policy": "unshrunk_meta",
+      "probability_column": "unshrunk_probability",
+      "fights": 704,
+      "events": 102,
+      "market": {
+        "fights": 704,
+        "accuracy": 0.6875,
+        "log_loss": 0.6008836747854751,
+        "brier": 0.20666902045861074
+      },
+      "candidate": {
+        "fights": 704,
+        "accuracy": 0.6903409090909091,
+        "log_loss": 0.5978903895335758,
+        "brier": 0.20502889633632695
+      },
+      "sum_delta": 2.1072728173372166,
+      "mean_delta": 0.0029932852518994553,
+      "positive_fight_fraction": 0.6576704545454546,
+      "positive_event_fraction": 0.6274509803921569,
+      "positive_event_sum": 12.180824972020579,
+      "negative_event_sum": -10.073552154683362,
+      "top_positive_event_sum": 4.079225067503789,
+      "top_positive_event_share_of_positive_sum": 0.3348890634972419,
+      "top_positive_event_share_of_net_sum": 1.935784030403032,
+      "min_top_events_to_zero": {
+        "events": 5,
+        "fights": 39,
+        "remaining_sum_delta": -0.181745591229514,
+        "remaining_mean_delta": -0.0002733016409466376
+      },
+      "removal": [
+        {
+          "removed_top_events": 1,
+          "removed_fights": 7,
+          "remaining_fights": 697,
+          "remaining_sum_delta": 1.5066031728215006,
+          "remaining_mean_delta": 0.0021615540499591115
+        },
+        {
+          "removed_top_events": 3,
+          "removed_fights": 25,
+          "remaining_fights": 679,
+          "remaining_sum_delta": 0.5890679008422035,
+          "remaining_mean_delta": 0.0008675521367337313
+        },
+        {
+          "removed_top_events": 5,
+          "removed_fights": 39,
+          "remaining_fights": 665,
+          "remaining_sum_delta": -0.18174559122951406,
+          "remaining_mean_delta": -0.00027330164094663766
+        },
+        {
+          "removed_top_events": 10,
+          "removed_fights": 82,
+          "remaining_fights": 622,
+          "remaining_sum_delta": -1.9719522501665727,
+          "remaining_mean_delta": -0.003170341238209924
+        }
+      ],
+      "by_year": [
+        {
+          "year": 2024,
+          "fights": 275,
+          "sum_delta": 2.7045994018703805,
+          "mean_delta": 0.009834906915892293
+        },
+        {
+          "year": 2025,
+          "fights": 285,
+          "sum_delta": 0.5063419761142839,
+          "mean_delta": 0.0017766385126816977
+        },
+        {
+          "year": 2026,
+          "fights": 144,
+          "sum_delta": -1.1036685606474474,
+          "mean_delta": -0.007664365004496163
+        }
+      ],
+      "by_fold": [
+        {
+          "fold": 1,
+          "fights": 165,
+          "sum_delta": 1.159036728426272,
+          "mean_delta": 0.007024465020765284
+        },
+        {
+          "fold": 2,
+          "fights": 130,
+          "sum_delta": 1.0065735892511938,
+          "mean_delta": 0.0077428737634707215
+        },
+        {
+          "fold": 3,
+          "fights": 150,
+          "sum_delta": 0.3941849226057889,
+          "mean_delta": 0.0026278994840385926
+        },
+        {
+          "fold": 4,
+          "fights": 130,
+          "sum_delta": 0.7457850894952358,
+          "mean_delta": 0.005736808380732583
+        },
+        {
+          "fold": 5,
+          "fights": 129,
+          "sum_delta": -1.1983075124412736,
+          "mean_delta": -0.00928920552280057
+        }
+      ],
+      "top_events": [
+        {
+          "event_date": "2026-06-27",
+          "fights": 7,
+          "sum_delta": 0.600669644515716,
+          "mean_delta": 0.08580994921653086
+        },
+        {
+          "event_date": "2024-08-03",
+          "fights": 9,
+          "sum_delta": 0.47661685861409897,
+          "mean_delta": 0.052957428734899885
+        },
+        {
+          "event_date": "2025-04-26",
+          "fights": 9,
+          "sum_delta": 0.4409184133651981,
+          "mean_delta": 0.04899093481835534
+        },
+        {
+          "event_date": "2025-06-07",
+          "fights": 6,
+          "sum_delta": 0.3898069784151126,
+          "mean_delta": 0.06496782973585209
+        },
+        {
+          "event_date": "2024-06-01",
+          "fights": 8,
+          "sum_delta": 0.3810065136566048,
+          "mean_delta": 0.0476258142070756
+        },
+        {
+          "event_date": "2025-11-22",
+          "fights": 8,
+          "sum_delta": 0.36472607972221716,
+          "mean_delta": 0.045590759965277144
+        },
+        {
+          "event_date": "2025-09-13",
+          "fights": 6,
+          "sum_delta": 0.3637049534391671,
+          "mean_delta": 0.06061749223986118
+        },
+        {
+          "event_date": "2024-10-26",
+          "fights": 10,
+          "sum_delta": 0.3599003290254815,
+          "mean_delta": 0.03599003290254815
+        },
+        {
+          "event_date": "2024-12-07",
+          "fights": 13,
+          "sum_delta": 0.3584193330063621,
+          "mean_delta": 0.027570717923566315
+        },
+        {
+          "event_date": "2024-06-29",
+          "fights": 6,
+          "sum_delta": 0.343455963743831,
+          "mean_delta": 0.05724266062397184
+        }
+      ],
+      "bottom_events": [
+        {
+          "event_date": "2025-01-18",
+          "fights": 8,
+          "sum_delta": -0.8255586085256962,
+          "mean_delta": -0.10319482606571202
+        },
+        {
+          "event_date": "2026-05-09",
+          "fights": 12,
+          "sum_delta": -0.6749743538402491,
+          "mean_delta": -0.056247862820020755
+        },
+        {
+          "event_date": "2025-07-19",
+          "fights": 9,
+          "sum_delta": -0.6537305409564245,
+          "mean_delta": -0.07263672677293605
+        },
+        {
+          "event_date": "2025-07-26",
+          "fights": 8,
+          "sum_delta": -0.6364589043593354,
+          "mean_delta": -0.07955736304491692
+        },
+        {
+          "event_date": "2025-08-23",
+          "fights": 9,
+          "sum_delta": -0.5324989316780092,
+          "mean_delta": -0.05916654796422324
+        },
+        {
+          "event_date": "2026-04-25",
+          "fights": 7,
+          "sum_delta": -0.5000890914332311,
+          "mean_delta": -0.07144129877617587
+        },
+        {
+          "event_date": "2026-03-28",
+          "fights": 5,
+          "sum_delta": -0.4667495486496553,
+          "mean_delta": -0.09334990972993105
+        },
+        {
+          "event_date": "2026-05-30",
+          "fights": 6,
+          "sum_delta": -0.4568442163271563,
+          "mean_delta": -0.07614070272119272
+        },
+        {
+          "event_date": "2025-10-11",
+          "fights": 7,
+          "sum_delta": -0.4306226143529265,
+          "mean_delta": -0.06151751633613235
+        },
+        {
+          "event_date": "2024-10-19",
+          "fights": 6,
+          "sum_delta": -0.4161595401338548,
+          "mean_delta": -0.06935992335564246
+        }
+      ],
+      "top_fights": [
+        {
+          "event_date": "2025-09-13",
+          "title": "Lightweight Bout",
+          "red_fighter": "Rafa Garcia",
+          "blue_fighter": "Jared Gordon",
+          "winner_name": "Rafa Garcia",
+          "market_probability": 0.3194444444444444,
+          "candidate_probability": 0.4105119701744422,
+          "delta": 0.2508217125585682
+        },
+        {
+          "event_date": "2026-04-11",
+          "title": "Heavyweight Bout",
+          "red_fighter": "Josh Hokit",
+          "blue_fighter": "Curtis Blaydes",
+          "winner_name": "Josh Hokit",
+          "market_probability": 0.5064069707842132,
+          "candidate_probability": 0.6245412175526319,
+          "delta": 0.2096766921656953
+        },
+        {
+          "event_date": "2026-05-02",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Colby Thicknesse",
+          "blue_fighter": "Vince Morales",
+          "winner_name": "Colby Thicknesse",
+          "market_probability": 0.5436105476673427,
+          "candidate_probability": 0.6651817120909864,
+          "delta": 0.20182716914386456
+        },
+        {
+          "event_date": "2026-06-27",
+          "title": "Lightweight Bout",
+          "red_fighter": "Nazim Sadykhov",
+          "blue_fighter": "Matheus Camilo",
+          "winner_name": "Matheus Camilo",
+          "market_probability": 0.627642789523509,
+          "candidate_probability": 0.5467025615902842,
+          "delta": 0.19669487019759335
+        },
+        {
+          "event_date": "2026-06-06",
+          "title": "Welterweight Bout",
+          "red_fighter": "Gabriel Bonfim",
+          "blue_fighter": "Belal Muhammad",
+          "winner_name": "Gabriel Bonfim",
+          "market_probability": 0.4869927159209156,
+          "candidate_probability": 0.5822766680755675,
+          "delta": 0.17869654354747766
+        },
+        {
+          "event_date": "2025-12-06",
+          "title": "Lightweight Bout",
+          "red_fighter": "Fares Ziam",
+          "blue_fighter": "Nazim Sadykhov",
+          "winner_name": "Fares Ziam",
+          "market_probability": 0.5634920634920635,
+          "candidate_probability": 0.6707293333466579,
+          "delta": 0.17421242849804308
+        },
+        {
+          "event_date": "2025-07-12",
+          "title": "Welterweight Bout",
+          "red_fighter": "Jake Matthews",
+          "blue_fighter": "Chidi Njokuani",
+          "winner_name": "Jake Matthews",
+          "market_probability": 0.4279403644395361,
+          "candidate_probability": 0.507581934714204,
+          "delta": 0.17067429514530974
+        },
+        {
+          "event_date": "2026-04-25",
+          "title": "Heavyweight Bout",
+          "red_fighter": "Marcus Buchecha",
+          "blue_fighter": "Ryan Spann",
+          "winner_name": "Ryan Spann",
+          "market_probability": 0.5776397515527951,
+          "candidate_probability": 0.5028215292417323,
+          "delta": 0.16309043855637106
+        },
+        {
+          "event_date": "2025-11-22",
+          "title": "Middleweight Bout",
+          "red_fighter": "Ryan Loder",
+          "blue_fighter": "Ismail Naurdiev",
+          "winner_name": "Ismail Naurdiev",
+          "market_probability": 0.4616656250630002,
+          "candidate_probability": 0.3677904552729799,
+          "delta": 0.16074101545171943
+        },
+        {
+          "event_date": "2026-05-16",
+          "title": "Welterweight Bout",
+          "red_fighter": "Nikolay Veretennikov",
+          "blue_fighter": "Khaos Williams",
+          "winner_name": "Khaos Williams",
+          "market_probability": 0.4712041884816754,
+          "candidate_probability": 0.3841191692158338,
+          "delta": 0.15245112052241622
+        }
+      ],
+      "bottom_fights": [
+        {
+          "event_date": "2026-03-28",
+          "title": "Lightweight Bout",
+          "red_fighter": "Chase Hooper",
+          "blue_fighter": "Lance Gibson Jr.",
+          "winner_name": "Lance Gibson Jr.",
+          "market_probability": 0.7581951888321078,
+          "candidate_probability": 0.8684139254434656,
+          "delta": -0.6084696384333004
+        },
+        {
+          "event_date": "2026-05-09",
+          "title": "UFC Middleweight Title Bout",
+          "red_fighter": "Khamzat Chimaev",
+          "blue_fighter": "Sean Strickland",
+          "winner_name": "Sean Strickland",
+          "market_probability": 0.7894736842105263,
+          "candidate_probability": 0.879452610883564,
+          "delta": -0.5575677146397031
+        },
+        {
+          "event_date": "2026-05-30",
+          "title": "Light Heavyweight Bout",
+          "red_fighter": "Zhang Mingyang",
+          "blue_fighter": "Alonzo Menifield",
+          "winner_name": "Alonzo Menifield",
+          "market_probability": 0.6781609195402298,
+          "candidate_probability": 0.8116475993534862,
+          "delta": -0.5357369907782192
+        },
+        {
+          "event_date": "2025-01-18",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Payton Talbott",
+          "blue_fighter": "Raoni Barcelos",
+          "winner_name": "Raoni Barcelos",
+          "market_probability": 0.8800000000000001,
+          "candidate_probability": 0.9272182925271826,
+          "delta": -0.5000270901310286
+        },
+        {
+          "event_date": "2026-06-14",
+          "title": "UFC Lightweight Title Bout",
+          "red_fighter": "Justin Gaethje",
+          "blue_fighter": "Ilia Topuria",
+          "winner_name": "Justin Gaethje",
+          "market_probability": 0.2116788321167883,
+          "candidate_probability": 0.1368344521773833,
+          "delta": -0.4362983662573374
+        },
+        {
+          "event_date": "2024-03-02",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Aiemann Zahabi",
+          "blue_fighter": "Javid Basharat",
+          "winner_name": "Aiemann Zahabi",
+          "market_probability": 0.136986301369863,
+          "candidate_probability": 0.0908573497176899,
+          "delta": -0.41059023977854725
+        },
+        {
+          "event_date": "2024-10-19",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Kyler Phillips",
+          "blue_fighter": "Rob Font",
+          "winner_name": "Rob Font",
+          "market_probability": 0.7999999999999999,
+          "candidate_probability": 0.8662628962956345,
+          "delta": -0.4024414063226551
+        },
+        {
+          "event_date": "2025-01-18",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Rinya Nakamura",
+          "blue_fighter": "Muin Gafurov",
+          "winner_name": "Muin Gafurov",
+          "market_probability": 0.8316498316498315,
+          "candidate_probability": 0.8867161912702819,
+          "delta": -0.3961498939664603
+        },
+        {
+          "event_date": "2026-04-25",
+          "title": "Bantamweight Bout",
+          "red_fighter": "Jafel Filho",
+          "blue_fighter": "Cody Durden",
+          "winner_name": "Cody Durden",
+          "market_probability": 0.8340707964601769,
+          "candidate_probability": 0.8832154147344132,
+          "delta": -0.3512301264674851
+        },
+        {
+          "event_date": "2025-10-18",
+          "title": "Flyweight Bout",
+          "red_fighter": "HyunSung Park",
+          "blue_fighter": "Bruno Silva",
+          "winner_name": "Bruno Silva",
+          "market_probability": 0.6628630705394191,
+          "candidate_probability": 0.7624922929676494,
+          "delta": -0.35028909309061573
+        }
+      ]
+    }
+  ],
+  "outputs": {
+    "summary_json": "test_results/residual_edge_concentration_audit/residual_edge_concentration_audit.json",
+    "report_md": "test_results/residual_edge_concentration_audit/residual_edge_concentration_audit.md"
+  }
+}
