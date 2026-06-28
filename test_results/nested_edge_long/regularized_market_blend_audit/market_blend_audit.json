@@ -1,0 +1,52 @@
+{
+  "ledger": "test_results/nested_edge_long/ledgers/regularized_lgbm_2022_2026/no_leakage_backtest.csv",
+  "selected": {
+    "weight": 0.0,
+    "log_loss": 0.6003166906407649,
+    "mode": "logit"
+  },
+  "dev": {
+    "start_date": "2022-02-05",
+    "end_date": "2024-02-04",
+    "model": {
+      "fights": 516,
+      "accuracy": 0.6182170542635659,
+      "log_loss": 0.6495179021973188,
+      "brier": 0.22906218260274988
+    },
+    "market": {
+      "fights": 516,
+      "accuracy": 0.687984496124031,
+      "log_loss": 0.6003166906407649,
+      "brier": 0.20644619404051995
+    },
+    "blend": {
+      "fights": 516,
+      "accuracy": 0.687984496124031,
+      "log_loss": 0.6003166906407649,
+      "brier": 0.20644619404051998
+    }
+  },
+  "holdout": {
+    "start_date": "2024-02-05",
+    "end_date": "2026-06-27",
+    "model": {
+      "fights": 704,
+      "accuracy": 0.6448863636363636,
+      "log_loss": 0.6337197598014211,
+      "brier": 0.22153786965159022
+    },
+    "market": {
+      "fights": 704,
+      "accuracy": 0.6875,
+      "log_loss": 0.6008836747854751,
+      "brier": 0.20666902045861074
+    },
+    "blend": {
+      "fights": 704,
+      "accuracy": 0.6875,
+      "log_loss": 0.6008836747854751,
+      "brier": 0.20666902045861074
+    }
+  }
+}

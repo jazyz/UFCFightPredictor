@@ -325,6 +325,78 @@ test_results/regularized_lgbm_feature_importance.csv
 Top features remain mostly matchup deltas, led by `oppelo oppdiff`,
 `elo oppdiff`, `age oppdiff`, `wins oppdiff`, and `avg age oppdiff`.
 
+### Long Nested Edge Audit
+
+Main report:
+
+```text
+test_results/nested_edge_long/NESTED_EDGE_AUDIT_SUMMARY.md
+```
+
+New validation script:
+
+```text
+testing/nested_walk_forward_edge_audit.py
+```
+
+This audit generated long leak-safe ledgers from the available odds-history
+start (`2022-02-05`) through `2026-06-27`, then repeatedly selected model and
+strategy on the previous 365 days and evaluated the next 182-day holdout.
+
+Long ledger comparison:
+
+| Model | Fights | Rolling Fits | Accuracy | Log Loss | Full-Window PnL |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| baseline default | 1249 | 188 | 62.53% | 0.6447 | +25.07% |
+| regularized LGBM | 1249 | 188 | 63.65% | 0.6396 | +29.61% |
+
+Nested selection, profit objective:
+
+| Metric | Value |
+| --- | ---: |
+| folds | 7 |
+| holdout fights | 962 |
+| bets | 277 |
+| profit | $170.39 |
+| ROI on staked | 4.00% |
+| positive folds | 4 / 7 |
+| market-null p-value | 0.199 |
+| event-bootstrap probability profit <= 0 | 32.02% |
+
+Nested selection, ROI objective sensitivity:
+
+| Metric | Value |
+| --- | ---: |
+| folds | 7 |
+| holdout fights | 962 |
+| bets | 148 |
+| profit | $115.09 |
+| ROI on staked | 12.62% |
+| positive folds | 4 / 7 |
+| market-null p-value | 0.048 |
+| event-bootstrap probability profit <= 0 | 9.60% |
+
+Interpretation: the ROI objective is the strongest current evidence, but it was
+run as a sensitivity check after the profit objective. A simple two-objective
+correction puts the market-null p-value around `0.096`, so this is promising
+enough to paper-track, not enough to claim a proven edge.
+
+Long market-log-loss check:
+
+- development: `2022-02-05` to `2024-02-04`
+- holdout: `2024-02-05` to `2026-06-27`
+- dev-selected model weight in a logit market/model blend: `0.000`
+
+| Probability | Dev Log Loss | Holdout Log Loss |
+| --- | ---: | ---: |
+| regularized model | 0.6495 | 0.6337 |
+| de-vigged market | 0.6003 | 0.6009 |
+| dev-selected blend | 0.6003 | 0.6009 |
+
+Interpretation: the earlier 15% model / 85% market blend result did not hold
+up on the longer split. On long-history development data, pure market was the
+selected log-loss forecaster.
+
 ## Current Bottom Line
 
 The repo is now much better instrumented than it was on Oct 17:
@@ -344,18 +416,20 @@ The most honest read:
 - regularization reduced, but did not eliminate, calibration weakness
 - de-vigged market probabilities still beat standalone model probabilities on
   raw holdout log loss
-- a market/model blend can slightly beat market holdout log loss
+- the longer market-blend audit selected pure market probability, not a model
+  residual
 - profitable PnL variants remain sensitive to model policy and threshold search
-- the best current market-null p-value (`0.0717`) is promising but below a
-  strong statistical-evidence threshold
+- the best raw market-null p-value is `0.048` from the exploratory ROI
+  objective, or about `0.096` after a simple two-objective correction
+- this is promising but below a strong statistical-evidence threshold
 
 Recommendation:
 
 Do not materially increase staking based only on these backtests. Treat the
-regularized strategy and the 15% model / 85% market logit blend as frozen
-forward paper-tracking candidates. A real edge claim needs future
-out-of-sample results that beat market-null and bootstrap tests after the model
-params, probability blend, and betting policy are frozen.
+ROI-objective nested selector as the current best frozen forward
+paper-tracking candidate. A real edge claim needs future out-of-sample results
+that beat market-null and bootstrap tests after the model params, selection
+objective, strategy grid, and staking policy are frozen.
 
 ## Independent PnL Investigation Update
 
