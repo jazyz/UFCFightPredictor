@@ -83,13 +83,13 @@ def is_non_binary_outcome(value):
     }
 
 
-def load_feature_data(path, min_date):
+def load_feature_data(path, min_date, excluded_dob_names=None):
     df = pd.read_csv(path)
     df["Date"] = parse_date(df["Date"])
     df[TARGET_COLUMN] = df[TARGET_COLUMN].map(normalize_result)
     df = df.dropna(subset=["Date", TARGET_COLUMN, "Red Fighter", "Blue Fighter"])
     df = df[df["Date"] >= pd.Timestamp(min_date)]
-    df = sanitize_age_features(df)
+    df = sanitize_age_features(df, excluded_dob_names=excluded_dob_names)
     df = df.sort_values("Date").reset_index(drop=True)
     return df
 
@@ -711,7 +711,12 @@ def strict_coverage_check(features_df, odds_df, end_date):
 
 def run_backtest(args):
     params, param_source = load_model_params(args.params)
-    features_df = load_feature_data(args.features, args.min_training_date)
+    excluded_dob_names = set() if args.include_excluded_dobs else None
+    features_df = load_feature_data(
+        args.features,
+        args.min_training_date,
+        excluded_dob_names=excluded_dob_names,
+    )
     excluded_title_patterns = [] if args.include_womens_fights else list(DEFAULT_EXCLUDED_TITLE_PATTERNS)
     excluded_fight_keys, excluded_dates_by_pair, excluded_fighter_keys = build_excluded_fight_index(
         args.fight_details_source,
@@ -953,6 +958,7 @@ def run_backtest(args):
         "odds_path": args.odds,
         "fight_details_source": args.fight_details_source,
         "excluded_title_patterns": excluded_title_patterns,
+        "included_excluded_dobs": args.include_excluded_dobs,
         "param_source": param_source,
         "strict_coverage_messages": coverage_messages,
         "feature_data_max_date": None if features_df.empty else features_df["Date"].max().date().isoformat(),
@@ -1044,6 +1050,11 @@ def parse_args():
         "--include-womens-fights",
         action="store_true",
         help="include women's bouts in odds coverage/PnL instead of treating them as out of universe",
+    )
+    parser.add_argument(
+        "--include-excluded-dobs",
+        action="store_true",
+        help="keep DOB/age features for fighters listed in data/excluded_fighter_dobs.csv",
     )
     parser.add_argument("--params", default=None, help="optional LightGBM params JSON")
     parser.add_argument("--output-dir", default="test_results")

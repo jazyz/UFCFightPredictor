@@ -1,6 +1,7 @@
 import csv
 import random
 import unicodedata
+import argparse
 from collections import defaultdict
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -13,6 +14,24 @@ from utils.feature_sanitization import sanitize_age_features
 from utils.name_matching import lookup_keys, normalize_name as normalize_fighter_name
 
 random.seed(42)
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Build chronological fight feature tables.")
+    parser.add_argument("--input-fights", default=os.path.join("data", "modified_fight_details.csv"))
+    parser.add_argument("--output-features", default=os.path.join("data", "detailed_fights.csv"))
+    parser.add_argument("--output-fighter-stats", default=os.path.join("data", "detailed_fighter_stats.csv"))
+    parser.add_argument("--output-processed-readable", default=os.path.join("data", "processed_fights_readable.txt"))
+    parser.add_argument("--output-fighter-readable", default=os.path.join("data", "fighter_stats_readable.txt"))
+    parser.add_argument(
+        "--include-excluded-dobs",
+        action="store_true",
+        help="keep DOB/age values for fighters listed in data/excluded_fighter_dobs.csv",
+    )
+    return parser.parse_args()
+
+
+ARGS = parse_args()
 
 # retrieve data from Flask database
 app = Flask(__name__)
@@ -50,7 +69,7 @@ def canonical_fighter_key(name):
     keys = lookup_keys(name)
     return keys[-1] if keys else normalize_fighter_name(name)
 
-file_path = os.path.join('data', 'modified_fight_details.csv')
+file_path = ARGS.input_fights
 
 def parse_date_for_sort(date_string):
     if not date_string:
@@ -427,11 +446,15 @@ def export_fighter_stats(fighter_stats, filename=os.path.join('data', 'detailed_
 
 # Keep any still-missing DOBs from becoming impossible age outliers in exports.
 if processed_fights:
-    processed_fights = sanitize_age_features(pd.DataFrame(processed_fights)).to_dict("records")
+    excluded_dob_names = set() if ARGS.include_excluded_dobs else None
+    processed_fights = sanitize_age_features(
+        pd.DataFrame(processed_fights),
+        excluded_dob_names=excluded_dob_names,
+    ).to_dict("records")
 
 # Assuming your processed_fights and fighter_stats are ready
-export_processed_fights(processed_fights)
-export_fighter_stats(fighter_stats)
+export_processed_fights(processed_fights, ARGS.output_features)
+export_fighter_stats(fighter_stats, ARGS.output_fighter_stats)
 
 def write_to_text_file(data, file_path, is_fighter_stats=False):
     with open(file_path, 'w') as file:
@@ -448,8 +471,8 @@ def write_to_text_file(data, file_path, is_fighter_stats=False):
                 file.write("\n")
 
 # Paths for the output text files
-processed_fights_txt_path = os.path.join('data', 'processed_fights_readable.txt')
-fighter_stats_txt_path = os.path.join('data', 'fighter_stats_readable.txt')
+processed_fights_txt_path = ARGS.output_processed_readable
+fighter_stats_txt_path = ARGS.output_fighter_readable
 
 # Write the processed fights and fighter stats to text files
 write_to_text_file(processed_fights, processed_fights_txt_path)

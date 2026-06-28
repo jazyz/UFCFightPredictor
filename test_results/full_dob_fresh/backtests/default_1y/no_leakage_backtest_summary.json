@@ -1,0 +1,876 @@
+{
+  "start_date": "2025-06-27",
+  "end_date": "2026-06-27",
+  "min_training_date": "2009-01-01",
+  "features_path": "test_results/full_dob_fresh/detailed_fights_full_dobs.csv",
+  "odds_path": "data/fight_results_with_odds.csv",
+  "fight_details_source": "data/fight_details_date.csv",
+  "excluded_title_patterns": [
+    "Women"
+  ],
+  "included_excluded_dobs": true,
+  "param_source": "built-in-defaults",
+  "strict_coverage_messages": [],
+  "feature_data_max_date": "2026-06-27",
+  "odds_data_max_date": "2026-06-27",
+  "odds_rows_date_repaired": 15,
+  "odds_rows_excluded_universe": 57,
+  "odds_rows_deduplicated": 19,
+  "odds_rows_non_binary_excluded": 5,
+  "models_fit": 42,
+  "predicted_fights": 298,
+  "skipped_fights": 122,
+  "feature_rows_in_window": 298,
+  "odds_rows_in_window": 420,
+  "odds_rows_with_features": 298,
+  "odds_rows_missing_features": 122,
+  "odds_rows_duplicate_features": 0,
+  "odds_feature_coverage": 0.7095238095238096,
+  "duplicate_feature_keys": 0,
+  "duplicate_odds_keys": 0,
+  "fights_with_odds": 298,
+  "bettable_fights": 298,
+  "accuracy": 0.5973154362416108,
+  "log_loss": 0.661316136285399,
+  "starting_bankroll": 1000.0,
+  "final_bankroll": 950.6367019959749,
+  "profit_pct": -4.936329800402508,
+  "strategy": [
+    0.05,
+    0.05,
+    0.005
+  ],
+  "min_edge": null,
+  "min_kelly": null,
+  "max_underdog_odds": null,
+  "positive_floor_fraction": null,
+  "negative_flat_fraction": null,
+  "outputs": {
+    "predictions_csv": "test_results/full_dob_fresh/backtests/default_1y/no_leakage_backtest.csv",
+    "summary_json": "test_results/full_dob_fresh/backtests/default_1y/no_leakage_backtest_summary.json"
+  },
+  "skipped": [
+    {
+      "event_date": "2025-06-28",
+      "event_name": "ufc-317",
+      "fighter1_name": "Hyder Amil",
+      "fighter2_name": "Jose Miguel Delgado",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-06-28",
+      "event_name": "ufc-317",
+      "fighter1_name": "Jhonata Diniz",
+      "fighter2_name": "Alvin Hines",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-06-28",
+      "event_name": "ufc-317",
+      "fighter1_name": "Niko Price",
+      "fighter2_name": "Jacobe Smith",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-07-12",
+      "event_name": "ufc-fight-night-july-12-2025",
+      "fighter1_name": "Derrick Lewis",
+      "fighter2_name": "Tallison Teixeira",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-07-12",
+      "event_name": "ufc-fight-night-july-12-2025",
+      "fighter1_name": "Mitch Ramirez",
+      "fighter2_name": "Mike Davis",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-07-19",
+      "event_name": "ufc-318",
+      "fighter1_name": "Brunno Ferreira",
+      "fighter2_name": "Jackson McVey",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-07-19",
+      "event_name": "ufc-318",
+      "fighter1_name": "Dan Ige",
+      "fighter2_name": "Patricio Pitbull",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-07-19",
+      "event_name": "ufc-3706",
+      "fighter1_name": "Adam Fugitt",
+      "fighter2_name": "Islam Dulatov",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-07-19",
+      "event_name": "ufc-fight-night-3748",
+      "fighter1_name": "Ateba Gautier",
+      "fighter2_name": "Robert Valentin",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-07-26",
+      "event_name": "ufc-3724",
+      "fighter1_name": "Ibo Aslan",
+      "fighter2_name": "Billy Elekana",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-07-26",
+      "event_name": "ufc-3724",
+      "fighter1_name": "Martin Buday",
+      "fighter2_name": "Marcus Buchecha",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-07-26",
+      "event_name": "ufc-3724",
+      "fighter1_name": "Mohammad Yahya",
+      "fighter2_name": "Steven Nguyen",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-02",
+      "event_name": "ufc-fight-night-albazi-vs-taira-odds-3777",
+      "fighter1_name": "Austin Bashi",
+      "fighter2_name": "John Yannis",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-02",
+      "event_name": "ufc-fight-night-albazi-vs-taira-odds-3777",
+      "fighter1_name": "Danny Silva",
+      "fighter2_name": "Kevin Vallejos",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-02",
+      "event_name": "ufc-fight-night-albazi-vs-taira-odds-3777",
+      "fighter1_name": "Nick Klein",
+      "fighter2_name": "Andrey Pulyaev",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-09",
+      "event_name": "ufc-fight-night-dolidze-vs-hernandez-odds-3789",
+      "fighter1_name": "Cody Brundage",
+      "fighter2_name": "Eric McConico",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-09",
+      "event_name": "ufc-fight-night-dolidze-vs-hernandez-odds-3789",
+      "fighter1_name": "Elijah Smith",
+      "fighter2_name": "Toshiomi Kazama",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-09",
+      "event_name": "ufc-fight-night-dolidze-vs-hernandez-odds-3789",
+      "fighter1_name": "Julius Walker",
+      "fighter2_name": "Rafael Cerqueira",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-16",
+      "event_name": "ufc-319",
+      "fighter1_name": "Alibi Idiris",
+      "fighter2_name": "Joseph Morales",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-16",
+      "event_name": "ufc-319",
+      "fighter1_name": "Baisangur Susurkaev",
+      "fighter2_name": "Eric Nolan",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-16",
+      "event_name": "ufc-319",
+      "fighter1_name": "Lerone Murphy",
+      "fighter2_name": "Aaron Pico",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-16",
+      "event_name": "ufc-319",
+      "fighter1_name": "Tim Elliott",
+      "fighter2_name": "Kai Asakura",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-23",
+      "event_name": "ufc-3812",
+      "fighter1_name": "Uran Satybaldiev",
+      "fighter2_name": "Diyar Nurgozhay",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-23",
+      "event_name": "ufc-fight-night-august-23-2025",
+      "fighter1_name": "Maheshate",
+      "fighter2_name": "Gauge Young",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-08-23",
+      "event_name": "ufc-fight-night-august-23-2025",
+      "fighter1_name": "Nueraji Taiyilake",
+      "fighter2_name": "Kiefer Crosbie",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-06",
+      "event_name": "ufc-fight-night-3775",
+      "fighter1_name": "Andreas Gustafsson",
+      "fighter2_name": "Rinat Fakhretdinov",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-06",
+      "event_name": "ufc-fight-night-3775",
+      "fighter1_name": "Axel Sola",
+      "fighter2_name": "Rhys McKee",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-06",
+      "event_name": "ufc-fight-night-3775",
+      "fighter1_name": "Brad Tavares",
+      "fighter2_name": "Robert Bryczek",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-06",
+      "event_name": "ufc-fight-night-3775",
+      "fighter1_name": "Harry Hardwick",
+      "fighter2_name": "Kau\u00ea Fernandes",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-06",
+      "event_name": "ufc-fight-night-3775",
+      "fighter1_name": "Marcin Tybura",
+      "fighter2_name": "Ante Delija",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-06",
+      "event_name": "ufc-fight-night-3775",
+      "fighter1_name": "William Gomis",
+      "fighter2_name": "Robert Ruchala",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-13",
+      "event_name": "ufc-fight-night-september-13-2025",
+      "fighter1_name": "Alessandro Costa",
+      "fighter2_name": "Alden Coria",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-13",
+      "event_name": "ufc-fight-night-september-13-2025",
+      "fighter1_name": "Jesus Aguilar",
+      "fighter2_name": "Luis Gurule",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-13",
+      "event_name": "ufc-fight-night-september-13-2025",
+      "fighter1_name": "Rob Font",
+      "fighter2_name": "David Martinez",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-13",
+      "event_name": "ufc-fight-night-september-13-2025",
+      "fighter1_name": "Rodrigo Sezinando",
+      "fighter2_name": "Daniil Donchenko",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-13",
+      "event_name": "ufc-fight-night-september-13-2025",
+      "fighter1_name": "Santiago Luna",
+      "fighter2_name": "Quang Le",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-27",
+      "event_name": "ufc-fight-night-3840",
+      "fighter1_name": "Brando Peri\u010di\u0107",
+      "fighter2_name": "Elisha Ellison",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-27",
+      "event_name": "ufc-fight-night-3846",
+      "fighter1_name": "Cam Rowston",
+      "fighter2_name": "Andre Petroski",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-27",
+      "event_name": "ufc-fight-night-3846",
+      "fighter1_name": "Colby Thicknesse",
+      "fighter2_name": "Josias Musasa",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-04",
+      "event_name": "ufc-320",
+      "fighter1_name": "Daniel Santos",
+      "fighter2_name": "JooSang Yoo",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-04",
+      "event_name": "ufc-320",
+      "fighter1_name": "Patchy Mix",
+      "fighter2_name": "Jakub Wiklacz",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-04",
+      "event_name": "ufc-320",
+      "fighter1_name": "Ramiz Brahimaj",
+      "fighter2_name": "Austin Vanderford",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-04",
+      "event_name": "ufc-320-odds-3779",
+      "fighter1_name": "Ateba Gautier",
+      "fighter2_name": "Tre\u2019ston Vines",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-11",
+      "event_name": "ufc-rio-3872",
+      "fighter1_name": "Jhonata Diniz",
+      "fighter2_name": "Mario Pinto",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-11",
+      "event_name": "ufc-rio-3872",
+      "fighter1_name": "Lucas Almeida",
+      "fighter2_name": "Michael Aswell Jr.",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-11",
+      "event_name": "ufc-rio-3872",
+      "fighter1_name": "Lucas Rocha",
+      "fighter2_name": "Stewart Nicoll",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-18",
+      "event_name": "ufc-fight-night-3822",
+      "fighter1_name": "Azamat Bekoev",
+      "fighter2_name": "Yousri Belgaroui",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-18",
+      "event_name": "ufc-fight-night-3822",
+      "fighter1_name": "Danny Barlow",
+      "fighter2_name": "Djorden Santos",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-25",
+      "event_name": "ufc-321",
+      "fighter1_name": "Valter Walker",
+      "fighter2_name": "Louie Sutherland",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-01",
+      "event_name": "ufc-fight-night-november-01-2025",
+      "fighter1_name": "Billy Elekana",
+      "fighter2_name": "Kevin Christian",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-01",
+      "event_name": "ufc-fight-night-november-01-2025",
+      "fighter1_name": "Charles Radtke",
+      "fighter2_name": "Daniel Frunza",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-01",
+      "event_name": "ufc-fight-night-november-01-2025",
+      "fighter1_name": "Donte Johnson",
+      "fighter2_name": "Sedriques Dumas",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-01",
+      "event_name": "ufc-fight-night-november-01-2025",
+      "fighter1_name": "Isaac Dulgarian",
+      "fighter2_name": "Yadier del Valle",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-01",
+      "event_name": "ufc-fight-night-november-01-2025",
+      "fighter1_name": "Phil Rowe",
+      "fighter2_name": "Seokhyeon Ko",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-01",
+      "event_name": "ufc-fight-night-november-01-2025",
+      "fighter1_name": "Waldo Cortes Acosta",
+      "fighter2_name": "Ante Delija",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-08",
+      "event_name": "ufc-vegas-111-3918",
+      "fighter1_name": "Josh Hokit",
+      "fighter2_name": "Max Gimenis",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-08",
+      "event_name": "ufc-vegas-111-3918",
+      "fighter1_name": "Zachary Reese",
+      "fighter2_name": "Jackson McVey",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-15",
+      "event_name": "ufc-322",
+      "fighter1_name": "Baisangur Susurkaev",
+      "fighter2_name": "Eric McConico",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-15",
+      "event_name": "ufc-322",
+      "fighter1_name": "Malcolm Wellmaker",
+      "fighter2_name": "Ethyn Ewing",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-15",
+      "event_name": "ufc-322",
+      "fighter1_name": "Viacheslav Borshchev",
+      "fighter2_name": "Matheus Camilo",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-22",
+      "event_name": "ufc-qatar-3941",
+      "fighter1_name": "Abdul Rakhman Yakhyaev",
+      "fighter2_name": "Rafael Cerqueira",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-22",
+      "event_name": "ufc-qatar-3941",
+      "fighter1_name": "Bekzat Almakhan",
+      "fighter2_name": "Aleksandre Topuria",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-22",
+      "event_name": "ufc-qatar-3941",
+      "fighter1_name": "Bogdan Grad",
+      "fighter2_name": "Luke Riley",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-22",
+      "event_name": "ufc-qatar-3941",
+      "fighter1_name": "Marek Bujlo",
+      "fighter2_name": "Denzel Freeman",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-22",
+      "event_name": "ufc-qatar-3941",
+      "fighter1_name": "Nicolas Dalby",
+      "fighter2_name": "Saygid Izagakhmaev",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-11-22",
+      "event_name": "ufc-qatar-3941",
+      "fighter1_name": "Nurullo Aliev",
+      "fighter2_name": "Shem Rock",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-12-06",
+      "event_name": "ufc-3895",
+      "fighter1_name": "Iwo Baraniewski",
+      "fighter2_name": "Ibo Aslan",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-12-13",
+      "event_name": "ufc-vegas-112-3987",
+      "fighter1_name": "Allen Frye Jr.",
+      "fighter2_name": "Guilherme Pat",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-12-13",
+      "event_name": "ufc-vegas-112-3987",
+      "fighter1_name": "Cesar Almeida",
+      "fighter2_name": "Cezary Oleksiejczuk",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-12-13",
+      "event_name": "ufc-vegas-112-3987",
+      "fighter1_name": "Joanderson Brito",
+      "fighter2_name": "Isaac Thomson",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-12-13",
+      "event_name": "ufc-vegas-112-3987",
+      "fighter1_name": "Neil Magny",
+      "fighter2_name": "Yaroslav Amosov",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-12-13",
+      "event_name": "ufc-vegas-112-3987",
+      "fighter1_name": "Sean Sharaf",
+      "fighter2_name": "Steven Asplund",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-07",
+      "event_name": "ufc-fight-night-4026",
+      "fighter1_name": "Javid Basharat",
+      "fighter2_name": "Gianni Vazquez",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-07",
+      "event_name": "ufc-fight-night-4026",
+      "fighter1_name": "Muin Gafurov",
+      "fighter2_name": "Jakub Wiklacz",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-07",
+      "event_name": "ufc-vegas-113-4033",
+      "fighter1_name": "Alex Morono",
+      "fighter2_name": "Daniil Donchenko",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-07",
+      "event_name": "ufc-vegas-113-4033",
+      "fighter1_name": "Jailton Almeida",
+      "fighter2_name": "Rizvan Kuniev",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-21",
+      "event_name": "ufc-3996",
+      "fighter1_name": "Alden Coria",
+      "fighter2_name": "Luis Gurule",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-21",
+      "event_name": "ufc-3996",
+      "fighter1_name": "Jacobe Smith",
+      "fighter2_name": "Josiah Harrell",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-21",
+      "event_name": "ufc-3996",
+      "fighter1_name": "Ode' Osbourne",
+      "fighter2_name": "Alibi Idiris",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-21",
+      "event_name": "ufc-3996",
+      "fighter1_name": "Zachary Reese",
+      "fighter2_name": "Michel Pereira",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-21",
+      "event_name": "ufc-houston-4044",
+      "fighter1_name": "Phil Rowe",
+      "fighter2_name": "Jean-Paul Lebosnoyani",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-28",
+      "event_name": "ufc-mexico-4052",
+      "fighter1_name": "Imanol Rodriguez",
+      "fighter2_name": "Kevin Borjas",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-28",
+      "event_name": "ufc-mexico-4052",
+      "fighter1_name": "Ryan Gandra",
+      "fighter2_name": "Jose Daniel Medina",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-28",
+      "event_name": "ufc-mexico-4052",
+      "fighter1_name": "Santiago Luna",
+      "fighter2_name": "Angel Pacheco",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-28",
+      "event_name": "ufc-mexico-4053",
+      "fighter1_name": "Damian Pinas",
+      "fighter2_name": "Wes Schultz",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-28",
+      "event_name": "ufc-mexico-4053",
+      "fighter1_name": "Douglas Silva de Andrade",
+      "fighter2_name": "Javier Reyes",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-02-28",
+      "event_name": "ufc-mexico-4053",
+      "fighter1_name": "Regina Tarin",
+      "fighter2_name": "Ernesta Kareckait\u0117",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-07",
+      "event_name": "ufc-326",
+      "fighter1_name": "Cody Durden",
+      "fighter2_name": "Nyamjargal Tumendemberel",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-07",
+      "event_name": "ufc-326",
+      "fighter1_name": "Donte Johnson",
+      "fighter2_name": "Cody Brundage",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-07",
+      "event_name": "ufc-326",
+      "fighter1_name": "Luke Fernandez",
+      "fighter2_name": "Rodolfo Bellato",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-07",
+      "event_name": "ufc-326",
+      "fighter1_name": "Rafael Tobias",
+      "fighter2_name": "Diyar Nurgozhay",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-07",
+      "event_name": "ufc-326",
+      "fighter1_name": "Ricky Turcios",
+      "fighter2_name": "Alberto Montes",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-14",
+      "event_name": "ufc-vegas-114-4080",
+      "fighter1_name": "Bolaji Oki",
+      "fighter2_name": "Manoel Sousa",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-14",
+      "event_name": "ufc-vegas-114-4080",
+      "fighter1_name": "Luan Lacerda",
+      "fighter2_name": "Hecher Sosa",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-14",
+      "event_name": "ufc-vegas-114-4080",
+      "fighter1_name": "Marwan Rahiki",
+      "fighter2_name": "Harry Hardwick",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-14",
+      "event_name": "ufc-vegas-114-4080",
+      "fighter1_name": "Vitor Petrino",
+      "fighter2_name": "Steven Asplund",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-21",
+      "event_name": "ufc-london-4081",
+      "fighter1_name": "Iwo Baraniewski",
+      "fighter2_name": "Austen Lane",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-21",
+      "event_name": "ufc-london-4081",
+      "fighter1_name": "Kurtis Campbell",
+      "fighter2_name": "Danny Silva",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-21",
+      "event_name": "ufc-london-4081",
+      "fighter1_name": "Louie Sutherland",
+      "fighter2_name": "Brando Peri\u010di\u0107",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-21",
+      "event_name": "ufc-london-4081",
+      "fighter1_name": "Luke Riley",
+      "fighter2_name": "Michael Aswell Jr.",
+      "reason": "missing feature row for odds fight"
+    }
+  ],
+  "odds_date_repairs": [
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Alex Perez",
+      "fighter2_name": "Charles Johnson",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Arnold Allen",
+      "fighter2_name": "Jean Silva",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Ateba Gautier",
+      "fighter2_name": "Andrey Pulyaev",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Justin Gaethje",
+      "fighter2_name": "Paddy Pimblett",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Nikita Krylov",
+      "fighter2_name": "Modestas Bukauskas",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Sean O'Malley",
+      "fighter2_name": "Song Yadong",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Umar Nurmagomedov",
+      "fighter2_name": "Deiveson Figueiredo",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Waldo Cortes Acosta",
+      "fighter2_name": "Derrick Lewis",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Alexander Volkanovski",
+      "fighter2_name": "Diego Lopes",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Dan Hooker",
+      "fighter2_name": "Beno\u00eet Saint Denis",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Junior Tafa",
+      "fighter2_name": "Billy Elekana",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Kaan Ofli",
+      "fighter2_name": "Yizha",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Quillan Salkilld",
+      "fighter2_name": "Jamie Mullarkey",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Rafael Fiziev",
+      "fighter2_name": "Mauricio Ruffy",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Tai Tuivasa",
+      "fighter2_name": "Tallison Teixeira",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    }
+  ]
+}

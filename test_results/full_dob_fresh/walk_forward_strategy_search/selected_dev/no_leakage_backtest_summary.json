@@ -1,0 +1,25 @@
+{
+  "strategy": {
+    "model_label": "best_params_full_dob",
+    "side_policy": "predicted_winner",
+    "model_weight": 1.0,
+    "min_edge": 0.16,
+    "min_probability": 0.5,
+    "min_kelly": 0.0,
+    "max_underdog_odds": 300.0,
+    "kelly_fraction": 0.05,
+    "max_fraction": 0.05
+  },
+  "start_date": "2024-06-27",
+  "end_date": "2025-06-26",
+  "starting_bankroll": 1000.0,
+  "final_bankroll": 1381.5198297526422,
+  "profit": 381.519829752642,
+  "profit_pct": 38.15198297526422,
+  "bets": 64,
+  "events_with_bets": 32,
+  "total_staked": 1441.6671016821658,
+  "roi_on_staked": 0.26463795234522386,
+  "max_drawdown": 0.09430547448482457,
+  "fights": 282
+}
