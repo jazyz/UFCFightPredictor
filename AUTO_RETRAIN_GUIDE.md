@@ -56,6 +56,13 @@ Leakage guarantees in `testing/no_leakage_backtest.py`:
 - the default backtest does not read `data/best_params.json`, because that file may have been tuned using future data
 - betting odds and winners are used only after prediction for scoring and bankroll simulation
 
+For universe experiments, `testing/no_leakage_backtest.py` also supports
+`--train-title-pattern`, `--eval-title-pattern`,
+`--exclude-train-title-pattern`, and `--exclude-eval-title-pattern`. Use those
+only for explicit counterfactual audits, such as a women-included feature table
+with men-only training or men-only evaluation. The production feature table is
+already men-only.
+
 Before trusting a current-day run, check the coverage warnings in `no_leakage_backtest_summary.json`. If local `data/detailed_fights.csv` or `data/fight_results_with_odds.csv` stops well before the requested end date, rerun scraping first.
 
 Odds coverage now has three layers:
@@ -155,7 +162,11 @@ Choose your schedule:
 **Transformations applied**:
 - Converts "x of y" to numbers and percentages
 - Converts "m:ss" to decimal minutes
-- Filters out women's fights and draws
+- Filters out women's fights from the production universe, including
+  women-vs-women catchweights whose title omits `Women`
+- Keeps draw/no-contest/overturned bouts in fighter history so future state
+  features update, while the feature-generation step does not emit supervised
+  `win/loss` labels for those bouts
 - Removes duplicate columns
 
 ### Feature Engineering

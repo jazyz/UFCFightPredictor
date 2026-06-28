@@ -68,10 +68,59 @@ def title_pattern_mask(df, patterns, column="Title"):
     return mask
 
 
-def filter_title_patterns(df, patterns, column="Title"):
+def has_women_pattern(patterns):
+    return any("women" in str(pattern).lower() for pattern in (patterns or []))
+
+
+def known_women_fighter_keys_from_frame(df):
+    required_columns = {"Title", "Red Fighter", "Blue Fighter"}
+    if not required_columns.issubset(df.columns):
+        return set()
+
+    women_title = title_pattern_mask(df, ["Women"])
+    women_rows = df[women_title].dropna(subset=["Red Fighter", "Blue Fighter"])
+    keys = set()
+    for _, row in women_rows.iterrows():
+        keys.add(normalize_name(row["Red Fighter"]))
+        keys.add(normalize_name(row["Blue Fighter"]))
+    return keys
+
+
+def load_known_women_fighter_keys(path):
+    if not path:
+        return set()
+    source_path = Path(path)
+    if not source_path.exists():
+        return set()
+    df = pd.read_csv(source_path)
+    return known_women_fighter_keys_from_frame(df)
+
+
+def known_women_pair_mask(df, women_fighter_keys):
+    if not women_fighter_keys or not {"Red Fighter", "Blue Fighter"}.issubset(df.columns):
+        return pd.Series(False, index=df.index)
+    red = df["Red Fighter"].map(normalize_name)
+    blue = df["Blue Fighter"].map(normalize_name)
+    return red.isin(women_fighter_keys) & blue.isin(women_fighter_keys)
+
+
+def universe_pattern_mask(df, patterns, column="Title", women_fighter_keys=None):
+    mask = title_pattern_mask(df, patterns, column=column)
+    if has_women_pattern(patterns):
+        mask |= known_women_pair_mask(df, women_fighter_keys or set())
+    return mask
+
+
+def filter_title_patterns(df, patterns, column="Title", women_fighter_keys=None):
     if not patterns:
         return df
-    return df[title_pattern_mask(df, patterns, column=column)].copy()
+    return df[universe_pattern_mask(df, patterns, column=column, women_fighter_keys=women_fighter_keys)].copy()
+
+
+def exclude_title_patterns(df, patterns, column="Title", women_fighter_keys=None):
+    if not patterns:
+        return df
+    return df[~universe_pattern_mask(df, patterns, column=column, women_fighter_keys=women_fighter_keys)].copy()
 
 
 def default_dates():
@@ -131,7 +180,10 @@ def build_title_fight_index(path, title_patterns):
     if not required_columns.issubset(df.columns):
         return set(), defaultdict(set), set()
 
-    df = filter_title_patterns(df, title_patterns)
+    women_fighter_keys = (
+        known_women_fighter_keys_from_frame(df) if has_women_pattern(title_patterns) else set()
+    )
+    df = filter_title_patterns(df, title_patterns, women_fighter_keys=women_fighter_keys)
     df["Date"] = parse_date(df["Date"])
     df = df.dropna(subset=["Date", "Red Fighter", "Blue Fighter"])
 
@@ -829,6 +881,7 @@ def strict_coverage_check(features_df, odds_df, end_date):
 def run_backtest(args):
     params, param_source = load_model_params(args.params)
     excluded_dob_names = set() if args.include_excluded_dobs else None
+    women_fighter_keys = load_known_women_fighter_keys(args.fight_details_source)
     features_df = load_feature_data(
         args.features,
         args.min_training_date,
@@ -875,7 +928,16 @@ def run_backtest(args):
         (features_df["Date"] >= pd.Timestamp(args.start_date))
         & (features_df["Date"] <= pd.Timestamp(args.end_date))
     ]
-    eval_df = filter_title_patterns(eval_df, args.eval_title_pattern)
+    eval_df = filter_title_patterns(
+        eval_df,
+        args.eval_title_pattern,
+        women_fighter_keys=women_fighter_keys,
+    )
+    eval_df = exclude_title_patterns(
+        eval_df,
+        args.exclude_eval_title_pattern,
+        women_fighter_keys=women_fighter_keys,
+    )
 
     bankroll = args.starting_bankroll
     predictions = []
@@ -912,7 +974,16 @@ def run_backtest(args):
         event_profit = 0.0
         event_staked = 0.0
         train_df = features_df[features_df["Date"] < pd.Timestamp(event_date)]
-        train_df = filter_title_patterns(train_df, args.train_title_pattern)
+        train_df = filter_title_patterns(
+            train_df,
+            args.train_title_pattern,
+            women_fighter_keys=women_fighter_keys,
+        )
+        train_df = exclude_title_patterns(
+            train_df,
+            args.exclude_train_title_pattern,
+            women_fighter_keys=women_fighter_keys,
+        )
         if len(train_df) < args.min_training_fights:
             for _, row in event_fights.iterrows():
                 skipped.append((row, f"only {len(train_df)} training fights before event"))
@@ -1155,7 +1226,9 @@ def run_backtest(args):
         "fight_details_source": args.fight_details_source,
         "excluded_title_patterns": excluded_title_patterns,
         "train_title_patterns": args.train_title_pattern,
+        "exclude_train_title_patterns": args.exclude_train_title_pattern,
         "eval_title_patterns": args.eval_title_pattern,
+        "exclude_eval_title_patterns": args.exclude_eval_title_pattern,
         "odds_title_patterns": odds_title_patterns,
         "included_excluded_dobs": args.include_excluded_dobs,
         "engineered_features": args.engineered_features,
@@ -1263,10 +1336,22 @@ def parse_args():
         help="optional regex title filter for training rows, e.g. Women for a women-only retrain",
     )
     parser.add_argument(
+        "--exclude-train-title-pattern",
+        action="append",
+        default=None,
+        help="optional regex title exclusion for training rows, e.g. Women for men-only training",
+    )
+    parser.add_argument(
         "--eval-title-pattern",
         action="append",
         default=None,
         help="optional regex title filter for evaluated feature rows, e.g. Women for women-only predictions",
+    )
+    parser.add_argument(
+        "--exclude-eval-title-pattern",
+        action="append",
+        default=None,
+        help="optional regex title exclusion for evaluated feature rows, e.g. Women for men-only evaluation",
     )
     parser.add_argument(
         "--odds-title-pattern",

@@ -798,6 +798,19 @@ Dataset counts:
 | `data/modified_fight_details.csv` | 7730 | 0 | 148 | n/a |
 | `data/detailed_fights.csv` | 4322 | 0 | n/a | 0 |
 
+Women-pair identity check:
+
+| Dataset | Women's Title Rows | Known Women-Pair Rows | Hidden Women-Pair Rows |
+| --- | ---: | ---: | ---: |
+| `data/fight_details_date.csv` | 931 | 940 | 9 |
+| `data/modified_fight_details.csv` | 0 | 9 | 9 |
+| `data/detailed_fights.csv` | 0 | 0 | 0 |
+
+The 9 hidden rows are women-vs-women catchweights whose title does not contain
+`Women`. The current supervised production feature table still has zero known
+women-pair rows, and future preprocessing/backtests now use fighter-aware
+`Women` filtering so those catchweights are not missed by title text alone.
+
 Current regularized backtest universe:
 
 | Run | Window | Features | Excluded Titles | Predicted Fights |
@@ -815,11 +828,44 @@ Non-binary state check:
 | future fighter-side rows with prior non-binary history checked | 1263 |
 | rows matching prior source fight count including non-binary bouts | 1263 |
 | mismatches | 0 |
+| latest-prior non-binary `last_fight` checks | 157 |
+| latest-prior non-binary `last_fight` matches | 157 |
+| weighted stat checks where non-binary changed `Sig. str.`, `Total str.`, or `Td` | 3697 |
+| weighted stat matches including non-binary bouts | 3697 |
 
 Interpretation: the current production edge-claim universe already does not
 train on or evaluate women's fights. Draw/no-contest/overturned rows are also
 handled in the desired way: they update future fighter state, but they are not
-used as supervised `win/loss` labels.
+used as supervised `win/loss` labels. The strengthened June 28 audit now checks
+more than `totalfights`: when the latest prior fight was non-binary, `last_fight`
+matched the non-binary date, and cumulative weighted `Sig. str.`, `Total str.`,
+and `Td` features matched the calculation that includes non-binary bouts.
+
+### Women Universe Sensitivity
+
+Women-universe sensitivity artifacts:
+
+```text
+test_results/women_universe_sensitivity/WOMEN_UNIVERSE_SENSITIVITY.md
+test_results/women_universe_sensitivity/regularized_train_all_eval_men_2y/no_leakage_backtest_summary.json
+test_results/women_universe_sensitivity/regularized_train_all_eval_men_2y_audit/edge_audit.md
+```
+
+This compared the current regularized men-only 2y run against a counterfactual
+using the women-included feature table for training while still evaluating only
+men's fights.
+
+| Run | Training Universe | Evaluation Universe | Fights | Accuracy | Model LL | Market LL | Profit | Market-Null p |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| current regularized men-only | men only | men only | 580 | 65.0% | 0.632 | 0.600 | $611.97 | 0.034 |
+| women-included training, men-only eval | all prior fights | men only | 581 | 65.7% | 0.633 | 0.600 | $733.69 | 0.013 |
+
+Interpretation: including women's fights in the training history changed the
+saved men-only PnL ledger in a favorable direction, but it did not create a
+probability edge over the market. In both runs, model log loss is worse than
+de-vigged market log loss; the women-included-training run has event-bootstrap
+`P(model not better than market on log loss) = 0.9977`. Treat this as an
+exploratory counterfactual, not a production-policy change.
 
 ## Current Bottom Line
 
@@ -862,8 +908,12 @@ The most honest read:
 - the best disagreement pockets are not uniformly stable by year, with the
   regularized `model P >= 0.60, edge >= 0.08` slice losing in 2023
 - the women's-fight investigation does not require a production change:
-  production backtests already exclude women's fights, and the opposite
-  women-included experiment failed to beat market evidence
+  production backtests already exclude women's fights; women-included training
+  improved the saved men-only PnL ledger but still failed to beat market log
+  loss, while women-only evaluation also failed to beat market evidence
+- the non-binary outcome handling is now audited beyond fight counts:
+  draw/no-contest/overturned bouts update `last_fight` and weighted cumulative
+  fight-stat features, while remaining out of supervised labels
 - the best raw market-null p-value is `0.048` from the exploratory ROI
   objective, or about `0.096` after a simple two-objective correction
 - the best probability-residual result has market-null p-value `0.012`, or
