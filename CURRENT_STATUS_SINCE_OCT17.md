@@ -562,6 +562,52 @@ the best uncorrected market-null p-value was only `0.090`. Since three
 selection objectives were inspected, a simple Bonferroni adjustment puts the
 best p-value around `0.27`.
 
+### Outcome Universe Audit
+
+Universe/outcome audit:
+
+```text
+testing/outcome_universe_audit.py
+test_results/outcome_universe_audit/outcome_universe_audit.md
+test_results/outcome_universe_audit/outcome_universe_audit.json
+```
+
+This audit checked two proposed failure modes: whether the production edge
+claim is already excluding women's fights, and whether draw/no-contest/
+overturned bouts affect future fighter state without becoming supervised
+training labels.
+
+Dataset counts:
+
+| Dataset | Rows | Women's Rows | Non-Binary / Blank-Winner Rows | Non-Binary Labels |
+| --- | ---: | ---: | ---: | ---: |
+| `data/fight_details_date.csv` | 8910 | 931 | 312 | n/a |
+| `data/modified_fight_details.csv` | 7730 | 0 | 148 | n/a |
+| `data/detailed_fights.csv` | 4322 | 0 | n/a | 0 |
+
+Current regularized backtest universe:
+
+| Run | Window | Features | Excluded Titles | Predicted Fights |
+| --- | --- | --- | --- | ---: |
+| regularized 1y | 2025-06-27 to 2026-06-27 | `data/detailed_fights.csv` | `Women` | 298 |
+| regularized 2y | 2024-06-27 to 2026-06-27 | `data/detailed_fights.csv` | `Women` | 580 |
+| regularized long | 2022-02-05 to 2026-06-27 | `data/detailed_fights.csv` | `Women` | 1249 |
+
+Non-binary state check:
+
+| Metric | Value |
+| --- | ---: |
+| retained non-binary / blank-winner source rows | 148 |
+| supervised feature non-binary labels | 0 |
+| future fighter-side rows with prior non-binary history checked | 1263 |
+| rows matching prior source fight count including non-binary bouts | 1263 |
+| mismatches | 0 |
+
+Interpretation: the current production edge-claim universe already does not
+train on or evaluate women's fights. Draw/no-contest/overturned rows are also
+handled in the desired way: they update future fighter state, but they are not
+used as supervised `win/loss` labels.
+
 ## Current Bottom Line
 
 The repo is now much better instrumented than it was on Oct 17:
@@ -571,6 +617,8 @@ The repo is now much better instrumented than it was on Oct 17:
 - odds coverage and date joins are more robust
 - market-null simulations and event bootstraps exist
 - walk-forward strategy search exists
+- the production universe is explicitly audited as men-only, while
+  non-binary outcomes still feed future fighter-state features
 
 The regularized LGBM update improved the current leak-safe metrics materially,
 but the evidence still does not prove a live betting edge.
@@ -590,6 +638,9 @@ The most honest read:
 - profitable PnL variants remain sensitive to model policy and threshold search
 - the best disagreement pockets are not uniformly stable by year, with the
   regularized `model P >= 0.60, edge >= 0.08` slice losing in 2023
+- the women's-fight investigation does not require a production change:
+  production backtests already exclude women's fights, and the opposite
+  women-included experiment failed to beat market evidence
 - the best raw market-null p-value is `0.048` from the exploratory ROI
   objective, or about `0.096` after a simple two-objective correction
 - this is promising but below a strong statistical-evidence threshold
