@@ -478,6 +478,39 @@ Frozen coefficients:
 This gives the probability-edge hypothesis a pre-outcome transform for future
 paper tracking. It still has no post-freeze evidence yet.
 
+### Residual Meta PnL Audit
+
+Residual meta PnL audit:
+
+```text
+testing/residual_meta_pnl_audit.py
+test_results/residual_meta_pnl_audit/RESIDUAL_META_PNL_AUDIT_SUMMARY.md
+```
+
+This audit asks whether the residual probability signal can be converted into
+a simple flat-stake betting rule. Each outer fold uses the first part of its
+development window to fit the residual meta layer, the second part to select
+betting thresholds from out-of-sample meta probabilities, and the next holdout
+window to evaluate the frozen threshold policy.
+
+The protocol reruns the whole inner meta-training, threshold selection, and
+outer holdout loop under a de-vigged market-null simulation.
+
+Results:
+
+| Selection Objective | Bets | Profit | Flat ROI | Actual - Market | Positive Folds | Selection-Null p | Bootstrap P(profit <= 0) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| profit | 363 | +7.46u | +2.06% | +4.10% | 4 / 5 | 0.066 | 0.258 |
+| ROI | 304 | +4.31u | +1.42% | +3.56% | 4 / 5 | 0.144 | 0.344 |
+| actual - market | 311 | +6.67u | +2.14% | +4.08% | 4 / 5 | 0.083 | 0.265 |
+
+Interpretation: the residual meta probabilities produce positive PnL across
+all three objective sensitivities, which is directionally consistent with the
+log-loss edge. The monetization evidence is still weaker than the probability
+evidence: the best selection-adjusted market-null p-value is `0.066` before
+correcting for three inspected objectives, and the event-bootstrap uncertainty
+still crosses zero.
+
 ### Frozen Forward Paper-Tracking Policy
 
 Freeze artifact:
@@ -715,6 +748,9 @@ The most honest read:
 - the longer market-blend audit selected pure market probability, not a model
   residual, but the newer residual meta audit finds a small positive
   model-after-market log-loss signal
+- nested residual-meta PnL tests are positive across objective sensitivities,
+  but their best selection-adjusted market-null p-value is only `0.066`
+  before correcting for three inspected objectives
 - edge-only model/market disagreement is negative in flat-bet tests; the more
   interesting pockets require both positive edge and a model-probability floor
 - forward-selected simple disagreement policies remain weak after objective
@@ -731,6 +767,8 @@ The most honest read:
 - the best probability-residual result has market-null p-value `0.012`, or
   about `0.048` after a simple four-variant correction, but its event-bootstrap
   uncertainty still crosses zero
+- the best residual-meta PnL result has market-null p-value `0.066`, or about
+  `0.20` after a simple three-objective correction
 - this is promising but still below a strong live-edge threshold
 
 Recommendation:
