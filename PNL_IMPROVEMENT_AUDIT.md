@@ -457,9 +457,11 @@ leak-safe backtester.
 
    The Flask prediction path previously loaded every `.joblib` file in
    `saved_models`, which included `lgbm_single_model.joblib` with a different
-   feature schema from the ensemble models. `ml_web.py` now only loads
-   `lgbm_model_*.joblib`, matching `load_ensemble.py`, and sanitizes prediction
-   rows before inference.
+   feature schema from the ensemble models. This pass first narrowed web loading
+   to `lgbm_model_*.joblib`, matching `load_ensemble.py`, and sanitized
+   prediction rows before inference. A later follow-up below switches the web
+   path to the retrained single model because `auto_retrain.py` promotes that
+   artifact.
 
 5. Made `/predict` accept an optional `event_date`.
 
@@ -566,3 +568,112 @@ Additional smoke checks:
 4. Backtest PnL uses available historical odds, not guaranteed bet-time lines.
    Store timestamped live odds snapshots before using results as executable
    live-performance estimates.
+
+## 2026-06-28 Follow-Up: Event Settlement and Production Path Alignment
+
+This pass used subagent reviews across PnL accounting, model training, and
+feature/data quality. The strongest actionable findings were not another tuned
+threshold. They were:
+
+- backtest and strategy-search bankroll accounting compounded within the same
+  event card, even though live bets on a card are normally sized before the card
+  settles
+- the Flask/web prediction path still used old ensemble artifacts while
+  `auto_retrain.py` trains and validates the single production model
+- raw LightGBM probabilities remain the main PnL risk because Kelly sizing is
+  very sensitive to calibration, and the market has repeatedly beaten model
+  probabilities on log loss in robustness audits
+
+### Changes Made
+
+1. Added event-level settlement to `testing/no_leakage_backtest.py`.
+
+   The new default `--settlement-mode event` sizes all bets on an event from the
+   event-start bankroll and settles net event profit after the card. The old
+   behavior remains available as:
+
+   ```bash
+   --settlement-mode sequential
+   ```
+
+   The ledger now writes `bankroll_before` and `event_start_bankroll`, and the
+   backtester accepts an optional risk-control cap:
+
+   ```bash
+   --max-event-exposure-fraction 0.10
+   ```
+
+2. Updated `testing/walk_forward_strategy_search.py` to use the same event-level
+   settlement and optional event exposure cap.
+
+   This prevents future threshold searches from optimizing on same-card
+   row-by-row compounding that cannot be realized when bets are placed before
+   fight results are known.
+
+3. Updated `testing/statistical_edge_audit.py` to use explicit
+   `bankroll_before` when present.
+
+   Market-null path simulation now respects the stake-sizing basis in ledgers
+   produced by the event-settled backtester.
+
+4. Switched `ml_web.py` to the retrained single-model artifacts.
+
+   `app.py` calls `ml_web.main()` for `/predict`, while `auto_retrain.py`
+   promotes `saved_models/lgbm_single_model.joblib` and the matching
+   `saved_preprocessing/*_single.*` files. `ml_web.py` now uses those artifacts
+   instead of stale `lgbm_model_*.joblib` ensemble files, keeps the live feature
+   range guard, and writes both:
+
+   ```text
+   data/fight_predictions.csv
+   data/betting_predictions.csv
+   ```
+
+### Measured Impact
+
+Same current feature path, one-year window, edge-gated no-flat strategy:
+
+```bash
+.venv/bin/python testing/no_leakage_backtest.py \
+  --start-date 2025-06-27 \
+  --end-date 2026-06-27 \
+  --strategy 0.05,0.05,0 \
+  --min-edge 0.02 \
+  --output-dir /tmp/ufc_event_settlement_1y
+```
+
+Result:
+
+```text
+Accuracy: 0.6174
+Log loss: 0.6596
+Final bankroll: $1171.32 (+17.13%)
+Bets placed: 128
+```
+
+The comparable sequential-compounding run was `$1168.91` (`+16.89%`). Event
+settlement did not explain away this specific PnL result, but it makes future
+ledgers match live bet timing.
+
+Event exposure diagnostics on the event-settled ledger:
+
+```text
+Events with bets: 41
+Max event stake fraction: 12.02%
+95th percentile event stake fraction: 10.42%
+```
+
+Quick statistical audit with 2,000 market-null/bootstrap iterations:
+
+```text
+Top PnL: profit=$171.32, market_null_p=0.252
+```
+
+This is still not a statistically convincing edge.
+
+### Current Recommendation
+
+Treat event-settled ledgers as the new accounting baseline. Do not increase
+staking based on the current threshold searches. The next highest-leverage PnL
+work is leak-safe probability calibration or market-residual modeling, followed
+by frozen forward paper trading with timestamped pre-fight odds snapshots.

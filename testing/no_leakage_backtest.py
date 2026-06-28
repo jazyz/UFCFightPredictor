@@ -904,6 +904,9 @@ def run_backtest(args):
     )
 
     for event_date, event_fights in eval_df.groupby(eval_df["Date"].dt.date, sort=True):
+        event_start_bankroll = bankroll
+        event_profit = 0.0
+        event_staked = 0.0
         train_df = features_df[features_df["Date"] < pd.Timestamp(event_date)]
         train_df = filter_title_patterns(train_df, args.train_title_pattern)
         if len(train_df) < args.min_training_fights:
@@ -963,6 +966,16 @@ def run_backtest(args):
             kelly = 0.0
             bet = 0.0
             profit = 0.0
+            bankroll_before = (
+                event_start_bankroll
+                if args.settlement_mode == "event"
+                else bankroll
+            )
+            bankroll_after = (
+                event_start_bankroll + event_profit
+                if args.settlement_mode == "event"
+                else bankroll
+            )
 
             if odds_row is None:
                 no_bet_reason = "missing odds row"
@@ -1004,7 +1017,7 @@ def run_backtest(args):
                         bet,
                         bet_filter_reason,
                     ) = choose_bet(
-                        bankroll,
+                        bankroll_before,
                         fighter1,
                         fighter2,
                         odds1,
@@ -1017,10 +1030,39 @@ def run_backtest(args):
                         positive_floor_fraction=args.positive_floor_fraction,
                         negative_flat_fraction=args.negative_flat_fraction,
                     )
+                    if bet > 0 and args.max_event_exposure_fraction is not None:
+                        max_event_exposure = args.max_event_exposure_fraction * event_start_bankroll
+                        remaining_exposure = max(0.0, max_event_exposure - event_staked)
+                        if remaining_exposure <= 0:
+                            bet = 0.0
+                            bet_filter_reason = "event exposure cap reached"
+                        elif bet > remaining_exposure:
+                            bet = remaining_exposure
                     bet_on = bet_candidate if bet > 0 else ""
                     if bet_filter_reason and bet <= 0:
                         no_bet_reason = bet_filter_reason
-                    bankroll, profit = score_bet(bankroll, bet, bet_odds, bet_candidate, winner_name)
+                    if args.settlement_mode == "event":
+                        _, profit = score_bet(
+                            event_start_bankroll,
+                            bet,
+                            bet_odds,
+                            bet_candidate,
+                            winner_name,
+                        )
+                        event_staked += bet
+                        event_profit += profit
+                        bankroll_after = event_start_bankroll + event_profit
+                    else:
+                        bankroll, profit = score_bet(
+                            bankroll,
+                            bet,
+                            bet_odds,
+                            bet_candidate,
+                            winner_name,
+                        )
+                        event_staked += bet
+                        event_profit += profit
+                        bankroll_after = bankroll
                     bettable_fights += 1
 
             y_true.append(1 if red_won else 0)
@@ -1055,13 +1097,18 @@ def run_backtest(args):
                     "kelly": kelly,
                     "bet": bet,
                     "profit": profit,
-                    "bankroll_after": bankroll,
+                    "bankroll_before": bankroll_before,
+                    "bankroll_after": bankroll_after,
+                    "event_start_bankroll": event_start_bankroll,
                     "training_fights": len(train_df),
                     "max_training_date": max_training_date,
                     "feature_columns": len(feature_columns),
                     "dropped_correlated_columns": len(dropped_columns),
                 }
             )
+
+        if args.settlement_mode == "event":
+            bankroll = event_start_bankroll + event_profit
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -1135,6 +1182,8 @@ def run_backtest(args):
         "final_bankroll": bankroll,
         "profit_pct": final_profit_pct,
         "strategy": args.strategy,
+        "settlement_mode": args.settlement_mode,
+        "max_event_exposure_fraction": args.max_event_exposure_fraction,
         "bet_probability_policy": args.bet_probability_policy,
         "min_edge": args.min_edge,
         "min_kelly": args.min_kelly,
@@ -1235,6 +1284,22 @@ def parse_args():
     parser.add_argument("--correlation-threshold", type=float, default=0.95)
     parser.add_argument("--starting-bankroll", type=float, default=1000.0)
     parser.add_argument("--strategy", type=parse_strategy, default=[0.05, 0.05, 0.005])
+    parser.add_argument(
+        "--settlement-mode",
+        choices=["event", "sequential"],
+        default="event",
+        help=(
+            "event sizes all bets on a card from the event-start bankroll and "
+            "settles net card profit once; sequential reproduces the old "
+            "row-by-row compounding behavior"
+        ),
+    )
+    parser.add_argument(
+        "--max-event-exposure-fraction",
+        type=float,
+        default=None,
+        help="optional cap on total stake per event as a fraction of event-start bankroll",
+    )
     parser.add_argument(
         "--bet-probability-policy",
         choices=["average", "direct", "mirrored", "closer-to-odds"],

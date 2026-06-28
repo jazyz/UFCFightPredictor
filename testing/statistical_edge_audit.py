@@ -290,7 +290,10 @@ def market_null_path_simulation(bets, starting_bankroll, observed_final_bankroll
     if required.empty:
         return None
 
-    bankroll_before = required["bankroll_after"].astype(float) - required["profit"].astype(float)
+    if "bankroll_before" in required.columns:
+        bankroll_before = required["bankroll_before"].astype(float)
+    else:
+        bankroll_before = required["bankroll_after"].astype(float) - required["profit"].astype(float)
     stake_fraction = required["bet"].astype(float).to_numpy() / bankroll_before.to_numpy()
     p_market = required["bet_market_devig_probability"].astype(float).to_numpy()
     odds_multiple = np.array([net_odds(value) for value in required["bet_odds"].to_numpy()], dtype=float)

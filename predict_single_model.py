@@ -4,7 +4,7 @@ import joblib
 import json
 import os
 
-from utils.feature_sanitization import sanitize_age_features
+from utils.feature_sanitization import sanitize_age_features, validate_feature_ranges
 
 # Load the single trained model
 def load_model(model_path):
@@ -36,6 +36,13 @@ def preprocess_data(new_data, selected_columns):
 
 # Load the prepared fight data
 new_data = sanitize_age_features(pd.read_csv('data/predict_fights_alpha.csv'))
+reference_data = sanitize_age_features(pd.read_csv('data/detailed_fights.csv'))
+validate_feature_ranges(
+    new_data,
+    reference_data,
+    selected_columns,
+    context='data/predict_fights_alpha.csv',
+)
 
 # Preprocess
 X_new = preprocess_data(new_data, selected_columns)

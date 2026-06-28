@@ -4,7 +4,7 @@ import joblib
 import json
 import os
 
-from utils.feature_sanitization import sanitize_age_features
+from utils.feature_sanitization import sanitize_age_features, validate_feature_ranges
 
 # Function to load a model
 def load_model(model_path):
@@ -40,6 +40,13 @@ def preprocess_data(new_data, selected_columns):
     return new_data[selected_columns]
 
 new_data = sanitize_age_features(pd.read_csv('data/predict_fights_alpha.csv'))
+reference_data = sanitize_age_features(pd.read_csv('data/detailed_fights.csv'))
+validate_feature_ranges(
+    new_data,
+    reference_data,
+    selected_columns,
+    context='data/predict_fights_alpha.csv',
+)
 
 X_new = preprocess_data(new_data, selected_columns)
 X_new = X_new.drop(['Result'], axis=1)
@@ -63,4 +70,3 @@ fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, 1]
 fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, 0]
 
 fighter_data.to_csv('data/betting_predictions.csv', index=False)
-

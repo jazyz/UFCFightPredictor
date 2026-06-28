@@ -14,6 +14,7 @@ SIDES = ("Red", "Blue")
 AGE_LIKE_FEATURES = ("age", "dob", "avg age")
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_EXCLUDED_DOBS_PATH = PROJECT_ROOT / "data" / "excluded_fighter_dobs.csv"
+NON_FEATURE_COLUMNS = {"Result", "Date", "Red Fighter", "Blue Fighter", "Title"}
 
 
 def load_excluded_dob_names(path: Path = DEFAULT_EXCLUDED_DOBS_PATH) -> set[str]:
@@ -95,3 +96,76 @@ def sanitize_age_features(
             )
 
     return cleaned
+
+
+def validate_feature_ranges(
+    frame: pd.DataFrame,
+    reference_frame: pd.DataFrame,
+    feature_columns: list[str],
+    context: str = "feature frame",
+    expansion_factor: float = 10.0,
+    min_margin: float = 1.0,
+) -> None:
+    """Reject live feature rows with values far outside the training envelope.
+
+    This is intentionally a broad stale-artifact guard, not model calibration.
+    Legitimate future rows can drift a little, but values that are many times
+    outside the historical feature range usually mean a generator/schema bug.
+    """
+    columns = [
+        column
+        for column in feature_columns
+        if column not in NON_FEATURE_COLUMNS
+        and column in frame.columns
+        and column in reference_frame.columns
+    ]
+    if not columns:
+        return
+
+    violations = []
+    for column in columns:
+        reference_values = pd.to_numeric(reference_frame[column], errors="coerce")
+        reference_values = reference_values[np.isfinite(reference_values)]
+        if reference_values.empty:
+            continue
+
+        reference_min = float(reference_values.min())
+        reference_max = float(reference_values.max())
+        span = reference_max - reference_min
+        margin = max(
+            min_margin,
+            abs(reference_min) * (expansion_factor - 1.0),
+            abs(reference_max) * (expansion_factor - 1.0),
+            span,
+        )
+        lower = reference_min - margin
+        upper = reference_max + margin
+
+        values = pd.to_numeric(frame[column], errors="coerce")
+        bad = values.notna() & ((values < lower) | (values > upper))
+        for index, value in values[bad].items():
+            violations.append(
+                {
+                    "row": int(index),
+                    "column": column,
+                    "value": float(value),
+                    "allowed_min": lower,
+                    "allowed_max": upper,
+                    "training_min": reference_min,
+                    "training_max": reference_max,
+                }
+            )
+
+    if violations:
+        preview = "; ".join(
+            (
+                "{column} row {row} value {value:.6g} outside "
+                "[{allowed_min:.6g}, {allowed_max:.6g}]"
+            ).format(**violation)
+            for violation in violations[:10]
+        )
+        extra = "" if len(violations) <= 10 else f"; ... {len(violations) - 10} more"
+        raise ValueError(
+            f"{context} has {len(violations)} feature values far outside the "
+            f"training range; regenerate live features before inference: {preview}{extra}"
+        )

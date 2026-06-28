@@ -172,12 +172,22 @@ def choose_bet(row, strategy: Strategy):
     return max(scored, key=lambda side: (side["bet_edge"], side["kelly"]))
 
 
-def score_bet(bankroll: float, candidate: dict | None, winner_key: str, strategy: Strategy):
+def score_bet(
+    bankroll: float,
+    candidate: dict | None,
+    winner_key: str,
+    strategy: Strategy,
+    bankroll_for_sizing: float | None = None,
+    max_stake: float | None = None,
+):
     if candidate is None:
         return bankroll, 0.0, 0.0, {}
 
-    stake = bankroll * strategy.kelly_fraction * candidate["kelly"]
-    stake = min(stake, bankroll * strategy.max_fraction)
+    sizing_bankroll = bankroll if bankroll_for_sizing is None else bankroll_for_sizing
+    stake = sizing_bankroll * strategy.kelly_fraction * candidate["kelly"]
+    stake = min(stake, sizing_bankroll * strategy.max_fraction)
+    if max_stake is not None:
+        stake = min(stake, max_stake)
     if stake <= 0:
         return bankroll, 0.0, 0.0, {}
 
@@ -194,6 +204,8 @@ def rescore(
     start_date,
     end_date,
     write_rows: bool = True,
+    settlement_mode: str = "event",
+    max_event_exposure_fraction: float | None = None,
 ) -> tuple[pd.DataFrame, dict]:
     window = df[
         (df["model_label"] == strategy.model_label)
@@ -209,30 +221,69 @@ def rescore(
     bet_dates = set()
     total_staked = 0.0
     total_profit = 0.0
-    for _, row in window.iterrows():
-        candidate = choose_bet(row, strategy)
-        bankroll, stake, profit, details = score_bet(bankroll, candidate, row["winner_key"], strategy)
-        bankroll_values.append(bankroll)
-        total_staked += stake
-        total_profit += profit
-        if stake > 0:
-            bet_count += 1
-            bet_dates.add(row["event_date"].date().isoformat())
-        if write_rows:
-            output = row.to_dict()
-            output["event_date"] = row["event_date"].date().isoformat()
-            output["bet_candidate"] = details.get("bet_candidate", "")
-            output["bet_on"] = details.get("bet_on", "")
-            output["bet_odds"] = details.get("bet_odds", np.nan)
-            output["bet_probability"] = details.get("bet_probability", np.nan)
-            output["market_probability"] = details.get("market_probability", np.nan)
-            output["bet_edge"] = details.get("bet_edge", np.nan)
-            output["kelly"] = details.get("kelly", 0.0)
-            output["bet"] = stake
-            output["profit"] = profit
-            output["bankroll_after"] = bankroll
-            output["no_bet_reason"] = "" if stake > 0 else "strategy filter"
-            rows.append(output)
+    for _, event_rows in window.groupby("event_date", sort=True):
+        event_start_bankroll = bankroll
+        event_profit = 0.0
+        event_staked = 0.0
+        for _, row in event_rows.iterrows():
+            candidate = choose_bet(row, strategy)
+            max_stake = None
+            if max_event_exposure_fraction is not None:
+                event_cap = event_start_bankroll * max_event_exposure_fraction
+                max_stake = max(0.0, event_cap - event_staked)
+
+            if settlement_mode == "event":
+                bankroll_before = event_start_bankroll
+                _, stake, profit, details = score_bet(
+                    event_start_bankroll,
+                    candidate,
+                    row["winner_key"],
+                    strategy,
+                    bankroll_for_sizing=event_start_bankroll,
+                    max_stake=max_stake,
+                )
+                event_staked += stake
+                event_profit += profit
+                bankroll_after = event_start_bankroll + event_profit
+            else:
+                bankroll_before = bankroll
+                bankroll, stake, profit, details = score_bet(
+                    bankroll,
+                    candidate,
+                    row["winner_key"],
+                    strategy,
+                    max_stake=max_stake,
+                )
+                event_staked += stake
+                event_profit += profit
+                bankroll_after = bankroll
+
+            bankroll_values.append(bankroll_after)
+            total_staked += stake
+            total_profit += profit
+            if stake > 0:
+                bet_count += 1
+                bet_dates.add(row["event_date"].date().isoformat())
+            if write_rows:
+                output = row.to_dict()
+                output["event_date"] = row["event_date"].date().isoformat()
+                output["bet_candidate"] = details.get("bet_candidate", "")
+                output["bet_on"] = details.get("bet_on", "")
+                output["bet_odds"] = details.get("bet_odds", np.nan)
+                output["bet_probability"] = details.get("bet_probability", np.nan)
+                output["market_probability"] = details.get("market_probability", np.nan)
+                output["bet_edge"] = details.get("bet_edge", np.nan)
+                output["kelly"] = details.get("kelly", 0.0)
+                output["bet"] = stake
+                output["profit"] = profit
+                output["bankroll_before"] = bankroll_before
+                output["bankroll_after"] = bankroll_after
+                output["event_start_bankroll"] = event_start_bankroll
+                output["no_bet_reason"] = "" if stake > 0 else "strategy filter"
+                rows.append(output)
+
+        if settlement_mode == "event":
+            bankroll = event_start_bankroll + event_profit
 
     scored = pd.DataFrame(rows)
     profit = float(total_profit)
@@ -251,6 +302,8 @@ def rescore(
         "roi_on_staked": profit / total_staked if total_staked > 0 else None,
         "max_drawdown": max_drawdown,
         "fights": int(len(window)),
+        "settlement_mode": settlement_mode,
+        "max_event_exposure_fraction": max_event_exposure_fraction,
     }
     return scored, summary
 
@@ -342,6 +395,8 @@ def markdown_report(output: dict) -> str:
         "",
         f"Development window: {output['dev_start']} to {output['dev_end']}",
         f"Holdout window: {output['holdout_start']} to {output['holdout_end']}",
+        f"Settlement mode: {output['settlement_mode']}",
+        f"Max event exposure fraction: {output['max_event_exposure_fraction']}",
         f"Candidate strategies evaluated on development window: {output['candidate_count']}",
         "",
         "## Selected Strategy",
@@ -412,6 +467,21 @@ def main():
     parser.add_argument("--holdout-start", default="2025-06-27")
     parser.add_argument("--holdout-end", default="2026-06-27")
     parser.add_argument("--min-dev-bets", type=int, default=40)
+    parser.add_argument(
+        "--settlement-mode",
+        choices=["event", "sequential"],
+        default="event",
+        help=(
+            "event sizes all bets on a card from the event-start bankroll; "
+            "sequential reproduces the old row-by-row compounding behavior"
+        ),
+    )
+    parser.add_argument(
+        "--max-event-exposure-fraction",
+        type=float,
+        default=None,
+        help="optional cap on total stake per event as a fraction of event-start bankroll",
+    )
     parser.add_argument("--output-dir", default="test_results/walk_forward_strategy_search")
     args = parser.parse_args()
 
@@ -432,6 +502,8 @@ def main():
             args.dev_start,
             args.dev_end,
             write_rows=False,
+            settlement_mode=args.settlement_mode,
+            max_event_exposure_fraction=args.max_event_exposure_fraction,
         )
         score = selection_score(dev_summary, args.min_dev_bets)
         item = {"strategy": asdict(strategy), "summary": dev_summary, "score": score}
@@ -443,8 +515,22 @@ def main():
     if best is None:
         raise SystemExit("No strategy met selection constraints")
 
-    dev_df, dev_summary = rescore(combined, best, args.dev_start, args.dev_end)
-    holdout_df, holdout_summary = rescore(combined, best, args.holdout_start, args.holdout_end)
+    dev_df, dev_summary = rescore(
+        combined,
+        best,
+        args.dev_start,
+        args.dev_end,
+        settlement_mode=args.settlement_mode,
+        max_event_exposure_fraction=args.max_event_exposure_fraction,
+    )
+    holdout_df, holdout_summary = rescore(
+        combined,
+        best,
+        args.holdout_start,
+        args.holdout_end,
+        settlement_mode=args.settlement_mode,
+        max_event_exposure_fraction=args.max_event_exposure_fraction,
+    )
     output_dir = Path(args.output_dir)
     dev_csv, dev_summary_path = write_rescored_ledger(output_dir / "selected_dev", dev_df, dev_summary)
     holdout_csv, holdout_summary_path = write_rescored_ledger(
@@ -459,6 +545,8 @@ def main():
         "dev_end": args.dev_end,
         "holdout_start": args.holdout_start,
         "holdout_end": args.holdout_end,
+        "settlement_mode": args.settlement_mode,
+        "max_event_exposure_fraction": args.max_event_exposure_fraction,
         "candidate_count": len(candidates),
         "min_dev_bets": args.min_dev_bets,
         "selected_strategy": asdict(best),
