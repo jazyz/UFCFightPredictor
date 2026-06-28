@@ -4,6 +4,8 @@ import joblib
 import json
 import os
 
+from utils.feature_sanitization import sanitize_age_features
+
 def main():
     # Function to load a model
     def load_model(model_path):
@@ -25,13 +27,20 @@ def main():
 
     # Load models
     model_save_dir = "saved_models"
-    models = [load_model(os.path.join(model_save_dir, filename)) for filename in os.listdir(model_save_dir) if filename.endswith('.joblib')]
+    model_filenames = sorted(
+        filename
+        for filename in os.listdir(model_save_dir)
+        if filename.startswith("lgbm_model_") and filename.endswith(".joblib")
+    )
+    if not model_filenames:
+        raise FileNotFoundError("No ensemble model files matching saved_models/lgbm_model_*.joblib")
+    models = [load_model(os.path.join(model_save_dir, filename)) for filename in model_filenames]
 
     # Function to preprocess new data
     def preprocess_data(new_data, selected_columns):
         return new_data[selected_columns]
 
-    new_data = pd.read_csv('data/predict_fights_alpha.csv')
+    new_data = sanitize_age_features(pd.read_csv('data/predict_fights_alpha.csv'))
 
     X_new = preprocess_data(new_data, selected_columns)
     X_new = X_new.drop(['Result'], axis=1)  
@@ -45,7 +54,7 @@ def main():
 
     new_data['Predicted Result'] = predicted_labels
 
-    fighter_data = new_data[['Red Fighter', 'Blue Fighter']]
+    fighter_data = new_data[['Red Fighter', 'Blue Fighter']].copy()
 
     fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, 1]
     fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, 0]
@@ -74,5 +83,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 

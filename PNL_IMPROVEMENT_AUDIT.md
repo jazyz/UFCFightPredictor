@@ -403,3 +403,166 @@ Final bankroll: $1804.15 (+80.42%)
    one-year and two-year periods.
 5. Consider removing or capping extreme underdog edges unless calibration
    proves those probabilities are reliable.
+
+## 2026-06-28 Follow-Up: Live-Path and Betting Fixes
+
+This pass focused on issues that could directly affect live bet selection, plus
+a smaller betting-strategy improvement that is now reproducible in the
+leak-safe backtester.
+
+### Changes Made
+
+1. Fixed live upcoming-fight feature scale in `predict_fights_alpha.py`.
+
+   Historical training rows divide cumulative `oppelo`, `wins`, and `avg age`
+   by `totalfights`, but live prediction rows were using raw cumulative values.
+   That pushed live rows off-distribution, for example `oppelo` in the tens of
+   thousands instead of around `1000`. Live feature generation now applies the
+   same averaging rule, computes age and layoff features from the event date
+   when available, writes `Title`/`Date`, and sanitizes age-derived fields before
+   saving prediction rows.
+
+2. Aligned live betting probability handling with the leak-safe evaluator.
+
+   `betting_alpha.py` now uses canonical fighter-name matching and symmetric
+   ordered-row averaging:
+
+   ```text
+   P(A beats B) = (P_model(A red vs B blue) + (1 - P_model(B red vs A blue))) / 2
+   ```
+
+   This replaces the old `closerToOdds` rule, which selected the prediction
+   direction closer to market odds and could hide model disagreement between
+   mirrored rows.
+
+3. Added explicit edge-gated staking controls to
+   `testing/no_leakage_backtest.py`.
+
+   New options:
+
+   ```text
+   --min-edge
+   --min-kelly
+   --max-underdog-odds
+   --positive-floor-fraction
+   --negative-flat-fraction
+   ```
+
+   The old `strategy` tuple still works, but the positive-Kelly minimum bet and
+   negative-Kelly fallback can now be tuned independently. Detailed ledgers now
+   include `bet_candidate`, `market_probability`, and `bet_edge`, plus explicit
+   no-bet reasons such as `edge below 0.020`.
+
+4. Fixed web inference artifact mixing in `ml_web.py`.
+
+   The Flask prediction path previously loaded every `.joblib` file in
+   `saved_models`, which included `lgbm_single_model.joblib` with a different
+   feature schema from the ensemble models. `ml_web.py` now only loads
+   `lgbm_model_*.joblib`, matching `load_ensemble.py`, and sanitizes prediction
+   rows before inference.
+
+5. Made `/predict` accept an optional `event_date`.
+
+   `app.py` now accepts `event_date` in the request body and passes it into
+   live feature generation. Invalid dates return a `400`.
+
+6. Fixed single-model prediction labeling in `predict_single_model.py`.
+
+   The output now includes both `Predicted Result` (`win`/`loss`) and
+   `Predicted Winner` as the actual fighter name.
+
+### Measured Impact
+
+The recommended simple strategy from this pass is:
+
+```bash
+.venv/bin/python testing/no_leakage_backtest.py \
+  --strategy 0.05,0.05,0 \
+  --min-edge 0.02
+```
+
+Current feature path, one-year window:
+
+```bash
+.venv/bin/python testing/no_leakage_backtest.py \
+  --start-date 2025-06-27 \
+  --end-date 2026-06-27 \
+  --strategy 0.05,0.05,0 \
+  --min-edge 0.02 \
+  --output-dir test_results/pnl_edge2_no_flat_1y
+```
+
+Result:
+
+```text
+Accuracy: 0.6174
+Log loss: 0.6596
+Final bankroll: $1168.91 (+16.89%)
+Bets placed: 128
+```
+
+Current feature path, two-year window:
+
+```bash
+.venv/bin/python testing/no_leakage_backtest.py \
+  --start-date 2024-06-27 \
+  --end-date 2026-06-27 \
+  --strategy 0.05,0.05,0 \
+  --min-edge 0.02 \
+  --output-dir test_results/pnl_edge2_no_flat_2y
+```
+
+Result:
+
+```text
+Accuracy: 0.6259
+Log loss: 0.6399
+Final bankroll: $1541.94 (+54.19%)
+Bets placed: 257
+```
+
+Compared with the same current feature path's default ledgers:
+
+| Window | Default Strategy | Edge-Gated No-Flat | Delta |
+| --- | ---: | ---: | ---: |
+| 1y | +11.60% | +16.89% | +5.29 pts |
+| 2y | +40.24% | +54.19% | +13.95 pts |
+
+The improvement came from skipping low-edge or negative-Kelly bets, not from
+changing model predictions. In the new ledgers, skipped bets are explicitly
+marked `edge below 0.020`.
+
+### Verification
+
+```bash
+git diff --check
+
+PYTHONPYCACHEPREFIX=/tmp/ufc_pycache .venv/bin/python -m compileall \
+  app.py \
+  betting_alpha.py \
+  ml_web.py \
+  predict_fights_alpha.py \
+  predict_single_model.py \
+  testing/no_leakage_backtest.py
+```
+
+Additional smoke checks:
+
+- live feature scale for `oppelo`, `wins`, and `avg age` now matches training
+  scale
+- ensemble artifacts expect `112` features and the single model expects `164`
+  features, matching their preprocessing files
+
+### Remaining Risks
+
+1. Raw LightGBM probabilities are still used for Kelly. Calibration remains the
+   next highest-leverage modeling improvement.
+2. `data/best_params.json` may be future-biased or weakly tuned. Production
+   training should compare built-in defaults, the existing params, and nested
+   rolling Optuna before promoting tuned params.
+3. The current name-specific DOB mask is useful diagnostically but should be
+   replaced with an ex-ante rule, such as masking age/DOB for sparse fighters
+   below a prior-fight threshold.
+4. Backtest PnL uses available historical odds, not guaranteed bet-time lines.
+   Store timestamped live odds snapshots before using results as executable
+   live-performance estimates.

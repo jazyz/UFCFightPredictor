@@ -4,6 +4,9 @@ import csv
 import os
 from datetime import datetime
 
+import pandas as pd
+
+from utils.feature_sanitization import sanitize_age_features
 from utils.name_matching import lookup_keys
 
 # ****** HELPER FUNCTIONS ******
@@ -48,7 +51,7 @@ file_path = os.path.join('data', 'modified_fight_details.csv')
 headers=get_csv_headers(file_path)
 
 hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins",]
-hardcoded_features_divide = ["oppelo","wins","losses", "avg age"]
+hardcoded_features_divide = ["oppelo","wins", "avg age"]
 
 feature_list=[]
 feature_list.extend(hardcoded_features)
@@ -63,7 +66,19 @@ for column in headers:
 feature_list.extend(header_features)
 
 # extract and process fights, return them into the csv
-def extract_fighter_stats(fighter_name, opponent_name):
+def parse_event_date(soup):
+    date_section = soup.find('li', class_='b-list__box-list-item')
+    if date_section and "Date:" in date_section.text:
+        date_text = date_section.text.replace('Date:', '').strip()
+        for date_format in ("%B %d, %Y", "%b %d, %Y", "%Y-%m-%d"):
+            try:
+                return datetime.strptime(date_text, date_format)
+            except ValueError:
+                continue
+    return datetime.now()
+
+
+def extract_fighter_stats(fighter_name, opponent_name, event_date=None, event_title=""):
     fighter_stats = None
     opponent_stats = None
 
@@ -82,8 +97,14 @@ def extract_fighter_stats(fighter_name, opponent_name):
     if int(fighter_stats["totalfights"]) <= 1 or int(opponent_stats["totalfights"]) <= 1:
         return
     combined_stats = {}
-    combined_stats = process_fight(fighter_stats, opponent_stats, combined_stats)
-    # print(combined_stats)
+    combined_stats = process_fight(
+        fighter_stats,
+        opponent_stats,
+        combined_stats,
+        event_date=event_date,
+        event_title=event_title,
+    )
+    combined_stats = sanitize_age_features(pd.DataFrame([combined_stats])).iloc[0].to_dict()
     with open(output_csv_filename, mode="a", newline="") as output_file:
         csv_writer = csv.DictWriter(output_file, fieldnames=fieldnames)
         csv_writer.writerow(combined_stats)
@@ -95,14 +116,22 @@ def convert_date(date_string):
     datetime_object = datetime.strptime(date_string, date_format)
     return datetime_object
 
-def process_fight(fighter_stats, opponent_stats, processed_fight):
+def process_fight(
+    fighter_stats,
+    opponent_stats,
+    processed_fight,
+    event_date=None,
+    event_title="",
+):
     if int(fighter_stats["totalfights"]) >= 2 and int(opponent_stats["totalfights"]) >= 2:
         processed_fight["Result"] = "unknown"
         processed_fight["Red Fighter"] = fighter_stats["Fighter"]
         processed_fight["Blue Fighter"] = opponent_stats["Fighter"]
+        current_date = event_date or datetime.now()
+        processed_fight["Title"] = event_title
+        processed_fight["Date"] = current_date.date().isoformat()
        
-        current_year = datetime.now().year
-        current_date = datetime.now()
+        current_year = current_date.year
         processed_fight['Red age'] = current_year - int(fighter_stats['dob'])
         processed_fight['Blue age'] = current_year - int(opponent_stats['dob'])
         processed_fight['age oppdiff'] = processed_fight['Red age'] - processed_fight['Blue age'] 
@@ -138,6 +167,15 @@ def process_fight(fighter_stats, opponent_stats, processed_fight):
                             float(opponent_stats[f"{feature} defense"])
                             / sqrSum(opponent_stats["totalfights"])
                         )
+                if feature in hardcoded_features_divide:
+                    processed_fight[f'Red {feature}'] = (
+                        float(processed_fight[f'Red {feature}'])
+                        / float(fighter_stats["totalfights"])
+                    )
+                    processed_fight[f'Blue {feature}'] = (
+                        float(processed_fight[f'Blue {feature}'])
+                        / float(opponent_stats["totalfights"])
+                    )
         for feature in feature_list:
             # Basic feature difference
             red_key = f'Red {feature}'
@@ -161,13 +199,13 @@ def process_fight(fighter_stats, opponent_stats, processed_fight):
 
 
 # Used to predict exactly 1 fight (erases all data in the output csv and writes the new fight)
-def predict_fight(fighter1_name, fighter2_name):
+def predict_fight(fighter1_name, fighter2_name, event_date=None):
     print(f"Processing {fighter1_name} vs {fighter2_name}")
     with open(output_csv_filename, mode="w", newline="") as output_file:
         csv_writer = csv.DictWriter(output_file, fieldnames=fieldnames)
         csv_writer.writeheader()
-    extract_fighter_stats(fighter1_name, fighter2_name)
-    extract_fighter_stats(fighter2_name, fighter1_name)
+    extract_fighter_stats(fighter1_name, fighter2_name, event_date=event_date)
+    extract_fighter_stats(fighter2_name, fighter1_name, event_date=event_date)
 
 # ***** MAIN *****
 # get all the urls of the fight cards
@@ -203,15 +241,23 @@ def main():
         csv_writer.writeheader()
     
     for url in event_urls:
+        fights = []
+        event_date = datetime.now()
+        event_title = url
         response = requests.get(url)
 
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
+            event_date = parse_event_date(soup)
+            event_title = soup.find("span", class_="b-content__title-highlight")
+            event_title = event_title.text.strip() if event_title else url
 
             fight_table = soup.find("tbody", class_="b-fight-details__table-body")
+            if fight_table is None:
+                print("Fight table not found.")
+                continue
 
             fight_rows = fight_table.find_all("tr", class_="b-fight-details__table-row")
-            fights=[]
             for fight_row in fight_rows:
                 fighter_names = fight_row.find_all("a", class_="b-link_style_black")
                 fighter1_name = fighter_names[0].text.strip()
@@ -219,15 +265,25 @@ def main():
                 if fighter1_name == "King Green":
                     fighter1_name = "Bobby Green"
                 fighter2_name = fighter_names[1].text.strip()
-                fights.append([fighter1_name,fighter2_name])
+                fights.append([fighter1_name, fighter2_name])
         else:
             print("Failed to retrieve the web page.")
         
         for fight in fights:
             fighter_name = fight[0]
             opponent_name = fight[1]
-            extract_fighter_stats(fighter_name, opponent_name)
-            extract_fighter_stats(opponent_name, fighter_name)
+            extract_fighter_stats(
+                fighter_name,
+                opponent_name,
+                event_date=event_date,
+                event_title=event_title,
+            )
+            extract_fighter_stats(
+                opponent_name,
+                fighter_name,
+                event_date=event_date,
+                event_title=event_title,
+            )
 
 if __name__ == "__main__":
     main()

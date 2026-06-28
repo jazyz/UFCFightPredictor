@@ -58,7 +58,12 @@ fighter_data = new_data[['Red Fighter', 'Blue Fighter']].copy()
 # Add probabilities
 fighter_data['Red Fighter Win Probability'] = predicted_probabilities[:, 1]  # Win (Red)
 fighter_data['Blue Fighter Win Probability'] = predicted_probabilities[:, 0]  # Loss (Blue wins)
-fighter_data['Predicted Winner'] = predicted_labels
+fighter_data['Predicted Result'] = predicted_labels
+fighter_data['Predicted Winner'] = np.where(
+    predicted_labels == 'win',
+    fighter_data['Red Fighter'],
+    fighter_data['Blue Fighter'],
+)
 
 # Save to CSV
 output_file = 'data/single_model_predictions.csv'
@@ -74,10 +79,12 @@ for idx, row in fighter_data.iterrows():
     red_prob = row['Red Fighter Win Probability']
     blue_prob = row['Blue Fighter Win Probability']
     winner = row['Predicted Winner']
+    result = row['Predicted Result']
     
     print(f"Fight {idx + 1}: {red} vs {blue}")
     print(f"  → {red}: {red_prob:.2%} win probability")
     print(f"  → {blue}: {blue_prob:.2%} win probability")
+    print(f"  → Predicted Result: {result}")
     print(f"  → Predicted Winner: {winner}")
     print()
 

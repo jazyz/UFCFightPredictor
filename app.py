@@ -30,13 +30,20 @@ def predict():
     data = request.json
     fighter_name1 = data.get("fighter_name1")
     fighter_name2 = data.get("fighter_name2")
+    event_date = data.get("event_date")
+    parsed_event_date = None
+    if event_date:
+        parsed_event_date = pd.to_datetime(event_date, errors="coerce")
+        if pd.isna(parsed_event_date):
+            return jsonify({"message": f"Invalid event_date: {event_date}"}), 400
+        parsed_event_date = parsed_event_date.to_pydatetime()
     print(fighter_name1, fighter_name2)
 
     if os.environ.get("FLASK_APP") != "app":
         os.environ["FLASK_APP"] = "app"
 
     # predict_fihts_alpha 
-    predict_fight(fighter_name1, fighter_name2)
+    predict_fight(fighter_name1, fighter_name2, event_date=parsed_event_date)
     # ml_web
     main()
 

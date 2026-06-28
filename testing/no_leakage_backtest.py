@@ -595,7 +595,20 @@ def payout(odds, bet):
     return bet * (odds / 100)
 
 
-def choose_bet(bankroll, fighter1, fighter2, odds1, odds2, p1, strategy):
+def choose_bet(
+    bankroll,
+    fighter1,
+    fighter2,
+    odds1,
+    odds2,
+    p1,
+    strategy,
+    min_edge=None,
+    min_kelly=None,
+    max_underdog_odds=None,
+    positive_floor_fraction=None,
+    negative_flat_fraction=None,
+):
     p2 = 1 - p1
     if p1 >= p2:
         fighter, odds, probability = fighter1, odds1, p1
@@ -603,17 +616,68 @@ def choose_bet(bankroll, fighter1, fighter2, odds1, odds2, p1, strategy):
         fighter, odds, probability = fighter2, odds2, p2
 
     fraction, max_fraction, flat = strategy
+    if positive_floor_fraction is None:
+        positive_floor_fraction = flat
+    if negative_flat_fraction is None:
+        negative_flat_fraction = flat
+    market_probability = odds_to_prob(odds)
+    edge = probability - market_probability
     kelly = kelly_criterion(odds, probability)
+
+    if min_edge is not None and edge < min_edge:
+        return (
+            fighter,
+            odds,
+            probability,
+            market_probability,
+            edge,
+            kelly,
+            0.0,
+            f"edge below {min_edge:.3f}",
+        )
+    if min_kelly is not None and kelly < min_kelly:
+        return (
+            fighter,
+            odds,
+            probability,
+            market_probability,
+            edge,
+            kelly,
+            0.0,
+            f"kelly below {min_kelly:.3f}",
+        )
+    if max_underdog_odds is not None and odds > max_underdog_odds:
+        return (
+            fighter,
+            odds,
+            probability,
+            market_probability,
+            edge,
+            kelly,
+            0.0,
+            f"underdog odds above +{int(max_underdog_odds)}",
+        )
+
     if kelly > 0:
         bet = bankroll * fraction * kelly
         bet = min(bet, max_fraction * bankroll)
-        bet = max(bet, bankroll * flat)
-    elif flat > 0 and kelly > -0.5:
-        bet = bankroll * flat
+        bet = max(bet, bankroll * positive_floor_fraction)
+    elif negative_flat_fraction > 0 and kelly > -0.5:
+        bet = bankroll * negative_flat_fraction
     else:
         bet = 0.0
+        return (
+            fighter,
+            odds,
+            probability,
+            market_probability,
+            edge,
+            kelly,
+            bet,
+            "non-positive kelly",
+        )
 
-    return fighter, odds, probability, kelly, bet
+    return fighter, odds, probability, market_probability, edge, kelly, bet, ""
 
 
 def score_bet(bankroll, bet, odds, bet_on, winner_name):
@@ -759,6 +823,9 @@ def run_backtest(args):
             odds1 = odds2 = None
             fighter1 = fighter2 = ""
             p_fighter1 = None
+            bet_candidate = ""
+            bet_market_probability = ""
+            bet_edge = ""
             bet_on = ""
             bet_probability = ""
             kelly = 0.0
@@ -779,10 +846,33 @@ def run_backtest(args):
                     no_bet_reason = "missing odds"
                 else:
                     p_fighter1 = probability_for_order(model, row, feature_columns, fighter1, fighter2)
-                    bet_on, bet_odds, bet_probability, kelly, bet = choose_bet(
-                        bankroll, fighter1, fighter2, odds1, odds2, p_fighter1, args.strategy
+                    (
+                        bet_candidate,
+                        bet_odds,
+                        bet_probability,
+                        bet_market_probability,
+                        bet_edge,
+                        kelly,
+                        bet,
+                        bet_filter_reason,
+                    ) = choose_bet(
+                        bankroll,
+                        fighter1,
+                        fighter2,
+                        odds1,
+                        odds2,
+                        p_fighter1,
+                        args.strategy,
+                        min_edge=args.min_edge,
+                        min_kelly=args.min_kelly,
+                        max_underdog_odds=args.max_underdog_odds,
+                        positive_floor_fraction=args.positive_floor_fraction,
+                        negative_flat_fraction=args.negative_flat_fraction,
                     )
-                    bankroll, profit = score_bet(bankroll, bet, bet_odds, bet_on, winner_name)
+                    bet_on = bet_candidate if bet > 0 else ""
+                    if bet_filter_reason and bet <= 0:
+                        no_bet_reason = bet_filter_reason
+                    bankroll, profit = score_bet(bankroll, bet, bet_odds, bet_candidate, winner_name)
                     bettable_fights += 1
 
             y_true.append(1 if red_won else 0)
@@ -806,8 +896,11 @@ def run_backtest(args):
                     "fighter2_odds": odds2,
                     "fighter1_win_probability": p_fighter1 if p_fighter1 is not None else "",
                     "fighter2_win_probability": (1 - p_fighter1) if p_fighter1 is not None else "",
+                    "bet_candidate": bet_candidate,
                     "bet_on": bet_on if bet > 0 else "",
                     "bet_probability": bet_probability if bet > 0 else "",
+                    "market_probability": bet_market_probability,
+                    "bet_edge": bet_edge,
                     "no_bet_reason": no_bet_reason,
                     "kelly": kelly,
                     "bet": bet,
@@ -887,6 +980,11 @@ def run_backtest(args):
         "final_bankroll": bankroll,
         "profit_pct": final_profit_pct,
         "strategy": args.strategy,
+        "min_edge": args.min_edge,
+        "min_kelly": args.min_kelly,
+        "max_underdog_odds": args.max_underdog_odds,
+        "positive_floor_fraction": args.positive_floor_fraction,
+        "negative_flat_fraction": args.negative_flat_fraction,
         "outputs": {
             "predictions_csv": str(predictions_path),
             "summary_json": str(summary_path),
@@ -954,6 +1052,36 @@ def parse_args():
     parser.add_argument("--correlation-threshold", type=float, default=0.95)
     parser.add_argument("--starting-bankroll", type=float, default=1000.0)
     parser.add_argument("--strategy", type=parse_strategy, default=[0.05, 0.05, 0.005])
+    parser.add_argument(
+        "--min-edge",
+        type=float,
+        default=None,
+        help="optional minimum model probability edge over implied market probability",
+    )
+    parser.add_argument(
+        "--min-kelly",
+        type=float,
+        default=None,
+        help="optional minimum Kelly value required before placing a bet",
+    )
+    parser.add_argument(
+        "--max-underdog-odds",
+        type=float,
+        default=None,
+        help="optional maximum positive American odds allowed for underdog bets",
+    )
+    parser.add_argument(
+        "--positive-floor-fraction",
+        type=float,
+        default=None,
+        help="minimum bankroll fraction for positive-Kelly bets; defaults to strategy flat value",
+    )
+    parser.add_argument(
+        "--negative-flat-fraction",
+        type=float,
+        default=None,
+        help="bankroll fraction for negative-Kelly fallback bets; defaults to strategy flat value",
+    )
     parser.add_argument(
         "--strict-end-date",
         action="store_true",
