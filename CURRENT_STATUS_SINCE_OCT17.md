@@ -532,6 +532,36 @@ both positive edge and minimum model probability, but it is still diagnostic
 and partly post-hoc. It strengthens the case for forward paper tracking, not
 for declaring that a live market edge has been proven.
 
+### Disagreement Forward-Selection Audit
+
+Forward-selection audit:
+
+```text
+testing/disagreement_forward_selection_audit.py
+test_results/disagreement_forward_selection_audit/DISAGREEMENT_FORWARD_SELECTION_SUMMARY.md
+```
+
+This follow-up reduces static threshold-picking bias. Each fold selects a
+simple model-vs-market disagreement policy on the prior 365 days, freezes it,
+and evaluates the next 182-day holdout. The policy family is intentionally
+plain: flat 1-unit bets on the side with the largest model-minus-market edge,
+with grids over model label, minimum edge, minimum model probability, and a
+`+300` underdog cap.
+
+Results across seven forward folds:
+
+| Selection Objective | Bets | Profit | Flat ROI | Actual - Market | Positive Folds | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| profit | 373 | -3.49u | -0.93% | +2.47% | 4 / 7 | 0.342 |
+| ROI | 161 | +10.15u | +6.30% | +5.07% | 4 / 7 | 0.107 |
+| actual - market | 167 | +15.22u | +9.11% | +6.72% | 5 / 7 | 0.090 |
+
+Interpretation: the forward-selected disagreement rule family is promising but
+still not a real edge claim. The profit objective went slightly negative, and
+the best uncorrected market-null p-value was only `0.090`. Since three
+selection objectives were inspected, a simple Bonferroni adjustment puts the
+best p-value around `0.27`.
+
 ## Current Bottom Line
 
 The repo is now much better instrumented than it was on Oct 17:
@@ -555,6 +585,8 @@ The most honest read:
   residual
 - edge-only model/market disagreement is negative in flat-bet tests; the more
   interesting pockets require both positive edge and a model-probability floor
+- forward-selected simple disagreement policies remain weak after objective
+  sensitivity; the best uncorrected market-null p-value is `0.090`
 - profitable PnL variants remain sensitive to model policy and threshold search
 - the best disagreement pockets are not uniformly stable by year, with the
   regularized `model P >= 0.60, edge >= 0.08` slice losing in 2023

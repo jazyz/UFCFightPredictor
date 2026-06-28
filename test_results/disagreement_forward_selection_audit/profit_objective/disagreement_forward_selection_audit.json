@@ -1,0 +1,2187 @@
+{
+  "ledgers": [
+    {
+      "label": "baseline_default",
+      "csv_path": "test_results/nested_edge_long/ledgers/baseline_default_2022_2026/no_leakage_backtest.csv"
+    },
+    {
+      "label": "regularized_lgbm",
+      "csv_path": "test_results/nested_edge_long/ledgers/regularized_lgbm_2022_2026/no_leakage_backtest.csv"
+    }
+  ],
+  "selection_objective": "profit",
+  "thresholds": [
+    0.0,
+    0.02,
+    0.05,
+    0.08,
+    0.12,
+    0.16
+  ],
+  "min_probabilities": [
+    0.5,
+    0.55,
+    0.6,
+    0.65
+  ],
+  "candidate_count": 96,
+  "first_holdout_start": "2023-02-05",
+  "last_holdout_end": "2026-06-27",
+  "dev_days": 365,
+  "holdout_days": 182,
+  "min_holdout_days": 120,
+  "step_days": 182,
+  "min_dev_bets": 35,
+  "iterations": 20000,
+  "seed": 20260628,
+  "aggregate": {
+    "folds": 7,
+    "holdout_fights": 948,
+    "bets": 373,
+    "events_with_bets": 136,
+    "profit": -3.4867046681371505,
+    "roi": -0.009347733694737669,
+    "actual_win_rate": 0.5227882037533512,
+    "mean_model_probability": 0.6699660288627444,
+    "mean_market_probability": 0.49807597644155566,
+    "mean_edge": 0.17189005242118877,
+    "actual_minus_market": 0.024712227311795565,
+    "positive_folds": 4,
+    "folds_with_bets": 7,
+    "selected_models": {
+      "baseline_default": 5,
+      "regularized_lgbm": 2
+    },
+    "selected_policies": {
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.0, \"min_probability\": 0.6, \"model_label\": \"baseline_default\"}": 1,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.08, \"min_probability\": 0.5, \"model_label\": \"baseline_default\"}": 1,
+      "{\"max_underdog_odds\": null, \"min_edge\": 0.08, \"min_probability\": 0.5, \"model_label\": \"baseline_default\"}": 1,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.02, \"min_probability\": 0.6, \"model_label\": \"regularized_lgbm\"}": 1,
+      "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.02, \"min_probability\": 0.55, \"model_label\": \"baseline_default\"}": 1,
+      "{\"max_underdog_odds\": null, \"min_edge\": 0.0, \"min_probability\": 0.5, \"model_label\": \"regularized_lgbm\"}": 1,
+      "{\"max_underdog_odds\": null, \"min_edge\": 0.12, \"min_probability\": 0.5, \"model_label\": \"baseline_default\"}": 1
+    }
+  },
+  "market_null_flat": {
+    "simulated_bets": 373,
+    "observed_profit": -3.4867046681371505,
+    "null_mean_profit": -11.859080543509561,
+    "null_profit_ci_95": [
+      -52.804536614279776,
+      28.603250750016418
+    ],
+    "p_value_observed_or_better": 0.3424828758562072,
+    "prob_null_profitable": 0.28565
+  },
+  "event_bootstrap": {
+    "events": 136,
+    "profit_ci_95": [
+      -41.628021304484115,
+      34.5384711487342
+    ],
+    "prob_profit_le_zero": 0.5703
+  },
+  "folds": [
+    {
+      "fold_index": 1,
+      "dev_start": "2022-02-05",
+      "dev_end": "2023-02-04",
+      "holdout_start": "2023-02-05",
+      "holdout_end": "2023-08-05",
+      "selected_policy": {
+        "model_label": "baseline_default",
+        "min_edge": 0.0,
+        "min_probability": 0.6,
+        "max_underdog_odds": 300.0
+      },
+      "selected_policy_json": "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.0, \"min_probability\": 0.6, \"model_label\": \"baseline_default\"}",
+      "dev_summary": {
+        "fights": 272,
+        "bets": 134,
+        "events_with_bets": 42,
+        "profit": 6.347095076343265,
+        "roi": 0.04736638116674079,
+        "actual_win_rate": 0.6417910447761194,
+        "mean_model_probability": 0.7257268133161062,
+        "mean_market_probability": 0.5822102145625092,
+        "mean_edge": 0.14351659875359707,
+        "actual_minus_market": 0.05958083021361016
+      },
+      "holdout_summary": {
+        "fights": 133,
+        "bets": 63,
+        "events_with_bets": 23,
+        "profit": 1.0048753907144505,
+        "roi": 0.0159504030272135,
+        "actual_win_rate": 0.5714285714285714,
+        "mean_model_probability": 0.6993262712664701,
+        "mean_market_probability": 0.5418862740721851,
+        "mean_edge": 0.15743999719428498,
+        "actual_minus_market": 0.02954229735638625
+      },
+      "top_dev_candidates": [
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.0,
+            "min_probability": 0.6,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 272,
+            "bets": 134,
+            "events_with_bets": 42,
+            "profit": 6.347095076343265,
+            "roi": 0.04736638116674079,
+            "actual_win_rate": 0.6417910447761194,
+            "mean_model_probability": 0.7257268133161062,
+            "mean_market_probability": 0.5822102145625092,
+            "mean_edge": 0.14351659875359707,
+            "actual_minus_market": 0.05958083021361016
+          },
+          "score": [
+            6.347095076343265,
+            0.04736638116674079,
+            0.05958083021361016,
+            134
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.0,
+            "min_probability": 0.6,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 272,
+            "bets": 134,
+            "events_with_bets": 42,
+            "profit": 6.347095076343265,
+            "roi": 0.04736638116674079,
+            "actual_win_rate": 0.6417910447761194,
+            "mean_model_probability": 0.7257268133161062,
+            "mean_market_probability": 0.5822102145625092,
+            "mean_edge": 0.14351659875359707,
+            "actual_minus_market": 0.05958083021361016
+          },
+          "score": [
+            6.347095076343265,
+            0.04736638116674079,
+            0.05958083021361016,
+            134
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.02,
+            "min_probability": 0.6,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 272,
+            "bets": 122,
+            "events_with_bets": 42,
+            "profit": 6.283053148648704,
+            "roi": 0.05150043564466151,
+            "actual_win_rate": 0.6311475409836066,
+            "mean_model_probability": 0.7255412745336038,
+            "mean_market_probability": 0.5691669062909953,
+            "mean_edge": 0.1563743682426084,
+            "actual_minus_market": 0.06198063469261128
+          },
+          "score": [
+            6.283053148648704,
+            0.05150043564466151,
+            0.06198063469261128,
+            122
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.02,
+            "min_probability": 0.6,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 272,
+            "bets": 122,
+            "events_with_bets": 42,
+            "profit": 6.283053148648704,
+            "roi": 0.05150043564466151,
+            "actual_win_rate": 0.6311475409836066,
+            "mean_model_probability": 0.7255412745336038,
+            "mean_market_probability": 0.5691669062909953,
+            "mean_edge": 0.1563743682426084,
+            "actual_minus_market": 0.06198063469261128
+          },
+          "score": [
+            6.283053148648704,
+            0.05150043564466151,
+            0.06198063469261128,
+            122
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.05,
+            "min_probability": 0.6,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 272,
+            "bets": 106,
+            "events_with_bets": 41,
+            "profit": 5.518469635879363,
+            "roi": 0.05206103430074871,
+            "actual_win_rate": 0.6132075471698113,
+            "mean_model_probability": 0.7245705581621315,
+            "mean_market_probability": 0.5504902236888216,
+            "mean_edge": 0.1740803344733098,
+            "actual_minus_market": 0.06271732348098968
+          },
+          "score": [
+            5.518469635879363,
+            0.05206103430074871,
+            0.06271732348098968,
+            106
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.05,
+            "min_probability": 0.6,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 272,
+            "bets": 106,
+            "events_with_bets": 41,
+            "profit": 5.518469635879363,
+            "roi": 0.05206103430074871,
+            "actual_win_rate": 0.6132075471698113,
+            "mean_model_probability": 0.7245705581621315,
+            "mean_market_probability": 0.5504902236888216,
+            "mean_edge": 0.1740803344733098,
+            "actual_minus_market": 0.06271732348098968
+          },
+          "score": [
+            5.518469635879363,
+            0.05206103430074871,
+            0.06271732348098968,
+            106
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.08,
+            "min_probability": 0.6,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 272,
+            "bets": 86,
+            "events_with_bets": 40,
+            "profit": 4.741894921968717,
+            "roi": 0.05513831304614787,
+            "actual_win_rate": 0.5930232558139535,
+            "mean_model_probability": 0.7257911380824672,
+            "mean_market_probability": 0.5265497461052575,
+            "mean_edge": 0.19924139197720986,
+            "actual_minus_market": 0.06647350970869603
+          },
+          "score": [
+            4.741894921968717,
+            0.05513831304614787,
+            0.06647350970869603,
+            86
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.08,
+            "min_probability": 0.6,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 272,
+            "bets": 86,
+            "events_with_bets": 40,
+            "profit": 4.741894921968717,
+            "roi": 0.05513831304614787,
+            "actual_win_rate": 0.5930232558139535,
+            "mean_model_probability": 0.7257911380824672,
+            "mean_market_probability": 0.5265497461052575,
+            "mean_edge": 0.19924139197720986,
+            "actual_minus_market": 0.06647350970869603
+          },
+          "score": [
+            4.741894921968717,
+            0.05513831304614787,
+            0.06647350970869603,
+            86
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.6,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 272,
+            "bets": 95,
+            "events_with_bets": 38,
+            "profit": 3.8893469587893823,
+            "roi": 0.04094049430304613,
+            "actual_win_rate": 0.6105263157894737,
+            "mean_model_probability": 0.6924627172500053,
+            "mean_market_probability": 0.551743465252186,
+            "mean_edge": 0.1407192519978193,
+            "actual_minus_market": 0.05878285053728771
+          },
+          "score": [
+            3.8893469587893823,
+            0.04094049430304613,
+            0.05878285053728771,
+            95
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.6,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 272,
+            "bets": 95,
+            "events_with_bets": 38,
+            "profit": 3.8893469587893823,
+            "roi": 0.04094049430304613,
+            "actual_win_rate": 0.6105263157894737,
+            "mean_model_probability": 0.6924627172500053,
+            "mean_market_probability": 0.551743465252186,
+            "mean_edge": 0.1407192519978193,
+            "actual_minus_market": 0.05878285053728771
+          },
+          "score": [
+            3.8893469587893823,
+            0.04094049430304613,
+            0.05878285053728771,
+            95
+          ]
+        }
+      ]
+    },
+    {
+      "fold_index": 2,
+      "dev_start": "2022-08-06",
+      "dev_end": "2023-08-05",
+      "holdout_start": "2023-08-06",
+      "holdout_end": "2024-02-03",
+      "selected_policy": {
+        "model_label": "baseline_default",
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "max_underdog_odds": 300.0
+      },
+      "selected_policy_json": "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.08, \"min_probability\": 0.5, \"model_label\": \"baseline_default\"}",
+      "dev_summary": {
+        "fights": 252,
+        "bets": 109,
+        "events_with_bets": 43,
+        "profit": 4.748908200767264,
+        "roi": 0.0435679651446538,
+        "actual_win_rate": 0.5137614678899083,
+        "mean_model_probability": 0.6704464164473652,
+        "mean_market_probability": 0.48053041743712827,
+        "mean_edge": 0.18991599901023704,
+        "actual_minus_market": 0.03323105045278002
+      },
+      "holdout_summary": {
+        "fights": 111,
+        "bets": 42,
+        "events_with_bets": 16,
+        "profit": -3.85885097678326,
+        "roi": -0.09187740420912524,
+        "actual_win_rate": 0.4523809523809524,
+        "mean_model_probability": 0.6692948970562623,
+        "mean_market_probability": 0.4515650148016947,
+        "mean_edge": 0.2177298822545678,
+        "actual_minus_market": 0.0008159375792576862
+      },
+      "top_dev_candidates": [
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.08,
+            "min_probability": 0.5,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 252,
+            "bets": 109,
+            "events_with_bets": 43,
+            "profit": 4.748908200767264,
+            "roi": 0.0435679651446538,
+            "actual_win_rate": 0.5137614678899083,
+            "mean_model_probability": 0.6704464164473652,
+            "mean_market_probability": 0.48053041743712827,
+            "mean_edge": 0.18991599901023704,
+            "actual_minus_market": 0.03323105045278002
+          },
+          "score": [
+            4.748908200767264,
+            0.0435679651446538,
+            0.03323105045278002,
+            109
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.65,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 252,
+            "bets": 55,
+            "events_with_bets": 31,
+            "profit": 4.398219634251287,
+            "roi": 0.07996762971365977,
+            "actual_win_rate": 0.6545454545454545,
+            "mean_model_probability": 0.721565714428477,
+            "mean_market_probability": 0.5998932875441854,
+            "mean_edge": 0.12167242688429168,
+            "actual_minus_market": 0.05465216700126918
+          },
+          "score": [
+            4.398219634251287,
+            0.07996762971365977,
+            0.05465216700126918,
+            55
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.65,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 252,
+            "bets": 55,
+            "events_with_bets": 31,
+            "profit": 4.398219634251287,
+            "roi": 0.07996762971365977,
+            "actual_win_rate": 0.6545454545454545,
+            "mean_model_probability": 0.721565714428477,
+            "mean_market_probability": 0.5998932875441854,
+            "mean_edge": 0.12167242688429168,
+            "actual_minus_market": 0.05465216700126918
+          },
+          "score": [
+            4.398219634251287,
+            0.07996762971365977,
+            0.05465216700126918,
+            55
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.0,
+            "min_probability": 0.65,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 252,
+            "bets": 58,
+            "events_with_bets": 32,
+            "profit": 4.3077803577655,
+            "roi": 0.07427207513388794,
+            "actual_win_rate": 0.6551724137931034,
+            "mean_model_probability": 0.7193481349264327,
+            "mean_market_probability": 0.6033603488152186,
+            "mean_edge": 0.11598778611121405,
+            "actual_minus_market": 0.05181206497788482
+          },
+          "score": [
+            4.3077803577655,
+            0.07427207513388794,
+            0.05181206497788482,
+            58
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.0,
+            "min_probability": 0.65,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 252,
+            "bets": 58,
+            "events_with_bets": 32,
+            "profit": 4.3077803577655,
+            "roi": 0.07427207513388794,
+            "actual_win_rate": 0.6551724137931034,
+            "mean_model_probability": 0.7193481349264327,
+            "mean_market_probability": 0.6033603488152186,
+            "mean_edge": 0.11598778611121405,
+            "actual_minus_market": 0.05181206497788482
+          },
+          "score": [
+            4.3077803577655,
+            0.07427207513388794,
+            0.05181206497788482,
+            58
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.08,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 252,
+            "bets": 110,
+            "events_with_bets": 43,
+            "profit": 3.748908200767265,
+            "roi": 0.03408098364333877,
+            "actual_win_rate": 0.509090909090909,
+            "mean_model_probability": 0.66933461775056,
+            "mean_market_probability": 0.47803224164304686,
+            "mean_edge": 0.19130237610751305,
+            "actual_minus_market": 0.031058667447862176
+          },
+          "score": [
+            3.748908200767265,
+            0.03408098364333877,
+            0.031058667447862176,
+            110
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.08,
+            "min_probability": 0.65,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 252,
+            "bets": 35,
+            "events_with_bets": 26,
+            "profit": 1.3102013128186099,
+            "roi": 0.037434323223388855,
+            "actual_win_rate": 0.5714285714285714,
+            "mean_model_probability": 0.7216591858219048,
+            "mean_market_probability": 0.5586336875171972,
+            "mean_edge": 0.1630254983047074,
+            "actual_minus_market": 0.012794883911374177
+          },
+          "score": [
+            1.3102013128186099,
+            0.037434323223388855,
+            0.012794883911374177,
+            35
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.08,
+            "min_probability": 0.65,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 252,
+            "bets": 35,
+            "events_with_bets": 26,
+            "profit": 1.3102013128186099,
+            "roi": 0.037434323223388855,
+            "actual_win_rate": 0.5714285714285714,
+            "mean_model_probability": 0.7216591858219048,
+            "mean_market_probability": 0.5586336875171972,
+            "mean_edge": 0.1630254983047074,
+            "actual_minus_market": 0.012794883911374177
+          },
+          "score": [
+            1.3102013128186099,
+            0.037434323223388855,
+            0.012794883911374177,
+            35
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.05,
+            "min_probability": 0.65,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 252,
+            "bets": 43,
+            "events_with_bets": 29,
+            "profit": 0.7637306624742162,
+            "roi": 0.017761178197074793,
+            "actual_win_rate": 0.5813953488372093,
+            "mean_model_probability": 0.722494263824933,
+            "mean_market_probability": 0.5781473399846583,
+            "mean_edge": 0.1443469238402746,
+            "actual_minus_market": 0.003248008852551054
+          },
+          "score": [
+            0.7637306624742162,
+            0.017761178197074793,
+            0.003248008852551054,
+            43
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.05,
+            "min_probability": 0.65,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 252,
+            "bets": 43,
+            "events_with_bets": 29,
+            "profit": 0.7637306624742162,
+            "roi": 0.017761178197074793,
+            "actual_win_rate": 0.5813953488372093,
+            "mean_model_probability": 0.722494263824933,
+            "mean_market_probability": 0.5781473399846583,
+            "mean_edge": 0.1443469238402746,
+            "actual_minus_market": 0.003248008852551054
+          },
+          "score": [
+            0.7637306624742162,
+            0.017761178197074793,
+            0.003248008852551054,
+            43
+          ]
+        }
+      ]
+    },
+    {
+      "fold_index": 3,
+      "dev_start": "2023-02-04",
+      "dev_end": "2024-02-03",
+      "holdout_start": "2024-02-04",
+      "holdout_end": "2024-08-03",
+      "selected_policy": {
+        "model_label": "baseline_default",
+        "min_edge": 0.08,
+        "min_probability": 0.5,
+        "max_underdog_odds": null
+      },
+      "selected_policy_json": "{\"max_underdog_odds\": null, \"min_edge\": 0.08, \"min_probability\": 0.5, \"model_label\": \"baseline_default\"}",
+      "dev_summary": {
+        "fights": 248,
+        "bets": 107,
+        "events_with_bets": 41,
+        "profit": 7.759884990007401,
+        "roi": 0.0725222896262374,
+        "actual_win_rate": 0.5046728971962616,
+        "mean_model_probability": 0.6632597787627958,
+        "mean_market_probability": 0.4579825361551878,
+        "mean_edge": 0.20527724260760802,
+        "actual_minus_market": 0.046690361041073825
+      },
+      "holdout_summary": {
+        "fights": 165,
+        "bets": 65,
+        "events_with_bets": 22,
+        "profit": -10.194577244206553,
+        "roi": -0.15683964991087004,
+        "actual_win_rate": 0.4461538461538462,
+        "mean_model_probability": 0.6674232200603775,
+        "mean_market_probability": 0.4610436552496311,
+        "mean_edge": 0.2063795648107463,
+        "actual_minus_market": -0.014889809095784912
+      },
+      "top_dev_candidates": [
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.08,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 248,
+            "bets": 107,
+            "events_with_bets": 41,
+            "profit": 7.759884990007401,
+            "roi": 0.0725222896262374,
+            "actual_win_rate": 0.5046728971962616,
+            "mean_model_probability": 0.6632597787627958,
+            "mean_market_probability": 0.4579825361551878,
+            "mean_edge": 0.20527724260760802,
+            "actual_minus_market": 0.046690361041073825
+          },
+          "score": [
+            7.759884990007401,
+            0.0725222896262374,
+            0.046690361041073825,
+            107
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.02,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 248,
+            "bets": 142,
+            "events_with_bets": 44,
+            "profit": 6.944914730992268,
+            "roi": 0.04890785021825541,
+            "actual_win_rate": 0.5422535211267606,
+            "mean_model_probability": 0.6712431696096779,
+            "mean_market_probability": 0.5034498025136139,
+            "mean_edge": 0.16779336709606402,
+            "actual_minus_market": 0.03880371861314669
+          },
+          "score": [
+            6.944914730992268,
+            0.04890785021825541,
+            0.03880371861314669,
+            142
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.0,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 248,
+            "bets": 160,
+            "events_with_bets": 44,
+            "profit": 6.46648377692572,
+            "roi": 0.04041552360578575,
+            "actual_win_rate": 0.55625,
+            "mean_model_probability": 0.6682134397107816,
+            "mean_market_probability": 0.5183302332096345,
+            "mean_edge": 0.14988320650114711,
+            "actual_minus_market": 0.03791976679036557
+          },
+          "score": [
+            6.46648377692572,
+            0.04041552360578575,
+            0.03791976679036557,
+            160
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.55,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 248,
+            "bets": 105,
+            "events_with_bets": 42,
+            "profit": 5.647730513021937,
+            "roi": 0.053787909647827974,
+            "actual_win_rate": 0.5523809523809524,
+            "mean_model_probability": 0.6636938633296017,
+            "mean_market_probability": 0.5177553005375348,
+            "mean_edge": 0.14593856279206674,
+            "actual_minus_market": 0.03462565184341759
+          },
+          "score": [
+            5.647730513021937,
+            0.053787909647827974,
+            0.03462565184341759,
+            105
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.05,
+            "min_probability": 0.55,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 248,
+            "bets": 87,
+            "events_with_bets": 41,
+            "profit": 5.244278201631218,
+            "roi": 0.060279059788864574,
+            "actual_win_rate": 0.5172413793103449,
+            "mean_model_probability": 0.6535668577184628,
+            "mean_market_probability": 0.48524956598809055,
+            "mean_edge": 0.16831729173037224,
+            "actual_minus_market": 0.031991813322254314
+          },
+          "score": [
+            5.244278201631218,
+            0.060279059788864574,
+            0.031991813322254314,
+            87
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.0,
+            "min_probability": 0.55,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 248,
+            "bets": 138,
+            "events_with_bets": 43,
+            "profit": 4.92453572497767,
+            "roi": 0.03568504148534543,
+            "actual_win_rate": 0.5797101449275363,
+            "mean_model_probability": 0.6910612089894405,
+            "mean_market_probability": 0.5370581476372593,
+            "mean_edge": 0.15400306135218114,
+            "actual_minus_market": 0.04265199729027691
+          },
+          "score": [
+            4.92453572497767,
+            0.03568504148534543,
+            0.04265199729027691,
+            138
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.16,
+            "min_probability": 0.55,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 248,
+            "bets": 38,
+            "events_with_bets": 26,
+            "profit": 4.598137521393335,
+            "roi": 0.12100361898403514,
+            "actual_win_rate": 0.42105263157894735,
+            "mean_model_probability": 0.6430964625237695,
+            "mean_market_probability": 0.39015033023256757,
+            "mean_edge": 0.25294613229120183,
+            "actual_minus_market": 0.03090230134637978
+          },
+          "score": [
+            4.598137521393335,
+            0.12100361898403514,
+            0.03090230134637978,
+            38
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.65,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 248,
+            "bets": 55,
+            "events_with_bets": 32,
+            "profit": 4.423307090536133,
+            "roi": 0.08042376528247513,
+            "actual_win_rate": 0.6545454545454545,
+            "mean_model_probability": 0.7234887171424855,
+            "mean_market_probability": 0.5982734736534833,
+            "mean_edge": 0.1252152434890025,
+            "actual_minus_market": 0.056271980891971274
+          },
+          "score": [
+            4.423307090536133,
+            0.08042376528247513,
+            0.056271980891971274,
+            55
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.65,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 248,
+            "bets": 55,
+            "events_with_bets": 32,
+            "profit": 4.423307090536133,
+            "roi": 0.08042376528247513,
+            "actual_win_rate": 0.6545454545454545,
+            "mean_model_probability": 0.7234887171424855,
+            "mean_market_probability": 0.5982734736534833,
+            "mean_edge": 0.1252152434890025,
+            "actual_minus_market": 0.056271980891971274
+          },
+          "score": [
+            4.423307090536133,
+            0.08042376528247513,
+            0.056271980891971274,
+            55
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.08,
+            "min_probability": 0.5,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 248,
+            "bets": 105,
+            "events_with_bets": 41,
+            "profit": 4.3598849900074015,
+            "roi": 0.04152271419054668,
+            "actual_win_rate": 0.5047619047619047,
+            "mean_model_probability": 0.6654758556748838,
+            "mean_market_probability": 0.4627844618904976,
+            "mean_edge": 0.2026913937843861,
+            "actual_minus_market": 0.041977442871407145
+          },
+          "score": [
+            4.3598849900074015,
+            0.04152271419054668,
+            0.041977442871407145,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "fold_index": 4,
+      "dev_start": "2023-08-05",
+      "dev_end": "2024-08-03",
+      "holdout_start": "2024-08-04",
+      "holdout_end": "2025-02-01",
+      "selected_policy": {
+        "model_label": "regularized_lgbm",
+        "min_edge": 0.02,
+        "min_probability": 0.6,
+        "max_underdog_odds": 300.0
+      },
+      "selected_policy_json": "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.02, \"min_probability\": 0.6, \"model_label\": \"regularized_lgbm\"}",
+      "dev_summary": {
+        "fights": 284,
+        "bets": 81,
+        "events_with_bets": 39,
+        "profit": 7.751748514916834,
+        "roi": 0.09570059894959054,
+        "actual_win_rate": 0.6296296296296297,
+        "mean_model_probability": 0.6922970770634678,
+        "mean_market_probability": 0.5455474378680462,
+        "mean_edge": 0.14674963919542167,
+        "actual_minus_market": 0.08408219176158349
+      },
+      "holdout_summary": {
+        "fights": 130,
+        "bets": 32,
+        "events_with_bets": 15,
+        "profit": 2.955275080995044,
+        "roi": 0.09235234628109512,
+        "actual_win_rate": 0.625,
+        "mean_model_probability": 0.6843933385008176,
+        "mean_market_probability": 0.5521952530561105,
+        "mean_edge": 0.13219808544470704,
+        "actual_minus_market": 0.0728047469438895
+      },
+      "top_dev_candidates": [
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.6,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 284,
+            "bets": 81,
+            "events_with_bets": 39,
+            "profit": 7.751748514916834,
+            "roi": 0.09570059894959054,
+            "actual_win_rate": 0.6296296296296297,
+            "mean_model_probability": 0.6922970770634678,
+            "mean_market_probability": 0.5455474378680462,
+            "mean_edge": 0.14674963919542167,
+            "actual_minus_market": 0.08408219176158349
+          },
+          "score": [
+            7.751748514916834,
+            0.09570059894959054,
+            0.08408219176158349,
+            81
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.6,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 284,
+            "bets": 81,
+            "events_with_bets": 39,
+            "profit": 7.751748514916834,
+            "roi": 0.09570059894959054,
+            "actual_win_rate": 0.6296296296296297,
+            "mean_model_probability": 0.6922970770634678,
+            "mean_market_probability": 0.5455474378680462,
+            "mean_edge": 0.14674963919542167,
+            "actual_minus_market": 0.08408219176158349
+          },
+          "score": [
+            7.751748514916834,
+            0.09570059894959054,
+            0.08408219176158349,
+            81
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.05,
+            "min_probability": 0.6,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 284,
+            "bets": 70,
+            "events_with_bets": 37,
+            "profit": 7.165660316351145,
+            "roi": 0.1023665759478735,
+            "actual_win_rate": 0.6142857142857143,
+            "mean_model_probability": 0.6889670337190337,
+            "mean_market_probability": 0.5247194124751366,
+            "mean_edge": 0.16424762124389694,
+            "actual_minus_market": 0.08956630181057768
+          },
+          "score": [
+            7.165660316351145,
+            0.1023665759478735,
+            0.08956630181057768,
+            70
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.05,
+            "min_probability": 0.6,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 284,
+            "bets": 70,
+            "events_with_bets": 37,
+            "profit": 7.165660316351145,
+            "roi": 0.1023665759478735,
+            "actual_win_rate": 0.6142857142857143,
+            "mean_model_probability": 0.6889670337190337,
+            "mean_market_probability": 0.5247194124751366,
+            "mean_edge": 0.16424762124389694,
+            "actual_minus_market": 0.08956630181057768
+          },
+          "score": [
+            7.165660316351145,
+            0.1023665759478735,
+            0.08956630181057768,
+            70
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.65,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 284,
+            "bets": 54,
+            "events_with_bets": 34,
+            "profit": 5.873769999688261,
+            "roi": 0.10877351851274558,
+            "actual_win_rate": 0.6666666666666666,
+            "mean_model_probability": 0.7241001923373497,
+            "mean_market_probability": 0.5750201486770213,
+            "mean_edge": 0.1490800436603285,
+            "actual_minus_market": 0.09164651798964529
+          },
+          "score": [
+            5.873769999688261,
+            0.10877351851274558,
+            0.09164651798964529,
+            54
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.65,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 284,
+            "bets": 54,
+            "events_with_bets": 34,
+            "profit": 5.873769999688261,
+            "roi": 0.10877351851274558,
+            "actual_win_rate": 0.6666666666666666,
+            "mean_model_probability": 0.7241001923373497,
+            "mean_market_probability": 0.5750201486770213,
+            "mean_edge": 0.1490800436603285,
+            "actual_minus_market": 0.09164651798964529
+          },
+          "score": [
+            5.873769999688261,
+            0.10877351851274558,
+            0.09164651798964529,
+            54
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.05,
+            "min_probability": 0.65,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 284,
+            "bets": 46,
+            "events_with_bets": 31,
+            "profit": 5.667582828910926,
+            "roi": 0.12320832236762883,
+            "actual_win_rate": 0.6521739130434783,
+            "mean_model_probability": 0.7199876133920967,
+            "mean_market_probability": 0.5506828935761238,
+            "mean_edge": 0.16930471981597298,
+            "actual_minus_market": 0.1014910194673545
+          },
+          "score": [
+            5.667582828910926,
+            0.12320832236762883,
+            0.1014910194673545,
+            46
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.05,
+            "min_probability": 0.65,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 284,
+            "bets": 46,
+            "events_with_bets": 31,
+            "profit": 5.667582828910926,
+            "roi": 0.12320832236762883,
+            "actual_win_rate": 0.6521739130434783,
+            "mean_model_probability": 0.7199876133920967,
+            "mean_market_probability": 0.5506828935761238,
+            "mean_edge": 0.16930471981597298,
+            "actual_minus_market": 0.1014910194673545
+          },
+          "score": [
+            5.667582828910926,
+            0.12320832236762883,
+            0.1014910194673545,
+            46
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.0,
+            "min_probability": 0.6,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 284,
+            "bets": 93,
+            "events_with_bets": 41,
+            "profit": 5.479218471298729,
+            "roi": 0.058916327648373436,
+            "actual_win_rate": 0.6236559139784946,
+            "mean_model_probability": 0.6918333789728524,
+            "mean_market_probability": 0.5631471602445715,
+            "mean_edge": 0.1286862187282809,
+            "actual_minus_market": 0.06050875373392317
+          },
+          "score": [
+            5.479218471298729,
+            0.058916327648373436,
+            0.06050875373392317,
+            93
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.0,
+            "min_probability": 0.6,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 284,
+            "bets": 93,
+            "events_with_bets": 41,
+            "profit": 5.479218471298729,
+            "roi": 0.058916327648373436,
+            "actual_win_rate": 0.6236559139784946,
+            "mean_model_probability": 0.6918333789728524,
+            "mean_market_probability": 0.5631471602445715,
+            "mean_edge": 0.1286862187282809,
+            "actual_minus_market": 0.06050875373392317
+          },
+          "score": [
+            5.479218471298729,
+            0.058916327648373436,
+            0.06050875373392317,
+            93
+          ]
+        }
+      ]
+    },
+    {
+      "fold_index": 5,
+      "dev_start": "2024-02-03",
+      "dev_end": "2025-02-01",
+      "holdout_start": "2025-02-02",
+      "holdout_end": "2025-08-02",
+      "selected_policy": {
+        "model_label": "baseline_default",
+        "min_edge": 0.02,
+        "min_probability": 0.55,
+        "max_underdog_odds": 300.0
+      },
+      "selected_policy_json": "{\"max_underdog_odds\": 300.0, \"min_edge\": 0.02, \"min_probability\": 0.55, \"model_label\": \"baseline_default\"}",
+      "dev_summary": {
+        "fights": 299,
+        "bets": 127,
+        "events_with_bets": 41,
+        "profit": 11.48215224348694,
+        "roi": 0.09041064758651134,
+        "actual_win_rate": 0.6141732283464567,
+        "mean_model_probability": 0.6945723644617253,
+        "mean_market_probability": 0.5298949411419366,
+        "mean_edge": 0.16467742331978863,
+        "actual_minus_market": 0.08427828720452013
+      },
+      "holdout_summary": {
+        "fights": 150,
+        "bets": 64,
+        "events_with_bets": 23,
+        "profit": 6.267731079615704,
+        "roi": 0.09793329811899537,
+        "actual_win_rate": 0.59375,
+        "mean_model_probability": 0.680898597466472,
+        "mean_market_probability": 0.531081130179047,
+        "mean_edge": 0.149817467287425,
+        "actual_minus_market": 0.06266886982095299
+      },
+      "top_dev_candidates": [
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.02,
+            "min_probability": 0.55,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 299,
+            "bets": 127,
+            "events_with_bets": 41,
+            "profit": 11.48215224348694,
+            "roi": 0.09041064758651134,
+            "actual_win_rate": 0.6141732283464567,
+            "mean_model_probability": 0.6945723644617253,
+            "mean_market_probability": 0.5298949411419366,
+            "mean_edge": 0.16467742331978863,
+            "actual_minus_market": 0.08427828720452013
+          },
+          "score": [
+            11.48215224348694,
+            0.09041064758651134,
+            0.08427828720452013,
+            127
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.02,
+            "min_probability": 0.55,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 299,
+            "bets": 129,
+            "events_with_bets": 41,
+            "profit": 9.482152243486938,
+            "roi": 0.07350505615106154,
+            "actual_win_rate": 0.6046511627906976,
+            "mean_model_probability": 0.6927675816052693,
+            "mean_market_probability": 0.5250446156628645,
+            "mean_edge": 0.16772296594240468,
+            "actual_minus_market": 0.0796065471278331
+          },
+          "score": [
+            9.482152243486938,
+            0.07350505615106154,
+            0.0796065471278331,
+            129
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.6,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 299,
+            "bets": 78,
+            "events_with_bets": 36,
+            "profit": 8.621968047121944,
+            "roi": 0.11053805188617878,
+            "actual_win_rate": 0.6410256410256411,
+            "mean_model_probability": 0.6871078125212128,
+            "mean_market_probability": 0.5469998265797068,
+            "mean_edge": 0.14010798594150597,
+            "actual_minus_market": 0.09402581444593427
+          },
+          "score": [
+            8.621968047121944,
+            0.11053805188617878,
+            0.09402581444593427,
+            78
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.05,
+            "min_probability": 0.55,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 299,
+            "bets": 108,
+            "events_with_bets": 39,
+            "profit": 8.350939725458735,
+            "roi": 0.07732351597646978,
+            "actual_win_rate": 0.5833333333333334,
+            "mean_model_probability": 0.6946965062287994,
+            "mean_market_probability": 0.5070566939932282,
+            "mean_edge": 0.18763981223557127,
+            "actual_minus_market": 0.0762766393401052
+          },
+          "score": [
+            8.350939725458735,
+            0.07732351597646978,
+            0.0762766393401052,
+            108
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.0,
+            "min_probability": 0.6,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 299,
+            "bets": 94,
+            "events_with_bets": 39,
+            "profit": 8.320855667015698,
+            "roi": 0.08851974113846486,
+            "actual_win_rate": 0.648936170212766,
+            "mean_model_probability": 0.6857546241327324,
+            "mean_market_probability": 0.5681137913357506,
+            "mean_edge": 0.1176408327969817,
+            "actual_minus_market": 0.08082237887701538
+          },
+          "score": [
+            8.320855667015698,
+            0.08851974113846486,
+            0.08082237887701538,
+            94
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.0,
+            "min_probability": 0.55,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 299,
+            "bets": 147,
+            "events_with_bets": 42,
+            "profit": 7.788534497195774,
+            "roi": 0.052983227872080096,
+            "actual_win_rate": 0.6122448979591837,
+            "mean_model_probability": 0.6943999747968111,
+            "mean_market_probability": 0.5508217907862354,
+            "mean_edge": 0.14357818401057562,
+            "actual_minus_market": 0.0614231071729483
+          },
+          "score": [
+            7.788534497195774,
+            0.052983227872080096,
+            0.0614231071729483,
+            147
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.02,
+            "min_probability": 0.6,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 299,
+            "bets": 79,
+            "events_with_bets": 36,
+            "profit": 7.621968047121944,
+            "roi": 0.09648060819141702,
+            "actual_win_rate": 0.6329113924050633,
+            "mean_model_probability": 0.6871901260945807,
+            "mean_market_probability": 0.5430390426417808,
+            "mean_edge": 0.14415108345279978,
+            "actual_minus_market": 0.08987234976328251
+          },
+          "score": [
+            7.621968047121944,
+            0.09648060819141702,
+            0.08987234976328251,
+            79
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.0,
+            "min_probability": 0.6,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 299,
+            "bets": 95,
+            "events_with_bets": 39,
+            "profit": 7.320855667015698,
+            "roi": 0.07706163860016524,
+            "actual_win_rate": 0.6421052631578947,
+            "mean_model_probability": 0.6858373184557277,
+            "mean_market_probability": 0.5645978345373065,
+            "mean_edge": 0.121239483918421,
+            "actual_minus_market": 0.07750742862058824
+          },
+          "score": [
+            7.320855667015698,
+            0.07706163860016524,
+            0.07750742862058824,
+            95
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.02,
+            "min_probability": 0.6,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 299,
+            "bets": 109,
+            "events_with_bets": 39,
+            "profit": 7.114029408114048,
+            "roi": 0.065266324845083,
+            "actual_win_rate": 0.6238532110091743,
+            "mean_model_probability": 0.713848997291425,
+            "mean_market_probability": 0.5507250369539418,
+            "mean_edge": 0.16312396033748322,
+            "actual_minus_market": 0.07312817405523253
+          },
+          "score": [
+            7.114029408114048,
+            0.065266324845083,
+            0.07312817405523253,
+            109
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.02,
+            "min_probability": 0.6,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 299,
+            "bets": 109,
+            "events_with_bets": 39,
+            "profit": 7.114029408114048,
+            "roi": 0.065266324845083,
+            "actual_win_rate": 0.6238532110091743,
+            "mean_model_probability": 0.713848997291425,
+            "mean_market_probability": 0.5507250369539418,
+            "mean_edge": 0.16312396033748322,
+            "actual_minus_market": 0.07312817405523253
+          },
+          "score": [
+            7.114029408114048,
+            0.065266324845083,
+            0.07312817405523253,
+            109
+          ]
+        }
+      ]
+    },
+    {
+      "fold_index": 6,
+      "dev_start": "2024-08-03",
+      "dev_end": "2025-08-02",
+      "holdout_start": "2025-08-03",
+      "holdout_end": "2026-01-31",
+      "selected_policy": {
+        "model_label": "regularized_lgbm",
+        "min_edge": 0.0,
+        "min_probability": 0.5,
+        "max_underdog_odds": null
+      },
+      "selected_policy_json": "{\"max_underdog_odds\": null, \"min_edge\": 0.0, \"min_probability\": 0.5, \"model_label\": \"regularized_lgbm\"}",
+      "dev_summary": {
+        "fights": 289,
+        "bets": 135,
+        "events_with_bets": 42,
+        "profit": 26.793521227490018,
+        "roi": 0.19847052761103717,
+        "actual_win_rate": 0.5925925925925926,
+        "mean_model_probability": 0.6316104883607448,
+        "mean_market_probability": 0.483636494181685,
+        "mean_edge": 0.14797399417905996,
+        "actual_minus_market": 0.10895609841090759
+      },
+      "holdout_summary": {
+        "fights": 130,
+        "bets": 62,
+        "events_with_bets": 18,
+        "profit": 2.8846124026581825,
+        "roi": 0.046526006494486814,
+        "actual_win_rate": 0.532258064516129,
+        "mean_model_probability": 0.6282509393027905,
+        "mean_market_probability": 0.509853493403089,
+        "mean_edge": 0.11839744589970139,
+        "actual_minus_market": 0.02240457111303995
+      },
+      "top_dev_candidates": [
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.0,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 289,
+            "bets": 135,
+            "events_with_bets": 42,
+            "profit": 26.793521227490018,
+            "roi": 0.19847052761103717,
+            "actual_win_rate": 0.5925925925925926,
+            "mean_model_probability": 0.6316104883607448,
+            "mean_market_probability": 0.483636494181685,
+            "mean_edge": 0.14797399417905996,
+            "actual_minus_market": 0.10895609841090759
+          },
+          "score": [
+            26.793521227490018,
+            0.19847052761103717,
+            0.10895609841090759,
+            135
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.0,
+            "min_probability": 0.5,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 289,
+            "bets": 126,
+            "events_with_bets": 42,
+            "profit": 25.943521227490017,
+            "roi": 0.20590096212293665,
+            "actual_win_rate": 0.6190476190476191,
+            "mean_model_probability": 0.6358722781316085,
+            "mean_market_probability": 0.504048939667897,
+            "mean_edge": 0.13182333846371153,
+            "actual_minus_market": 0.11499867937972208
+          },
+          "score": [
+            25.943521227490017,
+            0.20590096212293665,
+            0.11499867937972208,
+            126
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.05,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 289,
+            "bets": 130,
+            "events_with_bets": 41,
+            "profit": 25.790003946265177,
+            "roi": 0.19838464574050135,
+            "actual_win_rate": 0.5615384615384615,
+            "mean_model_probability": 0.6488607397790168,
+            "mean_market_probability": 0.45602544013741403,
+            "mean_edge": 0.19283529964160276,
+            "actual_minus_market": 0.10551302140104751
+          },
+          "score": [
+            25.790003946265177,
+            0.19838464574050135,
+            0.10551302140104751,
+            130
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.0,
+            "min_probability": 0.55,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 289,
+            "bets": 111,
+            "events_with_bets": 41,
+            "profit": 25.546552889724232,
+            "roi": 0.23014912513265073,
+            "actual_win_rate": 0.6306306306306306,
+            "mean_model_probability": 0.6542805289776086,
+            "mean_market_probability": 0.5062901780095902,
+            "mean_edge": 0.1479903509680184,
+            "actual_minus_market": 0.12434045262104043
+          },
+          "score": [
+            25.546552889724232,
+            0.23014912513265073,
+            0.12434045262104043,
+            111
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.0,
+            "min_probability": 0.55,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 289,
+            "bets": 107,
+            "events_with_bets": 41,
+            "profit": 25.24655288972424,
+            "roi": 0.23594909242732934,
+            "actual_win_rate": 0.6448598130841121,
+            "mean_model_probability": 0.6548908024258515,
+            "mean_market_probability": 0.5172005958814946,
+            "mean_edge": 0.1376902065443569,
+            "actual_minus_market": 0.12765921720261753
+          },
+          "score": [
+            25.24655288972424,
+            0.23594909242732934,
+            0.12765921720261753,
+            107
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.05,
+            "min_probability": 0.55,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 289,
+            "bets": 102,
+            "events_with_bets": 39,
+            "profit": 25.100003946265176,
+            "roi": 0.24607847006142328,
+            "actual_win_rate": 0.6274509803921569,
+            "mean_model_probability": 0.6816989726860021,
+            "mean_market_probability": 0.48425310627976814,
+            "mean_edge": 0.19744586640623404,
+            "actual_minus_market": 0.1431978741123887
+          },
+          "score": [
+            25.100003946265176,
+            0.24607847006142328,
+            0.1431978741123887,
+            102
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.05,
+            "min_probability": 0.55,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 289,
+            "bets": 98,
+            "events_with_bets": 39,
+            "profit": 24.80000394626518,
+            "roi": 0.25306126475780794,
+            "actual_win_rate": 0.6428571428571429,
+            "mean_model_probability": 0.6848630891794542,
+            "mean_market_probability": 0.495392030213197,
+            "mean_edge": 0.18947105896625702,
+            "actual_minus_market": 0.1474651126439459
+          },
+          "score": [
+            24.80000394626518,
+            0.25306126475780794,
+            0.1474651126439459,
+            98
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.12,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 289,
+            "bets": 85,
+            "events_with_bets": 37,
+            "profit": 23.820945842607472,
+            "roi": 0.28024642167773495,
+            "actual_win_rate": 0.5058823529411764,
+            "mean_model_probability": 0.6393140381955051,
+            "mean_market_probability": 0.3869860745393673,
+            "mean_edge": 0.25232796365613774,
+            "actual_minus_market": 0.11889627840180916
+          },
+          "score": [
+            23.820945842607472,
+            0.28024642167773495,
+            0.11889627840180916,
+            85
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.05,
+            "min_probability": 0.6,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 289,
+            "bets": 80,
+            "events_with_bets": 36,
+            "profit": 23.727950862736684,
+            "roi": 0.2965993857842085,
+            "actual_win_rate": 0.6875,
+            "mean_model_probability": 0.711009488354067,
+            "mean_market_probability": 0.520142867679972,
+            "mean_edge": 0.190866620674095,
+            "actual_minus_market": 0.16735713232002802
+          },
+          "score": [
+            23.727950862736684,
+            0.2965993857842085,
+            0.16735713232002802,
+            80
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.08,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 289,
+            "bets": 103,
+            "events_with_bets": 39,
+            "profit": 23.53260539338983,
+            "roi": 0.22847189702320223,
+            "actual_win_rate": 0.5242718446601942,
+            "mean_model_probability": 0.6437044573589897,
+            "mean_market_probability": 0.41770448619698564,
+            "mean_edge": 0.22599997116200396,
+            "actual_minus_market": 0.10656735846320853
+          },
+          "score": [
+            23.53260539338983,
+            0.22847189702320223,
+            0.10656735846320853,
+            103
+          ]
+        }
+      ]
+    },
+    {
+      "fold_index": 7,
+      "dev_start": "2025-02-01",
+      "dev_end": "2026-01-31",
+      "holdout_start": "2026-02-01",
+      "holdout_end": "2026-06-27",
+      "selected_policy": {
+        "model_label": "baseline_default",
+        "min_edge": 0.12,
+        "min_probability": 0.5,
+        "max_underdog_odds": null
+      },
+      "selected_policy_json": "{\"max_underdog_odds\": null, \"min_edge\": 0.12, \"min_probability\": 0.5, \"model_label\": \"baseline_default\"}",
+      "dev_summary": {
+        "fights": 287,
+        "bets": 72,
+        "events_with_bets": 33,
+        "profit": 25.012082599343998,
+        "roi": 0.347390036102,
+        "actual_win_rate": 0.5416666666666666,
+        "mean_model_probability": 0.643412247848251,
+        "mean_market_probability": 0.39528548338682734,
+        "mean_edge": 0.2481267644614237,
+        "actual_minus_market": 0.1463811832798393
+      },
+      "holdout_summary": {
+        "fights": 129,
+        "bets": 45,
+        "events_with_bets": 19,
+        "profit": -2.5457704011307105,
+        "roi": -0.056572675580682456,
+        "actual_win_rate": 0.4444444444444444,
+        "mean_model_probability": 0.6648271864238913,
+        "mean_market_probability": 0.43199063806687366,
+        "mean_edge": 0.2328365483570176,
+        "actual_minus_market": 0.012453806377570764
+      },
+      "top_dev_candidates": [
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.12,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 287,
+            "bets": 72,
+            "events_with_bets": 33,
+            "profit": 25.012082599343998,
+            "roi": 0.347390036102,
+            "actual_win_rate": 0.5416666666666666,
+            "mean_model_probability": 0.643412247848251,
+            "mean_market_probability": 0.39528548338682734,
+            "mean_edge": 0.2481267644614237,
+            "actual_minus_market": 0.1463811832798393
+          },
+          "score": [
+            25.012082599343998,
+            0.347390036102,
+            0.1463811832798393,
+            72
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.16,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 287,
+            "bets": 51,
+            "events_with_bets": 24,
+            "profit": 24.15925773006188,
+            "roi": 0.4737109358835663,
+            "actual_win_rate": 0.5490196078431373,
+            "mean_model_probability": 0.6131587340715389,
+            "mean_market_probability": 0.35630585372674434,
+            "mean_edge": 0.25685288034479453,
+            "actual_minus_market": 0.19271375411639297
+          },
+          "score": [
+            24.15925773006188,
+            0.4737109358835663,
+            0.19271375411639297,
+            51
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.05,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 287,
+            "bets": 109,
+            "events_with_bets": 40,
+            "profit": 24.137826309059538,
+            "roi": 0.22144794778953705,
+            "actual_win_rate": 0.5596330275229358,
+            "mean_model_probability": 0.6456585699673079,
+            "mean_market_probability": 0.45459206151628867,
+            "mean_edge": 0.19106650845101913,
+            "actual_minus_market": 0.10504096600664709
+          },
+          "score": [
+            24.137826309059538,
+            0.22144794778953705,
+            0.10504096600664709,
+            109
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.08,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 287,
+            "bets": 88,
+            "events_with_bets": 37,
+            "profit": 24.038590511869717,
+            "roi": 0.2731658012712468,
+            "actual_win_rate": 0.5454545454545454,
+            "mean_model_probability": 0.6447847805241197,
+            "mean_market_probability": 0.4230321021473115,
+            "mean_edge": 0.22175267837680818,
+            "actual_minus_market": 0.1224224433072339
+          },
+          "score": [
+            24.038590511869717,
+            0.2731658012712468,
+            0.1224224433072339,
+            88
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.08,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 287,
+            "bets": 83,
+            "events_with_bets": 36,
+            "profit": 22.090000642668283,
+            "roi": 0.26614458605624436,
+            "actual_win_rate": 0.5301204819277109,
+            "mean_model_probability": 0.6132562612779368,
+            "mean_market_probability": 0.4104608940563261,
+            "mean_edge": 0.2027953672216107,
+            "actual_minus_market": 0.11965958787138481
+          },
+          "score": [
+            22.090000642668283,
+            0.26614458605624436,
+            0.11965958787138481,
+            83
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.08,
+            "min_probability": 0.55,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 287,
+            "bets": 74,
+            "events_with_bets": 36,
+            "profit": 22.038590511869717,
+            "roi": 0.29781879070094214,
+            "actual_win_rate": 0.5945945945945946,
+            "mean_model_probability": 0.6668253974048218,
+            "mean_market_probability": 0.4435404493954385,
+            "mean_edge": 0.22328494800938345,
+            "actual_minus_market": 0.1510541451991561
+          },
+          "score": [
+            22.038590511869717,
+            0.29781879070094214,
+            0.1510541451991561,
+            74
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.16,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 287,
+            "bets": 60,
+            "events_with_bets": 30,
+            "profit": 21.95558070688479,
+            "roi": 0.3659263451147465,
+            "actual_win_rate": 0.5166666666666667,
+            "mean_model_probability": 0.6458799844290684,
+            "mean_market_probability": 0.37659664503196716,
+            "mean_edge": 0.2692833393971013,
+            "actual_minus_market": 0.14007002163469956
+          },
+          "score": [
+            21.95558070688479,
+            0.3659263451147465,
+            0.14007002163469956,
+            60
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "baseline_default",
+            "min_edge": 0.05,
+            "min_probability": 0.55,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 287,
+            "bets": 89,
+            "events_with_bets": 38,
+            "profit": 21.857826309059533,
+            "roi": 0.24559355403437677,
+            "actual_win_rate": 0.6067415730337079,
+            "mean_model_probability": 0.67234659153879,
+            "mean_market_probability": 0.4761573363499419,
+            "mean_edge": 0.1961892551888481,
+            "actual_minus_market": 0.130584236683766
+          },
+          "score": [
+            21.857826309059533,
+            0.24559355403437677,
+            0.130584236683766,
+            89
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.16,
+            "min_probability": 0.5,
+            "max_underdog_odds": 300.0
+          },
+          "summary": {
+            "fights": 287,
+            "bets": 44,
+            "events_with_bets": 23,
+            "profit": 21.309257730061887,
+            "roi": 0.48430131204686105,
+            "actual_win_rate": 0.5909090909090909,
+            "mean_model_probability": 0.6213865035522776,
+            "mean_market_probability": 0.3807464339981651,
+            "mean_edge": 0.24064006955411255,
+            "actual_minus_market": 0.21016265691092584
+          },
+          "score": [
+            21.309257730061887,
+            0.48430131204686105,
+            0.21016265691092584,
+            44
+          ]
+        },
+        {
+          "policy": {
+            "model_label": "regularized_lgbm",
+            "min_edge": 0.0,
+            "min_probability": 0.5,
+            "max_underdog_odds": null
+          },
+          "summary": {
+            "fights": 287,
+            "bets": 137,
+            "events_with_bets": 41,
+            "profit": 20.84867606511502,
+            "roi": 0.15218011726361327,
+            "actual_win_rate": 0.5620437956204379,
+            "mean_model_probability": 0.6240000476488071,
+            "mean_market_probability": 0.4858776176836652,
+            "mean_edge": 0.13812242996514185,
+            "actual_minus_market": 0.07616617793677272
+          },
+          "score": [
+            20.84867606511502,
+            0.15218011726361327,
+            0.07616617793677272,
+            137
+          ]
+        }
+      ]
+    }
+  ],
+  "skipped_folds": []
+}
