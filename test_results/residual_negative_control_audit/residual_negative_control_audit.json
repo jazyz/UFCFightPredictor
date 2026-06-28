@@ -1,0 +1,84 @@
+{
+  "variant": "market_plus_regularized_lgbm",
+  "prediction_path": "test_results/market_residual_meta_audit/holdout_meta_predictions.csv",
+  "fights": 704,
+  "iterations": 20000,
+  "seed": 20260628,
+  "fixed_controls": {
+    "observed": {
+      "log_loss": 0.5978903895335758,
+      "market_minus_candidate_log_loss": 0.002993285251899347
+    },
+    "market_only": {
+      "log_loss": 0.6008836747854751,
+      "market_minus_candidate_log_loss": 0.0
+    },
+    "flipped_residual": {
+      "log_loss": 0.6146271226052398,
+      "market_minus_candidate_log_loss": -0.013743447819764665
+    },
+    "half_residual": {
+      "log_loss": 0.5978574501583388,
+      "market_minus_candidate_log_loss": 0.003026224627136309
+    },
+    "one_and_half_residual": {
+      "log_loss": 0.601876705084779,
+      "market_minus_candidate_log_loss": -0.0009930302993038653
+    }
+  },
+  "permutation_controls": {
+    "global": {
+      "iterations": 20000,
+      "null_mean_delta": -0.005650485341899359,
+      "null_delta_ci_95": [
+        -0.013051902469015303,
+        0.0017313121732199456
+      ],
+      "p_value_observed_or_better": 0.01159942002899855,
+      "prob_null_positive": 0.0671
+    },
+    "within_fold": {
+      "iterations": 20000,
+      "null_mean_delta": -0.00557641548821689,
+      "null_delta_ci_95": [
+        -0.012952221639779308,
+        0.0018313377324073702
+      ],
+      "p_value_observed_or_better": 0.010299485025748713,
+      "prob_null_positive": 0.0686
+    },
+    "within_year": {
+      "iterations": 20000,
+      "null_mean_delta": -0.00581880595801361,
+      "null_delta_ci_95": [
+        -0.013292944894915842,
+        0.0015041197717641027
+      ],
+      "p_value_observed_or_better": 0.009799510024498775,
+      "prob_null_positive": 0.05995
+    }
+  },
+  "year_scores": [
+    {
+      "year": "2024",
+      "fights": 275,
+      "market_log_loss": 0.5799981976485432,
+      "meta_log_loss": 0.5701632907326509,
+      "market_minus_meta_log_loss": 0.009834906915892283
+    },
+    {
+      "year": "2025",
+      "fights": 285,
+      "market_log_loss": 0.6136244678636285,
+      "meta_log_loss": 0.611847829350947,
+      "market_minus_meta_log_loss": 0.0017766385126815054
+    },
+    {
+      "year": "2026",
+      "fights": 144,
+      "market_log_loss": 0.6155529816284094,
+      "meta_log_loss": 0.6232173466329057,
+      "market_minus_meta_log_loss": -0.0076643650044962985
+    }
+  ]
+}

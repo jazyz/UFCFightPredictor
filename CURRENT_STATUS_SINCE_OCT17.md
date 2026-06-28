@@ -478,6 +478,43 @@ Frozen coefficients:
 This gives the probability-edge hypothesis a pre-outcome transform for future
 paper tracking. It still has no post-freeze evidence yet.
 
+### Residual Negative-Control Audit
+
+Residual negative-control audit:
+
+```text
+testing/residual_negative_control_audit.py
+test_results/residual_negative_control_audit/RESIDUAL_NEGATIVE_CONTROL_AUDIT_SUMMARY.md
+```
+
+This audit keeps market probabilities and outcomes fixed, then breaks the
+residual adjustment by sign-flipping or permuting it. The tested variant is
+`market_plus_regularized_lgbm`.
+
+Fixed controls:
+
+| Control | Log Loss | Market - Candidate LL |
+| --- | ---: | ---: |
+| observed residual | 0.5979 | +0.0030 |
+| market only | 0.6009 | 0.0000 |
+| flipped residual | 0.6146 | -0.0137 |
+| half residual | 0.5979 | +0.0030 |
+| 1.5x residual | 0.6019 | -0.0010 |
+
+Permutation controls:
+
+| Control | Null Mean Delta LL | Null 95% Interval | P-value |
+| --- | ---: | --- | ---: |
+| global residual permutation | -0.0057 | -0.0131 to +0.0017 | 0.012 |
+| within-fold residual permutation | -0.0056 | -0.0130 to +0.0018 | 0.010 |
+| within-year residual permutation | -0.0058 | -0.0133 to +0.0015 | 0.010 |
+
+Interpretation: this is a useful positive robustness check. The aligned
+residual beats sign-flipped and permuted controls, which supports a real
+model-after-market probability signal. It still does not prove a live betting
+edge: the 2026 slice is negative, monetized PnL remains weak, and the
+half-strength residual control was slightly better than the observed residual.
+
 ### Residual Meta PnL Audit
 
 Residual meta PnL audit:
@@ -808,6 +845,8 @@ The most honest read:
 - the longer market-blend audit selected pure market probability, not a model
   residual, but the newer residual meta audit finds a small positive
   model-after-market log-loss signal
+- residual negative controls support that signal: sign-flipped residuals lose
+  badly, and residual permutations rarely match the observed log-loss gain
 - nested residual-meta PnL tests are positive across objective sensitivities,
   but their best selection-adjusted market-null p-value is only `0.066`
   before correcting for three inspected objectives
