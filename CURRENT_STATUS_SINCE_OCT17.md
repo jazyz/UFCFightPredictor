@@ -397,6 +397,56 @@ Interpretation: the earlier 15% model / 85% market blend result did not hold
 up on the longer split. On long-history development data, pure market was the
 selected log-loss forecaster.
 
+### Frozen Forward Paper-Tracking Policy
+
+Freeze artifact:
+
+```text
+testing/freeze_forward_policy.py
+test_results/frozen_forward_policy/frozen_forward_policy.md
+test_results/frozen_forward_policy/frozen_forward_policy.json
+```
+
+As of `2026-06-28`, the ROI-objective nested selector has been frozen for
+future paper tracking. It uses the trailing `2025-06-28` to `2026-06-27`
+development window, the same baseline-default and regularized-LGBM long
+ledgers, the existing walk-forward strategy grid, and the same minimum
+development-bet constraint of `35`.
+
+Candidate strategies evaluated: `576`.
+
+Selected frozen strategy:
+
+```json
+{
+  "model_label": "regularized_lgbm",
+  "side_policy": "predicted_winner",
+  "model_weight": 0.7,
+  "min_edge": 0.02,
+  "min_probability": 0.6,
+  "min_kelly": 0.0,
+  "max_underdog_odds": 300.0,
+  "kelly_fraction": 0.05,
+  "max_fraction": 0.05
+}
+```
+
+Development-window evidence:
+
+| Metric | Value |
+| --- | ---: |
+| fights | 298 |
+| bets | 44 |
+| profit | $140.04 |
+| ROI on staked | 38.76% |
+| max drawdown | 3.74% |
+
+Interpretation: this makes the forward test auditable but does not prove edge.
+Future cards should be scored against this policy without changing the model
+candidate set, selection objective, strategy grid, thresholds, or staking
+rules. A real edge claim still requires post-freeze market-null and
+event-bootstrap evidence.
+
 ## Current Bottom Line
 
 The repo is now much better instrumented than it was on Oct 17:
@@ -425,11 +475,11 @@ The most honest read:
 
 Recommendation:
 
-Do not materially increase staking based only on these backtests. Treat the
-ROI-objective nested selector as the current best frozen forward
-paper-tracking candidate. A real edge claim needs future out-of-sample results
-that beat market-null and bootstrap tests after the model params, selection
-objective, strategy grid, and staking policy are frozen.
+Do not materially increase staking based only on these backtests. Use the
+frozen forward artifact above as the current paper-tracking policy. A real edge
+claim needs future out-of-sample results that beat market-null and bootstrap
+tests after the model params, selection objective, strategy grid, and staking
+policy have been frozen.
 
 ## Independent PnL Investigation Update
 
@@ -453,7 +503,8 @@ Important interpretation:
 - high-disagreement underdog-heavy slices can improve PnL, but the sample is
   too thin to claim a proven live edge
 
-Best risk-adjusted policy from the fresh ledger:
+Earlier risk-adjusted policy candidate from the fresh ledger, not the current
+frozen forward policy:
 
 ```text
 min_edge = 0.12
@@ -483,5 +534,5 @@ Operational PnL risk:
 - whichever prediction script ran last controls live betting recommendations
 
 Recommended next implementation step: make `betting_predictions.csv` generation
-single-source and freeze the live betting policy above for forward paper
-tracking before increasing real staking.
+single-source, then paper-score the frozen policy above without increasing real
+staking until post-freeze evidence accumulates.

@@ -138,3 +138,40 @@ For future cards, freeze one policy before seeing new outcomes:
 Track future predictions and bets without changing the selector. A stronger
 edge claim would require future positive results against market-null and
 event-bootstrap tests after this policy is frozen.
+
+Implemented freeze artifact:
+
+```text
+testing/freeze_forward_policy.py
+test_results/frozen_forward_policy/frozen_forward_policy.md
+test_results/frozen_forward_policy/frozen_forward_policy.json
+```
+
+As of `2026-06-28`, the frozen ROI-objective selector uses the trailing
+`2025-06-28` to `2026-06-27` development window and evaluates `576` candidate
+strategies. It selected:
+
+```json
+{
+  "model_label": "regularized_lgbm",
+  "side_policy": "predicted_winner",
+  "model_weight": 0.7,
+  "min_edge": 0.02,
+  "min_probability": 0.6,
+  "min_kelly": 0.0,
+  "max_underdog_odds": 300.0,
+  "kelly_fraction": 0.05,
+  "max_fraction": 0.05
+}
+```
+
+Development-window evidence for the selected frozen policy:
+
+- fights: `298`
+- bets: `44`
+- profit: `$140.04`
+- ROI on staked: `38.76%`
+- max drawdown: `3.74%`
+
+This is only a paper-tracking contract. It should not be treated as stronger
+evidence until future post-freeze bets are scored without changing the policy.
