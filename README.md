@@ -48,7 +48,22 @@ Testing on the fight cards in 2023, we ran 10 separate trials with different tun
 
 ## How to Bet on the Next Fight Card
 
-To bet on the next fight card, we use predict_fights_alpha.py. After pasting the ufcstats.com url into events_url, you can run the file which scrapes all the names of the fighters on the card. Given we have enough data on both fighters (i.e. both fighters are not debuting) their stats will be processed together and put into predict_fights_alpha.csv in the data folder. Next we run ml_alpha.py which trains the model and reads from the csv to make predictions. These results take into account all the selected stats and output winning and losing probabilities for each fighter. These probablities are outputted to predicted_data.json. Finally, we use betting_alpha.py which reads the fighters and the odds of each fight from ufc.com to make bets. After getting the probabilities from predicted_data.json, based on the odds and kelly criterion we can automate which fights we will bet on. It should also be noted that we take the probability closer to the odds in order to reduce error in predicting.
+To paper-score the next fight card, first update the event URL in
+`predict_fights_alpha.py` and run it to regenerate
+`data/predict_fights_alpha.csv`. Given enough data on both fighters, this
+creates the upcoming-card feature rows.
+
+Next run `predict_single_model.py`. It uses the production single-model
+artifacts, writes `data/betting_predictions.csv`, and records prediction
+metadata. The Flask path in `ml_web.py` uses the same shared prediction writer.
+Legacy ensemble predictions are written to `data/ensemble_predictions.csv` and
+do not overwrite the canonical betting predictions file.
+
+Finally run `betting_alpha.py`. It reads UFC.com odds, loads the frozen forward
+policy in `test_results/frozen_forward_policy/frozen_forward_policy.json`, and
+writes paper-tracking suggestions to `data/betting_results.txt`. Current
+backtests are not strong enough to claim a proven live edge, so treat these as
+forward paper-tracking recommendations until post-freeze evidence accumulates.
 
 ## Other Studies
 

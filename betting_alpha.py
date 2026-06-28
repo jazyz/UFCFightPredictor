@@ -1,6 +1,7 @@
 """Generate live betting suggestions for the next fight card."""
 
 import csv
+import json
 import os
 
 import requests
@@ -10,17 +11,14 @@ from utils.name_matching import canonical_name
 
 
 PREDICTIONS_PATH = os.path.join("data", "betting_predictions.csv")
+PREDICTIONS_METADATA_PATH = os.path.join("data", "betting_predictions_metadata.json")
+POLICY_PATH = os.path.join("test_results", "frozen_forward_policy", "frozen_forward_policy.json")
 OUTPUT_PATH = os.path.join("data", "betting_results.txt")
 
 # Paste the UFC.com card link to price here.
 FIGHT_CARD_LINK = "https://www.ufc.com/event/ufc-322"
 
 BANKROLL = 100
-KELLY_FRACTION = 0.05
-MAX_FRACTION = 0.05
-POSITIVE_FLOOR_FRACTION = 0.0
-NEGATIVE_FLAT_FRACTION = 0.0
-MIN_EDGE = 0.02
 
 
 def parse_odds(value):
@@ -39,6 +37,25 @@ def load_predictions(path=PREDICTIONS_PATH):
             blue = canonical_name(row["Blue Fighter"])
             predictions[(red, blue)] = float(row["Probability Win"])
     return predictions
+
+
+def load_prediction_metadata(path=PREDICTIONS_METADATA_PATH):
+    if not os.path.exists(path):
+        return {}
+    with open(path) as file:
+        return json.load(file)
+
+
+def load_frozen_policy(path=POLICY_PATH):
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Missing frozen policy artifact: {path}")
+    with open(path) as file:
+        policy = json.load(file)
+
+    strategy = policy.get("selected_strategy")
+    if not isinstance(strategy, dict):
+        raise ValueError(f"{path} is missing selected_strategy")
+    return policy
 
 
 def get_ml(predictions, p1, p2):
@@ -68,37 +85,105 @@ def odds_to_prob(odds):
     return -odds / (-odds + 100)
 
 
+def devig_market_probabilities(odds1, odds2):
+    raw1 = odds_to_prob(odds1)
+    raw2 = odds_to_prob(odds2)
+    total = raw1 + raw2
+    if total <= 0:
+        return None, None
+    return raw1 / total, raw2 / total
+
+
 def payout(odds, bet):
     if odds < 0:
         return bet * (100 / -odds)
     return bet * (odds / 100)
 
 
-def choose_bet(bankroll, fighter1, fighter2, odds1, odds2, p1):
-    p2 = 1 - p1
-    if p1 >= p2:
-        fighter, odds, probability = fighter1, odds1, p1
-    else:
-        fighter, odds, probability = fighter2, odds2, p2
-
-    market_probability = odds_to_prob(odds)
+def score_side(fighter, odds, model_probability, market_probability, strategy):
+    probability = (
+        strategy["model_weight"] * model_probability
+        + (1.0 - strategy["model_weight"]) * market_probability
+    )
     edge = probability - market_probability
     kelly = kelly_criterion(odds, probability)
+    reasons = []
 
-    if edge < MIN_EDGE:
-        return fighter, odds, probability, market_probability, edge, kelly, 0.0, "edge below threshold"
+    if probability < strategy["min_probability"]:
+        reasons.append("probability below threshold")
+    if edge < strategy["min_edge"]:
+        reasons.append("edge below threshold")
+    if kelly < strategy["min_kelly"]:
+        reasons.append("kelly below threshold")
+    max_underdog_odds = strategy.get("max_underdog_odds")
+    if max_underdog_odds is not None and odds > max_underdog_odds:
+        reasons.append("underdog odds above cap")
 
-    if kelly > 0:
-        bet = bankroll * KELLY_FRACTION * kelly
-        bet = min(bet, MAX_FRACTION * bankroll)
-        bet = max(bet, POSITIVE_FLOOR_FRACTION * bankroll)
-    elif NEGATIVE_FLAT_FRACTION > 0 and kelly > -0.5:
-        bet = bankroll * NEGATIVE_FLAT_FRACTION
+    return {
+        "fighter": fighter,
+        "odds": odds,
+        "model_probability": model_probability,
+        "market_probability": market_probability,
+        "bet_probability": probability,
+        "edge": edge,
+        "kelly": kelly,
+        "no_bet_reason": "; ".join(reasons),
+        "passes_filters": not reasons,
+    }
+
+
+def candidate_sides(fighter1, fighter2, odds1, odds2, p1, strategy):
+    p2 = 1 - p1
+    market1, market2 = devig_market_probabilities(odds1, odds2)
+    if market1 is None or market2 is None:
+        return []
+
+    side_policy = strategy["side_policy"]
+    if side_policy == "predicted_winner":
+        if p1 >= p2:
+            sides = [(fighter1, odds1, p1, market1)]
+        else:
+            sides = [(fighter2, odds2, p2, market2)]
+    elif side_policy == "best_edge":
+        sides = [
+            (fighter1, odds1, p1, market1),
+            (fighter2, odds2, p2, market2),
+        ]
     else:
-        bet = 0.0
-        return fighter, odds, probability, market_probability, edge, kelly, bet, "non-positive kelly"
+        raise ValueError(f"unknown frozen side_policy: {side_policy}")
 
-    return fighter, odds, probability, market_probability, edge, kelly, bet, ""
+    return [
+        score_side(fighter, odds, model_probability, market_probability, strategy)
+        for fighter, odds, model_probability, market_probability in sides
+    ]
+
+
+def choose_bet(bankroll, fighter1, fighter2, odds1, odds2, p1, strategy):
+    scored_sides = candidate_sides(fighter1, fighter2, odds1, odds2, p1, strategy)
+    if not scored_sides:
+        return None
+
+    passing_sides = [side for side in scored_sides if side["passes_filters"]]
+    chosen = max(
+        passing_sides or scored_sides,
+        key=lambda side: (side["edge"], side["kelly"]),
+    )
+
+    bet = 0.0
+    no_bet_reason = chosen["no_bet_reason"]
+    if chosen["passes_filters"] and chosen["kelly"] > 0:
+        bet = bankroll * strategy["kelly_fraction"] * chosen["kelly"]
+        bet = min(bet, strategy["max_fraction"] * bankroll)
+    elif chosen["passes_filters"]:
+        no_bet_reason = "zero stake"
+    else:
+        no_bet_reason = no_bet_reason or "strategy filter"
+
+    return {
+        **chosen,
+        "bet": bet,
+        "no_bet_reason": no_bet_reason,
+    }
 
 
 def write_bet(file, bet, fighter_name, fighter_odds):
@@ -156,13 +241,21 @@ def scrape_card(link):
 
 
 def main():
+    policy = load_frozen_policy()
+    strategy = policy["selected_strategy"]
+    prediction_metadata = load_prediction_metadata()
     predictions = load_predictions()
     fights = scrape_card(FIGHT_CARD_LINK)
 
     with open(OUTPUT_PATH, "w") as output:
         output.write(f"Bankroll: ${BANKROLL:.2f}\n")
         output.write(f"Fight Card: {FIGHT_CARD_LINK}\n")
-        output.write(f"Strategy: {KELLY_FRACTION} Kelly, {MAX_FRACTION} cap, {MIN_EDGE:.1%} min edge\n")
+        output.write(f"Frozen Policy As Of: {policy['as_of_date']}\n")
+        output.write(f"Policy Source: {POLICY_PATH}\n")
+        output.write(f"Prediction Source: {prediction_metadata.get('prediction_source', 'unknown')}\n")
+        output.write(f"Model Train Through: {prediction_metadata.get('model_train_through', 'unknown')}\n")
+        output.write(f"Strategy: {json.dumps(strategy, sort_keys=True)}\n")
+        output.write("Mode: forward paper tracking; not proof of live edge\n")
         output.write("---\n")
 
         for fighter1, fighter2, odds1, odds2 in fights:
@@ -176,27 +269,34 @@ def main():
                 continue
 
             p2 = 1 - p1
-            bet_on, bet_odds, bet_probability, market_probability, edge, kelly, bet, no_bet_reason = choose_bet(
+            selected = choose_bet(
                 BANKROLL,
                 fighter1,
                 fighter2,
                 odds1,
                 odds2,
                 p1,
+                strategy,
             )
+            if selected is None:
+                output.write(f"{fighter1} vs {fighter2}: could not score market probabilities\n---\n")
+                continue
 
             output.write(f"{fighter1}: {odds1} {p1:.3f}\n")
             output.write(f"{fighter2}: {odds2} {p2:.3f}\n")
             output.write(
-                f"Candidate: {bet_on} model={bet_probability:.3f} "
-                f"market={market_probability:.3f} edge={edge:.3f} kelly={kelly:.3f}\n"
+                f"Candidate: {selected['fighter']} "
+                f"model={selected['model_probability']:.3f} "
+                f"market={selected['market_probability']:.3f} "
+                f"policy_prob={selected['bet_probability']:.3f} "
+                f"edge={selected['edge']:.3f} kelly={selected['kelly']:.3f}\n"
             )
 
-            if bet > 0:
-                write_bet(output, bet, bet_on, bet_odds)
+            if selected["bet"] > 0:
+                write_bet(output, selected["bet"], selected["fighter"], selected["odds"])
                 output.write("\n")
             else:
-                output.write(f"{bet_on} (no bet: {no_bet_reason})\n")
+                output.write(f"{selected['fighter']} (no bet: {selected['no_bet_reason']})\n")
             output.write("---\n")
 
 

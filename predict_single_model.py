@@ -1,101 +1,45 @@
-import pandas as pd
-import numpy as np
-import joblib
-import json
-import os
+#!/usr/bin/env python3
+"""Generate upcoming-fight predictions with the production single model."""
 
-from utils.feature_engineering import add_engineered_features
-from utils.feature_sanitization import sanitize_age_features, validate_feature_ranges
+from __future__ import annotations
 
-# Load the single trained model
-def load_model(model_path):
-    return joblib.load(model_path)
-
-# Load preprocessing tools
-def load_preprocessing_tools(label_encoder_path, selected_columns_path):
-    label_encoder = joblib.load(label_encoder_path)
-    with open(selected_columns_path, "r") as file:
-        selected_columns = json.load(file)
-    return label_encoder, selected_columns
-
-# Load LabelEncoder and selected columns for single model
-preprocessing_save_dir = "saved_preprocessing"
-label_encoder, selected_columns = load_preprocessing_tools(
-    os.path.join(preprocessing_save_dir, "label_encoder_single.joblib"),
-    os.path.join(preprocessing_save_dir, "selected_columns_single.json")
+from utils.production_predictions import (
+    generate_single_model_predictions,
+    write_prediction_outputs,
 )
 
-# Load the single model
-model_save_dir = "saved_models"
-model = load_model(os.path.join(model_save_dir, "lgbm_single_model.joblib"))
 
-print("Model loaded successfully!")
+def main():
+    result = generate_single_model_predictions()
+    paths = write_prediction_outputs(result)
+    predictions = result.predictions
 
-# Function to preprocess new data
-def preprocess_data(new_data, selected_columns):
-    return new_data[selected_columns]
+    print("Model loaded successfully!")
+    print(f"\n{'=' * 70}")
+    print("PREDICTIONS FOR UPCOMING FIGHTS")
+    print(f"{'=' * 70}\n")
 
-# Load the prepared fight data
-new_data = add_engineered_features(sanitize_age_features(pd.read_csv('data/predict_fights_alpha.csv')))
-reference_data = add_engineered_features(sanitize_age_features(pd.read_csv('data/detailed_fights.csv')))
-validate_feature_ranges(
-    new_data,
-    reference_data,
-    selected_columns,
-    context='data/predict_fights_alpha.csv',
-)
+    for index, row in predictions.iterrows():
+        red = row["Red Fighter"]
+        blue = row["Blue Fighter"]
+        red_prob = row["Probability Win"]
+        blue_prob = row["Probability Lose"]
+        winner = row["Predicted Winner"]
+        result_label = row["Predicted Result"]
 
-# Preprocess
-X_new = preprocess_data(new_data, selected_columns)
-# Drop both Result and Date to match training features
-X_new = X_new.drop(['Result', 'Date'], axis=1, errors='ignore')
+        print(f"Fight {index + 1}: {red} vs {blue}")
+        print(f"  {red}: {red_prob:.2%} win probability")
+        print(f"  {blue}: {blue_prob:.2%} win probability")
+        print(f"  Predicted Result: {result_label}")
+        print(f"  Predicted Winner: {winner}")
+        print()
 
-# Make predictions
-predicted_probabilities = model.predict_proba(X_new)
-predicted_classes = np.argmax(predicted_probabilities, axis=1)
+    print(f"{'=' * 70}")
+    print(f"Betting predictions saved to: {paths['betting_predictions']}")
+    print(f"Single-model report saved to: {paths['single_model_predictions']}")
+    print(f"Metadata saved to: {paths['betting_predictions_metadata']}")
+    print(f"{'=' * 70}")
 
-# Convert predictions back to original labels
-predicted_labels = label_encoder.inverse_transform(predicted_classes)
 
-# Add predictions to the DataFrame
-new_data['Predicted Result'] = predicted_labels
-
-# Extract relevant columns
-fighter_data = new_data[['Red Fighter', 'Blue Fighter']].copy()
-
-# Add probabilities
-fighter_data['Red Fighter Win Probability'] = predicted_probabilities[:, 1]  # Win (Red)
-fighter_data['Blue Fighter Win Probability'] = predicted_probabilities[:, 0]  # Loss (Blue wins)
-fighter_data['Predicted Result'] = predicted_labels
-fighter_data['Predicted Winner'] = np.where(
-    predicted_labels == 'win',
-    fighter_data['Red Fighter'],
-    fighter_data['Blue Fighter'],
-)
-
-# Save to CSV
-output_file = 'data/single_model_predictions.csv'
-fighter_data.to_csv(output_file, index=False)
-
-print(f"\n{'='*70}")
-print("PREDICTIONS FOR UPCOMING FIGHTS")
-print(f"{'='*70}\n")
-
-for idx, row in fighter_data.iterrows():
-    red = row['Red Fighter']
-    blue = row['Blue Fighter']
-    red_prob = row['Red Fighter Win Probability']
-    blue_prob = row['Blue Fighter Win Probability']
-    winner = row['Predicted Winner']
-    result = row['Predicted Result']
-    
-    print(f"Fight {idx + 1}: {red} vs {blue}")
-    print(f"  → {red}: {red_prob:.2%} win probability")
-    print(f"  → {blue}: {blue_prob:.2%} win probability")
-    print(f"  → Predicted Result: {result}")
-    print(f"  → Predicted Winner: {winner}")
-    print()
-
-print(f"{'='*70}")
-print(f"Results saved to: {output_file}")
-print(f"{'='*70}")
+if __name__ == "__main__":
+    main()

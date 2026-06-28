@@ -526,13 +526,30 @@ Fresh split results for that policy:
 The holdout market-null p-value was about `0.085`, so this should be treated as
 a promising risk-control candidate rather than proof of edge.
 
-Operational PnL risk:
+Operational PnL implementation update:
 
-- `betting_alpha.py` consumes `data/betting_predictions.csv`
-- `ml_web.py` writes that file from the single production model
-- `load_ensemble.py` also writes that file from the older ensemble artifacts
-- whichever prediction script ran last controls live betting recommendations
+- `utils/production_predictions.py` is now the shared production single-model
+  prediction writer
+- `ml_web.py` and `predict_single_model.py` both use that shared writer
+- `load_ensemble.py` now writes `data/ensemble_predictions.csv`, not
+  `data/betting_predictions.csv`
+- `betting_alpha.py` now loads
+  `test_results/frozen_forward_policy/frozen_forward_policy.json` and applies
+  the frozen model/market blend, thresholds, and staking settings
+- `betting_alpha.py` writes paper-tracking output and labels it as not proof of
+  live edge
 
-Recommended next implementation step: make `betting_predictions.csv` generation
-single-source, then paper-score the frozen policy above without increasing real
-staking until post-freeze evidence accumulates.
+Validation:
+
+- compile check passed for `betting_alpha.py`, `ml_web.py`,
+  `predict_single_model.py`, `load_ensemble.py`, and
+  `utils/production_predictions.py`
+- a temporary in-range prediction input generated canonical prediction outputs
+  under `/private/tmp/ufc_forward_prediction_smoke`
+- a direct frozen-policy betting smoke test selected the expected model/market
+  blended candidate and stake
+
+Current operational caveat: the checked-in `data/predict_fights_alpha.csv` is
+stale and fails the live feature-range guard with out-of-training-range values.
+Regenerate that file from the next card before running `predict_single_model.py`
+or `ml_web.py` for forward paper scoring.
