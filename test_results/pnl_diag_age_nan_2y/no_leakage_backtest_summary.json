@@ -1,0 +1,33 @@
+{
+  "start_date": "2024-06-27",
+  "end_date": "2026-06-27",
+  "min_training_date": "2009-01-01",
+  "features_path": "/tmp/ufc_detailed_fights_age_nan.csv",
+  "odds_path": "data/fight_results_with_odds.csv",
+  "param_source": "built-in-defaults",
+  "strict_coverage_messages": [],
+  "feature_data_max_date": "2026-06-27",
+  "odds_data_max_date": "2026-06-27",
+  "models_fit": 84,
+  "predicted_fights": 576,
+  "skipped_fights": 0,
+  "duplicate_feature_keys": 0,
+  "duplicate_odds_keys": 0,
+  "fights_with_odds": 573,
+  "bettable_fights": 573,
+  "accuracy": 0.6423611111111112,
+  "log_loss": 0.6397626163718739,
+  "starting_bankroll": 1000.0,
+  "final_bankroll": 1599.6826848362728,
+  "profit_pct": 59.96826848362728,
+  "strategy": [
+    0.05,
+    0.05,
+    0.005
+  ],
+  "outputs": {
+    "predictions_csv": "test_results/pnl_diag_age_nan_2y/no_leakage_backtest.csv",
+    "summary_json": "test_results/pnl_diag_age_nan_2y/no_leakage_backtest_summary.json"
+  },
+  "skipped": []
+}

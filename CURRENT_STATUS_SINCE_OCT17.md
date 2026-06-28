@@ -113,38 +113,38 @@ AUTO_RETRAIN_GUIDE.md
 These document the leak-safe backtester, retraining flow, DOB/age fixes, odds
 coverage fixes, and PnL diagnostics.
 
-## Current Uncommitted Code Changes
+## Current Worktree Before Commit
 
-Two tracked files are currently modified beyond HEAD:
+As of this status update, `git status --short` shows no tracked-file
+modifications. The current uncommitted worktree consists of generated audit,
+diagnostic, and retraining artifacts under `test_results/`, plus `tester.py`.
 
-```text
-process_fights_alpha.py
-testing/no_leakage_backtest.py
-```
-
-These changes add explicit full-DOB testing controls:
-
-- `process_fights_alpha.py`
-  - supports custom output paths
-  - supports `--include-excluded-dobs`
-  - can generate a full-DOB feature table without overwriting production data
-
-- `testing/no_leakage_backtest.py`
-  - supports `--include-excluded-dobs`
-  - prevents the evaluator from silently re-masking restored DOBs
-
-New untracked testing/audit scripts:
+Untracked result groups to be committed:
 
 ```text
-testing/statistical_edge_audit.py
-testing/walk_forward_strategy_search.py
+test_results/feature_regression_audit_oct17/
+test_results/pnl_after_first4_1y/
+test_results/pnl_after_first4_2y/
+test_results/pnl_diag_age_nan_1y/
+test_results/pnl_diag_age_nan_2y/
+test_results/pnl_diag_all_missing_dobs_resolved_1y/
+test_results/pnl_diag_all_missing_dobs_resolved_1y_no_flat/
+test_results/pnl_diag_best_params_1y/
+test_results/pnl_diag_dob_backfilled_1y/
+test_results/pnl_diag_dob_backfilled_2y/
+test_results/pnl_diag_exclude_7_dobs_1y/
+test_results/pnl_diag_excluded_dob_policy_1y/
+test_results/pnl_diag_excluded_dob_policy_2y/
+test_results/pnl_diag_patched_1y/
+test_results/pnl_no_blank_winner_stats_1y/
+test_results/pnl_no_blank_winner_stats_audit/
+test_results/pnl_policy_smoke_closer/
+test_results/womens_retrain/
+tester.py
 ```
 
-Generated full-DOB audit artifacts live under:
-
-```text
-test_results/full_dob_fresh/
-```
+The latest audit-specific scratch outputs from independent analysis were written
+under `/private/tmp` and are intentionally not part of the repository.
 
 ## Current Statistical Status
 
@@ -275,3 +275,58 @@ Do not increase staking based on the current backtests. Treat the selected
 walk-forward strategy, at most, as a cautious risk-control heuristic to paper
 track on future cards. A real edge claim needs future out-of-sample results
 that beat market-null and bootstrap tests after the strategy is frozen.
+
+## Independent PnL Investigation Update
+
+Latest independent investigation date: 2026-06-28.
+
+Fresh current-code no-leakage baselines were rerun outside the repository under
+`/private/tmp`:
+
+| Window | Fights | Accuracy | Log Loss | Default PnL |
+| --- | ---: | ---: | ---: | ---: |
+| 2025-06-27 to 2026-06-27 | 298 | 61.7% | 0.6596 | +11.90% |
+| 2024-06-27 to 2026-06-27 | 580 | 62.6% | 0.6399 | +41.92% |
+
+Important interpretation:
+
+- de-vigged market probabilities still beat model probabilities on recent
+  holdout log loss
+- the model appears more useful as a disagreement filter than as a calibrated
+  price
+- broad positive-Kelly betting has high variance and weak holdout evidence
+- high-disagreement underdog-heavy slices can improve PnL, but the sample is
+  too thin to claim a proven live edge
+
+Best risk-adjusted policy from the fresh ledger:
+
+```text
+min_edge = 0.12
+min_probability = 0.50
+min_kelly = 0.0
+kelly_fraction = 0.025
+max_fraction = 0.025
+positive_floor_fraction = 0.0
+negative_flat_fraction = 0.0
+```
+
+Fresh split results for that policy:
+
+| Window | Bets | PnL | ROI on Staked | Max Drawdown |
+| --- | ---: | ---: | ---: | ---: |
+| 2024-06-27 to 2025-06-26 | 83 | +15.78% | 19.91% | 4.88% |
+| 2025-06-27 to 2026-06-27 | 82 | +12.19% | 13.62% | 10.71% |
+
+The holdout market-null p-value was about `0.085`, so this should be treated as
+a promising risk-control candidate rather than proof of edge.
+
+Operational PnL risk:
+
+- `betting_alpha.py` consumes `data/betting_predictions.csv`
+- `ml_web.py` writes that file from the single production model
+- `load_ensemble.py` also writes that file from the older ensemble artifacts
+- whichever prediction script ran last controls live betting recommendations
+
+Recommended next implementation step: make `betting_predictions.csv` generation
+single-source and freeze the live betting policy above for forward paper
+tracking before increasing real staking.

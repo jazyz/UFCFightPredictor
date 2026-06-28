@@ -1,0 +1,25 @@
+{
+  "strategy": {
+    "model_label": "best_params_women_only",
+    "side_policy": "predicted_winner",
+    "model_weight": 1.0,
+    "min_edge": 0.08,
+    "min_probability": 0.6,
+    "min_kelly": 0.0,
+    "max_underdog_odds": 300.0,
+    "kelly_fraction": 0.05,
+    "max_fraction": 0.05
+  },
+  "start_date": "2025-06-27",
+  "end_date": "2026-06-27",
+  "starting_bankroll": 1000.0,
+  "final_bankroll": 1012.9904892820286,
+  "profit": 12.990489282028229,
+  "profit_pct": 1.2990489282028648,
+  "bets": 15,
+  "events_with_bets": 11,
+  "total_staked": 331.3183795754496,
+  "roi_on_staked": 0.03920847765425571,
+  "max_drawdown": 0.06638321218805196,
+  "fights": 56
+}

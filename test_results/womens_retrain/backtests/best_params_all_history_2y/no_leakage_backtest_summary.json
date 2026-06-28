@@ -1,0 +1,431 @@
+{
+  "start_date": "2024-06-27",
+  "end_date": "2026-06-27",
+  "min_training_date": "2009-01-01",
+  "features_path": "test_results/womens_retrain/detailed_fights_womens_included.csv",
+  "odds_path": "data/fight_results_with_odds.csv",
+  "fight_details_source": "data/fight_details_date.csv",
+  "excluded_title_patterns": [],
+  "train_title_patterns": null,
+  "eval_title_patterns": [
+    "Women"
+  ],
+  "odds_title_patterns": [
+    "Women"
+  ],
+  "included_excluded_dobs": true,
+  "param_source": "data/best_params.json",
+  "strict_coverage_messages": [
+    "odds data ends at 2026-04-18, before requested end 2026-06-27"
+  ],
+  "feature_data_max_date": "2026-06-27",
+  "odds_data_max_date": "2026-04-18",
+  "odds_rows_date_repaired": 16,
+  "odds_rows_excluded_universe": 0,
+  "odds_rows_outside_included_universe": 863,
+  "odds_rows_deduplicated": 0,
+  "odds_rows_non_binary_excluded": 0,
+  "models_fit": 68,
+  "predicted_fights": 120,
+  "skipped_fights": 34,
+  "feature_rows_in_window": 120,
+  "odds_rows_in_window": 143,
+  "odds_rows_with_features": 109,
+  "odds_rows_missing_features": 34,
+  "odds_rows_duplicate_features": 0,
+  "odds_feature_coverage": 0.7622377622377622,
+  "duplicate_feature_keys": 0,
+  "duplicate_odds_keys": 0,
+  "fights_with_odds": 108,
+  "bettable_fights": 108,
+  "accuracy": 0.6583333333333333,
+  "log_loss": 0.629993200219063,
+  "starting_bankroll": 1000.0,
+  "final_bankroll": 884.4885723726323,
+  "profit_pct": -11.551142762736767,
+  "strategy": [
+    0.05,
+    0.05,
+    0.005
+  ],
+  "bet_probability_policy": "average",
+  "min_edge": null,
+  "min_kelly": null,
+  "max_underdog_odds": null,
+  "positive_floor_fraction": null,
+  "negative_flat_fraction": null,
+  "outputs": {
+    "predictions_csv": "test_results/womens_retrain/backtests/best_params_all_history_2y/no_leakage_backtest.csv",
+    "summary_json": "test_results/womens_retrain/backtests/best_params_all_history_2y/no_leakage_backtest_summary.json"
+  },
+  "skipped": [
+    {
+      "event_date": "2024-07-13",
+      "event_name": "ufc-fight-night-july-13-2024",
+      "fighter1_name": "Jasmine Jasudavicius",
+      "fighter2_name": "Fatima Kline",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-07-20",
+      "event_name": "ufc-fight-night-july-20-2024",
+      "fighter1_name": "Miranda Maverick",
+      "fighter2_name": "Dione Barbosa",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-07-27",
+      "event_name": "ufc-304",
+      "fighter1_name": "Shauna Bannon",
+      "fighter2_name": "Alice Ardelean",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-08-10",
+      "event_name": "ufc-3406",
+      "fighter1_name": "Stephanie Luciano",
+      "fighter2_name": "Talita Alencar",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-08-24",
+      "event_name": "ufc-fight-night-august-24-2024",
+      "fighter1_name": "Jacqueline Cavalcanti",
+      "fighter2_name": "Josiane Nunes",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-08-24",
+      "event_name": "ufc-fight-night-august-24-2024",
+      "fighter1_name": "Wang Cong",
+      "fighter2_name": "Victoria Leonardo",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-09-28",
+      "event_name": "ufc-fight-night-september-28-2024",
+      "fighter1_name": "Ailin Perez",
+      "fighter2_name": "Daria Zhelezniakova",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-10-05",
+      "event_name": "ufc-307",
+      "fighter1_name": "Ketlen Vieira",
+      "fighter2_name": "Kayla Harrison",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-10-05",
+      "event_name": "ufc-307-3449",
+      "fighter1_name": "Carla Esparza",
+      "fighter2_name": "Tecia Pennington",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-10-12",
+      "event_name": "ufc-fight-night-october-12-2024",
+      "fighter1_name": "Julia Polastri",
+      "fighter2_name": "Cory McKenna",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-10-19",
+      "event_name": "ufc-fight-night-october-19-2024",
+      "fighter1_name": "Melissa Martinez",
+      "fighter2_name": "Alice Ardelean",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-11-02",
+      "event_name": "ufc-fight-night-november-02-2024",
+      "fighter1_name": "Ariane da Silva",
+      "fighter2_name": "Jasmine Jasudavicius",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-11-09",
+      "event_name": "ufc-fight-night-november-09-2024",
+      "fighter1_name": "Melissa Mullins",
+      "fighter2_name": "Klaudia Sygu\u0142a",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-11-23",
+      "event_name": "ufc-3549",
+      "fighter1_name": "Shi Ming",
+      "fighter2_name": "Feng Xiaocan",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2024-11-23",
+      "event_name": "ufc-fight-night-november-23-2024",
+      "fighter1_name": "Wang Cong",
+      "fighter2_name": "Gabriella Fernandes",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-01-11",
+      "event_name": "ufc-fight-night-january-11-2025",
+      "fighter1_name": "Ernesta Kareckait\u0117",
+      "fighter2_name": "Nicolle Caliari",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-01-11",
+      "event_name": "ufc-fight-night-january-11-2025",
+      "fighter1_name": "Fatima Kline",
+      "fighter2_name": "Viktoriia Dudakova",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-03-15",
+      "event_name": "ufc-3655",
+      "fighter1_name": "Yuneisy Duben",
+      "fighter2_name": "Carli Judice",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-03-15",
+      "event_name": "ufc-fight-night-march-15-2025",
+      "fighter1_name": "Stephanie Luciano",
+      "fighter2_name": "Sam Hughes",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-03-22",
+      "event_name": "ufc-3578",
+      "fighter1_name": "Molly McCann",
+      "fighter2_name": "Alexia Thainara",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-03-22",
+      "event_name": "ufc-fight-night-march-22-2025",
+      "fighter1_name": "Shauna Bannon",
+      "fighter2_name": "Puja Tomar",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-04-12",
+      "event_name": "ufc-314",
+      "fighter1_name": "Nora Cornolle",
+      "fighter2_name": "Hailey Cowan",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-05-31",
+      "event_name": "ufc-fight-night-may-31-2025",
+      "fighter1_name": "Rayanne Dos Santos",
+      "fighter2_name": "Alice Ardelean",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-07-19",
+      "event_name": "ufc-318",
+      "fighter1_name": "Carli Judice",
+      "fighter2_name": "Nicolle Caliari",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-13",
+      "event_name": "ufc-fight-night-september-13-2025",
+      "fighter1_name": "Montse Rendon",
+      "fighter2_name": "Alice Pereira",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-27",
+      "event_name": "ufc-fight-night-3840",
+      "fighter1_name": "Loma Lookboonmee",
+      "fighter2_name": "Alexia Thainara",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-09-27",
+      "event_name": "ufc-fight-night-3846",
+      "fighter1_name": "Michelle Montague",
+      "fighter2_name": "Luana Carolina",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-11",
+      "event_name": "ufc-rio-3872",
+      "fighter1_name": "Bia Mesquita",
+      "fighter2_name": "Irina Alekseeva",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-18",
+      "event_name": "ufc-fight-night-3822",
+      "fighter1_name": "Melissa Croden",
+      "fighter2_name": "Tainara Lisboa",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-10-18",
+      "event_name": "ufc-fight-night-3822",
+      "fighter1_name": "Stephanie Luciano",
+      "fighter2_name": "Ravena Oliveira",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2025-12-13",
+      "event_name": "ufc-vegas-112-3987",
+      "fighter1_name": "Melissa Croden",
+      "fighter2_name": "Luana Santos",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-14",
+      "event_name": "ufc-vegas-114-4080",
+      "fighter1_name": "Bia Mesquita",
+      "fighter2_name": "Montse Rendon",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-03-21",
+      "event_name": "ufc-london-4081",
+      "fighter1_name": "Shanelle Dyer",
+      "fighter2_name": "Ravena Oliveira",
+      "reason": "missing feature row for odds fight"
+    },
+    {
+      "event_date": "2026-04-04",
+      "event_name": "ufc-vegas-115-4107",
+      "fighter1_name": "Alice Pereira",
+      "fighter2_name": "Hailey Cowan",
+      "reason": "missing feature row for odds fight"
+    }
+  ],
+  "odds_date_repairs": [
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Alex Perez",
+      "fighter2_name": "Charles Johnson",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Arnold Allen",
+      "fighter2_name": "Jean Silva",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Ateba Gautier",
+      "fighter2_name": "Andrey Pulyaev",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Justin Gaethje",
+      "fighter2_name": "Paddy Pimblett",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Natalia Silva",
+      "fighter2_name": "Rose Namajunas",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Nikita Krylov",
+      "fighter2_name": "Modestas Bukauskas",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Sean O'Malley",
+      "fighter2_name": "Song Yadong",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Umar Nurmagomedov",
+      "fighter2_name": "Deiveson Figueiredo",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-324",
+      "fighter1_name": "Waldo Cortes Acosta",
+      "fighter2_name": "Derrick Lewis",
+      "old_event_date": "2025-01-24",
+      "new_event_date": "2026-01-24",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Alexander Volkanovski",
+      "fighter2_name": "Diego Lopes",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Dan Hooker",
+      "fighter2_name": "Beno\u00eet Saint Denis",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Junior Tafa",
+      "fighter2_name": "Billy Elekana",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Kaan Ofli",
+      "fighter2_name": "Yizha",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Quillan Salkilld",
+      "fighter2_name": "Jamie Mullarkey",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Rafael Fiziev",
+      "fighter2_name": "Mauricio Ruffy",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    },
+    {
+      "event_name": "ufc-325",
+      "fighter1_name": "Tai Tuivasa",
+      "fighter2_name": "Tallison Teixeira",
+      "old_event_date": "2025-01-31",
+      "new_event_date": "2026-01-31",
+      "reason": "same month/day year correction"
+    }
+  ]
+}
