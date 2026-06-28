@@ -4,6 +4,7 @@ import joblib
 import json
 import os
 
+from utils.feature_engineering import add_engineered_features
 from utils.feature_sanitization import sanitize_age_features, validate_feature_ranges
 
 # Function to load a model
@@ -39,8 +40,8 @@ models = [load_model(os.path.join(model_save_dir, filename)) for filename in mod
 def preprocess_data(new_data, selected_columns):
     return new_data[selected_columns]
 
-new_data = sanitize_age_features(pd.read_csv('data/predict_fights_alpha.csv'))
-reference_data = sanitize_age_features(pd.read_csv('data/detailed_fights.csv'))
+new_data = add_engineered_features(sanitize_age_features(pd.read_csv('data/predict_fights_alpha.csv')))
+reference_data = add_engineered_features(sanitize_age_features(pd.read_csv('data/detailed_fights.csv')))
 validate_feature_ranges(
     new_data,
     reference_data,

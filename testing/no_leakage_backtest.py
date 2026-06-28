@@ -29,6 +29,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+from utils.feature_engineering import add_engineered_features
 from utils.feature_sanitization import sanitize_age_features
 from utils.name_matching import canonical_name as normalize_name
 
@@ -100,13 +101,15 @@ def is_non_binary_outcome(value):
     }
 
 
-def load_feature_data(path, min_date, excluded_dob_names=None):
+def load_feature_data(path, min_date, excluded_dob_names=None, engineered_features=False):
     df = pd.read_csv(path)
     df["Date"] = parse_date(df["Date"])
     df[TARGET_COLUMN] = df[TARGET_COLUMN].map(normalize_result)
     df = df.dropna(subset=["Date", TARGET_COLUMN, "Red Fighter", "Blue Fighter"])
     df = df[df["Date"] >= pd.Timestamp(min_date)]
     df = sanitize_age_features(df, excluded_dob_names=excluded_dob_names)
+    if engineered_features:
+        df = add_engineered_features(df)
     df = df.sort_values("Date").reset_index(drop=True)
     return df
 
@@ -830,6 +833,7 @@ def run_backtest(args):
         args.features,
         args.min_training_date,
         excluded_dob_names=excluded_dob_names,
+        engineered_features=args.engineered_features,
     )
     excluded_title_patterns = [] if args.include_womens_fights else list(DEFAULT_EXCLUDED_TITLE_PATTERNS)
     excluded_fight_keys, excluded_dates_by_pair, excluded_fighter_keys = build_excluded_fight_index(
@@ -1154,6 +1158,7 @@ def run_backtest(args):
         "eval_title_patterns": args.eval_title_pattern,
         "odds_title_patterns": odds_title_patterns,
         "included_excluded_dobs": args.include_excluded_dobs,
+        "engineered_features": args.engineered_features,
         "param_source": param_source,
         "strict_coverage_messages": coverage_messages,
         "feature_data_max_date": None if features_df.empty else features_df["Date"].max().date().isoformat(),
@@ -1282,6 +1287,11 @@ def parse_args():
     parser.add_argument("--min-training-date", default="2009-01-01")
     parser.add_argument("--min-training-fights", type=int, default=200)
     parser.add_argument("--correlation-threshold", type=float, default=0.95)
+    parser.add_argument(
+        "--engineered-features",
+        action="store_true",
+        help="add experimental title-context and matchup aggregate features",
+    )
     parser.add_argument("--starting-bankroll", type=float, default=1000.0)
     parser.add_argument("--strategy", type=parse_strategy, default=[0.05, 0.05, 0.005])
     parser.add_argument(

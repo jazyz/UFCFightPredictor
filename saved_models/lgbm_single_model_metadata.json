@@ -1,12 +1,13 @@
 {
   "features_path": "data/detailed_fights.csv",
-  "param_source": "data/best_params.json",
+  "param_source": "test_results/regularized_lgbm_params.json",
   "min_training_date": "2009-01-01",
   "train_through": "2026-06-27",
+  "engineered_features": false,
   "max_feature_date_used": "2026-06-27",
-  "training_rows": 3992,
-  "feature_columns": 164,
-  "dropped_correlated_columns": 28,
+  "training_rows": 3999,
+  "feature_columns": 182,
+  "dropped_correlated_columns": 10,
   "model_path": "saved_models/lgbm_single_model.joblib",
   "label_encoder_path": "saved_preprocessing/label_encoder_single.joblib",
   "selected_columns_path": "saved_preprocessing/selected_columns_single.json"

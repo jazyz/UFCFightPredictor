@@ -40,6 +40,11 @@ def parse_args():
     parser.add_argument("--min-training-date", default="2009-01-01")
     parser.add_argument("--train-through", default=default_as_of_date(), help="inclusive YYYY-MM-DD as-of date")
     parser.add_argument("--correlation-threshold", type=float, default=0.95)
+    parser.add_argument(
+        "--engineered-features",
+        action="store_true",
+        help="add experimental title-context and matchup aggregate features",
+    )
     parser.add_argument("--model-dir", default="saved_models")
     parser.add_argument("--preprocessing-dir", default="saved_preprocessing")
     return parser.parse_args()
@@ -48,7 +53,11 @@ def parse_args():
 def main():
     args = parse_args()
     params, param_source = load_model_params(args.params)
-    features_df = load_feature_data(args.features, args.min_training_date)
+    features_df = load_feature_data(
+        args.features,
+        args.min_training_date,
+        engineered_features=args.engineered_features,
+    )
     train_through = parse_date(args.train_through)
     if pd.isna(train_through):
         raise SystemExit(f"Could not parse --train-through date: {args.train_through}")
@@ -94,6 +103,7 @@ def main():
         "param_source": param_source,
         "min_training_date": args.min_training_date,
         "train_through": args.train_through,
+        "engineered_features": args.engineered_features,
         "max_feature_date_used": train_df["Date"].max().date().isoformat(),
         "training_rows": len(train_df),
         "feature_columns": len(feature_columns),

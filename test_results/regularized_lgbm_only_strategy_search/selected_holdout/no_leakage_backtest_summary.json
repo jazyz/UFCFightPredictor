@@ -1,0 +1,27 @@
+{
+  "strategy": {
+    "model_label": "regularized_lgbm",
+    "side_policy": "predicted_winner",
+    "model_weight": 1.0,
+    "min_edge": 0.16,
+    "min_probability": 0.5,
+    "min_kelly": 0.0,
+    "max_underdog_odds": 300.0,
+    "kelly_fraction": 0.05,
+    "max_fraction": 0.05
+  },
+  "start_date": "2025-06-27",
+  "end_date": "2026-06-27",
+  "starting_bankroll": 1000.0,
+  "final_bankroll": 1198.1722228625017,
+  "profit": 198.17222286250197,
+  "profit_pct": 19.81722228625017,
+  "bets": 51,
+  "events_with_bets": 28,
+  "total_staked": 1025.5225528902351,
+  "roi_on_staked": 0.1932402386510099,
+  "max_drawdown": 0.09291409297702684,
+  "fights": 298,
+  "settlement_mode": "event",
+  "max_event_exposure_fraction": null
+}
