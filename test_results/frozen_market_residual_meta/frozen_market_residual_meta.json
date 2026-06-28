@@ -1,0 +1,48 @@
+{
+  "as_of_date": "2026-06-28",
+  "dev_start": "2024-06-28",
+  "dev_end": "2026-06-27",
+  "dev_days": 730,
+  "model_label": "regularized_lgbm",
+  "c": 0.25,
+  "source_audit": "test_results/market_residual_meta_audit/MARKET_RESIDUAL_META_AUDIT_SUMMARY.md",
+  "ledgers": [
+    {
+      "label": "baseline_default",
+      "csv_path": "test_results/nested_edge_long/ledgers/baseline_default_2022_2026/no_leakage_backtest.csv"
+    },
+    {
+      "label": "regularized_lgbm",
+      "csv_path": "test_results/nested_edge_long/ledgers/regularized_lgbm_2022_2026/no_leakage_backtest.csv"
+    }
+  ],
+  "transform": {
+    "feature_columns": [
+      "market_logit",
+      "regularized_lgbm_logit_delta"
+    ],
+    "intercept": -0.006770455641009297,
+    "coefficients": {
+      "market_logit": 1.2151022213638574,
+      "regularized_lgbm_logit_delta": 0.31975697055364133
+    },
+    "training_diagnostics": {
+      "rows": 577,
+      "actual_red_win_rate": 0.49913344887348354,
+      "market": {
+        "fights": 577,
+        "accuracy": 0.6845753899480069,
+        "log_loss": 0.5995108830097678,
+        "brier": 0.20632532618034607
+      },
+      "frozen_meta": {
+        "fights": 577,
+        "accuracy": 0.7001733102253033,
+        "log_loss": 0.5942925953821383,
+        "brier": 0.20405676276259546
+      },
+      "market_minus_meta_log_loss": 0.0052182876276295476
+    }
+  },
+  "freeze_warning": "This probability transform is frozen for forward paper tracking. Do not alter coefficients, feature columns, regularization, or training window before scoring future outcomes."
+}

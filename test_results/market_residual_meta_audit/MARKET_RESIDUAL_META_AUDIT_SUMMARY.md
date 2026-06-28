@@ -79,6 +79,31 @@ bootstrap intervals still cross zero. This is not yet a live betting edge
 claim. It is a good candidate for a frozen forward probability transform and a
 future paper-tracked betting policy.
 
-Recommended next step: freeze one conservative residual meta transform before
-looking at future results, then evaluate future cards against market log loss,
-market-null simulations, and a predeclared PnL policy.
+## Frozen Forward Transform
+
+A conservative residual transform has been frozen for future paper tracking:
+
+```text
+testing/freeze_market_residual_meta.py
+test_results/frozen_market_residual_meta/frozen_market_residual_meta.md
+test_results/frozen_market_residual_meta/frozen_market_residual_meta.json
+```
+
+Frozen settings:
+
+- as-of date: `2026-06-28`
+- training window: `2024-06-28` to `2026-06-27`
+- base residual: `regularized_lgbm`
+- development window length: `730` days
+- logistic L2 inverse regularization: `C = 0.25`
+
+Frozen coefficients:
+
+| Term | Value |
+| --- | ---: |
+| intercept | -0.00677046 |
+| market logit | 1.21510222 |
+| regularized residual logit delta | 0.31975697 |
+
+Recommended next step: evaluate future cards with this exact transform against
+market log loss, market-null simulations, and a predeclared PnL policy.

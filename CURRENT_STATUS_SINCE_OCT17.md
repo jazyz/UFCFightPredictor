@@ -452,8 +452,31 @@ Sensitivity checks kept the regularized residual positive:
 Interpretation: this is the strongest current evidence that the model has a
 small probability edge after controlling for market price. It still should not
 be treated as a live betting edge claim by itself: the absolute log-loss gain
-is small, event-bootstrap intervals still cross zero, and the transform has
-not yet been frozen and paper-tracked on future cards.
+is small, and event-bootstrap intervals still cross zero.
+
+Conservative residual transform freeze:
+
+```text
+testing/freeze_market_residual_meta.py
+test_results/frozen_market_residual_meta/frozen_market_residual_meta.md
+test_results/frozen_market_residual_meta/frozen_market_residual_meta.json
+```
+
+As of `2026-06-28`, the frozen residual transform uses the trailing
+`2024-06-28` to `2026-06-27` training window, the `regularized_lgbm` residual,
+and stronger regularization (`C = 0.25`) rather than the best-looking
+sensitivity configuration.
+
+Frozen coefficients:
+
+| Term | Value |
+| --- | ---: |
+| intercept | -0.00677046 |
+| market logit | 1.21510222 |
+| regularized residual logit delta | 0.31975697 |
+
+This gives the probability-edge hypothesis a pre-outcome transform for future
+paper tracking. It still has no post-freeze evidence yet.
 
 ### Frozen Forward Paper-Tracking Policy
 
@@ -713,12 +736,11 @@ The most honest read:
 Recommendation:
 
 Do not materially increase staking based only on these backtests. Use the
-frozen forward artifact above as the current paper-tracking policy, and treat
-the residual meta transform as the next candidate to freeze before any future
-results are inspected. A real edge claim needs future out-of-sample results
-that beat market-null and bootstrap tests after the model params, probability
-transform, selection objective, strategy grid, and staking policy have been
-frozen.
+frozen forward betting artifact above as the current PnL paper-tracking policy,
+and use the frozen residual transform as the current probability paper-tracking
+contract. A real edge claim needs future out-of-sample results that beat
+market-null and bootstrap tests after the model params, probability transform,
+selection objective, strategy grid, and staking policy have been frozen.
 
 ## Independent PnL Investigation Update
 
