@@ -668,6 +668,53 @@ promoted as a live edge claim: the cap family was discovered on the same
 historical residual ledger. The honest next step is to freeze one simple capped
 variant before future outcomes and paper-track it unchanged.
 
+### Frozen Residual Event-Cap Paper Policy
+
+Frozen capped residual policy:
+
+```text
+testing/freeze_residual_event_cap_paper_policy.py
+test_results/frozen_residual_event_cap_paper_policy/frozen_residual_event_cap_paper_policy.md
+test_results/frozen_residual_event_cap_paper_policy/frozen_residual_event_cap_paper_policy.json
+```
+
+As of `2026-06-28`, a capped residual-meta paper policy is frozen for future
+tracking. It uses the already frozen residual transform
+(`test_results/frozen_market_residual_meta/frozen_market_residual_meta.json`),
+the same fixed thresholds as the residual paper policy, and a maximum of
+`3` paper bets per event ranked by residual edge.
+
+Frozen capped rule:
+
+| Rule | Value |
+| --- | ---: |
+| minimum residual edge | 2.00% |
+| minimum meta probability | 60.00% |
+| maximum underdog odds | +300 |
+| max bets per event | 3 |
+| event ranking | residual edge desc, meta probability desc, fight key asc |
+| stake | 1u flat paper stake |
+
+Historical fixed-ledger diagnostic after applying the cap:
+
+| Metric | Value |
+| --- | ---: |
+| source bets before cap | 354 |
+| capped bets | 262 |
+| capped events | 99 |
+| flat profit | +19.12u |
+| flat ROI | 7.30% |
+| actual - market | 7.68% |
+| positive folds | 4 / 5 |
+| event-bootstrap P(profit <= 0) | 0.016 |
+| market-null p-value | 0.002 |
+
+Interpretation: this is the clean forward-tracking contract for the capped
+residual hypothesis. It is intentionally not a live recommendation: the cap
+was chosen from historical diagnostics, so the only decisive evidence would be
+post-freeze paper performance scored without changing the transform, thresholds,
+cap, ranking rule, or stake size.
+
 ### Residual Meta PnL Audit
 
 Residual meta PnL audit:
@@ -1139,6 +1186,10 @@ The most honest read:
   had selection-adjusted market-null p-value `0.011`; this is still discovery
   evidence, not a live edge claim, because the cap family was inspected after
   the historical ledger existed
+- a capped residual paper policy is now frozen as of `2026-06-28`: it uses
+  the frozen residual transform, fixed thresholds, flat `1u`, and max `3`
+  bets per event ranked by residual edge; this is for future paper tracking
+  only, not live staking
 - nested residual-meta PnL tests are positive across objective sensitivities,
   but their best selection-adjusted market-null p-value is only `0.066`
   before correcting for three inspected objectives

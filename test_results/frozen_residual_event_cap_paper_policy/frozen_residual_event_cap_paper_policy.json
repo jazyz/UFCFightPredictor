@@ -1,0 +1,209 @@
+{
+  "as_of_date": "2026-06-28",
+  "transform_path": "test_results/frozen_market_residual_meta/frozen_market_residual_meta.json",
+  "source_cap_audit": "test_results/residual_event_cap_audit/residual_event_cap_audit.json",
+  "transform_summary": {
+    "model_label": "regularized_lgbm",
+    "dev_start": "2024-06-28",
+    "dev_end": "2026-06-27",
+    "c": 0.25,
+    "intercept": -0.006770455641009297,
+    "coefficients": {
+      "market_logit": 1.2151022213638574,
+      "regularized_lgbm_logit_delta": 0.31975697055364133
+    }
+  },
+  "policy": {
+    "side_policy": "best_residual_edge",
+    "min_edge": 0.02,
+    "min_probability": 0.6,
+    "max_underdog_odds": 300.0,
+    "max_bets_per_event": 3,
+    "event_ranking": "selected_edge desc, selected_probability desc, fight_key asc",
+    "stake_units": 1.0,
+    "settlement": "flat_units"
+  },
+  "historical_cap_diagnostic": {
+    "source_bets_path": "test_results/residual_meta_pnl_audit/fixed_edge02_prob60/selected_holdout_bets.csv",
+    "source_bets": 354,
+    "source_events": 99,
+    "event_cap": 3,
+    "bets": 262,
+    "events": 99,
+    "profit": 19.11636190664889,
+    "roi": 0.07296321338415607,
+    "actual_win_rate": 0.7786259541984732,
+    "mean_market_probability": 0.701874466845565,
+    "actual_minus_market": 0.07675148735290827,
+    "mean_probability": 0.7489841785571433,
+    "mean_edge": 0.047109711711578156,
+    "positive_folds": 4,
+    "folds": [
+      {
+        "fold": 1,
+        "bets": 67,
+        "events": 23,
+        "profit": 7.366980713091914,
+        "roi": 0.10995493601629723
+      },
+      {
+        "fold": 2,
+        "bets": 44,
+        "events": 19,
+        "profit": 6.977209454129518,
+        "roi": 0.15857294213930723
+      },
+      {
+        "fold": 3,
+        "bets": 60,
+        "events": 23,
+        "profit": 3.7061969956615286,
+        "roi": 0.06176994992769214
+      },
+      {
+        "fold": 4,
+        "bets": 46,
+        "events": 17,
+        "profit": 2.8411543072537615,
+        "roi": 0.061764224070733946
+      },
+      {
+        "fold": 5,
+        "bets": 45,
+        "events": 17,
+        "profit": -1.775179563487834,
+        "roi": -0.03944843474417409
+      }
+    ],
+    "event_bootstrap": {
+      "iterations": 20000,
+      "events": 99,
+      "profit_ci_95": [
+        1.6927884518304759,
+        35.63281853123209
+      ],
+      "roi_ci_95": [
+        0.006363919643570071,
+        0.13696550847863823
+      ],
+      "prob_profit_le_zero": 0.0158
+    },
+    "market_null": {
+      "iterations": 20000,
+      "observed_profit": 19.11636190664889,
+      "null_mean_profit": -11.096433008360144,
+      "null_profit_ci_95": [
+        -31.512379103175313,
+        8.836819940648699
+      ],
+      "p_value_observed_or_better": 0.0015499225038748063,
+      "prob_null_profitable": 0.1413
+    }
+  },
+  "source_cap_audit_summary": {
+    "probability_policy": "selected_shrinkage",
+    "event_cap": "3",
+    "bets": 279,
+    "events": 100,
+    "profit": 17.446638330721935,
+    "roi": 0.06253275387355532,
+    "actual_win_rate": 0.7741935483870968,
+    "mean_market_probability": 0.702304536746266,
+    "actual_minus_market": 0.07188901164083072,
+    "mean_probability": 0.7553987144144029,
+    "mean_edge": 0.0530941776681368,
+    "positive_folds": 4,
+    "folds": [
+      {
+        "fold": 1,
+        "bets": 69,
+        "events": 23,
+        "profit": 5.297422206528125,
+        "roi": 0.07677423487721921
+      },
+      {
+        "fold": 2,
+        "bets": 53,
+        "events": 19,
+        "profit": 6.740262760290445,
+        "roi": 0.12717476906208386
+      },
+      {
+        "fold": 3,
+        "bets": 64,
+        "events": 23,
+        "profit": 3.7372119891607207,
+        "roi": 0.05839393733063626
+      },
+      {
+        "fold": 4,
+        "bets": 47,
+        "events": 18,
+        "profit": 3.2088257001352387,
+        "roi": 0.06827288723691997
+      },
+      {
+        "fold": 5,
+        "bets": 46,
+        "events": 17,
+        "profit": -1.537084325392595,
+        "roi": -0.03341487663896946
+      }
+    ],
+    "event_bootstrap": {
+      "events": 100,
+      "profit_ci_95": [
+        0.4384161971583767,
+        34.53456466700403
+      ],
+      "roi_ci_95": [
+        0.0015656340743283184,
+        0.12424868196981685
+      ],
+      "prob_profit_le_zero": 0.02245
+    },
+    "market_null": {
+      "iterations": 20000,
+      "observed_profit": 17.446638330721935,
+      "null_mean_profit": -11.964552770863033,
+      "null_profit_ci_95": [
+        -33.197658176596114,
+        8.676125136969732
+      ],
+      "p_value_observed_or_better": 0.0027498625068746564,
+      "prob_null_profitable": 0.1291
+    }
+  },
+  "source_selection_adjusted_market_null": {
+    "iterations": 20000,
+    "variants": 15,
+    "fights": 418,
+    "observed_best_variant": "unshrunk_meta|cap=3",
+    "observed_best_profit": 17.52126709304143,
+    "null_best_mean_profit": -1.1494759128486618,
+    "null_best_profit_ci_95": [
+      -14.892750389530285,
+      14.080655154290001
+    ],
+    "selection_adjusted_p_value": 0.01064946752662367,
+    "prob_null_best_profitable": 0.4236,
+    "observed_variant_profits": {
+      "fixed_half_residual|cap=1": 11.018501445484695,
+      "fixed_half_residual|cap=2": 10.386212110015427,
+      "fixed_half_residual|cap=3": 15.525691234964846,
+      "fixed_half_residual|cap=5": 11.130910836969033,
+      "fixed_half_residual|cap=all": 8.393668483471773,
+      "selected_shrinkage|cap=1": 11.924092966265093,
+      "selected_shrinkage|cap=2": 15.752368272932419,
+      "selected_shrinkage|cap=3": 17.446638330721935,
+      "selected_shrinkage|cap=5": 8.316371351277096,
+      "selected_shrinkage|cap=all": 4.551322191409849,
+      "unshrunk_meta|cap=1": 12.441285948721235,
+      "unshrunk_meta|cap=2": 13.397633973299119,
+      "unshrunk_meta|cap=3": 17.52126709304143,
+      "unshrunk_meta|cap=5": 7.366935457829229,
+      "unshrunk_meta|cap=all": 3.4018862979619833
+    }
+  },
+  "freeze_warning": "This capped residual-meta paper policy is frozen for future paper tracking. Do not alter transform coefficients, thresholds, event cap, ranking rule, or stake size after future outcomes are known."
+}
