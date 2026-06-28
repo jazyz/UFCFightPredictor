@@ -476,6 +476,62 @@ one-year metrics and two-year log loss/PnL, and they do not produce a stronger
 market-relative edge claim. The production model and frozen forward policy
 remain on `engineered_features=false`.
 
+### Market Disagreement Audit
+
+Disagreement audit:
+
+```text
+testing/market_disagreement_audit.py
+test_results/market_disagreement_audit/market_disagreement_audit.md
+test_results/market_disagreement_audit/market_disagreement_audit.json
+```
+
+This diagnostic reads the long leak-safe baseline and regularized ledgers,
+reconstructs de-vigged market probabilities from the saved American odds, and
+tests whether the side with the largest model-minus-market probability edge
+actually wins more often than the market implies.
+
+Standalone probability check:
+
+| Model | Fights | Model Acc | Market Acc | Model LL | Market LL |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| baseline default | 1220 | 62.21% | 68.77% | 0.6457 | 0.6006 |
+| regularized LGBM | 1220 | 63.36% | 68.77% | 0.6404 | 0.6006 |
+
+Interpretation: regularization improved the model, but standalone model
+probabilities still do not beat the de-vigged market on log loss.
+
+For the regularized model, edge-only disagreement remains negative:
+
+| Slice | Fights | Actual Win | Market P | Flat Profit | Flat ROI |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| edge >= 0.08 | 695 | 38.27% | 36.64% | -13.96u | -2.01% |
+| edge >= 0.12 | 493 | 35.50% | 34.24% | -5.50u | -1.12% |
+
+Adding a model-probability floor produces more plausible residual pockets:
+
+| Slice | Fights | Actual Win | Market P | Flat Profit | Flat ROI |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| model P >= 0.60, edge >= 0.02 | 355 | 61.13% | 54.60% | +28.69u | +8.08% |
+| model P >= 0.60, edge >= 0.08 | 233 | 57.51% | 49.21% | +27.97u | +12.00% |
+| model P >= 0.60, edge >= 0.12 | 165 | 53.33% | 45.17% | +20.77u | +12.59% |
+
+The key stability caveat is visible in the `model P >= 0.60, edge >= 0.08`
+yearly split:
+
+| Year | Fights | Flat Profit | Flat ROI |
+| --- | ---: | ---: | ---: |
+| 2022 | 63 | +1.88u | +2.98% |
+| 2023 | 50 | -7.62u | -15.24% |
+| 2024 | 52 | +7.71u | +14.83% |
+| 2025 | 40 | +20.46u | +51.15% |
+| 2026 | 28 | +5.53u | +19.76% |
+
+Interpretation: this supports the shape of the frozen policy, which requires
+both positive edge and minimum model probability, but it is still diagnostic
+and partly post-hoc. It strengthens the case for forward paper tracking, not
+for declaring that a live market edge has been proven.
+
 ## Current Bottom Line
 
 The repo is now much better instrumented than it was on Oct 17:
@@ -497,7 +553,11 @@ The most honest read:
   raw holdout log loss
 - the longer market-blend audit selected pure market probability, not a model
   residual
+- edge-only model/market disagreement is negative in flat-bet tests; the more
+  interesting pockets require both positive edge and a model-probability floor
 - profitable PnL variants remain sensitive to model policy and threshold search
+- the best disagreement pockets are not uniformly stable by year, with the
+  regularized `model P >= 0.60, edge >= 0.08` slice losing in 2023
 - the best raw market-null p-value is `0.048` from the exploratory ROI
   objective, or about `0.096` after a simple two-objective correction
 - this is promising but below a strong statistical-evidence threshold
