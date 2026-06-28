@@ -763,6 +763,50 @@ one-year metrics and two-year log loss/PnL, and they do not produce a stronger
 market-relative edge claim. The production model and frozen forward policy
 remain on `engineered_features=false`.
 
+### Market-Aware Feature Audit
+
+Market-aware feature audit:
+
+```text
+testing/market_aware_feature_audit.py
+test_results/market_aware_feature_audit/market_aware_feature_audit.md
+test_results/market_aware_feature_audit/market_aware_feature_audit.json
+```
+
+This audit asks whether raw pre-fight feature groups add log-loss signal after
+controlling directly for de-vigged market probability. Each candidate is a
+small L2 logistic model trained only on prior folds with `market_logit` plus a
+fixed feature group. Training rows are red/blue mirrored; holdout probabilities
+average the direct and mirrored orientations.
+
+Protocol:
+
+- aligned feature/odds rows: `1223`
+- evaluated holdout fights: `704`
+- folds: `5`
+- development window: `730` days
+- holdout window: `182` days
+- logistic L2 inverse regularization: `C = 0.1`
+- event-bootstrap iterations: `20000`
+- refit-under-market-null simulations: `100`
+
+Results:
+
+| Variant | Features | Market LL | Candidate LL | Delta LL | Positive Folds | Bootstrap P(delta <= 0) | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| market recalibrated | 1 | 0.6009 | 0.6000 | +0.0008 | 3 / 5 | 0.351 | 0.099 |
+| market + age/recency | 3 | 0.6009 | 0.6025 | -0.0017 | 2 / 5 | 0.692 | 0.257 |
+| market + combat stats | 11 | 0.6009 | 0.6037 | -0.0028 | 2 / 5 | 0.664 | 0.158 |
+| market + top importance | 24 | 0.6009 | 0.6088 | -0.0080 | 2 / 5 | 0.841 | 0.158 |
+| market + Elo/experience | 9 | 0.6009 | 0.6112 | -0.0103 | 2 / 5 | 0.947 | 0.683 |
+
+Interpretation: the feature groups most suggested by regularized-LGBM feature
+importance did not improve probabilities once market price was included. The
+only positive variant was market-only recalibration, and that was small and not
+statistically convincing. This argues against promoting raw feature expansion
+or direct feature+market logistic models right now; the residual-model signal
+remains stronger than the raw-feature-after-market signal.
+
 ### Market Disagreement Audit
 
 Disagreement audit:
@@ -991,6 +1035,10 @@ The most honest read:
 - regularization reduced, but did not eliminate, calibration weakness
 - de-vigged market probabilities still beat standalone model probabilities on
   raw holdout log loss
+- direct market-aware feature modeling did not help: after controlling for
+  market logit, Elo/experience, age/recency, combat-stat, and top-importance
+  feature groups all worsened log loss; only market-only recalibration was
+  slightly positive and still weak
 - the longer market-blend audit selected pure market probability, not a model
   residual, but the newer residual meta audit finds a small positive
   model-after-market log-loss signal

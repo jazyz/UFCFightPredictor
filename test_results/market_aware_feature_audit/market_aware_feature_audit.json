@@ -1,0 +1,899 @@
+{
+  "features_path": "data/detailed_fights.csv",
+  "odds_path": "data/fight_results_with_odds.csv",
+  "fight_details_source": "data/fight_details_date.csv",
+  "excluded_title_patterns": [
+    "Women"
+  ],
+  "feature_rows": 3999,
+  "odds_rows": 1824,
+  "aligned_rows": 1223,
+  "duplicate_feature_keys": 0,
+  "odds_rows_date_repaired": 22,
+  "odds_rows_excluded_universe": 345,
+  "odds_rows_non_binary_excluded": 7,
+  "skipped_missing_features": 601,
+  "skipped_duplicate_features": 0,
+  "skipped_bad_odds": 0,
+  "skipped_orientation_mismatch": 0,
+  "first_holdout_start": "2024-02-05",
+  "last_holdout_end": "2026-06-27",
+  "dev_days": 730,
+  "holdout_days": 182,
+  "step_days": 182,
+  "min_dev_fights": 200,
+  "min_holdout_fights": 60,
+  "c": 0.1,
+  "seed": 20260628,
+  "bootstrap_iterations": 20000,
+  "market_null_iterations": 100,
+  "folds_evaluated": 5,
+  "holdout_fights": 704,
+  "variants": [
+    {
+      "name": "market_recalibrated",
+      "note": "logistic recalibration of market logit only",
+      "feature_columns": [
+        "market_logit"
+      ]
+    },
+    {
+      "name": "market_plus_elo_experience",
+      "note": "market plus Elo, experience, streak, and title-count deltas",
+      "feature_columns": [
+        "market_logit",
+        "oppelo oppdiff",
+        "elo oppdiff",
+        "wins oppdiff",
+        "totalfights oppdiff",
+        "avg age oppdiff",
+        "winstreak oppdiff",
+        "losestreak oppdiff",
+        "titlewins oppdiff"
+      ]
+    },
+    {
+      "name": "market_plus_age_recency",
+      "note": "market plus age and layoff deltas",
+      "feature_columns": [
+        "market_logit",
+        "age oppdiff",
+        "last_fight oppdiff"
+      ]
+    },
+    {
+      "name": "market_plus_combat_stats",
+      "note": "market plus selected historical striking/grappling stat deltas",
+      "feature_columns": [
+        "market_logit",
+        "Clinch oppdiff",
+        "KD differential oppdiff",
+        "Sig. str.% differential oppdiff",
+        "Body% differential oppdiff",
+        "Td% defense oppdiff",
+        "Distance% defense oppdiff",
+        "Sub. att oppdiff",
+        "Td differential oppdiff",
+        "Head differential oppdiff",
+        "Ctrl oppdiff"
+      ]
+    },
+    {
+      "name": "market_plus_top_importance",
+      "note": "market plus top 23 retrained-LGBM importance features",
+      "feature_columns": [
+        "market_logit",
+        "oppelo oppdiff",
+        "elo oppdiff",
+        "age oppdiff",
+        "wins oppdiff",
+        "avg age oppdiff",
+        "Clinch oppdiff",
+        "KD differential oppdiff",
+        "Red avg age",
+        "Blue avg age",
+        "totalfights oppdiff",
+        "Sig. str.% differential oppdiff",
+        "Red Sub. att differential",
+        "Blue Sub. att differential",
+        "Body% differential oppdiff",
+        "Blue Sig. str. differential",
+        "Red Sig. str. differential",
+        "Td% defense oppdiff",
+        "Blue Leg% defense",
+        "Red Leg% defense",
+        "Total str.% defense oppdiff",
+        "Blue Clinch",
+        "Red Clinch",
+        "Distance% defense oppdiff"
+      ]
+    }
+  ],
+  "folds": [
+    {
+      "fold": 1,
+      "dev_start": "2022-02-05",
+      "dev_end": "2024-02-04",
+      "holdout_start": "2024-02-05",
+      "holdout_end": "2024-08-04",
+      "dev_fights": 516,
+      "holdout_fights": 165,
+      "market_log_loss": 0.5966713453751212,
+      "market_recalibrated_log_loss": 0.5918244131777262,
+      "market_recalibrated_delta_log_loss": 0.004846932197395071,
+      "market_plus_elo_experience_log_loss": 0.5967167515161815,
+      "market_plus_elo_experience_delta_log_loss": -4.5406141060300165e-05,
+      "market_plus_age_recency_log_loss": 0.5956568016736586,
+      "market_plus_age_recency_delta_log_loss": 0.001014543701462589,
+      "market_plus_combat_stats_log_loss": 0.5985157892706628,
+      "market_plus_combat_stats_delta_log_loss": -0.0018444438955416143,
+      "market_plus_top_importance_log_loss": 0.6059288762218243,
+      "market_plus_top_importance_delta_log_loss": -0.00925753084670311
+    },
+    {
+      "fold": 2,
+      "dev_start": "2022-08-06",
+      "dev_end": "2024-08-04",
+      "holdout_start": "2024-08-05",
+      "holdout_end": "2025-02-02",
+      "dev_fights": 528,
+      "holdout_fights": 130,
+      "market_log_loss": 0.5788537585297809,
+      "market_recalibrated_log_loss": 0.5764918997036915,
+      "market_recalibrated_delta_log_loss": 0.0023618588260894136,
+      "market_plus_elo_experience_log_loss": 0.5628528714947814,
+      "market_plus_elo_experience_delta_log_loss": 0.016000887034999578,
+      "market_plus_age_recency_log_loss": 0.5768093800615649,
+      "market_plus_age_recency_delta_log_loss": 0.002044378468216035,
+      "market_plus_combat_stats_log_loss": 0.5827915034037608,
+      "market_plus_combat_stats_delta_log_loss": -0.003937744873979909,
+      "market_plus_top_importance_log_loss": 0.5835631547264851,
+      "market_plus_top_importance_delta_log_loss": -0.004709396196704185
+    },
+    {
+      "fold": 3,
+      "dev_start": "2023-02-04",
+      "dev_end": "2025-02-02",
+      "holdout_start": "2025-02-03",
+      "holdout_end": "2025-08-03",
+      "dev_fights": 543,
+      "holdout_fights": 150,
+      "market_log_loss": 0.6181220610242932,
+      "market_recalibrated_log_loss": 0.6212482329157915,
+      "market_recalibrated_delta_log_loss": -0.0031261718914982195,
+      "market_plus_elo_experience_log_loss": 0.6168599859618312,
+      "market_plus_elo_experience_delta_log_loss": 0.0012620750624620092,
+      "market_plus_age_recency_log_loss": 0.6208767836573882,
+      "market_plus_age_recency_delta_log_loss": -0.0027547226330949526,
+      "market_plus_combat_stats_log_loss": 0.6039234080019973,
+      "market_plus_combat_stats_delta_log_loss": 0.014198653022295948,
+      "market_plus_top_importance_log_loss": 0.5967107412309787,
+      "market_plus_top_importance_delta_log_loss": 0.021411319793314565
+    },
+    {
+      "fold": 4,
+      "dev_start": "2023-08-05",
+      "dev_end": "2025-08-03",
+      "holdout_start": "2025-08-04",
+      "holdout_end": "2026-02-01",
+      "dev_fights": 564,
+      "holdout_fights": 130,
+      "market_log_loss": 0.5821876198983188,
+      "market_recalibrated_log_loss": 0.5785880867430199,
+      "market_recalibrated_delta_log_loss": 0.0035995331552989285,
+      "market_plus_elo_experience_log_loss": 0.6364540541846173,
+      "market_plus_elo_experience_delta_log_loss": -0.054266434286298515,
+      "market_plus_age_recency_log_loss": 0.5875760148013658,
+      "market_plus_age_recency_delta_log_loss": -0.005388394903046989,
+      "market_plus_combat_stats_log_loss": 0.5760331334697981,
+      "market_plus_combat_stats_delta_log_loss": 0.006154486428520678,
+      "market_plus_top_importance_log_loss": 0.5808565536703405,
+      "market_plus_top_importance_delta_log_loss": 0.0013310662279782948
+    },
+    {
+      "fold": 5,
+      "dev_start": "2024-02-03",
+      "dev_end": "2026-02-01",
+      "holdout_start": "2026-02-02",
+      "holdout_end": "2026-06-27",
+      "dev_fights": 579,
+      "holdout_fights": 129,
+      "market_log_loss": 0.6272685791688568,
+      "market_recalibrated_log_loss": 0.6312174471595041,
+      "market_recalibrated_delta_log_loss": -0.003948867990647309,
+      "market_plus_elo_experience_log_loss": 0.6465500001629215,
+      "market_plus_elo_experience_delta_log_loss": -0.019281420994064713,
+      "market_plus_age_recency_log_loss": 0.6310613110291716,
+      "market_plus_age_recency_delta_log_loss": -0.003792731860314813,
+      "market_plus_combat_stats_log_loss": 0.6590418278283668,
+      "market_plus_combat_stats_delta_log_loss": -0.031773248659510034,
+      "market_plus_top_importance_log_loss": 0.6803802407491137,
+      "market_plus_top_importance_delta_log_loss": -0.05311166158025693
+    }
+  ],
+  "summary": {
+    "market_recalibrated": {
+      "note": "logistic recalibration of market logit only",
+      "feature_columns": [
+        "market_logit"
+      ],
+      "market": {
+        "fights": 704,
+        "accuracy": 0.6875,
+        "log_loss": 0.6008836747854751,
+        "brier": 0.20666902045861074
+      },
+      "candidate": {
+        "fights": 704,
+        "accuracy": 0.6875,
+        "log_loss": 0.6000365227746336,
+        "brier": 0.20626753394319886
+      },
+      "market_minus_candidate_log_loss": 0.000847152010841512,
+      "market_minus_candidate_brier": 0.0004014865154118863,
+      "mean_row_loss_delta": 0.0008471520108415527,
+      "positive_folds": 3,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.004846932197395071,
+        0.0023618588260894136,
+        -0.0031261718914982195,
+        0.0035995331552989285,
+        -0.003948867990647309
+      ],
+      "event_bootstrap": {
+        "events": 102,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.0037725095982631693,
+          0.005267637672245965
+        ],
+        "prob_delta_le_zero": 0.35115
+      }
+    },
+    "market_plus_elo_experience": {
+      "note": "market plus Elo, experience, streak, and title-count deltas",
+      "feature_columns": [
+        "market_logit",
+        "oppelo oppdiff",
+        "elo oppdiff",
+        "wins oppdiff",
+        "totalfights oppdiff",
+        "avg age oppdiff",
+        "winstreak oppdiff",
+        "losestreak oppdiff",
+        "titlewins oppdiff"
+      ],
+      "market": {
+        "fights": 704,
+        "accuracy": 0.6875,
+        "log_loss": 0.6008836747854751,
+        "brier": 0.20666902045861074
+      },
+      "candidate": {
+        "fights": 704,
+        "accuracy": 0.6818181818181818,
+        "log_loss": 0.6112245912695786,
+        "brier": 0.21003622417832135
+      },
+      "market_minus_candidate_log_loss": -0.010340916484103513,
+      "market_minus_candidate_brier": -0.0033672037197106097,
+      "mean_row_loss_delta": -0.010340916484103464,
+      "positive_folds": 2,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        -4.5406141060300165e-05,
+        0.016000887034999578,
+        0.0012620750624620092,
+        -0.054266434286298515,
+        -0.019281420994064713
+      ],
+      "event_bootstrap": {
+        "events": 102,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.023251301696845965,
+          0.002048254393439582
+        ],
+        "prob_delta_le_zero": 0.94665
+      }
+    },
+    "market_plus_age_recency": {
+      "note": "market plus age and layoff deltas",
+      "feature_columns": [
+        "market_logit",
+        "age oppdiff",
+        "last_fight oppdiff"
+      ],
+      "market": {
+        "fights": 704,
+        "accuracy": 0.6875,
+        "log_loss": 0.6008836747854751,
+        "brier": 0.20666902045861074
+      },
+      "candidate": {
+        "fights": 704,
+        "accuracy": 0.6875,
+        "log_loss": 0.6025453128973097,
+        "brier": 0.20698919814681815
+      },
+      "market_minus_candidate_log_loss": -0.001661638111834618,
+      "market_minus_candidate_brier": -0.00032017768820741255,
+      "mean_row_loss_delta": -0.00166163811183455,
+      "positive_folds": 2,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.001014543701462589,
+        0.002044378468216035,
+        -0.0027547226330949526,
+        -0.005388394903046989,
+        -0.003792731860314813
+      ],
+      "event_bootstrap": {
+        "events": 102,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.0081811151706742,
+          0.004513063882444238
+        ],
+        "prob_delta_le_zero": 0.69185
+      }
+    },
+    "market_plus_combat_stats": {
+      "note": "market plus selected historical striking/grappling stat deltas",
+      "feature_columns": [
+        "market_logit",
+        "Clinch oppdiff",
+        "KD differential oppdiff",
+        "Sig. str.% differential oppdiff",
+        "Body% differential oppdiff",
+        "Td% defense oppdiff",
+        "Distance% defense oppdiff",
+        "Sub. att oppdiff",
+        "Td differential oppdiff",
+        "Head differential oppdiff",
+        "Ctrl oppdiff"
+      ],
+      "market": {
+        "fights": 704,
+        "accuracy": 0.6875,
+        "log_loss": 0.6008836747854751,
+        "brier": 0.20666902045861074
+      },
+      "candidate": {
+        "fights": 704,
+        "accuracy": 0.6875,
+        "log_loss": 0.6037034304167344,
+        "brier": 0.20697425673355038
+      },
+      "market_minus_candidate_log_loss": -0.0028197556312592464,
+      "market_minus_candidate_brier": -0.0003052362749396409,
+      "mean_row_loss_delta": -0.002819755631259183,
+      "positive_folds": 2,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        -0.0018444438955416143,
+        -0.003937744873979909,
+        0.014198653022295948,
+        0.006154486428520678,
+        -0.031773248659510034
+      ],
+      "event_bootstrap": {
+        "events": 102,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.015485612112930374,
+          0.009268297936075406
+        ],
+        "prob_delta_le_zero": 0.6642
+      }
+    },
+    "market_plus_top_importance": {
+      "note": "market plus top 23 retrained-LGBM importance features",
+      "feature_columns": [
+        "market_logit",
+        "oppelo oppdiff",
+        "elo oppdiff",
+        "age oppdiff",
+        "wins oppdiff",
+        "avg age oppdiff",
+        "Clinch oppdiff",
+        "KD differential oppdiff",
+        "Red avg age",
+        "Blue avg age",
+        "totalfights oppdiff",
+        "Sig. str.% differential oppdiff",
+        "Red Sub. att differential",
+        "Blue Sub. att differential",
+        "Body% differential oppdiff",
+        "Blue Sig. str. differential",
+        "Red Sig. str. differential",
+        "Td% defense oppdiff",
+        "Blue Leg% defense",
+        "Red Leg% defense",
+        "Total str.% defense oppdiff",
+        "Blue Clinch",
+        "Red Clinch",
+        "Distance% defense oppdiff"
+      ],
+      "market": {
+        "fights": 704,
+        "accuracy": 0.6875,
+        "log_loss": 0.6008836747854751,
+        "brier": 0.20666902045861074
+      },
+      "candidate": {
+        "fights": 704,
+        "accuracy": 0.6832386363636364,
+        "log_loss": 0.6088472853827711,
+        "brier": 0.208589844117581
+      },
+      "market_minus_candidate_log_loss": -0.007963610597296,
+      "market_minus_candidate_brier": -0.0019208236589702554,
+      "mean_row_loss_delta": -0.00796361059729593,
+      "positive_folds": 2,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        -0.00925753084670311,
+        -0.004709396196704185,
+        0.021411319793314565,
+        0.0013310662279782948,
+        -0.05311166158025693
+      ],
+      "event_bootstrap": {
+        "events": 102,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.02429190881411537,
+          0.007405680752658025
+        ],
+        "prob_delta_le_zero": 0.8413
+      }
+    }
+  },
+  "market_null": {
+    "market_recalibrated": {
+      "iterations": 100,
+      "observed_market_minus_candidate_log_loss": 0.000847152010841512,
+      "null_mean_delta": -0.0010868408080534143,
+      "null_delta_ci_95": [
+        -0.005355264501938425,
+        0.0028556055926305226
+      ],
+      "p_value_observed_or_better": 0.09900990099009901,
+      "prob_null_delta_positive": 0.18
+    },
+    "market_plus_elo_experience": {
+      "iterations": 100,
+      "observed_market_minus_candidate_log_loss": -0.010340916484103513,
+      "null_mean_delta": -0.008024163105671884,
+      "null_delta_ci_95": [
+        -0.015967024294509184,
+        0.0010844150617643456
+      ],
+      "p_value_observed_or_better": 0.6831683168316832,
+      "prob_null_delta_positive": 0.04
+    },
+    "market_plus_age_recency": {
+      "iterations": 100,
+      "observed_market_minus_candidate_log_loss": -0.001661638111834618,
+      "null_mean_delta": -0.0040735114036153965,
+      "null_delta_ci_95": [
+        -0.012341382252905467,
+        0.001566355100968526
+      ],
+      "p_value_observed_or_better": 0.25742574257425743,
+      "prob_null_delta_positive": 0.1
+    },
+    "market_plus_combat_stats": {
+      "iterations": 100,
+      "observed_market_minus_candidate_log_loss": -0.0028197556312592464,
+      "null_mean_delta": -0.007831843242337355,
+      "null_delta_ci_95": [
+        -0.01694842353429186,
+        7.816369777501612e-05
+      ],
+      "p_value_observed_or_better": 0.15841584158415842,
+      "prob_null_delta_positive": 0.03
+    },
+    "market_plus_top_importance": {
+      "iterations": 100,
+      "observed_market_minus_candidate_log_loss": -0.007963610597296,
+      "null_mean_delta": -0.013548164471446902,
+      "null_delta_ci_95": [
+        -0.026789275487648447,
+        -0.0012816630916689382
+      ],
+      "p_value_observed_or_better": 0.15841584158415842,
+      "prob_null_delta_positive": 0.02
+    }
+  },
+  "coefficients": {
+    "market_recalibrated": {
+      "intercept": {
+        "folds": 5,
+        "mean": -1.7464196992056457e-16,
+        "std": 8.263617008884479e-16,
+        "min": -1.1790214183260075e-15,
+        "max": 8.554194185198152e-16
+      },
+      "market_logit": {
+        "folds": 5,
+        "mean": 0.9555110774193821,
+        "std": 0.021973243268243917,
+        "min": 0.9185251953148833,
+        "max": 0.9820025265448521
+      }
+    },
+    "market_plus_elo_experience": {
+      "intercept": {
+        "folds": 5,
+        "mean": -2.9512954009522597e-16,
+        "std": 7.385982959318267e-16,
+        "min": -1.7423695865620933e-15,
+        "max": 2.5405402732625444e-16
+      },
+      "market_logit": {
+        "folds": 5,
+        "mean": 0.9004290765505427,
+        "std": 0.03182518541052024,
+        "min": 0.8634440991804146,
+        "max": 0.9534312050447517
+      },
+      "oppelo oppdiff": {
+        "folds": 5,
+        "mean": 0.16728231136502034,
+        "std": 0.04953434156611603,
+        "min": 0.08823234418420414,
+        "max": 0.21249782531971384
+      },
+      "elo oppdiff": {
+        "folds": 5,
+        "mean": 0.05132760421795367,
+        "std": 0.11984389570696302,
+        "min": -0.08527804702139961,
+        "max": 0.25336073393857167
+      },
+      "wins oppdiff": {
+        "folds": 5,
+        "mean": 0.0417499315346355,
+        "std": 0.07532770264915582,
+        "min": -0.05316488179201816,
+        "max": 0.15841128069472243
+      },
+      "totalfights oppdiff": {
+        "folds": 5,
+        "mean": -0.02340110821797899,
+        "std": 0.11595830781922908,
+        "min": -0.17680953120165102,
+        "max": 0.14365582834545515
+      },
+      "avg age oppdiff": {
+        "folds": 5,
+        "mean": -0.013203116780858828,
+        "std": 0.06564172397726312,
+        "min": -0.10737343457612727,
+        "max": 0.09720041175282834
+      },
+      "winstreak oppdiff": {
+        "folds": 5,
+        "mean": 0.26720563384473317,
+        "std": 0.07958413351850376,
+        "min": 0.17518526476064536,
+        "max": 0.3656769216693577
+      },
+      "losestreak oppdiff": {
+        "folds": 5,
+        "mean": 0.11780191218942042,
+        "std": 0.04756514268135395,
+        "min": 0.04067092289637612,
+        "max": 0.1727929982655912
+      },
+      "titlewins oppdiff": {
+        "folds": 5,
+        "mean": -0.15085085180736998,
+        "std": 0.05583437792361708,
+        "min": -0.20342055756086683,
+        "max": -0.046777425874060724
+      }
+    },
+    "market_plus_age_recency": {
+      "intercept": {
+        "folds": 5,
+        "mean": 1.8820349992242883e-16,
+        "std": 9.213303182616668e-16,
+        "min": -9.385892234134476e-16,
+        "max": 1.6241595392349067e-15
+      },
+      "market_logit": {
+        "folds": 5,
+        "mean": 0.928949335864093,
+        "std": 0.022728973568484676,
+        "min": 0.8967973367352016,
+        "max": 0.9515081719535374
+      },
+      "age oppdiff": {
+        "folds": 5,
+        "mean": -0.04137556857659977,
+        "std": 0.04632727329570139,
+        "min": -0.11293206755879388,
+        "max": 0.02612778608409081
+      },
+      "last_fight oppdiff": {
+        "folds": 5,
+        "mean": -0.05183457690452431,
+        "std": 0.03037689643386681,
+        "min": -0.11233412738121963,
+        "max": -0.03282681824411362
+      }
+    },
+    "market_plus_combat_stats": {
+      "intercept": {
+        "folds": 5,
+        "mean": 3.3761751144647346e-16,
+        "std": 7.947966491079605e-16,
+        "min": -5.263151873047171e-16,
+        "max": 1.67959679411009e-15
+      },
+      "market_logit": {
+        "folds": 5,
+        "mean": 0.8732780764117021,
+        "std": 0.022839560760405178,
+        "min": 0.8463525523345472,
+        "max": 0.9104615551029231
+      },
+      "Clinch oppdiff": {
+        "folds": 5,
+        "mean": -0.16444685061635506,
+        "std": 0.07285209818897115,
+        "min": -0.2561569086216708,
+        "max": -0.08472442318788642
+      },
+      "KD differential oppdiff": {
+        "folds": 5,
+        "mean": 0.0060232351079358174,
+        "std": 0.0571254835729597,
+        "min": -0.07390763402124928,
+        "max": 0.08777782640689036
+      },
+      "Sig. str.% differential oppdiff": {
+        "folds": 5,
+        "mean": 0.13999331738459805,
+        "std": 0.04329223288142994,
+        "min": 0.07797648219559282,
+        "max": 0.20930304684756443
+      },
+      "Body% differential oppdiff": {
+        "folds": 5,
+        "mean": 0.06755267812059787,
+        "std": 0.03207803581009991,
+        "min": 0.03451813616133857,
+        "max": 0.12004059018246613
+      },
+      "Td% defense oppdiff": {
+        "folds": 5,
+        "mean": 0.026659312060434613,
+        "std": 0.028472835321491693,
+        "min": -0.009708365512543296,
+        "max": 0.0727834614629087
+      },
+      "Distance% defense oppdiff": {
+        "folds": 5,
+        "mean": -0.06610024245350334,
+        "std": 0.09565761033152728,
+        "min": -0.19313135460835604,
+        "max": 0.07447262708027978
+      },
+      "Sub. att oppdiff": {
+        "folds": 5,
+        "mean": -0.03762976661655439,
+        "std": 0.035120533339978055,
+        "min": -0.07659435860986719,
+        "max": 0.011660809222738187
+      },
+      "Td differential oppdiff": {
+        "folds": 5,
+        "mean": 0.039499021568144235,
+        "std": 0.11121057752237175,
+        "min": -0.15446131232409718,
+        "max": 0.17685897574101356
+      },
+      "Head differential oppdiff": {
+        "folds": 5,
+        "mean": 0.12445628181174262,
+        "std": 0.024388060630114818,
+        "min": 0.08129526687968831,
+        "max": 0.15383097916528288
+      },
+      "Ctrl oppdiff": {
+        "folds": 5,
+        "mean": 0.1115651383446088,
+        "std": 0.06527568844606439,
+        "min": 0.026945891185286796,
+        "max": 0.19049337087959373
+      }
+    },
+    "market_plus_top_importance": {
+      "intercept": {
+        "folds": 5,
+        "mean": 7.496920532881896e-16,
+        "std": 1.0019449568353438e-15,
+        "min": -7.181349903895584e-16,
+        "max": 2.3547393806490607e-15
+      },
+      "market_logit": {
+        "folds": 5,
+        "mean": 0.8325620370154517,
+        "std": 0.02237977854878056,
+        "min": 0.81390760075783,
+        "max": 0.8750570190528477
+      },
+      "oppelo oppdiff": {
+        "folds": 5,
+        "mean": 0.14866771767589598,
+        "std": 0.06607777917976641,
+        "min": 0.05576500311709462,
+        "max": 0.2550758188165812
+      },
+      "elo oppdiff": {
+        "folds": 5,
+        "mean": 0.0014299377492964255,
+        "std": 0.10863688669604987,
+        "min": -0.13784278405923828,
+        "max": 0.17434063976133546
+      },
+      "age oppdiff": {
+        "folds": 5,
+        "mean": -0.21741153208957464,
+        "std": 0.03832892873814864,
+        "min": -0.2646268548986952,
+        "max": -0.16204662251855498
+      },
+      "wins oppdiff": {
+        "folds": 5,
+        "mean": 0.05346459787522192,
+        "std": 0.08561973035647465,
+        "min": -0.04481545582578857,
+        "max": 0.17806025279063012
+      },
+      "avg age oppdiff": {
+        "folds": 5,
+        "mean": 0.03820096219668011,
+        "std": 0.0691384083387152,
+        "min": -0.050298173513699335,
+        "max": 0.15874235420733215
+      },
+      "Clinch oppdiff": {
+        "folds": 5,
+        "mean": -0.08968911966230657,
+        "std": 0.0349729871667142,
+        "min": -0.13418287627967165,
+        "max": -0.0540235334271511
+      },
+      "KD differential oppdiff": {
+        "folds": 5,
+        "mean": 0.025495944356739485,
+        "std": 0.05963139399641894,
+        "min": -0.05523670321469524,
+        "max": 0.11203431208618066
+      },
+      "Red avg age": {
+        "folds": 5,
+        "mean": 0.06537140255839193,
+        "std": 0.04765317741557837,
+        "min": 0.000603760646483111,
+        "max": 0.13199358496473565
+      },
+      "Blue avg age": {
+        "folds": 5,
+        "mean": -0.06537140255839194,
+        "std": 0.047653177415578306,
+        "min": -0.13199358496473557,
+        "max": -0.0006037606464832231
+      },
+      "totalfights oppdiff": {
+        "folds": 5,
+        "mean": 0.03445582373115247,
+        "std": 0.10819485272791106,
+        "min": -0.0950695634467801,
+        "max": 0.20465821146150565
+      },
+      "Sig. str.% differential oppdiff": {
+        "folds": 5,
+        "mean": 0.16725374720884428,
+        "std": 0.0483760051158194,
+        "min": 0.09139862542288973,
+        "max": 0.2311934675503896
+      },
+      "Red Sub. att differential": {
+        "folds": 5,
+        "mean": 0.058898283126501805,
+        "std": 0.04337098873904489,
+        "min": 0.00552465647039532,
+        "max": 0.11162309422520664
+      },
+      "Blue Sub. att differential": {
+        "folds": 5,
+        "mean": -0.05889828312650173,
+        "std": 0.04337098873904488,
+        "min": -0.1116230942252066,
+        "max": -0.00552465647039523
+      },
+      "Body% differential oppdiff": {
+        "folds": 5,
+        "mean": 0.06027009911711556,
+        "std": 0.03198912183340762,
+        "min": 0.013618907565226344,
+        "max": 0.11046174054922332
+      },
+      "Blue Sig. str. differential": {
+        "folds": 5,
+        "mean": -0.05237594231918848,
+        "std": 0.03580319407299686,
+        "min": -0.08175315488012763,
+        "max": 0.015300596056461729
+      },
+      "Red Sig. str. differential": {
+        "folds": 5,
+        "mean": 0.05237594231918845,
+        "std": 0.035803194072996855,
+        "min": -0.015300596056461743,
+        "max": 0.08175315488012765
+      },
+      "Td% defense oppdiff": {
+        "folds": 5,
+        "mean": 0.07137228872899128,
+        "std": 0.041229484417630004,
+        "min": 0.008214304239700694,
+        "max": 0.13521897423482634
+      },
+      "Blue Leg% defense": {
+        "folds": 5,
+        "mean": -0.07801260891950915,
+        "std": 0.06365983339933431,
+        "min": -0.16229869972573097,
+        "max": 0.010212430814057306
+      },
+      "Red Leg% defense": {
+        "folds": 5,
+        "mean": 0.07801260891950916,
+        "std": 0.06365983339933433,
+        "min": -0.010212430814057328,
+        "max": 0.1622986997257309
+      },
+      "Total str.% defense oppdiff": {
+        "folds": 5,
+        "mean": -0.14184598132323406,
+        "std": 0.08165593850093066,
+        "min": -0.23847120988440954,
+        "max": -0.031118626522674768
+      },
+      "Blue Clinch": {
+        "folds": 5,
+        "mean": 0.062435161384497485,
+        "std": 0.023846108614614,
+        "min": 0.038045484190329784,
+        "max": 0.09339325936680225
+      },
+      "Red Clinch": {
+        "folds": 5,
+        "mean": -0.06243516138449749,
+        "std": 0.023846108614614014,
+        "min": -0.09339325936680234,
+        "max": -0.038045484190329784
+      },
+      "Distance% defense oppdiff": {
+        "folds": 5,
+        "mean": -0.024177599813084417,
+        "std": 0.13515729031863344,
+        "min": -0.20013338144853657,
+        "max": 0.1699315162134047
+      }
+    }
+  },
+  "outputs": {
+    "predictions_csv": "test_results/market_aware_feature_audit/market_aware_feature_predictions.csv",
+    "summary_json": "test_results/market_aware_feature_audit/market_aware_feature_audit.json",
+    "report_md": "test_results/market_aware_feature_audit/market_aware_feature_audit.md"
+  }
+}
