@@ -1,14 +1,33 @@
+import argparse
 from pathlib import Path
 
 import pandas as pd
 
 
 DATA_DIR = Path("data")
-INPUT_CSV = DATA_DIR / "fight_details_date.csv"
-OUTPUT_CSV = DATA_DIR / "modified_fight_details.csv"
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Clean raw UFC fight details for feature generation.")
+    parser.add_argument("--input-fights", default=DATA_DIR / "fight_details_date.csv", type=Path)
+    parser.add_argument("--output-fights", default=DATA_DIR / "modified_fight_details.csv", type=Path)
+    parser.add_argument(
+        "--include-womens-fights",
+        action="store_true",
+        help="keep women's bouts instead of matching the historical men-only preprocessing default",
+    )
+    parser.add_argument(
+        "--include-openweight-fights",
+        action="store_true",
+        help="keep openweight bouts instead of matching the historical preprocessing default",
+    )
+    return parser.parse_args()
+
+
+ARGS = parse_args()
 
 # Reading the data from data\fight_details.csv file
-df = pd.read_csv(INPUT_CSV)
+df = pd.read_csv(ARGS.input_fights)
 
 # Function to convert "x of y" strings to a tuple of (x, x/y)
 def convert_ratio(value):
@@ -55,8 +74,11 @@ df = df.drop(list(rows_to_delete))
 # Deleting the old percentage columns as specified
 columns_to_delete = ["Red Sig. str. %", "Red Td %", "Blue Sig. str. %", "Blue Td %", "Red Sig. str", "Blue Sig. str", "Red Sig. str%", "Blue Sig. str%"]
 df = df.drop(columns=columns_to_delete)
-df = df[~df['Title'].str.contains("Women", na=False)]
-df = df[~df['Title'].str.contains("Open", na=False)]
+if not ARGS.include_womens_fights:
+    df = df[~df['Title'].str.contains("Women", na=False)]
+if not ARGS.include_openweight_fights:
+    df = df[~df['Title'].str.contains("Open", na=False)]
 #df = df[~df['Title'].str.contains("Title")]
 # Saving the modified DataFrame back to CSV or you can use it as is in your Python environment
-df.to_csv(OUTPUT_CSV, index=False)
+ARGS.output_fights.parent.mkdir(parents=True, exist_ok=True)
+df.to_csv(ARGS.output_fights, index=False)

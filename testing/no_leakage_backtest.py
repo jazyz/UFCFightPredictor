@@ -56,6 +56,23 @@ def parse_date(value):
     return pd.to_datetime(value, format="mixed", errors="coerce")
 
 
+def title_pattern_mask(df, patterns, column="Title"):
+    mask = pd.Series(False, index=df.index)
+    if not patterns or column not in df.columns:
+        return mask
+
+    titles = df[column].fillna("")
+    for pattern in patterns:
+        mask |= titles.str.contains(pattern, case=False, regex=True, na=False)
+    return mask
+
+
+def filter_title_patterns(df, patterns, column="Title"):
+    if not patterns:
+        return df
+    return df[title_pattern_mask(df, patterns, column=column)].copy()
+
+
 def default_dates():
     end_date = datetime.now().date()
     start_date = end_date - timedelta(days=365)
@@ -98,7 +115,7 @@ def fight_pair_key(left_name, right_name):
     return frozenset({normalize_name(left_name), normalize_name(right_name)})
 
 
-def build_excluded_fight_index(path, title_patterns):
+def build_title_fight_index(path, title_patterns):
     if not path or not title_patterns:
         return set(), defaultdict(set), set()
 
@@ -111,27 +128,26 @@ def build_excluded_fight_index(path, title_patterns):
     if not required_columns.issubset(df.columns):
         return set(), defaultdict(set), set()
 
-    excluded_mask = pd.Series(False, index=df.index)
-    titles = df["Title"].fillna("")
-    for pattern in title_patterns:
-        excluded_mask |= titles.str.contains(pattern, case=False, na=False)
-
-    df = df[excluded_mask].copy()
+    df = filter_title_patterns(df, title_patterns)
     df["Date"] = parse_date(df["Date"])
     df = df.dropna(subset=["Date", "Red Fighter", "Blue Fighter"])
 
-    excluded_keys = set()
+    title_keys = set()
     dates_by_pair = defaultdict(set)
     fighter_keys = set()
     for _, row in df.iterrows():
         event_date = row["Date"].date()
         pair_key = fight_pair_key(row["Red Fighter"], row["Blue Fighter"])
-        excluded_keys.add((event_date, pair_key))
+        title_keys.add((event_date, pair_key))
         dates_by_pair[pair_key].add(event_date)
         fighter_keys.add(normalize_name(row["Red Fighter"]))
         fighter_keys.add(normalize_name(row["Blue Fighter"]))
 
-    return excluded_keys, dates_by_pair, fighter_keys
+    return title_keys, dates_by_pair, fighter_keys
+
+
+def build_excluded_fight_index(path, title_patterns):
+    return build_title_fight_index(path, title_patterns)
 
 
 def repair_odds_dates_from_features(odds_df, features_df):
@@ -257,6 +273,28 @@ def filter_excluded_universe_rows(
     return odds_df[~excluded_mask].copy(), excluded_rows
 
 
+def filter_included_universe_rows(
+    odds_df,
+    included_fight_keys,
+    included_dates_by_pair,
+    included_fighter_keys,
+):
+    if not included_fight_keys and not included_fighter_keys:
+        return odds_df, 0
+
+    included_mask = odds_df.apply(
+        lambda row: is_excluded_universe_row(
+            row,
+            included_fight_keys,
+            included_dates_by_pair,
+            included_fighter_keys,
+        ),
+        axis=1,
+    )
+    excluded_rows = int((~included_mask).sum())
+    return odds_df[included_mask].copy(), excluded_rows
+
+
 def format_american_odds(value):
     value = int(round(float(value)))
     return f"+{value}" if value > 0 else str(value)
@@ -331,6 +369,9 @@ def load_odds_data(
     excluded_fight_keys=None,
     excluded_dates_by_pair=None,
     excluded_fighter_keys=None,
+    included_fight_keys=None,
+    included_dates_by_pair=None,
+    included_fighter_keys=None,
 ):
     df = pd.read_csv(path)
     df["event_date"] = parse_date(df["event_date"])
@@ -345,6 +386,12 @@ def load_odds_data(
         excluded_dates_by_pair or defaultdict(set),
         excluded_fighter_keys or set(),
     )
+    df, outside_included_universe_rows = filter_included_universe_rows(
+        df,
+        included_fight_keys or set(),
+        included_dates_by_pair or defaultdict(set),
+        included_fighter_keys or set(),
+    )
     non_binary_rows = int(df["winner_name"].map(is_non_binary_outcome).sum())
     df = df[~df["winner_name"].map(is_non_binary_outcome)].copy()
     df, deduplicated_rows = deduplicate_odds_rows(df)
@@ -352,6 +399,7 @@ def load_odds_data(
     df.attrs["deduplicated_rows"] = deduplicated_rows
     df.attrs["non_binary_rows"] = non_binary_rows
     df.attrs["excluded_universe_rows"] = excluded_universe_rows
+    df.attrs["outside_included_universe_rows"] = outside_included_universe_rows
     if return_repairs:
         repairs_in_window = [
             repair
@@ -788,6 +836,11 @@ def run_backtest(args):
         args.fight_details_source,
         excluded_title_patterns,
     )
+    odds_title_patterns = args.odds_title_pattern or args.eval_title_pattern
+    included_fight_keys, included_dates_by_pair, included_fighter_keys = build_title_fight_index(
+        args.fight_details_source,
+        odds_title_patterns,
+    )
     odds_df, odds_date_repairs = load_odds_data(
         args.odds,
         args.start_date,
@@ -797,10 +850,14 @@ def run_backtest(args):
         excluded_fight_keys=excluded_fight_keys,
         excluded_dates_by_pair=excluded_dates_by_pair,
         excluded_fighter_keys=excluded_fighter_keys,
+        included_fight_keys=included_fight_keys,
+        included_dates_by_pair=included_dates_by_pair,
+        included_fighter_keys=included_fighter_keys,
     )
     odds_rows_deduplicated = odds_df.attrs.get("deduplicated_rows", 0)
     odds_rows_non_binary = odds_df.attrs.get("non_binary_rows", 0)
     odds_rows_excluded_universe = odds_df.attrs.get("excluded_universe_rows", 0)
+    odds_rows_outside_included_universe = odds_df.attrs.get("outside_included_universe_rows", 0)
 
     coverage_messages = strict_coverage_check(features_df, odds_df, args.end_date)
     if args.strict_end_date and coverage_messages:
@@ -814,6 +871,7 @@ def run_backtest(args):
         (features_df["Date"] >= pd.Timestamp(args.start_date))
         & (features_df["Date"] <= pd.Timestamp(args.end_date))
     ]
+    eval_df = filter_title_patterns(eval_df, args.eval_title_pattern)
 
     bankroll = args.starting_bankroll
     predictions = []
@@ -847,6 +905,7 @@ def run_backtest(args):
 
     for event_date, event_fights in eval_df.groupby(eval_df["Date"].dt.date, sort=True):
         train_df = features_df[features_df["Date"] < pd.Timestamp(event_date)]
+        train_df = filter_title_patterns(train_df, args.train_title_pattern)
         if len(train_df) < args.min_training_fights:
             for _, row in event_fights.iterrows():
                 skipped.append((row, f"only {len(train_df)} training fights before event"))
@@ -1044,6 +1103,9 @@ def run_backtest(args):
         "odds_path": args.odds,
         "fight_details_source": args.fight_details_source,
         "excluded_title_patterns": excluded_title_patterns,
+        "train_title_patterns": args.train_title_pattern,
+        "eval_title_patterns": args.eval_title_pattern,
+        "odds_title_patterns": odds_title_patterns,
         "included_excluded_dobs": args.include_excluded_dobs,
         "param_source": param_source,
         "strict_coverage_messages": coverage_messages,
@@ -1051,6 +1113,7 @@ def run_backtest(args):
         "odds_data_max_date": None if odds_df.empty else odds_df["event_date"].max().date().isoformat(),
         "odds_rows_date_repaired": len(odds_date_repairs),
         "odds_rows_excluded_universe": odds_rows_excluded_universe,
+        "odds_rows_outside_included_universe": odds_rows_outside_included_universe,
         "odds_rows_deduplicated": odds_rows_deduplicated,
         "odds_rows_non_binary_excluded": odds_rows_non_binary,
         "models_fit": models_fit,
@@ -1101,6 +1164,7 @@ def run_backtest(args):
     print(f"Odds rows in window: {len(odds_df)}")
     print(f"Odds rows date-repaired: {len(odds_date_repairs)}")
     print(f"Odds rows excluded by universe: {odds_rows_excluded_universe}")
+    print(f"Odds rows outside included universe: {odds_rows_outside_included_universe}")
     print(f"Odds rows deduplicated: {odds_rows_deduplicated}")
     print(f"Odds rows non-binary excluded: {odds_rows_non_binary}")
     print(f"Odds rows missing feature rows: {len(odds_rows_missing_features)}")
@@ -1137,6 +1201,27 @@ def parse_args():
         "--include-womens-fights",
         action="store_true",
         help="include women's bouts in odds coverage/PnL instead of treating them as out of universe",
+    )
+    parser.add_argument(
+        "--train-title-pattern",
+        action="append",
+        default=None,
+        help="optional regex title filter for training rows, e.g. Women for a women-only retrain",
+    )
+    parser.add_argument(
+        "--eval-title-pattern",
+        action="append",
+        default=None,
+        help="optional regex title filter for evaluated feature rows, e.g. Women for women-only predictions",
+    )
+    parser.add_argument(
+        "--odds-title-pattern",
+        action="append",
+        default=None,
+        help=(
+            "optional regex title filter for odds rows via fight_details_source; "
+            "defaults to --eval-title-pattern when omitted"
+        ),
     )
     parser.add_argument(
         "--include-excluded-dobs",

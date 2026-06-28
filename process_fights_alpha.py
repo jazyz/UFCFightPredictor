@@ -422,6 +422,7 @@ for fight in fights:
     
 
 def export_processed_fights(processed_fights, filename=os.path.join('data', 'detailed_fights.csv')):
+    os.makedirs(os.path.dirname(filename) or ".", exist_ok=True)
     with open(filename, mode='w', newline='') as file:
         if processed_fights:  # check if the list is not empty
             headers = processed_fights[0].keys()  # Get the keys from the first dictionary as headers
@@ -432,6 +433,7 @@ def export_processed_fights(processed_fights, filename=os.path.join('data', 'det
                 writer.writerow(fight)
 
 def export_fighter_stats(fighter_stats, filename=os.path.join('data', 'detailed_fighter_stats.csv')):
+    os.makedirs(os.path.dirname(filename) or ".", exist_ok=True)
     with open(filename, mode='w', newline='') as file:
         if fighter_stats:  # check if the dictionary is not empty
             example_fighter = next(iter(fighter_stats.values()))  # Get an example of the inner dictionary
@@ -457,6 +459,7 @@ export_processed_fights(processed_fights, ARGS.output_features)
 export_fighter_stats(fighter_stats, ARGS.output_fighter_stats)
 
 def write_to_text_file(data, file_path, is_fighter_stats=False):
+    os.makedirs(os.path.dirname(file_path) or ".", exist_ok=True)
     with open(file_path, 'w') as file:
         if is_fighter_stats:
             for fighter, stats in data.items():
