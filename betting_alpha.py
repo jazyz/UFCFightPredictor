@@ -3,6 +3,8 @@
 import csv
 import json
 import os
+from datetime import datetime, timezone
+from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
@@ -14,11 +16,51 @@ PREDICTIONS_PATH = os.path.join("data", "betting_predictions.csv")
 PREDICTIONS_METADATA_PATH = os.path.join("data", "betting_predictions_metadata.json")
 POLICY_PATH = os.path.join("test_results", "frozen_forward_policy", "frozen_forward_policy.json")
 OUTPUT_PATH = os.path.join("data", "betting_results.txt")
+FORWARD_LEDGER_DIR = os.path.join("test_results", "forward_paper_tracking")
+FORWARD_LEDGER_CSV_PATH = os.path.join(FORWARD_LEDGER_DIR, "latest_forward_paper_bets.csv")
+FORWARD_LEDGER_JSON_PATH = os.path.join(FORWARD_LEDGER_DIR, "latest_forward_paper_bets.json")
 
 # Paste the UFC.com card link to price here.
 FIGHT_CARD_LINK = "https://www.ufc.com/event/ufc-322"
 
 BANKROLL = 100
+
+LEDGER_COLUMNS = [
+    "generated_at_utc",
+    "fight_card_link",
+    "bankroll",
+    "policy_path",
+    "policy_as_of_date",
+    "policy_selection_objective",
+    "policy_dev_start",
+    "policy_dev_end",
+    "strategy_json",
+    "prediction_source",
+    "prediction_generated_at_utc",
+    "model_train_through",
+    "model_param_source",
+    "fight_index",
+    "fighter1",
+    "fighter2",
+    "fighter1_odds",
+    "fighter2_odds",
+    "fighter1_model_probability",
+    "fighter2_model_probability",
+    "fighter1_market_probability",
+    "fighter2_market_probability",
+    "selected_fighter",
+    "selected_odds",
+    "selected_model_probability",
+    "selected_market_probability",
+    "selected_policy_probability",
+    "selected_edge",
+    "selected_kelly",
+    "stake",
+    "potential_profit",
+    "potential_return_with_stake",
+    "bet_placed",
+    "no_bet_reason",
+]
 
 
 def parse_odds(value):
@@ -98,6 +140,10 @@ def payout(odds, bet):
     if odds < 0:
         return bet * (100 / -odds)
     return bet * (odds / 100)
+
+
+def utc_now_iso():
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
 def score_side(fighter, odds, model_probability, market_probability, strategy):
@@ -186,12 +232,196 @@ def choose_bet(bankroll, fighter1, fighter2, odds1, odds2, p1, strategy):
     }
 
 
+def run_metadata(policy, prediction_metadata, strategy, generated_at_utc):
+    return {
+        "generated_at_utc": generated_at_utc,
+        "fight_card_link": FIGHT_CARD_LINK,
+        "bankroll": BANKROLL,
+        "policy_path": POLICY_PATH,
+        "policy_as_of_date": policy.get("as_of_date", ""),
+        "policy_selection_objective": policy.get("selection_objective", ""),
+        "policy_dev_start": policy.get("dev_start", ""),
+        "policy_dev_end": policy.get("dev_end", ""),
+        "strategy_json": json.dumps(strategy, sort_keys=True),
+        "prediction_source": prediction_metadata.get("prediction_source", "unknown"),
+        "prediction_generated_at_utc": prediction_metadata.get("generated_at_utc", ""),
+        "model_train_through": prediction_metadata.get("model_train_through", "unknown"),
+        "model_param_source": prediction_metadata.get("model_param_source", ""),
+    }
+
+
+def empty_scored_row(fight_index, fighter1, fighter2, odds1, odds2):
+    return {
+        "fight_index": fight_index,
+        "fighter1": fighter1,
+        "fighter2": fighter2,
+        "fighter1_odds": odds1,
+        "fighter2_odds": odds2,
+        "fighter1_model_probability": "",
+        "fighter2_model_probability": "",
+        "fighter1_market_probability": "",
+        "fighter2_market_probability": "",
+        "selected_fighter": "",
+        "selected_odds": "",
+        "selected_model_probability": "",
+        "selected_market_probability": "",
+        "selected_policy_probability": "",
+        "selected_edge": "",
+        "selected_kelly": "",
+        "stake": 0.0,
+        "potential_profit": 0.0,
+        "potential_return_with_stake": 0.0,
+        "bet_placed": False,
+        "no_bet_reason": "",
+    }
+
+
+def score_fights(fights, predictions, strategy, bankroll=BANKROLL):
+    rows = []
+    for fight_index, (fighter1, fighter2, odds1, odds2) in enumerate(fights, start=1):
+        row = empty_scored_row(fight_index, fighter1, fighter2, odds1, odds2)
+        if odds1 is None or odds2 is None:
+            row["no_bet_reason"] = "missing odds"
+            rows.append(row)
+            continue
+
+        p1 = matchup_probability(predictions, fighter1, fighter2)
+        if p1 is None:
+            row["no_bet_reason"] = "prediction not found"
+            rows.append(row)
+            continue
+
+        p2 = 1 - p1
+        market1, market2 = devig_market_probabilities(odds1, odds2)
+        row.update(
+            {
+                "fighter1_model_probability": p1,
+                "fighter2_model_probability": p2,
+                "fighter1_market_probability": market1 if market1 is not None else "",
+                "fighter2_market_probability": market2 if market2 is not None else "",
+            }
+        )
+
+        selected = choose_bet(bankroll, fighter1, fighter2, odds1, odds2, p1, strategy)
+        if selected is None:
+            row["no_bet_reason"] = "could not score market probabilities"
+            rows.append(row)
+            continue
+
+        potential_profit = payout(selected["odds"], selected["bet"]) if selected["bet"] > 0 else 0.0
+        row.update(
+            {
+                "selected_fighter": selected["fighter"],
+                "selected_odds": selected["odds"],
+                "selected_model_probability": selected["model_probability"],
+                "selected_market_probability": selected["market_probability"],
+                "selected_policy_probability": selected["bet_probability"],
+                "selected_edge": selected["edge"],
+                "selected_kelly": selected["kelly"],
+                "stake": selected["bet"],
+                "potential_profit": potential_profit,
+                "potential_return_with_stake": selected["bet"] + potential_profit,
+                "bet_placed": selected["bet"] > 0,
+                "no_bet_reason": selected["no_bet_reason"],
+            }
+        )
+        rows.append(row)
+    return rows
+
+
+def serializable_value(value):
+    if value is None:
+        return ""
+    return value
+
+
+def rows_with_metadata(rows, metadata):
+    return [
+        {column: serializable_value({**metadata, **row}.get(column, "")) for column in LEDGER_COLUMNS}
+        for row in rows
+    ]
+
+
+def write_machine_readable_ledger(rows, metadata, csv_path=FORWARD_LEDGER_CSV_PATH, json_path=FORWARD_LEDGER_JSON_PATH):
+    Path(csv_path).parent.mkdir(parents=True, exist_ok=True)
+    flat_rows = rows_with_metadata(rows, metadata)
+
+    with open(csv_path, "w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=LEDGER_COLUMNS)
+        writer.writeheader()
+        writer.writerows(flat_rows)
+
+    with open(json_path, "w") as file:
+        json.dump(
+            {
+                "metadata": metadata,
+                "rows": rows,
+                "warning": (
+                    "Forward paper-tracking recommendations only. Commit or archive "
+                    "before outcomes are known if using this run as evidence."
+                ),
+            },
+            file,
+            indent=2,
+        )
+
+    return csv_path, json_path
+
+
 def write_bet(file, bet, fighter_name, fighter_odds):
     potential_return = payout(fighter_odds, bet)
     file.write(
         f"{fighter_name} ${bet:.2f} (bet) "
         f"pt: ${bet + potential_return:.2f} +${potential_return:.2f}"
     )
+
+
+def write_text_report(output_path, rows, metadata):
+    with open(output_path, "w") as output:
+        output.write(f"Bankroll: ${metadata['bankroll']:.2f}\n")
+        output.write(f"Fight Card: {metadata['fight_card_link']}\n")
+        output.write(f"Frozen Policy As Of: {metadata['policy_as_of_date']}\n")
+        output.write(f"Policy Source: {metadata['policy_path']}\n")
+        output.write(f"Prediction Source: {metadata['prediction_source']}\n")
+        output.write(f"Model Train Through: {metadata['model_train_through']}\n")
+        output.write(f"Strategy: {metadata['strategy_json']}\n")
+        output.write("Mode: forward paper tracking; not proof of live edge\n")
+        output.write("---\n")
+
+        for row in rows:
+            fighter1 = row["fighter1"]
+            fighter2 = row["fighter2"]
+            odds1 = row["fighter1_odds"]
+            odds2 = row["fighter2_odds"]
+
+            if row["no_bet_reason"] == "missing odds":
+                output.write(f"{fighter1} vs {fighter2}: missing odds\n---\n")
+                continue
+            if row["no_bet_reason"] == "prediction not found":
+                output.write(f"{fighter1} vs {fighter2}: prediction not found\n---\n")
+                continue
+            if row["no_bet_reason"] == "could not score market probabilities":
+                output.write(f"{fighter1} vs {fighter2}: could not score market probabilities\n---\n")
+                continue
+
+            p1 = row["fighter1_model_probability"]
+            p2 = row["fighter2_model_probability"]
+            output.write(f"{fighter1}: {odds1} {p1:.3f}\n")
+            output.write(f"{fighter2}: {odds2} {p2:.3f}\n")
+            output.write(
+                f"Candidate: {row['selected_fighter']} "
+                f"model={row['selected_model_probability']:.3f} "
+                f"market={row['selected_market_probability']:.3f} "
+                f"policy_prob={row['selected_policy_probability']:.3f} "
+                f"edge={row['selected_edge']:.3f} kelly={row['selected_kelly']:.3f}\n"
+            )
+
+            if row["stake"] > 0:
+                write_bet(output, row["stake"], row["selected_fighter"], row["selected_odds"])
+                output.write("\n")
+            else:
+                output.write(f"{row['selected_fighter']} (no bet: {row['no_bet_reason']})\n")
+            output.write("---\n")
 
 
 def scrape_card(link):
@@ -246,58 +476,13 @@ def main():
     prediction_metadata = load_prediction_metadata()
     predictions = load_predictions()
     fights = scrape_card(FIGHT_CARD_LINK)
-
-    with open(OUTPUT_PATH, "w") as output:
-        output.write(f"Bankroll: ${BANKROLL:.2f}\n")
-        output.write(f"Fight Card: {FIGHT_CARD_LINK}\n")
-        output.write(f"Frozen Policy As Of: {policy['as_of_date']}\n")
-        output.write(f"Policy Source: {POLICY_PATH}\n")
-        output.write(f"Prediction Source: {prediction_metadata.get('prediction_source', 'unknown')}\n")
-        output.write(f"Model Train Through: {prediction_metadata.get('model_train_through', 'unknown')}\n")
-        output.write(f"Strategy: {json.dumps(strategy, sort_keys=True)}\n")
-        output.write("Mode: forward paper tracking; not proof of live edge\n")
-        output.write("---\n")
-
-        for fighter1, fighter2, odds1, odds2 in fights:
-            if odds1 is None or odds2 is None:
-                output.write(f"{fighter1} vs {fighter2}: missing odds\n---\n")
-                continue
-
-            p1 = matchup_probability(predictions, fighter1, fighter2)
-            if p1 is None:
-                output.write(f"{fighter1} vs {fighter2}: prediction not found\n---\n")
-                continue
-
-            p2 = 1 - p1
-            selected = choose_bet(
-                BANKROLL,
-                fighter1,
-                fighter2,
-                odds1,
-                odds2,
-                p1,
-                strategy,
-            )
-            if selected is None:
-                output.write(f"{fighter1} vs {fighter2}: could not score market probabilities\n---\n")
-                continue
-
-            output.write(f"{fighter1}: {odds1} {p1:.3f}\n")
-            output.write(f"{fighter2}: {odds2} {p2:.3f}\n")
-            output.write(
-                f"Candidate: {selected['fighter']} "
-                f"model={selected['model_probability']:.3f} "
-                f"market={selected['market_probability']:.3f} "
-                f"policy_prob={selected['bet_probability']:.3f} "
-                f"edge={selected['edge']:.3f} kelly={selected['kelly']:.3f}\n"
-            )
-
-            if selected["bet"] > 0:
-                write_bet(output, selected["bet"], selected["fighter"], selected["odds"])
-                output.write("\n")
-            else:
-                output.write(f"{selected['fighter']} (no bet: {selected['no_bet_reason']})\n")
-            output.write("---\n")
+    metadata = run_metadata(policy, prediction_metadata, strategy, utc_now_iso())
+    rows = score_fights(fights, predictions, strategy)
+    write_text_report(OUTPUT_PATH, rows, metadata)
+    csv_path, json_path = write_machine_readable_ledger(rows, metadata)
+    print(f"Wrote {OUTPUT_PATH}")
+    print(f"Wrote {csv_path}")
+    print(f"Wrote {json_path}")
 
 
 if __name__ == "__main__":

@@ -61,9 +61,18 @@ do not overwrite the canonical betting predictions file.
 
 Finally run `betting_alpha.py`. It reads UFC.com odds, loads the frozen forward
 policy in `test_results/frozen_forward_policy/frozen_forward_policy.json`, and
-writes paper-tracking suggestions to `data/betting_results.txt`. Current
-backtests are not strong enough to claim a proven live edge, so treat these as
-forward paper-tracking recommendations until post-freeze evidence accumulates.
+writes paper-tracking suggestions to `data/betting_results.txt`. It also writes
+machine-readable pre-outcome ledgers to:
+
+```text
+test_results/forward_paper_tracking/latest_forward_paper_bets.csv
+test_results/forward_paper_tracking/latest_forward_paper_bets.json
+```
+
+Archive or commit those ledger files before fight outcomes are known if they
+will be used as evidence. Current backtests are not strong enough to claim a
+proven live edge, so treat these as forward paper-tracking recommendations
+until post-freeze evidence accumulates.
 
 ## Other Studies
 

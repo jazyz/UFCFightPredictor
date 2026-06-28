@@ -538,6 +538,11 @@ Operational PnL implementation update:
   the frozen model/market blend, thresholds, and staking settings
 - `betting_alpha.py` writes paper-tracking output and labels it as not proof of
   live edge
+- `betting_alpha.py` now also writes machine-readable forward paper ledgers:
+  `test_results/forward_paper_tracking/latest_forward_paper_bets.csv` and
+  `test_results/forward_paper_tracking/latest_forward_paper_bets.json`
+- `test_results/forward_paper_tracking/README.md` documents that future ledgers
+  only count as evidence if generated and archived before outcomes are known
 
 Validation:
 
@@ -548,6 +553,8 @@ Validation:
   under `/private/tmp/ufc_forward_prediction_smoke`
 - a direct frozen-policy betting smoke test selected the expected model/market
   blended candidate and stake
+- a synthetic forward-ledger smoke test wrote CSV/JSON paper-bet ledgers under
+  `/private/tmp`
 
 Current operational caveat: the checked-in `data/predict_fights_alpha.csv` is
 stale and fails the live feature-range guard with out-of-training-range values.
