@@ -88,6 +88,16 @@ Full importance export:
 ## Dead-End Checked
 
 Experimental title-context and matchup aggregate features were added as an
-opt-in `--engineered-features` path. A one-year leak-safe run worsened metrics,
-so the production model and reported regularized results keep
+opt-in `--engineered-features` path.
+
+Follow-up audit:
+
+```text
+test_results/feature_variant_engineered_regularized_summary.md
+```
+
+Both one-year and two-year leak-safe comparisons failed to justify promotion.
+The engineered challenger worsened one-year accuracy, log loss, and PnL; on the
+two-year window it had a tiny accuracy increase but worse log loss and lower
+PnL. The production model and frozen forward policy therefore keep
 `engineered_features=false`.

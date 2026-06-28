@@ -447,6 +447,35 @@ candidate set, selection objective, strategy grid, thresholds, or staking
 rules. A real edge claim still requires post-freeze market-null and
 event-bootstrap evidence.
 
+### Engineered Feature Variant Audit
+
+Feature audit:
+
+```text
+test_results/feature_variant_engineered_regularized_summary.md
+```
+
+The opt-in title-context and matchup-aggregate feature path was tested as a
+regularized-LGBM challenger with leak-safe rolling retraining.
+
+| Window | Feature Set | Accuracy | Log Loss | PnL |
+| --- | --- | ---: | ---: | ---: |
+| 2025-06-27 to 2026-06-27 | current regularized | 64.43% | 0.6418 | +24.66% |
+| 2025-06-27 to 2026-06-27 | engineered challenger | 62.75% | 0.6506 | +4.12% |
+| 2024-06-27 to 2026-06-27 | current regularized | 65.00% | 0.6318 | +61.20% |
+| 2024-06-27 to 2026-06-27 | engineered challenger | 65.17% | 0.6364 | +47.95% |
+
+Statistical audit for the engineered challenger:
+
+```text
+test_results/feature_variant_engineered_regularized_audit/edge_audit.md
+```
+
+Interpretation: do not promote these engineered features. They worsen
+one-year metrics and two-year log loss/PnL, and they do not produce a stronger
+market-relative edge claim. The production model and frozen forward policy
+remain on `engineered_features=false`.
+
 ## Current Bottom Line
 
 The repo is now much better instrumented than it was on Oct 17:
