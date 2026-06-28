@@ -4,6 +4,8 @@ import joblib
 import json
 import os
 
+from utils.feature_sanitization import sanitize_age_features
+
 # Load the single trained model
 def load_model(model_path):
     return joblib.load(model_path)
@@ -33,7 +35,7 @@ def preprocess_data(new_data, selected_columns):
     return new_data[selected_columns]
 
 # Load the prepared fight data
-new_data = pd.read_csv('data/predict_fights_alpha.csv')
+new_data = sanitize_age_features(pd.read_csv('data/predict_fights_alpha.csv'))
 
 # Preprocess
 X_new = preprocess_data(new_data, selected_columns)

@@ -1,0 +1,72 @@
+{
+  "features": "data/detailed_fights.csv",
+  "database": "instance/detailedfighters.db",
+  "start_date": "2025-06-27",
+  "end_date": "2026-06-27",
+  "dry_run": false,
+  "replace_existing": false,
+  "supplemental_dobs": "data/supplemental_fighter_dobs.csv",
+  "skip_event_page_fallback": false,
+  "targets": 7,
+  "found": [
+    {
+      "target_name": "Andrey Pulyaev",
+      "page_name": "Andrey Pulyaev",
+      "dob": "Sep 10, 1997",
+      "url": "http://ufcstats.com/fighter-details/22e07d3da1aa3475",
+      "source": "UFCStats",
+      "action": "kept-existing"
+    },
+    {
+      "target_name": "Brando Pericic",
+      "page_name": "Brando Pericic",
+      "dob": "Aug 03, 1994",
+      "url": "http://ufcstats.com/fighter-details/d0fd0d9ee560dae7",
+      "source": "UFCStats",
+      "action": "kept-existing"
+    },
+    {
+      "target_name": "Chris Padilla",
+      "page_name": "Chris Padilla",
+      "dob": "Sep 14, 1995",
+      "url": "http://ufcstats.com/fighter-details/06626b6287e1ae1e",
+      "source": "UFCStats",
+      "action": "kept-existing"
+    },
+    {
+      "target_name": "Jose Ochoa",
+      "page_name": "Jose Ochoa",
+      "dob": "Dec 31, 2000",
+      "url": "http://ufcstats.com/fighter-details/88be62d6c1e6dadb",
+      "source": "UFCStats",
+      "action": "kept-existing"
+    },
+    {
+      "target_name": "Josh Hokit",
+      "page_name": "Josh Hokit",
+      "dob": "Nov 12, 1997",
+      "url": "http://ufcstats.com/fighter-details/955da1675ad58a50",
+      "source": "UFCStats",
+      "action": "kept-existing"
+    },
+    {
+      "target_name": "Kaan Ofli",
+      "page_name": "Kaan Ofli",
+      "dob": "Jun 19, 1993",
+      "url": "http://ufcstats.com/fighter-details/7facc9c45d792985",
+      "source": "UFCStats",
+      "action": "kept-existing"
+    },
+    {
+      "target_name": "Myktybek Orolbai",
+      "page_name": "Myktybek Orolbai",
+      "dob": "Feb 10, 1998",
+      "url": "http://ufcstats.com/fighter-details/bf2c8e01b07d3eb1",
+      "source": "UFCStats",
+      "action": "kept-existing"
+    }
+  ],
+  "missing_link": [],
+  "missing_dob": [],
+  "errors": []
+}
