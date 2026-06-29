@@ -1886,6 +1886,85 @@ uncertainty is still high (`P(inc <= 0) = 0.100`). This moves the striking
 group from "interesting post-hoc clue" to "worth a predeclared leak-safe
 backtest," not to a live edge claim.
 
+### Striking Core Predeclared Backtest
+
+Striking core predeclared backtest:
+
+```text
+testing/striking_core_predeclared_backtest.py
+test_results/striking_core_predeclared_backtest/striking_core_predeclared_backtest.md
+test_results/striking_core_predeclared_backtest/striking_core_predeclared_backtest.json
+```
+
+This audit moves the narrow striking clue out of the residual-fold artifact
+and into the existing market-aware odds/feature alignment stack. The primary
+candidate is fixed as `mixed_sig_head_core`, with two adjacent reference
+variants. It uses men-only universe exclusions, odds de-vigging, red/blue
+mirrored training, and rolling date folds. The report was regenerated with
+`300` market-null refits.
+
+Primary candidate:
+
+```text
+mixed_sig_head_core =
+market_logit
++ Sig. str.% differential oppdiff
++ Sig. str. differential oppdiff
++ Head differential oppdiff
+```
+
+Protocol:
+
+- aligned feature/odds rows: `1,223`
+- rolling holdout folds: `7`
+- first holdout start: `2023-01-01`
+- last holdout end: `2026-06-27`
+- development window: `730` days
+- holdout window: `182` days
+- evaluated fights: `961`
+- bootstrap iterations: `20,000`
+- probability market-null refits: `300`
+
+Probability results:
+
+| Variant | Candidate LL | Market Delta LL | Brier Delta | Accuracy | Positive Folds | Bootstrap P(delta <= 0) | Market-Null p | Candidate ECE |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `mixed_sig_head_core` | 0.5933 | +0.0068 | +0.0025 | 68.99% | 6 / 7 | 0.022 | 0.003 | 2.78% |
+| `pct_sig_head_distance` | 0.5952 | +0.0049 | +0.0019 | 68.99% | 5 / 7 | 0.069 | 0.003 | 2.21% |
+| `raw_sig_head_oppdiff` | 0.5965 | +0.0037 | +0.0013 | 69.30% | 5 / 7 | 0.095 | 0.003 | 3.59% |
+| `market_recalibrated` | 0.5985 | +0.0017 | +0.0007 | 68.68% | 4 / 7 | 0.216 | 0.010 | 0.87% |
+
+`mixed_sig_head_core` fold deltas:
+
+| Fold | Holdout | Fights | Market LL | Delta LL |
+| ---: | --- | ---: | ---: | ---: |
+| 1 | 2023-01-01 to 2023-07-01 | 121 | 0.5904 | +0.0073 |
+| 2 | 2023-07-02 to 2023-12-30 | 118 | 0.5988 | -0.0016 |
+| 3 | 2023-12-31 to 2024-06-29 | 151 | 0.6045 | +0.0031 |
+| 4 | 2024-06-30 to 2024-12-28 | 142 | 0.5621 | +0.0114 |
+| 5 | 2024-12-29 to 2025-06-28 | 138 | 0.6150 | +0.0050 |
+| 6 | 2025-06-29 to 2025-12-27 | 147 | 0.6124 | +0.0068 |
+| 7 | 2025-12-28 to 2026-06-27 | 144 | 0.6156 | +0.0144 |
+
+Descriptive uncapped flat positive-edge PnL for `mixed_sig_head_core`:
+
+| Edge Threshold | Bets | Profit | ROI | Positive Folds | Mean Edge | Market-Null p | Bootstrap P(profit <= 0) |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0.00% | 961 | +10.94u | 1.14% | 4 / 7 | 3.96% | 0.037 | 0.344 |
+| 2.00% | 714 | +33.38u | 4.68% | 6 / 7 | 5.00% | 0.002 | 0.055 |
+| 5.00% | 285 | +13.43u | 4.71% | 6 / 7 | 7.26% | 0.027 | 0.164 |
+
+Interpretation: this is the cleanest probability-edge evidence so far. The
+primary candidate beats raw market log loss over seven rolling date folds,
+with positive Brier delta, `6/7` positive folds, positive latest-fold delta,
+event-bootstrap `P(delta <= 0) = 0.022`, and `300`-refit market-null p `0.003`.
+A simple correction across the three striking challenger variants still leaves
+the market-null screen supportive, but the bootstrap screen becomes marginal
+(`0.022 * 3 = 0.066`). The flat PnL diagnostics are also constructive,
+especially the fixed `2%` positive-edge threshold, but those threshold rows are
+descriptive and should not be treated as selected staking policy. This is a
+strong candidate for pre-outcome paper tracking, not proof of live edge yet.
+
 ### Feature Semantic Integrity Audit
 
 Feature semantic-integrity audit:
@@ -2348,6 +2427,13 @@ The most honest read:
   `3/3` positive folds and `300`-refit market-null p `0.010`, but
   event-bootstrap `P(delta <= 0) = 0.100` and fixed `mixed_sig_head_core`
   remained better on the same folds
+- the predeclared striking-core market-aware backtest is the strongest
+  probability evidence so far: over seven rolling date folds from 2023-01-01
+  to 2026-06-27, fixed `mixed_sig_head_core` made `+0.0068` delta LL versus
+  raw market, `+0.0025` Brier delta, `6/7` positive folds, event-bootstrap
+  `P(delta <= 0) = 0.022`, and `300`-refit market-null p `0.003`; after a
+  simple three-challenger correction, market-null remains supportive while
+  bootstrap evidence is marginal
 - feature-forensics did not find a hard arithmetic or pre-fight-state bug:
   `64` oppdiff pairs, `276,527` row-level diff checks, all `4,322` source
   supervised rows, `69,152` core state checks, and active side-swap coverage
@@ -2521,19 +2607,19 @@ Recommendation:
 
 Do not materially increase staking based only on these backtests. Use the
 frozen forward betting artifact above as the current main PnL paper-tracking
-policy, use the frozen residual transform as the current probability
-paper-tracking contract, and use the frozen residual-meta paper policy only as
-a secondary residual-signal monitor. A real edge claim needs future
-out-of-sample results that beat market-null and bootstrap tests after the model
-params, probability transform, selection objective, strategy grid, and staking
-policy have been frozen.
+policy, keep the frozen residual transform as a secondary probability monitor,
+and treat `mixed_sig_head_core` as the strongest new candidate for a frozen
+pre-outcome paper tracker. A real edge claim needs future out-of-sample
+results that beat market-null and bootstrap tests after the model parameters,
+probability transform, selection objective, strategy grid, and staking policy
+have been frozen.
 
-Next research direction: predeclare a narrow striking-differential feature
-redesign/backtest inspired by `mixed_sig_head_core`, while continuing to verify
-that the underlying significant-strike/head-strike percentage and raw
-differential formulas are leak-safe, symmetric, unit-correct, and meaningful in
-fight context. Any promoted feature change still needs the same rolling
-log-loss, calibration, market-null, bootstrap, and PnL validation stack.
+Next research direction: freeze a forward paper-scoring contract for
+`mixed_sig_head_core` and/or its fixed `2%` positive-edge descriptive ledger,
+then settle future pre-outcome predictions without revising the policy. In
+parallel, keep auditing the significant-strike/head-strike percentage and raw
+differential formulas for leak-safety, symmetry, unit correctness, and fight
+meaning.
 
 ## Independent PnL Investigation Update
 
@@ -2688,6 +2774,10 @@ Validation:
   only prior fold deltas; folds `3-5` stayed positive at `+0.0071` market
   delta LL and `+0.0079` incremental delta versus recalibration, with
   market-null p `0.010` but bootstrap `P(delta <= 0) = 0.100`
+- the striking core predeclared backtest evaluated fixed `mixed_sig_head_core`
+  over seven rolling date folds; it made `+0.0068` market delta LL, `+0.0025`
+  Brier delta, `6/7` positive folds, market-null p `0.003`, and a descriptive
+  uncapped `2%` positive-edge flat ledger of `+33.38u`
 - the residual recent-stress audit regenerated cleanly; selected-shrinkage
   probability delta was `-0.0032` over the last 365 days, and frozen
   residual-meta cap-3 PnL was only `+0.38u` over the last 365 days
