@@ -1,0 +1,379 @@
+{
+  "predictions_path": "test_results/residual_shrinkage_audit/holdout_shrinkage_predictions.csv",
+  "scales": [
+    0.0,
+    0.5,
+    1.0
+  ],
+  "candidate_count": 9,
+  "bootstrap_iterations": 20000,
+  "market_null_iterations": 10000,
+  "seed": 20260629,
+  "fixed_policy_summaries": [
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.6008836747854751,
+      "delta_log_loss": 0.0,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.4978488082004739,
+      "mean_adjustment": 0.0,
+      "candidate": "market",
+      "bootstrap_p_delta_le_zero": 1.0,
+      "bootstrap_delta_ci_95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5971286967901079,
+      "delta_log_loss": 0.0037549779953671703,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.5127331106866073,
+      "mean_adjustment": 0.014884302486133422,
+      "candidate": "selected_shrinkage",
+      "bootstrap_p_delta_le_zero": 0.14339283035848208,
+      "bootstrap_delta_ci_95": [
+        -0.003316799437025536,
+        0.010489393029569796
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5985564776995808,
+      "delta_log_loss": 0.0023271970858943503,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.487177705601923,
+      "mean_adjustment": -0.010671102598550973,
+      "candidate": "up0_down1",
+      "bootstrap_p_delta_le_zero": 0.08194590270486475,
+      "bootstrap_delta_ci_95": [
+        -0.0010200772584355573,
+        0.005538843086360886
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5994558938760023,
+      "delta_log_loss": 0.00142778090947282,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.5234042132851583,
+      "mean_adjustment": 0.025555405084684398,
+      "candidate": "up1_down0",
+      "bootstrap_p_delta_le_zero": 0.3312834358282086,
+      "bootstrap_delta_ci_95": [
+        -0.005121215495991495,
+        0.007548683404891492
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5994277398584671,
+      "delta_log_loss": 0.001455934927008018,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.4923699768763116,
+      "mean_adjustment": -0.00547883132416229,
+      "candidate": "up0_down0.5",
+      "bootstrap_p_delta_le_zero": 0.04044797760111994,
+      "bootstrap_delta_ci_95": [
+        -0.000201870973511782,
+        0.003089601142218744
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5969526773571091,
+      "delta_log_loss": 0.003930997428366001,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.5003177312265589,
+      "mean_adjustment": 0.002468923026084899,
+      "candidate": "up0.5_down1",
+      "bootstrap_p_delta_le_zero": 0.03969801509924504,
+      "bootstrap_delta_ci_95": [
+        -0.0004768922741786081,
+        0.00821816221580883
+      ]
+    }
+  ],
+  "rolling_eval_fixed_policy_summaries": [
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.6021731633804814,
+      "delta_log_loss": 0.0,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5008175857549427,
+      "mean_adjustment": 0.0,
+      "candidate": "market",
+      "bootstrap_p_delta_le_zero": 1.0,
+      "bootstrap_delta_ci_95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5994190487602361,
+      "delta_log_loss": 0.0027541146202453293,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.517305391567661,
+      "mean_adjustment": 0.016487805812718182,
+      "candidate": "selected_shrinkage",
+      "bootstrap_p_delta_le_zero": 0.25308734563271834,
+      "bootstrap_delta_ci_95": [
+        -0.0055816054679922,
+        0.010797967541573411
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5979650728290299,
+      "delta_log_loss": 0.004208090551451549,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.49117745258214673,
+      "mean_adjustment": -0.009640133172796028,
+      "candidate": "up0_down1",
+      "bootstrap_p_delta_le_zero": 0.006099695015249237,
+      "bootstrap_delta_ci_95": [
+        0.0009391910791514812,
+        0.007478090953099397
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.6036271393116878,
+      "delta_log_loss": -0.0014539759312063305,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5269455247404571,
+      "mean_adjustment": 0.026127938985514215,
+      "candidate": "up1_down0",
+      "bootstrap_p_delta_le_zero": 0.6416679166041698,
+      "bootstrap_delta_ci_95": [
+        -0.009400501043440831,
+        0.0058879744274825145
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5998194184190526,
+      "delta_log_loss": 0.0023537449614288164,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.4958830214007145,
+      "mean_adjustment": -0.004934564354228375,
+      "candidate": "up0_down0.5",
+      "bootstrap_p_delta_le_zero": 0.0032998350082495873,
+      "bootstrap_delta_ci_95": [
+        0.0007237312815189135,
+        0.003971119455022946
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5977728169328216,
+      "delta_log_loss": 0.004400346447659853,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5046113588054734,
+      "mean_adjustment": 0.003793773050530564,
+      "candidate": "up0.5_down1",
+      "bootstrap_p_delta_le_zero": 0.04104794760261987,
+      "bootstrap_delta_ci_95": [
+        -0.0006065750643604019,
+        0.00918286011349998
+      ]
+    }
+  ],
+  "latest_fold_summaries": [
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6272685791688568,
+      "delta_log_loss": 0.0,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.500896642690176,
+      "mean_adjustment": 0.0,
+      "candidate": "market"
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6319953573549573,
+      "delta_log_loss": -0.004726778186100455,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.5102437725173729,
+      "mean_adjustment": 0.00934712982719683,
+      "candidate": "selected_shrinkage"
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6192257453077626,
+      "delta_log_loss": 0.008042833861094167,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.4872158991378178,
+      "mean_adjustment": -0.013680743552358196,
+      "candidate": "up0_down1"
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6400381912160515,
+      "delta_log_loss": -0.012769612047194734,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.5239245160697311,
+      "mean_adjustment": 0.023027873379555024,
+      "candidate": "up1_down0"
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.622864751918562,
+      "delta_log_loss": 0.004403827250294756,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.4939095022589814,
+      "mean_adjustment": -0.0069871404311946635,
+      "candidate": "up0_down0.5"
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6247974857239725,
+      "delta_log_loss": 0.002471093444884276,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.4990054777967293,
+      "mean_adjustment": -0.0018911648934466874,
+      "candidate": "up0.5_down1"
+    }
+  ],
+  "rolling_directional_gate": {
+    "folds": [
+      {
+        "eval_fold": 2,
+        "selected_candidate": "up1_down0",
+        "dev_delta_log_loss": 0.010841519922357937,
+        "eval_summary": {
+          "fights": 130,
+          "events": 19,
+          "market_log_loss": 0.5788537585297809,
+          "candidate_log_loss": 0.5736920650840427,
+          "delta_log_loss": 0.005161693445738247,
+          "actual_rate": 0.5230769230769231,
+          "mean_market_probability": 0.49225657158141445,
+          "mean_candidate_probability": 0.5209579016367616,
+          "mean_adjustment": 0.028701330055347113
+        }
+      },
+      {
+        "eval_fold": 3,
+        "selected_candidate": "up1_down0",
+        "dev_delta_log_loss": 0.008338545542830627,
+        "eval_summary": {
+          "fights": 150,
+          "events": 23,
+          "market_log_loss": 0.6181220610242932,
+          "candidate_log_loss": 0.6164206781874019,
+          "delta_log_loss": 0.001701382836891363,
+          "actual_rate": 0.5133333333333333,
+          "mean_market_probability": 0.5000244545452969,
+          "mean_candidate_probability": 0.5305946692806248,
+          "mean_adjustment": 0.030570214735327964
+        }
+      },
+      {
+        "eval_fold": 4,
+        "selected_candidate": "up1_down0.5",
+        "dev_delta_log_loss": 0.006225980952716575,
+        "eval_summary": {
+          "fights": 130,
+          "events": 18,
+          "market_log_loss": 0.5821876198983189,
+          "candidate_log_loss": 0.5795817686389049,
+          "delta_log_loss": 0.002605851259414038,
+          "actual_rate": 0.46923076923076923,
+          "mean_market_probability": 0.5102153025192542,
+          "mean_candidate_probability": 0.5274083437332237,
+          "mean_adjustment": 0.01719304121396927
+        }
+      },
+      {
+        "eval_fold": 5,
+        "selected_candidate": "up1_down1",
+        "dev_delta_log_loss": 0.005657841556079014,
+        "eval_summary": {
+          "fights": 129,
+          "events": 19,
+          "market_log_loss": 0.6272685791688568,
+          "candidate_log_loss": 0.6319953573549573,
+          "delta_log_loss": -0.004726778186100455,
+          "actual_rate": 0.4418604651162791,
+          "mean_market_probability": 0.500896642690176,
+          "mean_candidate_probability": 0.5102437725173729,
+          "mean_adjustment": 0.009347129827196826
+        }
+      }
+    ],
+    "combined_eval": {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.6009575161611929,
+      "delta_log_loss": 0.0012156472192885737,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5226312781909701,
+      "mean_adjustment": 0.0218136924360273,
+      "bootstrap_p_delta_le_zero": 0.3663816809159542,
+      "bootstrap_delta_ci_95": [
+        -0.00642536565103221,
+        0.008510845095148753
+      ],
+      "market_null_p": 0.07229277072292771
+    }
+  }
+}

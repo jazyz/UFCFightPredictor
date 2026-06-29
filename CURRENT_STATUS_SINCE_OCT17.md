@@ -1106,6 +1106,74 @@ against fixing the issue with generic feature capacity or looser thresholds;
 the next legitimate improvement would need a pre-registered drift-aware
 transform or fresh post-freeze evidence.
 
+### Residual Directional Gate Audit
+
+Residual directional-gate audit:
+
+```text
+testing/residual_directional_gate_audit.py
+test_results/residual_directional_gate_audit/residual_directional_gate_audit.md
+test_results/residual_directional_gate_audit/residual_directional_gate_audit.json
+```
+
+This audit tests whether the calibration-drift problem can be repaired by a
+simple, pre-declarable residual transform. It uses the saved selected-shrinkage
+probabilities and, for each evaluation fold after fold `1`, selects separate
+scales for upward and downward residual logit adjustments using only prior
+folds. Scale grid: `0.0`, `0.5`, `1.0`.
+
+Fixed candidate diagnostics:
+
+| Candidate | Fights | Delta LL | Mean Adj | Bootstrap P(delta <= 0) |
+| --- | ---: | ---: | ---: | ---: |
+| selected shrinkage | 704 | +0.0038 | +1.49% | 0.143 |
+| mute up / keep down (`up0_down1`) | 704 | +0.0023 | -1.07% | 0.082 |
+| keep up / mute down (`up1_down0`) | 704 | +0.0014 | +2.56% | 0.331 |
+| half up / keep down (`up0.5_down1`) | 704 | +0.0039 | +0.25% | 0.040 |
+
+Same folds `2-5` evaluation baseline:
+
+| Candidate | Fights | Delta LL | Mean Adj | Bootstrap P(delta <= 0) |
+| --- | ---: | ---: | ---: | ---: |
+| selected shrinkage | 539 | +0.0028 | +1.65% | 0.253 |
+| mute up / keep down (`up0_down1`) | 539 | +0.0042 | -0.96% | 0.006 |
+| half up / keep down (`up0.5_down1`) | 539 | +0.0044 | +0.38% | 0.041 |
+
+Latest fold fixed candidates:
+
+| Candidate | Fights | Delta LL | Mean Adj |
+| --- | ---: | ---: | ---: |
+| selected shrinkage | 129 | -0.0047 | +0.93% |
+| mute up / keep down (`up0_down1`) | 129 | +0.0080 | -1.37% |
+| half up / keep down (`up0.5_down1`) | 129 | +0.0025 | -0.19% |
+
+Rolling prior-fold gate selection:
+
+| Eval Fold | Selected Gate | Dev Delta LL | Eval Delta LL |
+| ---: | --- | ---: | ---: |
+| 2 | `up1_down0` | +0.0108 | +0.0052 |
+| 3 | `up1_down0` | +0.0083 | +0.0017 |
+| 4 | `up1_down0.5` | +0.0062 | +0.0026 |
+| 5 | `up1_down1` | +0.0057 | -0.0047 |
+
+Combined rolling evaluation:
+
+| Metric | Value |
+| --- | ---: |
+| fights | 539 |
+| market log loss | 0.6022 |
+| gated log loss | 0.6010 |
+| market - gated log loss | +0.0012 |
+| bootstrap P(delta <= 0) | 0.366 |
+| market-null p-value | 0.072 |
+
+Interpretation: do not promote this simple directional gate. The full-history
+and latest-fold diagnostics show why muting upward residual adjustments is
+tempting, but prior-fold selection did not choose that fix before fold `5`.
+The rolling gate underperformed plain selected-shrinkage on the same folds
+(`+0.0012` vs `+0.0028` delta LL) and still failed the latest fold. This is a
+useful drift clue, not a validated transform.
+
 ### Residual Recent Stress Audit
 
 Residual recent-stress audit:
@@ -1666,6 +1734,11 @@ The most honest read:
   by about `+1%` on average, but the realized red-vs-market residual was
   `-5.06%` in 2026 and `-5.90%` in the latest fold; upward residual
   adjustments had negative delta LL in 2026 and fold 5
+- a simple directional residual gate does not validate as a fix: muting upward
+  residual adjustments would have helped the latest fold after the fact
+  (`up0_down1` delta LL `+0.0080`), but rolling prior-fold selection chose the
+  original full adjustment for fold 5, scored `-0.0047`, and underperformed
+  plain selected-shrinkage across folds 2-5 (`+0.0012` vs `+0.0028` delta LL)
 - residual recent-stress is a major caveat: selected-shrinkage probability
   delta is negative in 2026, over the last 365 days, and in the latest fold;
   frozen residual-meta cap-3 PnL is `+19.12u` aggregate but only `+4.73u` in
@@ -1848,6 +1921,10 @@ Validation:
   fold had delta LL `-0.0047`, mean residual adjustment `+0.93%`, and realized
   red-vs-market residual `-5.90%`, supporting drift rather than a pure
   threshold/staking explanation
+- the residual directional-gate audit tested prior-fold selection over
+  up/down residual adjustment scales; the rolling gate reached only `+0.0012`
+  delta LL with market-null p `0.072`, selected the failing full adjustment in
+  fold `5`, and did not beat plain selected-shrinkage on the same folds
 
 Current operational caveat: the checked-in `data/predict_fights_alpha.csv` is
 stale and fails the live feature-range guard with out-of-training-range values.
