@@ -2544,6 +2544,65 @@ historical component forensics, the selection-null iteration count is still
 only `200`, and no post-freeze outcomes exist. This supports a possible future
 paper-tracked challenger, not a live staking claim.
 
+### Frozen SigPct-Head-RawPM Challenger Paper Policy
+
+Frozen challenger paper policy:
+
+```text
+test_results/frozen_sigpct_head_raw_pm_challenger_paper_policy/frozen_sigpct_head_raw_pm_challenger_paper_policy.md
+test_results/frozen_sigpct_head_raw_pm_challenger_paper_policy/frozen_sigpct_head_raw_pm_challenger_paper_policy.json
+```
+
+This freezes the strongest fixed probability variant from the head-focused
+redesign audit for future pre-outcome paper tracking. It does not replace the
+already frozen `mixed_sig_head_core`, `sigpct_head`, or
+`pace_adjusted_mixed_core` policies. The challenger uses:
+
+```text
+market_logit
++ Sig. str.% differential oppdiff
++ Head differential oppdiff
++ Head differential_pm oppdiff
+```
+
+Frozen scoring contract:
+
+- men-only universe; do not train on or evaluate women's fights
+- fit L2 logistic regression with `C = 0.1`
+- reconstruct `Head differential_pm oppdiff` from chronological
+  `data/modified_fight_details.csv`
+- for historical training rows, compute pace features from source state before
+  the fight being labeled
+- for upcoming fight rows, compute pace features only through the training
+  cutoff, not through a future card date
+- use red/blue mirrored training and mirrored probability averaging
+- select the side with highest `policy probability - market probability`
+- paper bet only when selected edge is at least `2.00%`
+- flat `1u` stake
+- no event cap
+
+Generate separate challenger ledgers with:
+
+```bash
+.venv/bin/python testing/score_frozen_striking_core_policy.py \
+  --policy test_results/frozen_sigpct_head_raw_pm_challenger_paper_policy/frozen_sigpct_head_raw_pm_challenger_paper_policy.json \
+  --fights path/to/fight_card_odds.csv \
+  --event-key unique-event-key \
+  --fight-card-link https://example.com/card \
+  --output-csv test_results/forward_paper_tracking/latest_sigpct_head_raw_pm_challenger_paper_bets.csv \
+  --output-json test_results/forward_paper_tracking/latest_sigpct_head_raw_pm_challenger_paper_bets.json
+```
+
+Rationale: fixed `sigpct_head_raw_pm` had the best full-fold probability
+evidence in the redesign audit (`+0.0081` market delta LL, `+0.0030` Brier
+delta, `7/7` positive folds, event-bootstrap `P(delta <= 0) = 0.006`, and
+300-refit market-null p `0.003`). Its fixed uncapped `2%` ledger made
+`+38.04u` at `5.21%` ROI with market-null p `0.002`, although the
+pace-adjusted mixed-core challenger remains the strongest fixed PnL ledger.
+Caveat: the feature family was motivated by prior component forensics and has
+no post-freeze evidence. Treat this as future paper-tracking only, not a live
+staking claim.
+
 ### Frozen SigPct-Head Challenger Paper Policy
 
 Frozen challenger paper policy:
@@ -3125,6 +3184,11 @@ The most honest read:
   selection over the redesign family makes `+0.0066` delta LL with
   selection-null p `0.005`; the uncapped rolling profit selector makes
   `+34.41u` with selection-null p `0.030`
+- a separate frozen `sigpct_head_raw_pm` challenger paper policy now exists
+  for future pre-outcome tracking; it uses `market_logit`,
+  `Sig. str.% differential oppdiff`, `Head differential oppdiff`, and
+  source-derived `Head differential_pm oppdiff`, fixed `2.00%` positive-edge
+  threshold, flat `1u` stake, and no event cap
 - a separate frozen `sigpct_head|all` challenger paper policy now exists for
   future pre-outcome tracking; it uses `market_logit`, `Sig. str.% differential
   oppdiff`, and `Head differential oppdiff`, fixed `2.00%` positive-edge
@@ -3319,12 +3383,11 @@ men-only filtering, and fight-context meaning. The goal is to distinguish
 features that genuinely describe ways fighters win from generator artifacts
 that merely worked historically.
 
-Immediate follow-up: the predeclared head-focused redesign audit is now
-positive enough to consider a future paper-tracked challenger, but do not
-promote it directly to live staking. The next careful step is either to freeze
-one simple `sigpct_head_raw_pm` challenger for future pre-outcome evidence, or
-to rerun a higher-iteration selection-null / independent recent-card stress
-before adding another frozen policy to the monitoring set.
+Immediate follow-up: the simple `sigpct_head_raw_pm` challenger is now frozen
+for future pre-outcome evidence. The next useful work is to keep the frozen
+paper ledgers separate, collect post-freeze cards without changing rules, and
+optionally run a higher-iteration selection-null or recent-card stress before
+promoting any new feature family beyond challenger status.
 
 ## Independent PnL Investigation Update
 
@@ -3414,6 +3477,10 @@ Operational PnL implementation update:
 - `testing/striking_redesign_selection_audit.py` tests a small predeclared
   head-focused redesign family with fixed-variant diagnostics, rolling
   prior-fold selectors, and market selection-null reruns
+- `testing/score_frozen_striking_core_policy.py` can now score the frozen
+  `sigpct_head_raw_pm` challenger as a separate pre-outcome paper ledger:
+  `test_results/forward_paper_tracking/latest_sigpct_head_raw_pm_challenger_paper_bets.csv`
+  and `.json`
 
 Validation:
 
@@ -3501,6 +3568,11 @@ Validation:
   `sigpct_head_raw_pm` made `+0.0081` delta LL and the rolling redesign
   selectors cleared selection-null p `0.005` for probability and `0.030` for
   uncapped profit
+- a frozen `sigpct_head_raw_pm` challenger scorer smoke test trained on
+  `1,223` aligned historical rows, reconstructed source-derived head pace
+  features, scored a two-fight temporary card, wrote compatible CSV/JSON
+  ledgers under `/private/tmp`, generated a settlement outcome template, and
+  settled a synthetic result
 - a five-fight capped residual scorer smoke test exercised the event cap itself:
   the scorer placed exactly three paper bets and marked two otherwise eligible
   candidates as `event cap 3 reached`

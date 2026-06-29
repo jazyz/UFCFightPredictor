@@ -178,3 +178,37 @@ Before using this as evidence, regenerate `data/predict_fights_alpha.csv` for
 the target card before outcomes are known. Keep the generated challenger
 ledger separate from the other frozen-policy ledgers, then settle it with the
 same `testing/settle_forward_paper_ledger.py` workflow above.
+
+## SigPct-Head-RawPM Challenger Paper Policy
+
+A separate head-focused striking redesign challenger is frozen here:
+
+```text
+test_results/frozen_sigpct_head_raw_pm_challenger_paper_policy/frozen_sigpct_head_raw_pm_challenger_paper_policy.md
+test_results/frozen_sigpct_head_raw_pm_challenger_paper_policy/frozen_sigpct_head_raw_pm_challenger_paper_policy.json
+```
+
+It uses a men-only market-aware logistic model with `market_logit`,
+`Sig. str.% differential oppdiff`, `Head differential oppdiff`, and
+`Head differential_pm oppdiff`; L2 logistic `C = 0.1`; a fixed `2%`
+positive-edge threshold; flat `1u` paper stakes; and no event cap. The
+`Head differential_pm oppdiff` feature is reconstructed from chronological
+`data/modified_fight_details.csv` through the training cutoff. This is a
+challenger paper policy, not a replacement for the primary mixed-core,
+sigpct-head, or pace-adjusted policies. Generate pre-outcome paper ledgers
+with:
+
+```bash
+.venv/bin/python testing/score_frozen_striking_core_policy.py \
+  --policy test_results/frozen_sigpct_head_raw_pm_challenger_paper_policy/frozen_sigpct_head_raw_pm_challenger_paper_policy.json \
+  --fights path/to/fight_card_odds.csv \
+  --event-key unique-event-key \
+  --fight-card-link https://example.com/card \
+  --output-csv test_results/forward_paper_tracking/latest_sigpct_head_raw_pm_challenger_paper_bets.csv \
+  --output-json test_results/forward_paper_tracking/latest_sigpct_head_raw_pm_challenger_paper_bets.json
+```
+
+Before using this as evidence, regenerate `data/predict_fights_alpha.csv` for
+the target card before outcomes are known. Keep the generated challenger
+ledger separate from the other frozen-policy ledgers, then settle it with the
+same `testing/settle_forward_paper_ledger.py` workflow above.
