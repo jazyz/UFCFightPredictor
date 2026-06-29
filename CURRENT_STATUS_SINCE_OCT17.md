@@ -2478,6 +2478,72 @@ the same model, while head pace and sig-strike percentage remain constructive.
 That argues for continued paper tracking and a more careful feature redesign,
 not for promoting a new live staking rule.
 
+### Striking Redesign Selection Audit
+
+Striking redesign selection audit:
+
+```text
+testing/striking_redesign_selection_audit.py
+test_results/striking_redesign_selection_audit/striking_redesign_selection_audit.md
+test_results/striking_redesign_selection_audit/striking_redesign_selection_audit.json
+test_results/striking_redesign_selection_audit/fixed_variant_predictions.csv
+test_results/striking_redesign_selection_audit/fixed_edge02_bets.csv
+test_results/striking_redesign_selection_audit/observed_rolling_probability_predictions.csv
+test_results/striking_redesign_selection_audit/observed_rolling_profit_bets.csv
+test_results/striking_redesign_selection_audit/selection_null_distribution.csv
+```
+
+This audit tests a small predeclared head-focused redesign family motivated by
+the component-context result: keep significant-strike efficiency and
+head-strike concepts, avoid generic significant-strike pace/volume, and select
+variants using only prior folds. It does not change any frozen paper policy.
+
+Fixed variant probability results:
+
+| Variant | Delta LL | Brier Delta | Accuracy | Positive Folds | Bootstrap P(delta <= 0) | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `sigpct_head_raw_pm` | +0.0081 | +0.0030 | 69.51% | 7 / 7 | 0.006 | 0.003 |
+| `sigpct_head_raw_for_against` | +0.0074 | +0.0026 | 69.09% | 7 / 7 | 0.011 | 0.003 |
+| `current_sigpct_head` | +0.0071 | +0.0027 | 69.41% | 7 / 7 | 0.015 | 0.003 |
+| `pace_adjusted_mixed_core` | +0.0068 | +0.0028 | 69.30% | 6 / 7 | 0.022 | 0.003 |
+| `sigpct_only` | +0.0056 | +0.0023 | 69.30% | 6 / 7 | 0.034 | 0.003 |
+
+Fixed `2%` positive-edge uncapped PnL:
+
+| Variant | Bets | Profit | ROI | Actual - Market | Positive Folds | Bootstrap P(profit <= 0) | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `pace_adjusted_mixed_core` | 695 | +41.97u | 6.04% | +5.85% | 6 / 7 | 0.020 | <0.001 |
+| `sigpct_head_raw_pm` | 730 | +38.04u | 5.21% | +5.49% | 7 / 7 | 0.042 | 0.002 |
+| `current_sigpct_head` | 705 | +31.85u | 4.52% | +4.74% | 5 / 7 | 0.069 | 0.002 |
+| `sigpct_only` | 706 | +30.18u | 4.27% | +5.25% | 6 / 7 | 0.059 | 0.003 |
+| `sigpct_head_pm` | 700 | +28.39u | 4.06% | +5.04% | 6 / 7 | 0.074 | 0.004 |
+
+Rolling prior-fold selector results:
+
+| Selector | Fights/Bets | Result | Positive Folds | Bootstrap P | Selection-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| probability-delta selector | 840 fights | +0.0066 LL | 5 / 6 | 0.036 | 0.005 |
+| profit selector | 631 bets | +34.41u | 5 / 6 | 0.037 | 0.030 |
+
+Selection paths:
+
+- probability selector chose `sigpct_head_raw_against`, then
+  `sigpct_head_raw_for_against`, then `sigpct_head_raw_pm` for folds `4`, `6`,
+  and `7`, with a one-fold `pace_adjusted_mixed_core` selection in fold `5`
+- profit selector eventually converged to `pace_adjusted_mixed_core` for
+  folds `5` through `7`
+
+Interpretation: this is the strongest feature-redesign evidence so far. The
+fixed `sigpct_head_raw_pm` variant improves the already frozen sigpct-head
+probability candidate by about `+0.0010` delta LL and keeps `7/7` positive
+folds. More importantly, the rolling probability selector over the
+predeclared redesign family clears a 200-path selection-null screen at p
+`0.005`, and the rolling profit selector clears at p `0.030`, all without an
+event cap. Caveats remain: the redesign family was motivated by prior
+historical component forensics, the selection-null iteration count is still
+only `200`, and no post-freeze outcomes exist. This supports a possible future
+paper-tracked challenger, not a live staking claim.
+
 ### Frozen SigPct-Head Challenger Paper Policy
 
 Frozen challenger paper policy:
@@ -3053,6 +3119,12 @@ The most honest read:
   fixed uncapped `2%` PnL (`+41.97u`, `6.04%` ROI); however generic
   significant-strike pace has wrong-way residual bins and stable wrong-way
   coefficients once sig-strike percentage and head pace are included
+- the first predeclared head-focused redesign selection audit is positive:
+  fixed `sigpct_head_raw_pm` improves the frozen sigpct-head probability
+  candidate (`+0.0081` delta LL, `7/7` positive folds), and rolling prior-fold
+  selection over the redesign family makes `+0.0066` delta LL with
+  selection-null p `0.005`; the uncapped rolling profit selector makes
+  `+34.41u` with selection-null p `0.030`
 - a separate frozen `sigpct_head|all` challenger paper policy now exists for
   future pre-outcome tracking; it uses `market_logit`, `Sig. str.% differential
   oppdiff`, and `Head differential oppdiff`, fixed `2.00%` positive-edge
@@ -3247,12 +3319,12 @@ men-only filtering, and fight-context meaning. The goal is to distinguish
 features that genuinely describe ways fighters win from generator artifacts
 that merely worked historically.
 
-Immediate follow-up: the first component-level striking feature context audit
-is complete. The next useful feature work is a predeclared redesign of the
-striking features, not another staking-policy tweak: preserve the stable
-sig-strike percentage and head-strike concepts, separate head pace from generic
-volume, and test any new grouped feature with rolling selection/null checks
-before freezing another challenger.
+Immediate follow-up: the predeclared head-focused redesign audit is now
+positive enough to consider a future paper-tracked challenger, but do not
+promote it directly to live staking. The next careful step is either to freeze
+one simple `sigpct_head_raw_pm` challenger for future pre-outcome evidence, or
+to rerun a higher-iteration selection-null / independent recent-card stress
+before adding another frozen policy to the monitoring set.
 
 ## Independent PnL Investigation Update
 
@@ -3339,6 +3411,9 @@ Operational PnL implementation update:
   into efficiency, raw-count, pace-offense, pace-defense, and split
   offense/defense components under the same seven-fold men-only market-aware
   protocol
+- `testing/striking_redesign_selection_audit.py` tests a small predeclared
+  head-focused redesign family with fixed-variant diagnostics, rolling
+  prior-fold selectors, and market selection-null reruns
 
 Validation:
 
@@ -3357,6 +3432,7 @@ Validation:
 - compile check passed for
   `testing/striking_feature_engineering_selection_null_audit.py`
 - compile check passed for `testing/striking_component_context_audit.py`
+- compile check passed for `testing/striking_redesign_selection_audit.py`
 - compile check passed for `utils/incremental_processing.py`,
   `testing/residual_event_cap_rolling_selection_audit.py`,
   `testing/outcome_universe_audit.py`, and `testing/no_leakage_backtest.py`
@@ -3420,6 +3496,11 @@ Validation:
   pace-adjusted challenger remained best on fixed uncapped `2%` PnL, and the
   audit identified wrong-way generic significant-strike pace behavior that
   should inform the next feature redesign
+- the striking redesign selection audit ran cleanly with `300` fixed
+  market-null refits and `200` selection-null iterations; fixed
+  `sigpct_head_raw_pm` made `+0.0081` delta LL and the rolling redesign
+  selectors cleared selection-null p `0.005` for probability and `0.030` for
+  uncapped profit
 - a five-fight capped residual scorer smoke test exercised the event cap itself:
   the scorer placed exactly three paper bets and marked two otherwise eligible
   candidates as `event cap 3 reached`

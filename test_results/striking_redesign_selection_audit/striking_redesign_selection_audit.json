@@ -1,0 +1,2062 @@
+{
+  "parameters": {
+    "source_fights": "data/modified_fight_details.csv",
+    "features": "data/detailed_fights.csv",
+    "odds": "data/fight_results_with_odds.csv",
+    "fight_details_source": "data/fight_details_date.csv",
+    "first_holdout_start": "2023-01-01",
+    "last_holdout_end": "2026-06-27",
+    "dev_days": 730,
+    "holdout_days": 182,
+    "step_days": 182,
+    "min_dev_fights": 200,
+    "min_holdout_fights": 60,
+    "c": 0.1,
+    "edge_threshold": 0.02,
+    "min_prior_rows": 80,
+    "min_prior_bets": 25,
+    "bootstrap_iterations": 20000,
+    "market_null_iterations": 300,
+    "selection_null_iterations": 200,
+    "bet_null_iterations": 20000,
+    "seed": 20260629
+  },
+  "metadata": {
+    "features_path": "data/detailed_fights.csv",
+    "odds_path": "data/fight_results_with_odds.csv",
+    "fight_details_source": "data/fight_details_date.csv",
+    "excluded_title_patterns": [
+      "Women"
+    ],
+    "feature_rows": 3999,
+    "odds_rows": 1824,
+    "aligned_rows": 1223,
+    "duplicate_feature_keys": 0,
+    "odds_rows_date_repaired": 22,
+    "odds_rows_excluded_universe": 345,
+    "odds_rows_non_binary_excluded": 7,
+    "skipped_missing_features": 601,
+    "skipped_duplicate_features": 0,
+    "skipped_bad_odds": 0,
+    "skipped_orientation_mismatch": 0,
+    "pace_feature_columns": [
+      "Sig. str. for_pm oppdiff",
+      "Sig. str. against_pm oppdiff",
+      "Sig. str. differential_pm oppdiff",
+      "Head for_pm oppdiff",
+      "Head against_pm oppdiff",
+      "Head differential_pm oppdiff",
+      "Body for_pm oppdiff",
+      "Body against_pm oppdiff",
+      "Body differential_pm oppdiff",
+      "Leg for_pm oppdiff",
+      "Leg against_pm oppdiff",
+      "Leg differential_pm oppdiff",
+      "Distance for_pm oppdiff",
+      "Distance against_pm oppdiff",
+      "Distance differential_pm oppdiff",
+      "Clinch for_pm oppdiff",
+      "Clinch against_pm oppdiff",
+      "Clinch differential_pm oppdiff",
+      "Ground for_pm oppdiff",
+      "Ground against_pm oppdiff",
+      "Ground differential_pm oppdiff",
+      "Total str. for_pm oppdiff",
+      "Total str. against_pm oppdiff",
+      "Total str. differential_pm oppdiff",
+      "KD differential_pf oppdiff",
+      "Td differential_pf oppdiff"
+    ],
+    "pace_feature_duplicate_keys": 0,
+    "aligned_rows_missing_pace_features": 0,
+    "pace_reconstruction": {
+      "source_rows": 7730,
+      "feature_rows": 4322,
+      "expected_supervised_rows": 4322,
+      "matched_supervised_rows": 4322,
+      "missing_feature_rows": 0,
+      "extra_feature_rows": 0,
+      "side_rate_checks": 69152,
+      "side_rate_mismatches": 0,
+      "side_rate_max_abs_error": 2.1316282072803006e-14,
+      "derived_feature_rows": 4322
+    },
+    "source_fights_path": "data/modified_fight_details.csv"
+  },
+  "variants": [
+    {
+      "name": "market_recalibrated",
+      "feature_columns": [
+        "market_logit"
+      ],
+      "note": "market-logit-only recalibration baseline"
+    },
+    {
+      "name": "current_sigpct_head",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "note": "current compact sigpct/head challenger anchor"
+    },
+    {
+      "name": "pace_adjusted_mixed_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "note": "frozen pace-adjusted challenger anchor"
+    },
+    {
+      "name": "sigpct_only",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff"
+      ],
+      "note": "efficiency-only reference"
+    },
+    {
+      "name": "sigpct_head_pm",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "note": "efficiency plus head-strike pace differential"
+    },
+    {
+      "name": "sigpct_head_for_against",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "note": "efficiency plus head-strike offense and absorbed-pace split"
+    },
+    {
+      "name": "sigpct_head_raw_pm",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "note": "efficiency plus raw and pace-adjusted head differential"
+    },
+    {
+      "name": "sigpct_head_raw_for_against",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "note": "efficiency plus raw head differential and head offense/defense split"
+    },
+    {
+      "name": "sigpct_head_raw_against",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "note": "efficiency plus raw head differential and absorbed head pace"
+    }
+  ],
+  "candidate_names": [
+    "current_sigpct_head",
+    "pace_adjusted_mixed_core",
+    "sigpct_only",
+    "sigpct_head_pm",
+    "sigpct_head_for_against",
+    "sigpct_head_raw_pm",
+    "sigpct_head_raw_for_against",
+    "sigpct_head_raw_against"
+  ],
+  "folds": [
+    {
+      "fold": 1,
+      "dev_start": "2021-01-01",
+      "dev_end": "2022-12-31",
+      "holdout_start": "2023-01-01",
+      "holdout_end": "2023-07-01",
+      "dev_fights": 262,
+      "holdout_fights": 121
+    },
+    {
+      "fold": 2,
+      "dev_start": "2021-07-02",
+      "dev_end": "2023-07-01",
+      "holdout_start": "2023-07-02",
+      "holdout_end": "2023-12-30",
+      "dev_fights": 383,
+      "holdout_fights": 118
+    },
+    {
+      "fold": 3,
+      "dev_start": "2021-12-31",
+      "dev_end": "2023-12-30",
+      "holdout_start": "2023-12-31",
+      "holdout_end": "2024-06-29",
+      "dev_fights": 501,
+      "holdout_fights": 151
+    },
+    {
+      "fold": 4,
+      "dev_start": "2022-07-01",
+      "dev_end": "2024-06-29",
+      "holdout_start": "2024-06-30",
+      "holdout_end": "2024-12-28",
+      "dev_fights": 536,
+      "holdout_fights": 142
+    },
+    {
+      "fold": 5,
+      "dev_start": "2022-12-30",
+      "dev_end": "2024-12-28",
+      "holdout_start": "2024-12-29",
+      "holdout_end": "2025-06-28",
+      "dev_fights": 532,
+      "holdout_fights": 138
+    },
+    {
+      "fold": 6,
+      "dev_start": "2023-06-30",
+      "dev_end": "2025-06-28",
+      "holdout_start": "2025-06-29",
+      "holdout_end": "2025-12-27",
+      "dev_fights": 553,
+      "holdout_fights": 147
+    },
+    {
+      "fold": 7,
+      "dev_start": "2023-12-29",
+      "dev_end": "2025-12-27",
+      "holdout_start": "2025-12-28",
+      "holdout_end": "2026-06-27",
+      "dev_fights": 578,
+      "holdout_fights": 144
+    }
+  ],
+  "fixed_summary": {
+    "market_recalibrated": {
+      "note": "market-logit-only recalibration baseline",
+      "feature_columns": [
+        "market_logit"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.598467877890282,
+        "brier": 0.20562858608685244
+      },
+      "market_minus_candidate_log_loss": 0.0016537593504167836,
+      "market_minus_candidate_brier": 0.0007151362614427614,
+      "mean_row_loss_delta": 0.0016537593504167168,
+      "positive_folds": 4,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.005695382941419025,
+        0.003539151632936499,
+        0.002537096057805055,
+        0.007861887813345625,
+        -0.004458035812882288,
+        -0.0006984423151727981,
+        -0.0020771396150223165
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.0027023531657224234,
+          0.005826063682486427
+        ],
+        "prob_delta_le_zero": 0.21625
+      }
+    },
+    "current_sigpct_head": {
+      "note": "current compact sigpct/head challenger anchor",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6940686784599376,
+        "log_loss": 0.5930243530964869,
+        "brier": 0.203609926115508
+      },
+      "market_minus_candidate_log_loss": 0.007097284144211846,
+      "market_minus_candidate_brier": 0.0027337962327872167,
+      "mean_row_loss_delta": 0.007097284144211936,
+      "positive_folds": 7,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.006349247215896248,
+        0.0034163884718717563,
+        0.002987579792248063,
+        0.010978205932278606,
+        0.004858377871621911,
+        0.006384638523879604,
+        0.014097704926918198
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          0.0007348631277806217,
+          0.013344145311969499
+        ],
+        "prob_delta_le_zero": 0.0145
+      }
+    },
+    "pace_adjusted_mixed_core": {
+      "note": "frozen pace-adjusted challenger anchor",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6930280957336108,
+        "log_loss": 0.5933178728774774,
+        "brier": 0.20351945807769173
+      },
+      "market_minus_candidate_log_loss": 0.006803764363221387,
+      "market_minus_candidate_brier": 0.002824264270603477,
+      "mean_row_loss_delta": 0.006803764363221309,
+      "positive_folds": 6,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.0011960276010809512,
+        0.007704820897323605,
+        0.004744352681152031,
+        0.01151986461232446,
+        -0.002672003995164207,
+        0.013011424047350117,
+        0.011030337041728178
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          0.00018224597345926815,
+          0.01321335808594506
+        ],
+        "prob_delta_le_zero": 0.02245
+      }
+    },
+    "sigpct_only": {
+      "note": "efficiency-only reference",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6930280957336108,
+        "log_loss": 0.5944873858725508,
+        "brier": 0.20399542451358388
+      },
+      "market_minus_candidate_log_loss": 0.005634251368147991,
+      "market_minus_candidate_brier": 0.002348297834711327,
+      "mean_row_loss_delta": 0.005634251368148142,
+      "positive_folds": 6,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.0008104748315450605,
+        0.006047331181149085,
+        0.0029113786558161436,
+        0.009659474202094787,
+        -0.0006850523236675565,
+        0.010225897376362925,
+        0.009603679329255987
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.0004737001269250824,
+          0.011592258091465116
+        ],
+        "prob_delta_le_zero": 0.0341
+      }
+    },
+    "sigpct_head_pm": {
+      "note": "efficiency plus head-strike pace differential",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6930280957336108,
+        "log_loss": 0.5945189644206065,
+        "brier": 0.20396791238893075
+      },
+      "market_minus_candidate_log_loss": 0.005602672820092303,
+      "market_minus_candidate_brier": 0.0023758099593644555,
+      "mean_row_loss_delta": 0.005602672820092435,
+      "positive_folds": 6,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.001150937976423294,
+        0.005362258612851334,
+        0.002778130576886917,
+        0.009463476539545157,
+        -0.0008254076099211138,
+        0.010785185206307557,
+        0.009564800053901257
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.0006717088112755769,
+          0.011662972300781595
+        ],
+        "prob_delta_le_zero": 0.0395
+      }
+    },
+    "sigpct_head_for_against": {
+      "note": "efficiency plus head-strike offense and absorbed-pace split",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6919875130072841,
+        "log_loss": 0.5950765551732214,
+        "brier": 0.20435176242670278
+      },
+      "market_minus_candidate_log_loss": 0.0050450820674773356,
+      "market_minus_candidate_brier": 0.001991959921592429,
+      "mean_row_loss_delta": 0.0050450820674773,
+      "positive_folds": 6,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.0013707813729972873,
+        0.006162884882023767,
+        0.0006442818494397651,
+        0.007952454902010908,
+        -0.0007556623240544402,
+        0.013525935061431293,
+        0.005865782610919412
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.0012952762963305297,
+          0.011210502033039348
+        ],
+        "prob_delta_le_zero": 0.05845
+      }
+    },
+    "sigpct_head_raw_pm": {
+      "note": "efficiency plus raw and pace-adjusted head differential",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6951092611862643,
+        "log_loss": 0.5920579929115519,
+        "brier": 0.2033558729884686
+      },
+      "market_minus_candidate_log_loss": 0.008063644329146857,
+      "market_minus_candidate_brier": 0.0029878493598266,
+      "mean_row_loss_delta": 0.00806364432914681,
+      "positive_folds": 7,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.006530163901296571,
+        0.004109045489901986,
+        0.0035432413169670385,
+        0.01064492586712995,
+        0.006429622560742754,
+        0.008348937055781769,
+        0.016062183526860063
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          0.0017125968994231447,
+          0.014284450526658898
+        ],
+        "prob_delta_le_zero": 0.00595
+      }
+    },
+    "sigpct_head_raw_for_against": {
+      "note": "efficiency plus raw head differential and head offense/defense split",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6909469302809573,
+        "log_loss": 0.5927561748612147,
+        "brier": 0.20375239725518107
+      },
+      "market_minus_candidate_log_loss": 0.0073654623794841,
+      "market_minus_candidate_brier": 0.002591325093114133,
+      "mean_row_loss_delta": 0.007365462379484049,
+      "positive_folds": 7,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.006804320289487187,
+        0.00483846341760974,
+        0.0020054385227380456,
+        0.009052123469835971,
+        0.006348317899023681,
+        0.010119659309273499,
+        0.012028245626386602
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          0.0010405674764553572,
+          0.013710370084857228
+        ],
+        "prob_delta_le_zero": 0.01085
+      }
+    },
+    "sigpct_head_raw_against": {
+      "note": "efficiency plus raw head differential and absorbed head pace",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6888657648283039,
+        "log_loss": 0.5937368567133287,
+        "brier": 0.2040390933449695
+      },
+      "market_minus_candidate_log_loss": 0.006384780527370126,
+      "market_minus_candidate_brier": 0.0023046290033257033,
+      "mean_row_loss_delta": 0.006384780527370226,
+      "positive_folds": 7,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.00681562666473845,
+        0.004763111285229327,
+        0.0015858937570463194,
+        0.008989113271870353,
+        0.004946413146883266,
+        0.0064137233205511235,
+        0.011164512113902125
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -2.7353604698844235e-07,
+          0.012615161859577739
+        ],
+        "prob_delta_le_zero": 0.02505
+      }
+    }
+  },
+  "fixed_market_null": {
+    "market_recalibrated": {
+      "iterations": 300,
+      "observed_market_minus_candidate_log_loss": 0.0016537593504167836,
+      "null_mean_delta": -0.0013411875866388811,
+      "null_delta_ci_95": [
+        -0.004111972017314966,
+        0.000845430258934467
+      ],
+      "p_value_observed_or_better": 0.0033222591362126247,
+      "prob_null_delta_positive": 0.11333333333333333
+    },
+    "current_sigpct_head": {
+      "iterations": 300,
+      "observed_market_minus_candidate_log_loss": 0.007097284144211846,
+      "null_mean_delta": -0.0031336450530374638,
+      "null_delta_ci_95": [
+        -0.0073178391921551785,
+        0.0004608198317812588
+      ],
+      "p_value_observed_or_better": 0.0033222591362126247,
+      "prob_null_delta_positive": 0.05
+    },
+    "pace_adjusted_mixed_core": {
+      "iterations": 300,
+      "observed_market_minus_candidate_log_loss": 0.006803764363221387,
+      "null_mean_delta": -0.004090289814892456,
+      "null_delta_ci_95": [
+        -0.009582315844942926,
+        0.000362083750051416
+      ],
+      "p_value_observed_or_better": 0.0033222591362126247,
+      "prob_null_delta_positive": 0.03666666666666667
+    },
+    "sigpct_only": {
+      "iterations": 300,
+      "observed_market_minus_candidate_log_loss": 0.005634251368147991,
+      "null_mean_delta": -0.002370955806812328,
+      "null_delta_ci_95": [
+        -0.006238202454039718,
+        0.0008600075131982627
+      ],
+      "p_value_observed_or_better": 0.0033222591362126247,
+      "prob_null_delta_positive": 0.07
+    },
+    "sigpct_head_pm": {
+      "iterations": 300,
+      "observed_market_minus_candidate_log_loss": 0.005602672820092303,
+      "null_mean_delta": -0.0036294821818772948,
+      "null_delta_ci_95": [
+        -0.009029471567013423,
+        0.0005366414436491572
+      ],
+      "p_value_observed_or_better": 0.0033222591362126247,
+      "prob_null_delta_positive": 0.04
+    },
+    "sigpct_head_for_against": {
+      "iterations": 300,
+      "observed_market_minus_candidate_log_loss": 0.0050450820674773356,
+      "null_mean_delta": -0.004629586956252846,
+      "null_delta_ci_95": [
+        -0.010567394809633859,
+        0.000446604178022153
+      ],
+      "p_value_observed_or_better": 0.0033222591362126247,
+      "prob_null_delta_positive": 0.03333333333333333
+    },
+    "sigpct_head_raw_pm": {
+      "iterations": 300,
+      "observed_market_minus_candidate_log_loss": 0.008063644329146857,
+      "null_mean_delta": -0.004362358907292027,
+      "null_delta_ci_95": [
+        -0.009913099854564811,
+        1.6499997105626052e-05
+      ],
+      "p_value_observed_or_better": 0.0033222591362126247,
+      "prob_null_delta_positive": 0.03
+    },
+    "sigpct_head_raw_for_against": {
+      "iterations": 300,
+      "observed_market_minus_candidate_log_loss": 0.0073654623794841,
+      "null_mean_delta": -0.005365883122164624,
+      "null_delta_ci_95": [
+        -0.012807629200913112,
+        0.00011679220007537726
+      ],
+      "p_value_observed_or_better": 0.0033222591362126247,
+      "prob_null_delta_positive": 0.03
+    },
+    "sigpct_head_raw_against": {
+      "iterations": 300,
+      "observed_market_minus_candidate_log_loss": 0.006384780527370126,
+      "null_mean_delta": -0.003935628834664398,
+      "null_delta_ci_95": [
+        -0.008582601415087012,
+        0.000499364252355672
+      ],
+      "p_value_observed_or_better": 0.0033222591362126247,
+      "prob_null_delta_positive": 0.043333333333333335
+    }
+  },
+  "fixed_betting": {
+    "current_sigpct_head": {
+      "variant": "current_sigpct_head",
+      "bets": 705,
+      "events": 148,
+      "profit": 31.849858620600912,
+      "roi": 0.04517710442638427,
+      "actual_minus_market": 0.047448717142983154,
+      "positive_folds": 5,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.069,
+      "market_null_p": 0.0019499025048747563
+    },
+    "pace_adjusted_mixed_core": {
+      "variant": "pace_adjusted_mixed_core",
+      "bets": 695,
+      "events": 148,
+      "profit": 41.971283371967395,
+      "roi": 0.060390335787003445,
+      "actual_minus_market": 0.058472594528633404,
+      "positive_folds": 6,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.02,
+      "market_null_p": 0.0006999650017499125
+    },
+    "sigpct_only": {
+      "variant": "sigpct_only",
+      "bets": 706,
+      "events": 148,
+      "profit": 30.175333702991516,
+      "roi": 0.04274126586825994,
+      "actual_minus_market": 0.052534531842252985,
+      "positive_folds": 6,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.0587,
+      "market_null_p": 0.002999850007499625
+    },
+    "sigpct_head_pm": {
+      "variant": "sigpct_head_pm",
+      "bets": 700,
+      "events": 148,
+      "profit": 28.38787469284305,
+      "roi": 0.040554106704061496,
+      "actual_minus_market": 0.05035440806390523,
+      "positive_folds": 6,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.07395,
+      "market_null_p": 0.0039998000099995
+    },
+    "sigpct_head_for_against": {
+      "variant": "sigpct_head_for_against",
+      "bets": 682,
+      "events": 148,
+      "profit": 11.578650755184906,
+      "roi": 0.016977493775930948,
+      "actual_minus_market": 0.03728692196336525,
+      "positive_folds": 5,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.2723,
+      "market_null_p": 0.019449027548622568
+    },
+    "sigpct_head_raw_pm": {
+      "variant": "sigpct_head_raw_pm",
+      "bets": 730,
+      "events": 148,
+      "profit": 38.04037345709583,
+      "roi": 0.05211010062615867,
+      "actual_minus_market": 0.0548924217915403,
+      "positive_folds": 7,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.04225,
+      "market_null_p": 0.0015499225038748063
+    },
+    "sigpct_head_raw_for_against": {
+      "variant": "sigpct_head_raw_for_against",
+      "bets": 720,
+      "events": 148,
+      "profit": 20.330501566287325,
+      "roi": 0.02823680773095462,
+      "actual_minus_market": 0.04111952251096873,
+      "positive_folds": 5,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.1889,
+      "market_null_p": 0.010949452527373631
+    },
+    "sigpct_head_raw_against": {
+      "variant": "sigpct_head_raw_against",
+      "bets": 720,
+      "events": 148,
+      "profit": 8.722135809601818,
+      "roi": 0.012114077513335859,
+      "actual_minus_market": 0.03116708861478623,
+      "positive_folds": 4,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.34935,
+      "market_null_p": 0.03564821758912055
+    }
+  },
+  "coefficients": [
+    {
+      "fold": 1,
+      "variant": "market_recalibrated",
+      "intercept": 1.401336806353319e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        0.873028477407305
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "current_sigpct_head",
+      "intercept": 1.0201557106324018e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.8216180820959288,
+        0.12844400332674072,
+        0.116983270916937
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": 2.667438706291024e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8376353835033943,
+        0.16658434531034375,
+        -0.0943184577006596,
+        0.0913806863800209
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "sigpct_only",
+      "intercept": -1.4215666157724792e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff"
+      ],
+      "coefficients": [
+        0.8425894211899966,
+        0.15432324302604797
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "sigpct_head_pm",
+      "intercept": -6.990255459906937e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8402225098581065,
+        0.1458056229730731,
+        0.021999458203715447
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "sigpct_head_for_against",
+      "intercept": -5.67044478230356e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8403778125474936,
+        0.15574770405313723,
+        0.05238702219432696,
+        0.02860684811718912
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "sigpct_head_raw_pm",
+      "intercept": -7.303039778057865e-17,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8228036961498681,
+        0.14020489856718008,
+        0.13356256693636603,
+        -0.03978290062422186
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "sigpct_head_raw_for_against",
+      "intercept": 7.103088980924824e-17,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8228823108727387,
+        0.14935469966763812,
+        0.131831226093965,
+        0.002486568204000294,
+        0.06808788996966515
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "sigpct_head_raw_against",
+      "intercept": 3.909380437655125e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8229360775649827,
+        0.14982249483499083,
+        0.1327996751593126,
+        0.06878108528513724
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "market_recalibrated",
+      "intercept": 2.7813756747247735e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        0.9446555950464343
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "current_sigpct_head",
+      "intercept": -1.7174078998162453e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.8918291351080496,
+        0.04786709123445642,
+        0.17465985859843097
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": -2.408831333634617e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9217290248358736,
+        0.08886090643107702,
+        -0.09402118733748349,
+        0.10918818657085402
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "sigpct_only",
+      "intercept": -4.682778278909179e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff"
+      ],
+      "coefficients": [
+        0.9279903855957006,
+        0.0801002790220096
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "sigpct_head_pm",
+      "intercept": -3.4517072375204405e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9229729473242592,
+        0.06860192599414204,
+        0.037443743203823585
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "sigpct_head_for_against",
+      "intercept": 5.354602494065506e-17,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.927091188710601,
+        0.08004295411027199,
+        0.061591277101756485,
+        0.01994943365526848
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "sigpct_head_raw_pm",
+      "intercept": -1.0068839812663813e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8938146617553094,
+        0.05935522724824082,
+        0.19686955864799693,
+        -0.05071305450561531
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "sigpct_head_raw_for_against",
+      "intercept": -5.141347522633542e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8976855080010838,
+        0.07029808670909288,
+        0.1971400358447078,
+        -0.011280207131484456,
+        0.08104347791563234
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "sigpct_head_raw_against",
+      "intercept": -1.3953993736255076e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.897603250804281,
+        0.06885602286756673,
+        0.19258273337519838,
+        0.07745745217032284
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "market_recalibrated",
+      "intercept": -3.983304219966593e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        0.9544804072555839
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "current_sigpct_head",
+      "intercept": 6.177211270866188e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.9010818156223421,
+        0.0862153696087521,
+        0.1379270157096225
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": -1.5319508878297267e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9287661361064082,
+        0.14849285604018922,
+        -0.18913651724743996,
+        0.15516124585687335
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "sigpct_only",
+      "intercept": 8.183490786422399e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff"
+      ],
+      "coefficients": [
+        0.9292726071402839,
+        0.11032019385452779
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "sigpct_head_pm",
+      "intercept": -3.1741450917737924e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9276592126863709,
+        0.10725399256891988,
+        0.010850824497788618
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "sigpct_head_for_against",
+      "intercept": 3.482707550077333e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9333980926592873,
+        0.11806852738590487,
+        0.04420046581953878,
+        0.04059272877554991
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "sigpct_head_raw_pm",
+      "intercept": -3.9208021384623996e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9045217286492778,
+        0.09984331193451716,
+        0.16810218915392114,
+        -0.0660011290072001
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "sigpct_head_raw_for_against",
+      "intercept": -4.2747794457388445e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9100536395283084,
+        0.10995087903131427,
+        0.16716050055240023,
+        -0.019501978679077412,
+        0.09602641491365542
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "sigpct_head_raw_against",
+      "intercept": 1.809893654524041e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9098841638152936,
+        0.10766278434501815,
+        0.15898020638209295,
+        0.08903721040042666
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "market_recalibrated",
+      "intercept": 2.163249966667052e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        0.9257848972822504
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "current_sigpct_head",
+      "intercept": 7.198885435538981e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.8943819720832815,
+        0.03284953748022458,
+        0.08253193953225323
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": -1.918103826948773e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9187512357206087,
+        0.102707519554715,
+        -0.21421916453330833,
+        0.14702073415230701
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "sigpct_only",
+      "intercept": -9.332073530842796e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff"
+      ],
+      "coefficients": [
+        0.913170404184998,
+        0.04785074019470115
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "sigpct_head_pm",
+      "intercept": -9.643085275816052e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9158847737199721,
+        0.05237617633428247,
+        -0.014957812664924616
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "sigpct_head_for_against",
+      "intercept": -1.5443665843818952e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.923945061721663,
+        0.06412802727325131,
+        0.02028282337772488,
+        0.06129446043298149
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "sigpct_head_raw_pm",
+      "intercept": 2.749873954952056e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.899551795121681,
+        0.046600877543333315,
+        0.10794010459444706,
+        -0.06079515111930715
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "sigpct_head_raw_for_against",
+      "intercept": -9.448876055551105e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9074976982148323,
+        0.05852515853628284,
+        0.11187381004375635,
+        -0.017347058663345342,
+        0.10033520125519474
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "sigpct_head_raw_against",
+      "intercept": 3.665063440450582e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9069092248117961,
+        0.056053361917645435,
+        0.10551272268453019,
+        0.09339105209986286
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "market_recalibrated",
+      "intercept": 2.3041474438934994e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        1.0287896623688162
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "current_sigpct_head",
+      "intercept": 6.67451126676602e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.9695340132193884,
+        0.0901480266217096,
+        0.14017522090307832
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": -2.10084089791011e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        1.0052282716835865,
+        0.17433718244289415,
+        -0.2711160464033198,
+        0.21703933014965857
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "sigpct_only",
+      "intercept": -6.351659785603767e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff"
+      ],
+      "coefficients": [
+        0.9986556933057282,
+        0.11650724116021874
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "sigpct_head_pm",
+      "intercept": -1.129555241081456e-17,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9969712358086121,
+        0.11451320947073619,
+        0.008880838266578355
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "sigpct_head_for_against",
+      "intercept": -5.143851907576864e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9908667123461273,
+        0.10960180901742128,
+        -0.005685661848129754,
+        -0.030139293049972128
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "sigpct_head_raw_pm",
+      "intercept": -7.12505039026944e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9753809382025298,
+        0.09905935716767371,
+        0.16491337317395122,
+        -0.058627419416589784
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "sigpct_head_raw_for_against",
+      "intercept": -1.2806258550758486e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9724887501299332,
+        0.09677824988282105,
+        0.1628007363407712,
+        -0.056634449409749245,
+        0.029785138204519227
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "sigpct_head_raw_against",
+      "intercept": 4.139204761229847e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9710156589239634,
+        0.09146338409441009,
+        0.1420781902893766,
+        0.0070425315876188966
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "market_recalibrated",
+      "intercept": -5.884730172342468e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        0.9711767203384762
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "current_sigpct_head",
+      "intercept": 1.2348116699334173e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.906641049963051,
+        0.16167885390818887,
+        0.13485500881697524
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": 4.324961630587226e-17,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9395013614014678,
+        0.22992189670425253,
+        -0.24147602297409643,
+        0.18909961626442173
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "sigpct_only",
+      "intercept": -5.099732928840473e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff"
+      ],
+      "coefficients": [
+        0.9320410390444194,
+        0.1913296698737636
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "sigpct_head_pm",
+      "intercept": -2.5673785054632577e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9343812896865483,
+        0.1949003223772262,
+        -0.016262018239652547
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "sigpct_head_for_against",
+      "intercept": -1.0457237779344053e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9277316100482494,
+        0.18649249164495627,
+        -0.03397160111274297,
+        -0.028104601718434558
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "sigpct_head_raw_pm",
+      "intercept": -1.9817803705157694e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9124228490699537,
+        0.17238744582746782,
+        0.16616862479328945,
+        -0.07947547037716804
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "sigpct_head_raw_for_against",
+      "intercept": 2.0267549411224394e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9087923508993363,
+        0.16769566764740865,
+        0.16224903266496962,
+        -0.08149731713671499,
+        0.022759629550360087
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "sigpct_head_raw_against",
+      "intercept": 7.11578916239675e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.90656397641685,
+        0.16158648529673522,
+        0.1346749620826258,
+        -0.0005716330947967088
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "market_recalibrated",
+      "intercept": -2.7815705446630326e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        0.9423695292864203
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "current_sigpct_head",
+      "intercept": 9.603960313995374e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.8822946971379816,
+        0.20652134026803737,
+        0.10212488031123405
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": -1.2380966011560532e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9134430511048506,
+        0.2723024709297162,
+        -0.2065253053365259,
+        0.12546595046938944
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "sigpct_only",
+      "intercept": 3.369726413565575e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff"
+      ],
+      "coefficients": [
+        0.9021468089626005,
+        0.2319908581241127
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "sigpct_head_pm",
+      "intercept": -3.512156826544769e-17,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9103492527168842,
+        0.24448910122384146,
+        -0.05289562588378496
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "sigpct_head_for_against",
+      "intercept": 4.572077390663892e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8910309776152782,
+        0.2184440180723762,
+        -0.10664904638992385,
+        -0.09757958653696594
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "sigpct_head_raw_pm",
+      "intercept": 1.874006555390975e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8909461347851259,
+        0.22183139582337302,
+        0.14517662085671082,
+        -0.10888556164179061
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "sigpct_head_raw_for_against",
+      "intercept": 5.950454366324103e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head for_pm oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.876349342446222,
+        0.20158914590156418,
+        0.1255171103607786,
+        -0.14412036291510547,
+        -0.057479479927134154
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "sigpct_head_raw_against",
+      "intercept": 2.470001100295693e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head against_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8688666484788903,
+        0.1881097901954775,
+        0.0766897301547106,
+        -0.09877285895828172
+      ]
+    }
+  ],
+  "observed": {
+    "probability_summary": {
+      "variant": "rolling_prior_probability_delta",
+      "fights": 840,
+      "market_log_loss": 0.6015183408137494,
+      "candidate_log_loss": 0.5949136271882041,
+      "delta_log_loss": 0.0066047136255453776,
+      "delta_brier": 0.00258033136208613,
+      "accuracy": 0.6964285714285714,
+      "mean_abs_move": 0.03993409669661268,
+      "positive_folds": 5,
+      "folds": 6,
+      "bootstrap_p_delta_le_zero": 0.03645
+    },
+    "probability_selection_path": [
+      {
+        "variant": "sigpct_head_raw_against",
+        "prior_rows": 121,
+        "prior_delta_log_loss": 0.00681562666473845,
+        "fold": 2,
+        "eval_rows": 118,
+        "eval_delta_log_loss": 0.004763111285229327
+      },
+      {
+        "variant": "sigpct_head_raw_for_against",
+        "prior_rows": 239,
+        "prior_delta_log_loss": 0.005833729867388726,
+        "fold": 3,
+        "eval_rows": 151,
+        "eval_delta_log_loss": 0.0020054385227380456
+      },
+      {
+        "variant": "sigpct_head_raw_pm",
+        "prior_rows": 390,
+        "prior_delta_log_loss": 0.004641145227506027,
+        "fold": 4,
+        "eval_rows": 142,
+        "eval_delta_log_loss": 0.01064492586712995
+      },
+      {
+        "variant": "pace_adjusted_mixed_core",
+        "prior_rows": 532,
+        "prior_delta_log_loss": 0.006402455329734935,
+        "fold": 5,
+        "eval_rows": 138,
+        "eval_delta_log_loss": -0.002672003995164207
+      },
+      {
+        "variant": "sigpct_head_raw_pm",
+        "prior_rows": 670,
+        "prior_delta_log_loss": 0.00628196123170488,
+        "fold": 6,
+        "eval_rows": 147,
+        "eval_delta_log_loss": 0.008348937055781769
+      },
+      {
+        "variant": "sigpct_head_raw_pm",
+        "prior_rows": 817,
+        "prior_delta_log_loss": 0.006653865082548727,
+        "fold": 7,
+        "eval_rows": 144,
+        "eval_delta_log_loss": 0.016062183526860063
+      }
+    ],
+    "profit_summary": {
+      "variant": "rolling_prior_profit",
+      "bets": 631,
+      "events": 126,
+      "profit": 34.414825038054275,
+      "roi": 0.05454013476712247,
+      "actual_minus_market": 0.05373066234331747,
+      "positive_folds": 5,
+      "folds": 6,
+      "bootstrap_p_profit_le_zero": 0.03675,
+      "market_null_p": null
+    },
+    "profit_selection_path": [
+      {
+        "variant": "sigpct_head_raw_for_against",
+        "prior_bets": 91,
+        "prior_profit": 2.9701417471493015,
+        "prior_roi": 0.03263892029834397,
+        "fold": 2,
+        "eval_bets": 93,
+        "eval_profit": -0.775528598374125,
+        "eval_roi": -0.008339017186818549
+      },
+      {
+        "variant": "sigpct_only",
+        "prior_bets": 168,
+        "prior_profit": 4.1229994725417605,
+        "prior_roi": 0.02454166352703429,
+        "fold": 3,
+        "eval_bets": 112,
+        "eval_profit": 6.95210536098399,
+        "eval_roi": 0.062072369294499906
+      },
+      {
+        "variant": "sigpct_only",
+        "prior_bets": 280,
+        "prior_profit": 11.075104833525753,
+        "prior_roi": 0.03955394583402055,
+        "fold": 4,
+        "eval_bets": 102,
+        "eval_profit": 4.796506116264226,
+        "eval_roi": 0.04702456976729633
+      },
+      {
+        "variant": "pace_adjusted_mixed_core",
+        "prior_bets": 371,
+        "prior_profit": 18.52954121278721,
+        "prior_roi": 0.04994485502098978,
+        "fold": 5,
+        "eval_bets": 101,
+        "eval_profit": 0.8266074421617402,
+        "eval_roi": 0.00818423210061129
+      },
+      {
+        "variant": "pace_adjusted_mixed_core",
+        "prior_bets": 472,
+        "prior_profit": 19.35614865494895,
+        "prior_roi": 0.04100878952319693,
+        "fold": 6,
+        "eval_bets": 113,
+        "eval_profit": 7.978984879581034,
+        "eval_roi": 0.07061048566000916
+      },
+      {
+        "variant": "pace_adjusted_mixed_core",
+        "prior_bets": 585,
+        "prior_profit": 27.335133534529987,
+        "prior_roi": 0.04672672399064955,
+        "fold": 7,
+        "eval_bets": 110,
+        "eval_profit": 14.636149837437415,
+        "eval_roi": 0.1330559076130674
+      }
+    ]
+  },
+  "selection_null": {
+    "probability_delta_log_loss": {
+      "iterations": 200,
+      "observed": 0.0066047136255453776,
+      "null_mean": -0.003417281155039054,
+      "null_ci_95": [
+        -0.00845342229475963,
+        0.0004136605069964164
+      ],
+      "p_value_observed_or_better": 0.004975124378109453,
+      "prob_null_positive": 0.035
+    },
+    "profit": {
+      "iterations": 200,
+      "observed": 34.414825038054275,
+      "null_mean": -18.279265912561694,
+      "null_ci_95": [
+        -62.36510305104756,
+        34.427039285162635
+      ],
+      "p_value_observed_or_better": 0.029850746268656716,
+      "prob_null_positive": 0.21
+    }
+  },
+  "outputs": {
+    "fixed_predictions_csv": "test_results/striking_redesign_selection_audit/fixed_variant_predictions.csv",
+    "fixed_edge02_bets_csv": "test_results/striking_redesign_selection_audit/fixed_edge02_bets.csv",
+    "observed_probability_predictions_csv": "test_results/striking_redesign_selection_audit/observed_rolling_probability_predictions.csv",
+    "observed_profit_bets_csv": "test_results/striking_redesign_selection_audit/observed_rolling_profit_bets.csv",
+    "selection_null_csv": "test_results/striking_redesign_selection_audit/selection_null_distribution.csv",
+    "summary_json": "test_results/striking_redesign_selection_audit/striking_redesign_selection_audit.json",
+    "report_md": "test_results/striking_redesign_selection_audit/striking_redesign_selection_audit.md"
+  }
+}
