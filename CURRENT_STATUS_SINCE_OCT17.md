@@ -2403,6 +2403,81 @@ feature research, its rolling probability selector had weak event-bootstrap
 support, and it has no post-freeze evidence. Treat it as future
 paper-tracking only, not a live staking claim.
 
+### Striking Component Context Audit
+
+Striking component/context audit:
+
+```text
+testing/striking_component_context_audit.py
+test_results/striking_component_context_audit/striking_component_context_audit.md
+test_results/striking_component_context_audit/striking_component_context_audit.json
+test_results/striking_component_context_audit/striking_component_context_predictions.csv
+test_results/striking_component_context_audit/striking_component_context_edge02_bets.csv
+```
+
+This diagnostic decomposes the current striking alpha into compact
+fight-context components after controlling for the de-vigged market. It uses
+the same men-only seven-fold market-aware protocol as the frozen striking
+policies, reconstructs source-derived pace features, and keeps every fixed
+`2%` positive-edge betting ledger uncapped by event.
+
+Probability results:
+
+| Variant | Delta LL | Inc vs Recal | Brier Delta | Positive Folds | Bootstrap P(delta <= 0) | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `current_sigpct_head` | +0.0071 | +0.0054 | +0.0027 | 7 / 7 | 0.015 | 0.003 |
+| `pace_offense_split` | +0.0071 | +0.0054 | +0.0030 | 6 / 7 | 0.023 | 0.003 |
+| `pace_adjusted_mixed_core` | +0.0068 | +0.0052 | +0.0028 | 6 / 7 | 0.021 | 0.003 |
+| `current_mixed_core` | +0.0068 | +0.0051 | +0.0025 | 6 / 7 | 0.022 | 0.003 |
+| `sigpct_only` | +0.0056 | +0.0040 | +0.0023 | 6 / 7 | 0.034 | 0.003 |
+| `market_recalibrated` | +0.0017 | +0.0000 | +0.0007 | 4 / 7 | 0.216 | 0.027 |
+
+Fixed `2%` positive-edge uncapped PnL:
+
+| Variant | Bets | Profit | ROI | Actual - Market | Positive Folds | Bootstrap P(profit <= 0) | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `pace_adjusted_mixed_core` | 695 | +41.97u | 6.04% | +5.85% | 6 / 7 | 0.020 | <0.001 |
+| `pace_for_against_split` | 699 | +38.91u | 5.57% | +5.39% | 6 / 7 | 0.050 | 0.002 |
+| `current_mixed_core` | 714 | +33.38u | 4.68% | +5.12% | 6 / 7 | 0.053 | 0.002 |
+| `current_sigpct_head` | 705 | +31.85u | 4.52% | +4.74% | 5 / 7 | 0.068 | 0.002 |
+| `pace_offense_split` | 697 | +19.37u | 2.78% | +4.29% | 5 / 7 | 0.178 | 0.011 |
+| `raw_sig_only` | 643 | +0.61u | 0.09% | +3.08% | 5 / 7 | 0.479 | 0.062 |
+
+Component sanity checks:
+
+| Feature | Expected Sign | Spearman vs Actual-Market | Low Bin A-M | High Bin A-M | Aligned High-Low |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `Sig. str.% differential oppdiff` | + | +0.0625 | -6.53% | +6.45% | +12.98% |
+| `Sig. str. differential oppdiff` | + | +0.0291 | -5.66% | +5.99% | +11.65% |
+| `Head differential oppdiff` | + | +0.0360 | -5.57% | +5.43% | +11.00% |
+| `Sig. str. differential_pm oppdiff` | + | -0.0348 | +0.49% | -3.81% | -4.30% |
+| `Head differential_pm oppdiff` | + | -0.0384 | +0.49% | +1.12% | +0.62% |
+| `Sig. str. for_pm oppdiff` | + | -0.0319 | +2.04% | -2.63% | -4.67% |
+| `Sig. str. against_pm oppdiff` | - | -0.0011 | +0.80% | -1.96% | +2.77% |
+| `Head against_pm oppdiff` | - | +0.0061 | +3.18% | -3.01% | +6.18% |
+
+Important coefficient signs:
+
+- `current_sigpct_head` has stable positive coefficients on both
+  `Sig. str.% differential oppdiff` and `Head differential oppdiff`
+  (`7/7` folds each)
+- `pace_adjusted_mixed_core` has stable positive coefficients on
+  `Sig. str.% differential oppdiff` and `Head differential_pm oppdiff`, but a
+  stable negative coefficient on `Sig. str. differential_pm oppdiff`
+  (`0/7` expected-sign matches)
+- `pace_offense_split` repeats that pattern: `Head for_pm oppdiff` is stable
+  positive, while `Sig. str. for_pm oppdiff` is stable negative
+
+Interpretation: this is a useful feature-correctness and context check. The
+best probability story remains compact and plausible: significant-strike
+accuracy plus head-strike differential. The pace-adjusted PnL result remains
+historically strong and uncapped, but it is not a simple "more generic strike
+pace is better" signal. Generic significant-strike pace has wrong-way raw
+residual bins and wrong-way coefficients once efficiency and head pace are in
+the same model, while head pace and sig-strike percentage remain constructive.
+That argues for continued paper tracking and a more careful feature redesign,
+not for promoting a new live staking rule.
+
 ### Frozen SigPct-Head Challenger Paper Policy
 
 Frozen challenger paper policy:
@@ -2971,6 +3046,13 @@ The most honest read:
   `Sig. str. differential_pm oppdiff` and `Head differential_pm oppdiff`,
   fixed `2.00%` positive-edge threshold, flat `1u` stake, and no event cap,
   while computing future-card pace features only through the training cutoff
+- component-level striking context strengthens the compact-feature read but
+  weakens a naive pace story: `current_sigpct_head` remains best on
+  probability (`+0.0071` delta LL, `7/7` positive folds, 300-refit
+  market-null p `0.003`), while `pace_adjusted_mixed_core` remains best on
+  fixed uncapped `2%` PnL (`+41.97u`, `6.04%` ROI); however generic
+  significant-strike pace has wrong-way residual bins and stable wrong-way
+  coefficients once sig-strike percentage and head pace are included
 - a separate frozen `sigpct_head|all` challenger paper policy now exists for
   future pre-outcome tracking; it uses `market_logit`, `Sig. str.% differential
   oppdiff`, and `Head differential oppdiff`, fixed `2.00%` positive-edge
@@ -3165,12 +3247,12 @@ men-only filtering, and fight-context meaning. The goal is to distinguish
 features that genuinely describe ways fighters win from generator artifacts
 that merely worked historically.
 
-Immediate follow-up: the pace-adjusted challenger is now frozen, so the next
-research work should be deeper feature engineering and feature correctness
-rather than another staking-policy tweak. Focus first on high-signal striking
-features and the current market-residual inputs, with explicit checks for
-source semantics, chronology, orientation, units, missingness, and fight
-context.
+Immediate follow-up: the first component-level striking feature context audit
+is complete. The next useful feature work is a predeclared redesign of the
+striking features, not another staking-policy tweak: preserve the stable
+sig-strike percentage and head-strike concepts, separate head pace from generic
+volume, and test any new grouped feature with rolling selection/null checks
+before freezing another challenger.
 
 ## Independent PnL Investigation Update
 
@@ -3253,6 +3335,10 @@ Operational PnL implementation update:
   frozen pace-adjusted striking challenger policy:
   `test_results/forward_paper_tracking/latest_pace_adjusted_striking_challenger_paper_bets.csv`
   and `.json`
+- `testing/striking_component_context_audit.py` decomposes the striking alpha
+  into efficiency, raw-count, pace-offense, pace-defense, and split
+  offense/defense components under the same seven-fold men-only market-aware
+  protocol
 
 Validation:
 
@@ -3270,6 +3356,7 @@ Validation:
 - compile check passed for `testing/striking_feature_engineering_audit.py`
 - compile check passed for
   `testing/striking_feature_engineering_selection_null_audit.py`
+- compile check passed for `testing/striking_component_context_audit.py`
 - compile check passed for `utils/incremental_processing.py`,
   `testing/residual_event_cap_rolling_selection_audit.py`,
   `testing/outcome_universe_audit.py`, and `testing/no_leakage_backtest.py`
@@ -3328,6 +3415,11 @@ Validation:
   `200` market-implied outcome paths refit all inspected feature variants and
   reran rolling selection, giving p `0.015` for the probability selector and
   p `0.040` for the profit selector
+- the striking component context audit ran cleanly with `300` market-null
+  refits; `current_sigpct_head` remained best on probability, the frozen
+  pace-adjusted challenger remained best on fixed uncapped `2%` PnL, and the
+  audit identified wrong-way generic significant-strike pace behavior that
+  should inform the next feature redesign
 - a five-fight capped residual scorer smoke test exercised the event cap itself:
   the scorer placed exactly three paper bets and marked two otherwise eligible
   candidates as `event cap 3 reached`
