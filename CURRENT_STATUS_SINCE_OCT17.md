@@ -905,6 +905,48 @@ Interpretation: the residual signal is not broad or monotonic. Larger residual
 edges were not automatically better, and the fixed paper-policy profit was
 mostly a 2024 phenomenon. This strengthens the paper-track-only conclusion.
 
+### Residual Recent Stress Audit
+
+Residual recent-stress audit:
+
+```text
+testing/residual_recent_stress_audit.py
+test_results/residual_recent_stress_audit/residual_recent_stress_audit.md
+test_results/residual_recent_stress_audit/residual_recent_stress_audit.json
+```
+
+This audit stress-tests the residual probability edge and the frozen
+residual-meta top-edge cap-3 historical ledger by recent-only periods.
+
+Probability stress, selected-shrinkage policy:
+
+| Period | Fights | Market LL | Candidate LL | Delta LL | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| aggregate | 704 | 0.6009 | 0.5971 | +0.0038 | 0.011 |
+| 2024 | 275 | 0.5800 | 0.5702 | +0.0098 | 0.007 |
+| 2025 | 285 | 0.6136 | 0.6120 | +0.0016 | 0.141 |
+| 2026 | 144 | 0.6156 | 0.6192 | -0.0036 | 0.449 |
+| 2025-2026 only | 429 | 0.6143 | 0.6144 | -0.0001 | 0.169 |
+| last 365 days | 298 | 0.6127 | 0.6159 | -0.0032 | 0.409 |
+| latest fold 5 | 129 | 0.6273 | 0.6320 | -0.0047 | 0.498 |
+
+Frozen residual-meta cap-3 PnL stress:
+
+| Period | Bets | Profit | ROI | Market-Null p | Bootstrap P(profit <= 0) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| aggregate | 262 | +19.12u | 7.30% | 0.001 | 0.015 |
+| 2024 | 103 | +14.39u | 13.97% | 0.002 | <0.001 |
+| 2025 | 108 | +5.76u | 5.34% | 0.062 | 0.141 |
+| 2026 | 51 | -1.03u | -2.03% | 0.394 | 0.577 |
+| 2025-2026 only | 159 | +4.73u | 2.97% | 0.071 | 0.251 |
+| last 365 days | 105 | +0.38u | 0.36% | 0.217 | 0.465 |
+| latest fold 5 | 45 | -1.78u | -3.94% | 0.486 | 0.647 |
+
+Interpretation: the aggregate residual/cap evidence is heavily front-loaded.
+Recent-only slices do not support a strong live edge claim. This does not
+refute a weak residual signal, but it says the next useful work must explain
+or reverse recency decay rather than add generic historical feature capacity.
+
 ### Frozen Forward Paper-Tracking Policy
 
 Freeze artifact:
@@ -983,6 +1025,44 @@ Interpretation: do not promote these engineered features. They worsen
 one-year metrics and two-year log loss/PnL, and they do not produce a stronger
 market-relative edge claim. The production model and frozen forward policy
 remain on `engineered_features=false`.
+
+### Recent Form Feature Audit
+
+Recent-form feature audit:
+
+```text
+testing/recent_form_feature_audit.py
+test_results/recent_form_feature_audit/RECENT_FORM_FEATURE_AUDIT.md
+test_results/recent_form_feature_audit/recent_form_feature_audit.json
+test_results/recent_form_feature_audit/statistical_edge_audit/edge_audit.md
+```
+
+This audit builds an alternate feature table with `128` recent-form/activity
+columns computed only from source fights strictly before each modeled fight
+date. The feature family includes last-3/last-5 result score, binary win rate,
+finish win/loss rate, non-binary rate, minutes, recent striking/grappling
+rates, knockdown rates, and 365/730-day activity counts.
+
+Leak-safe comparison with fixed regularized LightGBM params:
+
+| Window | Feature Set | Accuracy | Log Loss | PnL |
+| --- | --- | ---: | ---: | ---: |
+| 2025-06-27 to 2026-06-27 | current regularized | 64.43% | 0.6418 | +24.66% |
+| 2025-06-27 to 2026-06-27 | recent-form challenger | 63.09% | 0.6436 | +2.57% |
+| 2024-06-27 to 2026-06-27 | current regularized | 65.00% | 0.6318 | +61.20% |
+| 2024-06-27 to 2026-06-27 | recent-form challenger | 64.66% | 0.6370 | +19.12% |
+
+Statistical audit for the recent-form challenger:
+
+| Run | Model LL | Market LL | Profit | Market-Null p | Bootstrap Profit CI |
+| --- | ---: | ---: | ---: | ---: | --- |
+| recent-form 1y | 0.644 | 0.613 | +$25.72 | 0.426 | -$326.64 to $384.17 |
+| recent-form 2y | 0.637 | 0.600 | +$191.24 | 0.166 | -$365.38 to $749.47 |
+
+Interpretation: do not promote recent-form features. This was a plausible
+feature-engineering attempt, but it worsened log loss and PnL versus the
+current regularized feature set in both summarized windows. Recent-form
+capacity alone did not fix the latest-fold/residual-drift problem.
 
 ### Market-Aware Feature Audit
 
@@ -1266,6 +1346,9 @@ The most honest read:
   market logit, Elo/experience, age/recency, combat-stat, and top-importance
   feature groups all worsened log loss; only market-only recalibration was
   slightly positive and still weak
+- recent-form/activity feature engineering did not help: adding 128 leak-safe
+  last-3/last-5 and recent-activity columns worsened one-year and two-year log
+  loss and sharply reduced PnL versus the current regularized feature set
 - the longer market-blend audit selected pure market probability, not a model
   residual, but the newer residual meta audit finds a small positive
   model-after-market log-loss signal
@@ -1311,6 +1394,10 @@ The most honest read:
 - residual signal slices are uneven: the probability edge was negative in
   2026, negative for market P `0.60-0.70`, and negative for extreme residual
   edge `>=0.08`; fixed-policy PnL was also negative in 2025 and 2026
+- residual recent-stress is a major caveat: selected-shrinkage probability
+  delta is negative in 2026, over the last 365 days, and in the latest fold;
+  frozen residual-meta cap-3 PnL is `+19.12u` aggregate but only `+4.73u` in
+  2025-2026 and `-1.78u` in the latest fold
 - edge-only model/market disagreement is negative in flat-bet tests; the more
   interesting pockets require both positive edge and a model-probability floor
 - forward-selected simple disagreement policies remain weak after objective
@@ -1433,6 +1520,8 @@ Validation:
   `testing/outcome_universe_audit.py`, and `testing/no_leakage_backtest.py`
 - compile check passed for `testing/residual_meta_config_selection_audit.py`
   and `testing/residual_event_cap_ranking_audit.py`
+- compile check passed for `testing/recent_form_feature_audit.py` and
+  `testing/residual_recent_stress_audit.py`
 - a temporary in-range prediction input generated canonical prediction outputs
   under `/private/tmp/ufc_forward_prediction_smoke`
 - a direct frozen-policy betting smoke test selected the expected model/market
@@ -1458,6 +1547,12 @@ Validation:
 - the residual-meta config-selection audit regenerated cleanly; rolling
   selection over inspected configs/variants made only `+0.0005` delta LL with
   rolling market-null p `0.084`
+- the recent-form feature audit built a 4,322-row alternate feature table with
+  128 added columns and ran 1y/2y leak-safe backtests; both worsened log loss
+  and PnL versus current regularized features
+- the residual recent-stress audit regenerated cleanly; selected-shrinkage
+  probability delta was `-0.0032` over the last 365 days, and frozen
+  residual-meta cap-3 PnL was only `+0.38u` over the last 365 days
 
 Current operational caveat: the checked-in `data/predict_fights_alpha.csv` is
 stale and fails the live feature-range guard with out-of-training-range values.

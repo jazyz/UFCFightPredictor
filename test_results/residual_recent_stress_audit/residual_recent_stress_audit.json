@@ -1,0 +1,522 @@
+{
+  "probabilities_path": "test_results/residual_shrinkage_audit/holdout_shrinkage_predictions.csv",
+  "ranked_bets_path": "test_results/residual_event_cap_ranking_audit/ranked_cap_bets.csv",
+  "bootstrap_iterations": 20000,
+  "market_null_iterations": 20000,
+  "seed": 20260628,
+  "probability_periods": [
+    {
+      "name": "aggregate",
+      "label": "aggregate",
+      "start": null,
+      "end": null,
+      "fold": null,
+      "policies": [
+        {
+          "policy": "selected_shrinkage",
+          "fights": 704,
+          "events": 102,
+          "market_log_loss": 0.6008836747854751,
+          "candidate_log_loss": 0.5971286967901079,
+          "delta_log_loss": 0.003754977995367159,
+          "event_bootstrap_p_delta_le_zero": 0.1399430028498575,
+          "event_bootstrap_delta_ci_95": [
+            -0.003334883336238954,
+            0.010517972819003983
+          ],
+          "market_null_p_observed_or_better": 0.01079946002699865
+        },
+        {
+          "policy": "fixed_half_residual",
+          "fights": 704,
+          "events": 102,
+          "market_log_loss": 0.6008836747854751,
+          "candidate_log_loss": 0.5978574501583388,
+          "delta_log_loss": 0.003026224627136354,
+          "event_bootstrap_p_delta_le_zero": 0.0503974801259937,
+          "event_bootstrap_delta_ci_95": [
+            -0.0005915626842436923,
+            0.006660652659099703
+          ],
+          "market_null_p_observed_or_better": 0.013649317534123294
+        },
+        {
+          "policy": "unshrunk_meta",
+          "fights": 704,
+          "events": 102,
+          "market_log_loss": 0.6008836747854751,
+          "candidate_log_loss": 0.5978903895335758,
+          "delta_log_loss": 0.0029932852518994553,
+          "event_bootstrap_p_delta_le_zero": 0.22133893305334734,
+          "event_bootstrap_delta_ci_95": [
+            -0.0049094843709694864,
+            0.01050252776937888
+          ],
+          "market_null_p_observed_or_better": 0.014449277536123194
+        }
+      ]
+    },
+    {
+      "name": "2024",
+      "label": "calendar 2024",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "fold": null,
+      "policies": [
+        {
+          "policy": "selected_shrinkage",
+          "fights": 275,
+          "events": 39,
+          "market_log_loss": 0.5799981976485432,
+          "candidate_log_loss": 0.5701632907326509,
+          "delta_log_loss": 0.009834906915892293,
+          "event_bootstrap_p_delta_le_zero": 0.014099295035248238,
+          "event_bootstrap_delta_ci_95": [
+            0.0010031155378184714,
+            0.018563389885253526
+          ],
+          "market_null_p_observed_or_better": 0.0066996650167491624
+        },
+        {
+          "policy": "fixed_half_residual",
+          "fights": 275,
+          "events": 39,
+          "market_log_loss": 0.5799981976485432,
+          "candidate_log_loss": 0.5741086141070216,
+          "delta_log_loss": 0.005889583541521553,
+          "event_bootstrap_p_delta_le_zero": 0.0031998400079996,
+          "event_bootstrap_delta_ci_95": [
+            0.0015872149840679356,
+            0.010175150483261583
+          ],
+          "market_null_p_observed_or_better": 0.006449677516124194
+        },
+        {
+          "policy": "unshrunk_meta",
+          "fights": 275,
+          "events": 39,
+          "market_log_loss": 0.5799981976485432,
+          "candidate_log_loss": 0.5701632907326509,
+          "delta_log_loss": 0.009834906915892293,
+          "event_bootstrap_p_delta_le_zero": 0.014199290035498226,
+          "event_bootstrap_delta_ci_95": [
+            0.0009336967034459895,
+            0.018627538896296782
+          ],
+          "market_null_p_observed_or_better": 0.0071996400179991
+        }
+      ]
+    },
+    {
+      "name": "2025",
+      "label": "calendar 2025",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "fold": null,
+      "policies": [
+        {
+          "policy": "selected_shrinkage",
+          "fights": 285,
+          "events": 42,
+          "market_log_loss": 0.6136244678636285,
+          "candidate_log_loss": 0.6120043578960783,
+          "delta_log_loss": 0.0016201099675501123,
+          "event_bootstrap_p_delta_le_zero": 0.38518074096295185,
+          "event_bootstrap_delta_ci_95": [
+            -0.011344100665409841,
+            0.01369640382358749
+          ],
+          "market_null_p_observed_or_better": 0.1408929553522324
+        },
+        {
+          "policy": "fixed_half_residual",
+          "fights": 285,
+          "events": 42,
+          "market_log_loss": 0.6136244678636285,
+          "candidate_log_loss": 0.6112556272259699,
+          "delta_log_loss": 0.0023688406376586968,
+          "event_bootstrap_p_delta_le_zero": 0.22988850557472126,
+          "event_bootstrap_delta_ci_95": [
+            -0.0042718206496590635,
+            0.008523913285279607
+          ],
+          "market_null_p_observed_or_better": 0.11084445777711115
+        },
+        {
+          "policy": "unshrunk_meta",
+          "fights": 285,
+          "events": 42,
+          "market_log_loss": 0.6136244678636285,
+          "candidate_log_loss": 0.611847829350947,
+          "delta_log_loss": 0.001776638512681699,
+          "event_bootstrap_p_delta_le_zero": 0.3886805659717014,
+          "event_bootstrap_delta_ci_95": [
+            -0.012019683907353378,
+            0.014558325703766677
+          ],
+          "market_null_p_observed_or_better": 0.12189390530473476
+        }
+      ]
+    },
+    {
+      "name": "2026",
+      "label": "calendar 2026",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "fold": null,
+      "policies": [
+        {
+          "policy": "selected_shrinkage",
+          "fights": 144,
+          "events": 21,
+          "market_log_loss": 0.6155529816284094,
+          "candidate_log_loss": 0.6191837193637129,
+          "delta_log_loss": -0.0036307377353033527,
+          "event_bootstrap_p_delta_le_zero": 0.6904654767261637,
+          "event_bootstrap_delta_ci_95": [
+            -0.018014349507924143,
+            0.010511974787922616
+          ],
+          "market_null_p_observed_or_better": 0.4492775361231938
+        },
+        {
+          "policy": "fixed_half_residual",
+          "fights": 144,
+          "events": 21,
+          "market_log_loss": 0.6155529816284094,
+          "candidate_log_loss": 0.6166939046710982,
+          "delta_log_loss": -0.001140923042688629,
+          "event_bootstrap_p_delta_le_zero": 0.5944702764861757,
+          "event_bootstrap_delta_ci_95": [
+            -0.010249347121463456,
+            0.00816622914616017
+          ],
+          "market_null_p_observed_or_better": 0.4380780960951952
+        },
+        {
+          "policy": "unshrunk_meta",
+          "fights": 144,
+          "events": 21,
+          "market_log_loss": 0.6155529816284094,
+          "candidate_log_loss": 0.6232173466329057,
+          "delta_log_loss": -0.0076643650044961615,
+          "event_bootstrap_p_delta_le_zero": 0.7757612119394031,
+          "event_bootstrap_delta_ci_95": [
+            -0.027434192946148867,
+            0.012175608641899517
+          ],
+          "market_null_p_observed_or_better": 0.4607769611519424
+        }
+      ]
+    },
+    {
+      "name": "post_2024",
+      "label": "2025-2026 only",
+      "start": "2025-01-01",
+      "end": null,
+      "fold": null,
+      "policies": [
+        {
+          "policy": "selected_shrinkage",
+          "fights": 429,
+          "events": 63,
+          "market_log_loss": 0.6142718011553032,
+          "candidate_log_loss": 0.614414213493606,
+          "delta_log_loss": -0.0001424123383028,
+          "event_bootstrap_p_delta_le_zero": 0.5033748312584371,
+          "event_bootstrap_delta_ci_95": [
+            -0.01006610817972895,
+            0.009235712987458657
+          ],
+          "market_null_p_observed_or_better": 0.1688415579221039
+        },
+        {
+          "policy": "fixed_half_residual",
+          "fights": 429,
+          "events": 63,
+          "market_log_loss": 0.6142718011553032,
+          "candidate_log_loss": 0.6130810630117473,
+          "delta_log_loss": 0.0011907381435560976,
+          "event_bootstrap_p_delta_le_zero": 0.31988400579971,
+          "event_bootstrap_delta_ci_95": [
+            -0.004166231424050656,
+            0.006411154767803674
+          ],
+          "market_null_p_observed_or_better": 0.15814209289535522
+        },
+        {
+          "policy": "unshrunk_meta",
+          "fights": 429,
+          "events": 63,
+          "market_log_loss": 0.6142718011553032,
+          "candidate_log_loss": 0.6156641708162197,
+          "delta_log_loss": -0.001392369660916464,
+          "event_bootstrap_p_delta_le_zero": 0.5940702964851757,
+          "event_bootstrap_delta_ci_95": [
+            -0.0128196134982561,
+            0.009616175166790513
+          ],
+          "market_null_p_observed_or_better": 0.17369131543422828
+        }
+      ]
+    },
+    {
+      "name": "last_365d",
+      "label": "last 365 days",
+      "start": "2025-06-28",
+      "end": null,
+      "fold": null,
+      "policies": [
+        {
+          "policy": "selected_shrinkage",
+          "fights": 298,
+          "events": 42,
+          "market_log_loss": 0.6127212278902573,
+          "candidate_log_loss": 0.6159250436340683,
+          "delta_log_loss": -0.003203815743811087,
+          "event_bootstrap_p_delta_le_zero": 0.7219139043047847,
+          "event_bootstrap_delta_ci_95": [
+            -0.014074256965123069,
+            0.006868680266678881
+          ],
+          "market_null_p_observed_or_better": 0.4089795510224489
+        },
+        {
+          "policy": "fixed_half_residual",
+          "fights": 298,
+          "events": 42,
+          "market_log_loss": 0.6127212278902573,
+          "candidate_log_loss": 0.6131057797999592,
+          "delta_log_loss": -0.0003845519097018965,
+          "event_bootstrap_p_delta_le_zero": 0.543622818859057,
+          "event_bootstrap_delta_ci_95": [
+            -0.0067563474498420015,
+            0.0056852007840214784
+          ],
+          "market_null_p_observed_or_better": 0.3388830558472076
+        },
+        {
+          "policy": "unshrunk_meta",
+          "fights": 298,
+          "events": 42,
+          "market_log_loss": 0.6127212278902573,
+          "candidate_log_loss": 0.6177244788401128,
+          "delta_log_loss": -0.0050032509498555925,
+          "event_bootstrap_p_delta_le_zero": 0.7701614919254037,
+          "event_bootstrap_delta_ci_95": [
+            -0.01830408871508608,
+            0.007974133768605668
+          ],
+          "market_null_p_observed_or_better": 0.3741812909354532
+        }
+      ]
+    },
+    {
+      "name": "latest_fold",
+      "label": "latest fold 5",
+      "start": null,
+      "end": null,
+      "fold": 5,
+      "policies": [
+        {
+          "policy": "selected_shrinkage",
+          "fights": 129,
+          "events": 19,
+          "market_log_loss": 0.6272685791688568,
+          "candidate_log_loss": 0.6319953573549573,
+          "delta_log_loss": -0.004726778186100421,
+          "event_bootstrap_p_delta_le_zero": 0.7204639768011599,
+          "event_bootstrap_delta_ci_95": [
+            -0.020022966912675653,
+            0.010662391203750166
+          ],
+          "market_null_p_observed_or_better": 0.49782510874456276
+        },
+        {
+          "policy": "fixed_half_residual",
+          "fights": 129,
+          "events": 19,
+          "market_log_loss": 0.6272685791688568,
+          "candidate_log_loss": 0.6290715646036036,
+          "delta_log_loss": -0.0018029854347468026,
+          "event_bootstrap_p_delta_le_zero": 0.6392680365981701,
+          "event_bootstrap_delta_ci_95": [
+            -0.011689076277086556,
+            0.008088298512417085
+          ],
+          "market_null_p_observed_or_better": 0.48652567371631417
+        },
+        {
+          "policy": "unshrunk_meta",
+          "fights": 129,
+          "events": 19,
+          "market_log_loss": 0.6272685791688568,
+          "candidate_log_loss": 0.6365577846916574,
+          "delta_log_loss": -0.009289205522800567,
+          "event_bootstrap_p_delta_le_zero": 0.8060096995150242,
+          "event_bootstrap_delta_ci_95": [
+            -0.03080684848570044,
+            0.012175155179598217
+          ],
+          "market_null_p_observed_or_better": 0.5151742412879357
+        }
+      ]
+    }
+  ],
+  "bet_periods": [
+    {
+      "name": "aggregate",
+      "label": "aggregate",
+      "start": null,
+      "end": null,
+      "fold": null,
+      "frozen_residual_meta_cap3": {
+        "bets": 262,
+        "events": 99,
+        "profit": 19.11636190664889,
+        "roi": 0.07296321338415607,
+        "actual_minus_market": 0.07675148735290827,
+        "event_bootstrap_p_profit_le_zero": 0.015249237538123094,
+        "event_bootstrap_profit_ci_95": [
+          1.8983883861689865,
+          35.75901548444078
+        ],
+        "market_null_p_observed_or_better": 0.0013499325033748313,
+        "positive_folds": 4,
+        "folds": 5
+      }
+    },
+    {
+      "name": "2024",
+      "label": "calendar 2024",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "fold": null,
+      "frozen_residual_meta_cap3": {
+        "bets": 103,
+        "events": 39,
+        "profit": 14.386960468640321,
+        "roi": 0.1396792278508769,
+        "actual_minus_market": 0.1279389990146036,
+        "event_bootstrap_p_profit_le_zero": 0.0006999650017499125,
+        "event_bootstrap_profit_ci_95": [
+          5.608677499387547,
+          23.004389546905685
+        ],
+        "market_null_p_observed_or_better": 0.0015999200039998,
+        "positive_folds": 2,
+        "folds": 2
+      }
+    },
+    {
+      "name": "2025",
+      "label": "calendar 2025",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "fold": null,
+      "frozen_residual_meta_cap3": {
+        "bets": 108,
+        "events": 41,
+        "profit": 5.762938485320285,
+        "roi": 0.053360541530743384,
+        "actual_minus_market": 0.06360128262076303,
+        "event_bootstrap_p_profit_le_zero": 0.14139293035348233,
+        "event_bootstrap_profit_ci_95": [
+          -4.78485481022318,
+          16.001757329327802
+        ],
+        "market_null_p_observed_or_better": 0.06199690015499225,
+        "positive_folds": 2,
+        "folds": 3
+      }
+    },
+    {
+      "name": "2026",
+      "label": "calendar 2026",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "fold": null,
+      "frozen_residual_meta_cap3": {
+        "bets": 51,
+        "events": 19,
+        "profit": -1.0335370473117225,
+        "roi": -0.02026543230022985,
+        "actual_minus_market": 0.001220279704223115,
+        "event_bootstrap_p_profit_le_zero": 0.5765711714414279,
+        "event_bootstrap_profit_ci_95": [
+          -10.711031002827182,
+          8.013127753070773
+        ],
+        "market_null_p_observed_or_better": 0.3944302784860757,
+        "positive_folds": 1,
+        "folds": 2
+      }
+    },
+    {
+      "name": "post_2024",
+      "label": "2025-2026 only",
+      "start": "2025-01-01",
+      "end": null,
+      "fold": null,
+      "frozen_residual_meta_cap3": {
+        "bets": 159,
+        "events": 60,
+        "profit": 4.729401438008564,
+        "roi": 0.029744663132129333,
+        "actual_minus_market": 0.043592281685269074,
+        "event_bootstrap_p_profit_le_zero": 0.25143742812859354,
+        "event_bootstrap_profit_ci_95": [
+          -9.548260991137315,
+          18.74376216913366
+        ],
+        "market_null_p_observed_or_better": 0.07139643017849108,
+        "positive_folds": 2,
+        "folds": 4
+      }
+    },
+    {
+      "name": "last_365d",
+      "label": "last 365 days",
+      "start": "2025-06-28",
+      "end": null,
+      "fold": null,
+      "frozen_residual_meta_cap3": {
+        "bets": 105,
+        "events": 39,
+        "profit": 0.3831254299559499,
+        "roi": 0.0036488136186280944,
+        "actual_minus_market": 0.025497254431451455,
+        "event_bootstrap_p_profit_le_zero": 0.46522673866306685,
+        "event_bootstrap_profit_ci_95": [
+          -11.738074896959828,
+          12.128816097442105
+        ],
+        "market_null_p_observed_or_better": 0.21718914054297286,
+        "positive_folds": 1,
+        "folds": 3
+      }
+    },
+    {
+      "name": "latest_fold",
+      "label": "latest fold 5",
+      "start": null,
+      "end": null,
+      "fold": 5,
+      "frozen_residual_meta_cap3": {
+        "bets": 45,
+        "events": 17,
+        "profit": -1.775179563487834,
+        "roi": -0.03944843474417409,
+        "actual_minus_market": -0.014871615417120343,
+        "event_bootstrap_p_profit_le_zero": 0.6472676366181691,
+        "event_bootstrap_profit_ci_95": [
+          -10.940124042938814,
+          6.789936244883626
+        ],
+        "market_null_p_observed_or_better": 0.48627568621568923,
+        "positive_folds": 0,
+        "folds": 1
+      }
+    }
+  ]
+}
