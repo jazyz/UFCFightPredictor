@@ -1802,6 +1802,67 @@ earlier baseline/current-only nested audit, and the ROI objective turns
 negative. Percentage/defense semantics remain a feature-design concern, but
 simple removal is not validated.
 
+### Feature Percentage Unit-Correction Audit
+
+Feature percentage unit-correction audit:
+
+```text
+testing/feature_percentage_unit_correction_audit.py
+test_results/feature_percentage_unit_correction_audit/feature_percentage_unit_correction_audit.md
+test_results/feature_percentage_unit_correction_audit/feature_percentage_unit_correction_audit.json
+```
+
+This audit tests a more surgical redesign than dropping percentage features.
+The historical generator stores side percentage columns such as `Red Leg%` as
+weighted `percentage / elapsed fight minutes`, while their differential and
+defense counterparts are not time-scaled. The audit reconstructs pre-fight
+percentage state, creates a variant where only the side percentage columns are
+unit-corrected weighted percentages, recomputes their oppdiffs, and reruns
+regularized leak-safe backtests.
+
+Reconstruction checks:
+
+| Check | Value |
+| --- | ---: |
+| percentage bases | 9 |
+| matched feature rows | 4,322 |
+| missing feature rows | 0 |
+| current scaled side checks | 77,796 |
+| current scaled side mismatches | 0 |
+| percentage differential checks | 77,796 |
+| percentage differential mismatches | 0 |
+| percentage defense checks | 77,796 |
+| percentage defense mismatches | 0 |
+
+Largest unit shifts among active/important percentage features:
+
+| Feature | Importance Sum | Current Mean | Corrected Mean | Mean Abs Diff | Corr |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `Clinch%` | 48 | 0.0765 | 0.5155 | 0.4417 | 0.3746 |
+| `Leg%` | 46 | 0.1152 | 0.6666 | 0.5594 | 0.2967 |
+| `Body%` | 42 | 0.1100 | 0.6288 | 0.5269 | 0.2760 |
+| `Td%` | 37 | 0.0427 | 0.2832 | 0.2430 | 0.4718 |
+| `Ground%` | 35 | 0.1031 | 0.4468 | 0.3654 | 0.3053 |
+| `Sig. str.%` | 31 | 0.1258 | 0.4733 | 0.3732 | 0.3298 |
+
+Leak-safe result:
+
+| Window | Variant | Accuracy | Model LL | Market LL | Profit |
+| --- | --- | ---: | ---: | ---: | ---: |
+| 1y | current regularized | 64.43% | 0.6418 | 0.6127 | +24.66% |
+| 1y | pct unit corrected | 62.42% | 0.6452 | 0.6127 | -1.35% |
+| 2y | current regularized | 65.00% | 0.6318 | 0.5995 | +61.20% |
+| 2y | pct unit corrected | 64.83% | 0.6352 | 0.5995 | +38.82% |
+
+Interpretation: do not promote the unit correction. The audit confirms the
+current percentage feature formulas are internally consistent and that the
+side percentage columns really are time-scaled proxies, but replacing them
+with unit-corrected weighted percentages worsens log loss and PnL in both
+tested windows. The odd proxy may be empirically useful as a pace/intensity
+signal; a future redesign should add clearer fight-interpretable percentage
+features alongside the existing family before trying another nested selection
+test.
+
 ### Market Disagreement Audit
 
 Disagreement audit:
@@ -2057,6 +2118,11 @@ The most honest read:
   candidates chooses ablations in `5/7` folds but weakens profit-objective
   evidence (`+$130.83`, market-null p `0.257`) and makes the ROI objective
   negative (`-$19.65`, p `0.580`)
+- percentage-unit correction also fails: reconstructing side percentage
+  columns as weighted percentages instead of percentage-per-minute proxies
+  worsens 1y log loss/PnL (`0.6452`, `-1.35%`) and 2y log loss/PnL
+  (`0.6352`, `+38.82%`) versus current regularized (`0.6418`, `+24.66%`;
+  `0.6318`, `+61.20%`)
 - recent-form/activity feature engineering did not help: adding 128 leak-safe
   last-3/last-5 and recent-activity columns worsened one-year and two-year log
   loss and sharply reduced PnL versus the current regularized feature set
@@ -2347,6 +2413,10 @@ Validation:
   current regularized, and ablation candidates; ablations were selected in
   `5/7` folds for both objectives but failed validation, with profit objective
   market-null p `0.257` and ROI objective losing `-$19.65`
+- the feature percentage unit-correction audit reconstructed `77,796` side
+  percentage checks, differential checks, and defense checks with zero formula
+  mismatches, then showed unit-correcting side percentage columns worsened both
+  1y and 2y regularized leak-safe backtests
 - the residual recent-stress audit regenerated cleanly; selected-shrinkage
   probability delta was `-0.0032` over the last 365 days, and frozen
   residual-meta cap-3 PnL was only `+0.38u` over the last 365 days
