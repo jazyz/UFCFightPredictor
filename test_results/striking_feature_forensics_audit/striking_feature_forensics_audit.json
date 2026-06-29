@@ -1,0 +1,513 @@
+{
+  "source_fights": "data/modified_fight_details.csv",
+  "features": "data/detailed_fights.csv",
+  "odds": "data/fight_results_with_odds.csv",
+  "fight_details_source": "data/fight_details_date.csv",
+  "reconstruction": {
+    "source_rows": 7730,
+    "feature_rows": 4322,
+    "nonbinary_source_rows": 154,
+    "expected_feature_rows_from_source": 4322,
+    "matched_feature_rows": 4322,
+    "missing_feature_rows": 0,
+    "extra_feature_rows": 0,
+    "rows_with_prior_nonbinary_state": 1138,
+    "target_features": {
+      "Sig. str.%": {
+        "side_checks": 8644,
+        "side_mismatches": 0,
+        "side_max_abs_error": 2.220446049250313e-16,
+        "oppdiff_checks": 4322,
+        "oppdiff_mismatches": 0,
+        "oppdiff_max_abs_error": 2.220446049250313e-16,
+        "binary_only_changed_rows": 1138,
+        "binary_only_mean_abs_oppdiff_change": 0.02806408156539712,
+        "binary_only_max_abs_oppdiff_change": 1.139288537549407
+      },
+      "Sig. str.": {
+        "side_checks": 8644,
+        "side_mismatches": 0,
+        "side_max_abs_error": 7.105427357601002e-15,
+        "oppdiff_checks": 4322,
+        "oppdiff_mismatches": 0,
+        "oppdiff_max_abs_error": 7.105427357601002e-15,
+        "binary_only_changed_rows": 1138,
+        "binary_only_mean_abs_oppdiff_change": 2.7839157194472315,
+        "binary_only_max_abs_oppdiff_change": 48.800000000000004
+      },
+      "Head": {
+        "side_checks": 8644,
+        "side_mismatches": 0,
+        "side_max_abs_error": 7.105427357601002e-15,
+        "oppdiff_checks": 4322,
+        "oppdiff_mismatches": 0,
+        "oppdiff_max_abs_error": 7.105427357601002e-15,
+        "binary_only_changed_rows": 1136,
+        "binary_only_mean_abs_oppdiff_change": 2.1754724986210916,
+        "binary_only_max_abs_oppdiff_change": 50.4
+      }
+    },
+    "mismatch_examples": [],
+    "nonbinary_effect_examples": [
+      {
+        "date": "1995-12-16",
+        "fight": "Oleg Taktarov vs Dan Severn",
+        "feature": "Sig. str.% differential oppdiff",
+        "with_nonbinary": -0.7718697175840032,
+        "binary_only": -0.4995464852607708,
+        "difference": -0.27232323232323247
+      },
+      {
+        "date": "1995-12-16",
+        "fight": "Oleg Taktarov vs Dan Severn",
+        "feature": "Sig. str. differential oppdiff",
+        "with_nonbinary": -22.885714285714286,
+        "binary_only": -13.285714285714286,
+        "difference": -9.6
+      },
+      {
+        "date": "1995-12-16",
+        "fight": "Oleg Taktarov vs Dan Severn",
+        "feature": "Head differential oppdiff",
+        "with_nonbinary": -20.8,
+        "binary_only": -12.0,
+        "difference": -8.8
+      },
+      {
+        "date": "1996-05-17",
+        "fight": "Ken Shamrock vs Dan Severn",
+        "feature": "Sig. str.% differential oppdiff",
+        "with_nonbinary": -0.6627848825600899,
+        "binary_only": -1.0183909431661506,
+        "difference": 0.3556060606060607
+      },
+      {
+        "date": "1996-05-17",
+        "fight": "Ken Shamrock vs Dan Severn",
+        "feature": "Sig. str. differential oppdiff",
+        "with_nonbinary": -3.0666666666666664,
+        "binary_only": -11.866666666666667,
+        "difference": 8.8
+      },
+      {
+        "date": "1996-05-17",
+        "fight": "Ken Shamrock vs Dan Severn",
+        "feature": "Head differential oppdiff",
+        "with_nonbinary": -2.0666666666666664,
+        "binary_only": -9.866666666666667,
+        "difference": 7.800000000000001
+      },
+      {
+        "date": "2001-11-02",
+        "fight": "Bobby Hoffman vs Josh Barnett",
+        "feature": "Sig. str.% differential oppdiff",
+        "with_nonbinary": 0.8255320476803134,
+        "binary_only": -0.3137564898690937,
+        "difference": 1.139288537549407
+      },
+      {
+        "date": "2001-11-02",
+        "fight": "Bobby Hoffman vs Josh Barnett",
+        "feature": "Sig. str. differential oppdiff",
+        "with_nonbinary": 0.8285714285714292,
+        "binary_only": -41.57142857142857,
+        "difference": 42.4
+      },
+      {
+        "date": "2001-11-02",
+        "fight": "Bobby Hoffman vs Josh Barnett",
+        "feature": "Head differential oppdiff",
+        "with_nonbinary": -5.214285714285714,
+        "binary_only": -17.214285714285715,
+        "difference": 12.0
+      },
+      {
+        "date": "2002-01-11",
+        "fight": "BJ Penn vs Jens Pulver",
+        "feature": "Sig. str.% differential oppdiff",
+        "with_nonbinary": 0.6342567119262023,
+        "binary_only": 0.6306392472511599,
+        "difference": 0.0036174646750423145
+      },
+      {
+        "date": "2002-01-11",
+        "fight": "BJ Penn vs Jens Pulver",
+        "feature": "Sig. str. differential oppdiff",
+        "with_nonbinary": -0.4725274725274726,
+        "binary_only": -0.16363636363636402,
+        "difference": -0.3088911088911086
+      },
+      {
+        "date": "2002-01-11",
+        "fight": "BJ Penn vs Jens Pulver",
+        "feature": "Head differential oppdiff",
+        "with_nonbinary": -4.972527472527473,
+        "binary_only": -4.8558441558441565,
+        "difference": -0.11668331668331611
+      },
+      {
+        "date": "2002-09-27",
+        "fight": "Benji Radach vs Sean Sherk",
+        "feature": "Sig. str.% differential oppdiff",
+        "with_nonbinary": 0.09741200828157359,
+        "binary_only": 0.04378881987577643,
+        "difference": 0.05362318840579716
+      },
+      {
+        "date": "2002-09-27",
+        "fight": "Benji Radach vs Sean Sherk",
+        "feature": "Sig. str. differential oppdiff",
+        "with_nonbinary": 7.0,
+        "binary_only": 10.2,
+        "difference": -3.1999999999999993
+      },
+      {
+        "date": "2002-09-27",
+        "fight": "Benji Radach vs Sean Sherk",
+        "feature": "Head differential oppdiff",
+        "with_nonbinary": 7.0,
+        "binary_only": 9.8,
+        "difference": -2.8000000000000007
+      },
+      {
+        "date": "2002-11-22",
+        "fight": "Tito Ortiz vs Ken Shamrock",
+        "feature": "Sig. str.% differential oppdiff",
+        "with_nonbinary": 0.5658871142378503,
+        "binary_only": 0.6150632915958458,
+        "difference": -0.04917617735799551
+      },
+      {
+        "date": "2002-11-22",
+        "fight": "Tito Ortiz vs Ken Shamrock",
+        "feature": "Sig. str. differential oppdiff",
+        "with_nonbinary": 19.506493506493506,
+        "binary_only": 23.327272727272728,
+        "difference": -3.8207792207792224
+      },
+      {
+        "date": "2002-11-22",
+        "fight": "Tito Ortiz vs Ken Shamrock",
+        "feature": "Head differential oppdiff",
+        "with_nonbinary": 13.272727272727273,
+        "binary_only": 17.82857142857143,
+        "difference": -4.555844155844156
+      },
+      {
+        "date": "2004-01-31",
+        "fight": "Matt Hughes vs BJ Penn",
+        "feature": "Sig. str.% differential oppdiff",
+        "with_nonbinary": -0.06583663174842189,
+        "binary_only": -0.14892917487636548,
+        "difference": 0.08309254312794359
+      },
+      {
+        "date": "2004-01-31",
+        "fight": "Matt Hughes vs BJ Penn",
+        "feature": "Sig. str. differential oppdiff",
+        "with_nonbinary": 4.758395989974936,
+        "binary_only": -1.6877578561789086,
+        "difference": 6.446153846153845
+      }
+    ]
+  },
+  "alignment_metadata": {
+    "features_path": "data/detailed_fights.csv",
+    "odds_path": "data/fight_results_with_odds.csv",
+    "fight_details_source": "data/fight_details_date.csv",
+    "excluded_title_patterns": [
+      "Women"
+    ],
+    "feature_rows": 3999,
+    "odds_rows": 1824,
+    "aligned_rows": 1223,
+    "duplicate_feature_keys": 0,
+    "odds_rows_date_repaired": 22,
+    "odds_rows_excluded_universe": 345,
+    "odds_rows_non_binary_excluded": 7,
+    "skipped_missing_features": 601,
+    "skipped_duplicate_features": 0,
+    "skipped_bad_odds": 0,
+    "skipped_orientation_mismatch": 0
+  },
+  "signal_shape": {
+    "Sig. str.% differential oppdiff": {
+      "rows": 1223,
+      "mean": 0.00011208519466852035,
+      "std": 0.1700376844057461,
+      "min": -0.6315190871450783,
+      "p01": -0.4016878476071078,
+      "p50": 0.001313062646021,
+      "p99": 0.40099875899265663,
+      "max": 0.7506275224749496,
+      "pearson_to_actual_minus_market": 0.09656334633852957,
+      "spearman_to_actual_minus_market": 0.06250642676368032,
+      "lowest_bin_actual_minus_market": -0.0652699866121079,
+      "highest_bin_actual_minus_market": 0.06452022767124098,
+      "high_minus_low_actual_minus_market": 0.12979021428334886,
+      "bins": [
+        {
+          "bin": 1,
+          "rows": 245,
+          "feature_min": -0.6315190871450783,
+          "feature_max": -0.1344344208666857,
+          "feature_mean": -0.23644340179798967,
+          "actual_red_win_rate": 0.3836734693877551,
+          "mean_market_probability": 0.448943455999863,
+          "actual_minus_market": -0.0652699866121079,
+          "market_log_loss": 0.5858423511849594
+        },
+        {
+          "bin": 2,
+          "rows": 244,
+          "feature_min": -0.134095168179159,
+          "feature_max": -0.043497640437479,
+          "feature_mean": -0.08379896574238174,
+          "actual_red_win_rate": 0.430327868852459,
+          "mean_market_probability": 0.45910643940731466,
+          "actual_minus_market": -0.028778570554855734,
+          "market_log_loss": 0.6151548451418299
+        },
+        {
+          "bin": 3,
+          "rows": 245,
+          "feature_min": -0.0433437739496126,
+          "feature_max": 0.0456892772812267,
+          "feature_mean": 0.0012205397975551526,
+          "actual_red_win_rate": 0.5020408163265306,
+          "mean_market_probability": 0.5041453847237949,
+          "actual_minus_market": -0.0021045683972643284,
+          "market_log_loss": 0.6096881430334713
+        },
+        {
+          "bin": 4,
+          "rows": 244,
+          "feature_min": 0.0459931342354355,
+          "feature_max": 0.128043424433239,
+          "feature_mean": 0.08766534945863816,
+          "actual_red_win_rate": 0.5901639344262295,
+          "mean_market_probability": 0.538096818224173,
+          "actual_minus_market": 0.05206711620205647,
+          "market_log_loss": 0.6074399065235101
+        },
+        {
+          "bin": 5,
+          "rows": 245,
+          "feature_min": 0.1281559110794694,
+          "feature_max": 0.7506275224749496,
+          "feature_mean": 0.23193177043436525,
+          "actual_red_win_rate": 0.636734693877551,
+          "mean_market_probability": 0.5722144662063101,
+          "actual_minus_market": 0.06452022767124098,
+          "market_log_loss": 0.5873483609609169
+        }
+      ]
+    },
+    "Sig. str. differential oppdiff": {
+      "rows": 1223,
+      "mean": -0.5178446475243599,
+      "std": 18.397452455772562,
+      "min": -74.80357613401091,
+      "p01": -50.94880952380952,
+      "p50": 0.0865612648221354,
+      "p99": 49.4200476190476,
+      "max": 59.11994313847861,
+      "pearson_to_actual_minus_market": 0.0713241084849595,
+      "spearman_to_actual_minus_market": 0.02907766223670797,
+      "lowest_bin_actual_minus_market": -0.056583341714913644,
+      "highest_bin_actual_minus_market": 0.059886693125778906,
+      "high_minus_low_actual_minus_market": 0.11647003484069254,
+      "bins": [
+        {
+          "bin": 1,
+          "rows": 245,
+          "feature_min": -74.80357613401091,
+          "feature_max": -13.451770451770454,
+          "feature_mean": -26.118648894506812,
+          "actual_red_win_rate": 0.3673469387755102,
+          "mean_market_probability": 0.4239302804904238,
+          "actual_minus_market": -0.056583341714913644,
+          "market_log_loss": 0.580587230175003
+        },
+        {
+          "bin": 2,
+          "rows": 244,
+          "feature_min": -13.445244410761653,
+          "feature_max": -3.75,
+          "feature_mean": -8.355866075283966,
+          "actual_red_win_rate": 0.47950819672131145,
+          "mean_market_probability": 0.47385002448610924,
+          "actual_minus_market": 0.005658172235202123,
+          "market_log_loss": 0.6010554020802218
+        },
+        {
+          "bin": 3,
+          "rows": 245,
+          "feature_min": -3.726108374384237,
+          "feature_max": 3.3796992481203008,
+          "feature_mean": -0.07158173136095908,
+          "actual_red_win_rate": 0.5224489795918368,
+          "mean_market_probability": 0.5060032206562272,
+          "actual_minus_market": 0.016445758935609574,
+          "market_log_loss": 0.5745257550674244
+        },
+        {
+          "bin": 4,
+          "rows": 244,
+          "feature_min": 3.428217112427639,
+          "feature_max": 12.073964681009825,
+          "feature_mean": 7.519647232639496,
+          "actual_red_win_rate": 0.5327868852459017,
+          "mean_market_probability": 0.5378525865582001,
+          "actual_minus_market": -0.0050657013122984845,
+          "market_log_loss": 0.6577952614193665
+        },
+        {
+          "bin": 5,
+          "rows": 245,
+          "feature_min": 12.110845037315626,
+          "feature_max": 59.11994313847861,
+          "feature_mean": 24.438040396002293,
+          "actual_red_win_rate": 0.6408163265306123,
+          "mean_market_probability": 0.5809296334048334,
+          "actual_minus_market": 0.059886693125778906,
+          "market_log_loss": 0.5916579414162816
+        }
+      ]
+    },
+    "Head differential oppdiff": {
+      "rows": 1223,
+      "mean": -0.31254978074468726,
+      "std": 15.35826651376772,
+      "min": -58.957142857142856,
+      "p01": -41.23747213826242,
+      "p50": 0.1439864483342745,
+      "p99": 39.029997355615954,
+      "max": 70.41340772650443,
+      "pearson_to_actual_minus_market": 0.08843862254199542,
+      "spearman_to_actual_minus_market": 0.035961533245989795,
+      "lowest_bin_actual_minus_market": -0.055693287503400794,
+      "highest_bin_actual_minus_market": 0.05429335396592314,
+      "high_minus_low_actual_minus_market": 0.10998664146932394,
+      "bins": [
+        {
+          "bin": 1,
+          "rows": 245,
+          "feature_min": -58.957142857142856,
+          "feature_max": -11.291908858405025,
+          "feature_mean": -21.441836199038605,
+          "actual_red_win_rate": 0.37142857142857144,
+          "mean_market_probability": 0.42712185893197224,
+          "actual_minus_market": -0.055693287503400794,
+          "market_log_loss": 0.5828714502464176
+        },
+        {
+          "bin": 2,
+          "rows": 244,
+          "feature_min": -11.27941196865682,
+          "feature_max": -3.485994397759104,
+          "feature_mean": -7.264452255237561,
+          "actual_red_win_rate": 0.45081967213114754,
+          "mean_market_probability": 0.4654410434907023,
+          "actual_minus_market": -0.014621371359554755,
+          "market_log_loss": 0.587623578065277
+        },
+        {
+          "bin": 3,
+          "rows": 245,
+          "feature_min": -3.4773778487932048,
+          "feature_max": 3.391687979539642,
+          "feature_mean": 0.0451471321486847,
+          "actual_red_win_rate": 0.5387755102040817,
+          "mean_market_probability": 0.5196233062967749,
+          "actual_minus_market": 0.01915220390730664,
+          "market_log_loss": 0.6148673807818988
+        },
+        {
+          "bin": 4,
+          "rows": 244,
+          "feature_min": 3.392307692307692,
+          "feature_max": 10.342857142857142,
+          "feature_mean": 6.649796830036263,
+          "actual_red_win_rate": 0.5573770491803278,
+          "mean_market_probability": 0.5401581831508275,
+          "actual_minus_market": 0.01721886602950035,
+          "market_log_loss": 0.6374894570222507
+        },
+        {
+          "bin": 5,
+          "rows": 245,
+          "feature_min": 10.417543859649124,
+          "feature_max": 70.41340772650443,
+          "feature_mean": 20.44863821749549,
+          "actual_red_win_rate": 0.6244897959183674,
+          "mean_market_probability": 0.5701964419524442,
+          "actual_minus_market": 0.05429335396592314,
+          "market_log_loss": 0.5826320194366891
+        }
+      ]
+    }
+  },
+  "experience_shape": [
+    {
+      "min_totalfights_bin": "2-4",
+      "rows": 493,
+      "mean_actual_minus_market": -0.019522057188285744,
+      "Sig. str.% differential oppdiff spearman": 0.09215698675641691,
+      "Sig. str. differential oppdiff spearman": 0.007974704198720857,
+      "Head differential oppdiff spearman": 0.04829626619408993
+    },
+    {
+      "min_totalfights_bin": "5-9",
+      "rows": 480,
+      "mean_actual_minus_market": 0.02566427172949676,
+      "Sig. str.% differential oppdiff spearman": 0.010049314756139892,
+      "Sig. str. differential oppdiff spearman": 0.04449328058921801,
+      "Head differential oppdiff spearman": 0.028644664959558475
+    },
+    {
+      "min_totalfights_bin": "10+",
+      "rows": 250,
+      "mean_actual_minus_market": 0.00915447481496502,
+      "Sig. str.% differential oppdiff spearman": 0.08532630026743201,
+      "Sig. str. differential oppdiff spearman": 0.03788947626638965,
+      "Head differential oppdiff spearman": 0.034845015931729256
+    }
+  ],
+  "correlations": {
+    "pearson": {
+      "Sig. str.% differential oppdiff": {
+        "Sig. str.% differential oppdiff": 1.0,
+        "Sig. str. differential oppdiff": 0.384454,
+        "Head differential oppdiff": 0.256899
+      },
+      "Sig. str. differential oppdiff": {
+        "Sig. str.% differential oppdiff": 0.384454,
+        "Sig. str. differential oppdiff": 1.0,
+        "Head differential oppdiff": 0.75732
+      },
+      "Head differential oppdiff": {
+        "Sig. str.% differential oppdiff": 0.256899,
+        "Sig. str. differential oppdiff": 0.75732,
+        "Head differential oppdiff": 1.0
+      }
+    },
+    "spearman": {
+      "Sig. str.% differential oppdiff": {
+        "Sig. str.% differential oppdiff": 1.0,
+        "Sig. str. differential oppdiff": 0.394937,
+        "Head differential oppdiff": 0.271638
+      },
+      "Sig. str. differential oppdiff": {
+        "Sig. str.% differential oppdiff": 0.394937,
+        "Sig. str. differential oppdiff": 1.0,
+        "Head differential oppdiff": 0.753872
+      },
+      "Head differential oppdiff": {
+        "Sig. str.% differential oppdiff": 0.271638,
+        "Sig. str. differential oppdiff": 0.753872,
+        "Head differential oppdiff": 1.0
+      }
+    }
+  }
+}

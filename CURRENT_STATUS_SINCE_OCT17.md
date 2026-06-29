@@ -2008,6 +2008,70 @@ Regenerate `data/predict_fights_alpha.csv` before the target card and before
 outcomes are known. The checked-in file is stale and should not be treated as
 current forward evidence.
 
+### Striking Feature Forensics Audit
+
+Striking feature forensics audit:
+
+```text
+testing/striking_feature_forensics_audit.py
+test_results/striking_feature_forensics_audit/striking_feature_forensics_audit.md
+test_results/striking_feature_forensics_audit/striking_feature_forensics_audit.json
+```
+
+This follow-up checks whether the exact frozen striking-core feature inputs can
+be reconstructed from chronological fight details, and whether their
+market-residual shape is directionally coherent. It does not train a new model
+or select a new policy.
+
+Feature definitions confirmed:
+
+- `Sig. str.% differential`: weighted prior significant-strike accuracy
+  advantage
+- `Sig. str. differential`: weighted prior significant strikes landed
+  advantage
+- `Head differential`: weighted prior head strikes landed advantage
+- `oppdiff`: red fighter's pre-fight differential minus blue fighter's
+  pre-fight differential
+
+Reconstruction results:
+
+| Check | Value |
+| --- | ---: |
+| source rows | 7,730 |
+| feature rows | 4,322 |
+| non-binary source rows | 154 |
+| expected supervised feature rows | 4,322 |
+| matched supervised feature rows | 4,322 |
+| missing / extra feature rows | 0 / 0 |
+| supervised rows with prior non-binary state | 1,138 |
+| hard reconstruction failures | 0 |
+
+Target feature checks:
+
+| Feature | Side Checks | Side Mismatches | Oppdiff Checks | Oppdiff Mismatches | Binary-Only Changed Rows | Mean Abs Nonbinary Change |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `Sig. str.%` | 8,644 | 0 | 4,322 | 0 | 1,138 | 0.0281 |
+| `Sig. str.` | 8,644 | 0 | 4,322 | 0 | 1,138 | 2.7839 |
+| `Head` | 8,644 | 0 | 4,322 | 0 | 1,136 | 2.1755 |
+
+Aligned men-only market-residual shape:
+
+| Feature | Rows | Spearman vs Actual-Market | Low Bin A-M | High Bin A-M | High-Low |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `Sig. str.% differential oppdiff` | 1,223 | 0.0625 | -6.53% | +6.45% | +12.98% |
+| `Sig. str. differential oppdiff` | 1,223 | 0.0291 | -5.66% | +5.99% | +11.65% |
+| `Head differential oppdiff` | 1,223 | 0.0360 | -5.57% | +5.43% | +11.00% |
+
+Interpretation: this strengthens the mechanical case for the current
+striking-core alpha. The exact side and oppdiff columns reconstruct with zero
+hard mismatches, and non-binary outcomes behave as intended: they do not create
+supervised training rows but do affect later fighter-state striking features.
+The top-vs-bottom quintile residual pattern is also directionally coherent.
+The caveat is that rank correlations are small, and raw significant-strike
+differential is highly correlated with head differential (`rho = 0.7539`), so
+this supports a weak compact feature clue rather than three independent
+signals or a live edge claim.
+
 ### Feature Semantic Integrity Audit
 
 Feature semantic-integrity audit:
@@ -2481,6 +2545,15 @@ The most honest read:
   it keeps the men-only universe, `C = 0.1` L2 logistic model, fixed
   `2.00%` positive-edge threshold, flat `1u` stake, and no event cap; it is
   for future pre-outcome paper tracking only
+- focused striking-feature forensics strengthens the current alpha mechanics:
+  the exact `Sig. str.% differential`, `Sig. str. differential`, and
+  `Head differential` side/oppdiff values reconstruct from chronological
+  source fights with `0` hard mismatches; non-binary outcomes affect later
+  striking state on `1,138` supervised rows without becoming supervised labels;
+  and the aligned top-vs-bottom quintile actual-minus-market spreads are
+  directionally coherent (`+12.98pp`, `+11.65pp`, `+11.00pp`), though the
+  rank correlations are small and raw significant-strike/head differentials
+  are highly correlated
 - feature-forensics did not find a hard arithmetic or pre-fight-state bug:
   `64` oppdiff pairs, `276,527` row-level diff checks, all `4,322` source
   supervised rows, `69,152` core state checks, and active side-swap coverage
@@ -2750,6 +2823,7 @@ Validation:
   `utils/production_predictions.py`
 - compile check passed for `testing/score_frozen_residual_event_cap_policy.py`
 - compile check passed for `testing/score_frozen_striking_core_policy.py`
+- compile check passed for `testing/striking_feature_forensics_audit.py`
 - compile check passed for `utils/incremental_processing.py`,
   `testing/residual_event_cap_rolling_selection_audit.py`,
   `testing/outcome_universe_audit.py`, and `testing/no_leakage_backtest.py`
@@ -2772,6 +2846,11 @@ Validation:
   historical rows, scored a two-fight temporary card, wrote compatible
   CSV/JSON ledgers under `/private/tmp`, and generated a settlement outcome
   template
+- the striking feature forensics audit regenerated cleanly; the exact frozen
+  striking-core features reconstructed with `0` hard mismatches, non-binary
+  source outcomes affected later target-feature state on `1,138` supervised
+  rows, and all three target features had positive top-vs-bottom
+  actual-minus-market residual spreads
 - a five-fight capped residual scorer smoke test exercised the event cap itself:
   the scorer placed exactly three paper bets and marked two otherwise eligible
   candidates as `event cap 3 reached`
