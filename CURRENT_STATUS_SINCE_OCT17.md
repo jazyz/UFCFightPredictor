@@ -2181,6 +2181,50 @@ The PnL market-null tests are conditional on historical selected bets; the
 selection-adjusted probability evidence remains the robustness-selection audit,
 and the live-edge claim still needs future frozen paper ledgers.
 
+### Striking Core Regime Stress Audit
+
+Striking core regime-stress audit:
+
+```text
+testing/striking_core_regime_stress_audit.py
+test_results/striking_core_regime_stress_audit/striking_core_regime_stress_audit.md
+test_results/striking_core_regime_stress_audit/striking_core_regime_stress_audit.json
+```
+
+This diagnostic decomposes the fixed `2%` positive-edge striking-core ledgers
+by fold, time period, market-probability band, edge band, odds band, and event
+concentration. It does not select a new policy or threshold, and it does not
+apply an event cap; top-event removal is only a concentration stress test.
+
+Aggregate uncapped `2%` ledger stress:
+
+| Policy | Bets | Events | Profit | ROI | Actual - Market | Positive Folds | Bootstrap P(profit <= 0) | Market-Null p | Profit After Removing Top 5 Events |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| rolling prior-delta selection | 526 | 124 | +20.98u | 3.99% | 4.52% | 5 / 6 | 0.088 | 0.006 | +3.39u |
+| `mixed_core|all` | 627 | 126 | +32.48u | 5.18% | 5.19% | 5 / 6 | 0.045 | 0.002 | +10.23u |
+| `sigpct_head|all` | 619 | 126 | +32.78u | 5.29% | 4.94% | 5 / 6 | 0.050 | 0.001 | +8.35u |
+| `mixed_core|min5` | 372 | 123 | +23.10u | 6.21% | 5.67% | 6 / 6 | 0.066 | 0.004 | +3.93u |
+| `sigpct_head|min5` | 363 | 122 | +28.17u | 7.76% | 6.39% | 5 / 6 | 0.033 | 0.001 | +6.44u |
+
+Key stress points:
+
+- all five uncapped ledgers remain profitable after removing the top five
+  profit events, but all turn negative after removing the top ten profit events
+- profit is much stronger in `2025-2026` than `2023-2024`; for example
+  `sigpct_head|all` made `+2.93u` in 2023-2024 and `+29.85u` in 2025-2026
+- the `0.60-0.70` market-probability bin is weak or negative for the fixed
+  reference policies, while lower market-probability and strong-favorite bins
+  carry more of the PnL
+- the `sigpct_head|min5` ledger is the strongest descriptive PnL slice
+  (`+28.17u`, `7.76%` ROI, bootstrap `P(profit <= 0) = 0.033`), but that is
+  still a hindsight fixed reference rather than a frozen production change
+
+Interpretation: the uncapped striking-core betting evidence remains
+constructive, and it does not rely on adding a per-event cap. The fragility is
+concentration and regime dependence: the edge is not broad enough to call live
+without future paper settlement, especially because top-event removal and the
+mid-market-probability bin expose clear weak spots.
+
 ### Frozen SigPct-Head Challenger Paper Policy
 
 Frozen challenger paper policy:
@@ -2726,6 +2770,11 @@ The most honest read:
   fixed `sigpct_head|all` made `+32.78u` at `5.29%` ROI; however ECE usually
   worsened versus market, so the signal looks more like a ranking/edge filter
   than a globally better probability surface
+- striking-core regime stress keeps the no-cap framing intact but adds
+  caution: the fixed `2%` uncapped ledgers all remain profitable after removing
+  their top five profit events, but all turn negative after removing their top
+  ten; the `0.60-0.70` market-probability bin is also weak or negative for the
+  fixed reference policies
 - a separate frozen `sigpct_head|all` challenger paper policy now exists for
   future pre-outcome tracking; it uses `market_logit`, `Sig. str.% differential
   oppdiff`, and `Head differential oppdiff`, fixed `2.00%` positive-edge
@@ -2911,13 +2960,14 @@ results that beat market-null and bootstrap tests after the model parameters,
 probability transform, selection objective, universe, strategy grid, and
 staking policy have been frozen.
 
-Next research direction: run a deeper feature-engineering audit on the
-specific high-signal striking features before expanding the feature set. Check
-whether the significant-strike percentage, raw significant-strike differential,
-and head-strike differential columns are time-safe, orientation-symmetric,
-unit-consistent, and meaningful in fight context; also keep the men-only
-training/evaluation question and non-binary outcome state-update behavior
-explicit in the audit design.
+Next research direction: run a deeper feature-engineering and feature-
+correctness audit before expanding capacity. Start with the high-signal
+striking features, then broaden to other important feature families. For each
+feature, verify the raw source stat, chronological state update, unit/scale,
+red-blue orientation, side/oppdiff symmetry, non-binary outcome handling,
+men-only filtering, and fight-context meaning. The goal is to distinguish
+features that genuinely describe ways fighters win from generator artifacts
+that merely worked historically.
 
 ## Independent PnL Investigation Update
 
@@ -3007,6 +3057,7 @@ Validation:
 - compile check passed for `testing/striking_feature_forensics_audit.py`
 - compile check passed for `testing/striking_core_robustness_selection_audit.py`
 - compile check passed for `testing/striking_core_betting_calibration_audit.py`
+- compile check passed for `testing/striking_core_regime_stress_audit.py`
 - compile check passed for `utils/incremental_processing.py`,
   `testing/residual_event_cap_rolling_selection_audit.py`,
   `testing/outcome_universe_audit.py`, and `testing/no_leakage_backtest.py`
@@ -3046,6 +3097,11 @@ Validation:
   rolling-selected fixed `2%` uncapped ledger made `+20.98u` at `3.99%` ROI
   with conditional market-null p `0.006`, while calibration ECE worsened
   versus market
+- the striking core regime-stress audit regenerated cleanly; all five fixed
+  `2%` uncapped ledgers remained positive after removing their top five profit
+  events, but all turned negative after removing their top ten, and the
+  `0.60-0.70` market-probability bin was weak or negative for the fixed
+  reference policies
 - a five-fight capped residual scorer smoke test exercised the event cap itself:
   the scorer placed exactly three paper bets and marked two otherwise eligible
   candidates as `event cap 3 reached`
