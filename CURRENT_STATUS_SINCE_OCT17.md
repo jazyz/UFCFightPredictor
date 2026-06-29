@@ -1658,6 +1658,59 @@ statistically convincing. This argues against promoting raw feature expansion
 or direct feature+market logistic models right now; the residual-model signal
 remains stronger than the raw-feature-after-market signal.
 
+### Feature Semantic Integrity Audit
+
+Feature semantic-integrity audit:
+
+```text
+testing/feature_semantic_integrity_audit.py
+test_results/feature_semantic_integrity_audit/feature_semantic_integrity_audit.md
+test_results/feature_semantic_integrity_audit/feature_semantic_integrity_audit.json
+```
+
+This audit is a feature-forensics pass rather than a model search. It checks
+whether the current historical feature table obeys basic arithmetic and
+pre-fight state invariants, then flags active model features whose names can be
+misleading in fight context.
+
+Mechanical checks:
+
+| Check | Value |
+| --- | ---: |
+| feature rows | 4,322 |
+| feature columns | 197 |
+| active model features | 182 |
+| oppdiff pairs checked | 64 |
+| oppdiff row-level checks | 276,527 |
+| oppdiff mismatches | 0 |
+| expected supervised rows from source | 4,322 |
+| matched source rows | 4,322 |
+| missing feature rows | 0 |
+| extra feature rows | 0 |
+| core pre-fight state checks | 69,152 |
+| core pre-fight state mismatches | 0 |
+| active side-specific features missing model counterpart | 0 |
+| same-day prior fighter-state rows | 0 |
+
+Semantic warnings among active model features:
+
+| Warning Family | Active Features | Importance Sum |
+| --- | ---: | ---: |
+| raw DOB / birth-year proxies | 2 | 13 |
+| target/position-mix defense proxies | 18 | 282 |
+| side percentage values scaled by elapsed fight time | 18 | 239 |
+
+Top flagged features by current regularized-LGBM importance include
+`Blue Leg% defense`, `Distance% defense oppdiff`, `Red Leg% defense`,
+`Red Leg%`, `Red Clinch%`, and `Leg% defense oppdiff`.
+
+Interpretation: no hard feature-table arithmetic, source-row matching,
+pre-fight state, or side-swap coverage bug was found. The bigger issue is
+semantic: several active percentage/defense columns are generator-created
+proxies, not literal fight-skill concepts. The next feature-engineering work
+should focus on redesigning or ablating these muddy percentage/target-mix
+features before adding broader capacity.
+
 ### Market Disagreement Audit
 
 Disagreement audit:
@@ -1896,6 +1949,11 @@ The most honest read:
   market logit, Elo/experience, age/recency, combat-stat, and top-importance
   feature groups all worsened log loss; only market-only recalibration was
   slightly positive and still weak
+- feature-forensics did not find a hard arithmetic or pre-fight-state bug:
+  `64` oppdiff pairs, `276,527` row-level diff checks, all `4,322` source
+  supervised rows, `69,152` core state checks, and active side-swap coverage
+  all matched; the concern is semantic quality, especially percentage/defense
+  proxies such as target/position-mix defense columns
 - recent-form/activity feature engineering did not help: adding 128 leak-safe
   last-3/last-5 and recent-activity columns worsened one-year and two-year log
   loss and sharply reduced PnL versus the current regularized feature set
@@ -2171,6 +2229,11 @@ Validation:
 - the recency-weighted statistical audit ran across four saved ledgers; best
   market-null p-value was `0.103`, Bonferroni across the four ledgers was
   `0.414`, and `0/4` ledgers beat de-vigged market log loss
+- the feature semantic-integrity audit reconstructed current feature-table
+  invariants; it found `0` oppdiff mismatches, `0` core pre-fight state
+  mismatches, complete active side-swap counterpart coverage, and no same-day
+  prior fighter-state rows, while flagging active percentage/defense proxy
+  families for future ablation/redesign
 - the residual recent-stress audit regenerated cleanly; selected-shrinkage
   probability delta was `-0.0032` over the last 365 days, and frozen
   residual-meta cap-3 PnL was only `+0.38u` over the last 365 days

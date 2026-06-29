@@ -1,0 +1,483 @@
+{
+  "source_fights": "data/modified_fight_details.csv",
+  "features": "data/detailed_fights.csv",
+  "model_features_path": "saved_preprocessing/model_feature_columns_single.json",
+  "feature_importance_path": "test_results/regularized_lgbm_feature_importance.csv",
+  "source_rows": 7730,
+  "feature_rows": 4322,
+  "feature_columns": 197,
+  "oppdiff_consistency": {
+    "oppdiff_pairs_checked": 64,
+    "row_level_checks": 276527,
+    "row_level_mismatches": 0,
+    "worst_columns": [
+      {
+        "oppdiff_column": "elo oppdiff",
+        "red_column": "Red elo",
+        "blue_column": "Blue elo",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 4.583000645652646e-13
+      },
+      {
+        "oppdiff_column": "oppelo oppdiff",
+        "red_column": "Red oppelo",
+        "blue_column": "Blue oppelo",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 4.583000645652646e-13
+      },
+      {
+        "oppdiff_column": "Total str. differential oppdiff",
+        "red_column": "Red Total str. differential",
+        "blue_column": "Blue Total str. differential",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 2.842170943040401e-14
+      },
+      {
+        "oppdiff_column": "Sig. str. differential oppdiff",
+        "red_column": "Red Sig. str. differential",
+        "blue_column": "Blue Sig. str. differential",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 1.4210854715202004e-14
+      },
+      {
+        "oppdiff_column": "Head differential oppdiff",
+        "red_column": "Red Head differential",
+        "blue_column": "Blue Head differential",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 1.4210854715202004e-14
+      },
+      {
+        "oppdiff_column": "Distance differential oppdiff",
+        "red_column": "Red Distance differential",
+        "blue_column": "Blue Distance differential",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 1.4210854715202004e-14
+      },
+      {
+        "oppdiff_column": "avg age oppdiff",
+        "red_column": "Red avg age",
+        "blue_column": "Blue avg age",
+        "checks": 4295,
+        "mismatches": 0,
+        "max_abs_error": 7.993605777301127e-15
+      },
+      {
+        "oppdiff_column": "Head oppdiff",
+        "red_column": "Red Head",
+        "blue_column": "Blue Head",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 7.105427357601002e-15
+      },
+      {
+        "oppdiff_column": "Body differential oppdiff",
+        "red_column": "Red Body differential",
+        "blue_column": "Blue Body differential",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 7.105427357601002e-15
+      },
+      {
+        "oppdiff_column": "Leg differential oppdiff",
+        "red_column": "Red Leg differential",
+        "blue_column": "Blue Leg differential",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 7.105427357601002e-15
+      },
+      {
+        "oppdiff_column": "Clinch differential oppdiff",
+        "red_column": "Red Clinch differential",
+        "blue_column": "Blue Clinch differential",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 7.105427357601002e-15
+      },
+      {
+        "oppdiff_column": "Ground differential oppdiff",
+        "red_column": "Red Ground differential",
+        "blue_column": "Blue Ground differential",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 7.105427357601002e-15
+      },
+      {
+        "oppdiff_column": "Total str. oppdiff",
+        "red_column": "Red Total str.",
+        "blue_column": "Blue Total str.",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 5.329070518200751e-15
+      },
+      {
+        "oppdiff_column": "Sig. str. oppdiff",
+        "red_column": "Red Sig. str.",
+        "blue_column": "Blue Sig. str.",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 3.552713678800501e-15
+      },
+      {
+        "oppdiff_column": "Td differential oppdiff",
+        "red_column": "Red Td differential",
+        "blue_column": "Blue Td differential",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "oppdiff_column": "Ctrl differential oppdiff",
+        "red_column": "Red Ctrl differential",
+        "blue_column": "Blue Ctrl differential",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "oppdiff_column": "Distance oppdiff",
+        "red_column": "Red Distance",
+        "blue_column": "Blue Distance",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "oppdiff_column": "Clinch oppdiff",
+        "red_column": "Red Clinch",
+        "blue_column": "Blue Clinch",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "oppdiff_column": "Ground oppdiff",
+        "red_column": "Red Ground",
+        "blue_column": "Blue Ground",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "oppdiff_column": "KD oppdiff",
+        "red_column": "Red KD",
+        "blue_column": "Blue KD",
+        "checks": 4322,
+        "mismatches": 0,
+        "max_abs_error": 8.881784197001252e-16
+      }
+    ]
+  },
+  "pre_fight_state": {
+    "expected_feature_rows_from_source": 4322,
+    "matched_feature_rows": 4322,
+    "missing_feature_rows": 0,
+    "extra_feature_rows": 0,
+    "core_state_checks": 69152,
+    "core_state_matches": 69152,
+    "core_state_mismatches": 0,
+    "mismatch_counts": {},
+    "mismatch_examples": [],
+    "same_day_prior_feature_rows": 0,
+    "same_day_prior_examples": []
+  },
+  "swap_coverage": {
+    "model_features": 182,
+    "side_specific_model_features": 122,
+    "missing_available_counterparts": [],
+    "missing_model_counterparts": []
+  },
+  "feature_semantics": {
+    "raw_dob_features": [
+      {
+        "feature": "Blue dob",
+        "importance": 9.0
+      },
+      {
+        "feature": "Red dob",
+        "importance": 4.0
+      }
+    ],
+    "target_mix_defense_features": [
+      {
+        "feature": "Blue Leg% defense",
+        "importance": 28.0
+      },
+      {
+        "feature": "Distance% defense oppdiff",
+        "importance": 28.0
+      },
+      {
+        "feature": "Red Leg% defense",
+        "importance": 26.0
+      },
+      {
+        "feature": "Leg% defense oppdiff",
+        "importance": 24.0
+      },
+      {
+        "feature": "Head% defense oppdiff",
+        "importance": 18.0
+      },
+      {
+        "feature": "Blue Head% defense",
+        "importance": 17.0
+      },
+      {
+        "feature": "Ground% defense oppdiff",
+        "importance": 17.0
+      },
+      {
+        "feature": "Clinch% defense oppdiff",
+        "importance": 15.0
+      },
+      {
+        "feature": "Blue Body% defense",
+        "importance": 14.0
+      },
+      {
+        "feature": "Blue Ground% defense",
+        "importance": 14.0
+      },
+      {
+        "feature": "Body% defense oppdiff",
+        "importance": 14.0
+      },
+      {
+        "feature": "Red Body% defense",
+        "importance": 12.0
+      },
+      {
+        "feature": "Red Distance% defense",
+        "importance": 11.0
+      },
+      {
+        "feature": "Blue Distance% defense",
+        "importance": 11.0
+      },
+      {
+        "feature": "Red Ground% defense",
+        "importance": 10.0
+      },
+      {
+        "feature": "Red Head% defense",
+        "importance": 9.0
+      },
+      {
+        "feature": "Red Clinch% defense",
+        "importance": 9.0
+      },
+      {
+        "feature": "Blue Clinch% defense",
+        "importance": 5.0
+      }
+    ],
+    "percentage_rate_like_side_features": [
+      {
+        "feature": "Red Leg%",
+        "importance": 25.0
+      },
+      {
+        "feature": "Red Clinch%",
+        "importance": 24.0
+      },
+      {
+        "feature": "Blue Body%",
+        "importance": 16.0
+      },
+      {
+        "feature": "Body% oppdiff",
+        "importance": 15.0
+      },
+      {
+        "feature": "Red Td%",
+        "importance": 14.0
+      },
+      {
+        "feature": "Blue Leg%",
+        "importance": 14.0
+      },
+      {
+        "feature": "Red Ground%",
+        "importance": 13.0
+      },
+      {
+        "feature": "Clinch% oppdiff",
+        "importance": 13.0
+      },
+      {
+        "feature": "Red Sig. str.%",
+        "importance": 12.0
+      },
+      {
+        "feature": "Blue Td%",
+        "importance": 12.0
+      },
+      {
+        "feature": "Ground% oppdiff",
+        "importance": 12.0
+      },
+      {
+        "feature": "Red Body%",
+        "importance": 11.0
+      },
+      {
+        "feature": "Blue Clinch%",
+        "importance": 11.0
+      },
+      {
+        "feature": "Td% oppdiff",
+        "importance": 11.0
+      },
+      {
+        "feature": "Blue Ground%",
+        "importance": 10.0
+      },
+      {
+        "feature": "Sig. str.% oppdiff",
+        "importance": 10.0
+      },
+      {
+        "feature": "Blue Sig. str.%",
+        "importance": 9.0
+      },
+      {
+        "feature": "Leg% oppdiff",
+        "importance": 7.0
+      }
+    ],
+    "target_mix_defense_importance_sum": 282.0,
+    "top_flagged_features": [
+      {
+        "feature": "Blue Leg% defense",
+        "importance": 28.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      },
+      {
+        "feature": "Distance% defense oppdiff",
+        "importance": 28.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      },
+      {
+        "feature": "Red Leg% defense",
+        "importance": 26.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      },
+      {
+        "feature": "Red Leg%",
+        "importance": 25.0,
+        "warning": "weighted percentage-side feature; generator scales side values by elapsed fight time"
+      },
+      {
+        "feature": "Red Clinch%",
+        "importance": 24.0,
+        "warning": "weighted percentage-side feature; generator scales side values by elapsed fight time"
+      },
+      {
+        "feature": "Leg% defense oppdiff",
+        "importance": 24.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      },
+      {
+        "feature": "Head% defense oppdiff",
+        "importance": 18.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      },
+      {
+        "feature": "Blue Head% defense",
+        "importance": 17.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      },
+      {
+        "feature": "Ground% defense oppdiff",
+        "importance": 17.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      },
+      {
+        "feature": "Blue Body%",
+        "importance": 16.0,
+        "warning": "weighted percentage-side feature; generator scales side values by elapsed fight time"
+      },
+      {
+        "feature": "Body% oppdiff",
+        "importance": 15.0,
+        "warning": "weighted percentage-side feature; generator scales side values by elapsed fight time"
+      },
+      {
+        "feature": "Clinch% defense oppdiff",
+        "importance": 15.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      },
+      {
+        "feature": "Red Td%",
+        "importance": 14.0,
+        "warning": "weighted percentage-side feature; generator scales side values by elapsed fight time"
+      },
+      {
+        "feature": "Blue Body% defense",
+        "importance": 14.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      },
+      {
+        "feature": "Blue Leg%",
+        "importance": 14.0,
+        "warning": "weighted percentage-side feature; generator scales side values by elapsed fight time"
+      },
+      {
+        "feature": "Blue Ground% defense",
+        "importance": 14.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      },
+      {
+        "feature": "Body% defense oppdiff",
+        "importance": 14.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      },
+      {
+        "feature": "Red Ground%",
+        "importance": 13.0,
+        "warning": "weighted percentage-side feature; generator scales side values by elapsed fight time"
+      },
+      {
+        "feature": "Clinch% oppdiff",
+        "importance": 13.0,
+        "warning": "weighted percentage-side feature; generator scales side values by elapsed fight time"
+      },
+      {
+        "feature": "Red Sig. str.%",
+        "importance": 12.0,
+        "warning": "weighted percentage-side feature; generator scales side values by elapsed fight time"
+      },
+      {
+        "feature": "Blue Td%",
+        "importance": 12.0,
+        "warning": "weighted percentage-side feature; generator scales side values by elapsed fight time"
+      },
+      {
+        "feature": "Red Body% defense",
+        "importance": 12.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      },
+      {
+        "feature": "Ground% oppdiff",
+        "importance": 12.0,
+        "warning": "weighted percentage-side feature; generator scales side values by elapsed fight time"
+      },
+      {
+        "feature": "Red Body%",
+        "importance": 11.0,
+        "warning": "weighted percentage-side feature; generator scales side values by elapsed fight time"
+      },
+      {
+        "feature": "Red Distance% defense",
+        "importance": 11.0,
+        "warning": "target/position mix defense proxy, not conventional defensive success"
+      }
+    ]
+  }
+}
