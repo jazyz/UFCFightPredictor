@@ -1003,6 +1003,51 @@ Interpretation: the residual signal is not broad or monotonic. Larger residual
 edges were not automatically better, and the fixed paper-policy profit was
 mostly a 2024 phenomenon. This strengthens the paper-track-only conclusion.
 
+### Residual Calibration Drift Audit
+
+Residual calibration-drift audit:
+
+```text
+testing/residual_calibration_drift_audit.py
+test_results/residual_calibration_drift_audit/residual_calibration_drift_audit.md
+test_results/residual_calibration_drift_audit/residual_calibration_drift_audit.json
+```
+
+This diagnostic asks why the residual probability edge decayed recently. It
+compares market probabilities against selected-shrinkage, fixed-half, and
+unshrunk residual probabilities by period, then checks whether the
+selected-shrinkage adjustment still aligns with realized market residuals.
+
+Selected-shrinkage calibration by period:
+
+| Period | Fights | Actual | Market P | Selected P | Mean Adj | Realized Market Residual | Policy Gap | Delta LL |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| aggregate | 704 | 49.43% | 49.78% | 51.27% | +1.49% | -0.35% | -1.84% | +0.0038 |
+| 2024 | 275 | 51.64% | 48.57% | 50.00% | +1.43% | +3.07% | +1.63% | +0.0098 |
+| 2025 | 285 | 49.47% | 50.75% | 52.52% | +1.77% | -1.28% | -3.05% | +0.0016 |
+| 2026 | 144 | 45.14% | 50.20% | 51.23% | +1.03% | -5.06% | -6.09% | -0.0036 |
+| last 365 days | 298 | 45.97% | 50.80% | 52.12% | +1.32% | -4.83% | -6.15% | -0.0032 |
+| latest fold 5 | 129 | 44.19% | 50.09% | 51.02% | +0.93% | -5.90% | -6.84% | -0.0047 |
+
+Selected-shrinkage adjustment direction:
+
+| Period | Direction | Fights | Mean Adj | Realized Market Residual | Directional Hit | Delta LL |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| 2024 | meta up on red | 161 | +4.31% | +5.76% | 66.46% | +0.0188 |
+| 2025 | meta up on red | 186 | +4.12% | +1.92% | 61.83% | -0.0021 |
+| 2026 | meta up on red | 78 | +4.35% | -3.37% | 56.41% | -0.0209 |
+| latest fold 5 | meta up on red | 68 | +4.37% | -3.70% | 55.88% | -0.0242 |
+| latest fold 5 | meta down on red | 61 | -2.89% | -8.36% | 68.85% | +0.0170 |
+
+Interpretation: recent decay looks like residual/model drift, not just a
+staking-threshold problem. The residual layer still nudges probabilities
+upward on average, but by 2026 the aligned sample's red side underperforms the
+market by about `5` to `6` percentage points. Upward residual adjustments were
+strongly positive in 2024 but negative in 2026 and the latest fold. This argues
+against fixing the issue with generic feature capacity or looser thresholds;
+the next legitimate improvement would need a pre-registered drift-aware
+transform or fresh post-freeze evidence.
+
 ### Residual Recent Stress Audit
 
 Residual recent-stress audit:
@@ -1550,6 +1595,11 @@ The most honest read:
 - residual signal slices are uneven: the probability edge was negative in
   2026, negative for market P `0.60-0.70`, and negative for extreme residual
   edge `>=0.08`; fixed-policy PnL was also negative in 2025 and 2026
+- residual calibration drift explains the recent decay better than a simple
+  threshold problem: selected-shrinkage kept nudging red-side probabilities up
+  by about `+1%` on average, but the realized red-vs-market residual was
+  `-5.06%` in 2026 and `-5.90%` in the latest fold; upward residual
+  adjustments had negative delta LL in 2026 and fold 5
 - residual recent-stress is a major caveat: selected-shrinkage probability
   delta is negative in 2026, over the last 365 days, and in the latest fold;
   frozen residual-meta cap-3 PnL is `+19.12u` aggregate but only `+4.73u` in
@@ -1723,6 +1773,10 @@ Validation:
   2025-2026, rolling probability selection was marginal at p `0.067`, and
   rolling capped-bet selection chose all cap-3 bets every fold for `+11.75u`
   with market-null p `0.003`
+- the residual calibration-drift audit found the latest selected-shrinkage
+  fold had delta LL `-0.0047`, mean residual adjustment `+0.93%`, and realized
+  red-vs-market residual `-5.90%`, supporting drift rather than a pure
+  threshold/staking explanation
 
 Current operational caveat: the checked-in `data/predict_fights_alpha.csv` is
 stale and fails the live feature-range guard with out-of-training-range values.
