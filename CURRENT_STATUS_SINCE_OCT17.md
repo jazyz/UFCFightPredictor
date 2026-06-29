@@ -2650,6 +2650,58 @@ as a pace-normalizing interaction with raw head differential, not as a clean
 keeping the policy as a paper challenger, but argues against upgrading it to a
 live edge claim before post-freeze evidence or a cleaner feature redesign.
 
+### Striking Head-Pace Semantic Audit
+
+New exploratory diagnostic:
+
+```text
+testing/striking_head_pace_semantic_audit.py
+test_results/striking_head_pace_semantic_audit/striking_head_pace_semantic_audit.md
+test_results/striking_head_pace_semantic_audit/striking_head_pace_semantic_audit.json
+```
+
+This audit asks whether `Head differential_pm oppdiff` adds a clean,
+interpretable signal beyond the simpler sigpct/raw-head anchor. It compares
+the same men-only market-aware seven-fold protocol across:
+
+- `market_logit`
+- `market_logit + Sig. str.% differential oppdiff`
+- `market_logit + Sig. str.% differential oppdiff + Head differential oppdiff`
+- `market_logit + Sig. str.% differential oppdiff + Head differential_pm oppdiff`
+- frozen raw-plus-pace `sigpct_head_raw_pm`
+- a dev-fold residualized version where head pace is residualized after
+  sigpct and raw head differential before each holdout fold
+
+Probability result:
+
+| Variant | Delta LL vs Market | Positive Folds | Boot P(delta<=0) | Pace Coef |
+| --- | ---: | ---: | ---: | ---: |
+| residualized raw-plus-pace | `+0.0081` | `7 / 7` | `0.006` | `-0.0630` |
+| raw-plus-pace `sigpct_head_raw_pm` | `+0.0081` | `7 / 7` | `0.006` | `-0.0663` |
+| clean sigpct/raw-head anchor | `+0.0071` | `7 / 7` | `0.013` |  |
+| sigpct only | `+0.0056` | `6 / 7` | `0.034` |  |
+| sigpct/head-pace without raw head | `+0.0056` | `6 / 7` | `0.038` | `-0.0007` |
+
+Incremental value of adding head pace to the clean raw-head anchor:
+
+- raw `Head differential_pm oppdiff`: `+0.0010` incremental LL, `+0.0003`
+  Brier, `6 / 7` positive folds
+- dev-fold residualized head-pace excess: `+0.0010` incremental LL,
+  `+0.0003` Brier, `6 / 7` positive folds
+- `Head differential_pm oppdiff` has Spearman `0.6683` to raw
+  `Head differential oppdiff`
+- global head-pace residual after sigpct/raw-head has Spearman `-0.0846`
+  against actual-minus-market
+
+Interpretation: this leaves the historical PnL leaderboard unchanged, but it
+sharpens the feature story. The cleanest interpretable probability signal is
+`market_logit + Sig. str.% differential oppdiff + Head differential oppdiff`.
+The head pace term contributes a small incremental improvement, but it is
+highly collinear with raw head differential and its residual/excess view is
+wrong-way on market residual. Treat the frozen `sigpct_head_raw_pm` policy as
+a paper-tracked historical challenger, not as proof that head pace itself is a
+clean fight-mechanics alpha.
+
 ### Frozen SigPct-Head Challenger Paper Policy
 
 Frozen challenger paper policy:
@@ -3242,6 +3294,11 @@ The most honest read:
   standardized coefficient when paired with raw `Head differential oppdiff`;
   treat it as a conditional pace-normalizer, not a standalone "more head pace
   is better" feature
+- a follow-up head-pace semantic audit found the clean sigpct/raw-head anchor
+  already makes `+0.0071` delta LL; adding head pace adds only `+0.0010`
+  incremental LL, and the residualized head-pace excess remains negative in
+  coefficient direction, so the PnL leaderboard is unchanged but the clean
+  feature story should center on sigpct plus raw head differential
 - a separate frozen `sigpct_head|all` challenger paper policy now exists for
   future pre-outcome tracking; it uses `market_logit`, `Sig. str.% differential
   oppdiff`, and `Head differential oppdiff`, fixed `2.00%` positive-edge
@@ -3438,11 +3495,11 @@ that merely worked historically.
 
 Immediate follow-up: the simple `sigpct_head_raw_pm` challenger is now frozen
 for future pre-outcome evidence and its exact feature-construction audit is
-clean, but the head pace term is semantically conditional rather than a clean
-positive feature. The next useful work is to keep the frozen paper ledgers
-separate, collect post-freeze cards without changing rules, and investigate
-cleaner feature families or interactions before promoting any new feature
-family beyond challenger status.
+clean, but the head pace term is semantically conditional and only adds about
+`+0.0010` LL beyond the cleaner sigpct/raw-head anchor. The next useful work is
+to keep the frozen paper ledgers separate, collect post-freeze cards without
+changing rules, and investigate cleaner feature families or interactions
+before promoting any new feature family beyond challenger status.
 
 ## Independent PnL Investigation Update
 
@@ -3536,6 +3593,10 @@ Operational PnL implementation update:
   `sigpct_head_raw_pm` challenger features for reconstruction, chronology,
   same-day source-order leakage, non-binary state handling, coefficient
   direction, and market-residual shape
+- `testing/striking_head_pace_semantic_audit.py` isolates the semantic role of
+  `Head differential_pm oppdiff` by comparing raw-head, head-pace, raw-plus-
+  pace, and dev-fold residualized head-pace variants under the same market-
+  aware protocol
 - `testing/score_frozen_striking_core_policy.py` can now score the frozen
   `sigpct_head_raw_pm` challenger as a separate pre-outcome paper ledger:
   `test_results/forward_paper_tracking/latest_sigpct_head_raw_pm_challenger_paper_bets.csv`
@@ -3638,6 +3699,11 @@ Validation:
   with `0` mismatches, `0` same-day prior market-aligned sides, and
   standardized coefficients positive for market/sigpct/raw-head but negative
   for `Head differential_pm oppdiff` in `7/7` folds
+- the head-pace semantic audit regenerated cleanly; clean sigpct/raw-head made
+  `+0.0071` delta LL, raw-plus-pace made `+0.0081`, residualized raw-plus-pace
+  made `+0.0081`, the incremental head-pace gain over raw-head was only
+  `+0.0010` LL, and head pace was strongly correlated with raw head
+  differential (`0.6683` Spearman)
 - a five-fight capped residual scorer smoke test exercised the event cap itself:
   the scorer placed exactly three paper bets and marked two otherwise eligible
   candidates as `event cap 3 reached`
