@@ -1,0 +1,59 @@
+{
+  "as_of_date": "2026-06-29",
+  "source_robustness_audit": "test_results/striking_core_robustness_selection_audit/striking_core_robustness_selection_audit.json",
+  "source_betting_calibration_audit": "test_results/striking_core_betting_calibration_audit/striking_core_betting_calibration_audit.json",
+  "policy": {
+    "name": "sigpct_head_forward_paper_challenger",
+    "variant": "sigpct_head_all",
+    "feature_columns": [
+      "market_logit",
+      "Sig. str.% differential oppdiff",
+      "Head differential oppdiff"
+    ],
+    "logistic_l2_c": 0.1,
+    "training_protocol": "Train on all currently known aligned historical men-only fights before scoring; use de-vigged market_logit, red/blue mirrored logistic training, median imputation, standard scaling, and mirrored probability averaging.",
+    "min_edge": 0.02,
+    "min_probability": 0.0,
+    "stake_units": 1.0,
+    "event_cap": null,
+    "include_womens_fights": false,
+    "settlement": "flat_units"
+  },
+  "evidence": {
+    "role": "challenger paper policy, not replacement for the already frozen mixed-core paper policy",
+    "aligned_rows": 1223,
+    "robustness_fixed_rows": 961,
+    "robustness_fixed_events": 148,
+    "robustness_fixed_market_delta_log_loss": 0.007097284144211846,
+    "robustness_fixed_brier_delta": 0.0027337962327872167,
+    "robustness_fixed_positive_folds": 7,
+    "robustness_fixed_folds": 7,
+    "robustness_fixed_event_bootstrap_prob_delta_le_zero": 0.013,
+    "robustness_fixed_fold_log_loss_deltas": [
+      0.006349247215896248,
+      0.0034163884718717563,
+      0.002987579792248063,
+      0.010978205932278606,
+      0.004858377871621911,
+      0.006384638523879604,
+      0.014097704926918198
+    ],
+    "betting_eval_folds": "2-7",
+    "betting_rows": 840,
+    "betting_probability_market_delta_log_loss": 0.007205037082695487,
+    "betting_brier_delta": 0.00291157419540497,
+    "betting_market_ece": 0.034745260858658755,
+    "betting_candidate_ece": 0.03592814069458167,
+    "betting_mean_abs_candidate_minus_market": 0.039010746628787306,
+    "descriptive_edge_threshold": 0.02,
+    "descriptive_bets": 619,
+    "descriptive_profit_units": 32.77509461399065,
+    "descriptive_roi": 0.05294845656541301,
+    "descriptive_positive_folds": 5,
+    "descriptive_folds_with_bets": 6,
+    "descriptive_mean_edge": 0.049053603579505924,
+    "descriptive_profit_market_null_p": 0.0018499075046247689,
+    "descriptive_profit_bootstrap_prob_profit_le_zero": 0.0525
+  },
+  "freeze_warning": "This sigpct/head challenger paper policy is frozen for future paper tracking only. It was motivated by prior striking-feature research and must not be treated as proof of live edge without future pre-outcome settlement."
+}

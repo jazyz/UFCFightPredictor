@@ -2181,6 +2181,57 @@ The PnL market-null tests are conditional on historical selected bets; the
 selection-adjusted probability evidence remains the robustness-selection audit,
 and the live-edge claim still needs future frozen paper ledgers.
 
+### Frozen SigPct-Head Challenger Paper Policy
+
+Frozen challenger paper policy:
+
+```text
+test_results/frozen_sigpct_head_challenger_paper_policy/frozen_sigpct_head_challenger_paper_policy.md
+test_results/frozen_sigpct_head_challenger_paper_policy/frozen_sigpct_head_challenger_paper_policy.json
+```
+
+This freezes a separate challenger for future pre-outcome paper tracking. It
+does not replace the existing frozen `mixed_sig_head_core` policy. The
+challenger removes raw significant-strike differential and keeps:
+
+```text
+market_logit
++ Sig. str.% differential oppdiff
++ Head differential oppdiff
+```
+
+Frozen scoring contract:
+
+- men-only universe; do not train on or evaluate women's fights
+- fit L2 logistic regression with `C = 0.1`
+- train on all aligned historical feature/odds rows available before scoring,
+  or before an explicit `--train-through` replay date
+- use red/blue mirrored training and mirrored probability averaging
+- select the side with highest `policy probability - market probability`
+- paper bet only when selected edge is at least `2.00%`
+- flat `1u` stake
+- no event cap
+
+Generate separate challenger ledgers with:
+
+```bash
+.venv/bin/python testing/score_frozen_striking_core_policy.py \
+  --policy test_results/frozen_sigpct_head_challenger_paper_policy/frozen_sigpct_head_challenger_paper_policy.json \
+  --fights path/to/fight_card_odds.csv \
+  --event-key unique-event-key \
+  --fight-card-link https://example.com/card \
+  --output-csv test_results/forward_paper_tracking/latest_sigpct_head_challenger_paper_bets.csv \
+  --output-json test_results/forward_paper_tracking/latest_sigpct_head_challenger_paper_bets.json
+```
+
+Rationale: fixed `sigpct_head|all` had slightly better full-fold probability
+evidence than the mixed core (`+0.0071` market delta LL, `7/7` positive folds,
+event-bootstrap `P(delta <= 0) = 0.013`) and nearly neutral ECE versus market
+on folds `2-7`. The `2%` uncapped ledger made `+32.78u` at `5.29%` ROI on
+folds `2-7`, with conditional market-null p `0.002`. Caveat: this challenger
+is motivated by prior feature research and must be treated as future
+paper-tracking only, not a live staking claim.
+
 ### Feature Semantic Integrity Audit
 
 Feature semantic-integrity audit:
@@ -2675,6 +2726,11 @@ The most honest read:
   fixed `sigpct_head|all` made `+32.78u` at `5.29%` ROI; however ECE usually
   worsened versus market, so the signal looks more like a ranking/edge filter
   than a globally better probability surface
+- a separate frozen `sigpct_head|all` challenger paper policy now exists for
+  future pre-outcome tracking; it uses `market_logit`, `Sig. str.% differential
+  oppdiff`, and `Head differential oppdiff`, fixed `2.00%` positive-edge
+  threshold, flat `1u` stake, and no event cap, but it is not a replacement for
+  the already frozen mixed-core policy until future paper evidence accrues
 - feature-forensics did not find a hard arithmetic or pre-fight-state bug:
   `64` oppdiff pairs, `276,527` row-level diff checks, all `4,322` source
   supervised rows, `69,152` core state checks, and active side-swap coverage
@@ -2936,6 +2992,10 @@ Operational PnL implementation update:
   pre-outcome paper ledgers for the frozen uncapped striking-core policy:
   `test_results/forward_paper_tracking/latest_striking_core_paper_bets.csv`
   and `.json`
+- the same scorer can generate separate pre-outcome paper ledgers for the
+  frozen `sigpct_head` challenger policy:
+  `test_results/forward_paper_tracking/latest_sigpct_head_challenger_paper_bets.csv`
+  and `.json`
 
 Validation:
 
@@ -2967,6 +3027,10 @@ Validation:
   `/private/tmp`
 - a frozen striking-core scorer smoke test trained on `1,223` aligned
   historical rows, scored a two-fight temporary card, wrote compatible
+  CSV/JSON ledgers under `/private/tmp`, and generated a settlement outcome
+  template
+- a frozen `sigpct_head` challenger scorer smoke test trained on `1,223`
+  aligned historical rows, scored a two-fight temporary card, wrote compatible
   CSV/JSON ledgers under `/private/tmp`, and generated a settlement outcome
   template
 - the striking feature forensics audit regenerated cleanly; the exact frozen

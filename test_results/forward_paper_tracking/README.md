@@ -114,3 +114,33 @@ the target card before outcomes are known. The input CSV must include
 `fight_index`, `event_key`, and `fight_card_link` columns are preserved in the
 ledger. After the card, settle it with the same
 `testing/settle_forward_paper_ledger.py` workflow above.
+
+## SigPct-Head Challenger Paper Policy
+
+A separate striking-core challenger is frozen here:
+
+```text
+test_results/frozen_sigpct_head_challenger_paper_policy/frozen_sigpct_head_challenger_paper_policy.md
+test_results/frozen_sigpct_head_challenger_paper_policy/frozen_sigpct_head_challenger_paper_policy.json
+```
+
+It uses a men-only market-aware logistic model with `market_logit`,
+`Sig. str.% differential oppdiff`, and `Head differential oppdiff`; L2
+logistic `C = 0.1`; a fixed `2%` positive-edge threshold; flat `1u` paper
+stakes; and no event cap. This is a challenger paper policy, not a replacement
+for the primary mixed-core policy. Generate pre-outcome paper ledgers with:
+
+```bash
+.venv/bin/python testing/score_frozen_striking_core_policy.py \
+  --policy test_results/frozen_sigpct_head_challenger_paper_policy/frozen_sigpct_head_challenger_paper_policy.json \
+  --fights path/to/fight_card_odds.csv \
+  --event-key unique-event-key \
+  --fight-card-link https://example.com/card \
+  --output-csv test_results/forward_paper_tracking/latest_sigpct_head_challenger_paper_bets.csv \
+  --output-json test_results/forward_paper_tracking/latest_sigpct_head_challenger_paper_bets.json
+```
+
+Before using this as evidence, regenerate `data/predict_fights_alpha.csv` for
+the target card before outcomes are known. Keep the generated challenger
+ledger separate from `latest_striking_core_paper_bets.*`, then settle it with
+the same `testing/settle_forward_paper_ledger.py` workflow above.
