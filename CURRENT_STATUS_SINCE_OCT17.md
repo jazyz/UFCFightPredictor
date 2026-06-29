@@ -910,6 +910,64 @@ cap-3 bets in every rolling fold, which supports the frozen cap-3 policy
 diagnostic but does not solve the recent fold weakness: fold `5` remained
 negative at `-1.78u`.
 
+### Residual Vs Market Favorite Audit
+
+Residual vs market-favorite benchmark audit:
+
+```text
+testing/residual_vs_market_favorite_audit.py
+test_results/residual_vs_market_favorite_audit/residual_vs_market_favorite_audit.md
+test_results/residual_vs_market_favorite_audit/residual_vs_market_favorite_audit.json
+```
+
+This diagnostic checks whether the frozen residual-meta top-edge cap-3 result
+is just generic favorite exposure. It compares the residual cap ledger against
+market-only favorite benchmarks on the same historical event dates, including
+same per-event bet counts.
+
+Aggregate benchmark:
+
+| Benchmark | Bets | Events | Profit | ROI | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| residual cap-3 | 262 | 99 | +19.12u | 7.30% | 0.001 |
+| top market favorites, same event counts | 262 | 99 | +0.07u | 0.03% | 0.113 |
+| low-confidence market favorites, same event counts | 262 | 99 | -2.16u | -0.83% | 0.354 |
+| top 3 market favorites per same event | 297 | 99 | +3.99u | 1.34% | 0.049 |
+| all market favorites on same events | 680 | 99 | -12.77u | -1.88% | 0.257 |
+
+Paired event-bootstrap comparison versus residual cap-3:
+
+| Benchmark | Residual - Benchmark Profit | Bootstrap P(diff <= 0) | 95% Diff CI |
+| --- | ---: | ---: | --- |
+| top market favorites, same event counts | +19.05u | 0.018 | +1.11u to +37.14u |
+| low-confidence market favorites, same event counts | +21.28u | 0.046 | -3.26u to +46.19u |
+| top 3 market favorites per same event | +15.13u | 0.053 | -3.25u to +33.80u |
+| all market favorites on same events | +31.89u | 0.007 | +5.87u to +58.16u |
+
+Random same-event favorite benchmark:
+
+| Metric | Value |
+| --- | ---: |
+| random iterations | 20000 |
+| random mean profit | -2.95u |
+| random 95% interval | -19.91u to +13.66u |
+| P(random >= residual) | 0.005 |
+
+Period caveat:
+
+| Period | Residual Cap-3 | Top-Market Same Count | Low-Confidence Same Count |
+| --- | ---: | ---: | ---: |
+| 2024 | +14.39u | +5.55u | +8.01u |
+| 2025-2026 | +4.73u | -5.47u | -10.17u |
+| last 365 days | +0.38u | -2.20u | +3.29u |
+
+Interpretation: this strengthens the historical model-specific selection
+claim. The residual cap-3 ledger is not explained by simply betting favorites,
+top market favorites, or random same-event favorites. But it still is not a
+strong live-edge claim: the last-365-day residual result is only `+0.38u`, and
+the lower-confidence favorite benchmark beats residual over that recent slice.
+Future paper tracking is still the deciding evidence.
+
 ### Residual Meta PnL Audit
 
 Residual meta PnL audit:
@@ -1589,6 +1647,14 @@ The most honest read:
   capped-bet selector simply chooses all cap-3 bets every fold; it remains
   positive (`+11.75u`, market-null p `0.003`) but the latest fold is still
   negative
+- market-favorite benchmarks strengthen the residual-selection story
+  historically: frozen residual cap-3 made `+19.12u`, while top market
+  favorites with the same per-event bet counts made only `+0.07u`, random
+  same-event favorite selection averaged `-2.95u`, and `P(random >= residual)`
+  was `0.005`; this argues the result is not just generic favorite exposure
+- the same benchmark still preserves the recency caveat: over the last 365
+  days residual cap-3 made only `+0.38u`, top-market same-count favorites made
+  `-2.20u`, and low-confidence same-count favorites made `+3.29u`
 - nested residual-meta PnL tests are positive across objective sensitivities,
   but their best selection-adjusted market-null p-value is only `0.066`
   before correcting for three inspected objectives
@@ -1773,6 +1839,11 @@ Validation:
   2025-2026, rolling probability selection was marginal at p `0.067`, and
   rolling capped-bet selection chose all cap-3 bets every fold for `+11.75u`
   with market-null p `0.003`
+- the residual-vs-market-favorite audit compared frozen residual cap-3 against
+  market-only favorite benchmarks on the same event dates; residual cap-3 made
+  `+19.12u` versus `+0.07u` for top market favorites with the same per-event
+  bet counts, and random same-event favorites matched or beat residual only
+  `0.5%` of the time
 - the residual calibration-drift audit found the latest selected-shrinkage
   fold had delta LL `-0.0047`, mean residual adjustment `+0.93%`, and realized
   red-vs-market residual `-5.90%`, supporting drift rather than a pure

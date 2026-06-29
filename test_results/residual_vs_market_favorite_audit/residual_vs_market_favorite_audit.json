@@ -1,0 +1,431 @@
+{
+  "ledger_path": "test_results/nested_edge_long/ledgers/regularized_lgbm_2022_2026/no_leakage_backtest.csv",
+  "ranked_bets_path": "test_results/residual_event_cap_ranking_audit/ranked_cap_bets.csv",
+  "bootstrap_iterations": 20000,
+  "market_null_iterations": 20000,
+  "random_iterations": 20000,
+  "seed": 20260629,
+  "date_window": {
+    "start": "2024-02-10",
+    "end": "2026-06-27",
+    "residual_events": 99,
+    "same_event_market_favorite_rows": 680,
+    "same_period_market_favorite_rows": 704
+  },
+  "summaries": [
+    {
+      "benchmark": "residual_cap3",
+      "bets": 262,
+      "events": 99,
+      "profit": 19.11636190664889,
+      "roi": 0.07296321338415607,
+      "actual_win_rate": 0.7786259541984732,
+      "mean_market_probability": 0.701874466845565,
+      "actual_minus_market": 0.07675148735290827,
+      "event_bootstrap_p_profit_le_zero": 0.014599270036498175,
+      "event_bootstrap_profit_ci_95": [
+        1.9839720799766543,
+        35.81618124258998
+      ],
+      "market_null_p": 0.0014499275036248187,
+      "market_null_mean_profit": -11.232271242000675,
+      "market_null_profit_ci_95": [
+        -31.967546425921768,
+        8.8838915321776
+      ]
+    },
+    {
+      "benchmark": "market_top_same_count",
+      "bets": 262,
+      "events": 99,
+      "profit": 0.07120030292548618,
+      "roi": 0.00027175688139498543,
+      "actual_win_rate": 0.7862595419847328,
+      "mean_market_probability": 0.7528624428088077,
+      "actual_minus_market": 0.03339709917592515,
+      "event_bootstrap_p_profit_le_zero": 0.4944252787360632,
+      "event_bootstrap_profit_ci_95": [
+        -18.401372906399292,
+        17.330441894834678
+      ],
+      "market_null_p": 0.11254437278136094,
+      "market_null_mean_profit": -10.951685295245323,
+      "market_null_profit_ci_95": [
+        -28.963869846992097,
+        6.623869978363138
+      ]
+    },
+    {
+      "benchmark": "market_low_conf_same_count",
+      "bets": 262,
+      "events": 99,
+      "profit": -2.1641488838513157,
+      "roi": -0.008260110243707312,
+      "actual_win_rate": 0.6106870229007634,
+      "mean_market_probability": 0.586546299060949,
+      "actual_minus_market": 0.02414072383981436,
+      "event_bootstrap_p_profit_le_zero": 0.5696715164241788,
+      "event_bootstrap_profit_ci_95": [
+        -26.83908247305808,
+        22.292580253501633
+      ],
+      "market_null_p": 0.35413229338533075,
+      "market_null_mean_profit": -7.4528013356981315,
+      "market_null_profit_ci_95": [
+        -34.64973920884222,
+        20.152546279742996
+      ]
+    },
+    {
+      "benchmark": "market_top3_same_events",
+      "bets": 297,
+      "events": 99,
+      "profit": 3.9868358819763547,
+      "roi": 0.013423689838304225,
+      "actual_win_rate": 0.7811447811447811,
+      "mean_market_probability": 0.7412267022221299,
+      "actual_minus_market": 0.0399180789226512,
+      "event_bootstrap_p_profit_le_zero": 0.33878306084695764,
+      "event_bootstrap_profit_ci_95": [
+        -15.5934659387431,
+        22.826767839729115
+      ],
+      "market_null_p": 0.048947552622368884,
+      "market_null_mean_profit": -12.490140277531252,
+      "market_null_profit_ci_95": [
+        -32.17431479328939,
+        6.757053798997695
+      ]
+    },
+    {
+      "benchmark": "market_low_conf3_same_events",
+      "bets": 297,
+      "events": 99,
+      "profit": 2.9527587986262365,
+      "roi": 0.009941948816923354,
+      "actual_win_rate": 0.6296296296296297,
+      "mean_market_probability": 0.5941924017983791,
+      "actual_minus_market": 0.035437227831250584,
+      "event_bootstrap_p_profit_le_zero": 0.4072796360181991,
+      "event_bootstrap_profit_ci_95": [
+        -22.16303243027135,
+        28.254181561709828
+      ],
+      "market_null_p": 0.2070896455177241,
+      "market_null_mean_profit": -9.029488186981764,
+      "market_null_profit_ci_95": [
+        -37.80507093874433,
+        19.568501316988957
+      ]
+    },
+    {
+      "benchmark": "all_market_favorites_same_events",
+      "bets": 680,
+      "events": 99,
+      "profit": -12.771356220005512,
+      "roi": -0.018781406205890458,
+      "actual_win_rate": 0.6838235294117647,
+      "mean_market_probability": 0.6667841344255788,
+      "actual_minus_market": 0.017039394986185896,
+      "event_bootstrap_p_profit_le_zero": 0.7772611369431528,
+      "event_bootstrap_profit_ci_95": [
+        -45.62575488554332,
+        19.20885794067753
+      ],
+      "market_null_p": 0.25708714564271784,
+      "market_null_mean_profit": -25.128641057010825,
+      "market_null_profit_ci_95": [
+        -62.059474370657185,
+        11.36928887967988
+      ]
+    },
+    {
+      "benchmark": "all_market_favorites_same_period",
+      "bets": 704,
+      "events": 102,
+      "profit": -5.818851005778537,
+      "roi": -0.008265413360480877,
+      "actual_win_rate": 0.6875,
+      "mean_market_probability": 0.6644880697124023,
+      "actual_minus_market": 0.023011930287597737,
+      "event_bootstrap_p_profit_le_zero": 0.631818409079546,
+      "event_bootstrap_profit_ci_95": [
+        -39.82483647979524,
+        27.139418308026094
+      ],
+      "market_null_p": 0.14054297285135744,
+      "market_null_mean_profit": -26.256505374424272,
+      "market_null_profit_ci_95": [
+        -64.39973406371529,
+        10.646230905315997
+      ]
+    }
+  ],
+  "period_summaries": [
+    {
+      "benchmark": "residual_cap3",
+      "bets": 103,
+      "events": 39,
+      "profit": 14.386960468640321,
+      "roi": 0.1396792278508769,
+      "actual_win_rate": 0.8252427184466019,
+      "mean_market_probability": 0.6973037194319983,
+      "actual_minus_market": 0.1279389990146036,
+      "event_bootstrap_p_profit_le_zero": 0.0009499525023748813,
+      "event_bootstrap_profit_ci_95": [
+        5.437439686663851,
+        23.023099417828472
+      ],
+      "market_null_p": 0.00119994000299985,
+      "market_null_mean_profit": -4.2373174706517585,
+      "market_null_profit_ci_95": [
+        -17.1132663987077,
+        8.397876667874735
+      ],
+      "period": "2024"
+    },
+    {
+      "benchmark": "residual_cap3",
+      "bets": 159,
+      "events": 60,
+      "profit": 4.729401438008564,
+      "roi": 0.029744663132129333,
+      "actual_win_rate": 0.7484276729559748,
+      "mean_market_probability": 0.7048353912707057,
+      "actual_minus_market": 0.043592281685269074,
+      "event_bootstrap_p_profit_le_zero": 0.25863706814659265,
+      "event_bootstrap_profit_ci_95": [
+        -9.850004436067607,
+        18.525126308289938
+      ],
+      "market_null_p": 0.07189640517974101,
+      "market_null_mean_profit": -6.819722482917191,
+      "market_null_profit_ci_95": [
+        -23.1531894728428,
+        8.818565597636933
+      ],
+      "period": "2025-2026"
+    },
+    {
+      "benchmark": "residual_cap3",
+      "bets": 105,
+      "events": 39,
+      "profit": 0.3831254299559499,
+      "roi": 0.0036488136186280944,
+      "actual_win_rate": 0.7333333333333333,
+      "mean_market_probability": 0.7078360789018818,
+      "actual_minus_market": 0.025497254431451455,
+      "event_bootstrap_p_profit_le_zero": 0.46507674616269185,
+      "event_bootstrap_profit_ci_95": [
+        -11.709209563836078,
+        11.988370601504469
+      ],
+      "market_null_p": 0.21778911054447278,
+      "market_null_mean_profit": -4.696217155104258,
+      "market_null_profit_ci_95": [
+        -17.416285784280397,
+        7.60874957094869
+      ],
+      "period": "last_365d"
+    },
+    {
+      "benchmark": "market_top_same_count",
+      "bets": 103,
+      "events": 39,
+      "profit": 5.545837765719071,
+      "roi": 0.05384308510406865,
+      "actual_win_rate": 0.8155339805825242,
+      "mean_market_probability": 0.7413661818458195,
+      "actual_minus_market": 0.07416779873670476,
+      "event_bootstrap_p_profit_le_zero": 0.14704264786760662,
+      "event_bootstrap_profit_ci_95": [
+        -4.944232622896759,
+        15.515845411899596
+      ],
+      "market_null_p": 0.04544772761361932,
+      "market_null_mean_profit": -4.240173497508614,
+      "market_null_profit_ci_95": [
+        -15.982939067785653,
+        7.049999516439204
+      ],
+      "period": "2024"
+    },
+    {
+      "benchmark": "market_top_same_count",
+      "bets": 159,
+      "events": 60,
+      "profit": -5.474637462793585,
+      "roi": -0.0344316821559345,
+      "actual_win_rate": 0.7672955974842768,
+      "mean_market_probability": 0.7603097061999259,
+      "actual_minus_market": 0.006985891284350898,
+      "event_bootstrap_p_profit_le_zero": 0.7686615669216539,
+      "event_bootstrap_profit_ci_95": [
+        -20.51148809140096,
+        8.565685696051856
+      ],
+      "market_null_p": 0.4312284385780711,
+      "market_null_mean_profit": -6.79726028932279,
+      "market_null_profit_ci_95": [
+        -20.628897614713246,
+        6.347599738334549
+      ],
+      "period": "2025-2026"
+    },
+    {
+      "benchmark": "market_top_same_count",
+      "bets": 105,
+      "events": 39,
+      "profit": -2.2026806076725753,
+      "roi": -0.020977910549262624,
+      "actual_win_rate": 0.780952380952381,
+      "mean_market_probability": 0.7652825214906872,
+      "actual_minus_market": 0.015669859461693747,
+      "event_bootstrap_p_profit_le_zero": 0.6385180740962952,
+      "event_bootstrap_profit_ci_95": [
+        -14.333956317339261,
+        8.910725582706045
+      ],
+      "market_null_p": 0.33223338833058347,
+      "market_null_mean_profit": -4.642547829503621,
+      "market_null_profit_ci_95": [
+        -15.630112015745814,
+        5.7351657888932515
+      ],
+      "period": "last_365d"
+    },
+    {
+      "benchmark": "market_low_conf_same_count",
+      "bets": 103,
+      "events": 39,
+      "profit": 8.005460247371417,
+      "roi": 0.07772291502302346,
+      "actual_win_rate": 0.6601941747572816,
+      "mean_market_probability": 0.5815525498717986,
+      "actual_minus_market": 0.07864162488548299,
+      "event_bootstrap_p_profit_le_zero": 0.1774911254437278,
+      "event_bootstrap_profit_ci_95": [
+        -9.160357088293322,
+        24.75811934688336
+      ],
+      "market_null_p": 0.07169641517924104,
+      "market_null_mean_profit": -4.262095570658191,
+      "market_null_profit_ci_95": [
+        -20.7687377261103,
+        11.876076174894665
+      ],
+      "period": "2024"
+    },
+    {
+      "benchmark": "market_low_conf_same_count",
+      "bets": 159,
+      "events": 60,
+      "profit": -10.169609131222732,
+      "roi": -0.06395980585674674,
+      "actual_win_rate": 0.5786163522012578,
+      "mean_market_probability": 0.5897812435042353,
+      "actual_minus_market": -0.011164891302977487,
+      "event_bootstrap_p_profit_le_zero": 0.8747562621868906,
+      "event_bootstrap_profit_ci_95": [
+        -27.31764034475024,
+        7.162473710725479
+      ],
+      "market_null_p": 0.7370131493425329,
+      "market_null_mean_profit": -3.067504917176587,
+      "market_null_profit_ci_95": [
+        -24.880938470990362,
+        18.738753102248356
+      ],
+      "period": "2025-2026"
+    },
+    {
+      "benchmark": "market_low_conf_same_count",
+      "bets": 105,
+      "events": 39,
+      "profit": 3.292635786828445,
+      "roi": 0.03135843606503281,
+      "actual_win_rate": 0.638095238095238,
+      "mean_market_probability": 0.5895373967138354,
+      "actual_minus_market": 0.04855784138140262,
+      "event_bootstrap_p_profit_le_zero": 0.29573521323933805,
+      "event_bootstrap_profit_ci_95": [
+        -9.278840606354958,
+        15.455218437706442
+      ],
+      "market_null_p": 0.33988300584970754,
+      "market_null_mean_profit": -0.7853112325675121,
+      "market_null_profit_ci_95": [
+        -19.38731550014157,
+        17.510701504173664
+      ],
+      "period": "last_365d"
+    }
+  ],
+  "paired_event_bootstrap_vs_residual": {
+    "market_top_same_count": {
+      "events": 99,
+      "diff_profit": 19.0451616037234,
+      "p_diff_le_zero": 0.018499075046247686,
+      "diff_ci_95": [
+        1.1061619671210177,
+        37.142343970287904
+      ]
+    },
+    "market_low_conf_same_count": {
+      "events": 99,
+      "diff_profit": 21.280510790500205,
+      "p_diff_le_zero": 0.04609769511524424,
+      "diff_ci_95": [
+        -3.262452667567099,
+        46.191031321087756
+      ]
+    },
+    "market_top3_same_events": {
+      "events": 99,
+      "diff_profit": 15.129526024672533,
+      "p_diff_le_zero": 0.053147342632868355,
+      "diff_ci_95": [
+        -3.248758752283067,
+        33.79510871196048
+      ]
+    },
+    "market_low_conf3_same_events": {
+      "events": 99,
+      "diff_profit": 16.16360310802265,
+      "p_diff_le_zero": 0.09364531773411329,
+      "diff_ci_95": [
+        -7.9063760590371395,
+        40.11330370820872
+      ]
+    },
+    "all_market_favorites_same_events": {
+      "events": 99,
+      "diff_profit": 31.887718126654395,
+      "p_diff_le_zero": 0.006999650017499125,
+      "diff_ci_95": [
+        5.8748745517276415,
+        58.15847114027978
+      ]
+    },
+    "all_market_favorites_same_period": {
+      "events": 102,
+      "diff_profit": 24.93521291242742,
+      "p_diff_le_zero": 0.0367981600919954,
+      "diff_ci_95": [
+        -2.4504131192989775,
+        52.47316478792647
+      ]
+    }
+  },
+  "random_market_favorites_same_count": {
+    "iterations": 20000,
+    "events": 99,
+    "mean_profit": -2.952465212910821,
+    "profit_ci_95": [
+      -19.913161758364396,
+      13.657873903044523
+    ],
+    "prob_profit_positive": 0.36415,
+    "p_random_profit_at_least_residual": 0.005149742512874356
+  }
+}
