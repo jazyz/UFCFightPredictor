@@ -1,0 +1,851 @@
+{
+  "ranked_bets_path": "test_results/residual_event_cap_ranking_audit/ranked_cap_bets.csv",
+  "bootstrap_iterations": 20000,
+  "market_null_iterations": 20000,
+  "seed": 20260629,
+  "aggregate": {
+    "slice": "aggregate",
+    "bets": 262,
+    "events": 99,
+    "profit": 19.11636190664889,
+    "roi": 0.07296321338415607,
+    "actual_win_rate": 0.7786259541984732,
+    "mean_market_probability": 0.701874466845565,
+    "actual_minus_market": 0.07675148735290827,
+    "mean_model_probability": 0.7489841785571433,
+    "mean_edge": 0.047109711711578156,
+    "bootstrap_p_profit_le_zero": 0.014599270036498175,
+    "bootstrap_profit_ci_95": [
+      1.9839720799766543,
+      35.81618124258998
+    ],
+    "market_null_p": 0.0014499275036248187
+  },
+  "by_period": [
+    {
+      "slice": "2024",
+      "bets": 103,
+      "events": 39,
+      "profit": 14.386960468640321,
+      "roi": 0.1396792278508769,
+      "actual_win_rate": 0.8252427184466019,
+      "mean_market_probability": 0.6973037194319983,
+      "actual_minus_market": 0.1279389990146036,
+      "mean_model_probability": 0.741333515061492,
+      "mean_edge": 0.044029795629493544,
+      "bootstrap_p_profit_le_zero": 0.0006999650017499125,
+      "bootstrap_profit_ci_95": [
+        5.51161767901471,
+        23.059302544012272
+      ],
+      "market_null_p": 0.0016499175041247937
+    },
+    {
+      "slice": "2025-2026",
+      "bets": 159,
+      "events": 60,
+      "profit": 4.729401438008564,
+      "roi": 0.029744663132129333,
+      "actual_win_rate": 0.7484276729559748,
+      "mean_market_probability": 0.7048353912707057,
+      "actual_minus_market": 0.043592281685269074,
+      "mean_model_probability": 0.75394026874615,
+      "mean_edge": 0.0491048774754443,
+      "bootstrap_p_profit_le_zero": 0.25228738563071845,
+      "bootstrap_profit_ci_95": [
+        -9.669228925897063,
+        18.549881653531372
+      ],
+      "market_null_p": 0.07069646517674116
+    }
+  ],
+  "by_event_rank": [
+    {
+      "slice": "1",
+      "bets": 99,
+      "events": 99,
+      "profit": 4.990064722905226,
+      "roi": 0.05040469417075986,
+      "actual_win_rate": 0.7474747474747475,
+      "mean_market_probability": 0.6893186348015279,
+      "actual_minus_market": 0.05815611267321963,
+      "mean_model_probability": 0.7440374800121611,
+      "mean_edge": 0.05471884521063298,
+      "bootstrap_p_profit_le_zero": 0.20778961051947403,
+      "bootstrap_profit_ci_95": [
+        -7.524566832870066,
+        17.01469147647304
+      ],
+      "market_null_p": 0.07544622768861557
+    },
+    {
+      "slice": "2",
+      "bets": 92,
+      "events": 92,
+      "profit": 14.148117862129624,
+      "roi": 0.15378388980575677,
+      "actual_win_rate": 0.8369565217391305,
+      "mean_market_probability": 0.7027678956675762,
+      "actual_minus_market": 0.13418862607155424,
+      "mean_model_probability": 0.7481656273595898,
+      "mean_edge": 0.04539773169201345,
+      "bootstrap_p_profit_le_zero": 0.004549772511374431,
+      "bootstrap_profit_ci_95": [
+        3.8950955323525007,
+        23.65120568350936
+      ],
+      "market_null_p": 0.0011499425028748563
+    },
+    {
+      "slice": "3",
+      "bets": 71,
+      "events": 71,
+      "profit": -0.021820678385962022,
+      "roi": -0.0003073334983938313,
+      "actual_win_rate": 0.7464788732394366,
+      "mean_market_probability": 0.7182242122080247,
+      "actual_minus_market": 0.028254661031411943,
+      "mean_model_probability": 0.7569423456857091,
+      "mean_edge": 0.038718133477684144,
+      "bootstrap_p_profit_le_zero": 0.49807509624518775,
+      "bootstrap_profit_ci_95": [
+        -10.443411533117988,
+        9.60345885231961
+      ],
+      "market_null_p": 0.2927353632318384
+    }
+  ],
+  "by_period_rank": [
+    {
+      "slice": "2024 | rank 1",
+      "bets": 39,
+      "events": 39,
+      "profit": 5.110576718928783,
+      "roi": 0.13104042869048163,
+      "actual_win_rate": 0.8205128205128205,
+      "mean_market_probability": 0.6995488398405906,
+      "actual_minus_market": 0.12096398067222991,
+      "mean_model_probability": 0.7477561117453279,
+      "mean_edge": 0.048207271904737385,
+      "bootstrap_p_profit_le_zero": 0.0712964351782411,
+      "bootstrap_profit_ci_95": [
+        -1.8293155367073854,
+        11.313636394788855
+      ],
+      "market_null_p": 0.04134793260336983
+    },
+    {
+      "slice": "2024 | rank 2",
+      "bets": 36,
+      "events": 36,
+      "profit": 8.993609849485408,
+      "roi": 0.2498224958190391,
+      "actual_win_rate": 0.8888888888888888,
+      "mean_market_probability": 0.6899936837334696,
+      "actual_minus_market": 0.19889520515541925,
+      "mean_model_probability": 0.7334386257497117,
+      "mean_edge": 0.04344494201624226,
+      "bootstrap_p_profit_le_zero": 0.00199990000499975,
+      "bootstrap_profit_ci_95": [
+        3.0897237951111918,
+        13.950393680834495
+      ],
+      "market_null_p": 0.0023498825058747065
+    },
+    {
+      "slice": "2024 | rank 3",
+      "bets": 28,
+      "events": 28,
+      "profit": 0.28277390022613125,
+      "roi": 0.010099067865218973,
+      "actual_win_rate": 0.75,
+      "mean_market_probability": 0.7035752047609971,
+      "actual_minus_market": 0.04642479523900289,
+      "mean_model_probability": 0.7425383273670096,
+      "mean_edge": 0.03896312260601265,
+      "bootstrap_p_profit_le_zero": 0.44442777861106947,
+      "bootstrap_profit_ci_95": [
+        -5.988720947037853,
+        6.075058322558812
+      ],
+      "market_null_p": 0.35948202589870504
+    },
+    {
+      "slice": "2025-2026 | rank 1",
+      "bets": 60,
+      "events": 60,
+      "profit": -0.12051199602355739,
+      "roi": -0.00200853326705929,
+      "actual_win_rate": 0.7,
+      "mean_market_probability": 0.6826690015261376,
+      "actual_minus_market": 0.017330998473862325,
+      "mean_model_probability": 0.7416203693856026,
+      "mean_edge": 0.0589513678594651,
+      "bootstrap_p_profit_le_zero": 0.5003249837508125,
+      "bootstrap_profit_ci_95": [
+        -10.454784115771819,
+        9.712100466796862
+      ],
+      "market_null_p": 0.3237838108094595
+    },
+    {
+      "slice": "2025-2026 | rank 2",
+      "bets": 56,
+      "events": 56,
+      "profit": 5.154508012644214,
+      "roi": 0.09204478594007526,
+      "actual_win_rate": 0.8035714285714286,
+      "mean_market_probability": 0.7109798890537878,
+      "actual_minus_market": 0.09259153951764076,
+      "mean_model_probability": 0.7576329855373685,
+      "mean_edge": 0.046653096483580625,
+      "bootstrap_p_profit_le_zero": 0.11239438028098594,
+      "bootstrap_profit_ci_95": [
+        -3.248759753699653,
+        13.121628572650378
+      ],
+      "market_null_p": 0.04794760261986901
+    },
+    {
+      "slice": "2025-2026 | rank 3",
+      "bets": 43,
+      "events": 43,
+      "profit": -0.30459457861209316,
+      "roi": -0.007083594851444027,
+      "actual_win_rate": 0.7441860465116279,
+      "mean_market_probability": 0.7277631007781824,
+      "actual_minus_market": 0.016422945733445493,
+      "mean_model_probability": 0.7663217064513738,
+      "mean_edge": 0.03855860567319118,
+      "bootstrap_p_profit_le_zero": 0.5173241337933103,
+      "bootstrap_profit_ci_95": [
+        -8.4536219810637,
+        7.254778371490579
+      ],
+      "market_null_p": 0.351932403379831
+    }
+  ],
+  "by_market_prob_bin": [
+    {
+      "slice": "<0.60",
+      "bets": 31,
+      "events": 29,
+      "profit": 12.309080374477997,
+      "roi": 0.39706710885412894,
+      "actual_win_rate": 0.8387096774193549,
+      "mean_market_probability": 0.5745669082525072,
+      "actual_minus_market": 0.26414276916684765,
+      "mean_model_probability": 0.6227646491132804,
+      "mean_edge": 0.048197740860773275,
+      "bootstrap_p_profit_le_zero": 0.00014999250037498125,
+      "bootstrap_profit_ci_95": [
+        5.994802712489862,
+        17.657568388677248
+      ],
+      "market_null_p": 0.00119994000299985
+    },
+    {
+      "slice": "0.60-0.70",
+      "bets": 104,
+      "events": 74,
+      "profit": 3.190732492988368,
+      "roi": 0.030680120124888154,
+      "actual_win_rate": 0.7019230769230769,
+      "mean_market_probability": 0.655149643987482,
+      "actual_minus_market": 0.04677343293559488,
+      "mean_model_probability": 0.7046880566241439,
+      "mean_edge": 0.0495384126366618,
+      "bootstrap_p_profit_le_zero": 0.31318434078296087,
+      "bootstrap_profit_ci_95": [
+        -10.327473174287276,
+        16.47903132588946
+      ],
+      "market_null_p": 0.13629318534073295
+    },
+    {
+      "slice": "0.70-0.80",
+      "bets": 92,
+      "events": 66,
+      "profit": 2.1413992905650963,
+      "roi": 0.023276079245272786,
+      "actual_win_rate": 0.7934782608695652,
+      "mean_market_probability": 0.744520444553731,
+      "actual_minus_market": 0.04895781631583418,
+      "mean_model_probability": 0.7915644670984355,
+      "mean_edge": 0.04704402254470424,
+      "bootstrap_p_profit_le_zero": 0.3254837258137093,
+      "bootstrap_profit_ci_95": [
+        -7.619328815446015,
+        11.366234390845662
+      ],
+      "market_null_p": 0.1175941202939853
+    },
+    {
+      "slice": ">=0.80",
+      "bets": 35,
+      "events": 30,
+      "profit": 1.4751497486174243,
+      "roi": 0.04214713567478355,
+      "actual_win_rate": 0.9142857142857143,
+      "mean_market_probability": 0.8413740652591122,
+      "actual_minus_market": 0.07291164902660208,
+      "mean_model_probability": 0.8804760513569376,
+      "mean_edge": 0.03910198609782544,
+      "bootstrap_p_profit_le_zero": 0.21008949552522374,
+      "bootstrap_profit_ci_95": [
+        -2.6056636915599523,
+        4.851939161921417
+      ],
+      "market_null_p": 0.12664366781660916
+    }
+  ],
+  "by_period_market_bin": [
+    {
+      "slice": "2024 | 0.60-0.70",
+      "bets": 45,
+      "events": 29,
+      "profit": 3.7421650053875846,
+      "roi": 0.08315922234194632,
+      "actual_win_rate": 0.7333333333333333,
+      "mean_market_probability": 0.65189017397087,
+      "actual_minus_market": 0.08144315936246327,
+      "mean_model_probability": 0.6953383620257895,
+      "mean_edge": 0.04344818805491949,
+      "bootstrap_p_profit_le_zero": 0.18994050297485127,
+      "bootstrap_profit_ci_95": [
+        -4.757048978421232,
+        11.636322818862517
+      ],
+      "market_null_p": 0.09984500774961252
+    },
+    {
+      "slice": "2024 | 0.70-0.80",
+      "bets": 37,
+      "events": 24,
+      "profit": 5.894443913176308,
+      "roi": 0.15930929495071103,
+      "actual_win_rate": 0.8918918918918919,
+      "mean_market_probability": 0.7413745618125371,
+      "actual_minus_market": 0.15051733007935475,
+      "mean_model_probability": 0.7882091278835064,
+      "mean_edge": 0.0468345660709693,
+      "bootstrap_p_profit_le_zero": 0.01749912504374781,
+      "bootstrap_profit_ci_95": [
+        0.4088681700905338,
+        10.774294101270426
+      ],
+      "market_null_p": 0.0066496675166241685
+    },
+    {
+      "slice": "2024 | <0.60",
+      "bets": 10,
+      "events": 9,
+      "profit": 3.17758984563846,
+      "roi": 0.317758984563846,
+      "actual_win_rate": 0.8,
+      "mean_market_probability": 0.580212770002009,
+      "actual_minus_market": 0.21978722999799105,
+      "mean_model_probability": 0.6202381745489755,
+      "mean_edge": 0.04002540454696647,
+      "bootstrap_p_profit_le_zero": 0.049147542622868856,
+      "bootstrap_profit_ci_95": [
+        -0.4454454454454455,
+        5.851300812398041
+      ],
+      "market_null_p": 0.11779411029448528
+    },
+    {
+      "slice": "2024 | >=0.80",
+      "bets": 11,
+      "events": 9,
+      "profit": 1.5727617044379716,
+      "roi": 0.14297833676708832,
+      "actual_win_rate": 1.0,
+      "mean_market_probability": 0.8412944350657031,
+      "actual_minus_market": 0.15870556493429688,
+      "mean_model_probability": 0.8819096620903331,
+      "mean_edge": 0.04061522702462981,
+      "bootstrap_p_profit_le_zero": 4.999750012499375e-05,
+      "bootstrap_profit_ci_95": [
+        0.9905322128851541,
+        2.394660707029662
+      ],
+      "market_null_p": 0.14689265536723164
+    },
+    {
+      "slice": "2025-2026 | 0.60-0.70",
+      "bets": 59,
+      "events": 45,
+      "profit": -0.551432512399215,
+      "roi": -0.00934631376947822,
+      "actual_win_rate": 0.6779661016949152,
+      "mean_market_probability": 0.6576356804408304,
+      "actual_minus_market": 0.020330421254084796,
+      "mean_model_probability": 0.711819179622889,
+      "mean_edge": 0.05418349918205845,
+      "bootstrap_p_profit_le_zero": 0.5368731563421829,
+      "bootstrap_profit_ci_95": [
+        -10.778763028456318,
+        9.595637692862475
+      ],
+      "market_null_p": 0.335783210839458
+    },
+    {
+      "slice": "2025-2026 | 0.70-0.80",
+      "bets": 55,
+      "events": 42,
+      "profit": -3.75304462261121,
+      "roi": -0.06823717495656746,
+      "actual_win_rate": 0.7272727272727273,
+      "mean_market_probability": 0.7466367656705343,
+      "actual_minus_market": -0.019364038397806982,
+      "mean_model_probability": 0.7938216952975695,
+      "mean_edge": 0.04718492962703499,
+      "bootstrap_p_profit_le_zero": 0.8330583470826459,
+      "bootstrap_profit_ci_95": [
+        -11.390394843161019,
+        3.621244164761295
+      ],
+      "market_null_p": 0.6285185740712964
+    },
+    {
+      "slice": "2025-2026 | <0.60",
+      "bets": 21,
+      "events": 20,
+      "profit": 9.131490528839539,
+      "roi": 0.43483288232569234,
+      "actual_win_rate": 0.8571428571428571,
+      "mean_market_probability": 0.5718784026575063,
+      "actual_minus_market": 0.28526445448535076,
+      "mean_model_probability": 0.62396773223914,
+      "mean_edge": 0.05208932958163367,
+      "bootstrap_p_profit_le_zero": 0.0010499475026248687,
+      "bootstrap_profit_ci_95": [
+        3.8576480988719037,
+        13.464573541080878
+      ],
+      "market_null_p": 0.002999850007499625
+    },
+    {
+      "slice": "2025-2026 | >=0.80",
+      "bets": 24,
+      "events": 21,
+      "profit": -0.09761195582054705,
+      "roi": -0.004067164825856127,
+      "actual_win_rate": 0.875,
+      "mean_market_probability": 0.8414105624310911,
+      "actual_minus_market": 0.033589437568908864,
+      "mean_model_probability": 0.879818979770798,
+      "mean_edge": 0.03840841733970676,
+      "bootstrap_p_profit_le_zero": 0.5091245437728114,
+      "bootstrap_profit_ci_95": [
+        -3.859782352195311,
+        3.1947545463130003
+      ],
+      "market_null_p": 0.3706314684265787
+    }
+  ],
+  "by_edge_bin": [
+    {
+      "slice": "<0.03",
+      "bets": 26,
+      "events": 22,
+      "profit": 0.051090314539703294,
+      "roi": 0.001965012097680896,
+      "actual_win_rate": 0.7692307692307693,
+      "mean_market_probability": 0.7445293450509811,
+      "actual_minus_market": 0.024701424179788156,
+      "mean_model_probability": 0.7699822878564735,
+      "mean_edge": 0.025452942805492342,
+      "bootstrap_p_profit_le_zero": 0.48662566871656415,
+      "bootstrap_profit_ci_95": [
+        -5.719427499258181,
+        5.3688950400045075
+      ],
+      "market_null_p": 0.3480825958702065
+    },
+    {
+      "slice": "0.03-0.05",
+      "bets": 137,
+      "events": 78,
+      "profit": 16.625307142268806,
+      "roi": 0.1213526068778745,
+      "actual_win_rate": 0.8102189781021898,
+      "mean_market_probability": 0.6990339719380927,
+      "actual_minus_market": 0.1111850061640971,
+      "mean_model_probability": 0.7410937606280136,
+      "mean_edge": 0.042059788689920954,
+      "bootstrap_p_profit_le_zero": 0.0034498275086245686,
+      "bootstrap_profit_ci_95": [
+        4.643059107140369,
+        28.093038696521685
+      ],
+      "market_null_p": 0.0014999250037498126
+    },
+    {
+      "slice": "0.05-0.08",
+      "bets": 95,
+      "events": 58,
+      "profit": 2.989470441011285,
+      "roi": 0.03146810990538195,
+      "actual_win_rate": 0.7473684210526316,
+      "mean_market_probability": 0.6970761522859168,
+      "actual_minus_market": 0.050292268766714776,
+      "mean_model_probability": 0.7554555775506904,
+      "mean_edge": 0.058379425264773264,
+      "bootstrap_p_profit_le_zero": 0.3047347632618369,
+      "bootstrap_profit_ci_95": [
+        -8.68634087214645,
+        14.451735530870266
+      ],
+      "market_null_p": 0.1273436328183591
+    },
+    {
+      "slice": ">=0.08",
+      "bets": 4,
+      "events": 4,
+      "profit": -0.549505991170906,
+      "roi": -0.1373764977927265,
+      "actual_win_rate": 0.5,
+      "mean_market_probability": 0.6358646798829359,
+      "actual_minus_market": -0.13586467988293593,
+      "mean_model_probability": 0.7290475560874474,
+      "mean_edge": 0.09318287620451152,
+      "bootstrap_p_profit_le_zero": 0.6835658217089146,
+      "bootstrap_profit_ci_95": [
+        -4.0,
+        2.9009880176581877
+      ],
+      "market_null_p": 0.5526723663816809
+    }
+  ],
+  "by_model_prob_bin": [
+    {
+      "slice": "<0.65",
+      "bets": 32,
+      "events": 30,
+      "profit": 11.28003171797836,
+      "roi": 0.35250099118682376,
+      "actual_win_rate": 0.8125,
+      "mean_market_probability": 0.5761695579614812,
+      "actual_minus_market": 0.23633044203851883,
+      "mean_model_probability": 0.6229616979232071,
+      "mean_edge": 0.04679213996172592,
+      "bootstrap_p_profit_le_zero": 0.0009499525023748813,
+      "bootstrap_profit_ci_95": [
+        4.513257771088305,
+        17.189144015358757
+      ],
+      "market_null_p": 0.0018499075046247689
+    },
+    {
+      "slice": "0.65-0.70",
+      "bets": 47,
+      "events": 40,
+      "profit": 9.281837820861211,
+      "roi": 0.19748591108215344,
+      "actual_win_rate": 0.7872340425531915,
+      "mean_market_probability": 0.6332032973817167,
+      "actual_minus_market": 0.15403074517147486,
+      "mean_model_probability": 0.6780546802136287,
+      "mean_edge": 0.04485138283191208,
+      "bootstrap_p_profit_le_zero": 0.021248937553122346,
+      "bootstrap_profit_ci_95": [
+        0.30767136084894425,
+        17.366074493793036
+      ],
+      "market_null_p": 0.007849607519624019
+    },
+    {
+      "slice": "0.70-0.80",
+      "bets": 114,
+      "events": 74,
+      "profit": -0.9909177652716219,
+      "roi": -0.008692261098873876,
+      "actual_win_rate": 0.7280701754385965,
+      "mean_market_probability": 0.7000704731684774,
+      "actual_minus_market": 0.027999702270119164,
+      "mean_model_probability": 0.7497425092433547,
+      "mean_edge": 0.049672036074877225,
+      "bootstrap_p_profit_le_zero": 0.5538223088845557,
+      "bootstrap_profit_ci_95": [
+        -14.603438665177203,
+        12.192495125293043
+      ],
+      "market_null_p": 0.29218539073046346
+    },
+    {
+      "slice": ">=0.80",
+      "bets": 69,
+      "events": 56,
+      "profit": -0.45458986691906045,
+      "roi": -0.006588258940855948,
+      "actual_win_rate": 0.8405797101449275,
+      "mean_market_probability": 0.8099289208786021,
+      "actual_minus_market": 0.030650789266325362,
+      "mean_model_probability": 0.8544907887629845,
+      "mean_edge": 0.04456186788438226,
+      "bootstrap_p_profit_le_zero": 0.5366231688415579,
+      "bootstrap_profit_ci_95": [
+        -7.83262999542201,
+        6.272293291270144
+      ],
+      "market_null_p": 0.29313534323283835
+    }
+  ],
+  "by_odds_band": [
+    {
+      "slice": "-150 to -100",
+      "bets": 15,
+      "events": 15,
+      "profit": 5.510776166581261,
+      "roi": 0.36738507777208407,
+      "actual_win_rate": 0.8,
+      "mean_market_probability": 0.5599391812363279,
+      "actual_minus_market": 0.24006081876367213,
+      "mean_model_probability": 0.6158100936371226,
+      "mean_edge": 0.05587091240079451,
+      "bootstrap_p_profit_le_zero": 0.01749912504374781,
+      "bootstrap_profit_ci_95": [
+        0.2991154104522971,
+        10.575337277945756
+      ],
+      "market_null_p": 0.020248987550622467
+    },
+    {
+      "slice": "-250 to -150",
+      "bets": 102,
+      "events": 74,
+      "profit": 11.387680175208274,
+      "roi": 0.11164392328635563,
+      "actual_win_rate": 0.7352941176470589,
+      "mean_market_probability": 0.6385733559411948,
+      "actual_minus_market": 0.09672076170586408,
+      "mean_model_probability": 0.6851042929640484,
+      "mean_edge": 0.04653093702285336,
+      "bootstrap_p_profit_le_zero": 0.04849757512124394,
+      "bootstrap_profit_ci_95": [
+        -1.9913338951127533,
+        24.294837337015778
+      ],
+      "market_null_p": 0.012899355032248387
+    },
+    {
+      "slice": "-400 to -250",
+      "bets": 84,
+      "events": 64,
+      "profit": 2.307703882139343,
+      "roi": 0.027472665263563605,
+      "actual_win_rate": 0.7738095238095238,
+      "mean_market_probability": 0.7201050292424537,
+      "actual_minus_market": 0.05370449456707016,
+      "mean_model_probability": 0.7698617468197296,
+      "mean_edge": 0.04975671757727594,
+      "bootstrap_p_profit_le_zero": 0.32193390330483473,
+      "bootstrap_profit_ci_95": [
+        -8.256499999219711,
+        12.374922006214137
+      ],
+      "market_null_p": 0.14039298035098244
+    },
+    {
+      "slice": "<= -400",
+      "bets": 61,
+      "events": 50,
+      "profit": -0.08979831727999188,
+      "roi": -0.00147210356196708,
+      "actual_win_rate": 0.8524590163934426,
+      "mean_market_probability": 0.8175199644692644,
+      "actual_minus_market": 0.03493905192417812,
+      "mean_model_probability": 0.8597980124954833,
+      "mean_edge": 0.042278048026218644,
+      "bootstrap_p_profit_le_zero": 0.4937753112344383,
+      "bootstrap_profit_ci_95": [
+        -6.688106712264126,
+        5.977508176981176
+      ],
+      "market_null_p": 0.2694365281735913
+    }
+  ],
+  "by_title_group": [
+    {
+      "slice": "bantam_or_fly",
+      "bets": 56,
+      "events": 41,
+      "profit": 7.793241815144819,
+      "roi": 0.13916503241330033,
+      "actual_win_rate": 0.8214285714285714,
+      "mean_market_probability": 0.7030880210854394,
+      "actual_minus_market": 0.11834055034313196,
+      "mean_model_probability": 0.750291596561725,
+      "mean_edge": 0.04720357547628556,
+      "bootstrap_p_profit_le_zero": 0.027648617569121545,
+      "bootstrap_profit_ci_95": [
+        -0.20958669668572036,
+        14.859215871565475
+      ],
+      "market_null_p": 0.0135993200339983
+    },
+    {
+      "slice": "catch_or_open",
+      "bets": 2,
+      "events": 2,
+      "profit": 0.8943554538520213,
+      "roi": 0.44717772692601065,
+      "actual_win_rate": 1.0,
+      "mean_market_probability": 0.6639115691786017,
+      "actual_minus_market": 0.3360884308213983,
+      "mean_model_probability": 0.7055812823801451,
+      "mean_edge": 0.0416697132015432,
+      "bootstrap_p_profit_le_zero": 4.999750012499375e-05,
+      "bootstrap_profit_ci_95": [
+        0.7017543859649122,
+        1.0869565217391304
+      ],
+      "market_null_p": 0.43992800359982
+    },
+    {
+      "slice": "heavy_or_lhw",
+      "bets": 44,
+      "events": 36,
+      "profit": 0.8033881350309942,
+      "roi": 0.018258821250704414,
+      "actual_win_rate": 0.7727272727272727,
+      "mean_market_probability": 0.7182846009639579,
+      "actual_minus_market": 0.054442671763314854,
+      "mean_model_probability": 0.7675422517360602,
+      "mean_edge": 0.04925765077210225,
+      "bootstrap_p_profit_le_zero": 0.4055797210139493,
+      "bootstrap_profit_ci_95": [
+        -6.598139142947092,
+        7.624908812791253
+      ],
+      "market_null_p": 0.2583370831458427
+    },
+    {
+      "slice": "light_or_feather",
+      "bets": 81,
+      "events": 65,
+      "profit": -6.362226017201758,
+      "roi": -0.07854600021236738,
+      "actual_win_rate": 0.6666666666666666,
+      "mean_market_probability": 0.6982787807764413,
+      "actual_minus_market": -0.031612114109774714,
+      "mean_model_probability": 0.7455469403778732,
+      "mean_edge": 0.04726815960143183,
+      "bootstrap_p_profit_le_zero": 0.8837558122093895,
+      "bootstrap_profit_ci_95": [
+        -16.816810072220967,
+        3.8659754294528037
+      ],
+      "market_null_p": 0.7011649417529123
+    },
+    {
+      "slice": "middle_or_welter",
+      "bets": 79,
+      "events": 65,
+      "profit": 15.987602519822811,
+      "roi": 0.20237471544079508,
+      "actual_win_rate": 0.8607594936708861,
+      "mean_market_probability": 0.6965222064441815,
+      "actual_minus_market": 0.1642372872267046,
+      "mean_model_probability": 0.7423443235792438,
+      "mean_edge": 0.0458221171350623,
+      "bootstrap_p_profit_le_zero": 0.0010499475026248687,
+      "bootstrap_profit_ci_95": [
+        6.594888501360251,
+        24.895560421624868
+      ],
+      "market_null_p": 0.00014999250037498125
+    }
+  ],
+  "event_concentration": {
+    "events": 99,
+    "total_profit": 19.116361906648887,
+    "events_to_erase_profit": 15,
+    "removal_sensitivity": [
+      {
+        "remove_top_events": 1,
+        "remaining_events": 98,
+        "remaining_profit": 17.386822264705156
+      },
+      {
+        "remove_top_events": 3,
+        "remaining_events": 96,
+        "remaining_profit": 14.495621488141113
+      },
+      {
+        "remove_top_events": 5,
+        "remaining_events": 94,
+        "remaining_profit": 11.88233774508818
+      },
+      {
+        "remove_top_events": 10,
+        "remaining_events": 89,
+        "remaining_profit": 5.524467271314132
+      }
+    ],
+    "top_events": [
+      {
+        "event_date": "2026-02-21",
+        "bets": 3,
+        "profit": 1.729539641943734,
+        "mean_edge": 0.06707002778632877
+      },
+      {
+        "event_date": "2025-11-22",
+        "bets": 3,
+        "profit": 1.5489594579927222,
+        "mean_edge": 0.049789209970511665
+      },
+      {
+        "event_date": "2026-01-31",
+        "bets": 3,
+        "profit": 1.342241318571321,
+        "mean_edge": 0.05640706215310326
+      },
+      {
+        "event_date": "2024-03-16",
+        "bets": 3,
+        "profit": 1.318207016710224,
+        "mean_edge": 0.04325269306352023
+      },
+      {
+        "event_date": "2024-08-10",
+        "bets": 3,
+        "profit": 1.2950767263427108,
+        "mean_edge": 0.05006685141812273
+      },
+      {
+        "event_date": "2025-08-16",
+        "bets": 3,
+        "profit": 1.2947896832265882,
+        "mean_edge": 0.04253530126462807
+      },
+      {
+        "event_date": "2025-04-26",
+        "bets": 3,
+        "profit": 1.2881514352102585,
+        "mean_edge": 0.042737838096694326
+      },
+      {
+        "event_date": "2024-11-02",
+        "bets": 3,
+        "profit": 1.275435065577232,
+        "mean_edge": 0.04920044641028607
+      },
+      {
+        "event_date": "2024-02-17",
+        "bets": 3,
+        "profit": 1.2605042016806722,
+        "mean_edge": 0.04245623082176303
+      },
+      {
+        "event_date": "2024-10-26",
+        "bets": 3,
+        "profit": 1.2389900880792954,
+        "mean_edge": 0.05389808496114037
+      }
+    ]
+  }
+}

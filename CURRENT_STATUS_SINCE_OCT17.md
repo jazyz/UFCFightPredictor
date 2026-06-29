@@ -813,6 +813,103 @@ was chosen from historical diagnostics, so the only decisive evidence would be
 post-freeze paper performance scored without changing the transform, thresholds,
 cap, ranking rule, or stake size.
 
+### Residual Cap Regime Audit
+
+Residual cap-regime audit:
+
+```text
+testing/residual_cap_regime_audit.py
+test_results/residual_cap_regime_audit/residual_cap_regime_audit.md
+test_results/residual_cap_regime_audit/residual_cap_regime_audit.json
+```
+
+This diagnostic decomposes the frozen residual-meta top-edge cap-3 historical
+paper ledger by market regime. It does not retrain, select thresholds, or
+change the frozen policy.
+
+Aggregate cap-3 result:
+
+| Metric | Value |
+| --- | ---: |
+| bets | 262 |
+| events | 99 |
+| profit | +19.12u |
+| ROI | 7.30% |
+| actual - market | 7.68% |
+| event-bootstrap P(profit <= 0) | 0.015 |
+| market-null p-value | 0.001 |
+
+Key regime diagnostics:
+
+| Slice | Bets | Profit | ROI | Market-Null p |
+| --- | ---: | ---: | ---: | ---: |
+| 2024 | 103 | +14.39u | 13.97% | 0.002 |
+| 2025-2026 | 159 | +4.73u | 2.97% | 0.071 |
+| event rank 1 | 99 | +4.99u | 5.04% | 0.075 |
+| event rank 2 | 92 | +14.15u | 15.38% | 0.001 |
+| event rank 3 | 71 | -0.02u | -0.03% | 0.293 |
+| market P < 0.60 | 31 | +12.31u | 39.71% | 0.001 |
+| 2025-2026 and market P < 0.60 | 21 | +9.13u | 43.48% | 0.003 |
+| residual edge 0.03-0.05 | 137 | +16.63u | 12.14% | 0.001 |
+| residual edge >= 0.08 | 4 | -0.55u | -13.74% | 0.553 |
+| middle/welter | 79 | +15.99u | 20.24% | <0.001 |
+| light/feather | 81 | -6.36u | -7.85% | 0.701 |
+
+Interpretation: the aggregate cap-3 result remains directionally interesting,
+but it is not a broad regime-invariant edge. Rank `2` carried most of the
+event-rank profit, rank `3` was flat, the recent lower-confidence favorite
+pocket is only `21` bets, and removing the top `15` positive events erases
+aggregate profit. This is useful for monitoring, not permission to carve a new
+live slice from the historical ledger.
+
+### Residual Slice Validation Audit
+
+Residual slice-validation audit:
+
+```text
+testing/residual_slice_validation_audit.py
+test_results/residual_slice_validation_audit/residual_slice_validation_audit.md
+test_results/residual_slice_validation_audit/residual_slice_validation_audit.json
+```
+
+This audit checks whether simple residual slices selected from earlier
+outcomes survive later periods. The candidate menus are fixed before the audit:
+probability slices use market-probability bins, absolute residual-edge bins,
+edge direction, and title group; betting slices use market-probability bins,
+residual-edge bins, model-probability bins, title group, plus `all`.
+Market-null simulations rerun the same slice-selection procedure.
+
+Probability-slice validation:
+
+| Protocol | Selected Slice | Evaluation | Fights | Delta LL | Market-Null p |
+| --- | --- | --- | ---: | ---: | ---: |
+| 2024 selects, 2025-2026 evaluates | market P 0.70-0.80 | 2025-2026 | 50 | -0.0135 | 0.788 |
+| rolling prior-fold selection | mixed prior-fold slices | folds 2-5 | 89 | +0.0095 | 0.067 |
+
+Rolling probability selections:
+
+| Eval Fold | Selected Slice | Eval Fights | Eval Delta LL |
+| ---: | --- | ---: | ---: |
+| 2 | abs edge 0.05-0.08 | 41 | +0.0406 |
+| 3 | market P 0.70-0.80 | 15 | -0.0066 |
+| 4 | market P 0.70-0.80 | 16 | +0.0035 |
+| 5 | market P 0.70-0.80 | 17 | -0.0458 |
+
+Capped-bet slice validation:
+
+| Protocol | Selected Slice | Evaluation | Bets | Profit | ROI | Market-Null p |
+| --- | --- | --- | ---: | ---: | ---: | ---: |
+| 2024 selects, 2025-2026 evaluates | all cap-3 bets | 2025-2026 | 159 | +4.73u | 2.97% | 0.049 |
+| rolling prior-fold selection | all cap-3 bets every fold | folds 2-5 | 195 | +11.75u | 6.03% | 0.003 |
+
+Interpretation: this mostly validates the existing capped residual monitoring
+idea rather than a new slice. The 2024-selected probability slice fails badly
+out of period, and rolling probability selection is only marginal after
+market-null selection adjustment. The capped-bet selector simply chose `all`
+cap-3 bets in every rolling fold, which supports the frozen cap-3 policy
+diagnostic but does not solve the recent fold weakness: fold `5` remained
+negative at `-1.78u`.
+
 ### Residual Meta PnL Audit
 
 Residual meta PnL audit:
@@ -1436,6 +1533,17 @@ The most honest read:
 - the event-cap ranking rule itself has support: for the frozen residual-meta
   ledger, top residual-edge cap `3` made `+19.12u` versus a random-cap mean of
   `+6.63u`, with `P(random >= top edge) = 0.004`
+- cap-regime diagnostics weaken a broad live-edge claim: the frozen
+  residual-meta cap-3 result remains `+19.12u` aggregate, but 2025-2026 is
+  only `+4.73u` with market-null p `0.071`, rank `3` is flat, extreme
+  residual edge `>=0.08` is negative, and removing the top `15` events erases
+  aggregate profit
+- prior-period slice validation does not rescue the recency issue: the
+  2024-selected probability slice loses in 2025-2026, rolling probability
+  selection is only marginal with market-null p `0.067`, and the rolling
+  capped-bet selector simply chooses all cap-3 bets every fold; it remains
+  positive (`+11.75u`, market-null p `0.003`) but the latest fold is still
+  negative
 - nested residual-meta PnL tests are positive across objective sensitivities,
   but their best selection-adjusted market-null p-value is only `0.066`
   before correcting for three inspected objectives
@@ -1607,6 +1715,14 @@ Validation:
 - the residual recent-stress audit regenerated cleanly; selected-shrinkage
   probability delta was `-0.0032` over the last 365 days, and frozen
   residual-meta cap-3 PnL was only `+0.38u` over the last 365 days
+- the residual cap-regime audit decomposed the frozen cap-3 ledger; aggregate
+  remained `+19.12u`, but 2025-2026 fell to `+4.73u`, event rank `3` was
+  flat, and the lower-confidence favorite pocket was only `21` recent bets
+- the residual slice-validation audit ran prior-period slice selection with
+  market-null reruns; the 2024-selected probability slice failed in
+  2025-2026, rolling probability selection was marginal at p `0.067`, and
+  rolling capped-bet selection chose all cap-3 bets every fold for `+11.75u`
+  with market-null p `0.003`
 
 Current operational caveat: the checked-in `data/predict_fights_alpha.csv` is
 stale and fails the live feature-range guard with out-of-training-range values.

@@ -1,0 +1,341 @@
+{
+  "probabilities_path": "test_results/residual_shrinkage_audit/holdout_shrinkage_predictions.csv",
+  "ranked_bets_path": "test_results/residual_event_cap_ranking_audit/ranked_cap_bets.csv",
+  "probability_policy": "selected_shrinkage",
+  "bet_policy": "frozen_residual_meta_top_edge_cap3",
+  "min_dev_fights": 30,
+  "min_dev_bets": 15,
+  "market_null_iterations": 10000,
+  "seed": 20260629,
+  "candidate_counts": {
+    "probability": 20,
+    "betting": 18
+  },
+  "probability": {
+    "selection_2024_to_2025_2026": {
+      "selected": {
+        "family": "market_bin",
+        "name": "market_0.70_0.80"
+      },
+      "top_dev_candidates": [
+        {
+          "family": "market_bin",
+          "name": "market_0.70_0.80",
+          "count": 33,
+          "score": 0.0580372381880283
+        },
+        {
+          "family": "abs_edge_bin",
+          "name": "abs_edge_0.05_0.08",
+          "count": 89,
+          "score": 0.04226357640159621
+        },
+        {
+          "family": "title_group",
+          "name": "middle_or_welter",
+          "count": 85,
+          "score": 0.02937157679520485
+        },
+        {
+          "family": "edge_direction",
+          "name": "meta_up_on_red",
+          "count": 161,
+          "score": 0.018836854267830973
+        },
+        {
+          "family": "market_bin",
+          "name": "market_0.50_0.60",
+          "count": 35,
+          "score": 0.012272377339229923
+        },
+        {
+          "family": "market_bin",
+          "name": "market_0.60_0.70",
+          "count": 50,
+          "score": 0.009862896231589478
+        },
+        {
+          "family": "all",
+          "name": "all",
+          "count": 275,
+          "score": 0.009834906915892293
+        },
+        {
+          "family": "title_group",
+          "name": "bantam_or_fly",
+          "count": 59,
+          "score": 0.006800469052738754
+        }
+      ],
+      "dev_2024": {
+        "fights": 33,
+        "events": 22,
+        "market_log_loss": 0.37139798309200334,
+        "candidate_log_loss": 0.3133607449039751,
+        "delta_log_loss": 0.0580372381880283,
+        "sum_delta": 1.9152288602049339
+      },
+      "eval_2025_2026": {
+        "fights": 50,
+        "events": 40,
+        "market_log_loss": 0.567164421844015,
+        "candidate_log_loss": 0.5806372946488003,
+        "delta_log_loss": -0.013472872804785334,
+        "sum_delta": -0.6736436402392667
+      },
+      "eval_last_365d": {
+        "fights": 37,
+        "events": 29,
+        "market_log_loss": 0.5831359846335078,
+        "candidate_log_loss": 0.6054470913300397,
+        "delta_log_loss": -0.022311106696531916,
+        "sum_delta": -0.8255109477716809
+      },
+      "aggregate_same_slice": {
+        "fights": 83,
+        "events": 62,
+        "market_log_loss": 0.4893295727016489,
+        "candidate_log_loss": 0.4743707146297734,
+        "delta_log_loss": 0.014958858071875506,
+        "sum_delta": 1.241585219965667
+      },
+      "market_null_p": 0.7882211778822118
+    },
+    "rolling_prior_fold_selection": {
+      "folds": [
+        {
+          "eval_fold": 2,
+          "selected_family": "abs_edge_bin",
+          "selected_name": "abs_edge_0.05_0.08",
+          "dev_count": 56,
+          "eval_count": 41,
+          "dev_score": 0.0365379117530424,
+          "eval_summary": {
+            "fights": 41,
+            "events": 19,
+            "market_log_loss": 0.48335345284695597,
+            "candidate_log_loss": 0.4427676631868421,
+            "delta_log_loss": 0.040585789660113995,
+            "sum_delta": 1.6640173760646737
+          }
+        },
+        {
+          "eval_fold": 3,
+          "selected_family": "market_bin",
+          "selected_name": "market_0.70_0.80",
+          "dev_count": 35,
+          "eval_count": 15,
+          "dev_score": 0.05896371324968345,
+          "eval_summary": {
+            "fights": 15,
+            "events": 14,
+            "market_log_loss": 0.5610671660577929,
+            "candidate_log_loss": 0.5677001467183984,
+            "delta_log_loss": -0.006632980660605466,
+            "sum_delta": -0.09949470990908199
+          }
+        },
+        {
+          "eval_fold": 4,
+          "selected_family": "market_bin",
+          "selected_name": "market_0.70_0.80",
+          "dev_count": 50,
+          "eval_count": 16,
+          "dev_score": 0.039284705076596774,
+          "eval_summary": {
+            "fights": 16,
+            "events": 12,
+            "market_log_loss": 0.48556500356933496,
+            "candidate_log_loss": 0.48206134650461036,
+            "delta_log_loss": 0.0035036570647245437,
+            "sum_delta": 0.0560585130355927
+          }
+        },
+        {
+          "eval_fold": 5,
+          "selected_family": "market_bin",
+          "selected_name": "market_0.70_0.80",
+          "dev_count": 66,
+          "eval_count": 17,
+          "dev_score": 0.030610511619173202,
+          "eval_summary": {
+            "fights": 17,
+            "events": 13,
+            "market_log_loss": 0.6840872807682389,
+            "candidate_log_loss": 0.7298936658799896,
+            "delta_log_loss": -0.04580638511175083,
+            "sum_delta": -0.7787085468997641
+          }
+        }
+      ],
+      "combined_eval": {
+        "fights": 89,
+        "events": 58,
+        "market_log_loss": 0.5351912684018147,
+        "candidate_log_loss": 0.5257320253423605,
+        "delta_log_loss": 0.009459243059454161,
+        "sum_delta": 0.8418726322914203
+      },
+      "market_null_p": 0.06729327067293271
+    }
+  },
+  "betting": {
+    "selection_2024_to_2025_2026": {
+      "selected": {
+        "family": "all",
+        "name": "all"
+      },
+      "top_dev_candidates": [
+        {
+          "family": "all",
+          "name": "all",
+          "count": 103,
+          "score": 14.386960468640321
+        },
+        {
+          "family": "title_group",
+          "name": "middle_or_welter",
+          "count": 31,
+          "score": 10.46837142240574
+        },
+        {
+          "family": "edge_bin",
+          "name": "edge_0.03_0.05",
+          "count": 70,
+          "score": 10.216409800925948
+        },
+        {
+          "family": "market_bin",
+          "name": "market_0.70_0.80",
+          "count": 37,
+          "score": 5.894443913176308
+        },
+        {
+          "family": "probability_bin",
+          "name": "prob_0.70_0.80",
+          "count": 45,
+          "score": 5.522103635135168
+        },
+        {
+          "family": "edge_bin",
+          "name": "edge_0.05_0.08",
+          "count": 27,
+          "score": 5.141635378603758
+        },
+        {
+          "family": "probability_bin",
+          "name": "prob_0.65_0.70",
+          "count": 24,
+          "score": 4.756103280058616
+        },
+        {
+          "family": "market_bin",
+          "name": "market_0.60_0.70",
+          "count": 45,
+          "score": 3.7421650053875846
+        }
+      ],
+      "dev_2024": {
+        "bets": 103,
+        "events": 39,
+        "profit": 14.386960468640321,
+        "roi": 0.1396792278508769,
+        "actual_minus_market": 0.1279389990146036
+      },
+      "eval_2025_2026": {
+        "bets": 159,
+        "events": 60,
+        "profit": 4.729401438008564,
+        "roi": 0.029744663132129333,
+        "actual_minus_market": 0.043592281685269074
+      },
+      "eval_last_365d": {
+        "bets": 105,
+        "events": 39,
+        "profit": 0.3831254299559499,
+        "roi": 0.0036488136186280944,
+        "actual_minus_market": 0.025497254431451455
+      },
+      "aggregate_same_slice": {
+        "bets": 262,
+        "events": 99,
+        "profit": 19.11636190664889,
+        "roi": 0.07296321338415607,
+        "actual_minus_market": 0.07675148735290827
+      },
+      "market_null_p": 0.049095090490950906
+    },
+    "rolling_prior_fold_selection": {
+      "folds": [
+        {
+          "eval_fold": 2,
+          "selected_family": "all",
+          "selected_name": "all",
+          "dev_count": 67,
+          "eval_count": 44,
+          "dev_score": 7.366980713091914,
+          "eval_summary": {
+            "bets": 44,
+            "events": 19,
+            "profit": 6.977209454129518,
+            "roi": 0.15857294213930723,
+            "actual_minus_market": 0.13626478832428324
+          }
+        },
+        {
+          "eval_fold": 3,
+          "selected_family": "all",
+          "selected_name": "all",
+          "dev_count": 111,
+          "eval_count": 60,
+          "dev_score": 14.344190167221432,
+          "eval_summary": {
+            "bets": 60,
+            "events": 23,
+            "profit": 3.7061969956615286,
+            "roi": 0.06176994992769214,
+            "actual_minus_market": 0.06981494520286124
+          }
+        },
+        {
+          "eval_fold": 4,
+          "selected_family": "all",
+          "selected_name": "all",
+          "dev_count": 171,
+          "eval_count": 46,
+          "dev_score": 18.05038716288296,
+          "eval_summary": {
+            "bets": 46,
+            "events": 17,
+            "profit": 2.8411543072537615,
+            "roi": 0.061764224070733946,
+            "actual_minus_market": 0.0711382021166923
+          }
+        },
+        {
+          "eval_fold": 5,
+          "selected_family": "all",
+          "selected_name": "all",
+          "dev_count": 217,
+          "eval_count": 45,
+          "dev_score": 20.891541470136723,
+          "eval_summary": {
+            "bets": 45,
+            "events": 17,
+            "profit": -1.775179563487834,
+            "roi": -0.03944843474417409,
+            "actual_minus_market": -0.014871615417120343
+          }
+        }
+      ],
+      "combined_eval": {
+        "bets": 195,
+        "events": 76,
+        "profit": 11.749381193556976,
+        "roi": 0.060253236890035776,
+        "actual_minus_market": 0.06557785642070557
+      },
+      "market_null_p": 0.0027997200279972004
+    }
+  }
+}
