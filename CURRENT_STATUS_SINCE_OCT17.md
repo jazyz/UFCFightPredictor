@@ -1711,6 +1711,56 @@ proxies, not literal fight-skill concepts. The next feature-engineering work
 should focus on redesigning or ablating these muddy percentage/target-mix
 features before adding broader capacity.
 
+### Feature Semantic Ablation Audit
+
+Feature semantic-ablation audit:
+
+```text
+testing/feature_semantic_ablation_audit.py
+test_results/feature_semantic_ablation_audit/feature_semantic_ablation_audit.md
+test_results/feature_semantic_ablation_audit/feature_semantic_ablation_audit.json
+```
+
+This audit removes the feature families flagged by the semantic-integrity
+audit, writes ablated feature tables under `test_results`, and reruns the same
+regularized leak-safe LightGBM backtests. Production feature data is unchanged.
+
+Ablation variants:
+
+| Variant | Dropped Columns | Description |
+| --- | ---: | --- |
+| `drop_target_mix_defense` | 18 | drops target/position-mix defense proxies such as `Head% defense` and `Leg% defense` |
+| `drop_muddy_pct_and_dob` | 48 | drops target-mix defense proxies, side percentage proxies scaled by elapsed fight time, and raw DOB proxies |
+| `drop_all_percentage` | 81 | drops all percentage-derived columns |
+
+One-year leak-safe results:
+
+| Variant | Accuracy | Model LL | Market LL | Profit |
+| --- | ---: | ---: | ---: | ---: |
+| current regularized | 64.43% | 0.6418 | 0.6127 | +24.66% |
+| drop target-mix defense | 62.08% | 0.6414 | 0.6127 | +3.45% |
+| drop muddy pct and DOB | 64.43% | 0.6450 | 0.6127 | +20.13% |
+| drop all percentage | 63.09% | 0.6543 | 0.6127 | -5.72% |
+
+Two-year leak-safe results:
+
+| Variant | Accuracy | Model LL | Market LL | Profit |
+| --- | ---: | ---: | ---: | ---: |
+| current regularized | 65.00% | 0.6318 | 0.5995 | +61.20% |
+| drop target-mix defense | 64.83% | 0.6304 | 0.5995 | +50.30% |
+| drop muddy pct and DOB | 66.90% | 0.6335 | 0.5995 | +78.75% |
+| drop all percentage | 65.17% | 0.6366 | 0.5995 | +20.28% |
+
+Interpretation: do not promote a feature ablation yet. The narrow
+target-mix-defense drop is the cleaner probability candidate because it
+slightly improves log loss in both windows, but it sharply reduces PnL. The
+broader `drop_muddy_pct_and_dob` variant has a tempting two-year PnL gain and
+accuracy gain, but it worsens log loss and is weaker over one year. Removing
+all percentage features is clearly harmful. Every variant still trails the
+de-vigged market on aligned log loss, so the honest next step is nested
+validation of the narrow probability cleanup and/or a redesigned
+fight-interpretable percentage feature family.
+
 ### Market Disagreement Audit
 
 Disagreement audit:
@@ -1954,6 +2004,12 @@ The most honest read:
   supervised rows, `69,152` core state checks, and active side-swap coverage
   all matched; the concern is semantic quality, especially percentage/defense
   proxies such as target/position-mix defense columns
+- targeted semantic ablations are mixed: dropping target/position-mix defense
+  proxies slightly improved regularized model log loss in both 1y (`0.6414`
+  vs `0.6418`) and 2y (`0.6304` vs `0.6318`) windows but reduced PnL, while
+  dropping the broader muddy percentage/DOB family improved 2y PnL
+  (`+78.75%` vs `+61.20%`) at worse log loss and weaker 1y evidence; no
+  ablation beat de-vigged market log loss
 - recent-form/activity feature engineering did not help: adding 128 leak-safe
   last-3/last-5 and recent-activity columns worsened one-year and two-year log
   loss and sharply reduced PnL versus the current regularized feature set
@@ -2234,6 +2290,11 @@ Validation:
   mismatches, complete active side-swap counterpart coverage, and no same-day
   prior fighter-state rows, while flagging active percentage/defense proxy
   families for future ablation/redesign
+- the feature semantic-ablation audit ran six regularized leak-safe backtests
+  over three ablated feature tables; the narrow target-mix-defense drop
+  improved model log loss slightly but reduced PnL, the broader muddy
+  percentage/DOB drop improved 2y PnL but worsened log loss, and every variant
+  still trailed de-vigged market log loss
 - the residual recent-stress audit regenerated cleanly; selected-shrinkage
   probability delta was `-0.0032` over the last 365 days, and frozen
   residual-meta cap-3 PnL was only `+0.38u` over the last 365 days
