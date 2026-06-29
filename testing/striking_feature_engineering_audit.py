@@ -202,6 +202,58 @@ def update_pace_state(states: defaultdict[str, PaceState], row: pd.Series) -> No
         blue_state.sums[f"{base} differential_pf"] += (blue_value - red_value) * blue_weight
 
 
+def pace_feature_values(states: dict[str, PaceState], red_key: str, blue_key: str) -> dict:
+    record = {}
+    for base in RATE_BASES:
+        record[f"{base} for_pm oppdiff"] = oppdiff_value(
+            states,
+            red_key,
+            blue_key,
+            f"{base} for_pm",
+        )
+        record[f"{base} against_pm oppdiff"] = oppdiff_value(
+            states,
+            red_key,
+            blue_key,
+            f"{base} against_pm",
+        )
+        record[f"{base} differential_pm oppdiff"] = oppdiff_value(
+            states,
+            red_key,
+            blue_key,
+            f"{base} differential_pm",
+        )
+    for base in COUNT_DIFF_BASES:
+        record[f"{base} differential_pf oppdiff"] = oppdiff_value(
+            states,
+            red_key,
+            blue_key,
+            f"{base} differential_pf",
+        )
+    return record
+
+
+def build_current_pace_features(
+    source: pd.DataFrame,
+    feature_rows: pd.DataFrame,
+    through_date=None,
+) -> pd.DataFrame:
+    states: defaultdict[str, PaceState] = defaultdict(PaceState)
+    cutoff = pd.Timestamp(through_date).normalize() if through_date else None
+    for source_row in chronological_source_rows(source):
+        event_date = parse_date(source_row.get("Date"))
+        if cutoff is not None and event_date is not None and event_date > cutoff:
+            continue
+        update_pace_state(states, source_row)
+
+    records = []
+    for _, row in feature_rows.iterrows():
+        red_key = canonical_fighter_key(row.get("Red Fighter", ""))
+        blue_key = canonical_fighter_key(row.get("Blue Fighter", ""))
+        records.append(pace_feature_values(states, red_key, blue_key))
+    return pd.DataFrame(records, index=feature_rows.index)
+
+
 def build_pace_features(source: pd.DataFrame, features: pd.DataFrame, tolerance: float = 1e-8) -> tuple[pd.DataFrame, dict]:
     queues = feature_queues(features)
     states: defaultdict[str, PaceState] = defaultdict(PaceState)
@@ -245,29 +297,9 @@ def build_pace_features(source: pd.DataFrame, features: pd.DataFrame, tolerance:
                     "Blue Fighter": feature_row["Blue Fighter"],
                 }
 
+                record.update(pace_feature_values(states, feature_red_key, feature_blue_key))
                 for base in RATE_BASES:
                     for_pm_feature = f"{base} for_pm"
-                    against_pm_feature = f"{base} against_pm"
-                    diff_pm_feature = f"{base} differential_pm"
-                    record[f"{base} for_pm oppdiff"] = oppdiff_value(
-                        states,
-                        feature_red_key,
-                        feature_blue_key,
-                        for_pm_feature,
-                    )
-                    record[f"{base} against_pm oppdiff"] = oppdiff_value(
-                        states,
-                        feature_red_key,
-                        feature_blue_key,
-                        against_pm_feature,
-                    )
-                    record[f"{base} differential_pm oppdiff"] = oppdiff_value(
-                        states,
-                        feature_red_key,
-                        feature_blue_key,
-                        diff_pm_feature,
-                    )
-
                     for side, fighter_key in (("Red", feature_red_key), ("Blue", feature_blue_key)):
                         expected = state_value(states[fighter_key], for_pm_feature)
                         actual = safe_float(feature_row.get(f"{side} {base}"))
@@ -279,13 +311,6 @@ def build_pace_features(source: pd.DataFrame, features: pd.DataFrame, tolerance:
                         if error > tolerance:
                             side_rate_mismatches += 1
 
-                for base in COUNT_DIFF_BASES:
-                    record[f"{base} differential_pf oppdiff"] = oppdiff_value(
-                        states,
-                        feature_red_key,
-                        feature_blue_key,
-                        f"{base} differential_pf",
-                    )
                 records.append(record)
 
         update_pace_state(states, source_row)

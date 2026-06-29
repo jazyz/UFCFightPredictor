@@ -2343,6 +2343,66 @@ the profit selector's event-bootstrap support is marginal, and the feature
 family was designed after prior striking-core discoveries. This is stronger
 historical evidence, not a live-edge proof or a production policy change.
 
+### Frozen Pace-Adjusted Striking Challenger Paper Policy
+
+Frozen challenger paper policy:
+
+```text
+test_results/frozen_pace_adjusted_striking_challenger_paper_policy/frozen_pace_adjusted_striking_challenger_paper_policy.md
+test_results/frozen_pace_adjusted_striking_challenger_paper_policy/frozen_pace_adjusted_striking_challenger_paper_policy.json
+```
+
+This freezes the best fixed PnL variant from the pace-adjusted
+feature-engineering audit for future pre-outcome paper tracking. It does not
+replace the already frozen `mixed_sig_head_core` or `sigpct_head` policies.
+The challenger uses:
+
+```text
+market_logit
++ Sig. str.% differential oppdiff
++ Sig. str. differential_pm oppdiff
++ Head differential_pm oppdiff
+```
+
+Frozen scoring contract:
+
+- men-only universe; do not train on or evaluate women's fights
+- fit L2 logistic regression with `C = 0.1`
+- reconstruct the `*_differential_pm` pace-adjusted columns from
+  chronological `data/modified_fight_details.csv`
+- for historical training rows, compute pace features from source state before
+  the fight being labeled
+- for upcoming fight rows, compute pace features only through the training
+  cutoff, not through a future card date
+- use red/blue mirrored training and mirrored probability averaging
+- select the side with highest `policy probability - market probability`
+- paper bet only when selected edge is at least `2.00%`
+- flat `1u` stake
+- no event cap
+
+Generate separate challenger ledgers with:
+
+```bash
+.venv/bin/python testing/score_frozen_striking_core_policy.py \
+  --policy test_results/frozen_pace_adjusted_striking_challenger_paper_policy/frozen_pace_adjusted_striking_challenger_paper_policy.json \
+  --fights path/to/fight_card_odds.csv \
+  --event-key unique-event-key \
+  --fight-card-link https://example.com/card \
+  --output-csv test_results/forward_paper_tracking/latest_pace_adjusted_striking_challenger_paper_bets.csv \
+  --output-json test_results/forward_paper_tracking/latest_pace_adjusted_striking_challenger_paper_bets.json
+```
+
+Rationale: fixed `pace_adjusted_mixed_core` had the best uncapped historical
+PnL in the pace-adjusted audit (`+41.97u`, `6.04%` ROI, conditional
+market-null p `0.001`) while remaining essentially tied with the mixed core on
+probability (`+0.0068` market delta LL, `+0.0028` Brier delta, `6/7` positive
+folds). The rolling selection-null audit was supportive for the inspected
+feature family: p `0.015` for the probability selector and p `0.040` for the
+profit selector. Caveat: this challenger was motivated by prior striking
+feature research, its rolling probability selector had weak event-bootstrap
+support, and it has no post-freeze evidence. Treat it as future
+paper-tracking only, not a live staking claim.
+
 ### Frozen SigPct-Head Challenger Paper Policy
 
 Frozen challenger paper policy:
@@ -2906,6 +2966,11 @@ The most honest read:
   selection-null p `0.015` and the rolling profit selector had selection-null p
   `0.040`; event-bootstrap support remained weak/marginal, and the feature
   family was designed after prior striking-core discovery
+- a separate frozen pace-adjusted striking challenger paper policy now exists
+  for future pre-outcome tracking; it uses source-derived
+  `Sig. str. differential_pm oppdiff` and `Head differential_pm oppdiff`,
+  fixed `2.00%` positive-edge threshold, flat `1u` stake, and no event cap,
+  while computing future-card pace features only through the training cutoff
 - a separate frozen `sigpct_head|all` challenger paper policy now exists for
   future pre-outcome tracking; it uses `market_logit`, `Sig. str.% differential
   oppdiff`, and `Head differential oppdiff`, fixed `2.00%` positive-edge
@@ -3100,10 +3165,12 @@ men-only filtering, and fight-context meaning. The goal is to distinguish
 features that genuinely describe ways fighters win from generator artifacts
 that merely worked historically.
 
-Immediate follow-up: the pace-adjusted selection-null audit is now complete
-and supportive at the 200-path level, but it should still stay discovery-only
-unless converted into a frozen challenger and judged on future pre-outcome
-paper evidence.
+Immediate follow-up: the pace-adjusted challenger is now frozen, so the next
+research work should be deeper feature engineering and feature correctness
+rather than another staking-policy tweak. Focus first on high-signal striking
+features and the current market-residual inputs, with explicit checks for
+source semantics, chronology, orientation, units, missingness, and fight
+context.
 
 ## Independent PnL Investigation Update
 
@@ -3182,6 +3249,10 @@ Operational PnL implementation update:
   frozen `sigpct_head` challenger policy:
   `test_results/forward_paper_tracking/latest_sigpct_head_challenger_paper_bets.csv`
   and `.json`
+- the same scorer can also generate separate pre-outcome paper ledgers for the
+  frozen pace-adjusted striking challenger policy:
+  `test_results/forward_paper_tracking/latest_pace_adjusted_striking_challenger_paper_bets.csv`
+  and `.json`
 
 Validation:
 
@@ -3189,7 +3260,9 @@ Validation:
   `predict_single_model.py`, `load_ensemble.py`, and
   `utils/production_predictions.py`
 - compile check passed for `testing/score_frozen_residual_event_cap_policy.py`
-- compile check passed for `testing/score_frozen_striking_core_policy.py`
+- compile check passed for `testing/score_frozen_striking_core_policy.py`,
+  including source-derived pace feature support for the frozen pace-adjusted
+  challenger
 - compile check passed for `testing/striking_feature_forensics_audit.py`
 - compile check passed for `testing/striking_core_robustness_selection_audit.py`
 - compile check passed for `testing/striking_core_betting_calibration_audit.py`
@@ -3223,6 +3296,11 @@ Validation:
   aligned historical rows, scored a two-fight temporary card, wrote compatible
   CSV/JSON ledgers under `/private/tmp`, and generated a settlement outcome
   template
+- a frozen pace-adjusted striking challenger scorer smoke test trained on
+  `1,223` aligned historical rows, reconstructed source-derived pace features,
+  scored a two-fight temporary card, wrote compatible CSV/JSON ledgers under
+  `/private/tmp`, generated a settlement outcome template, and settled a
+  synthetic result
 - the striking feature forensics audit regenerated cleanly; the exact frozen
   striking-core features reconstructed with `0` hard mismatches, non-binary
   source outcomes affected later target-feature state on `1,138` supervised

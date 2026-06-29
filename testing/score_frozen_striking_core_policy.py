@@ -23,6 +23,11 @@ from testing.market_aware_feature_audit import aligned_market_feature_frame, fit
 from testing.market_residual_meta_audit import logit  # noqa: E402
 from testing.no_leakage_backtest import load_known_women_fighter_keys  # noqa: E402
 from testing.statistical_edge_audit import net_odds, parse_odds  # noqa: E402
+from testing.striking_feature_engineering_audit import (  # noqa: E402
+    add_pace_features,
+    build_current_pace_features,
+    build_pace_features,
+)
 from utils.name_matching import canonical_name  # noqa: E402
 
 
@@ -31,6 +36,7 @@ DEFAULT_UPCOMING_FEATURES = "data/predict_fights_alpha.csv"
 DEFAULT_HISTORICAL_FEATURES = "data/detailed_fights.csv"
 DEFAULT_ODDS_HISTORY = "data/fight_results_with_odds.csv"
 DEFAULT_FIGHT_DETAILS = "data/fight_details_date.csv"
+DEFAULT_SOURCE_FIGHTS = "data/modified_fight_details.csv"
 DEFAULT_OUTPUT_CSV = "test_results/forward_paper_tracking/latest_striking_core_paper_bets.csv"
 DEFAULT_OUTPUT_JSON = "test_results/forward_paper_tracking/latest_striking_core_paper_bets.json"
 
@@ -88,6 +94,7 @@ def parse_args():
     parser.add_argument("--historical-features", default=DEFAULT_HISTORICAL_FEATURES)
     parser.add_argument("--historical-odds", default=DEFAULT_ODDS_HISTORY)
     parser.add_argument("--fight-details-source", default=DEFAULT_FIGHT_DETAILS)
+    parser.add_argument("--source-fights", default=DEFAULT_SOURCE_FIGHTS)
     parser.add_argument("--min-training-date", default="2009-01-01")
     parser.add_argument(
         "--train-through",
@@ -147,6 +154,25 @@ def row_fight_index(row: pd.Series, fallback: int):
     return value
 
 
+def needs_source_derived_pace(policy: dict) -> bool:
+    return str(policy.get("feature_engineering", "")).strip() == "source_derived_pace"
+
+
+def augment_historical_training(train_df: pd.DataFrame, args, policy: dict) -> pd.DataFrame:
+    if not needs_source_derived_pace(policy):
+        return train_df
+    source = pd.read_csv(args.source_fights)
+    features = pd.read_csv(args.historical_features)
+    pace_features, _ = build_pace_features(source, features)
+    augmented, metadata = add_pace_features(train_df, pace_features)
+    if metadata["aligned_rows_missing_pace_features"]:
+        raise SystemExit(
+            "Historical training data missing source-derived pace features for "
+            f"{metadata['aligned_rows_missing_pace_features']} rows"
+        )
+    return augmented
+
+
 def load_historical_training(args, policy: dict) -> pd.DataFrame:
     align_args = SimpleNamespace(
         features=args.historical_features,
@@ -161,19 +187,33 @@ def load_historical_training(args, policy: dict) -> pd.DataFrame:
         aligned = aligned[aligned["event_date"] <= pd.Timestamp(args.train_through)].copy()
     if aligned.empty:
         raise SystemExit("No historical aligned rows available for striking-core training")
-    return aligned.sort_values(["event_date", "fight_key"]).reset_index(drop=True)
+    aligned = aligned.sort_values(["event_date", "fight_key"]).reset_index(drop=True)
+    return augment_historical_training(aligned, args, policy)
 
 
 def feature_pair_key(fighter1, fighter2) -> frozenset[str]:
     return frozenset({canonical_name(fighter1), canonical_name(fighter2)})
 
 
-def load_upcoming_features(path: str) -> dict[frozenset[str], list[dict]]:
+def augment_upcoming_features(df: pd.DataFrame, args, policy: dict, train_df: pd.DataFrame) -> pd.DataFrame:
+    if not needs_source_derived_pace(policy):
+        return df
+    source = pd.read_csv(args.source_fights)
+    train_through = pd.Timestamp(train_df["event_date"].max()).normalize()
+    pace = build_current_pace_features(source, df, train_through)
+    augmented = df.copy()
+    for column in pace.columns:
+        augmented[column] = pace[column]
+    return augmented
+
+
+def load_upcoming_features(path: str, args, policy: dict, train_df: pd.DataFrame) -> dict[frozenset[str], list[dict]]:
     df = pd.read_csv(path)
     required = {"Red Fighter", "Blue Fighter"}
     missing = required - set(df.columns)
     if missing:
         raise SystemExit(f"{path} is missing feature columns: {sorted(missing)}")
+    df = augment_upcoming_features(df, args, policy, train_df)
     rows: dict[frozenset[str], list[dict]] = {}
     for _, row in df.iterrows():
         key = feature_pair_key(row["Red Fighter"], row["Blue Fighter"])
@@ -434,7 +474,7 @@ def main():
     _, missing = policy_columns(policy, train_df)
     if missing:
         raise SystemExit(f"Historical training data missing policy columns: {missing}")
-    feature_rows = load_upcoming_features(args.upcoming_features)
+    feature_rows = load_upcoming_features(args.upcoming_features, args, policy, train_df)
     women_fighter_keys = set()
     if not bool(policy.get("include_womens_fights", False)):
         women_fighter_keys = load_known_women_fighter_keys(args.fight_details_source)
