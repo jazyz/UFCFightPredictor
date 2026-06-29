@@ -1829,6 +1829,63 @@ the prior one-feature audit. Treat this as promising discovery evidence for a
 narrow striking-differential redesign, not as a live-edge claim or production
 feature change.
 
+### Striking Group Rolling Selection Audit
+
+Striking group rolling-selection audit:
+
+```text
+testing/striking_group_rolling_selection_audit.py
+test_results/striking_group_rolling_selection_audit/striking_group_rolling_selection_audit.md
+test_results/striking_group_rolling_selection_audit/striking_group_rolling_selection_audit.json
+```
+
+This stricter follow-up asks whether the grouped striking signal survives a
+prior-fold selection rule. Fold `2` is used only as prior evidence; evaluation
+starts at fold `3`. For each later fold, the selector chooses the grouped
+striking variant with the best mean prior fold delta. The report was
+regenerated with `300` market-null refits.
+
+Protocol:
+
+- rolling selection evaluation folds: `3`, `4`, `5`
+- rolling selection fights: `409`
+- grouped variants available to selector: `9`
+- bootstrap iterations: `20,000`
+- market-null iterations: `300`
+
+Rolling selected policies:
+
+| Policy | Market Delta LL | Inc Delta vs Recal | Positive Folds | Bootstrap P(inc <= 0) | Null p(market) | Null p(inc) | Latest Inc Delta |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| incremental-delta selector | +0.0071 | +0.0079 | 3 / 3 | 0.100 | 0.010 | 0.010 | +0.0175 |
+| market-delta selector | +0.0071 | +0.0079 | 3 / 3 | 0.103 | 0.010 | 0.010 | +0.0175 |
+
+Same-fold references:
+
+| Policy | Market Delta LL | Inc Delta vs Recal | Positive Folds | Bootstrap P(inc <= 0) | Latest Inc Delta |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| market recalibrated | -0.0008 | +0.0000 | 1 / 3 | 1.000 | +0.0000 |
+| selected shrinkage | +0.0012 | +0.0020 | 2 / 3 | 0.301 | -0.0012 |
+| fixed-half residual | +0.0018 | +0.0025 | 2 / 3 | 0.130 | +0.0018 |
+| fixed `mixed_sig_head_core` | +0.0105 | +0.0113 | 3 / 3 | 0.014 | +0.0175 |
+
+Selection path:
+
+| Eval Fold | Selected Variant | Prior Inc Score | Eval Inc Delta |
+| ---: | --- | ---: | ---: |
+| 3 | `defense_proxy_clues` | +0.0083 | +0.0052 |
+| 4 | `defense_proxy_clues` | +0.0067 | +0.0013 |
+| 5 | `mixed_sig_head_core` | +0.0064 | +0.0175 |
+
+Interpretation: rolling selection validates the direction of the grouped
+striking clue, but also tempers it. A selector using only prior grouped-audit
+folds remains positive and beats selected shrinkage on the same folds, with
+`300`-refit market-null p `0.010`. However, fixed `mixed_sig_head_core` is
+better on those same folds, and the rolling selector's event-bootstrap
+uncertainty is still high (`P(inc <= 0) = 0.100`). This moves the striking
+group from "interesting post-hoc clue" to "worth a predeclared leak-safe
+backtest," not to a live edge claim.
+
 ### Feature Semantic Integrity Audit
 
 Feature semantic-integrity audit:
@@ -2285,6 +2342,12 @@ The most honest read:
   `P(delta <= 0) = 0.014`, and `300`-refit market-null p `0.003` versus
   recalibration; however the family is post-hoc from the one-feature audit and
   simple nine-variant bootstrap correction would not pass
+- rolling prior-fold selection over the grouped striking variants is also
+  positive but weaker: evaluating only folds `3-5`, the selector made
+  `+0.0071` delta LL versus raw market and `+0.0079` versus recalibration with
+  `3/3` positive folds and `300`-refit market-null p `0.010`, but
+  event-bootstrap `P(delta <= 0) = 0.100` and fixed `mixed_sig_head_core`
+  remained better on the same folds
 - feature-forensics did not find a hard arithmetic or pre-fight-state bug:
   `64` oppdiff pairs, `276,527` row-level diff checks, all `4,322` source
   supervised rows, `69,152` core state checks, and active side-swap coverage
@@ -2621,6 +2684,10 @@ Validation:
   post-hoc group made `+0.0090` market delta LL and `+0.0091` incremental
   delta versus market recalibration, but remains discovery-only pending a
   predeclared leak-safe backtest
+- the striking group rolling-selection audit selected grouped candidates using
+  only prior fold deltas; folds `3-5` stayed positive at `+0.0071` market
+  delta LL and `+0.0079` incremental delta versus recalibration, with
+  market-null p `0.010` but bootstrap `P(delta <= 0) = 0.100`
 - the residual recent-stress audit regenerated cleanly; selected-shrinkage
   probability delta was `-0.0032` over the last 365 days, and frozen
   residual-meta cap-3 PnL was only `+0.38u` over the last 365 days
