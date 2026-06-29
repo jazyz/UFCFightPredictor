@@ -1,6 +1,6 @@
 # Current Status Since Oct 17 Baseline
 
-Date written: 2026-06-28
+Date written: 2026-06-29
 
 ## Baseline
 
@@ -488,6 +488,52 @@ residual-meta configuration. The full-holdout `365d/C=1.0` regularized-residual
 candidate has `+0.0047` delta LL, but a rolling selector over the inspected
 config family only achieves `+0.0005` with weak event-bootstrap support and a
 non-significant rolling market-null p-value.
+
+Residual-meta recency-weight audit:
+
+```text
+testing/residual_meta_recency_weight_audit.py
+test_results/residual_meta_recency_weight_audit/residual_meta_recency_weight_audit.md
+test_results/residual_meta_recency_weight_audit/residual_meta_recency_weight_audit.json
+```
+
+This narrower follow-up asks whether the small residual-meta layer can adapt
+to recent drift by using shorter development windows or exponential recency
+weights. It uses only the saved leak-safe baseline-default and
+regularized-LGBM ledgers, focuses on the regularized residual after prior
+audits found it strongest, and does not retrain the base UFC model.
+
+Best fixed diagnostics:
+
+| Candidate | Fights | Market LL | Meta LL | Delta LL | Positive Folds |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 365d dev, 182d half-life | 704 | 0.6009 | 0.5958 | +0.0050 | 5 / 5 |
+| 365d dev, 365d half-life | 704 | 0.6009 | 0.5960 | +0.0049 | 5 / 5 |
+| 365d dev, unweighted | 704 | 0.6009 | 0.5962 | +0.0047 | 4 / 5 |
+
+On the same folds `2-5`, the fixed `365d` / `182d` half-life candidate made
+`+0.0047` delta LL versus `+0.0041` for the unweighted `365d` meta layer.
+
+Rolling prior-fold recency-meta selection:
+
+| Metric | Value |
+| --- | ---: |
+| eval folds | 4 |
+| fights | 539 |
+| market log loss | 0.6022 |
+| selected meta log loss | 0.5995 |
+| market - selected meta log loss | +0.0026 |
+| positive eval folds | 3 / 4 |
+| latest fold delta LL | -0.0036 |
+| event-bootstrap P(delta <= 0) | 0.286 |
+| rolling market-null p | 0.016 |
+
+Interpretation: recency-weighted residual-meta calibration is the most
+constructive drift-aware meta-layer result so far, but it is still not enough
+to change the frozen residual transform or claim a live edge. The fixed
+half-life candidates are diagnostic; the validation result is the rolling
+prior-fold selector, which has supportive market-null evidence but still has
+event-bootstrap uncertainty and a negative latest fold.
 
 Conservative residual transform freeze:
 
@@ -1864,6 +1910,12 @@ The most honest read:
   `365d/C=1.0` residual-meta run shows `+0.0047` delta LL, rolling selection
   across inspected configs/variants only produces `+0.0005` delta LL with
   event-bootstrap `P(delta <= 0) = 0.458` and rolling market-null p `0.084`
+- residual-meta recency weighting is constructive but still below the edge
+  bar: a fixed `365d` development window with `182d` half-life made `+0.0050`
+  delta LL with `5/5` positive folds, and rolling prior-fold selection over
+  the narrowed recency family made `+0.0026` delta LL with market-null p
+  `0.016`; however event-bootstrap `P(delta <= 0) = 0.286` and the latest fold
+  stayed negative at `-0.0036`
 - residual negative controls support that signal: sign-flipped residuals lose
   badly, and residual permutations rarely match the observed log-loss gain
 - nested residual-shrinkage selection strengthens the probability evidence:
@@ -2106,6 +2158,10 @@ Validation:
 - the residual-meta config-selection audit regenerated cleanly; rolling
   selection over inspected configs/variants made only `+0.0005` delta LL with
   rolling market-null p `0.084`
+- the residual-meta recency-weight audit ran a narrower prior-fold selection
+  over regularized-residual meta candidates; rolling selection made `+0.0026`
+  delta LL with market-null p `0.016`, but event-bootstrap
+  `P(delta <= 0) = 0.286` and the latest fold was still negative
 - the recent-form feature audit built a 4,322-row alternate feature table with
   128 added columns and ran 1y/2y leak-safe backtests; both worsened log loss
   and PnL versus current regularized features
