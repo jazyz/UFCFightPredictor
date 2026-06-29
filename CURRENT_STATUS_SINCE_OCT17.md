@@ -1241,6 +1241,75 @@ The rolling gate underperformed plain selected-shrinkage on the same folds
 (`+0.0012` vs `+0.0028` delta LL) and still failed the latest fold. This is a
 useful drift clue, not a validated transform.
 
+### Residual Feature Drift Audit
+
+Residual feature-drift audit:
+
+```text
+testing/residual_feature_drift_audit.py
+test_results/residual_feature_drift_audit/residual_feature_drift_audit.md
+test_results/residual_feature_drift_audit/residual_feature_drift_audit.json
+```
+
+This diagnostic merges all `704` residual-shrinkage holdout predictions back
+to `data/detailed_fights.csv`, then slices selected-shrinkage residual
+performance by market-probability band, residual-adjustment band, title group,
+and the top `25` regularized-LGBM feature-importance columns. It does not
+retrain or select a new policy.
+
+Period drift:
+
+| Period | Fights | Actual | Market P | Selected P | Adj | Realized Residual | Delta LL | Fixed-Half Delta LL |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| aggregate | 704 | 49.43% | 49.78% | 51.27% | +1.49% | -0.35% | +0.0038 | +0.0030 |
+| 2024 | 275 | 51.64% | 48.57% | 50.00% | +1.43% | +3.07% | +0.0098 | +0.0059 |
+| 2025-2026 | 429 | 48.02% | 50.56% | 52.09% | +1.52% | -2.54% | -0.0001 | +0.0012 |
+| latest fold 5 | 129 | 44.19% | 50.09% | 51.02% | +0.93% | -5.90% | -0.0047 | -0.0018 |
+
+Worst recent simple regimes:
+
+| Slice | Fights | Actual - Market | Adj | Selected Delta LL | Fixed-Half Delta LL |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| market P 0.60-0.70 | 81 | -6.17% | +4.29% | -0.0223 | -0.0116 |
+| market P 0.70-0.80 | 50 | -0.84% | +4.53% | -0.0135 | -0.0069 |
+| selected adjustment >= +5% | 102 | -0.14% | +6.53% | -0.0147 | -0.0075 |
+| selected adjustment +2% to +5% | 102 | +0.45% | +3.64% | -0.0061 | -0.0018 |
+| meta up on red | 264 | +0.36% | +4.19% | -0.0077 | -0.0033 |
+| meta down on red | 165 | -7.19% | -2.73% | +0.0119 | +0.0084 |
+
+Latest-fold regime warning:
+
+| Slice | Fights | Actual - Market | Adj | Selected Delta LL |
+| --- | ---: | ---: | ---: | ---: |
+| market P 0.70-0.80 | 17 | -10.64% | +4.13% | -0.0458 |
+| market P 0.60-0.70 | 21 | -2.90% | +2.58% | -0.0342 |
+| selected adjustment >= +5% | 27 | -10.38% | +6.69% | -0.0519 |
+| meta up on red | 68 | -3.70% | +4.37% | -0.0242 |
+| meta down on red | 61 | -8.36% | -2.89% | +0.0170 |
+
+Worst recent top-feature bins:
+
+| Feature Bin | Recent Fights | Recent Delta LL | 2024 Delta LL | Latest Delta LL | Actual - Market | Adj |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Blue Leg% defense q1_low | 103 | -0.0189 | +0.0065 | -0.0183 | -5.26% | +2.51% |
+| Rev. oppdiff q2 | 175 | -0.0172 | +0.0207 | -0.0162 | -1.33% | +1.64% |
+| age oppdiff q2 | 106 | -0.0165 | +0.0199 | -0.0371 | -2.75% | +2.46% |
+| Blue Clinch q3 | 110 | -0.0155 | +0.0083 | -0.0224 | -5.83% | +1.26% |
+| wins oppdiff q4_high | 109 | -0.0149 | +0.0307 | -0.0227 | -3.02% | +4.08% |
+
+Largest top-feature distribution shifts were modest: the biggest was
+`Blue Clinch` moving by `-0.305` pooled standard deviations from 2024 to
+2025-2026, and its row-level correlation with selected Delta LL was only
+`+0.035`. This points more toward a residual/market-regime drift problem than
+a clear missing feature.
+
+Interpretation: recent residual damage is concentrated in favorite-ish market
+bands (`0.60` to `0.80`) and positive residual adjustments, especially
+upward red-side nudges. The top-feature bins provide drift clues, but not a
+strong enough case for adding capacity or hand-picking a new feature. Any
+market-band or positive-residual shrinkage transform should be predeclared and
+validated with rolling selection before it can improve the edge claim.
+
 ### Residual Recent Stress Audit
 
 Residual recent-stress audit:
@@ -1816,6 +1885,13 @@ The most honest read:
   (`up0_down1` delta LL `+0.0080`), but rolling prior-fold selection chose the
   original full adjustment for fold 5, scored `-0.0047`, and underperformed
   plain selected-shrinkage across folds 2-5 (`+0.0012` vs `+0.0028` delta LL)
+- the residual feature-drift audit points to market/residual-regime drift more
+  than a clear missing feature: in 2025-2026, market P `0.60-0.70` had Delta
+  LL `-0.0223` with actual-minus-market `-6.17%`, selected adjustment
+  `>= +5%` had Delta LL `-0.0147`, and latest-fold positive residual
+  adjustments were sharply negative; top-feature bins such as `wins oppdiff`
+  q4 and `age oppdiff` q2 broke versus 2024, but feature distribution shifts
+  were modest and not enough to justify hand-picked feature expansion
 - residual recent-stress is a major caveat: selected-shrinkage probability
   delta is negative in 2026, over the last 365 days, and in the latest fold;
   frozen residual-meta cap-3 PnL is `+19.12u` aggregate but only `+4.73u` in
