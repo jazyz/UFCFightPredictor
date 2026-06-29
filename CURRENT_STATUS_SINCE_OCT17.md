@@ -2072,6 +2072,69 @@ differential is highly correlated with head differential (`rho = 0.7539`), so
 this supports a weak compact feature clue rather than three independent
 signals or a live edge claim.
 
+### Striking Core Robustness Selection Audit
+
+Striking core robustness selection audit:
+
+```text
+testing/striking_core_robustness_selection_audit.py
+test_results/striking_core_robustness_selection_audit/striking_core_robustness_selection_audit.md
+test_results/striking_core_robustness_selection_audit/striking_core_robustness_selection_audit.json
+```
+
+This stricter follow-up predefines a small family of striking-core feature
+variants and pre-fight experience gates, then selects one policy for each
+evaluation fold using only prior fold log-loss deltas. It is a robustness
+audit, not a production-policy change.
+
+Protocol:
+
+- aligned men-only rows: `1,223`
+- rolling folds: `7`
+- candidate policies: `15`
+- feature variants: frozen mixed core, train-only clipped mixed core,
+  `sigpct_head`, `sigpct_only`, and `raw_sig_head`
+- gates: all fights, both fighters with at least five prior fights, both
+  fighters with at least ten prior fights
+- selection minimum prior rows: `80`
+- market-null iterations over the whole selection process: `200`
+
+Rolling selected result:
+
+| Policy | Rows | Candidate LL | Market Delta LL | Brier Delta | Positive Folds | Bootstrap P(delta <= 0) | Selection-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| rolling prior-delta selection | 718 | 0.5983 | +0.0040 | +0.0016 | 4 / 6 | 0.131 | 0.035 |
+
+Selection path:
+
+| Fold | Selected Policy | Prior Rows | Prior Score | Eval Rows | Eval Delta LL |
+| ---: | --- | ---: | ---: | ---: | ---: |
+| 2 | `raw_sig_head|all` | 121 | +0.0112 | 118 | -0.0029 |
+| 3 | `sigpct_head|all` | 239 | +0.0049 | 151 | +0.0030 |
+| 4 | `sigpct_head|all` | 390 | +0.0042 | 142 | +0.0110 |
+| 5 | `sigpct_head|all` | 532 | +0.0060 | 138 | +0.0049 |
+| 6 | `raw_sig_head|min5` | 413 | +0.0062 | 89 | -0.0004 |
+| 7 | `mixed_core|min5` | 502 | +0.0072 | 80 | +0.0069 |
+
+Hindsight fixed-policy context:
+
+| Policy | Rows | Market Delta LL | Brier Delta | Positive Folds | Bootstrap P(delta <= 0) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `sigpct_head|min10` | 202 | +0.0075 | +0.0024 | 4 / 7 | 0.087 |
+| `mixed_core|min5` | 582 | +0.0072 | +0.0026 | 6 / 7 | 0.031 |
+| `sigpct_head|all` | 961 | +0.0071 | +0.0027 | 7 / 7 | 0.013 |
+| `mixed_core|all` | 961 | +0.0068 | +0.0025 | 6 / 7 | 0.020 |
+
+Interpretation: this is useful incremental support for the striking-core clue.
+The rolling selector stays positive after a 15-policy search penalty and beats
+the selection-null at unadjusted p `0.035`. It also repeatedly favors
+`sigpct_head|all`, which fits the forensics concern that raw significant-strike
+and head-strike differentials are correlated. The caveat remains large:
+event-bootstrap uncertainty crosses zero (`P(delta <= 0) = 0.131`), two of six
+selected folds are negative, and the candidate family was designed after the
+earlier striking-feature discovery. This is stronger robustness evidence, not
+a live-edge proof.
+
 ### Feature Semantic Integrity Audit
 
 Feature semantic-integrity audit:
@@ -2554,6 +2617,12 @@ The most honest read:
   directionally coherent (`+12.98pp`, `+11.65pp`, `+11.00pp`), though the
   rank correlations are small and raw significant-strike/head differentials
   are highly correlated
+- rolling robustness selection over `15` predefined striking-core variants and
+  experience gates preserves part of the signal: prior-fold selection evaluated
+  on folds `2-7` made `+0.0040` market delta LL, `+0.0016` Brier delta, and
+  `4/6` positive folds over `718` fights, with selection-null p `0.035`; the
+  important caveat is weak event-bootstrap support (`P(delta <= 0) = 0.131`)
+  and two negative selected folds
 - feature-forensics did not find a hard arithmetic or pre-fight-state bug:
   `64` oppdiff pairs, `276,527` row-level diff checks, all `4,322` source
   supervised rows, `69,152` core state checks, and active side-swap coverage
@@ -2824,6 +2893,7 @@ Validation:
 - compile check passed for `testing/score_frozen_residual_event_cap_policy.py`
 - compile check passed for `testing/score_frozen_striking_core_policy.py`
 - compile check passed for `testing/striking_feature_forensics_audit.py`
+- compile check passed for `testing/striking_core_robustness_selection_audit.py`
 - compile check passed for `utils/incremental_processing.py`,
   `testing/residual_event_cap_rolling_selection_audit.py`,
   `testing/outcome_universe_audit.py`, and `testing/no_leakage_backtest.py`
@@ -2851,6 +2921,10 @@ Validation:
   source outcomes affected later target-feature state on `1,138` supervised
   rows, and all three target features had positive top-vs-bottom
   actual-minus-market residual spreads
+- the striking core robustness selection audit regenerated cleanly; rolling
+  prior-fold selection over `15` predefined striking policies kept `+0.0040`
+  market delta LL over `718` fights with selection-null p `0.035`, but
+  event-bootstrap `P(delta <= 0) = 0.131`
 - a five-fight capped residual scorer smoke test exercised the event cap itself:
   the scorer placed exactly three paper bets and marked two otherwise eligible
   candidates as `event cap 3 reached`
