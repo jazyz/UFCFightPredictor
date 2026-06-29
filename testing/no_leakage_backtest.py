@@ -577,7 +577,20 @@ def fit_label_encoder():
     return label_encoder
 
 
-def fit_model(train_df, feature_columns, params):
+def recency_sample_weights(train_df, event_date, half_life_days):
+    if half_life_days is None or half_life_days <= 0:
+        return None
+
+    ages = (pd.Timestamp(event_date) - train_df["Date"]).dt.days.astype(float)
+    ages = ages.clip(lower=0)
+    weights = np.power(0.5, ages / float(half_life_days))
+    mean_weight = float(weights.mean()) if len(weights) else 0.0
+    if not np.isfinite(mean_weight) or mean_weight <= 0.0:
+        return None
+    return weights / mean_weight
+
+
+def fit_model(train_df, feature_columns, params, sample_weight=None):
     try:
         import lightgbm as lgb
     except (ImportError, OSError) as exc:
@@ -595,9 +608,13 @@ def fit_model(train_df, feature_columns, params):
 
     x_train_extended = pd.concat([x_train, x_train_swapped], ignore_index=True)
     y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
+    sample_weight_extended = None
+    if sample_weight is not None:
+        weights = pd.Series(sample_weight, index=train_df.index).astype(float)
+        sample_weight_extended = pd.concat([weights, weights], ignore_index=True)
 
     model = lgb.LGBMClassifier(**params)
-    model.fit(x_train_extended, y_train_extended)
+    model.fit(x_train_extended, y_train_extended, sample_weight=sample_weight_extended)
     return model, label_encoder
 
 
@@ -1002,7 +1019,17 @@ def run_backtest(args):
                 skipped.append((row, "no usable numeric feature columns"))
             continue
 
-        model, _ = fit_model(train_df, feature_columns, params)
+        sample_weight = recency_sample_weights(
+            train_df,
+            event_date,
+            args.training_recency_half_life_days,
+        )
+        model, _ = fit_model(
+            train_df,
+            feature_columns,
+            params,
+            sample_weight=sample_weight,
+        )
         models_fit += 1
         max_training_date = train_df["Date"].max().date().isoformat()
 
@@ -1232,6 +1259,7 @@ def run_backtest(args):
         "odds_title_patterns": odds_title_patterns,
         "included_excluded_dobs": args.include_excluded_dobs,
         "engineered_features": args.engineered_features,
+        "training_recency_half_life_days": args.training_recency_half_life_days,
         "param_source": param_source,
         "strict_coverage_messages": coverage_messages,
         "feature_data_max_date": None if features_df.empty else features_df["Date"].max().date().isoformat(),
@@ -1376,6 +1404,15 @@ def parse_args():
         "--engineered-features",
         action="store_true",
         help="add experimental title-context and matchup aggregate features",
+    )
+    parser.add_argument(
+        "--training-recency-half-life-days",
+        type=float,
+        default=None,
+        help=(
+            "optional exponential half-life for training-row sample weights; "
+            "newer rows before each event get larger weights"
+        ),
     )
     parser.add_argument("--starting-bankroll", type=float, default=1000.0)
     parser.add_argument("--strategy", type=parse_strategy, default=[0.05, 0.05, 0.005])

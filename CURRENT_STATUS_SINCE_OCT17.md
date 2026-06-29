@@ -119,8 +119,9 @@ coverage fixes, and PnL diagnostics.
 ## Current Worktree Status
 
 As of this status update, the regularized LGBM implementation, backtest ledgers,
-audit outputs, retrained single-model artifact, and summary documentation have
-been committed and pushed on `feature/auto-retraining`.
+audit outputs, retrained single-model artifact, frozen paper-tracking policies,
+universe audits, feature audits, residual audits, and recency-weighted training
+audit are documented on `feature/auto-retraining`.
 
 Primary regularized-model documentation:
 
@@ -1064,6 +1065,49 @@ feature-engineering attempt, but it worsened log loss and PnL versus the
 current regularized feature set in both summarized windows. Recent-form
 capacity alone did not fix the latest-fold/residual-drift problem.
 
+### Recency-Weighted Training Audit
+
+Recency-weighted training audit:
+
+```text
+testing/no_leakage_backtest.py
+test_results/recency_weighted_training_audit/RECENCY_WEIGHTED_TRAINING_AUDIT.md
+test_results/recency_weighted_training_audit/statistical_edge_audit/edge_audit.md
+```
+
+This audit added an opt-in `--training-recency-half-life-days` flag to the
+leak-safe rolling backtester. For each event-date retrain, sample weights are
+computed only from already-eligible training rows as
+`0.5 ** (days_before_event / half_life_days)` and normalized to mean `1.0`.
+The default remains unchanged, so existing backtests and production-style runs
+do not use recency weighting unless explicitly requested.
+
+Leak-safe comparison with fixed regularized LightGBM params:
+
+| Window | Training Policy | Accuracy | Log Loss | PnL |
+| --- | --- | ---: | ---: | ---: |
+| 2025-06-27 to 2026-06-27 | current regularized | 64.43% | 0.6418 | +24.66% |
+| 2025-06-27 to 2026-06-27 | half-life 365d | 65.10% | 0.6588 | +11.08% |
+| 2025-06-27 to 2026-06-27 | half-life 730d | 65.10% | 0.6396 | +15.46% |
+| 2024-06-27 to 2026-06-27 | current regularized | 65.00% | 0.6318 | +61.20% |
+| 2024-06-27 to 2026-06-27 | half-life 365d | 65.17% | 0.6480 | +26.28% |
+| 2024-06-27 to 2026-06-27 | half-life 730d | 64.66% | 0.6372 | +31.41% |
+
+Statistical audit for the recency-weighted runs:
+
+| Run | Model LL | Market LL | Profit | Market-Null p | Bootstrap Profit CI |
+| --- | ---: | ---: | ---: | ---: | --- |
+| half-life 365d, 2y | 0.648 | 0.600 | +$262.85 | 0.125 | -$497.41 to +$1,011.06 |
+| half-life 730d, 2y | 0.637 | 0.600 | +$314.08 | 0.103 | -$357.20 to +$991.17 |
+| half-life 365d, 1y | 0.659 | 0.613 | +$110.83 | 0.266 | -$442.84 to +$661.77 |
+| half-life 730d, 1y | 0.640 | 0.613 | +$154.59 | 0.241 | -$328.59 to +$647.94 |
+
+Interpretation: do not promote recency-weighted LightGBM training. The
+730-day half-life slightly improved one-year log loss, but it worsened the
+two-year comparison and reduced PnL in both windows. No recency-weighted ledger
+beat the de-vigged market on log loss, the best market-null p-value was only
+`0.103`, and all event-bootstrap profit intervals crossed zero.
+
 ### Market-Aware Feature Audit
 
 Market-aware feature audit:
@@ -1349,6 +1393,10 @@ The most honest read:
 - recent-form/activity feature engineering did not help: adding 128 leak-safe
   last-3/last-5 and recent-activity columns worsened one-year and two-year log
   loss and sharply reduced PnL versus the current regularized feature set
+- recency-weighted training also did not help enough: the 730-day half-life
+  slightly improved one-year log loss, but both 365-day and 730-day weighting
+  reduced PnL versus current regularized training, failed the two-year
+  comparison, and beat de-vigged market log loss in `0/4` tested ledgers
 - the longer market-blend audit selected pure market probability, not a model
   residual, but the newer residual meta audit finds a small positive
   model-after-market log-loss signal
@@ -1550,6 +1598,12 @@ Validation:
 - the recent-form feature audit built a 4,322-row alternate feature table with
   128 added columns and ran 1y/2y leak-safe backtests; both worsened log loss
   and PnL versus current regularized features
+- the recency-weighted training audit ran 365-day and 730-day half-life
+  regularized-LGBM backtests over the 1y and 2y windows; the best one-year
+  log-loss variant did not hold up on the two-year window or PnL
+- the recency-weighted statistical audit ran across four saved ledgers; best
+  market-null p-value was `0.103`, Bonferroni across the four ledgers was
+  `0.414`, and `0/4` ledgers beat de-vigged market log loss
 - the residual recent-stress audit regenerated cleanly; selected-shrinkage
   probability delta was `-0.0032` over the last 365 days, and frozen
   residual-meta cap-3 PnL was only `+0.38u` over the last 365 days
