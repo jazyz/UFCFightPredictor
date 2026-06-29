@@ -1,0 +1,757 @@
+{
+  "predictions_path": "test_results/residual_shrinkage_audit/holdout_shrinkage_predictions.csv",
+  "scales": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "candidate_count": 38,
+  "candidate_descriptions": {
+    "market": "de-vigged market probability",
+    "selected_shrinkage": "existing nested selected-shrinkage probability",
+    "fixed_half_residual": "existing fixed half-residual probability",
+    "global_scale_0.25": "scale selected residual by 0.25 where global; otherwise keep selected residual",
+    "global_scale_0.5": "scale selected residual by 0.5 where global; otherwise keep selected residual",
+    "global_scale_0.75": "scale selected residual by 0.75 where global; otherwise keep selected residual",
+    "positive_residual_scale_0": "scale selected residual by 0 where positive_residual; otherwise keep selected residual",
+    "positive_residual_scale_0.25": "scale selected residual by 0.25 where positive_residual; otherwise keep selected residual",
+    "positive_residual_scale_0.5": "scale selected residual by 0.5 where positive_residual; otherwise keep selected residual",
+    "positive_residual_scale_0.75": "scale selected residual by 0.75 where positive_residual; otherwise keep selected residual",
+    "positive_adj_ge_2pct_scale_0": "scale selected residual by 0 where positive_adj_ge_2pct; otherwise keep selected residual",
+    "positive_adj_ge_2pct_scale_0.25": "scale selected residual by 0.25 where positive_adj_ge_2pct; otherwise keep selected residual",
+    "positive_adj_ge_2pct_scale_0.5": "scale selected residual by 0.5 where positive_adj_ge_2pct; otherwise keep selected residual",
+    "positive_adj_ge_2pct_scale_0.75": "scale selected residual by 0.75 where positive_adj_ge_2pct; otherwise keep selected residual",
+    "positive_adj_ge_5pct_scale_0": "scale selected residual by 0 where positive_adj_ge_5pct; otherwise keep selected residual",
+    "positive_adj_ge_5pct_scale_0.25": "scale selected residual by 0.25 where positive_adj_ge_5pct; otherwise keep selected residual",
+    "positive_adj_ge_5pct_scale_0.5": "scale selected residual by 0.5 where positive_adj_ge_5pct; otherwise keep selected residual",
+    "positive_adj_ge_5pct_scale_0.75": "scale selected residual by 0.75 where positive_adj_ge_5pct; otherwise keep selected residual",
+    "market_ge_60_scale_0": "scale selected residual by 0 where market_ge_60; otherwise keep selected residual",
+    "market_ge_60_scale_0.25": "scale selected residual by 0.25 where market_ge_60; otherwise keep selected residual",
+    "market_ge_60_scale_0.5": "scale selected residual by 0.5 where market_ge_60; otherwise keep selected residual",
+    "market_ge_60_scale_0.75": "scale selected residual by 0.75 where market_ge_60; otherwise keep selected residual",
+    "market_60_80_scale_0": "scale selected residual by 0 where market_60_80; otherwise keep selected residual",
+    "market_60_80_scale_0.25": "scale selected residual by 0.25 where market_60_80; otherwise keep selected residual",
+    "market_60_80_scale_0.5": "scale selected residual by 0.5 where market_60_80; otherwise keep selected residual",
+    "market_60_80_scale_0.75": "scale selected residual by 0.75 where market_60_80; otherwise keep selected residual",
+    "market_60_80_positive_scale_0": "scale selected residual by 0 where market_60_80_positive; otherwise keep selected residual",
+    "market_60_80_positive_scale_0.25": "scale selected residual by 0.25 where market_60_80_positive; otherwise keep selected residual",
+    "market_60_80_positive_scale_0.5": "scale selected residual by 0.5 where market_60_80_positive; otherwise keep selected residual",
+    "market_60_80_positive_scale_0.75": "scale selected residual by 0.75 where market_60_80_positive; otherwise keep selected residual",
+    "market_ge_60_positive_scale_0": "scale selected residual by 0 where market_ge_60_positive; otherwise keep selected residual",
+    "market_ge_60_positive_scale_0.25": "scale selected residual by 0.25 where market_ge_60_positive; otherwise keep selected residual",
+    "market_ge_60_positive_scale_0.5": "scale selected residual by 0.5 where market_ge_60_positive; otherwise keep selected residual",
+    "market_ge_60_positive_scale_0.75": "scale selected residual by 0.75 where market_ge_60_positive; otherwise keep selected residual",
+    "market_ge_60_adj_ge_2pct_scale_0": "scale selected residual by 0 where market_ge_60_adj_ge_2pct; otherwise keep selected residual",
+    "market_ge_60_adj_ge_2pct_scale_0.25": "scale selected residual by 0.25 where market_ge_60_adj_ge_2pct; otherwise keep selected residual",
+    "market_ge_60_adj_ge_2pct_scale_0.5": "scale selected residual by 0.5 where market_ge_60_adj_ge_2pct; otherwise keep selected residual",
+    "market_ge_60_adj_ge_2pct_scale_0.75": "scale selected residual by 0.75 where market_ge_60_adj_ge_2pct; otherwise keep selected residual"
+  },
+  "bootstrap_iterations": 20000,
+  "market_null_iterations": 10000,
+  "seed": 20260629,
+  "fixed_all_summary": [
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.6008836747854751,
+      "delta_log_loss": 0.0,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.4978488082004739,
+      "mean_adjustment": 0.0,
+      "candidate": "market",
+      "bootstrap_p_delta_le_zero": 1.0,
+      "bootstrap_delta_ci_95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5971286967901079,
+      "delta_log_loss": 0.0037549779953671703,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.5127331106866073,
+      "mean_adjustment": 0.014884302486133422,
+      "candidate": "selected_shrinkage",
+      "bootstrap_p_delta_le_zero": 0.14339283035848208,
+      "bootstrap_delta_ci_95": [
+        -0.003316799437025536,
+        0.010489393029569798
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5978574501583388,
+      "delta_log_loss": 0.003026224627136309,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.5059772535466994,
+      "mean_adjustment": 0.00812844534622556,
+      "candidate": "fixed_half_residual",
+      "bootstrap_p_delta_le_zero": 0.04974751262436878,
+      "bootstrap_delta_ci_95": [
+        -0.0006498048437131669,
+        0.006584832994409326
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5978239395159954,
+      "delta_log_loss": 0.0030597352694796687,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.5055100025009476,
+      "mean_adjustment": 0.007661194300473581,
+      "candidate": "global_scale_0.5",
+      "bootstrap_p_delta_le_zero": 0.043497825108744566,
+      "bootstrap_delta_ci_95": [
+        -0.0004465994347851844,
+        0.006421664986483011
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5969526773571091,
+      "delta_log_loss": 0.003930997428366001,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.5003177312265589,
+      "mean_adjustment": 0.002468923026084899,
+      "candidate": "positive_residual_scale_0.5",
+      "bootstrap_p_delta_le_zero": 0.040347982600869955,
+      "bootstrap_delta_ci_95": [
+        -0.0004709559969818027,
+        0.008201098953424645
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5968711957548826,
+      "delta_log_loss": 0.004012479030592542,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.4976603286068999,
+      "mean_adjustment": -0.00018847959357394086,
+      "candidate": "market_60_80_positive_scale_0",
+      "bootstrap_p_delta_le_zero": 0.07664616769161542,
+      "bootstrap_delta_ci_95": [
+        -0.00152101418221264,
+        0.009130347295459971
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5964285678358291,
+      "delta_log_loss": 0.004455106949646015,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.505460545136468,
+      "mean_adjustment": 0.0076117369359941615,
+      "candidate": "market_60_80_positive_scale_0.5",
+      "bootstrap_p_delta_le_zero": 0.06059697015149242,
+      "bootstrap_delta_ci_95": [
+        -0.0011873267889598756,
+        0.009828941821666791
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5967756195244148,
+      "delta_log_loss": 0.004108055261060284,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.4958918388871816,
+      "mean_adjustment": -0.001956969313292329,
+      "candidate": "market_ge_60_adj_ge_2pct_scale_0",
+      "bootstrap_p_delta_le_zero": 0.0335983200839958,
+      "bootstrap_delta_ci_95": [
+        -0.00028951730418117747,
+        0.00851734020485712
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5962656547840041,
+      "delta_log_loss": 0.004618020001471046,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.5046629499737303,
+      "mean_adjustment": 0.006814141773256293,
+      "candidate": "market_ge_60_adj_ge_2pct_scale_0.5",
+      "bootstrap_p_delta_le_zero": 0.03549822508874556,
+      "bootstrap_delta_ci_95": [
+        -0.0003892885720361375,
+        0.009551586370948183
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.5962132758422948,
+      "delta_log_loss": 0.004670398943180332,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.504500937132443,
+      "mean_adjustment": 0.006652128931969181,
+      "candidate": "market_ge_60_positive_scale_0.5",
+      "bootstrap_p_delta_le_zero": 0.032298385080745964,
+      "bootstrap_delta_ci_95": [
+        -0.00029059585443662626,
+        0.009585717024309158
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.596264601544248,
+      "delta_log_loss": 0.004619073241227123,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.5001202164113969,
+      "mean_adjustment": 0.0022714082109230385,
+      "candidate": "market_ge_60_positive_scale_0.25",
+      "bootstrap_p_delta_le_zero": 0.022648867556622168,
+      "bootstrap_delta_ci_95": [
+        9.678367110315585e-05,
+        0.008986347285696849
+      ]
+    },
+    {
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "candidate_log_loss": 0.596287356549709,
+      "delta_log_loss": 0.004596318235766117,
+      "actual_rate": 0.4943181818181818,
+      "mean_market_probability": 0.4978488082004739,
+      "mean_candidate_probability": 0.5046468431180098,
+      "mean_adjustment": 0.006798034917535889,
+      "candidate": "market_ge_60_scale_0.5",
+      "bootstrap_p_delta_le_zero": 0.03424828758562072,
+      "bootstrap_delta_ci_95": [
+        -0.00035398482232188366,
+        0.00939621882341484
+      ]
+    }
+  ],
+  "fixed_rolling_eval_summary": [
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.6021731633804814,
+      "delta_log_loss": 0.0,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5008175857549427,
+      "mean_adjustment": 0.0,
+      "candidate": "market",
+      "bootstrap_p_delta_le_zero": 1.0,
+      "bootstrap_delta_ci_95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5994190487602361,
+      "delta_log_loss": 0.0027541146202453293,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.517305391567661,
+      "mean_adjustment": 0.016487805812718182,
+      "candidate": "selected_shrinkage",
+      "bootstrap_p_delta_le_zero": 0.25253737313134345,
+      "bootstrap_delta_ci_95": [
+        -0.005821904196421692,
+        0.010802042984684786
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5996362687532608,
+      "delta_log_loss": 0.0025368946272206205,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.50995787279604,
+      "mean_adjustment": 0.009140287041097182,
+      "candidate": "fixed_half_residual",
+      "bootstrap_p_delta_le_zero": 0.13394330283485825,
+      "bootstrap_delta_ci_95": [
+        -0.0019841083550996624,
+        0.006817696087033926
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5996271625228443,
+      "delta_log_loss": 0.0025460008576371207,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.509316927624041,
+      "mean_adjustment": 0.00849934186909822,
+      "candidate": "global_scale_0.5",
+      "bootstrap_p_delta_le_zero": 0.11179441027948603,
+      "bootstrap_delta_ci_95": [
+        -0.001625600399167157,
+        0.006464837040608081
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5977728169328216,
+      "delta_log_loss": 0.004400346447659853,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5046113588054734,
+      "mean_adjustment": 0.003793773050530564,
+      "candidate": "positive_residual_scale_0.5",
+      "bootstrap_p_delta_le_zero": 0.038898055097245136,
+      "bootstrap_delta_ci_95": [
+        -0.0004928485659650316,
+        0.009239445461765585
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5963954109494999,
+      "delta_log_loss": 0.005777752430981553,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5031086631025348,
+      "mean_adjustment": 0.0022910773475918428,
+      "candidate": "market_60_80_positive_scale_0",
+      "bootstrap_p_delta_le_zero": 0.04169791510424479,
+      "bootstrap_delta_ci_95": [
+        -0.0008138637054473022,
+        0.011806758402453033
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5973666588664357,
+      "delta_log_loss": 0.00480650451404574,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5104567271603352,
+      "mean_adjustment": 0.009639141405392466,
+      "candidate": "market_60_80_positive_scale_0.5",
+      "bootstrap_p_delta_le_zero": 0.07884605769711514,
+      "bootstrap_delta_ci_95": [
+        -0.001996533829119606,
+        0.011165561416587175
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5960582397234431,
+      "delta_log_loss": 0.0061149236570383625,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5008695865205456,
+      "mean_adjustment": 5.200076560275064e-05,
+      "candidate": "market_ge_60_adj_ge_2pct_scale_0",
+      "bootstrap_p_delta_le_zero": 0.004849757512124394,
+      "bootstrap_delta_ci_95": [
+        0.0013822513024939688,
+        0.01080535887167112
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5970528058795377,
+      "delta_log_loss": 0.005120357500943751,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5094467779153101,
+      "mean_adjustment": 0.008629192160367333,
+      "candidate": "market_ge_60_adj_ge_2pct_scale_0.5",
+      "bootstrap_p_delta_le_zero": 0.042747862606869656,
+      "bootstrap_delta_ci_95": [
+        -0.0007275950449300094,
+        0.01069349646566838
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5960181225022374,
+      "delta_log_loss": 0.0061550408782440336,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5004753360242281,
+      "mean_adjustment": -0.0003422497307146571,
+      "candidate": "market_ge_60_positive_scale_0",
+      "bootstrap_p_delta_le_zero": 0.006549672516374182,
+      "bootstrap_delta_ci_95": [
+        0.0013227193862238166,
+        0.010854269375968945
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5962241714251508,
+      "delta_log_loss": 0.005948991955330607,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5008533800317859,
+      "mean_adjustment": 3.579427684312711e-05,
+      "candidate": "market_ge_60_scale_0",
+      "bootstrap_p_delta_le_zero": 0.006999650017499125,
+      "bootstrap_delta_ci_95": [
+        0.0012289185031797141,
+        0.010448222866525523
+      ]
+    },
+    {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5963415949068063,
+      "delta_log_loss": 0.005831568473675164,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.5049540894031617,
+      "mean_adjustment": 0.004136503648218862,
+      "candidate": "market_ge_60_positive_scale_0.25",
+      "bootstrap_p_delta_le_zero": 0.010499475026248688,
+      "bootstrap_delta_ci_95": [
+        0.0008637675099041832,
+        0.010711580674411187
+      ]
+    }
+  ],
+  "fixed_latest_fold_summary": [
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6272685791688568,
+      "delta_log_loss": 0.0,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.500896642690176,
+      "mean_adjustment": 0.0,
+      "candidate": "market",
+      "bootstrap_p_delta_le_zero": null,
+      "bootstrap_delta_ci_95": [
+        null,
+        null
+      ]
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6319953573549573,
+      "delta_log_loss": -0.004726778186100455,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.5102437725173729,
+      "mean_adjustment": 0.00934712982719683,
+      "candidate": "selected_shrinkage",
+      "bootstrap_p_delta_le_zero": null,
+      "bootstrap_delta_ci_95": [
+        null,
+        null
+      ]
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6290715646036036,
+      "delta_log_loss": -0.0018029854347467733,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.5071280625749739,
+      "mean_adjustment": 0.006231419884797889,
+      "candidate": "fixed_half_residual",
+      "bootstrap_p_delta_le_zero": null,
+      "bootstrap_delta_ci_95": [
+        null,
+        null
+      ]
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.628436492334772,
+      "delta_log_loss": -0.0011679131659151354,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.5056990809178928,
+      "mean_adjustment": 0.004802438227716848,
+      "candidate": "global_scale_0.5",
+      "bootstrap_p_delta_le_zero": null,
+      "bootstrap_delta_ci_95": [
+        null,
+        null
+      ]
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6247974857239725,
+      "delta_log_loss": 0.002471093444884276,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.4990054777967293,
+      "mean_adjustment": -0.0018911648934466874,
+      "candidate": "positive_residual_scale_0.5",
+      "bootstrap_p_delta_le_zero": null,
+      "bootstrap_delta_ci_95": [
+        null,
+        null
+      ]
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6201124187542068,
+      "delta_log_loss": 0.007156160414650059,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.4992729456489665,
+      "mean_adjustment": -0.0016236970412094598,
+      "candidate": "market_60_80_positive_scale_0",
+      "bootstrap_p_delta_le_zero": null,
+      "bootstrap_delta_ci_95": [
+        null,
+        null
+      ]
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6256076187472674,
+      "delta_log_loss": 0.0016609604215893636,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.5049808303054616,
+      "mean_adjustment": 0.004084187615285525,
+      "candidate": "market_60_80_positive_scale_0.5",
+      "bootstrap_p_delta_le_zero": null,
+      "bootstrap_delta_ci_95": [
+        null,
+        null
+      ]
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6186199202938236,
+      "delta_log_loss": 0.008648658875033188,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.4978361694651562,
+      "mean_adjustment": -0.003060473225019751,
+      "candidate": "market_ge_60_adj_ge_2pct_scale_0",
+      "bootstrap_p_delta_le_zero": null,
+      "bootstrap_delta_ci_95": [
+        null,
+        null
+      ]
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6247881751496893,
+      "delta_log_loss": 0.0024804040191674925,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.5043161021248074,
+      "mean_adjustment": 0.003419459434631325,
+      "candidate": "market_ge_60_adj_ge_2pct_scale_0.5",
+      "bootstrap_p_delta_le_zero": null,
+      "bootstrap_delta_ci_95": [
+        null,
+        null
+      ]
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.618513911379478,
+      "delta_log_loss": 0.008754667789378834,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.49730860160743456,
+      "mean_adjustment": -0.0035880410827413924,
+      "candidate": "market_ge_60_positive_scale_0",
+      "bootstrap_p_delta_le_zero": null,
+      "bootstrap_delta_ci_95": [
+        null,
+        null
+      ]
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6186960617285174,
+      "delta_log_loss": 0.008572517440339378,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.48849417546430696,
+      "mean_adjustment": -0.012402467225869018,
+      "candidate": "positive_adj_ge_2pct_scale_0",
+      "bootstrap_p_delta_le_zero": null,
+      "bootstrap_delta_ci_95": [
+        null,
+        null
+      ]
+    },
+    {
+      "fights": 129,
+      "events": 19,
+      "market_log_loss": 0.6272685791688568,
+      "candidate_log_loss": 0.6187888829122627,
+      "delta_log_loss": 0.00847969625659406,
+      "actual_rate": 0.4418604651162791,
+      "mean_market_probability": 0.500896642690176,
+      "mean_candidate_probability": 0.4986376730756207,
+      "mean_adjustment": -0.002258969614555338,
+      "candidate": "market_ge_60_scale_0",
+      "bootstrap_p_delta_le_zero": null,
+      "bootstrap_delta_ci_95": [
+        null,
+        null
+      ]
+    }
+  ],
+  "rolling_market_band_selection": {
+    "folds": [
+      {
+        "eval_fold": 2,
+        "selected_candidate": "selected_shrinkage",
+        "dev_delta_log_loss": 0.007024465020765284,
+        "eval_summary": {
+          "fights": 130,
+          "events": 19,
+          "market_log_loss": 0.5788537585297809,
+          "candidate_log_loss": 0.5711108847663101,
+          "delta_log_loss": 0.0077428737634708256,
+          "actual_rate": 0.5230769230769231,
+          "mean_market_probability": 0.49225657158141445,
+          "mean_candidate_probability": 0.515084956486233,
+          "mean_adjustment": 0.02282838490481858
+        }
+      },
+      {
+        "eval_fold": 3,
+        "selected_candidate": "selected_shrinkage",
+        "dev_delta_log_loss": 0.007341051924330392,
+        "eval_summary": {
+          "fights": 150,
+          "events": 23,
+          "market_log_loss": 0.6181220610242932,
+          "candidate_log_loss": 0.6154941615402546,
+          "delta_log_loss": 0.0026278994840386316,
+          "actual_rate": 0.5133333333333333,
+          "mean_market_probability": 0.5000244545452969,
+          "mean_candidate_probability": 0.5201599945698682,
+          "mean_adjustment": 0.020135540024571325
+        }
+      },
+      {
+        "eval_fold": 4,
+        "selected_candidate": "selected_shrinkage",
+        "dev_delta_log_loss": 0.0057523488545691125,
+        "eval_summary": {
+          "fights": 130,
+          "events": 18,
+          "market_log_loss": 0.5821876198983189,
+          "candidate_log_loss": 0.5768532840947636,
+          "delta_log_loss": 0.005334335803555357,
+          "actual_rate": 0.46923076923076923,
+          "mean_market_probability": 0.5102153025192542,
+          "mean_candidate_probability": 0.523239352857982,
+          "mean_adjustment": 0.013024050338727654
+        }
+      },
+      {
+        "eval_fold": 5,
+        "selected_candidate": "selected_shrinkage",
+        "dev_delta_log_loss": 0.005657841556079015,
+        "eval_summary": {
+          "fights": 129,
+          "events": 19,
+          "market_log_loss": 0.6272685791688568,
+          "candidate_log_loss": 0.6319953573549573,
+          "delta_log_loss": -0.004726778186100455,
+          "actual_rate": 0.4418604651162791,
+          "mean_market_probability": 0.500896642690176,
+          "mean_candidate_probability": 0.5102437725173729,
+          "mean_adjustment": 0.00934712982719683
+        }
+      }
+    ],
+    "combined_eval": {
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "candidate_log_loss": 0.5994190487602361,
+      "delta_log_loss": 0.0027541146202453293,
+      "actual_rate": 0.48794063079777367,
+      "mean_market_probability": 0.5008175857549427,
+      "mean_candidate_probability": 0.517305391567661,
+      "mean_adjustment": 0.016487805812718182,
+      "bootstrap_p_delta_le_zero": 0.25063746812659365,
+      "bootstrap_delta_ci_95": [
+        -0.005651695188636104,
+        0.010828937663203121
+      ],
+      "market_null_p": 0.022797720227977204
+    }
+  }
+}

@@ -1310,6 +1310,62 @@ strong enough case for adding capacity or hand-picking a new feature. Any
 market-band or positive-residual shrinkage transform should be predeclared and
 validated with rolling selection before it can improve the edge claim.
 
+### Residual Market-Band Shrinkage Audit
+
+Residual market-band shrinkage audit:
+
+```text
+testing/residual_market_band_shrinkage_audit.py
+test_results/residual_market_band_shrinkage_audit/residual_market_band_shrinkage_audit.md
+test_results/residual_market_band_shrinkage_audit/residual_market_band_shrinkage_audit.json
+```
+
+This is the rolling validation follow-up to the feature-drift audit. It tests
+`38` candidate probability transforms, including market, selected shrinkage,
+fixed half residual, global shrinkage, positive-residual shrinkage, and
+market-band positive-residual shrinkage. Each future fold selects from the
+full candidate family using only prior folds.
+
+Fixed candidate diagnostics are directionally tempting:
+
+| Candidate | Fights | Delta LL | Mean Adj | Bootstrap P(delta <= 0) |
+| --- | ---: | ---: | ---: | ---: |
+| selected shrinkage | 704 | +0.0038 | +1.49% | 0.143 |
+| positive residual scale 0.5 | 704 | +0.0039 | +0.25% | 0.040 |
+| market 60-80 positive scale 0.5 | 704 | +0.0045 | +0.76% | 0.061 |
+| market >=0.60 positive scale 0.25 | 704 | +0.0046 | +0.23% | 0.023 |
+| market >=0.60 positive scale 0.5 | 704 | +0.0047 | +0.67% | 0.032 |
+
+On the same folds `2-5`, several fixed market-band shrinkage candidates also
+look better than selected shrinkage:
+
+| Candidate | Fights | Delta LL | Mean Adj | Bootstrap P(delta <= 0) |
+| --- | ---: | ---: | ---: | ---: |
+| selected shrinkage | 539 | +0.0028 | +1.65% | 0.253 |
+| market 60-80 positive scale 0 | 539 | +0.0058 | +0.23% | 0.042 |
+| market >=0.60 positive scale 0 | 539 | +0.0062 | -0.03% | 0.007 |
+| market >=0.60 adj>=2pp scale 0 | 539 | +0.0061 | +0.01% | 0.005 |
+
+But rolling prior-fold selection did **not** validate those transforms:
+
+| Eval Fold | Selected Candidate | Dev Delta LL | Eval Delta LL |
+| ---: | --- | ---: | ---: |
+| 2 | selected shrinkage | +0.0070 | +0.0077 |
+| 3 | selected shrinkage | +0.0073 | +0.0026 |
+| 4 | selected shrinkage | +0.0058 | +0.0053 |
+| 5 | selected shrinkage | +0.0057 | -0.0047 |
+
+Combined rolling evaluation was therefore identical to selected shrinkage:
+`539` fights, Delta LL `+0.0028`, bootstrap `P(delta <= 0) = 0.251`, and
+market-null p `0.023`.
+
+Interpretation: the market-band shrinkage idea remains a useful drift clue,
+not a validated improvement. Fixed candidates that mute favorite/positive
+residuals would have helped the latest fold and folds `2-5` in hindsight, but
+the prior-fold selector did not choose them before the damage was visible.
+Do not promote a market-band transform without future paper validation or a
+stronger predeclared selection rule.
+
 ### Residual Recent Stress Audit
 
 Residual recent-stress audit:
@@ -1892,6 +1948,12 @@ The most honest read:
   adjustments were sharply negative; top-feature bins such as `wins oppdiff`
   q4 and `age oppdiff` q2 broke versus 2024, but feature distribution shifts
   were modest and not enough to justify hand-picked feature expansion
+- market-band shrinkage does not yet validate as a fix: fixed transforms that
+  mute favorite/positive residuals look better in hindsight (`market >=0.60`
+  positive scale `0` made Delta LL `+0.0062` on folds 2-5 and `+0.0088` on
+  fold 5), but rolling prior-fold selection chose selected-shrinkage in every
+  fold, so the combined result was just selected-shrinkage again (`+0.0028`
+  Delta LL, bootstrap `P(delta <= 0) = 0.251`)
 - residual recent-stress is a major caveat: selected-shrinkage probability
   delta is negative in 2026, over the last 365 days, and in the latest fold;
   frozen residual-meta cap-3 PnL is `+19.12u` aggregate but only `+4.73u` in
