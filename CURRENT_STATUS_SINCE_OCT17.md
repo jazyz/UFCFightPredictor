@@ -2297,6 +2297,52 @@ with current mixed core on log loss, and the rolling probability selector is
 weaker than the best fixed variants. The pace-adjusted PnL result is
 interesting discovery evidence, not a frozen policy change.
 
+### Striking Feature Engineering Selection-Null Audit
+
+Striking feature-engineering selection-null audit:
+
+```text
+testing/striking_feature_engineering_selection_null_audit.py
+test_results/striking_feature_engineering_selection_null_audit/striking_feature_engineering_selection_null_audit.md
+test_results/striking_feature_engineering_selection_null_audit/striking_feature_engineering_selection_null_audit.json
+```
+
+This follow-up reruns the rolling prior-fold feature-variant selectors under
+market-implied outcomes. Each null path simulates outcomes from de-vigged
+market probabilities, refits every inspected feature variant on those
+simulated labels, reruns the prior-fold selector, and scores the selected next
+fold. This is stricter than evaluating a fixed hindsight pace-adjusted ledger.
+
+Protocol:
+
+- candidate feature variants: `7`
+- rolling folds: `7`
+- selection-null iterations: `200`
+- event cap: none
+- fixed betting threshold: `2.00%`
+
+Observed rolling selectors:
+
+| Selector | Eval Folds | Fights/Bets | Result | Positive Folds | Bootstrap P |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| probability-delta selector | 6 | 840 fights | +0.0039 LL | 4 / 6 | 0.164 |
+| profit selector | 6 | 615 bets | +30.73u | 6 / 6 | 0.058 |
+
+Selection-null results:
+
+| Selector | Observed | Null Mean | Null 95% CI | P(null >= observed) | P(null > 0) |
+| --- | ---: | ---: | --- | ---: | ---: |
+| probability-delta selector | +0.0039 LL | -0.0043 LL | -0.0102 to +0.0019 | 0.015 | 0.080 |
+| profit selector | +30.73u | -17.41u | -69.27u to +39.17u | 0.040 | 0.215 |
+
+Interpretation: this strengthens the pace-adjusted feature-engineering lead.
+Both rolling selectors clear a 200-path selection-null screen after refitting
+models and rerunning selection under simulated market outcomes. The caveat is
+still material: the probability selector's event-bootstrap support is weak,
+the profit selector's event-bootstrap support is marginal, and the feature
+family was designed after prior striking-core discoveries. This is stronger
+historical evidence, not a live-edge proof or a production policy change.
+
 ### Frozen SigPct-Head Challenger Paper Policy
 
 Frozen challenger paper policy:
@@ -2854,6 +2900,12 @@ The most honest read:
   best probability variant (`+0.0071` delta LL), and the rolling probability
   selector over inspected variants was weaker (`+0.0039` delta LL,
   bootstrap `P(delta <= 0) = 0.167`)
+- selection-null reruns strengthen the pace-adjusted feature lead but still do
+  not prove a live edge: after refitting all inspected feature variants under
+  `200` market-implied outcome paths, the rolling probability selector had
+  selection-null p `0.015` and the rolling profit selector had selection-null p
+  `0.040`; event-bootstrap support remained weak/marginal, and the feature
+  family was designed after prior striking-core discovery
 - a separate frozen `sigpct_head|all` challenger paper policy now exists for
   future pre-outcome tracking; it uses `market_logit`, `Sig. str.% differential
   oppdiff`, and `Head differential oppdiff`, fixed `2.00%` positive-edge
@@ -3048,10 +3100,10 @@ men-only filtering, and fight-context meaning. The goal is to distinguish
 features that genuinely describe ways fighters win from generator artifacts
 that merely worked historically.
 
-Immediate follow-up: if pace-adjusted striking remains interesting, run a
-selection-adjusted audit that reruns the rolling feature-variant selector under
-market-null outcomes. Without that, the `+41.97u` pace-adjusted PnL result
-should stay discovery-only.
+Immediate follow-up: the pace-adjusted selection-null audit is now complete
+and supportive at the 200-path level, but it should still stay discovery-only
+unless converted into a frozen challenger and judged on future pre-outcome
+paper evidence.
 
 ## Independent PnL Investigation Update
 
@@ -3143,6 +3195,8 @@ Validation:
 - compile check passed for `testing/striking_core_betting_calibration_audit.py`
 - compile check passed for `testing/striking_core_regime_stress_audit.py`
 - compile check passed for `testing/striking_feature_engineering_audit.py`
+- compile check passed for
+  `testing/striking_feature_engineering_selection_null_audit.py`
 - compile check passed for `utils/incremental_processing.py`,
   `testing/residual_event_cap_rolling_selection_audit.py`,
   `testing/outcome_universe_audit.py`, and `testing/no_leakage_backtest.py`
@@ -3192,6 +3246,10 @@ Validation:
   mismatches, pace-adjusted mixed core had the best fixed uncapped PnL
   (`+41.97u`), but current `sigpct_head` remained best on log loss and the
   rolling probability selector was only `+0.0039` delta LL
+- the striking feature-engineering selection-null audit regenerated cleanly;
+  `200` market-implied outcome paths refit all inspected feature variants and
+  reran rolling selection, giving p `0.015` for the probability selector and
+  p `0.040` for the profit selector
 - a five-fight capped residual scorer smoke test exercised the event cap itself:
   the scorer placed exactly three paper bets and marked two otherwise eligible
   candidates as `event cap 3 reached`

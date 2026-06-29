@@ -1,0 +1,408 @@
+{
+  "parameters": {
+    "source_fights": "data/modified_fight_details.csv",
+    "features": "data/detailed_fights.csv",
+    "odds": "data/fight_results_with_odds.csv",
+    "fight_details_source": "data/fight_details_date.csv",
+    "first_holdout_start": "2023-01-01",
+    "last_holdout_end": "2026-06-27",
+    "dev_days": 730,
+    "holdout_days": 182,
+    "step_days": 182,
+    "min_dev_fights": 200,
+    "min_holdout_fights": 60,
+    "c": 0.1,
+    "edge_threshold": 0.02,
+    "min_prior_rows": 80,
+    "min_prior_bets": 25,
+    "bootstrap_iterations": 20000,
+    "null_iterations": 200,
+    "seed": 20260629
+  },
+  "metadata": {
+    "features_path": "data/detailed_fights.csv",
+    "odds_path": "data/fight_results_with_odds.csv",
+    "fight_details_source": "data/fight_details_date.csv",
+    "excluded_title_patterns": [
+      "Women"
+    ],
+    "feature_rows": 3999,
+    "odds_rows": 1824,
+    "aligned_rows": 1223,
+    "duplicate_feature_keys": 0,
+    "odds_rows_date_repaired": 22,
+    "odds_rows_excluded_universe": 345,
+    "odds_rows_non_binary_excluded": 7,
+    "skipped_missing_features": 601,
+    "skipped_duplicate_features": 0,
+    "skipped_bad_odds": 0,
+    "skipped_orientation_mismatch": 0,
+    "pace_feature_columns": [
+      "Sig. str. for_pm oppdiff",
+      "Sig. str. against_pm oppdiff",
+      "Sig. str. differential_pm oppdiff",
+      "Head for_pm oppdiff",
+      "Head against_pm oppdiff",
+      "Head differential_pm oppdiff",
+      "Body for_pm oppdiff",
+      "Body against_pm oppdiff",
+      "Body differential_pm oppdiff",
+      "Leg for_pm oppdiff",
+      "Leg against_pm oppdiff",
+      "Leg differential_pm oppdiff",
+      "Distance for_pm oppdiff",
+      "Distance against_pm oppdiff",
+      "Distance differential_pm oppdiff",
+      "Clinch for_pm oppdiff",
+      "Clinch against_pm oppdiff",
+      "Clinch differential_pm oppdiff",
+      "Ground for_pm oppdiff",
+      "Ground against_pm oppdiff",
+      "Ground differential_pm oppdiff",
+      "Total str. for_pm oppdiff",
+      "Total str. against_pm oppdiff",
+      "Total str. differential_pm oppdiff",
+      "KD differential_pf oppdiff",
+      "Td differential_pf oppdiff"
+    ],
+    "pace_feature_duplicate_keys": 0,
+    "aligned_rows_missing_pace_features": 0,
+    "pace_reconstruction": {
+      "source_rows": 7730,
+      "feature_rows": 4322,
+      "expected_supervised_rows": 4322,
+      "matched_supervised_rows": 4322,
+      "missing_feature_rows": 0,
+      "extra_feature_rows": 0,
+      "side_rate_checks": 69152,
+      "side_rate_mismatches": 0,
+      "side_rate_max_abs_error": 2.1316282072803006e-14,
+      "derived_feature_rows": 4322
+    }
+  },
+  "variants": [
+    {
+      "name": "market_recalibrated",
+      "feature_columns": [
+        "market_logit"
+      ],
+      "note": "market logit recalibration only"
+    },
+    {
+      "name": "current_mixed_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "note": "frozen current count-differential mixed striking core"
+    },
+    {
+      "name": "current_sigpct_head",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "note": "frozen challenger-style count-differential sigpct/head core"
+    },
+    {
+      "name": "pace_adjusted_mixed_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "note": "replace raw significant/head count differentials with per-minute differentials"
+    },
+    {
+      "name": "rate_volume_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. for_pm oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "note": "pace-adjusted efficiency plus own significant-strike volume"
+    },
+    {
+      "name": "location_rate_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff",
+        "Body differential_pm oppdiff",
+        "Leg differential_pm oppdiff"
+      ],
+      "note": "pace-adjusted head/body/leg differential mix"
+    },
+    {
+      "name": "position_rate_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Distance differential_pm oppdiff",
+        "Clinch differential_pm oppdiff",
+        "Ground differential_pm oppdiff"
+      ],
+      "note": "pace-adjusted distance/clinch/ground differential mix"
+    },
+    {
+      "name": "damage_rate_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "KD differential_pf oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "note": "knockdown differential plus pace-adjusted head striking"
+    }
+  ],
+  "candidate_names": [
+    "current_mixed_core",
+    "current_sigpct_head",
+    "pace_adjusted_mixed_core",
+    "rate_volume_core",
+    "location_rate_core",
+    "position_rate_core",
+    "damage_rate_core"
+  ],
+  "folds": [
+    {
+      "fold": 1,
+      "dev_start": "2021-01-01",
+      "dev_end": "2022-12-31",
+      "holdout_start": "2023-01-01",
+      "holdout_end": "2023-07-01",
+      "dev_fights": 262,
+      "holdout_fights": 121
+    },
+    {
+      "fold": 2,
+      "dev_start": "2021-07-02",
+      "dev_end": "2023-07-01",
+      "holdout_start": "2023-07-02",
+      "holdout_end": "2023-12-30",
+      "dev_fights": 383,
+      "holdout_fights": 118
+    },
+    {
+      "fold": 3,
+      "dev_start": "2021-12-31",
+      "dev_end": "2023-12-30",
+      "holdout_start": "2023-12-31",
+      "holdout_end": "2024-06-29",
+      "dev_fights": 501,
+      "holdout_fights": 151
+    },
+    {
+      "fold": 4,
+      "dev_start": "2022-07-01",
+      "dev_end": "2024-06-29",
+      "holdout_start": "2024-06-30",
+      "holdout_end": "2024-12-28",
+      "dev_fights": 536,
+      "holdout_fights": 142
+    },
+    {
+      "fold": 5,
+      "dev_start": "2022-12-30",
+      "dev_end": "2024-12-28",
+      "holdout_start": "2024-12-29",
+      "holdout_end": "2025-06-28",
+      "dev_fights": 532,
+      "holdout_fights": 138
+    },
+    {
+      "fold": 6,
+      "dev_start": "2023-06-30",
+      "dev_end": "2025-06-28",
+      "holdout_start": "2025-06-29",
+      "holdout_end": "2025-12-27",
+      "dev_fights": 553,
+      "holdout_fights": 147
+    },
+    {
+      "fold": 7,
+      "dev_start": "2023-12-29",
+      "dev_end": "2025-12-27",
+      "holdout_start": "2025-12-28",
+      "holdout_end": "2026-06-27",
+      "dev_fights": 578,
+      "holdout_fights": 144
+    }
+  ],
+  "observed": {
+    "probability_summary": {
+      "variant": "rolling_prior_probability_delta",
+      "fights": 840,
+      "market_log_loss": 0.6015183408137494,
+      "candidate_log_loss": 0.5976633904615684,
+      "delta_log_loss": 0.0038549503521810857,
+      "delta_brier": 0.001594231729543344,
+      "accuracy": 0.6952380952380952,
+      "mean_abs_move": 0.04183391734129923,
+      "positive_folds": 4,
+      "folds": 6,
+      "bootstrap_p_delta_le_zero": 0.1643
+    },
+    "probability_selection_path": [
+      {
+        "variant": "current_mixed_core",
+        "prior_rows": 121,
+        "prior_delta_log_loss": 0.007284495597932317,
+        "fold": 2,
+        "eval_rows": 118,
+        "eval_delta_log_loss": -0.0016221927735232677
+      },
+      {
+        "variant": "current_sigpct_head",
+        "prior_rows": 239,
+        "prior_delta_log_loss": 0.004901224907130963,
+        "fold": 3,
+        "eval_rows": 151,
+        "eval_delta_log_loss": 0.002987579792248063
+      },
+      {
+        "variant": "pace_adjusted_mixed_core",
+        "prior_rows": 390,
+        "prior_delta_log_loss": 0.004539193488381943,
+        "fold": 4,
+        "eval_rows": 142,
+        "eval_delta_log_loss": 0.01151986461232446
+      },
+      {
+        "variant": "pace_adjusted_mixed_core",
+        "prior_rows": 532,
+        "prior_delta_log_loss": 0.006402455329734935,
+        "fold": 5,
+        "eval_rows": 138,
+        "eval_delta_log_loss": -0.002672003995164207
+      },
+      {
+        "variant": "current_sigpct_head",
+        "prior_rows": 670,
+        "prior_delta_log_loss": 0.00574907267179281,
+        "fold": 6,
+        "eval_rows": 147,
+        "eval_delta_log_loss": 0.006384638523879604
+      },
+      {
+        "variant": "rate_volume_core",
+        "prior_rows": 817,
+        "prior_delta_log_loss": 0.0064296706203893494,
+        "fold": 7,
+        "eval_rows": 144,
+        "eval_delta_log_loss": 0.005366850054518091
+      }
+    ],
+    "profit_summary": {
+      "variant": "rolling_prior_profit",
+      "bets": 615,
+      "events": 125,
+      "profit": 30.726620479318527,
+      "roi": 0.049961984519217115,
+      "actual_minus_market": 0.049454344272868545,
+      "positive_folds": 6,
+      "folds": 6,
+      "bootstrap_p_profit_le_zero": 0.0581,
+      "market_null_p": null
+    },
+    "profit_selection_path": [
+      {
+        "variant": "current_mixed_core",
+        "prior_bets": 87,
+        "prior_profit": 0.9063568505955844,
+        "prior_roi": 0.010417894834432005,
+        "fold": 2,
+        "eval_bets": 92,
+        "eval_profit": 2.8474192326426717,
+        "eval_roi": 0.030950209050463823
+      },
+      {
+        "variant": "rate_volume_core",
+        "prior_bets": 160,
+        "prior_profit": 6.0339607898749446,
+        "prior_roi": 0.037712254936718405,
+        "fold": 3,
+        "eval_bets": 103,
+        "eval_profit": 2.540849449994302,
+        "eval_roi": 0.024668441262080603
+      },
+      {
+        "variant": "rate_volume_core",
+        "prior_bets": 263,
+        "prior_profit": 8.574810239869247,
+        "prior_roi": 0.03260384121623288,
+        "fold": 4,
+        "eval_bets": 96,
+        "eval_profit": 1.8966096375013677,
+        "eval_roi": 0.019756350390639246
+      },
+      {
+        "variant": "pace_adjusted_mixed_core",
+        "prior_bets": 371,
+        "prior_profit": 18.52954121278721,
+        "prior_roi": 0.04994485502098978,
+        "fold": 5,
+        "eval_bets": 101,
+        "eval_profit": 0.8266074421617402,
+        "eval_roi": 0.00818423210061129
+      },
+      {
+        "variant": "pace_adjusted_mixed_core",
+        "prior_bets": 472,
+        "prior_profit": 19.35614865494895,
+        "prior_roi": 0.04100878952319693,
+        "fold": 6,
+        "eval_bets": 113,
+        "eval_profit": 7.978984879581034,
+        "eval_roi": 0.07061048566000916
+      },
+      {
+        "variant": "pace_adjusted_mixed_core",
+        "prior_bets": 585,
+        "prior_profit": 27.335133534529987,
+        "prior_roi": 0.04672672399064955,
+        "fold": 7,
+        "eval_bets": 110,
+        "eval_profit": 14.636149837437415,
+        "eval_roi": 0.1330559076130674
+      }
+    ]
+  },
+  "selection_null": {
+    "probability_delta_log_loss": {
+      "iterations": 200,
+      "observed": 0.0038549503521810857,
+      "null_mean": -0.004279525516623228,
+      "null_ci_95": [
+        -0.01018273688413567,
+        0.0018881892663169223
+      ],
+      "p_value_observed_or_better": 0.014925373134328358,
+      "prob_null_positive": 0.08
+    },
+    "profit": {
+      "iterations": 200,
+      "observed": 30.726620479318527,
+      "null_mean": -17.41121965654945,
+      "null_ci_95": [
+        -69.26532996060784,
+        39.1739489679608
+      ],
+      "p_value_observed_or_better": 0.03980099502487562,
+      "prob_null_positive": 0.215
+    }
+  },
+  "outputs": {
+    "observed_probability_predictions_csv": "test_results/striking_feature_engineering_selection_null_audit/observed_rolling_probability_predictions.csv",
+    "observed_profit_bets_csv": "test_results/striking_feature_engineering_selection_null_audit/observed_rolling_profit_bets.csv",
+    "selection_null_csv": "test_results/striking_feature_engineering_selection_null_audit/selection_null_distribution.csv",
+    "summary_json": "test_results/striking_feature_engineering_selection_null_audit/striking_feature_engineering_selection_null_audit.json",
+    "report_md": "test_results/striking_feature_engineering_selection_null_audit/striking_feature_engineering_selection_null_audit.md"
+  }
+}
