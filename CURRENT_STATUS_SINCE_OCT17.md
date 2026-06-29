@@ -1760,6 +1760,75 @@ work should audit and redesign the striking-differential/percentage formulas
 in fight context, then validate a predeclared grouped feature variant through
 rolling log-loss, market-null, bootstrap, and PnL tests.
 
+### Striking Group After Market Audit
+
+Striking group after-market audit:
+
+```text
+testing/striking_group_after_market_audit.py
+test_results/striking_group_after_market_audit/striking_group_after_market_audit.md
+test_results/striking_group_after_market_audit/striking_group_after_market_audit.json
+```
+
+This discovery follow-up tests whether the one-feature striking-differential
+clues survive as compact grouped rolling models. Each candidate is a
+prior-fold logistic model with `market_logit` plus a small striking feature
+group, red/blue mirrored training, and mirrored holdout averaging. The report
+was regenerated with `300` market-null refits.
+
+Protocol:
+
+- merged residual-prediction/feature rows: `704`
+- rolling evaluation folds: `2`, `3`, `4`, `5`
+- rolling evaluation fights: `539`
+- grouped striking variants tested: `9`
+- bootstrap iterations: `20,000`
+- market-null iterations: `300`
+
+Same-fold references:
+
+| Reference | Candidate LL | Market Delta LL | Positive Folds | Bootstrap P(delta <= 0) | Latest-Fold Delta |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| market recalibrated | 0.6023 | -0.0001 | 2 / 4 | 0.515 | -0.0036 |
+| selected shrinkage | 0.5994 | +0.0028 | 3 / 4 | 0.255 | -0.0047 |
+| fixed-half residual | 0.5996 | +0.0025 | 3 / 4 | 0.129 | -0.0018 |
+
+Grouped striking results:
+
+| Variant | Features | Market Delta LL | Inc Delta vs Recal | Positive Folds | Bootstrap P(inc <= 0) | Null p(market) | Null p(inc) | Latest Inc Delta |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `mixed_sig_head_core` | 4 | +0.0090 | +0.0091 | 4 / 4 | 0.014 | 0.007 | 0.003 | +0.0175 |
+| `pct_sig_head_distance` | 4 | +0.0056 | +0.0057 | 3 / 4 | 0.072 | 0.003 | 0.003 | +0.0100 |
+| `raw_sig_head_oppdiff` | 3 | +0.0036 | +0.0037 | 4 / 4 | 0.077 | 0.023 | 0.017 | +0.0103 |
+| `defense_proxy_clues` | 5 | -0.0020 | -0.0019 | 3 / 4 | 0.618 | 0.133 | 0.159 | -0.0238 |
+| `wrong_way_striking_control` | 5 | -0.0071 | -0.0070 | 1 / 4 | 0.894 | 0.588 | 0.741 | -0.0073 |
+
+Best grouped candidate:
+
+```text
+mixed_sig_head_core =
+market_logit
++ Sig. str.% differential oppdiff
++ Sig. str. differential oppdiff
++ Head differential oppdiff
+```
+
+Mean rolling coefficients for that candidate were positive on
+`Head differential oppdiff` (`+0.2101`) and
+`Sig. str.% differential oppdiff` (`+0.1783`), but negative on
+`Sig. str. differential oppdiff` (`-0.1049`), suggesting correlated raw and
+percentage encodings rather than three independent signals.
+
+Interpretation: this is the most constructive feature clue so far. The best
+group beats raw market, market recalibration, selected shrinkage, and fixed
+half residual on the same folds, including a positive latest fold. A simple
+nine-variant correction leaves the best incremental market-null p-value around
+`0.030`, but the bootstrap p-value would not survive that same crude
+correction (`0.014 * 9 = 0.126`), and the group family itself was motivated by
+the prior one-feature audit. Treat this as promising discovery evidence for a
+narrow striking-differential redesign, not as a live-edge claim or production
+feature change.
+
 ### Feature Semantic Integrity Audit
 
 Feature semantic-integrity audit:
@@ -2209,6 +2278,13 @@ The most honest read:
   concentrated in correlated striking-differential encodings, while
   record/experience, age/recency, and grappling units were negative on average
   after market control
+- grouped striking-differential probes are the most constructive feature clue
+  so far: `mixed_sig_head_core` beat raw market by `+0.0090` delta LL and
+  market-only recalibration by `+0.0091` across folds `2-5`, with `4/4`
+  positive folds, latest-fold incremental delta `+0.0175`, event-bootstrap
+  `P(delta <= 0) = 0.014`, and `300`-refit market-null p `0.003` versus
+  recalibration; however the family is post-hoc from the one-feature audit and
+  simple nine-variant bootstrap correction would not pass
 - feature-forensics did not find a hard arithmetic or pre-fight-state bug:
   `64` oppdiff pairs, `276,527` row-level diff checks, all `4,322` source
   supervised rows, `69,152` core state checks, and active side-swap coverage
@@ -2389,11 +2465,12 @@ out-of-sample results that beat market-null and bootstrap tests after the model
 params, probability transform, selection objective, strategy grid, and staking
 policy have been frozen.
 
-Next research direction: go deeper on feature semantics and fight-context
-feature engineering. The useful work is to verify that each major feature
-family is leak-safe, symmetric, unit-correct, and meaningful for how fights are
-actually won, then test predeclared feature additions/ablations through the
-same rolling log-loss, calibration, market-null, and PnL validation stack.
+Next research direction: predeclare a narrow striking-differential feature
+redesign/backtest inspired by `mixed_sig_head_core`, while continuing to verify
+that the underlying significant-strike/head-strike percentage and raw
+differential formulas are leak-safe, symmetric, unit-correct, and meaningful in
+fight context. Any promoted feature change still needs the same rolling
+log-loss, calibration, market-null, bootstrap, and PnL validation stack.
 
 ## Independent PnL Investigation Update
 
@@ -2539,6 +2616,11 @@ Validation:
   units with rolling prior-fold market-control models; `18/60` units were
   positive, but the signal was concentrated in striking differentials and did
   not support a broad feature expansion
+- the striking group after-market audit tested `9` compact grouped
+  striking-differential variants with `300` market-null refits; the best
+  post-hoc group made `+0.0090` market delta LL and `+0.0091` incremental
+  delta versus market recalibration, but remains discovery-only pending a
+  predeclared leak-safe backtest
 - the residual recent-stress audit regenerated cleanly; selected-shrinkage
   probability delta was `-0.0032` over the last 365 days, and frozen
   residual-meta cap-3 PnL was only `+0.38u` over the last 365 days

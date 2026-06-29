@@ -1,0 +1,1213 @@
+{
+  "paths": {
+    "predictions": "test_results/residual_shrinkage_audit/holdout_shrinkage_predictions.csv",
+    "features": "data/detailed_fights.csv"
+  },
+  "parameters": {
+    "c": 0.1,
+    "bootstrap_iterations": 20000,
+    "market_null_iterations": 300,
+    "seed": 20260629
+  },
+  "merged_rows": 704,
+  "folds_available": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "rolling_eval_folds": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "reference_rows": 539,
+  "variants": [
+    {
+      "name": "raw_sig_head_oppdiff",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "note": "raw significant-strike and head-strike differential oppdiffs"
+    },
+    {
+      "name": "raw_sig_head_side_pairs",
+      "feature_columns": [
+        "market_logit",
+        "Red Sig. str. differential",
+        "Blue Sig. str. differential",
+        "Red Head differential",
+        "Blue Head differential"
+      ],
+      "note": "side-pair version of the same raw sig-str/head differential theme"
+    },
+    {
+      "name": "pct_sig_head_distance",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head% differential oppdiff",
+        "Distance% differential oppdiff"
+      ],
+      "note": "percentage/rate proxy differentials that scored well one at a time"
+    },
+    {
+      "name": "mixed_sig_head_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "note": "best percentage proxy plus raw sig-str/head differential clues"
+    },
+    {
+      "name": "raw_striking_diff_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff",
+        "Distance differential oppdiff",
+        "Total str. differential oppdiff",
+        "Ground differential oppdiff",
+        "Clinch differential oppdiff"
+      ],
+      "note": "raw striking and position differential core without percentage proxies"
+    },
+    {
+      "name": "pct_striking_diff_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head% differential oppdiff",
+        "Distance% differential oppdiff",
+        "Body% differential oppdiff",
+        "Clinch% differential oppdiff"
+      ],
+      "note": "percentage/rate proxy striking differential core"
+    },
+    {
+      "name": "all_positive_striking_clues",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff",
+        "Head% differential oppdiff",
+        "Distance% differential oppdiff",
+        "Sig. str. differential oppdiff",
+        "Ground differential oppdiff",
+        "Total str. differential oppdiff",
+        "Clinch% differential oppdiff",
+        "Body% differential oppdiff",
+        "Clinch differential oppdiff",
+        "Distance differential oppdiff"
+      ],
+      "note": "union of non-defense positive striking clues from the one-feature audit"
+    },
+    {
+      "name": "defense_proxy_clues",
+      "feature_columns": [
+        "market_logit",
+        "Distance% defense oppdiff",
+        "Leg% defense oppdiff",
+        "Head% defense oppdiff",
+        "Total str.% defense oppdiff"
+      ],
+      "note": "target/position-mix defense proxies, separated from cleaner differentials"
+    },
+    {
+      "name": "wrong_way_striking_control",
+      "feature_columns": [
+        "market_logit",
+        "Leg differential oppdiff",
+        "KD differential oppdiff",
+        "Head oppdiff",
+        "Sig. str. oppdiff"
+      ],
+      "note": "features that were weak or wrong-way in one-feature probes"
+    }
+  ],
+  "summaries": {
+    "raw_sig_head_oppdiff": {
+      "variant": "raw_sig_head_oppdiff",
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "baseline_log_loss": 0.6022954473724526,
+      "candidate_log_loss": 0.5985593427565759,
+      "market_delta_log_loss": 0.003613820623905604,
+      "incremental_delta_log_loss": 0.0037361046158767754,
+      "positive_market_folds": 4,
+      "positive_incremental_folds": 3,
+      "folds": 4,
+      "fold_market_deltas": [
+        0.0029143548168106322,
+        0.0034276550585605665,
+        0.0014664483104335773,
+        0.006699198844645641
+      ],
+      "fold_incremental_deltas": [
+        0.0009212995291513147,
+        0.004687172682653188,
+        -0.0010270618251289093,
+        0.01026692700803636
+      ],
+      "latest_fold": 5,
+      "latest_market_delta_log_loss": 0.006699198844645641,
+      "latest_incremental_delta_log_loss": 0.01026692700803636,
+      "market_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.001868010514915323,
+          0.008997872806554515
+        ],
+        "prob_delta_le_zero": 0.09615
+      },
+      "incremental_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.0014096069528073984,
+          0.008937229493875985
+        ],
+        "prob_delta_le_zero": 0.0772
+      }
+    },
+    "raw_sig_head_side_pairs": {
+      "variant": "raw_sig_head_side_pairs",
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "baseline_log_loss": 0.6022954473724526,
+      "candidate_log_loss": 0.5985467412993846,
+      "market_delta_log_loss": 0.00362642208109685,
+      "incremental_delta_log_loss": 0.0037487060730680213,
+      "positive_market_folds": 4,
+      "positive_incremental_folds": 3,
+      "folds": 4,
+      "fold_market_deltas": [
+        0.0029714092216906124,
+        0.0034245600913097927,
+        0.0015063935691807541,
+        0.006657698644972523
+      ],
+      "fold_incremental_deltas": [
+        0.0009783539340312939,
+        0.0046840777154024136,
+        -0.0009871165663817346,
+        0.010225426808363245
+      ],
+      "latest_fold": 5,
+      "latest_market_delta_log_loss": 0.006657698644972523,
+      "latest_incremental_delta_log_loss": 0.010225426808363245,
+      "market_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.001784208217268001,
+          0.009021385168349131
+        ],
+        "prob_delta_le_zero": 0.09695
+      },
+      "incremental_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.0013386076437702371,
+          0.008870408612212105
+        ],
+        "prob_delta_le_zero": 0.0742
+      }
+    },
+    "pct_sig_head_distance": {
+      "variant": "pct_sig_head_distance",
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "baseline_log_loss": 0.6022954473724526,
+      "candidate_log_loss": 0.596596759187144,
+      "market_delta_log_loss": 0.005576404193337264,
+      "incremental_delta_log_loss": 0.0056986881853084365,
+      "positive_market_folds": 3,
+      "positive_incremental_folds": 3,
+      "folds": 4,
+      "fold_market_deltas": [
+        0.0024095848821165783,
+        -0.0033544602164088857,
+        0.018176961853857906,
+        0.006454262147235928
+      ],
+      "fold_incremental_deltas": [
+        0.00041652959445726044,
+        -0.0020949425923162666,
+        0.015683451718295424,
+        0.010021990310626653
+      ],
+      "latest_fold": 5,
+      "latest_market_delta_log_loss": 0.006454262147235928,
+      "latest_incremental_delta_log_loss": 0.010021990310626653,
+      "market_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.0032875307496961514,
+          0.014345533345993141
+        ],
+        "prob_delta_le_zero": 0.1076
+      },
+      "incremental_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.0017607955312116295,
+          0.013389582069642466
+        ],
+        "prob_delta_le_zero": 0.07235
+      }
+    },
+    "mixed_sig_head_core": {
+      "variant": "mixed_sig_head_core",
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "baseline_log_loss": 0.6022954473724526,
+      "candidate_log_loss": 0.593203804649136,
+      "market_delta_log_loss": 0.00896935873134542,
+      "incremental_delta_log_loss": 0.009091642723316595,
+      "positive_market_folds": 4,
+      "positive_incremental_folds": 4,
+      "folds": 4,
+      "fold_market_deltas": [
+        0.0040614493512333575,
+        0.0045090802014079445,
+        0.014069670082755326,
+        0.013961835655546217
+      ],
+      "fold_incremental_deltas": [
+        0.002068394063574041,
+        0.005768597825500563,
+        0.011576159947192837,
+        0.017529563818936937
+      ],
+      "latest_fold": 5,
+      "latest_market_delta_log_loss": 0.013961835655546217,
+      "latest_incremental_delta_log_loss": 0.017529563818936937,
+      "market_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          0.00046082117280558406,
+          0.017331950927700845
+        ],
+        "prob_delta_le_zero": 0.01955
+      },
+      "incremental_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          0.0009745265373088562,
+          0.017122103062715572
+        ],
+        "prob_delta_le_zero": 0.01395
+      }
+    },
+    "raw_striking_diff_core": {
+      "variant": "raw_striking_diff_core",
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "baseline_log_loss": 0.6022954473724526,
+      "candidate_log_loss": 0.6002540720641779,
+      "market_delta_log_loss": 0.0019190913163034955,
+      "incremental_delta_log_loss": 0.002041375308274667,
+      "positive_market_folds": 3,
+      "positive_incremental_folds": 3,
+      "folds": 4,
+      "fold_market_deltas": [
+        0.0033286208460385513,
+        0.009942791550880594,
+        -0.008550432169195266,
+        0.0017194337896578897
+      ],
+      "fold_incremental_deltas": [
+        0.0013355655583792328,
+        0.011202309174973215,
+        -0.011043942304757753,
+        0.005287161953048613
+      ],
+      "latest_fold": 5,
+      "latest_market_delta_log_loss": 0.0017194337896578897,
+      "latest_incremental_delta_log_loss": 0.005287161953048613,
+      "market_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.004471886262496587,
+          0.008165615684526218
+        ],
+        "prob_delta_le_zero": 0.2685
+      },
+      "incremental_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.0037026214634373394,
+          0.007896367530372077
+        ],
+        "prob_delta_le_zero": 0.2409
+      }
+    },
+    "pct_striking_diff_core": {
+      "variant": "pct_striking_diff_core",
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "baseline_log_loss": 0.6022954473724526,
+      "candidate_log_loss": 0.597342227615417,
+      "market_delta_log_loss": 0.0048309357650643345,
+      "incremental_delta_log_loss": 0.004953219757035506,
+      "positive_market_folds": 3,
+      "positive_incremental_folds": 2,
+      "folds": 4,
+      "fold_market_deltas": [
+        0.0018977108920564978,
+        -0.0028879268675883027,
+        0.014227921182255193,
+        0.007292490215871329
+      ],
+      "fold_incremental_deltas": [
+        -9.534439560282036e-05,
+        -0.0016284092434956825,
+        0.011734411046692707,
+        0.010860218379262055
+      ],
+      "latest_fold": 5,
+      "latest_market_delta_log_loss": 0.007292490215871329,
+      "latest_incremental_delta_log_loss": 0.010860218379262055,
+      "market_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.004275139641354165,
+          0.01379931918378421
+        ],
+        "prob_delta_le_zero": 0.1465
+      },
+      "incremental_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.003113928385752584,
+          0.012998802412088548
+        ],
+        "prob_delta_le_zero": 0.1144
+      }
+    },
+    "all_positive_striking_clues": {
+      "variant": "all_positive_striking_clues",
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "baseline_log_loss": 0.6022954473724526,
+      "candidate_log_loss": 0.5983216054986924,
+      "market_delta_log_loss": 0.003851557881789045,
+      "incremental_delta_log_loss": 0.0039738418737602175,
+      "positive_market_folds": 3,
+      "positive_incremental_folds": 2,
+      "folds": 4,
+      "fold_market_deltas": [
+        -0.001011090623831723,
+        0.011194791362893758,
+        0.0011427082391604329,
+        0.002943106231453488
+      ],
+      "fold_incremental_deltas": [
+        -0.0030041459114910425,
+        0.012454308986986377,
+        -0.0013508018964020533,
+        0.0065108343948442095
+      ],
+      "latest_fold": 5,
+      "latest_market_delta_log_loss": 0.002943106231453488,
+      "latest_incremental_delta_log_loss": 0.0065108343948442095,
+      "market_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.0071625711252801295,
+          0.01479512723563886
+        ],
+        "prob_delta_le_zero": 0.2413
+      },
+      "incremental_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.005957317570114428,
+          0.014122048949054809
+        ],
+        "prob_delta_le_zero": 0.21865
+      }
+    },
+    "defense_proxy_clues": {
+      "variant": "defense_proxy_clues",
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "baseline_log_loss": 0.6022954473724526,
+      "candidate_log_loss": 0.6042102847305384,
+      "market_delta_log_loss": -0.002037121350056945,
+      "incremental_delta_log_loss": -0.0019148373580857735,
+      "positive_market_folds": 3,
+      "positive_incremental_folds": 3,
+      "folds": 4,
+      "fold_market_deltas": [
+        0.010320149190741463,
+        0.003982693717111092,
+        0.0038367363740186107,
+        -0.027409361152450903
+      ],
+      "fold_incremental_deltas": [
+        0.008327093903082146,
+        0.005242211341203708,
+        0.0013432262384561258,
+        -0.02384163298906018
+      ],
+      "latest_fold": 5,
+      "latest_market_delta_log_loss": -0.027409361152450903,
+      "latest_incremental_delta_log_loss": -0.02384163298906018,
+      "market_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.016662881394340984,
+          0.011605796016345059
+        ],
+        "prob_delta_le_zero": 0.6125
+      },
+      "incremental_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.014534994416615264,
+          0.010251735918170371
+        ],
+        "prob_delta_le_zero": 0.618
+      }
+    },
+    "wrong_way_striking_control": {
+      "variant": "wrong_way_striking_control",
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "baseline_log_loss": 0.6022954473724526,
+      "candidate_log_loss": 0.6092666945814624,
+      "market_delta_log_loss": -0.007093531200981106,
+      "incremental_delta_log_loss": -0.006971247209009935,
+      "positive_market_folds": 1,
+      "positive_incremental_folds": 1,
+      "folds": 4,
+      "fold_market_deltas": [
+        -0.007390785126678262,
+        -0.015004058937280537,
+        0.006039625204311087,
+        -0.01083064873510855
+      ],
+      "fold_incremental_deltas": [
+        -0.009383840414337579,
+        -0.013744541313187912,
+        0.003546115068748601,
+        -0.007262920571717828
+      ],
+      "latest_fold": 5,
+      "latest_market_delta_log_loss": -0.01083064873510855,
+      "latest_incremental_delta_log_loss": -0.007262920571717828,
+      "market_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.019508889758989848,
+          0.003772865915050987
+        ],
+        "prob_delta_le_zero": 0.8939
+      },
+      "incremental_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.01860349674290922,
+          0.00393241496218183
+        ],
+        "prob_delta_le_zero": 0.8936
+      }
+    }
+  },
+  "references": {
+    "market_recalibrated": {
+      "variant": "market_recalibrated",
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "baseline_log_loss": 0.6022954473724526,
+      "candidate_log_loss": 0.6022954473724526,
+      "market_delta_log_loss": -0.00012228399197117206,
+      "incremental_delta_log_loss": 0.0,
+      "positive_market_folds": 2,
+      "positive_incremental_folds": 0,
+      "folds": 4,
+      "fold_market_deltas": [
+        0.0019930552876593183,
+        -0.0012595176240926206,
+        0.0024935101355624874,
+        -0.0035677281633907224
+      ],
+      "fold_incremental_deltas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "latest_fold": 5,
+      "latest_market_delta_log_loss": -0.0035677281633907224,
+      "latest_incremental_delta_log_loss": 0.0,
+      "market_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.003738443006056908,
+          0.003398870590299463
+        ],
+        "prob_delta_le_zero": 0.5147
+      },
+      "incremental_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "prob_delta_le_zero": 1.0
+      }
+    },
+    "selected_shrinkage": {
+      "variant": "selected_shrinkage",
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "baseline_log_loss": 0.6022954473724526,
+      "candidate_log_loss": 0.5994190487602361,
+      "market_delta_log_loss": 0.0027541146202452824,
+      "incremental_delta_log_loss": 0.0028763986122164555,
+      "positive_market_folds": 3,
+      "positive_incremental_folds": 3,
+      "folds": 4,
+      "fold_market_deltas": [
+        0.0077428737634707215,
+        0.002627899484038594,
+        0.005334335803555225,
+        -0.004726778186100421
+      ],
+      "fold_incremental_deltas": [
+        0.005749818475811404,
+        0.0038874171081312125,
+        0.002840825667992737,
+        -0.001159050022709698
+      ],
+      "latest_fold": 5,
+      "latest_market_delta_log_loss": -0.004726778186100421,
+      "latest_incremental_delta_log_loss": -0.001159050022709698,
+      "market_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.005543084717677363,
+          0.010783744028089029
+        ],
+        "prob_delta_le_zero": 0.2548
+      },
+      "incremental_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.0035144469036898674,
+          0.009207876652742626
+        ],
+        "prob_delta_le_zero": 0.1889
+      }
+    },
+    "fixed_half_residual": {
+      "variant": "fixed_half_residual",
+      "fights": 539,
+      "events": 79,
+      "market_log_loss": 0.6021731633804814,
+      "baseline_log_loss": 0.6022954473724526,
+      "candidate_log_loss": 0.5996362687532608,
+      "market_delta_log_loss": 0.0025368946272205073,
+      "incremental_delta_log_loss": 0.0026591786191916787,
+      "positive_market_folds": 3,
+      "positive_incremental_folds": 4,
+      "folds": 4,
+      "fold_market_deltas": [
+        0.005003625999107058,
+        0.0026755714478495837,
+        0.004216647908406428,
+        -0.0018029854347468026
+      ],
+      "fold_incremental_deltas": [
+        0.003010570711447739,
+        0.003935089071942204,
+        0.0017231377728439403,
+        0.0017647427286439214
+      ],
+      "latest_fold": 5,
+      "latest_market_delta_log_loss": -0.0018029854347468026,
+      "latest_incremental_delta_log_loss": 0.0017647427286439214,
+      "market_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.0019361934577101655,
+          0.006872674581105043
+        ],
+        "prob_delta_le_zero": 0.1287
+      },
+      "incremental_bootstrap": {
+        "iterations": 20000,
+        "events": 79,
+        "ci_95": [
+          -0.0008233469983745217,
+          0.006096741472586889
+        ],
+        "prob_delta_le_zero": 0.06645
+      }
+    }
+  },
+  "market_null": {
+    "raw_sig_head_oppdiff": {
+      "iterations": 300,
+      "market_delta_null_mean": -0.0034780216681910433,
+      "market_delta_null_ci_95": [
+        -0.011070642085661025,
+        0.003054308282398795
+      ],
+      "market_delta_p_value": 0.023255813953488372,
+      "incremental_delta_null_mean": -0.0016104289843472301,
+      "incremental_delta_null_ci_95": [
+        -0.0066457008028537245,
+        0.0020797357226164394
+      ],
+      "incremental_delta_p_value": 0.016611295681063124
+    },
+    "raw_sig_head_side_pairs": {
+      "iterations": 300,
+      "market_delta_null_mean": -0.0034407979538131307,
+      "market_delta_null_ci_95": [
+        -0.01098738083592224,
+        0.002987521549234106
+      ],
+      "market_delta_p_value": 0.023255813953488372,
+      "incremental_delta_null_mean": -0.0015732052699693178,
+      "incremental_delta_null_ci_95": [
+        -0.006537861329980991,
+        0.0020590570160411415
+      ],
+      "incremental_delta_p_value": 0.016611295681063124
+    },
+    "pct_sig_head_distance": {
+      "iterations": 300,
+      "market_delta_null_mean": -0.0054909556235496456,
+      "market_delta_null_ci_95": [
+        -0.014973420527668662,
+        0.001665644087153011
+      ],
+      "market_delta_p_value": 0.0033222591362126247,
+      "incremental_delta_null_mean": -0.003623362939705834,
+      "incremental_delta_null_ci_95": [
+        -0.011356754524158862,
+        0.00200903969793485
+      ],
+      "incremental_delta_p_value": 0.0033222591362126247
+    },
+    "mixed_sig_head_core": {
+      "iterations": 300,
+      "market_delta_null_mean": -0.004803804420190228,
+      "market_delta_null_ci_95": [
+        -0.013418865795829411,
+        0.00258973048059184
+      ],
+      "market_delta_p_value": 0.006644518272425249,
+      "incremental_delta_null_mean": -0.0029362117363464155,
+      "incremental_delta_null_ci_95": [
+        -0.008522888385010542,
+        0.0022850188716630722
+      ],
+      "incremental_delta_p_value": 0.0033222591362126247
+    },
+    "raw_striking_diff_core": {
+      "iterations": 300,
+      "market_delta_null_mean": -0.005969610537223316,
+      "market_delta_null_ci_95": [
+        -0.015436573694570485,
+        0.002020774722205985
+      ],
+      "market_delta_p_value": 0.03322259136212625,
+      "incremental_delta_null_mean": -0.0041020178533795046,
+      "incremental_delta_null_ci_95": [
+        -0.012233425375297879,
+        0.0018912366376669675
+      ],
+      "incremental_delta_p_value": 0.019933554817275746
+    },
+    "pct_striking_diff_core": {
+      "iterations": 300,
+      "market_delta_null_mean": -0.009112114543556099,
+      "market_delta_null_ci_95": [
+        -0.022716846825055977,
+        0.0005863306678984012
+      ],
+      "market_delta_p_value": 0.009966777408637873,
+      "incremental_delta_null_mean": -0.007244521859712285,
+      "incremental_delta_null_ci_95": [
+        -0.017221873344867716,
+        0.0014169643112663555
+      ],
+      "incremental_delta_p_value": 0.006644518272425249
+    },
+    "all_positive_striking_clues": {
+      "iterations": 300,
+      "market_delta_null_mean": -0.013150122361762759,
+      "market_delta_null_ci_95": [
+        -0.02699536441021606,
+        -0.00046037371287188157
+      ],
+      "market_delta_p_value": 0.006644518272425249,
+      "incremental_delta_null_mean": -0.011282529677918944,
+      "incremental_delta_null_ci_95": [
+        -0.02336406213542114,
+        -0.00035960960334877404
+      ],
+      "incremental_delta_p_value": 0.006644518272425249
+    },
+    "defense_proxy_clues": {
+      "iterations": 300,
+      "market_delta_null_mean": -0.00773813618008989,
+      "market_delta_null_ci_95": [
+        -0.018855516795468187,
+        0.0015300924434502382
+      ],
+      "market_delta_p_value": 0.132890365448505,
+      "incremental_delta_null_mean": -0.005870543496246077,
+      "incremental_delta_null_ci_95": [
+        -0.015327087327044055,
+        0.002314616990594894
+      ],
+      "incremental_delta_p_value": 0.15946843853820597
+    },
+    "wrong_way_striking_control": {
+      "iterations": 300,
+      "market_delta_null_mean": -0.006587603655311727,
+      "market_delta_null_ci_95": [
+        -0.016605205968022264,
+        0.00162312409139745
+      ],
+      "market_delta_p_value": 0.5880398671096345,
+      "incremental_delta_null_mean": -0.004720010971467915,
+      "incremental_delta_null_ci_95": [
+        -0.01423310142302467,
+        0.0018020413210559538
+      ],
+      "incremental_delta_p_value": 0.7408637873754153
+    }
+  },
+  "coefficient_summary": {
+    "market_recalibrated": {
+      "market_logit": {
+        "folds": 4,
+        "mean": 0.9316265535173409,
+        "std": 0.040173915590082064,
+        "min": 0.867811132915915,
+        "max": 0.9663386223403708
+      }
+    },
+    "raw_sig_head_oppdiff": {
+      "market_logit": {
+        "folds": 4,
+        "mean": 0.8907155733904928,
+        "std": 0.036965299232172746,
+        "min": 0.8336338238839037,
+        "max": 0.9240509368251864
+      },
+      "Sig. str. differential oppdiff": {
+        "folds": 4,
+        "mean": -0.044661729018603616,
+        "std": 0.04767654193869388,
+        "min": -0.11858629407778029,
+        "max": 0.00917060379385804
+      },
+      "Head differential oppdiff": {
+        "folds": 4,
+        "mean": 0.2121396463965021,
+        "std": 0.032236205974899186,
+        "min": 0.165276278885523,
+        "max": 0.25620358625375744
+      }
+    },
+    "raw_sig_head_side_pairs": {
+      "market_logit": {
+        "folds": 4,
+        "mean": 0.8909709567673443,
+        "std": 0.03691827610047137,
+        "min": 0.8340090159307119,
+        "max": 0.924176878609687
+      },
+      "Red Sig. str. differential": {
+        "folds": 4,
+        "mean": -0.03043116847782295,
+        "std": 0.03365377704094563,
+        "min": -0.08262365918542969,
+        "max": 0.007652404869946563
+      },
+      "Blue Sig. str. differential": {
+        "folds": 4,
+        "mean": 0.03043116847782214,
+        "std": 0.033653777040946166,
+        "min": -0.007652404869947875,
+        "max": 0.08262365918543017
+      },
+      "Red Head differential": {
+        "folds": 4,
+        "mean": 0.15567826961379247,
+        "std": 0.022334612292953127,
+        "min": 0.1225302362938762,
+        "max": 0.18534849777574638
+      },
+      "Blue Head differential": {
+        "folds": 4,
+        "mean": -0.1556782696137934,
+        "std": 0.022334612292952596,
+        "min": -0.18534849777574602,
+        "max": -0.12253023629387762
+      }
+    },
+    "pct_sig_head_distance": {
+      "market_logit": {
+        "folds": 4,
+        "mean": 0.8934173123594158,
+        "std": 0.0387509305339159,
+        "min": 0.8288695145268459,
+        "max": 0.9245936094970884
+      },
+      "Sig. str.% differential oppdiff": {
+        "folds": 4,
+        "mean": 0.22905975673577944,
+        "std": 0.07490794006886702,
+        "min": 0.11274320775296125,
+        "max": 0.2951920913526596
+      },
+      "Head% differential oppdiff": {
+        "folds": 4,
+        "mean": -0.008160376373045852,
+        "std": 0.028662315895527576,
+        "min": -0.04289154807525457,
+        "max": 0.02049011652637865
+      },
+      "Distance% differential oppdiff": {
+        "folds": 4,
+        "mean": -0.038018153089344905,
+        "std": 0.07943767032898859,
+        "min": -0.16441286738587296,
+        "max": 0.053890169936511266
+      }
+    },
+    "mixed_sig_head_core": {
+      "market_logit": {
+        "folds": 4,
+        "mean": 0.8678272863985144,
+        "std": 0.03738930595557494,
+        "min": 0.8072219857324529,
+        "max": 0.8990314808463578
+      },
+      "Sig. str.% differential oppdiff": {
+        "folds": 4,
+        "mean": 0.17830277027686214,
+        "std": 0.04078369820958871,
+        "min": 0.14046220268967335,
+        "max": 0.24659626666754705
+      },
+      "Sig. str. differential oppdiff": {
+        "folds": 4,
+        "mean": -0.10492586279681254,
+        "std": 0.03966207701048159,
+        "min": -0.17044884200554852,
+        "max": -0.06791152570809995
+      },
+      "Head differential oppdiff": {
+        "folds": 4,
+        "mean": 0.2101223913060159,
+        "std": 0.028865811471109296,
+        "min": 0.16837295604300065,
+        "max": 0.2499736527561083
+      }
+    },
+    "raw_striking_diff_core": {
+      "market_logit": {
+        "folds": 4,
+        "mean": 0.8841918995952681,
+        "std": 0.037083859596977915,
+        "min": 0.8292669796194099,
+        "max": 0.9235677859193003
+      },
+      "Sig. str. differential oppdiff": {
+        "folds": 4,
+        "mean": -0.0525030119441308,
+        "std": 0.022737620407669377,
+        "min": -0.0821201257209184,
+        "max": -0.019419614697991378
+      },
+      "Head differential oppdiff": {
+        "folds": 4,
+        "mean": 0.16084290901131323,
+        "std": 0.047679735248869544,
+        "min": 0.11232850763351078,
+        "max": 0.23727357780678887
+      },
+      "Distance differential oppdiff": {
+        "folds": 4,
+        "mean": -0.09186876616104821,
+        "std": 0.0181439443541721,
+        "min": -0.10964544081923593,
+        "max": -0.0640165364119971
+      },
+      "Total str. differential oppdiff": {
+        "folds": 4,
+        "mean": 0.12816967798072765,
+        "std": 0.09675937688841374,
+        "min": -0.024138049485216587,
+        "max": 0.22309677597433797
+      },
+      "Ground differential oppdiff": {
+        "folds": 4,
+        "mean": 0.06689243378557604,
+        "std": 0.030437930598866875,
+        "min": 0.023577708731721044,
+        "max": 0.10147072935172421
+      },
+      "Clinch differential oppdiff": {
+        "folds": 4,
+        "mean": -0.0012706807045839226,
+        "std": 0.01970817191013367,
+        "min": -0.03368054156667449,
+        "max": 0.019314067097393167
+      }
+    },
+    "pct_striking_diff_core": {
+      "market_logit": {
+        "folds": 4,
+        "mean": 0.8850026350560397,
+        "std": 0.04199795310309144,
+        "min": 0.816169066828505,
+        "max": 0.9229282401286453
+      },
+      "Sig. str.% differential oppdiff": {
+        "folds": 4,
+        "mean": 0.2013520075052187,
+        "std": 0.08336813204306341,
+        "min": 0.07884487680817642,
+        "max": 0.2848307889281645
+      },
+      "Head% differential oppdiff": {
+        "folds": 4,
+        "mean": -0.006903389083714866,
+        "std": 0.0264600197492323,
+        "min": -0.04076482125577353,
+        "max": 0.019858426088757812
+      },
+      "Distance% differential oppdiff": {
+        "folds": 4,
+        "mean": -0.030203133230632534,
+        "std": 0.07673579942844501,
+        "min": -0.1529631045578751,
+        "max": 0.058485165815513405
+      },
+      "Body% differential oppdiff": {
+        "folds": 4,
+        "mean": 0.040828272008358986,
+        "std": 0.02293649039652284,
+        "min": 0.01342931249269894,
+        "max": 0.06943082422341411
+      },
+      "Clinch% differential oppdiff": {
+        "folds": 4,
+        "mean": 0.040206905867772105,
+        "std": 0.02077331488998287,
+        "min": 0.005478235448957803,
+        "max": 0.05889822974821193
+      }
+    },
+    "all_positive_striking_clues": {
+      "market_logit": {
+        "folds": 4,
+        "mean": 0.8647792856058565,
+        "std": 0.03974448597514638,
+        "min": 0.8029685895193714,
+        "max": 0.9024347259586568
+      },
+      "Sig. str.% differential oppdiff": {
+        "folds": 4,
+        "mean": 0.19594807165370137,
+        "std": 0.07531462235492342,
+        "min": 0.10255897217517355,
+        "max": 0.27229814213658016
+      },
+      "Head differential oppdiff": {
+        "folds": 4,
+        "mean": 0.21473161534349705,
+        "std": 0.03684147329242424,
+        "min": 0.18238054396327175,
+        "max": 0.27636587266764145
+      },
+      "Head% differential oppdiff": {
+        "folds": 4,
+        "mean": -0.13733705706145496,
+        "std": 0.03299941332727847,
+        "min": -0.17347334921213153,
+        "max": -0.08681116352033873
+      },
+      "Distance% differential oppdiff": {
+        "folds": 4,
+        "mean": 0.07268869917919556,
+        "std": 0.09059946327085859,
+        "min": -0.08126108106002415,
+        "max": 0.15135830842368464
+      },
+      "Sig. str. differential oppdiff": {
+        "folds": 4,
+        "mean": -0.10888395864956056,
+        "std": 0.012261643481176766,
+        "min": -0.12162299237868206,
+        "max": -0.09451013155327123
+      },
+      "Ground differential oppdiff": {
+        "folds": 4,
+        "mean": 0.07269093008491465,
+        "std": 0.041141177898353906,
+        "min": 0.005826424177626237,
+        "max": 0.11646770132221894
+      },
+      "Total str. differential oppdiff": {
+        "folds": 4,
+        "mean": 0.14238700418948624,
+        "std": 0.09737905346861436,
+        "min": -0.01370284156956228,
+        "max": 0.2350899104018611
+      },
+      "Clinch% differential oppdiff": {
+        "folds": 4,
+        "mean": 0.05150946447640146,
+        "std": 0.017861584232941072,
+        "min": 0.022274906314275197,
+        "max": 0.06862871688358783
+      },
+      "Body% differential oppdiff": {
+        "folds": 4,
+        "mean": 0.041131734767528697,
+        "std": 0.02474122028392704,
+        "min": 0.010958376060238745,
+        "max": 0.07134802459906973
+      },
+      "Clinch differential oppdiff": {
+        "folds": 4,
+        "mean": -0.025497523370561593,
+        "std": 0.0206558778178317,
+        "min": -0.0594041882417386,
+        "max": -0.004627313660624362
+      },
+      "Distance differential oppdiff": {
+        "folds": 4,
+        "mean": -0.15449220746796152,
+        "std": 0.013663611924289179,
+        "min": -0.17665781427988755,
+        "max": -0.14018390985340023
+      }
+    },
+    "defense_proxy_clues": {
+      "market_logit": {
+        "folds": 4,
+        "mean": 0.9065174599308181,
+        "std": 0.042623007949563994,
+        "min": 0.8331476454297481,
+        "max": 0.9386931361630301
+      },
+      "Distance% defense oppdiff": {
+        "folds": 4,
+        "mean": 0.15441089103337086,
+        "std": 0.04644156699322995,
+        "min": 0.0842920306975911,
+        "max": 0.21385747729845772
+      },
+      "Leg% defense oppdiff": {
+        "folds": 4,
+        "mean": 0.19747100879583507,
+        "std": 0.06202352833031039,
+        "min": 0.11893099488819325,
+        "max": 0.2869209855335799
+      },
+      "Head% defense oppdiff": {
+        "folds": 4,
+        "mean": 0.07654911240391216,
+        "std": 0.06760941226046488,
+        "min": -0.007471137268065308,
+        "max": 0.1777023765563547
+      },
+      "Total str.% defense oppdiff": {
+        "folds": 4,
+        "mean": -0.05972874033316215,
+        "std": 0.11314596620067272,
+        "min": -0.16086392958216844,
+        "max": 0.12799386359683484
+      }
+    },
+    "wrong_way_striking_control": {
+      "market_logit": {
+        "folds": 4,
+        "mean": 0.946899721365974,
+        "std": 0.04060907941200949,
+        "min": 0.8907105343966066,
+        "max": 0.9989367388506469
+      },
+      "Leg differential oppdiff": {
+        "folds": 4,
+        "mean": -0.1402618302767883,
+        "std": 0.09512375649215431,
+        "min": -0.30117067770182554,
+        "max": -0.05731214248944435
+      },
+      "KD differential oppdiff": {
+        "folds": 4,
+        "mean": -0.011294865615701099,
+        "std": 0.07113123938768207,
+        "min": -0.10414724626633902,
+        "max": 0.07058429623838694
+      },
+      "Head oppdiff": {
+        "folds": 4,
+        "mean": 0.07700593022656169,
+        "std": 0.049058949887755846,
+        "min": 0.013094184703737114,
+        "max": 0.12573849283961072
+      },
+      "Sig. str. oppdiff": {
+        "folds": 4,
+        "mean": -0.20837561559190085,
+        "std": 0.08386587909200226,
+        "min": -0.2789865715583487,
+        "max": -0.06521037413159537
+      }
+    }
+  }
+}
