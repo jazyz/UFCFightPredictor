@@ -1700,6 +1700,66 @@ statistically convincing. This argues against promoting raw feature expansion
 or direct feature+market logistic models right now; the residual-model signal
 remains stronger than the raw-feature-after-market signal.
 
+### Feature Signal After Market Audit
+
+Feature signal after-market audit:
+
+```text
+testing/feature_signal_after_market_audit.py
+test_results/feature_signal_after_market_audit/feature_signal_after_market_audit.md
+test_results/feature_signal_after_market_audit/feature_signal_after_market_audit.json
+```
+
+This diagnostic refines the broader market-aware feature audit by testing the
+current regularized-LGBM top-importance features one unit at a time after
+market control. Each evaluation fold after fold `1` trains on prior folds only,
+uses direct/swapped fighter-order augmentation, and compares
+`market_logit + feature` against a rolling market-only logistic recalibration.
+It does not select a new feature set or betting policy.
+
+Protocol:
+
+- merged residual-prediction/feature rows: `704`
+- rolling evaluation folds: `2`, `3`, `4`, `5`
+- rolling evaluation fights: `539`
+- top raw importance features scanned: `80`
+- side-paired/differential feature units tested: `60`
+- market-only recalibration delta LL: `-0.0001`
+
+Feature-family summary:
+
+| Family | Units | Importance | Mean Inc Delta LL | Median Inc Delta LL | Positive Units | Wrong-Way Known Priors | Warning Units |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| striking_position | 36 | 1103 | +0.0002 | +0.0000 | 18 | 3 | 18 |
+| age_recency | 5 | 251 | -0.0007 | -0.0007 | 0 | 2 | 0 |
+| grappling | 12 | 398 | -0.0010 | -0.0008 | 0 | 0 | 2 |
+| record_experience | 7 | 385 | -0.0014 | -0.0016 | 0 | 2 | 0 |
+
+Top one-feature incremental helpers:
+
+| Feature Unit | Family | Inc Delta LL | Positive Folds | Bootstrap P(delta <= 0) | Latest-Fold Delta | Warning |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| `Sig. str.% differential oppdiff` | striking_position | +0.0079 | 4 / 4 | 0.017 | +0.0113 | percentage/rate proxy |
+| `Head differential oppdiff` | striking_position | +0.0043 | 3 / 4 | 0.060 | +0.0103 |  |
+| `Head differential side_pair` | striking_position | +0.0043 | 3 / 4 | 0.055 | +0.0102 |  |
+| `Head% differential oppdiff` | striking_position | +0.0033 | 3 / 4 | 0.083 | +0.0087 | percentage/rate proxy |
+| `Sig. str. differential oppdiff` | striking_position | +0.0027 | 4 / 4 | 0.039 | +0.0058 |  |
+| `Sig. str. differential side_pair` | striking_position | +0.0027 | 4 / 4 | 0.037 | +0.0058 |  |
+
+Largest one-feature harms included `Leg differential side_pair` (`-0.0040`),
+`Leg% side_pair` (`-0.0030`), `Total str.% defense oppdiff` (`-0.0029`),
+`Td% differential side_pair` (`-0.0028`), and `elo oppdiff` (`-0.0024`).
+
+Interpretation: high standalone LGBM importance is not the same as
+after-market signal. The individually positive units are concentrated in
+correlated striking-differential encodings, especially significant-strike and
+head-strike differentials. Record/experience, age/recency, and grappling units
+show no broad individual lift once the market is included. This is a useful
+feature-design map, not a promoted model change: the next plausible feature
+work should audit and redesign the striking-differential/percentage formulas
+in fight context, then validate a predeclared grouped feature variant through
+rolling log-loss, market-null, bootstrap, and PnL tests.
+
 ### Feature Semantic Integrity Audit
 
 Feature semantic-integrity audit:
@@ -2143,6 +2203,12 @@ The most honest read:
   market logit, Elo/experience, age/recency, combat-stat, and top-importance
   feature groups all worsened log loss; only market-only recalibration was
   slightly positive and still weak
+- individual after-market feature probes refine that result: among `60`
+  top-importance feature units, `18` were positive and only `6` passed a loose
+  diagnostic bootstrap/sign-consistency screen; the positives were
+  concentrated in correlated striking-differential encodings, while
+  record/experience, age/recency, and grappling units were negative on average
+  after market control
 - feature-forensics did not find a hard arithmetic or pre-fight-state bug:
   `64` oppdiff pairs, `276,527` row-level diff checks, all `4,322` source
   supervised rows, `69,152` core state checks, and active side-swap coverage
@@ -2469,6 +2535,10 @@ Validation:
   percentage checks, differential checks, and defense checks with zero formula
   mismatches, then showed unit-correcting side percentage columns worsened both
   1y and 2y regularized leak-safe backtests
+- the feature signal after-market audit tested `60` high-importance feature
+  units with rolling prior-fold market-control models; `18/60` units were
+  positive, but the signal was concentrated in striking differentials and did
+  not support a broad feature expansion
 - the residual recent-stress audit regenerated cleanly; selected-shrinkage
   probability delta was `-0.0032` over the last 365 days, and frozen
   residual-meta cap-3 PnL was only `+0.38u` over the last 365 days

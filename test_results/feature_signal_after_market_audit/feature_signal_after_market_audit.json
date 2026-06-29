@@ -1,0 +1,6264 @@
+{
+  "paths": {
+    "predictions": "test_results/residual_shrinkage_audit/holdout_shrinkage_predictions.csv",
+    "features": "data/detailed_fights.csv",
+    "importance": "test_results/regularized_lgbm_feature_importance.csv"
+  },
+  "parameters": {
+    "top_raw_features": 80,
+    "max_units": 60,
+    "c": 0.1,
+    "bootstrap_iterations": 10000,
+    "seed": 20260629
+  },
+  "feature_unit_metadata": {
+    "importance_path": "test_results/regularized_lgbm_feature_importance.csv",
+    "importance_rows": 182,
+    "top_raw_features_requested": 80,
+    "max_units": 60,
+    "units": 60,
+    "skipped_unavailable": 0,
+    "skipped_nonnumeric": 0
+  },
+  "merged_rows": 704,
+  "folds_available": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "rolling_eval_folds": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "baseline": {
+    "folds": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "fights": 539,
+    "events": 79,
+    "raw_market_log_loss": 0.6021731633804814,
+    "market_recalibrated_log_loss": 0.6022954473724526,
+    "market_recalibration_delta_log_loss": -0.00012228399197111717
+  },
+  "unit_summaries": [
+    {
+      "unit": "Sig. str.% differential oppdiff",
+      "columns": [
+        "Sig. str.% differential oppdiff"
+      ],
+      "source_features": [
+        "Sig. str.% differential oppdiff"
+      ],
+      "top_rank": 10,
+      "importance_sum": 34.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy",
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.5944312165749416,
+      "incremental_delta_log_loss": 0.007864230797510975,
+      "raw_market_delta_log_loss": 0.007741946805539806,
+      "positive_folds": 4,
+      "folds": 4,
+      "fold_deltas": [
+        0.0026495007874097103,
+        0.002681597592563756,
+        0.0156542536425907,
+        0.011295292132355035
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.011295292132355035,
+      "mean_oriented_coefficient": 0.19387546860801436,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          0.0004933431874217512,
+          0.01545963877872423
+        ],
+        "prob_delta_le_zero": 0.0165
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.07306972756808744,
+      "q4_market_residual": 0.07631235491846225,
+      "high_minus_low_market_residual": 0.1493820824865497,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Head differential oppdiff",
+      "columns": [
+        "Head differential oppdiff"
+      ],
+      "source_features": [
+        "Head differential oppdiff"
+      ],
+      "top_rank": 38,
+      "importance_sum": 22.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.598020624045731,
+      "incremental_delta_log_loss": 0.004274823326721553,
+      "raw_market_delta_log_loss": 0.004152539334750381,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        0.0024978809761148422,
+        0.005086973897307031,
+        -0.0008189065851481202,
+        0.010254395485900685
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.010254395485900685,
+      "mean_oriented_coefficient": 0.18229121803030843,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.001019761911971807,
+          0.009586646152170067
+        ],
+        "prob_delta_le_zero": 0.0598
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.0821606274496459,
+      "q4_market_residual": 0.03191936981321039,
+      "high_minus_low_market_residual": 0.1140799972628563,
+      "aligned_high_minus_low_market_residual": 0.1140799972628563
+    },
+    {
+      "unit": "Head differential side_pair",
+      "columns": [
+        "Red Head differential",
+        "Blue Head differential"
+      ],
+      "source_features": [
+        "Red Head differential"
+      ],
+      "top_rank": 32,
+      "importance_sum": 40.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.5980402336563448,
+      "incremental_delta_log_loss": 0.004255213716107769,
+      "raw_market_delta_log_loss": 0.004132929724136597,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        0.0024847144349791433,
+        0.005052505053531776,
+        -0.0008027009170643546,
+        0.010209478121111613
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.010209478121111613,
+      "mean_oriented_coefficient": 0.13525276528020744,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0010289805221785685,
+          0.009400842297549868
+        ],
+        "prob_delta_le_zero": 0.0552
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.0821606274496459,
+      "q4_market_residual": 0.03191936981321039,
+      "high_minus_low_market_residual": 0.1140799972628563,
+      "aligned_high_minus_low_market_residual": 0.1140799972628563
+    },
+    {
+      "unit": "Head% differential oppdiff",
+      "columns": [
+        "Head% differential oppdiff"
+      ],
+      "source_features": [
+        "Head% differential oppdiff"
+      ],
+      "top_rank": 74,
+      "importance_sum": 17.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy",
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.5990358534863582,
+      "incremental_delta_log_loss": 0.003259593886094384,
+      "raw_market_delta_log_loss": 0.0031373098941232113,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        0.0011093600313788418,
+        -0.0004983692971079656,
+        0.00437096593383652,
+        0.008676233517000547
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.008676233517000547,
+      "mean_oriented_coefficient": 0.11858809161832931,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0012374584096418375,
+          0.008095589949038579
+        ],
+        "prob_delta_le_zero": 0.0827
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.06386092381885647,
+      "q4_market_residual": 0.06888189386862939,
+      "high_minus_low_market_residual": 0.13274281768748586,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Distance% differential oppdiff",
+      "columns": [
+        "Distance% differential oppdiff"
+      ],
+      "source_features": [
+        "Distance% differential oppdiff"
+      ],
+      "top_rank": 45,
+      "importance_sum": 22.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy",
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.5992954609606704,
+      "incremental_delta_log_loss": 0.0029999864117823093,
+      "raw_market_delta_log_loss": 0.002877702419811137,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0041349071530362436,
+        0.002605242513582998,
+        0.009734748601613203,
+        0.0038622241131644197
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.0038622241131644197,
+      "mean_oriented_coefficient": 0.13104457013187842,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.002473151793128408,
+          0.008512784518212396
+        ],
+        "prob_delta_le_zero": 0.137
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.0587870937449948,
+      "q4_market_residual": 0.04673969805583016,
+      "high_minus_low_market_residual": 0.10552679180082497,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Distance% differential side_pair",
+      "columns": [
+        "Red Distance% differential",
+        "Blue Distance% differential"
+      ],
+      "source_features": [
+        "Blue Distance% differential"
+      ],
+      "top_rank": 58,
+      "importance_sum": 29.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy",
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.5993007687028873,
+      "incremental_delta_log_loss": 0.0029946786695652676,
+      "raw_market_delta_log_loss": 0.0028723946775940958,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        -0.004146704341742621,
+        0.002607092883204923,
+        0.009717087491313203,
+        0.003867581867990429
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.003867581867990429,
+      "mean_oriented_coefficient": 0.09421001762969143,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.00258957731351734,
+          0.008643319996289726
+        ],
+        "prob_delta_le_zero": 0.1485
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.0587870937449948,
+      "q4_market_residual": 0.04673969805583016,
+      "high_minus_low_market_residual": 0.10552679180082497,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Sig. str. differential oppdiff",
+      "columns": [
+        "Sig. str. differential oppdiff"
+      ],
+      "source_features": [
+        "Sig. str. differential oppdiff"
+      ],
+      "top_rank": 27,
+      "importance_sum": 25.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.5995785565506636,
+      "incremental_delta_log_loss": 0.002716890821789067,
+      "raw_market_delta_log_loss": 0.002594606829817896,
+      "positive_folds": 4,
+      "folds": 4,
+      "fold_deltas": [
+        0.0011192275593512279,
+        0.0028068225142094546,
+        0.001154451663016018,
+        0.005796918425621296
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.005796918425621296,
+      "mean_oriented_coefficient": 0.09840647047487108,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.00031165575717604304,
+          0.005713435983485138
+        ],
+        "prob_delta_le_zero": 0.0387
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.057891227156412456,
+      "q4_market_residual": 0.04347893228879188,
+      "high_minus_low_market_residual": 0.10137015944520433,
+      "aligned_high_minus_low_market_residual": 0.10137015944520433
+    },
+    {
+      "unit": "Sig. str. differential side_pair",
+      "columns": [
+        "Red Sig. str. differential",
+        "Blue Sig. str. differential"
+      ],
+      "source_features": [
+        "Blue Sig. str. differential",
+        "Red Sig. str. differential"
+      ],
+      "top_rank": 15,
+      "importance_sum": 50.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.5995903729336395,
+      "incremental_delta_log_loss": 0.0027050744388131464,
+      "raw_market_delta_log_loss": 0.0025827904468419746,
+      "positive_folds": 4,
+      "folds": 4,
+      "fold_deltas": [
+        0.0011108860099252938,
+        0.002789034620545241,
+        0.0011529293443412949,
+        0.005778170026231343
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.005778170026231343,
+      "mean_oriented_coefficient": 0.07212446828296343,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.00023854821636552299,
+          0.005708154077199926
+        ],
+        "prob_delta_le_zero": 0.0367
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.057891227156412456,
+      "q4_market_residual": 0.04347893228879188,
+      "high_minus_low_market_residual": 0.10137015944520433,
+      "aligned_high_minus_low_market_residual": 0.10137015944520433
+    },
+    {
+      "unit": "Ground differential oppdiff",
+      "columns": [
+        "Ground differential oppdiff"
+      ],
+      "source_features": [
+        "Ground differential oppdiff"
+      ],
+      "top_rank": 76,
+      "importance_sum": 17.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6000156115127832,
+      "incremental_delta_log_loss": 0.0022798358596694502,
+      "raw_market_delta_log_loss": 0.002157551867698279,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        0.0029937189647321794,
+        0.00958387384241043,
+        -0.0054904271696482815,
+        0.0008978489817004848
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.0008978489817004848,
+      "mean_oriented_coefficient": 0.18000623323214116,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.002574052641717709,
+          0.006772483242961383
+        ],
+        "prob_delta_le_zero": 0.1688
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.04030038115802564,
+      "q4_market_residual": 0.041905461933433245,
+      "high_minus_low_market_residual": 0.08220584309145888,
+      "aligned_high_minus_low_market_residual": 0.08220584309145888
+    },
+    {
+      "unit": "Total str. differential side_pair",
+      "columns": [
+        "Red Total str. differential",
+        "Blue Total str. differential"
+      ],
+      "source_features": [
+        "Blue Total str. differential",
+        "Red Total str. differential"
+      ],
+      "top_rank": 57,
+      "importance_sum": 37.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6001266627335692,
+      "incremental_delta_log_loss": 0.0021687846388834674,
+      "raw_market_delta_log_loss": 0.002046500646912295,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        0.003623621811914154,
+        0.007670390177082715,
+        -0.005875360540850476,
+        0.0024119568105232837
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.0024119568105232837,
+      "mean_oriented_coefficient": 0.11859416404331931,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0023033221534217428,
+          0.006723009327635084
+        ],
+        "prob_delta_le_zero": 0.1697
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.04626164241809598,
+      "q4_market_residual": 0.06629495060281734,
+      "high_minus_low_market_residual": 0.11255659302091332,
+      "aligned_high_minus_low_market_residual": 0.11255659302091332
+    },
+    {
+      "unit": "Distance% defense oppdiff",
+      "columns": [
+        "Distance% defense oppdiff"
+      ],
+      "source_features": [
+        "Distance% defense oppdiff"
+      ],
+      "top_rank": 20,
+      "importance_sum": 28.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy; target/position-mix defense proxy",
+      "expected_sign": 1,
+      "expected_sign_label": "higher defense proxy should help red, if the proxy is valid",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6007185266289555,
+      "incremental_delta_log_loss": 0.001576920743497134,
+      "raw_market_delta_log_loss": 0.0014546367515259632,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.009076141783514454,
+        -0.002234392304772213,
+        0.008410728648530184,
+        -0.008435457594612523
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.008435457594612523,
+      "mean_oriented_coefficient": 0.21361071094873282,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.007299760861703694,
+          0.01070955530114409
+        ],
+        "prob_delta_le_zero": 0.3614
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.11250789615857038,
+      "q4_market_residual": 0.004972522831991899,
+      "high_minus_low_market_residual": 0.11748041899056227,
+      "aligned_high_minus_low_market_residual": 0.11748041899056227
+    },
+    {
+      "unit": "Leg% defense oppdiff",
+      "columns": [
+        "Leg% defense oppdiff"
+      ],
+      "source_features": [
+        "Leg% defense oppdiff"
+      ],
+      "top_rank": 34,
+      "importance_sum": 24.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy; target/position-mix defense proxy",
+      "expected_sign": 1,
+      "expected_sign_label": "higher defense proxy should help red, if the proxy is valid",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6008204912095556,
+      "incremental_delta_log_loss": 0.0014749561628968995,
+      "raw_market_delta_log_loss": 0.0013526721709257285,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.007596701604767836,
+        0.01950798622283187,
+        -0.005873327821185768,
+        -0.018257636848752087
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.018257636848752087,
+      "mean_oriented_coefficient": 0.24401890817187927,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.008976676962875187,
+          0.011248457466479064
+        ],
+        "prob_delta_le_zero": 0.3807
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.06075276073643076,
+      "q4_market_residual": 0.03706924181450453,
+      "high_minus_low_market_residual": 0.09782200255093529,
+      "aligned_high_minus_low_market_residual": 0.09782200255093529
+    },
+    {
+      "unit": "Leg% defense side_pair",
+      "columns": [
+        "Red Leg% defense",
+        "Blue Leg% defense"
+      ],
+      "source_features": [
+        "Blue Leg% defense",
+        "Red Leg% defense"
+      ],
+      "top_rank": 17,
+      "importance_sum": 54.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy; target/position-mix defense proxy",
+      "expected_sign": 1,
+      "expected_sign_label": "higher defense proxy should help red, if the proxy is valid",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6008216180738664,
+      "incremental_delta_log_loss": 0.0014738292985862784,
+      "raw_market_delta_log_loss": 0.0013515453066151068,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.007510703424189495,
+        0.019463257890311378,
+        -0.005847311551169864,
+        -0.018149888644195776
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.018149888644195776,
+      "mean_oriented_coefficient": 0.17737401390950047,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.008656534300367546,
+          0.01149710278411926
+        ],
+        "prob_delta_le_zero": 0.3831
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.06075276073643076,
+      "q4_market_residual": 0.03706924181450453,
+      "high_minus_low_market_residual": 0.09782200255093529,
+      "aligned_high_minus_low_market_residual": 0.09782200255093529
+    },
+    {
+      "unit": "Clinch% differential side_pair",
+      "columns": [
+        "Red Clinch% differential",
+        "Blue Clinch% differential"
+      ],
+      "source_features": [
+        "Blue Clinch% differential"
+      ],
+      "top_rank": 69,
+      "importance_sum": 27.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy",
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6011381586862866,
+      "incremental_delta_log_loss": 0.0011572886861659676,
+      "raw_market_delta_log_loss": 0.0010350046941947962,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        0.0011989109043254458,
+        8.831640269237291e-05,
+        -0.001568821424083993,
+        0.005105577589210946
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.005105577589210946,
+      "mean_oriented_coefficient": 0.06030160708920965,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0027905806672340375,
+          0.004995144265117091
+        ],
+        "prob_delta_le_zero": 0.2762
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.06133766841178556,
+      "q4_market_residual": 0.01612002299412373,
+      "high_minus_low_market_residual": 0.07745769140590929,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Body% differential oppdiff",
+      "columns": [
+        "Body% differential oppdiff"
+      ],
+      "source_features": [
+        "Body% differential oppdiff"
+      ],
+      "top_rank": 12,
+      "importance_sum": 31.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy",
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6015358762381058,
+      "incremental_delta_log_loss": 0.0007595711343468322,
+      "raw_market_delta_log_loss": 0.0006372871423756601,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0012784005486684961,
+        0.002479525786480002,
+        -0.001069104906345607,
+        0.0026562456014943853
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.0026562456014943853,
+      "mean_oriented_coefficient": 0.09729649077108772,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0029298105820546603,
+          0.004495498899200369
+        ],
+        "prob_delta_le_zero": 0.3467
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.027821726505500743,
+      "q4_market_residual": 0.0424204123652606,
+      "high_minus_low_market_residual": 0.07024213887076133,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Body% differential side_pair",
+      "columns": [
+        "Red Body% differential",
+        "Blue Body% differential"
+      ],
+      "source_features": [
+        "Blue Body% differential",
+        "Red Body% differential"
+      ],
+      "top_rank": 55,
+      "importance_sum": 35.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy",
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6015377599083935,
+      "incremental_delta_log_loss": 0.0007576874640590319,
+      "raw_market_delta_log_loss": 0.00063540347208786,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0012994547854989931,
+        0.00249372094220136,
+        -0.0010747431539004386,
+        0.002658768479996438
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.002658768479996438,
+      "mean_oriented_coefficient": 0.06736826441224834,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0029368377434443454,
+          0.004469241689597373
+        ],
+        "prob_delta_le_zero": 0.3468
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.027821726505500743,
+      "q4_market_residual": 0.0424204123652606,
+      "high_minus_low_market_residual": 0.07024213887076133,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Clinch differential side_pair",
+      "columns": [
+        "Red Clinch differential",
+        "Blue Clinch differential"
+      ],
+      "source_features": [
+        "Blue Clinch differential",
+        "Red Clinch differential"
+      ],
+      "top_rank": 24,
+      "importance_sum": 49.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6015987454767494,
+      "incremental_delta_log_loss": 0.0006967018957031482,
+      "raw_market_delta_log_loss": 0.0005744179037319763,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        0.0009964108733748272,
+        -0.0004933177770577211,
+        0.0008871399104858955,
+        0.0015864991196958222
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.0015864991196958222,
+      "mean_oriented_coefficient": 0.0468398998505201,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0016686502566551791,
+          0.00301234980628528
+        ],
+        "prob_delta_le_zero": 0.2711
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.0275004170259589,
+      "q4_market_residual": 0.048035341087510015,
+      "high_minus_low_market_residual": 0.07553575811346891,
+      "aligned_high_minus_low_market_residual": 0.07553575811346891
+    },
+    {
+      "unit": "Distance differential side_pair",
+      "columns": [
+        "Red Distance differential",
+        "Blue Distance differential"
+      ],
+      "source_features": [
+        "Red Distance differential",
+        "Blue Distance differential"
+      ],
+      "top_rank": 47,
+      "importance_sum": 37.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6017640203165747,
+      "incremental_delta_log_loss": 0.0005314270558778211,
+      "raw_market_delta_log_loss": 0.0004091430639066495,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        -0.00043716217479047934,
+        0.00017666784693166662,
+        0.0004893583419500476,
+        0.001962430266260866
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.001962430266260866,
+      "mean_oriented_coefficient": 0.012058502576529233,
+      "coefficient_sign_consistency": 0.75,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.00040780651616192237,
+          0.001440427049123339
+        ],
+        "prob_delta_le_zero": 0.1314
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.060359031698395536,
+      "q4_market_residual": 0.02266618378508203,
+      "high_minus_low_market_residual": 0.08302521548347756,
+      "aligned_high_minus_low_market_residual": 0.08302521548347756
+    },
+    {
+      "unit": "Td% defense oppdiff",
+      "columns": [
+        "Td% defense oppdiff"
+      ],
+      "source_features": [
+        "Td% defense oppdiff"
+      ],
+      "top_rank": 16,
+      "importance_sum": 28.0,
+      "family": "grappling",
+      "warning": "percentage/rate proxy",
+      "expected_sign": 1,
+      "expected_sign_label": "higher defense proxy should help red, if the proxy is valid",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6024497083162955,
+      "incremental_delta_log_loss": -0.00015426094384286482,
+      "raw_market_delta_log_loss": -0.00027654493581403665,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0004290355724082623,
+        -0.00019726883246158568,
+        0.0003276232754554933,
+        -0.00031296686246671553
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.00031296686246671553,
+      "mean_oriented_coefficient": 0.03801715408028892,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0014227461327574725,
+          0.0011313484316105877
+        ],
+        "prob_delta_le_zero": 0.5889
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.028235392540801107,
+      "q4_market_residual": -0.015921663991273812,
+      "high_minus_low_market_residual": 0.012313728549527295,
+      "aligned_high_minus_low_market_residual": 0.012313728549527295
+    },
+    {
+      "unit": "age side_pair",
+      "columns": [
+        "Red age",
+        "Blue age"
+      ],
+      "source_features": [
+        "Blue age"
+      ],
+      "top_rank": 65,
+      "importance_sum": 30.0,
+      "family": "age_recency",
+      "warning": null,
+      "expected_sign": -1,
+      "expected_sign_label": "older red than blue is treated as a weak negative prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6025527545665116,
+      "incremental_delta_log_loss": -0.000257307194059012,
+      "raw_market_delta_log_loss": -0.0003795911860301839,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        -0.00019459312201731822,
+        3.4227173299542966e-05,
+        -0.0009573891519920763,
+        4.60080777401732e-05
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 4.60080777401732e-05,
+      "mean_oriented_coefficient": 0.005086520261222024,
+      "coefficient_sign_consistency": 0.75,
+      "expected_sign_match": false,
+      "wrong_way_known_prior": true,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0016683412843327367,
+          0.0011684770231323055
+        ],
+        "prob_delta_le_zero": 0.6258
+      },
+      "q1_q4_available": true,
+      "q1_fights": 172,
+      "q4_fights": 160,
+      "q1_market_residual": 0.019807917883869198,
+      "q4_market_residual": -0.03046516724153477,
+      "high_minus_low_market_residual": -0.05027308512540397,
+      "aligned_high_minus_low_market_residual": 0.05027308512540397
+    },
+    {
+      "unit": "totalfights side_pair",
+      "columns": [
+        "Red totalfights",
+        "Blue totalfights"
+      ],
+      "source_features": [
+        "Blue totalfights"
+      ],
+      "top_rank": 44,
+      "importance_sum": 37.0,
+      "family": "record_experience",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "stronger record/experience should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6025658204773656,
+      "incremental_delta_log_loss": -0.00027037310491312855,
+      "raw_market_delta_log_loss": -0.00039265709688430015,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0010954852666878545,
+        0.0013567727920922514,
+        4.749432782292955e-06,
+        -0.001608150108172799
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.001608150108172799,
+      "mean_oriented_coefficient": -0.07227451900298472,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": false,
+      "wrong_way_known_prior": true,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.004208109784595556,
+          0.00350080686633244
+        ],
+        "prob_delta_le_zero": 0.55
+      },
+      "q1_q4_available": true,
+      "q1_fights": 190,
+      "q4_fights": 172,
+      "q1_market_residual": 0.03480932464450375,
+      "q4_market_residual": -0.04705653183631971,
+      "high_minus_low_market_residual": -0.08186585648082345,
+      "aligned_high_minus_low_market_residual": -0.08186585648082345
+    },
+    {
+      "unit": "totalfights oppdiff",
+      "columns": [
+        "totalfights oppdiff"
+      ],
+      "source_features": [
+        "totalfights oppdiff"
+      ],
+      "top_rank": 9,
+      "importance_sum": 36.0,
+      "family": "record_experience",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "stronger record/experience should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6025826498212729,
+      "incremental_delta_log_loss": -0.00028720244882023615,
+      "raw_market_delta_log_loss": -0.0004094864407914081,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0011538844827117332,
+        0.0013656876012224479,
+        -1.640725407173407e-06,
+        -0.0016235425042016788
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0016235425042016788,
+      "mean_oriented_coefficient": -0.09660156382128618,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": false,
+      "wrong_way_known_prior": true,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.004223452975483913,
+          0.003599570826096069
+        ],
+        "prob_delta_le_zero": 0.5594
+      },
+      "q1_q4_available": true,
+      "q1_fights": 190,
+      "q4_fights": 172,
+      "q1_market_residual": 0.03480932464450375,
+      "q4_market_residual": -0.04705653183631971,
+      "high_minus_low_market_residual": -0.08186585648082345,
+      "aligned_high_minus_low_market_residual": -0.08186585648082345
+    },
+    {
+      "unit": "Sub. att side_pair",
+      "columns": [
+        "Red Sub. att",
+        "Blue Sub. att"
+      ],
+      "source_features": [
+        "Red Sub. att",
+        "Blue Sub. att"
+      ],
+      "top_rank": 21,
+      "importance_sum": 54.0,
+      "family": "grappling",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6026175459100972,
+      "incremental_delta_log_loss": -0.000322098537644552,
+      "raw_market_delta_log_loss": -0.0004443825296157239,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.00019964599231598034,
+        -0.00020106959454527064,
+        -0.0009631043766634272,
+        5.974321983488395e-05
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 5.974321983488395e-05,
+      "mean_oriented_coefficient": 0.01030451173633249,
+      "coefficient_sign_consistency": 0.5,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0013801312450993641,
+          0.0008203804228260289
+        ],
+        "prob_delta_le_zero": 0.7137
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.06449558840518178,
+      "q4_market_residual": 0.014752912528351621,
+      "high_minus_low_market_residual": 0.0792485009335334,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Sub. att oppdiff",
+      "columns": [
+        "Sub. att oppdiff"
+      ],
+      "source_features": [
+        "Sub. att oppdiff"
+      ],
+      "top_rank": 37,
+      "importance_sum": 22.0,
+      "family": "grappling",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6026216813684709,
+      "incremental_delta_log_loss": -0.00032623399601836635,
+      "raw_market_delta_log_loss": -0.00044851798798953833,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.00020360371471479436,
+        -0.0002065451166219649,
+        -0.0009689782747298391,
+        5.8738777265097824e-05
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 5.8738777265097824e-05,
+      "mean_oriented_coefficient": 0.013653517939292375,
+      "coefficient_sign_consistency": 0.5,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0014489823429354998,
+          0.000812570555036561
+        ],
+        "prob_delta_le_zero": 0.7207
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.06449558840518178,
+      "q4_market_residual": 0.014752912528351621,
+      "high_minus_low_market_residual": 0.0792485009335334,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Body oppdiff",
+      "columns": [
+        "Body oppdiff"
+      ],
+      "source_features": [
+        "Body oppdiff"
+      ],
+      "top_rank": 64,
+      "importance_sum": 18.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6027762607004382,
+      "incremental_delta_log_loss": -0.0004808133279857017,
+      "raw_market_delta_log_loss": -0.0006030973199568731,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        0.004277397838875227,
+        -6.787820225068631e-05,
+        -0.00015983444031207264,
+        -0.006079534071782172
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.006079534071782172,
+      "mean_oriented_coefficient": -0.13923153951252493,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.006417273494120409,
+          0.005595074112255727
+        ],
+        "prob_delta_le_zero": 0.5675
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.010331641560625222,
+      "q4_market_residual": -0.027198807321192085,
+      "high_minus_low_market_residual": -0.03753044888181731,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "age oppdiff",
+      "columns": [
+        "age oppdiff"
+      ],
+      "source_features": [
+        "age oppdiff"
+      ],
+      "top_rank": 3,
+      "importance_sum": 69.0,
+      "family": "age_recency",
+      "warning": null,
+      "expected_sign": -1,
+      "expected_sign_label": "older red than blue is treated as a weak negative prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6027950708158736,
+      "incremental_delta_log_loss": -0.0004996234434210705,
+      "raw_market_delta_log_loss": -0.0006219074353922421,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0003505306245829578,
+        0.00010076506731430299,
+        -0.0015448624607319883,
+        -0.0002946565504663529
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0002946565504663529,
+      "mean_oriented_coefficient": 0.0063838171190478896,
+      "coefficient_sign_consistency": 0.75,
+      "expected_sign_match": false,
+      "wrong_way_known_prior": true,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.001895689457369418,
+          0.0009001891774183243
+        ],
+        "prob_delta_le_zero": 0.7519
+      },
+      "q1_q4_available": true,
+      "q1_fights": 172,
+      "q4_fights": 160,
+      "q1_market_residual": 0.019807917883869198,
+      "q4_market_residual": -0.03046516724153477,
+      "high_minus_low_market_residual": -0.05027308512540397,
+      "aligned_high_minus_low_market_residual": 0.05027308512540397
+    },
+    {
+      "unit": "Td side_pair",
+      "columns": [
+        "Red Td",
+        "Blue Td"
+      ],
+      "source_features": [
+        "Blue Td",
+        "Red Td"
+      ],
+      "top_rank": 40,
+      "importance_sum": 43.0,
+      "family": "grappling",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6028753286706618,
+      "incremental_delta_log_loss": -0.0005798812982092597,
+      "raw_market_delta_log_loss": -0.0007021652901804316,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0017239027090414486,
+        0.0016941503315403038,
+        -0.002641045119729925,
+        5.9275060034257385e-06
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 5.9275060034257385e-06,
+      "mean_oriented_coefficient": 0.03536903746476608,
+      "coefficient_sign_consistency": 0.75,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.003495583375193205,
+          0.0024333968704656323
+        ],
+        "prob_delta_le_zero": 0.6504
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.009346610935804849,
+      "q4_market_residual": 0.028589571883852593,
+      "high_minus_low_market_residual": 0.019242960948047744,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Td oppdiff",
+      "columns": [
+        "Td oppdiff"
+      ],
+      "source_features": [
+        "Td oppdiff"
+      ],
+      "top_rank": 66,
+      "importance_sum": 18.0,
+      "family": "grappling",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6028825941034862,
+      "incremental_delta_log_loss": -0.0005871467310336245,
+      "raw_market_delta_log_loss": -0.0007094307230047957,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0017573010282673782,
+        0.00171662662027702,
+        -0.002660701347479894,
+        2.9009905307658465e-06
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 2.9009905307658465e-06,
+      "mean_oriented_coefficient": 0.04803824047872013,
+      "coefficient_sign_consistency": 0.75,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0035124648142823905,
+          0.0023840837938630902
+        ],
+        "prob_delta_le_zero": 0.6545
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.009346610935804849,
+      "q4_market_residual": 0.028589571883852593,
+      "high_minus_low_market_residual": 0.019242960948047744,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "last_fight side_pair",
+      "columns": [
+        "Red last_fight",
+        "Blue last_fight"
+      ],
+      "source_features": [
+        "Blue last_fight",
+        "Red last_fight"
+      ],
+      "top_rank": 35,
+      "importance_sum": 45.0,
+      "family": "age_recency",
+      "warning": null,
+      "expected_sign": -1,
+      "expected_sign_label": "longer red layoff than blue should hurt red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6029760577621126,
+      "incremental_delta_log_loss": -0.000680610389660104,
+      "raw_market_delta_log_loss": -0.0008028943816312755,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -8.339661596054923e-05,
+        -0.0001579064566416958,
+        -0.003081222844897938,
+        0.0005289728556671441
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.0005289728556671441,
+      "mean_oriented_coefficient": -0.020436389145942892,
+      "coefficient_sign_consistency": 0.75,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.004160493617120095,
+          0.002059919615847096
+        ],
+        "prob_delta_le_zero": 0.6512
+      },
+      "q1_q4_available": true,
+      "q1_fights": 180,
+      "q4_fights": 172,
+      "q1_market_residual": -0.017037114252822522,
+      "q4_market_residual": -0.054455076434357194,
+      "high_minus_low_market_residual": -0.037417962181534675,
+      "aligned_high_minus_low_market_residual": 0.037417962181534675
+    },
+    {
+      "unit": "Ctrl differential side_pair",
+      "columns": [
+        "Red Ctrl differential",
+        "Blue Ctrl differential"
+      ],
+      "source_features": [
+        "Blue Ctrl differential",
+        "Red Ctrl differential"
+      ],
+      "top_rank": 61,
+      "importance_sum": 36.0,
+      "family": "grappling",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6031072894329109,
+      "incremental_delta_log_loss": -0.0008118420604582478,
+      "raw_market_delta_log_loss": -0.0009341260524294199,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        7.626845576703827e-05,
+        0.003633953346363679,
+        -0.006398558961621634,
+        -0.0012463419130267458
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0012463419130267458,
+      "mean_oriented_coefficient": 0.07508420590881494,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.003950966646427096,
+          0.0021187160912905303
+        ],
+        "prob_delta_le_zero": 0.6823
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.002894670688709931,
+      "q4_market_residual": 0.04590455176106116,
+      "high_minus_low_market_residual": 0.04300988107235123,
+      "aligned_high_minus_low_market_residual": 0.04300988107235123
+    },
+    {
+      "unit": "Rev. oppdiff",
+      "columns": [
+        "Rev. oppdiff"
+      ],
+      "source_features": [
+        "Rev. oppdiff"
+      ],
+      "top_rank": 22,
+      "importance_sum": 28.0,
+      "family": "grappling",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6031181519158921,
+      "incremental_delta_log_loss": -0.0008227045434395804,
+      "raw_market_delta_log_loss": -0.0009449885354107522,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        0.0026375385654970477,
+        -0.004565670749964539,
+        -0.00014581144019676384,
+        -0.0006396252923123266
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0006396252923123266,
+      "mean_oriented_coefficient": -0.10873201507410454,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.004948877422600682,
+          0.003316787105929127
+        ],
+        "prob_delta_le_zero": 0.6631
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.001357779056386346,
+      "q4_market_residual": -0.06421378801137746,
+      "high_minus_low_market_residual": -0.06285600895499112,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Ground% defense oppdiff",
+      "columns": [
+        "Ground% defense oppdiff"
+      ],
+      "source_features": [
+        "Ground% defense oppdiff"
+      ],
+      "top_rank": 71,
+      "importance_sum": 17.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy; target/position-mix defense proxy",
+      "expected_sign": 1,
+      "expected_sign_label": "higher defense proxy should help red, if the proxy is valid",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6031750284649021,
+      "incremental_delta_log_loss": -0.0008795810924496158,
+      "raw_market_delta_log_loss": -0.0010018650844207879,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        -0.002355552098042637,
+        -0.002504943993042306,
+        0.00045736213945588716,
+        0.0011504812770719412
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.0011504812770719412,
+      "mean_oriented_coefficient": 0.06563569922867682,
+      "coefficient_sign_consistency": 0.75,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.00413395600530376,
+          0.0022991903835953265
+        ],
+        "prob_delta_le_zero": 0.7097
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.03369561728433978,
+      "q4_market_residual": 0.022506804122704827,
+      "high_minus_low_market_residual": 0.05620242140704461,
+      "aligned_high_minus_low_market_residual": 0.05620242140704461
+    },
+    {
+      "unit": "avg age side_pair",
+      "columns": [
+        "Red avg age",
+        "Blue avg age"
+      ],
+      "source_features": [
+        "Red avg age",
+        "Blue avg age"
+      ],
+      "top_rank": 8,
+      "importance_sum": 66.0,
+      "family": "age_recency",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "opponent-age context has no strong predeclared direction",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6032286997559241,
+      "incremental_delta_log_loss": -0.0009332523834715038,
+      "raw_market_delta_log_loss": -0.0010555363754426758,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.0002760107351290854,
+        0.0016889946823800699,
+        -0.0054600428803754245,
+        -0.0006391322338459437
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0006391322338459437,
+      "mean_oriented_coefficient": 0.0500512413708135,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0038402878807259453,
+          0.0020395188255520535
+        ],
+        "prob_delta_le_zero": 0.7318
+      },
+      "q1_q4_available": true,
+      "q1_fights": 172,
+      "q4_fights": 171,
+      "q1_market_residual": 0.008162575953534704,
+      "q4_market_residual": -0.013853652480659765,
+      "high_minus_low_market_residual": -0.02201622843419447,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Clinch oppdiff",
+      "columns": [
+        "Clinch oppdiff"
+      ],
+      "source_features": [
+        "Clinch oppdiff"
+      ],
+      "top_rank": 6,
+      "importance_sum": 37.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6034002656523701,
+      "incremental_delta_log_loss": -0.001104818279917573,
+      "raw_market_delta_log_loss": -0.001227102271888746,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        0.002780694303884908,
+        0.0075409440400444235,
+        0.0035675900909946006,
+        -0.019782291707105205
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.019782291707105205,
+      "mean_oriented_coefficient": -0.1545929150492142,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.009465554347744896,
+          0.006645928247264119
+        ],
+        "prob_delta_le_zero": 0.6038
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.02692393292237968,
+      "q4_market_residual": -0.05429414601128452,
+      "high_minus_low_market_residual": -0.0812180789336642,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Clinch side_pair",
+      "columns": [
+        "Red Clinch",
+        "Blue Clinch"
+      ],
+      "source_features": [
+        "Blue Clinch"
+      ],
+      "top_rank": 19,
+      "importance_sum": 40.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6034031555963507,
+      "incremental_delta_log_loss": -0.0011077082238981615,
+      "raw_market_delta_log_loss": -0.0012299922158693335,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        0.002756117335840862,
+        0.0074987131878875984,
+        0.0035676025417937483,
+        -0.019720506162455416
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.019720506162455416,
+      "mean_oriented_coefficient": -0.11272219483779007,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.009287945485573922,
+          0.006699094339150025
+        ],
+        "prob_delta_le_zero": 0.6076
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.02692393292237968,
+      "q4_market_residual": -0.05429414601128452,
+      "high_minus_low_market_residual": -0.0812180789336642,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Ctrl oppdiff",
+      "columns": [
+        "Ctrl oppdiff"
+      ],
+      "source_features": [
+        "Ctrl oppdiff"
+      ],
+      "top_rank": 59,
+      "importance_sum": 18.0,
+      "family": "grappling",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6034064675198278,
+      "incremental_delta_log_loss": -0.0011110201473753139,
+      "raw_market_delta_log_loss": -0.0012333041393464857,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.0007487625404031267,
+        0.006466149720515048,
+        -0.0029600980464474084,
+        -0.009932470556021667
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.009932470556021667,
+      "mean_oriented_coefficient": 0.11232076592465998,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.005807380423339961,
+          0.003439263931977769
+        ],
+        "prob_delta_le_zero": 0.6652
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.01708664774943195,
+      "q4_market_residual": -0.010273579185722638,
+      "high_minus_low_market_residual": 0.006813068563709312,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "avg age oppdiff",
+      "columns": [
+        "avg age oppdiff"
+      ],
+      "source_features": [
+        "avg age oppdiff"
+      ],
+      "top_rank": 5,
+      "importance_sum": 41.0,
+      "family": "age_recency",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "opponent-age context has no strong predeclared direction",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6034963434040613,
+      "incremental_delta_log_loss": -0.0012008960316087407,
+      "raw_market_delta_log_loss": -0.0013231800235799119,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0007257127379817294,
+        0.0016691980566411761,
+        -0.0058685607269227304,
+        -0.0003132334813620758
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0003132334813620758,
+      "mean_oriented_coefficient": 0.06170786842576891,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.003828957179122053,
+          0.0013891551939678413
+        ],
+        "prob_delta_le_zero": 0.8161
+      },
+      "q1_q4_available": true,
+      "q1_fights": 172,
+      "q4_fights": 171,
+      "q1_market_residual": 0.008162575953534704,
+      "q4_market_residual": -0.013853652480659765,
+      "high_minus_low_market_residual": -0.02201622843419447,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "oppelo side_pair",
+      "columns": [
+        "Red oppelo",
+        "Blue oppelo"
+      ],
+      "source_features": [
+        "Blue oppelo",
+        "Red oppelo"
+      ],
+      "top_rank": 30,
+      "importance_sum": 46.0,
+      "family": "record_experience",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "stronger record/experience should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.603537205969221,
+      "incremental_delta_log_loss": -0.0012417585967683762,
+      "raw_market_delta_log_loss": -0.0013640425887395476,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0035283564143377476,
+        -0.0014730705958363108,
+        0.00245088700929387,
+        -0.002389738539744218
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.002389738539744218,
+      "mean_oriented_coefficient": 0.11176628258605759,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.005726005294737116,
+          0.003538097408020562
+        ],
+        "prob_delta_le_zero": 0.7029
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.02415272725230327,
+      "q4_market_residual": -0.007076159230799088,
+      "high_minus_low_market_residual": 0.017076568021504184,
+      "aligned_high_minus_low_market_residual": 0.017076568021504184
+    },
+    {
+      "unit": "Clinch% side_pair",
+      "columns": [
+        "Red Clinch%",
+        "Blue Clinch%"
+      ],
+      "source_features": [
+        "Red Clinch%"
+      ],
+      "top_rank": 29,
+      "importance_sum": 35.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy",
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6035939917988289,
+      "incremental_delta_log_loss": -0.001298544426376298,
+      "raw_market_delta_log_loss": -0.0014208284183474698,
+      "positive_folds": 0,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0013546853322356626,
+        -0.0001571292320206901,
+        -0.0016110650061305876,
+        -0.0022542520699698337
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0022542520699698337,
+      "mean_oriented_coefficient": 0.019313337237186316,
+      "coefficient_sign_consistency": 0.75,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0026390295767457017,
+          0.0001039039496328458
+        ],
+        "prob_delta_le_zero": 0.9651
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.010932137895769599,
+      "q4_market_residual": -0.032108077811484864,
+      "high_minus_low_market_residual": -0.04304021570725446,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Sub. att differential side_pair",
+      "columns": [
+        "Red Sub. att differential",
+        "Blue Sub. att differential"
+      ],
+      "source_features": [
+        "Red Sub. att differential",
+        "Blue Sub. att differential"
+      ],
+      "top_rank": 11,
+      "importance_sum": 61.0,
+      "family": "grappling",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6036271300964337,
+      "incremental_delta_log_loss": -0.0013316827239810943,
+      "raw_market_delta_log_loss": -0.0014539667159522668,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.0033709017106528646,
+        0.00014454322224866534,
+        -0.006997986133279101,
+        -0.0020770348575325486
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0020770348575325486,
+      "mean_oriented_coefficient": 0.08457068708050924,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.005293492275045646,
+          0.0024600014740249346
+        ],
+        "prob_delta_le_zero": 0.7498
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.05337846182219646,
+      "q4_market_residual": 0.005152904773339497,
+      "high_minus_low_market_residual": 0.058531366595535955,
+      "aligned_high_minus_low_market_residual": 0.058531366595535955
+    },
+    {
+      "unit": "Td differential side_pair",
+      "columns": [
+        "Red Td differential",
+        "Blue Td differential"
+      ],
+      "source_features": [
+        "Red Td differential"
+      ],
+      "top_rank": 50,
+      "importance_sum": 29.0,
+      "family": "grappling",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6037789863760337,
+      "incremental_delta_log_loss": -0.0014835390035810607,
+      "raw_market_delta_log_loss": -0.001605822995552234,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.0025395502439843538,
+        0.008259043234558004,
+        -0.011092882336423863,
+        -0.00718256462090509
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.00718256462090509,
+      "mean_oriented_coefficient": 0.13680414703069624,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.00926177744562456,
+          0.005882690189635862
+        ],
+        "prob_delta_le_zero": 0.6377
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.019783715661901857,
+      "q4_market_residual": 0.022624635403118355,
+      "high_minus_low_market_residual": 0.04240835106502021,
+      "aligned_high_minus_low_market_residual": 0.04240835106502021
+    },
+    {
+      "unit": "Td differential oppdiff",
+      "columns": [
+        "Td differential oppdiff"
+      ],
+      "source_features": [
+        "Td differential oppdiff"
+      ],
+      "top_rank": 36,
+      "importance_sum": 22.0,
+      "family": "grappling",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6037932706709134,
+      "incremental_delta_log_loss": -0.001497823298460809,
+      "raw_market_delta_log_loss": -0.0016201072904319831,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.002525094125303135,
+        0.008346708653257017,
+        -0.011200113415367117,
+        -0.0072215546368264456
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0072215546368264456,
+      "mean_oriented_coefficient": 0.18352947385882104,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.009559791350546805,
+          0.0061165206649044495
+        ],
+        "prob_delta_le_zero": 0.6383
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.019783715661901857,
+      "q4_market_residual": 0.022624635403118355,
+      "high_minus_low_market_residual": 0.04240835106502021,
+      "aligned_high_minus_low_market_residual": 0.04240835106502021
+    },
+    {
+      "unit": "oppelo oppdiff",
+      "columns": [
+        "oppelo oppdiff"
+      ],
+      "source_features": [
+        "oppelo oppdiff"
+      ],
+      "top_rank": 1,
+      "importance_sum": 100.0,
+      "family": "record_experience",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "stronger record/experience should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.603898004146823,
+      "incremental_delta_log_loss": -0.0016025567743704462,
+      "raw_market_delta_log_loss": -0.0017248407663416185,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.004684875334291984,
+        -0.0017231170451836567,
+        0.0025299300591303544,
+        -0.002520679525869072
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.002520679525869072,
+      "mean_oriented_coefficient": 0.12156311693510485,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.006586280225026922,
+          0.003754651469864865
+        ],
+        "prob_delta_le_zero": 0.7216
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.02415272725230327,
+      "q4_market_residual": -0.007076159230799088,
+      "high_minus_low_market_residual": 0.017076568021504184,
+      "aligned_high_minus_low_market_residual": 0.017076568021504184
+    },
+    {
+      "unit": "Sig. str.% defense oppdiff",
+      "columns": [
+        "Sig. str.% defense oppdiff"
+      ],
+      "source_features": [
+        "Sig. str.% defense oppdiff"
+      ],
+      "top_rank": 75,
+      "importance_sum": 17.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy",
+      "expected_sign": 1,
+      "expected_sign_label": "higher defense proxy should help red, if the proxy is valid",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6042565642024071,
+      "incremental_delta_log_loss": -0.0019611168299544877,
+      "raw_market_delta_log_loss": -0.0020834008219256604,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.010216212889008841,
+        -0.019121673712650986,
+        0.004488141622510768,
+        -0.0007779612476385335
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0007779612476385335,
+      "mean_oriented_coefficient": 0.1858661154807611,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.01127540090028882,
+          0.006668105150425703
+        ],
+        "prob_delta_le_zero": 0.6578
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.053796643420631354,
+      "q4_market_residual": -0.009277590878135511,
+      "high_minus_low_market_residual": 0.04451905254249584,
+      "aligned_high_minus_low_market_residual": 0.04451905254249584
+    },
+    {
+      "unit": "Sig. str.% defense side_pair",
+      "columns": [
+        "Red Sig. str.% defense",
+        "Blue Sig. str.% defense"
+      ],
+      "source_features": [
+        "Red Sig. str.% defense"
+      ],
+      "top_rank": 56,
+      "importance_sum": 28.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy",
+      "expected_sign": 1,
+      "expected_sign_label": "higher defense proxy should help red, if the proxy is valid",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6042577532983959,
+      "incremental_delta_log_loss": -0.0019623059259433534,
+      "raw_market_delta_log_loss": -0.002084589917914525,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.010103779097088934,
+        -0.019030944941810925,
+        0.004478512548275449,
+        -0.0007654191217767271
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0007654191217767271,
+      "mean_oriented_coefficient": 0.13531059103713475,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.011323602096030606,
+          0.006756820411837915
+        ],
+        "prob_delta_le_zero": 0.6583
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.053796643420631354,
+      "q4_market_residual": -0.009277590878135511,
+      "high_minus_low_market_residual": 0.04451905254249584,
+      "aligned_high_minus_low_market_residual": 0.04451905254249584
+    },
+    {
+      "unit": "KD differential side_pair",
+      "columns": [
+        "Red KD differential",
+        "Blue KD differential"
+      ],
+      "source_features": [
+        "Red KD differential",
+        "Blue KD differential"
+      ],
+      "top_rank": 54,
+      "importance_sum": 36.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6042639656790196,
+      "incremental_delta_log_loss": -0.0019685183065670337,
+      "raw_market_delta_log_loss": -0.002090802298538205,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.0015984602321198562,
+        -0.008512223382078358,
+        0.000231375712088041,
+        -0.0001711359122085597
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0001711359122085597,
+      "mean_oriented_coefficient": -0.0326696654668437,
+      "coefficient_sign_consistency": 0.5,
+      "expected_sign_match": false,
+      "wrong_way_known_prior": true,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.004944448828302288,
+          0.0009283477746541817
+        ],
+        "prob_delta_le_zero": 0.9065
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.00492654400423351,
+      "q4_market_residual": 0.023487082973671868,
+      "high_minus_low_market_residual": 0.018560538969438357,
+      "aligned_high_minus_low_market_residual": 0.018560538969438357
+    },
+    {
+      "unit": "elo side_pair",
+      "columns": [
+        "Red elo",
+        "Blue elo"
+      ],
+      "source_features": [
+        "Blue elo",
+        "Red elo"
+      ],
+      "top_rank": 23,
+      "importance_sum": 52.0,
+      "family": "record_experience",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "stronger record/experience should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6042647061553248,
+      "incremental_delta_log_loss": -0.0019692587828722603,
+      "raw_market_delta_log_loss": -0.002091542774843432,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.00370582292570828,
+        0.00322386354922623,
+        -0.007808587960453493,
+        -0.00037315194690738226
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.00037315194690738226,
+      "mean_oriented_coefficient": 0.11364843701242823,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.005274995281703289,
+          0.0012059175288331714
+        ],
+        "prob_delta_le_zero": 0.8824
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.04221458904413649,
+      "q4_market_residual": -0.0063723041251803276,
+      "high_minus_low_market_residual": 0.03584228491895616,
+      "aligned_high_minus_low_market_residual": 0.03584228491895616
+    },
+    {
+      "unit": "KD differential oppdiff",
+      "columns": [
+        "KD differential oppdiff"
+      ],
+      "source_features": [
+        "KD differential oppdiff"
+      ],
+      "top_rank": 7,
+      "importance_sum": 37.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6042741525746185,
+      "incremental_delta_log_loss": -0.0019787052021658005,
+      "raw_market_delta_log_loss": -0.002100989194136972,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.001602130323247001,
+        -0.008551737465155035,
+        0.0002316172632816944,
+        -0.00017169511971195075
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.00017169511971195075,
+      "mean_oriented_coefficient": -0.04549582503999674,
+      "coefficient_sign_consistency": 0.5,
+      "expected_sign_match": false,
+      "wrong_way_known_prior": true,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.005057781143300095,
+          0.0008944133828206296
+        ],
+        "prob_delta_le_zero": 0.906
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.00492654400423351,
+      "q4_market_residual": 0.023487082973671868,
+      "high_minus_low_market_residual": 0.018560538969438357,
+      "aligned_high_minus_low_market_residual": 0.018560538969438357
+    },
+    {
+      "unit": "wins oppdiff",
+      "columns": [
+        "wins oppdiff"
+      ],
+      "source_features": [
+        "wins oppdiff"
+      ],
+      "top_rank": 4,
+      "importance_sum": 44.0,
+      "family": "record_experience",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "stronger record/experience should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6043056738202299,
+      "incremental_delta_log_loss": -0.0020102264477773624,
+      "raw_market_delta_log_loss": -0.0021325104397485342,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.003916973328313128,
+        0.003136346229231967,
+        -0.0068747637859026085,
+        -0.0011708384875096717
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0011708384875096717,
+      "mean_oriented_coefficient": 0.11491533561436133,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0064282668227973305,
+          0.0021331780731138512
+        ],
+        "prob_delta_le_zero": 0.8231
+      },
+      "q1_q4_available": true,
+      "q1_fights": 177,
+      "q4_fights": 176,
+      "q1_market_residual": -0.02747016352931235,
+      "q4_market_residual": 0.01555552606953689,
+      "high_minus_low_market_residual": 0.04302568959884924,
+      "aligned_high_minus_low_market_residual": 0.04302568959884924
+    },
+    {
+      "unit": "Sig. str. side_pair",
+      "columns": [
+        "Red Sig. str.",
+        "Blue Sig. str."
+      ],
+      "source_features": [
+        "Red Sig. str.",
+        "Blue Sig. str."
+      ],
+      "top_rank": 63,
+      "importance_sum": 36.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6043115506369197,
+      "incremental_delta_log_loss": -0.0020161032644670997,
+      "raw_market_delta_log_loss": -0.002138387256438271,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.00878200860050575,
+        -0.012900896944587528,
+        0.004006875864244519,
+        -0.00631085347501684
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.00631085347501684,
+      "mean_oriented_coefficient": -0.1139159630899202,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.01461597235265249,
+          0.008662807561494032
+        ],
+        "prob_delta_le_zero": 0.6308
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.022191575161148867,
+      "q4_market_residual": -0.056624973751979994,
+      "high_minus_low_market_residual": -0.07881654891312886,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Head oppdiff",
+      "columns": [
+        "Head oppdiff"
+      ],
+      "source_features": [
+        "Head oppdiff"
+      ],
+      "top_rank": 48,
+      "importance_sum": 21.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6044489409216302,
+      "incremental_delta_log_loss": -0.0021534935491775396,
+      "raw_market_delta_log_loss": -0.0022757775411487114,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.003216825055264819,
+        -0.009312248606245925,
+        0.002409149517903087,
+        -0.0038393211362917224
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.0038393211362917224,
+      "mean_oriented_coefficient": -0.09875909253801765,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.011473152025645824,
+          0.005447556676497965
+        ],
+        "prob_delta_le_zero": 0.6741
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.008050381265326286,
+      "q4_market_residual": -0.05416466663921468,
+      "high_minus_low_market_residual": -0.062215047904540965,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Ground oppdiff",
+      "columns": [
+        "Ground oppdiff"
+      ],
+      "source_features": [
+        "Ground oppdiff"
+      ],
+      "top_rank": 73,
+      "importance_sum": 17.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6044896031694615,
+      "incremental_delta_log_loss": -0.002194155797009021,
+      "raw_market_delta_log_loss": -0.0023164397889801932,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.0003110299775330394,
+        -0.007888654409906609,
+        6.0498931680125426e-05,
+        -0.00036938427364017237
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.00036938427364017237,
+      "mean_oriented_coefficient": -0.04029221107718726,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.005863789895406212,
+          0.0002377492602981474
+        ],
+        "prob_delta_le_zero": 0.9516
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.02088735493707045,
+      "q4_market_residual": -0.023366058971703237,
+      "high_minus_low_market_residual": -0.002478704034632788,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Ground side_pair",
+      "columns": [
+        "Red Ground",
+        "Blue Ground"
+      ],
+      "source_features": [
+        "Blue Ground",
+        "Red Ground"
+      ],
+      "top_rank": 33,
+      "importance_sum": 43.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6044957588822035,
+      "incremental_delta_log_loss": -0.00220031150975098,
+      "raw_market_delta_log_loss": -0.0023225955017221523,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        0.0003114709971123379,
+        -0.0079108558625972,
+        6.0620784813900735e-05,
+        -0.00036985624819077105
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.00036985624819077105,
+      "mean_oriented_coefficient": -0.02814099507648384,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.005846518304132468,
+          0.00028808232293811386
+        ],
+        "prob_delta_le_zero": 0.9454
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.02088735493707045,
+      "q4_market_residual": -0.023366058971703237,
+      "high_minus_low_market_residual": -0.002478704034632788,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "elo oppdiff",
+      "columns": [
+        "elo oppdiff"
+      ],
+      "source_features": [
+        "elo oppdiff"
+      ],
+      "top_rank": 2,
+      "importance_sum": 70.0,
+      "family": "record_experience",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "stronger record/experience should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6046661970938461,
+      "incremental_delta_log_loss": -0.0023707497213934325,
+      "raw_market_delta_log_loss": -0.002493033713364604,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.004893450474699629,
+        0.00363685656202402,
+        -0.008698564346601817,
+        -0.00043721439818197774
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.00043721439818197774,
+      "mean_oriented_coefficient": 0.11202254299437803,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.0061474278002673416,
+          0.0011885814343498224
+        ],
+        "prob_delta_le_zero": 0.8971
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.04221458904413649,
+      "q4_market_residual": -0.0063723041251803276,
+      "high_minus_low_market_residual": 0.03584228491895616,
+      "aligned_high_minus_low_market_residual": 0.03584228491895616
+    },
+    {
+      "unit": "Head% defense side_pair",
+      "columns": [
+        "Red Head% defense",
+        "Blue Head% defense"
+      ],
+      "source_features": [
+        "Blue Head% defense"
+      ],
+      "top_rank": 70,
+      "importance_sum": 26.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy; target/position-mix defense proxy",
+      "expected_sign": 1,
+      "expected_sign_label": "higher defense proxy should help red, if the proxy is valid",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6050366263498944,
+      "incremental_delta_log_loss": -0.002741178977441884,
+      "raw_market_delta_log_loss": -0.0028634629694130553,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        0.007637224062101932,
+        -0.019541573113472228,
+        0.002644084230441856,
+        0.0009082978306121468
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.0009082978306121468,
+      "mean_oriented_coefficient": 0.09539283596282702,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.010569222811653721,
+          0.004366294443060284
+        ],
+        "prob_delta_le_zero": 0.7697
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.03658891905537045,
+      "q4_market_residual": 0.031206387771421082,
+      "high_minus_low_market_residual": 0.06779530682679152,
+      "aligned_high_minus_low_market_residual": 0.06779530682679152
+    },
+    {
+      "unit": "Head% defense oppdiff",
+      "columns": [
+        "Head% defense oppdiff"
+      ],
+      "source_features": [
+        "Head% defense oppdiff"
+      ],
+      "top_rank": 60,
+      "importance_sum": 18.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy; target/position-mix defense proxy",
+      "expected_sign": 1,
+      "expected_sign_label": "higher defense proxy should help red, if the proxy is valid",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6050378470681099,
+      "incremental_delta_log_loss": -0.002742399695657409,
+      "raw_market_delta_log_loss": -0.0028646836876285806,
+      "positive_folds": 3,
+      "folds": 4,
+      "fold_deltas": [
+        0.00772248464310384,
+        -0.01962164273068034,
+        0.002646322939443565,
+        0.0009081239372987994
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.0009081239372987994,
+      "mean_oriented_coefficient": 0.1327362559145574,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.010622651856088284,
+          0.004396573807447976
+        ],
+        "prob_delta_le_zero": 0.7618
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.03658891905537045,
+      "q4_market_residual": 0.031206387771421082,
+      "high_minus_low_market_residual": 0.06779530682679152,
+      "aligned_high_minus_low_market_residual": 0.06779530682679152
+    },
+    {
+      "unit": "Td% differential side_pair",
+      "columns": [
+        "Red Td% differential",
+        "Blue Td% differential"
+      ],
+      "source_features": [
+        "Blue Td% differential",
+        "Red Td% differential"
+      ],
+      "top_rank": 49,
+      "importance_sum": 39.0,
+      "family": "grappling",
+      "warning": "percentage/rate proxy",
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6050534078987164,
+      "incremental_delta_log_loss": -0.0027579605262637464,
+      "raw_market_delta_log_loss": -0.002880244518234918,
+      "positive_folds": 0,
+      "folds": 4,
+      "fold_deltas": [
+        -0.009795644711799112,
+        -0.0002833175770624165,
+        -0.00022283647508666187,
+        -0.001097988626369352
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.001097988626369352,
+      "mean_oriented_coefficient": -0.005004541455291896,
+      "coefficient_sign_consistency": 0.5,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.006559112176715815,
+          0.000973227517764754
+        ],
+        "prob_delta_le_zero": 0.9269
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.011413038623116949,
+      "q4_market_residual": 0.04811696174069846,
+      "high_minus_low_market_residual": 0.03670392311758151,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Total str.% defense oppdiff",
+      "columns": [
+        "Total str.% defense oppdiff"
+      ],
+      "source_features": [
+        "Total str.% defense oppdiff"
+      ],
+      "top_rank": 18,
+      "importance_sum": 28.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy",
+      "expected_sign": 1,
+      "expected_sign_label": "higher defense proxy should help red, if the proxy is valid",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6052037100220171,
+      "incremental_delta_log_loss": -0.0029082626495644886,
+      "raw_market_delta_log_loss": -0.00303054664153566,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.0010343825588664318,
+        -0.009585024351233958,
+        0.00035467912221339885,
+        -0.00032122843926566996
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": -0.00032122843926566996,
+      "mean_oriented_coefficient": 0.10042251599510545,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": true,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.008727804232650972,
+          0.002735273063369521
+        ],
+        "prob_delta_le_zero": 0.8386
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.035065227237732755,
+      "q4_market_residual": -0.025246992846517127,
+      "high_minus_low_market_residual": 0.009818234391215628,
+      "aligned_high_minus_low_market_residual": 0.009818234391215628
+    },
+    {
+      "unit": "Leg% side_pair",
+      "columns": [
+        "Red Leg%",
+        "Blue Leg%"
+      ],
+      "source_features": [
+        "Red Leg%"
+      ],
+      "top_rank": 28,
+      "importance_sum": 39.0,
+      "family": "striking_position",
+      "warning": "percentage/rate proxy",
+      "expected_sign": null,
+      "expected_sign_label": "no strong predeclared directional prior",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.60524846712437,
+      "incremental_delta_log_loss": -0.002953019751917435,
+      "raw_market_delta_log_loss": -0.0030753037438886067,
+      "positive_folds": 2,
+      "folds": 4,
+      "fold_deltas": [
+        -0.011678155007993615,
+        -0.0010331531301333305,
+        0.0002810867715816753,
+        0.00034817204627949033
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.00034817204627949033,
+      "mean_oriented_coefficient": -0.005090703063336815,
+      "coefficient_sign_consistency": 0.75,
+      "expected_sign_match": null,
+      "wrong_way_known_prior": false,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.008331832235051179,
+          0.0010604730246163631
+        ],
+        "prob_delta_le_zero": 0.9042
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": -0.013054728508894404,
+      "q4_market_residual": -0.05688212269246787,
+      "high_minus_low_market_residual": -0.04382739418357347,
+      "aligned_high_minus_low_market_residual": null
+    },
+    {
+      "unit": "Leg differential side_pair",
+      "columns": [
+        "Red Leg differential",
+        "Blue Leg differential"
+      ],
+      "source_features": [
+        "Red Leg differential"
+      ],
+      "top_rank": 52,
+      "importance_sum": 32.0,
+      "family": "striking_position",
+      "warning": null,
+      "expected_sign": 1,
+      "expected_sign_label": "better historical differential should help red",
+      "fights": 539,
+      "events": 79,
+      "feature_log_loss": 0.6062819858583126,
+      "incremental_delta_log_loss": -0.003986538485859912,
+      "raw_market_delta_log_loss": -0.0041088224778310835,
+      "positive_folds": 1,
+      "folds": 4,
+      "fold_deltas": [
+        -0.01492310130454014,
+        -1.2217228728022e-05,
+        -0.0017362756428114634,
+        0.00014579336113503845
+      ],
+      "latest_fold": 5,
+      "latest_fold_incremental_delta_log_loss": 0.00014579336113503845,
+      "mean_oriented_coefficient": -0.1135911420631891,
+      "coefficient_sign_consistency": 1.0,
+      "expected_sign_match": false,
+      "wrong_way_known_prior": true,
+      "bootstrap": {
+        "iterations": 10000,
+        "events": 79,
+        "ci_95": [
+          -0.009278230554320577,
+          0.0008954151975009261
+        ],
+        "prob_delta_le_zero": 0.9456
+      },
+      "q1_q4_available": true,
+      "q1_fights": 176,
+      "q4_fights": 176,
+      "q1_market_residual": 0.03334580773736126,
+      "q4_market_residual": 0.027344651665500555,
+      "high_minus_low_market_residual": -0.006001156071860705,
+      "aligned_high_minus_low_market_residual": -0.006001156071860705
+    }
+  ],
+  "family_summary": [
+    {
+      "family": "striking_position",
+      "units": 36,
+      "importance_sum": 1103.0,
+      "mean_incremental_delta_log_loss": 0.00020305332533240842,
+      "median_incremental_delta_log_loss": 2.5306863946059717e-05,
+      "positive_units": 18,
+      "wrong_way_known_prior_units": 3,
+      "warning_units": 18
+    },
+    {
+      "family": "age_recency",
+      "units": 5,
+      "importance_sum": 251.0,
+      "mean_incremental_delta_log_loss": -0.0007143378884440861,
+      "median_incremental_delta_log_loss": -0.000680610389660104,
+      "positive_units": 0,
+      "wrong_way_known_prior_units": 2,
+      "warning_units": 0
+    },
+    {
+      "family": "grappling",
+      "units": 12,
+      "importance_sum": 398.0,
+      "mean_incremental_delta_log_loss": -0.00098218281752571,
+      "median_incremental_delta_log_loss": -0.0008172733019489141,
+      "positive_units": 0,
+      "wrong_way_known_prior_units": 0,
+      "warning_units": 2
+    },
+    {
+      "family": "record_experience",
+      "units": 7,
+      "importance_sum": 385.0,
+      "mean_incremental_delta_log_loss": -0.0013931608395593203,
+      "median_incremental_delta_log_loss": -0.0016025567743704462,
+      "positive_units": 0,
+      "wrong_way_known_prior_units": 2,
+      "warning_units": 0
+    }
+  ],
+  "coefficient_rows": [
+    {
+      "fold": 2,
+      "unit": "oppelo oppdiff",
+      "columns": [
+        "oppelo oppdiff"
+      ],
+      "oriented_coefficient": 0.19473679787085613,
+      "coefficients": {
+        "market_logit": 0.8815710384703093,
+        "oppelo oppdiff": 0.19473679787085613
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "elo oppdiff",
+      "columns": [
+        "elo oppdiff"
+      ],
+      "oriented_coefficient": 0.16615952101450676,
+      "coefficients": {
+        "market_logit": 0.8274966754532465,
+        "elo oppdiff": 0.16615952101450676
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "age oppdiff",
+      "columns": [
+        "age oppdiff"
+      ],
+      "oriented_coefficient": 0.04472629605170063,
+      "coefficients": {
+        "market_logit": 0.8868370697752074,
+        "age oppdiff": 0.04472629605170063
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "wins oppdiff",
+      "columns": [
+        "wins oppdiff"
+      ],
+      "oriented_coefficient": 0.16995314005052287,
+      "coefficients": {
+        "market_logit": 0.801714691221731,
+        "wins oppdiff": 0.16995314005052287
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "avg age oppdiff",
+      "columns": [
+        "avg age oppdiff"
+      ],
+      "oriented_coefficient": 0.08632970874872199,
+      "coefficients": {
+        "market_logit": 0.8930373407252541,
+        "avg age oppdiff": 0.08632970874872199
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Clinch oppdiff",
+      "columns": [
+        "Clinch oppdiff"
+      ],
+      "oriented_coefficient": -0.0851934320831148,
+      "coefficients": {
+        "market_logit": 0.8707785819908345,
+        "Clinch oppdiff": -0.0851934320831148
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "KD differential oppdiff",
+      "columns": [
+        "KD differential oppdiff"
+      ],
+      "oriented_coefficient": -0.10852554851221662,
+      "coefficients": {
+        "market_logit": 0.8844921321431648,
+        "KD differential oppdiff": -0.10852554851221662
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "avg age side_pair",
+      "columns": [
+        "Red avg age",
+        "Blue avg age"
+      ],
+      "oriented_coefficient": 0.06224632520198366,
+      "coefficients": {
+        "market_logit": 0.8928586742510917,
+        "Red avg age": 0.06224632520198368,
+        "Blue avg age": -0.062246325201983636
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "totalfights oppdiff",
+      "columns": [
+        "totalfights oppdiff"
+      ],
+      "oriented_coefficient": -0.12046841956022587,
+      "coefficients": {
+        "market_logit": 0.8363353448613228,
+        "totalfights oppdiff": -0.12046841956022587
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Sig. str.% differential oppdiff",
+      "columns": [
+        "Sig. str.% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.16986499837943697,
+      "coefficients": {
+        "market_logit": 0.8289882318314987,
+        "Sig. str.% differential oppdiff": 0.16986499837943697
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Sub. att differential side_pair",
+      "columns": [
+        "Red Sub. att differential",
+        "Blue Sub. att differential"
+      ],
+      "oriented_coefficient": 0.03632701828479776,
+      "coefficients": {
+        "market_logit": 0.862634026962113,
+        "Red Sub. att differential": 0.03632701828479777,
+        "Blue Sub. att differential": -0.036327018284797744
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Body% differential oppdiff",
+      "columns": [
+        "Body% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.10928195014795569,
+      "coefficients": {
+        "market_logit": 0.8528964335129452,
+        "Body% differential oppdiff": 0.10928195014795569
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Sig. str. differential side_pair",
+      "columns": [
+        "Red Sig. str. differential",
+        "Blue Sig. str. differential"
+      ],
+      "oriented_coefficient": 0.029546172874511382,
+      "coefficients": {
+        "market_logit": 0.858483784761076,
+        "Red Sig. str. differential": 0.029546172874511358,
+        "Blue Sig. str. differential": -0.029546172874511403
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Td% defense oppdiff",
+      "columns": [
+        "Td% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.05984688338966337,
+      "coefficients": {
+        "market_logit": 0.857697602449271,
+        "Td% defense oppdiff": 0.05984688338966337
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Leg% defense side_pair",
+      "columns": [
+        "Red Leg% defense",
+        "Blue Leg% defense"
+      ],
+      "oriented_coefficient": 0.12022678407849663,
+      "coefficients": {
+        "market_logit": 0.8592357148706252,
+        "Red Leg% defense": 0.12022678407849664,
+        "Blue Leg% defense": -0.12022678407849662
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Total str.% defense oppdiff",
+      "columns": [
+        "Total str.% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.1953480313041696,
+      "coefficients": {
+        "market_logit": 0.8417192672063323,
+        "Total str.% defense oppdiff": 0.1953480313041696
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Clinch side_pair",
+      "columns": [
+        "Red Clinch",
+        "Blue Clinch"
+      ],
+      "oriented_coefficient": -0.0621119458686597,
+      "coefficients": {
+        "market_logit": 0.8707205038794048,
+        "Red Clinch": -0.06211194586865969,
+        "Blue Clinch": 0.06211194586865971
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Distance% defense oppdiff",
+      "columns": [
+        "Distance% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.1840732641740732,
+      "coefficients": {
+        "market_logit": 0.8398834375762396,
+        "Distance% defense oppdiff": 0.1840732641740732
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Sub. att side_pair",
+      "columns": [
+        "Red Sub. att",
+        "Blue Sub. att"
+      ],
+      "oriented_coefficient": -0.006035758229866081,
+      "coefficients": {
+        "market_logit": 0.8685257080705929,
+        "Red Sub. att": -0.006035758229866078,
+        "Blue Sub. att": 0.006035758229866083
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Rev. oppdiff",
+      "columns": [
+        "Rev. oppdiff"
+      ],
+      "oriented_coefficient": -0.13734110187874507,
+      "coefficients": {
+        "market_logit": 0.8714843214558763,
+        "Rev. oppdiff": -0.13734110187874507
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "elo side_pair",
+      "columns": [
+        "Red elo",
+        "Blue elo"
+      ],
+      "oriented_coefficient": 0.1561161526769005,
+      "coefficients": {
+        "market_logit": 0.8341211420726754,
+        "Red elo": 0.15611615267690046,
+        "Blue elo": -0.15611615267690054
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Clinch differential side_pair",
+      "columns": [
+        "Red Clinch differential",
+        "Blue Clinch differential"
+      ],
+      "oriented_coefficient": 0.03375432120601607,
+      "coefficients": {
+        "market_logit": 0.8648801013227659,
+        "Red Clinch differential": 0.03375432120601606,
+        "Blue Clinch differential": -0.03375432120601607
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Sig. str. differential oppdiff",
+      "columns": [
+        "Sig. str. differential oppdiff"
+      ],
+      "oriented_coefficient": 0.04082025514864478,
+      "coefficients": {
+        "market_logit": 0.8584077727022117,
+        "Sig. str. differential oppdiff": 0.04082025514864478
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Leg% side_pair",
+      "columns": [
+        "Red Leg%",
+        "Blue Leg%"
+      ],
+      "oriented_coefficient": 0.09249760595927549,
+      "coefficients": {
+        "market_logit": 0.8714453903894209,
+        "Red Leg%": 0.09249760595927548,
+        "Blue Leg%": -0.0924976059592755
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Clinch% side_pair",
+      "columns": [
+        "Red Clinch%",
+        "Blue Clinch%"
+      ],
+      "oriented_coefficient": 0.06157503865507684,
+      "coefficients": {
+        "market_logit": 0.866087734479204,
+        "Red Clinch%": 0.061575038655076825,
+        "Blue Clinch%": -0.06157503865507685
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "oppelo side_pair",
+      "columns": [
+        "Red oppelo",
+        "Blue oppelo"
+      ],
+      "oriented_coefficient": 0.17776557215268787,
+      "coefficients": {
+        "market_logit": 0.8790586010475827,
+        "Red oppelo": 0.17776557215268787,
+        "Blue oppelo": -0.17776557215268787
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Head differential side_pair",
+      "columns": [
+        "Red Head differential",
+        "Blue Head differential"
+      ],
+      "oriented_coefficient": 0.1314438698515048,
+      "coefficients": {
+        "market_logit": 0.8256255674048104,
+        "Red Head differential": 0.1314438698515048,
+        "Blue Head differential": -0.13144386985150477
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Ground side_pair",
+      "columns": [
+        "Red Ground",
+        "Blue Ground"
+      ],
+      "oriented_coefficient": -0.003374122722585313,
+      "coefficients": {
+        "market_logit": 0.8682270054557502,
+        "Red Ground": -0.003374122722585321,
+        "Blue Ground": 0.003374122722585305
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Leg% defense oppdiff",
+      "columns": [
+        "Leg% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.16172151324314307,
+      "coefficients": {
+        "market_logit": 0.8591226065834209,
+        "Leg% defense oppdiff": 0.16172151324314307
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "last_fight side_pair",
+      "columns": [
+        "Red last_fight",
+        "Blue last_fight"
+      ],
+      "oriented_coefficient": -0.007314135398939279,
+      "coefficients": {
+        "market_logit": 0.8657352745475265,
+        "Red last_fight": -0.007314135398939307,
+        "Blue last_fight": 0.00731413539893925
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Td differential oppdiff",
+      "columns": [
+        "Td differential oppdiff"
+      ],
+      "oriented_coefficient": 0.18075553280900303,
+      "coefficients": {
+        "market_logit": 0.8326979357248967,
+        "Td differential oppdiff": 0.18075553280900303
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Sub. att oppdiff",
+      "columns": [
+        "Sub. att oppdiff"
+      ],
+      "oriented_coefficient": -0.008151410562359379,
+      "coefficients": {
+        "market_logit": 0.8685199260204276,
+        "Sub. att oppdiff": -0.008151410562359379
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Head differential oppdiff",
+      "columns": [
+        "Head differential oppdiff"
+      ],
+      "oriented_coefficient": 0.1792004410621995,
+      "coefficients": {
+        "market_logit": 0.8250615164162359,
+        "Head differential oppdiff": 0.1792004410621995
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Td side_pair",
+      "columns": [
+        "Red Td",
+        "Blue Td"
+      ],
+      "oriented_coefficient": -0.0384803022655629,
+      "coefficients": {
+        "market_logit": 0.8781835811258074,
+        "Red Td": -0.03848030226556292,
+        "Blue Td": 0.038480302265562885
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "totalfights side_pair",
+      "columns": [
+        "Red totalfights",
+        "Blue totalfights"
+      ],
+      "oriented_coefficient": -0.090215510080039,
+      "coefficients": {
+        "market_logit": 0.837037068350314,
+        "Red totalfights": -0.090215510080039,
+        "Blue totalfights": 0.09021551008003902
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Distance% differential oppdiff",
+      "columns": [
+        "Distance% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.1465080616350193,
+      "coefficients": {
+        "market_logit": 0.8459837949786322,
+        "Distance% differential oppdiff": 0.1465080616350193
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Distance differential side_pair",
+      "columns": [
+        "Red Distance differential",
+        "Blue Distance differential"
+      ],
+      "oriented_coefficient": -0.017582217967516724,
+      "coefficients": {
+        "market_logit": 0.8721636462290836,
+        "Red Distance differential": -0.01758221796751674,
+        "Blue Distance differential": 0.017582217967516703
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Head oppdiff",
+      "columns": [
+        "Head oppdiff"
+      ],
+      "oriented_coefficient": -0.04393620631770471,
+      "coefficients": {
+        "market_logit": 0.8711440955615418,
+        "Head oppdiff": -0.04393620631770471
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Td% differential side_pair",
+      "columns": [
+        "Red Td% differential",
+        "Blue Td% differential"
+      ],
+      "oriented_coefficient": -0.11912869355204905,
+      "coefficients": {
+        "market_logit": 0.907896763995549,
+        "Red Td% differential": -0.11912869355204907,
+        "Blue Td% differential": 0.11912869355204905
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Td differential side_pair",
+      "columns": [
+        "Red Td differential",
+        "Blue Td differential"
+      ],
+      "oriented_coefficient": 0.13409945324429892,
+      "coefficients": {
+        "market_logit": 0.8332751470788815,
+        "Red Td differential": 0.13409945324429892,
+        "Blue Td differential": -0.13409945324429892
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Leg differential side_pair",
+      "columns": [
+        "Red Leg differential",
+        "Blue Leg differential"
+      ],
+      "oriented_coefficient": -0.21603426574675164,
+      "coefficients": {
+        "market_logit": 0.8703891779711405,
+        "Red Leg differential": -0.2160342657467516,
+        "Blue Leg differential": 0.21603426574675166
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "KD differential side_pair",
+      "columns": [
+        "Red KD differential",
+        "Blue KD differential"
+      ],
+      "oriented_coefficient": -0.0776393594973896,
+      "coefficients": {
+        "market_logit": 0.8844204609649334,
+        "Red KD differential": -0.07763935949738959,
+        "Blue KD differential": 0.07763935949738962
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Body% differential side_pair",
+      "columns": [
+        "Red Body% differential",
+        "Blue Body% differential"
+      ],
+      "oriented_coefficient": 0.07534518808587215,
+      "coefficients": {
+        "market_logit": 0.8527876646863303,
+        "Red Body% differential": 0.07534518808587214,
+        "Blue Body% differential": -0.07534518808587216
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Sig. str.% defense side_pair",
+      "columns": [
+        "Red Sig. str.% defense",
+        "Blue Sig. str.% defense"
+      ],
+      "oriented_coefficient": 0.15244141849229903,
+      "coefficients": {
+        "market_logit": 0.8322963219708623,
+        "Red Sig. str.% defense": 0.15244141849229903,
+        "Blue Sig. str.% defense": -0.15244141849229906
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Total str. differential side_pair",
+      "columns": [
+        "Red Total str. differential",
+        "Blue Total str. differential"
+      ],
+      "oriented_coefficient": 0.042509103678400426,
+      "coefficients": {
+        "market_logit": 0.8591833898424828,
+        "Red Total str. differential": 0.04250910367840042,
+        "Blue Total str. differential": -0.04250910367840043
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Distance% differential side_pair",
+      "columns": [
+        "Red Distance% differential",
+        "Blue Distance% differential"
+      ],
+      "oriented_coefficient": 0.10301970069042675,
+      "coefficients": {
+        "market_logit": 0.8459475668457079,
+        "Red Distance% differential": 0.10301970069042672,
+        "Blue Distance% differential": -0.10301970069042678
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Ctrl oppdiff",
+      "columns": [
+        "Ctrl oppdiff"
+      ],
+      "oriented_coefficient": 0.02407093467647433,
+      "coefficients": {
+        "market_logit": 0.8634061018861167,
+        "Ctrl oppdiff": 0.02407093467647433
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Head% defense oppdiff",
+      "columns": [
+        "Head% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.12112598492428475,
+      "coefficients": {
+        "market_logit": 0.841978258396603,
+        "Head% defense oppdiff": 0.12112598492428475
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Ctrl differential side_pair",
+      "columns": [
+        "Red Ctrl differential",
+        "Blue Ctrl differential"
+      ],
+      "oriented_coefficient": 0.0698984402378384,
+      "coefficients": {
+        "market_logit": 0.8487023906654496,
+        "Red Ctrl differential": 0.0698984402378384,
+        "Blue Ctrl differential": -0.0698984402378384
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Sig. str. side_pair",
+      "columns": [
+        "Red Sig. str.",
+        "Blue Sig. str."
+      ],
+      "oriented_coefficient": -0.08994588117156224,
+      "coefficients": {
+        "market_logit": 0.8774422181495865,
+        "Red Sig. str.": -0.08994588117156226,
+        "Blue Sig. str.": 0.08994588117156221
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Body oppdiff",
+      "columns": [
+        "Body oppdiff"
+      ],
+      "oriented_coefficient": -0.10516918754846205,
+      "coefficients": {
+        "market_logit": 0.8713203774061737,
+        "Body oppdiff": -0.10516918754846205
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "age side_pair",
+      "columns": [
+        "Red age",
+        "Blue age"
+      ],
+      "oriented_coefficient": 0.03279962825352258,
+      "coefficients": {
+        "market_logit": 0.8865341960698815,
+        "Red age": 0.032799628253522575,
+        "Blue age": -0.03279962825352259
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Td oppdiff",
+      "columns": [
+        "Td oppdiff"
+      ],
+      "oriented_coefficient": -0.05226722937224675,
+      "coefficients": {
+        "market_logit": 0.878358618289362,
+        "Td oppdiff": -0.05226722937224675
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Clinch% differential side_pair",
+      "columns": [
+        "Red Clinch% differential",
+        "Blue Clinch% differential"
+      ],
+      "oriented_coefficient": 0.06371736572574868,
+      "coefficients": {
+        "market_logit": 0.8500157880571809,
+        "Red Clinch% differential": 0.0637173657257487,
+        "Blue Clinch% differential": -0.06371736572574865
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Head% defense side_pair",
+      "columns": [
+        "Red Head% defense",
+        "Blue Head% defense"
+      ],
+      "oriented_coefficient": 0.08851111832818241,
+      "coefficients": {
+        "market_logit": 0.8423024159800439,
+        "Red Head% defense": 0.08851111832818241,
+        "Blue Head% defense": -0.08851111832818241
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Ground% defense oppdiff",
+      "columns": [
+        "Ground% defense oppdiff"
+      ],
+      "oriented_coefficient": -0.032951791507203045,
+      "coefficients": {
+        "market_logit": 0.8762185137253619,
+        "Ground% defense oppdiff": -0.032951791507203045
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Ground oppdiff",
+      "columns": [
+        "Ground oppdiff"
+      ],
+      "oriented_coefficient": -0.004792741714159508,
+      "coefficients": {
+        "market_logit": 0.8682306077416249,
+        "Ground oppdiff": -0.004792741714159508
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Head% differential oppdiff",
+      "columns": [
+        "Head% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.11973847940342701,
+      "coefficients": {
+        "market_logit": 0.8368887704918893,
+        "Head% differential oppdiff": 0.11973847940342701
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Sig. str.% defense oppdiff",
+      "columns": [
+        "Sig. str.% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.20628566749575938,
+      "coefficients": {
+        "market_logit": 0.8317481308858756,
+        "Sig. str.% defense oppdiff": 0.20628566749575938
+      }
+    },
+    {
+      "fold": 2,
+      "unit": "Ground differential oppdiff",
+      "columns": [
+        "Ground differential oppdiff"
+      ],
+      "oriented_coefficient": 0.13479978606570728,
+      "coefficients": {
+        "market_logit": 0.842973292539793,
+        "Ground differential oppdiff": 0.13479978606570728
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "oppelo oppdiff",
+      "columns": [
+        "oppelo oppdiff"
+      ],
+      "oriented_coefficient": 0.11361999282291298,
+      "coefficients": {
+        "market_logit": 0.97840584235954,
+        "oppelo oppdiff": 0.11361999282291298
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "elo oppdiff",
+      "columns": [
+        "elo oppdiff"
+      ],
+      "oriented_coefficient": 0.07341936772109899,
+      "coefficients": {
+        "market_logit": 0.9456765565923905,
+        "elo oppdiff": 0.07341936772109899
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "age oppdiff",
+      "columns": [
+        "age oppdiff"
+      ],
+      "oriented_coefficient": 0.010082306837281715,
+      "coefficients": {
+        "market_logit": 0.9702405851297897,
+        "age oppdiff": 0.010082306837281715
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "wins oppdiff",
+      "columns": [
+        "wins oppdiff"
+      ],
+      "oriented_coefficient": 0.08521551350448986,
+      "coefficients": {
+        "market_logit": 0.9247582110593434,
+        "wins oppdiff": 0.08521551350448986
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "avg age oppdiff",
+      "columns": [
+        "avg age oppdiff"
+      ],
+      "oriented_coefficient": 0.04847420808351485,
+      "coefficients": {
+        "market_logit": 0.9804450781406452,
+        "avg age oppdiff": 0.04847420808351485
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Clinch oppdiff",
+      "columns": [
+        "Clinch oppdiff"
+      ],
+      "oriented_coefficient": -0.13874887355016216,
+      "coefficients": {
+        "market_logit": 0.9770290349685496,
+        "Clinch oppdiff": -0.13874887355016216
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "KD differential oppdiff",
+      "columns": [
+        "KD differential oppdiff"
+      ],
+      "oriented_coefficient": -0.11747885218683896,
+      "coefficients": {
+        "market_logit": 0.988133694869877,
+        "KD differential oppdiff": -0.11747885218683896
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "avg age side_pair",
+      "columns": [
+        "Red avg age",
+        "Blue avg age"
+      ],
+      "oriented_coefficient": 0.051689011683014166,
+      "coefficients": {
+        "market_logit": 0.9884197149015179,
+        "Red avg age": 0.05168901168301422,
+        "Blue avg age": -0.051689011683014104
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "totalfights oppdiff",
+      "columns": [
+        "totalfights oppdiff"
+      ],
+      "oriented_coefficient": -0.08129798507301148,
+      "coefficients": {
+        "market_logit": 0.9397807863442654,
+        "totalfights oppdiff": -0.08129798507301148
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Sig. str.% differential oppdiff",
+      "columns": [
+        "Sig. str.% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.17588566127543698,
+      "coefficients": {
+        "market_logit": 0.9247891273007924,
+        "Sig. str.% differential oppdiff": 0.17588566127543698
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Sub. att differential side_pair",
+      "columns": [
+        "Red Sub. att differential",
+        "Blue Sub. att differential"
+      ],
+      "oriented_coefficient": 0.13301073169825728,
+      "coefficients": {
+        "market_logit": 0.9418265464472824,
+        "Red Sub. att differential": 0.1330107316982573,
+        "Blue Sub. att differential": -0.13301073169825725
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Body% differential oppdiff",
+      "columns": [
+        "Body% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.06840882261006574,
+      "coefficients": {
+        "market_logit": 0.9555393426314859,
+        "Body% differential oppdiff": 0.06840882261006574
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Sig. str. differential side_pair",
+      "columns": [
+        "Red Sig. str. differential",
+        "Blue Sig. str. differential"
+      ],
+      "oriented_coefficient": 0.07106767718442841,
+      "coefficients": {
+        "market_logit": 0.9431660480083685,
+        "Red Sig. str. differential": 0.07106767718442843,
+        "Blue Sig. str. differential": -0.07106767718442841
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Td% defense oppdiff",
+      "columns": [
+        "Td% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.035720175213094625,
+      "coefficients": {
+        "market_logit": 0.9580442590684933,
+        "Td% defense oppdiff": 0.035720175213094625
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Leg% defense side_pair",
+      "columns": [
+        "Red Leg% defense",
+        "Blue Leg% defense"
+      ],
+      "oriented_coefficient": 0.16047873504482746,
+      "coefficients": {
+        "market_logit": 0.9623157025902033,
+        "Red Leg% defense": 0.16047873504482751,
+        "Blue Leg% defense": -0.1604787350448274
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Total str.% defense oppdiff",
+      "columns": [
+        "Total str.% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.14566842954125717,
+      "coefficients": {
+        "market_logit": 0.9518015290872457,
+        "Total str.% defense oppdiff": 0.14566842954125717
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Clinch side_pair",
+      "columns": [
+        "Red Clinch",
+        "Blue Clinch"
+      ],
+      "oriented_coefficient": -0.10230811556699271,
+      "coefficients": {
+        "market_logit": 0.9768785470816764,
+        "Red Clinch": -0.1023081155669927,
+        "Blue Clinch": 0.10230811556699274
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Distance% defense oppdiff",
+      "columns": [
+        "Distance% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.2529928355642103,
+      "coefficients": {
+        "market_logit": 0.9406258141694472,
+        "Distance% defense oppdiff": 0.2529928355642103
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Sub. att side_pair",
+      "columns": [
+        "Red Sub. att",
+        "Blue Sub. att"
+      ],
+      "oriented_coefficient": 0.03351393546064951,
+      "coefficients": {
+        "market_logit": 0.9635716133116635,
+        "Red Sub. att": 0.03351393546064953,
+        "Blue Sub. att": -0.03351393546064949
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Rev. oppdiff",
+      "columns": [
+        "Rev. oppdiff"
+      ],
+      "oriented_coefficient": -0.15151986359793915,
+      "coefficients": {
+        "market_logit": 0.9736197271635684,
+        "Rev. oppdiff": -0.15151986359793915
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "elo side_pair",
+      "columns": [
+        "Red elo",
+        "Blue elo"
+      ],
+      "oriented_coefficient": 0.0751826030034463,
+      "coefficients": {
+        "market_logit": 0.9481477447859123,
+        "Red elo": 0.07518260300344697,
+        "Blue elo": -0.07518260300344563
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Clinch differential side_pair",
+      "columns": [
+        "Red Clinch differential",
+        "Blue Clinch differential"
+      ],
+      "oriented_coefficient": 0.05981601900553382,
+      "coefficients": {
+        "market_logit": 0.9555558043352713,
+        "Red Clinch differential": 0.059816019005533794,
+        "Blue Clinch differential": -0.05981601900553384
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Sig. str. differential oppdiff",
+      "columns": [
+        "Sig. str. differential oppdiff"
+      ],
+      "oriented_coefficient": 0.09651490132603939,
+      "coefficients": {
+        "market_logit": 0.9429946623055578,
+        "Sig. str. differential oppdiff": 0.09651490132603939
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Leg% side_pair",
+      "columns": [
+        "Red Leg%",
+        "Blue Leg%"
+      ],
+      "oriented_coefficient": -0.05398144569612297,
+      "coefficients": {
+        "market_logit": 0.966831186467942,
+        "Red Leg%": -0.053981445696122926,
+        "Blue Leg%": 0.053981445696123
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Clinch% side_pair",
+      "columns": [
+        "Red Clinch%",
+        "Blue Clinch%"
+      ],
+      "oriented_coefficient": 0.027548563005437794,
+      "coefficients": {
+        "market_logit": 0.9641076555118957,
+        "Red Clinch%": 0.027548563005437798,
+        "Blue Clinch%": -0.02754856300543779
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "oppelo side_pair",
+      "columns": [
+        "Red oppelo",
+        "Blue oppelo"
+      ],
+      "oriented_coefficient": 0.10572450509589063,
+      "coefficients": {
+        "market_logit": 0.9773055103295781,
+        "Red oppelo": 0.1057245050958907,
+        "Blue oppelo": -0.10572450509589057
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Head differential side_pair",
+      "columns": [
+        "Red Head differential",
+        "Blue Head differential"
+      ],
+      "oriented_coefficient": 0.1350394491525767,
+      "coefficients": {
+        "market_logit": 0.9204797850575367,
+        "Red Head differential": 0.1350394491525767,
+        "Blue Head differential": -0.13503944915257668
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Ground side_pair",
+      "columns": [
+        "Red Ground",
+        "Blue Ground"
+      ],
+      "oriented_coefficient": -0.09169961119969804,
+      "coefficients": {
+        "market_logit": 0.9858049607231681,
+        "Red Ground": -0.09169961119969805,
+        "Blue Ground": 0.09169961119969802
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Leg% defense oppdiff",
+      "columns": [
+        "Leg% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.22298694967270363,
+      "coefficients": {
+        "market_logit": 0.9623271858749732,
+        "Leg% defense oppdiff": 0.22298694967270363
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "last_fight side_pair",
+      "columns": [
+        "Red last_fight",
+        "Blue last_fight"
+      ],
+      "oriented_coefficient": 0.002794842014274677,
+      "coefficients": {
+        "market_logit": 0.9664653399063129,
+        "Red last_fight": 0.002794842014274654,
+        "Blue last_fight": -0.0027948420142747
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Td differential oppdiff",
+      "columns": [
+        "Td differential oppdiff"
+      ],
+      "oriented_coefficient": 0.17621424213983064,
+      "coefficients": {
+        "market_logit": 0.9294420191108527,
+        "Td differential oppdiff": 0.17621424213983064
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Sub. att oppdiff",
+      "columns": [
+        "Sub. att oppdiff"
+      ],
+      "oriented_coefficient": 0.044302612048405556,
+      "coefficients": {
+        "market_logit": 0.9635352505160479,
+        "Sub. att oppdiff": 0.044302612048405556
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Head differential oppdiff",
+      "columns": [
+        "Head differential oppdiff"
+      ],
+      "oriented_coefficient": 0.18045247496349912,
+      "coefficients": {
+        "market_logit": 0.9199756564772511,
+        "Head differential oppdiff": 0.18045247496349912
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Td side_pair",
+      "columns": [
+        "Red Td",
+        "Blue Td"
+      ],
+      "oriented_coefficient": 0.018960869809770277,
+      "coefficients": {
+        "market_logit": 0.9612016640100355,
+        "Red Td": 0.01896086980977028,
+        "Blue Td": -0.018960869809770277
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "totalfights side_pair",
+      "columns": [
+        "Red totalfights",
+        "Blue totalfights"
+      ],
+      "oriented_coefficient": -0.06042692850448498,
+      "coefficients": {
+        "market_logit": 0.9400565361700729,
+        "Red totalfights": -0.06042692850448497,
+        "Blue totalfights": 0.060426928504484986
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Distance% differential oppdiff",
+      "columns": [
+        "Distance% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.06349970493875479,
+      "coefficients": {
+        "market_logit": 0.9534403122872354,
+        "Distance% differential oppdiff": 0.06349970493875479
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Distance differential side_pair",
+      "columns": [
+        "Red Distance differential",
+        "Blue Distance differential"
+      ],
+      "oriented_coefficient": 0.012685519405997544,
+      "coefficients": {
+        "market_logit": 0.9628770550579776,
+        "Red Distance differential": 0.012685519405997549,
+        "Blue Distance differential": -0.01268551940599754
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Head oppdiff",
+      "columns": [
+        "Head oppdiff"
+      ],
+      "oriented_coefficient": -0.1749908752243216,
+      "coefficients": {
+        "market_logit": 0.9893083517097135,
+        "Head oppdiff": -0.1749908752243216
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Td% differential side_pair",
+      "columns": [
+        "Red Td% differential",
+        "Blue Td% differential"
+      ],
+      "oriented_coefficient": -0.004235396205166161,
+      "coefficients": {
+        "market_logit": 0.9671434304244857,
+        "Red Td% differential": -0.004235396205166135,
+        "Blue Td% differential": 0.004235396205166187
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Td differential side_pair",
+      "columns": [
+        "Red Td differential",
+        "Blue Td differential"
+      ],
+      "oriented_coefficient": 0.1344111480805383,
+      "coefficients": {
+        "market_logit": 0.9299777555185205,
+        "Red Td differential": 0.13441114808053828,
+        "Blue Td differential": -0.13441114808053833
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Leg differential side_pair",
+      "columns": [
+        "Red Leg differential",
+        "Blue Leg differential"
+      ],
+      "oriented_coefficient": -0.0976012265878674,
+      "coefficients": {
+        "market_logit": 0.9621976422112577,
+        "Red Leg differential": -0.09760122658786745,
+        "Blue Leg differential": 0.09760122658786738
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "KD differential side_pair",
+      "columns": [
+        "Red KD differential",
+        "Blue KD differential"
+      ],
+      "oriented_coefficient": -0.08483966268914146,
+      "coefficients": {
+        "market_logit": 0.988034884084863,
+        "Red KD differential": -0.08483966268914146,
+        "Blue KD differential": 0.08483966268914146
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Body% differential side_pair",
+      "columns": [
+        "Red Body% differential",
+        "Blue Body% differential"
+      ],
+      "oriented_coefficient": 0.04654794658007145,
+      "coefficients": {
+        "market_logit": 0.9554747626423097,
+        "Red Body% differential": 0.04654794658007145,
+        "Blue Body% differential": -0.04654794658007145
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Sig. str.% defense side_pair",
+      "columns": [
+        "Red Sig. str.% defense",
+        "Blue Sig. str.% defense"
+      ],
+      "oriented_coefficient": 0.19673298047533205,
+      "coefficients": {
+        "market_logit": 0.945822114172628,
+        "Red Sig. str.% defense": 0.19673298047533203,
+        "Blue Sig. str.% defense": -0.19673298047533205
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Total str. differential side_pair",
+      "columns": [
+        "Red Total str. differential",
+        "Blue Total str. differential"
+      ],
+      "oriented_coefficient": 0.13783397638798972,
+      "coefficients": {
+        "market_logit": 0.9361184417422923,
+        "Red Total str. differential": 0.13783397638798975,
+        "Blue Total str. differential": -0.13783397638798972
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Distance% differential side_pair",
+      "columns": [
+        "Red Distance% differential",
+        "Blue Distance% differential"
+      ],
+      "oriented_coefficient": 0.044700119438595545,
+      "coefficients": {
+        "market_logit": 0.953430682867025,
+        "Red Distance% differential": 0.044700119438595545,
+        "Blue Distance% differential": -0.04470011943859555
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Ctrl oppdiff",
+      "columns": [
+        "Ctrl oppdiff"
+      ],
+      "oriented_coefficient": 0.09015183589304887,
+      "coefficients": {
+        "market_logit": 0.9483198298371034,
+        "Ctrl oppdiff": 0.09015183589304887
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Head% defense oppdiff",
+      "columns": [
+        "Head% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.24025565050907782,
+      "coefficients": {
+        "market_logit": 0.9249365006416035,
+        "Head% defense oppdiff": 0.24025565050907782
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Ctrl differential side_pair",
+      "columns": [
+        "Red Ctrl differential",
+        "Blue Ctrl differential"
+      ],
+      "oriented_coefficient": 0.060946280238896984,
+      "coefficients": {
+        "market_logit": 0.9457610448494487,
+        "Red Ctrl differential": 0.06094628023889699,
+        "Blue Ctrl differential": -0.06094628023889698
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Sig. str. side_pair",
+      "columns": [
+        "Red Sig. str.",
+        "Blue Sig. str."
+      ],
+      "oriented_coefficient": -0.17205201706341566,
+      "coefficients": {
+        "market_logit": 0.9967219556380915,
+        "Red Sig. str.": -0.1720520170634156,
+        "Blue Sig. str.": 0.17205201706341572
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Body oppdiff",
+      "columns": [
+        "Body oppdiff"
+      ],
+      "oriented_coefficient": -0.17620326749132395,
+      "coefficients": {
+        "market_logit": 0.9813159624760828,
+        "Body oppdiff": -0.17620326749132395
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "age side_pair",
+      "columns": [
+        "Red age",
+        "Blue age"
+      ],
+      "oriented_coefficient": 0.013790021515702307,
+      "coefficients": {
+        "market_logit": 0.9741172551506354,
+        "Red age": 0.013790021515702312,
+        "Blue age": -0.0137900215157023
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Td oppdiff",
+      "columns": [
+        "Td oppdiff"
+      ],
+      "oriented_coefficient": 0.025088355821740745,
+      "coefficients": {
+        "market_logit": 0.9611423877000393,
+        "Td oppdiff": 0.025088355821740745
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Clinch% differential side_pair",
+      "columns": [
+        "Red Clinch% differential",
+        "Blue Clinch% differential"
+      ],
+      "oriented_coefficient": 0.07286163540350754,
+      "coefficients": {
+        "market_logit": 0.9478881248471795,
+        "Red Clinch% differential": 0.07286163540350757,
+        "Blue Clinch% differential": -0.07286163540350753
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Head% defense side_pair",
+      "columns": [
+        "Red Head% defense",
+        "Blue Head% defense"
+      ],
+      "oriented_coefficient": 0.17242124245742618,
+      "coefficients": {
+        "market_logit": 0.9250336302087528,
+        "Red Head% defense": 0.17242124245742618,
+        "Blue Head% defense": -0.17242124245742618
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Ground% defense oppdiff",
+      "columns": [
+        "Ground% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.1345553234790674,
+      "coefficients": {
+        "market_logit": 0.9386437408546783,
+        "Ground% defense oppdiff": 0.1345553234790674
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Ground oppdiff",
+      "columns": [
+        "Ground oppdiff"
+      ],
+      "oriented_coefficient": -0.13132171799817516,
+      "coefficients": {
+        "market_logit": 0.9857443481118959,
+        "Ground oppdiff": -0.13132171799817516
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Head% differential oppdiff",
+      "columns": [
+        "Head% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.12391940142449683,
+      "coefficients": {
+        "market_logit": 0.9299404542701215,
+        "Head% differential oppdiff": 0.12391940142449683
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Sig. str.% defense oppdiff",
+      "columns": [
+        "Sig. str.% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.27394769111593387,
+      "coefficients": {
+        "market_logit": 0.945765078847492,
+        "Sig. str.% defense oppdiff": 0.27394769111593387
+      }
+    },
+    {
+      "fold": 3,
+      "unit": "Ground differential oppdiff",
+      "columns": [
+        "Ground differential oppdiff"
+      ],
+      "oriented_coefficient": 0.16061146488780445,
+      "coefficients": {
+        "market_logit": 0.9331025938645435,
+        "Ground differential oppdiff": 0.16061146488780445
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "oppelo oppdiff",
+      "columns": [
+        "oppelo oppdiff"
+      ],
+      "oriented_coefficient": 0.07442185358709874,
+      "coefficients": {
+        "market_logit": 0.9327381359399584,
+        "oppelo oppdiff": 0.07442185358709874
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "elo oppdiff",
+      "columns": [
+        "elo oppdiff"
+      ],
+      "oriented_coefficient": 0.1475118969012263,
+      "coefficients": {
+        "market_logit": 0.8863183797889372,
+        "elo oppdiff": 0.1475118969012263
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "age oppdiff",
+      "columns": [
+        "age oppdiff"
+      ],
+      "oriented_coefficient": 0.02653096858846592,
+      "coefficients": {
+        "market_logit": 0.9390913319732122,
+        "age oppdiff": 0.02653096858846592
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "wins oppdiff",
+      "columns": [
+        "wins oppdiff"
+      ],
+      "oriented_coefficient": 0.14349149278885462,
+      "coefficients": {
+        "market_logit": 0.8615955350191393,
+        "wins oppdiff": 0.14349149278885462
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "avg age oppdiff",
+      "columns": [
+        "avg age oppdiff"
+      ],
+      "oriented_coefficient": 0.09670796049407983,
+      "coefficients": {
+        "market_logit": 0.9598285428966159,
+        "avg age oppdiff": 0.09670796049407983
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Clinch oppdiff",
+      "columns": [
+        "Clinch oppdiff"
+      ],
+      "oriented_coefficient": -0.1987806258060305,
+      "coefficients": {
+        "market_logit": 0.9492435066522992,
+        "Clinch oppdiff": -0.1987806258060305
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "KD differential oppdiff",
+      "columns": [
+        "KD differential oppdiff"
+      ],
+      "oriented_coefficient": 0.014626371292854377,
+      "coefficients": {
+        "market_logit": 0.9249535609154678,
+        "KD differential oppdiff": 0.014626371292854377
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "avg age side_pair",
+      "columns": [
+        "Red avg age",
+        "Blue avg age"
+      ],
+      "oriented_coefficient": 0.06943954582083602,
+      "coefficients": {
+        "market_logit": 0.960801017906038,
+        "Red avg age": 0.06943954582083599,
+        "Blue avg age": -0.06943954582083604
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "totalfights oppdiff",
+      "columns": [
+        "totalfights oppdiff"
+      ],
+      "oriented_coefficient": -0.09771801365452332,
+      "coefficients": {
+        "market_logit": 0.8978190675076219,
+        "totalfights oppdiff": -0.09771801365452332
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Sig. str.% differential oppdiff",
+      "columns": [
+        "Sig. str.% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.1693700200269212,
+      "coefficients": {
+        "market_logit": 0.8953012177719234,
+        "Sig. str.% differential oppdiff": 0.1693700200269212
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Sub. att differential side_pair",
+      "columns": [
+        "Red Sub. att differential",
+        "Blue Sub. att differential"
+      ],
+      "oriented_coefficient": 0.10884211093393267,
+      "coefficients": {
+        "market_logit": 0.9095199546275801,
+        "Red Sub. att differential": 0.10884211093393267,
+        "Blue Sub. att differential": -0.10884211093393266
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Body% differential oppdiff",
+      "columns": [
+        "Body% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.11625743062491928,
+      "coefficients": {
+        "market_logit": 0.9112368419797133,
+        "Body% differential oppdiff": 0.11625743062491928
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Sig. str. differential side_pair",
+      "columns": [
+        "Red Sig. str. differential",
+        "Blue Sig. str. differential"
+      ],
+      "oriented_coefficient": 0.09469947443132987,
+      "coefficients": {
+        "market_logit": 0.8988613866889451,
+        "Red Sig. str. differential": 0.09469947443132988,
+        "Blue Sig. str. differential": -0.09469947443132987
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Td% defense oppdiff",
+      "columns": [
+        "Td% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.020196759444445992,
+      "coefficients": {
+        "market_logit": 0.9224950832133417,
+        "Td% defense oppdiff": 0.020196759444445992
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Leg% defense side_pair",
+      "columns": [
+        "Red Leg% defense",
+        "Blue Leg% defense"
+      ],
+      "oriented_coefficient": 0.2317221099476725,
+      "coefficients": {
+        "market_logit": 0.930917884841497,
+        "Red Leg% defense": 0.23172210994767245,
+        "Blue Leg% defense": -0.23172210994767256
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Total str.% defense oppdiff",
+      "columns": [
+        "Total str.% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.023445909049445053,
+      "coefficients": {
+        "market_logit": 0.9248159876310365,
+        "Total str.% defense oppdiff": 0.023445909049445053
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Clinch side_pair",
+      "columns": [
+        "Red Clinch",
+        "Blue Clinch"
+      ],
+      "oriented_coefficient": -0.14440825165031868,
+      "coefficients": {
+        "market_logit": 0.949167739836333,
+        "Red Clinch": -0.14440825165031873,
+        "Blue Clinch": 0.14440825165031865
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Distance% defense oppdiff",
+      "columns": [
+        "Distance% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.19464340028137672,
+      "coefficients": {
+        "market_logit": 0.9172801892681968,
+        "Distance% defense oppdiff": 0.19464340028137672
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Sub. att side_pair",
+      "columns": [
+        "Red Sub. att",
+        "Blue Sub. att"
+      ],
+      "oriented_coefficient": 0.021519515387337533,
+      "coefficients": {
+        "market_logit": 0.9266038460904755,
+        "Red Sub. att": 0.021519515387337564,
+        "Blue Sub. att": -0.0215195153873375
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Rev. oppdiff",
+      "columns": [
+        "Rev. oppdiff"
+      ],
+      "oriented_coefficient": -0.07870695813276445,
+      "coefficients": {
+        "market_logit": 0.9352755463645436,
+        "Rev. oppdiff": -0.07870695813276445
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "elo side_pair",
+      "columns": [
+        "Red elo",
+        "Blue elo"
+      ],
+      "oriented_coefficient": 0.15551540905522582,
+      "coefficients": {
+        "market_logit": 0.889559211065869,
+        "Red elo": 0.1555154090552254,
+        "Blue elo": -0.1555154090552262
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Clinch differential side_pair",
+      "columns": [
+        "Red Clinch differential",
+        "Blue Clinch differential"
+      ],
+      "oriented_coefficient": 0.04273823530576404,
+      "coefficients": {
+        "market_logit": 0.9194628181022607,
+        "Red Clinch differential": 0.04273823530576399,
+        "Blue Clinch differential": -0.04273823530576408
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Sig. str. differential oppdiff",
+      "columns": [
+        "Sig. str. differential oppdiff"
+      ],
+      "oriented_coefficient": 0.12956367171472039,
+      "coefficients": {
+        "market_logit": 0.8987553492481591,
+        "Sig. str. differential oppdiff": 0.12956367171472039
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Leg% side_pair",
+      "columns": [
+        "Red Leg%",
+        "Blue Leg%"
+      ],
+      "oriented_coefficient": -0.027735094771525103,
+      "coefficients": {
+        "market_logit": 0.9276600226453352,
+        "Red Leg%": -0.027735094771525113,
+        "Blue Leg%": 0.027735094771525092
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Clinch% side_pair",
+      "columns": [
+        "Red Clinch%",
+        "Blue Clinch%"
+      ],
+      "oriented_coefficient": 0.017839978059212176,
+      "coefficients": {
+        "market_logit": 0.9254204076596323,
+        "Red Clinch%": 0.017839978059212197,
+        "Blue Clinch%": -0.01783997805921216
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "oppelo side_pair",
+      "columns": [
+        "Red oppelo",
+        "Blue oppelo"
+      ],
+      "oriented_coefficient": 0.06765356669440178,
+      "coefficients": {
+        "market_logit": 0.9324877093693956,
+        "Red oppelo": 0.06765356669440185,
+        "Blue oppelo": -0.0676535666944017
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Head differential side_pair",
+      "columns": [
+        "Red Head differential",
+        "Blue Head differential"
+      ],
+      "oriented_coefficient": 0.14645134327910053,
+      "coefficients": {
+        "market_logit": 0.8817156033644645,
+        "Red Head differential": 0.14645134327910053,
+        "Blue Head differential": -0.14645134327910053
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Ground side_pair",
+      "columns": [
+        "Red Ground",
+        "Blue Ground"
+      ],
+      "oriented_coefficient": -0.002946499797718656,
+      "coefficients": {
+        "market_logit": 0.9271905949126821,
+        "Red Ground": -0.0029464997977186286,
+        "Blue Ground": 0.002946499797718683
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Leg% defense oppdiff",
+      "columns": [
+        "Leg% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.3233405861896492,
+      "coefficients": {
+        "market_logit": 0.9309958694801977,
+        "Leg% defense oppdiff": 0.3233405861896492
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "last_fight side_pair",
+      "columns": [
+        "Red last_fight",
+        "Blue last_fight"
+      ],
+      "oriented_coefficient": -0.04869126307456615,
+      "coefficients": {
+        "market_logit": 0.9146183686310402,
+        "Red last_fight": -0.048691263074566095,
+        "Blue last_fight": 0.048691263074566206
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Td differential oppdiff",
+      "columns": [
+        "Td differential oppdiff"
+      ],
+      "oriented_coefficient": 0.22889095906485019,
+      "coefficients": {
+        "market_logit": 0.8798275518502559,
+        "Td differential oppdiff": 0.22889095906485019
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Sub. att oppdiff",
+      "columns": [
+        "Sub. att oppdiff"
+      ],
+      "oriented_coefficient": 0.02906387960555908,
+      "coefficients": {
+        "market_logit": 0.9266042937598523,
+        "Sub. att oppdiff": 0.02906387960555908
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Head differential oppdiff",
+      "columns": [
+        "Head differential oppdiff"
+      ],
+      "oriented_coefficient": 0.19765240391993766,
+      "coefficients": {
+        "market_logit": 0.8814701557957387,
+        "Head differential oppdiff": 0.19765240391993766
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Td side_pair",
+      "columns": [
+        "Red Td",
+        "Blue Td"
+      ],
+      "oriented_coefficient": 0.09429307005109666,
+      "coefficients": {
+        "market_logit": 0.9097353540675929,
+        "Red Td": 0.09429307005109668,
+        "Blue Td": -0.09429307005109663
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "totalfights side_pair",
+      "columns": [
+        "Red totalfights",
+        "Blue totalfights"
+      ],
+      "oriented_coefficient": -0.07325965465102607,
+      "coefficients": {
+        "market_logit": 0.8980495135384859,
+        "Red totalfights": -0.07325965465102605,
+        "Blue totalfights": 0.07325965465102609
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Distance% differential oppdiff",
+      "columns": [
+        "Distance% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.11636164228875578,
+      "coefficients": {
+        "market_logit": 0.9139307256448014,
+        "Distance% differential oppdiff": 0.11636164228875578
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Distance differential side_pair",
+      "columns": [
+        "Red Distance differential",
+        "Blue Distance differential"
+      ],
+      "oriented_coefficient": 0.021165193766851845,
+      "coefficients": {
+        "market_logit": 0.9227696733373233,
+        "Red Distance differential": 0.021165193766851886,
+        "Blue Distance differential": -0.0211651937668518
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Head oppdiff",
+      "columns": [
+        "Head oppdiff"
+      ],
+      "oriented_coefficient": -0.07279725338704568,
+      "coefficients": {
+        "market_logit": 0.9326193511400824,
+        "Head oppdiff": -0.07279725338704568
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Td% differential side_pair",
+      "columns": [
+        "Red Td% differential",
+        "Blue Td% differential"
+      ],
+      "oriented_coefficient": 0.055851095648893116,
+      "coefficients": {
+        "market_logit": 0.9089051400734425,
+        "Red Td% differential": 0.05585109564889308,
+        "Blue Td% differential": -0.05585109564889315
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Td differential side_pair",
+      "columns": [
+        "Red Td differential",
+        "Blue Td differential"
+      ],
+      "oriented_coefficient": 0.16961203165049565,
+      "coefficients": {
+        "market_logit": 0.8800457292201884,
+        "Red Td differential": 0.16961203165049565,
+        "Blue Td differential": -0.16961203165049563
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Leg differential side_pair",
+      "columns": [
+        "Red Leg differential",
+        "Blue Leg differential"
+      ],
+      "oriented_coefficient": -0.0799889583670945,
+      "coefficients": {
+        "market_logit": 0.9269481951477475,
+        "Red Leg differential": -0.07998895836709449,
+        "Blue Leg differential": 0.07998895836709452
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "KD differential side_pair",
+      "columns": [
+        "Red KD differential",
+        "Blue KD differential"
+      ],
+      "oriented_coefficient": 0.01044354880021433,
+      "coefficients": {
+        "market_logit": 0.924955525827598,
+        "Red KD differential": 0.010443548800214336,
+        "Blue KD differential": -0.01044354880021432
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Body% differential side_pair",
+      "columns": [
+        "Red Body% differential",
+        "Blue Body% differential"
+      ],
+      "oriented_coefficient": 0.0807790374957322,
+      "coefficients": {
+        "market_logit": 0.9112101562140398,
+        "Red Body% differential": 0.08077903749573224,
+        "Blue Body% differential": -0.08077903749573216
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Sig. str.% defense side_pair",
+      "columns": [
+        "Red Sig. str.% defense",
+        "Blue Sig. str.% defense"
+      ],
+      "oriented_coefficient": 0.08388405532057289,
+      "coefficients": {
+        "market_logit": 0.920623552945802,
+        "Red Sig. str.% defense": 0.08388405532057294,
+        "Blue Sig. str.% defense": -0.08388405532057285
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Total str. differential side_pair",
+      "columns": [
+        "Red Total str. differential",
+        "Blue Total str. differential"
+      ],
+      "oriented_coefficient": 0.1660463496770161,
+      "coefficients": {
+        "market_logit": 0.8899537915273399,
+        "Red Total str. differential": 0.16604634967701604,
+        "Blue Total str. differential": -0.16604634967701612
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Distance% differential side_pair",
+      "columns": [
+        "Red Distance% differential",
+        "Blue Distance% differential"
+      ],
+      "oriented_coefficient": 0.08369434138991436,
+      "coefficients": {
+        "market_logit": 0.9139518616019977,
+        "Red Distance% differential": 0.08369434138991433,
+        "Blue Distance% differential": -0.08369434138991437
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Ctrl oppdiff",
+      "columns": [
+        "Ctrl oppdiff"
+      ],
+      "oriented_coefficient": 0.18646292076086324,
+      "coefficients": {
+        "market_logit": 0.903570346856165,
+        "Ctrl oppdiff": 0.18646292076086324
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Head% defense oppdiff",
+      "columns": [
+        "Head% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.06537348420705805,
+      "coefficients": {
+        "market_logit": 0.9173562357611135,
+        "Head% defense oppdiff": 0.06537348420705805
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Ctrl differential side_pair",
+      "columns": [
+        "Red Ctrl differential",
+        "Blue Ctrl differential"
+      ],
+      "oriented_coefficient": 0.11060015803172538,
+      "coefficients": {
+        "market_logit": 0.8943385962938364,
+        "Red Ctrl differential": 0.11060015803172535,
+        "Blue Ctrl differential": -0.1106001580317254
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Sig. str. side_pair",
+      "columns": [
+        "Red Sig. str.",
+        "Blue Sig. str."
+      ],
+      "oriented_coefficient": -0.08787041169441104,
+      "coefficients": {
+        "market_logit": 0.9366596964493555,
+        "Red Sig. str.": -0.0878704116944111,
+        "Blue Sig. str.": 0.087870411694411
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Body oppdiff",
+      "columns": [
+        "Body oppdiff"
+      ],
+      "oriented_coefficient": -0.1465759460910316,
+      "coefficients": {
+        "market_logit": 0.9372016065106633,
+        "Body oppdiff": -0.1465759460910316
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "age side_pair",
+      "columns": [
+        "Red age",
+        "Blue age"
+      ],
+      "oriented_coefficient": 0.013183434028913903,
+      "coefficients": {
+        "market_logit": 0.9351963720837756,
+        "Red age": 0.013183434028913915,
+        "Blue age": -0.013183434028913893
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Td oppdiff",
+      "columns": [
+        "Td oppdiff"
+      ],
+      "oriented_coefficient": 0.12818287119072028,
+      "coefficients": {
+        "market_logit": 0.9096775015688788,
+        "Td oppdiff": 0.12818287119072028
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Clinch% differential side_pair",
+      "columns": [
+        "Red Clinch% differential",
+        "Blue Clinch% differential"
+      ],
+      "oriented_coefficient": 0.06216941013427338,
+      "coefficients": {
+        "market_logit": 0.9126925831768566,
+        "Red Clinch% differential": 0.062169410134273365,
+        "Blue Clinch% differential": -0.062169410134273385
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Head% defense side_pair",
+      "columns": [
+        "Red Head% defense",
+        "Blue Head% defense"
+      ],
+      "oriented_coefficient": 0.046590538918660836,
+      "coefficients": {
+        "market_logit": 0.9173646640834274,
+        "Red Head% defense": 0.04659053891866083,
+        "Blue Head% defense": -0.04659053891866084
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Ground% defense oppdiff",
+      "columns": [
+        "Ground% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.08161878935597504,
+      "coefficients": {
+        "market_logit": 0.9108559812296735,
+        "Ground% defense oppdiff": 0.08161878935597504
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Ground oppdiff",
+      "columns": [
+        "Ground oppdiff"
+      ],
+      "oriented_coefficient": -0.004236478789479643,
+      "coefficients": {
+        "market_logit": 0.9271896837416235,
+        "Ground oppdiff": -0.004236478789479643
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Head% differential oppdiff",
+      "columns": [
+        "Head% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.09303450852610712,
+      "coefficients": {
+        "market_logit": 0.904239380027651,
+        "Head% differential oppdiff": 0.09303450852610712
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Sig. str.% defense oppdiff",
+      "columns": [
+        "Sig. str.% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.11566141279372223,
+      "coefficients": {
+        "market_logit": 0.9205977153758901,
+        "Sig. str.% defense oppdiff": 0.11566141279372223
+      }
+    },
+    {
+      "fold": 4,
+      "unit": "Ground differential oppdiff",
+      "columns": [
+        "Ground differential oppdiff"
+      ],
+      "oriented_coefficient": 0.23857041552676908,
+      "coefficients": {
+        "market_logit": 0.8796796804376998,
+        "Ground differential oppdiff": 0.23857041552676908
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "oppelo oppdiff",
+      "columns": [
+        "oppelo oppdiff"
+      ],
+      "oriented_coefficient": 0.10347382345955158,
+      "coefficients": {
+        "market_logit": 0.977096785434704,
+        "oppelo oppdiff": 0.10347382345955158
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "elo oppdiff",
+      "columns": [
+        "elo oppdiff"
+      ],
+      "oriented_coefficient": 0.060999386340680084,
+      "coefficients": {
+        "market_logit": 0.9493134334402922,
+        "elo oppdiff": 0.060999386340680084
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "age oppdiff",
+      "columns": [
+        "age oppdiff"
+      ],
+      "oriented_coefficient": -0.0558043030012567,
+      "coefficients": {
+        "market_logit": 0.9406376220807022,
+        "age oppdiff": -0.0558043030012567
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "wins oppdiff",
+      "columns": [
+        "wins oppdiff"
+      ],
+      "oriented_coefficient": 0.06100119611357794,
+      "coefficients": {
+        "market_logit": 0.937450169916048,
+        "wins oppdiff": 0.06100119611357794
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "avg age oppdiff",
+      "columns": [
+        "avg age oppdiff"
+      ],
+      "oriented_coefficient": 0.015319596376758983,
+      "coefficients": {
+        "market_logit": 0.97149028745854,
+        "avg age oppdiff": 0.015319596376758983
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Clinch oppdiff",
+      "columns": [
+        "Clinch oppdiff"
+      ],
+      "oriented_coefficient": -0.19564872875754935,
+      "coefficients": {
+        "market_logit": 0.9875986046507266,
+        "Clinch oppdiff": -0.19564872875754935
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "KD differential oppdiff",
+      "columns": [
+        "KD differential oppdiff"
+      ],
+      "oriented_coefficient": 0.029394729246214252,
+      "coefficients": {
+        "market_logit": 0.9617307850618584,
+        "KD differential oppdiff": 0.029394729246214252
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "avg age side_pair",
+      "columns": [
+        "Red avg age",
+        "Blue avg age"
+      ],
+      "oriented_coefficient": 0.01683008277742014,
+      "coefficients": {
+        "market_logit": 0.9746505740464253,
+        "Red avg age": 0.016830082777420107,
+        "Blue avg age": -0.01683008277742017
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "totalfights oppdiff",
+      "columns": [
+        "totalfights oppdiff"
+      ],
+      "oriented_coefficient": -0.08692183699738404,
+      "coefficients": {
+        "market_logit": 0.9401939034742083,
+        "totalfights oppdiff": -0.08692183699738404
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Sig. str.% differential oppdiff",
+      "columns": [
+        "Sig. str.% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.2603811947502624,
+      "coefficients": {
+        "market_logit": 0.9189723958833511,
+        "Sig. str.% differential oppdiff": 0.2603811947502624
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Sub. att differential side_pair",
+      "columns": [
+        "Red Sub. att differential",
+        "Blue Sub. att differential"
+      ],
+      "oriented_coefficient": 0.06010288740504929,
+      "coefficients": {
+        "market_logit": 0.9548058184948294,
+        "Red Sub. att differential": 0.0601028874050493,
+        "Blue Sub. att differential": -0.06010288740504928
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Body% differential oppdiff",
+      "columns": [
+        "Body% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.09523775970141019,
+      "coefficients": {
+        "market_logit": 0.9584664196878655,
+        "Body% differential oppdiff": 0.09523775970141019
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Sig. str. differential side_pair",
+      "columns": [
+        "Red Sig. str. differential",
+        "Blue Sig. str. differential"
+      ],
+      "oriented_coefficient": 0.09318454864158407,
+      "coefficients": {
+        "market_logit": 0.9370794149343238,
+        "Red Sig. str. differential": 0.09318454864158403,
+        "Blue Sig. str. differential": -0.09318454864158413
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Td% defense oppdiff",
+      "columns": [
+        "Td% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.03630479827395169,
+      "coefficients": {
+        "market_logit": 0.9585861251386547,
+        "Td% defense oppdiff": 0.03630479827395169
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Leg% defense side_pair",
+      "columns": [
+        "Red Leg% defense",
+        "Blue Leg% defense"
+      ],
+      "oriented_coefficient": 0.19706842656700524,
+      "coefficients": {
+        "market_logit": 0.9520209174738472,
+        "Red Leg% defense": 0.1970684265670052,
+        "Blue Leg% defense": -0.19706842656700527
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Total str.% defense oppdiff",
+      "columns": [
+        "Total str.% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.03722769408554994,
+      "coefficients": {
+        "market_logit": 0.9634348971586425,
+        "Total str.% defense oppdiff": 0.03722769408554994
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Clinch side_pair",
+      "columns": [
+        "Red Clinch",
+        "Blue Clinch"
+      ],
+      "oriented_coefficient": -0.1420604662651892,
+      "coefficients": {
+        "market_logit": 0.9875590329839595,
+        "Red Clinch": -0.1420604662651892,
+        "Blue Clinch": 0.1420604662651892
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Distance% defense oppdiff",
+      "columns": [
+        "Distance% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.22273334377527107,
+      "coefficients": {
+        "market_logit": 0.9508131753061209,
+        "Distance% defense oppdiff": 0.22273334377527107
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Sub. att side_pair",
+      "columns": [
+        "Red Sub. att",
+        "Blue Sub. att"
+      ],
+      "oriented_coefficient": -0.007779645672791005,
+      "coefficients": {
+        "market_logit": 0.9664974847872952,
+        "Red Sub. att": -0.007779645672791019,
+        "Blue Sub. att": 0.007779645672790991
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Rev. oppdiff",
+      "columns": [
+        "Rev. oppdiff"
+      ],
+      "oriented_coefficient": -0.06736013668696948,
+      "coefficients": {
+        "market_logit": 0.9720345117459328,
+        "Rev. oppdiff": -0.06736013668696948
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "elo side_pair",
+      "columns": [
+        "Red elo",
+        "Blue elo"
+      ],
+      "oriented_coefficient": 0.06777958331414032,
+      "coefficients": {
+        "market_logit": 0.9506041063757062,
+        "Red elo": 0.0677795833141426,
+        "Blue elo": -0.06777958331413803
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Clinch differential side_pair",
+      "columns": [
+        "Red Clinch differential",
+        "Blue Clinch differential"
+      ],
+      "oriented_coefficient": 0.05105102388476648,
+      "coefficients": {
+        "market_logit": 0.957581142462357,
+        "Red Clinch differential": 0.05105102388476645,
+        "Blue Clinch differential": -0.05105102388476652
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Sig. str. differential oppdiff",
+      "columns": [
+        "Sig. str. differential oppdiff"
+      ],
+      "oriented_coefficient": 0.12672705371007972,
+      "coefficients": {
+        "market_logit": 0.936975651348672,
+        "Sig. str. differential oppdiff": 0.12672705371007972
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Leg% side_pair",
+      "columns": [
+        "Red Leg%",
+        "Blue Leg%"
+      ],
+      "oriented_coefficient": -0.03114387774497468,
+      "coefficients": {
+        "market_logit": 0.9680746598873622,
+        "Red Leg%": -0.031143877744974634,
+        "Blue Leg%": 0.031143877744974728
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Clinch% side_pair",
+      "columns": [
+        "Red Clinch%",
+        "Blue Clinch%"
+      ],
+      "oriented_coefficient": -0.029710230770981543,
+      "coefficients": {
+        "market_logit": 0.9699612882208704,
+        "Red Clinch%": -0.029710230770981512,
+        "Blue Clinch%": 0.029710230770981574
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "oppelo side_pair",
+      "columns": [
+        "Red oppelo",
+        "Blue oppelo"
+      ],
+      "oriented_coefficient": 0.09592148640125012,
+      "coefficients": {
+        "market_logit": 0.9766467446900836,
+        "Red oppelo": 0.09592148640125009,
+        "Blue oppelo": -0.09592148640125013
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Head differential side_pair",
+      "columns": [
+        "Red Head differential",
+        "Blue Head differential"
+      ],
+      "oriented_coefficient": 0.1280763988376477,
+      "coefficients": {
+        "market_logit": 0.9247465937714902,
+        "Red Head differential": 0.1280763988376477,
+        "Blue Head differential": -0.12807639883764768
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Ground side_pair",
+      "columns": [
+        "Red Ground",
+        "Blue Ground"
+      ],
+      "oriented_coefficient": -0.014543746585933338,
+      "coefficients": {
+        "market_logit": 0.9687921600943902,
+        "Red Ground": -0.014543746585933348,
+        "Blue Ground": 0.014543746585933328
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Leg% defense oppdiff",
+      "columns": [
+        "Leg% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.26802658358202114,
+      "coefficients": {
+        "market_logit": 0.9520105068246189,
+        "Leg% defense oppdiff": 0.26802658358202114
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "last_fight side_pair",
+      "columns": [
+        "Red last_fight",
+        "Blue last_fight"
+      ],
+      "oriented_coefficient": -0.02853500012454082,
+      "coefficients": {
+        "market_logit": 0.9614943601971542,
+        "Red last_fight": -0.028535000124540823,
+        "Blue last_fight": 0.02853500012454082
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Td differential oppdiff",
+      "columns": [
+        "Td differential oppdiff"
+      ],
+      "oriented_coefficient": 0.14825716142160025,
+      "coefficients": {
+        "market_logit": 0.93433587855164,
+        "Td differential oppdiff": 0.14825716142160025
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Sub. att oppdiff",
+      "columns": [
+        "Sub. att oppdiff"
+      ],
+      "oriented_coefficient": -0.01060100933443576,
+      "coefficients": {
+        "market_logit": 0.9665208124426992,
+        "Sub. att oppdiff": -0.01060100933443576
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Head differential oppdiff",
+      "columns": [
+        "Head differential oppdiff"
+      ],
+      "oriented_coefficient": 0.17185955217559745,
+      "coefficients": {
+        "market_logit": 0.9245457678454073,
+        "Head differential oppdiff": 0.17185955217559745
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Td side_pair",
+      "columns": [
+        "Red Td",
+        "Blue Td"
+      ],
+      "oriented_coefficient": 0.06670251226376028,
+      "coefficients": {
+        "market_logit": 0.9515377540029387,
+        "Red Td": 0.06670251226376031,
+        "Blue Td": -0.06670251226376027
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "totalfights side_pair",
+      "columns": [
+        "Red totalfights",
+        "Blue totalfights"
+      ],
+      "oriented_coefficient": -0.06519598277638883,
+      "coefficients": {
+        "market_logit": 0.9403536140168601,
+        "Red totalfights": -0.0651959827763888,
+        "Blue totalfights": 0.06519598277638886
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Distance% differential oppdiff",
+      "columns": [
+        "Distance% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.19780887166498387,
+      "coefficients": {
+        "market_logit": 0.944931086900306,
+        "Distance% differential oppdiff": 0.19780887166498387
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Distance differential side_pair",
+      "columns": [
+        "Red Distance differential",
+        "Blue Distance differential"
+      ],
+      "oriented_coefficient": 0.03196551510078427,
+      "coefficients": {
+        "market_logit": 0.9597620669828354,
+        "Red Distance differential": 0.03196551510078426,
+        "Blue Distance differential": -0.03196551510078428
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Head oppdiff",
+      "columns": [
+        "Head oppdiff"
+      ],
+      "oriented_coefficient": -0.1033120352229986,
+      "coefficients": {
+        "market_logit": 0.976506764557888,
+        "Head oppdiff": -0.1033120352229986
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Td% differential side_pair",
+      "columns": [
+        "Red Td% differential",
+        "Blue Td% differential"
+      ],
+      "oriented_coefficient": 0.04749482828715451,
+      "coefficients": {
+        "market_logit": 0.9504142817084936,
+        "Red Td% differential": 0.04749482828715449,
+        "Blue Td% differential": -0.04749482828715454
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Td differential side_pair",
+      "columns": [
+        "Red Td differential",
+        "Blue Td differential"
+      ],
+      "oriented_coefficient": 0.1090939551474521,
+      "coefficients": {
+        "market_logit": 0.9344504474085658,
+        "Red Td differential": 0.1090939551474521,
+        "Blue Td differential": -0.1090939551474521
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Leg differential side_pair",
+      "columns": [
+        "Red Leg differential",
+        "Blue Leg differential"
+      ],
+      "oriented_coefficient": -0.06074011755104282,
+      "coefficients": {
+        "market_logit": 0.9666461038050337,
+        "Red Leg differential": -0.06074011755104284,
+        "Blue Leg differential": 0.06074011755104279
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "KD differential side_pair",
+      "columns": [
+        "Red KD differential",
+        "Blue KD differential"
+      ],
+      "oriented_coefficient": 0.021356811518941907,
+      "coefficients": {
+        "market_logit": 0.961741917217115,
+        "Red KD differential": 0.02135681151894188,
+        "Blue KD differential": -0.021356811518941934
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Body% differential side_pair",
+      "columns": [
+        "Red Body% differential",
+        "Blue Body% differential"
+      ],
+      "oriented_coefficient": 0.06680088548731758,
+      "coefficients": {
+        "market_logit": 0.9584199151096603,
+        "Red Body% differential": 0.0668008854873176,
+        "Blue Body% differential": -0.06680088548731755
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Sig. str.% defense side_pair",
+      "columns": [
+        "Red Sig. str.% defense",
+        "Blue Sig. str.% defense"
+      ],
+      "oriented_coefficient": 0.10818390986033499,
+      "coefficients": {
+        "market_logit": 0.9571098133376746,
+        "Red Sig. str.% defense": 0.10818390986033499,
+        "Blue Sig. str.% defense": -0.10818390986033499
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Total str. differential side_pair",
+      "columns": [
+        "Red Total str. differential",
+        "Blue Total str. differential"
+      ],
+      "oriented_coefficient": 0.12798722642987098,
+      "coefficients": {
+        "market_logit": 0.9344585961107633,
+        "Red Total str. differential": 0.12798722642987095,
+        "Blue Total str. differential": -0.12798722642987104
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Distance% differential side_pair",
+      "columns": [
+        "Red Distance% differential",
+        "Blue Distance% differential"
+      ],
+      "oriented_coefficient": 0.14542590899982907,
+      "coefficients": {
+        "market_logit": 0.9449655980283269,
+        "Red Distance% differential": 0.14542590899982905,
+        "Blue Distance% differential": -0.1454259089998291
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Ctrl oppdiff",
+      "columns": [
+        "Ctrl oppdiff"
+      ],
+      "oriented_coefficient": 0.14859737236825346,
+      "coefficients": {
+        "market_logit": 0.9455233823844118,
+        "Ctrl oppdiff": 0.14859737236825346
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Head% defense oppdiff",
+      "columns": [
+        "Head% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.10418990401780905,
+      "coefficients": {
+        "market_logit": 0.9499367813318005,
+        "Head% defense oppdiff": 0.10418990401780905
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Ctrl differential side_pair",
+      "columns": [
+        "Red Ctrl differential",
+        "Blue Ctrl differential"
+      ],
+      "oriented_coefficient": 0.05889194512679904,
+      "coefficients": {
+        "market_logit": 0.9476528195732861,
+        "Red Ctrl differential": 0.058891945126799045,
+        "Blue Ctrl differential": -0.05889194512679903
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Sig. str. side_pair",
+      "columns": [
+        "Red Sig. str.",
+        "Blue Sig. str."
+      ],
+      "oriented_coefficient": -0.10579554243029193,
+      "coefficients": {
+        "market_logit": 0.9798799676365966,
+        "Red Sig. str.": -0.10579554243029192,
+        "Blue Sig. str.": 0.10579554243029193
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Body oppdiff",
+      "columns": [
+        "Body oppdiff"
+      ],
+      "oriented_coefficient": -0.12897775691928204,
+      "coefficients": {
+        "market_logit": 0.9745718073832546,
+        "Body oppdiff": -0.12897775691928204
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "age side_pair",
+      "columns": [
+        "Red age",
+        "Blue age"
+      ],
+      "oriented_coefficient": -0.0394270027532507,
+      "coefficients": {
+        "market_logit": 0.9409636174895225,
+        "Red age": -0.03942700275325057,
+        "Blue age": 0.039427002753250825
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Td oppdiff",
+      "columns": [
+        "Td oppdiff"
+      ],
+      "oriented_coefficient": 0.09114896427466626,
+      "coefficients": {
+        "market_logit": 0.9514939152504482,
+        "Td oppdiff": 0.09114896427466626
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Clinch% differential side_pair",
+      "columns": [
+        "Red Clinch% differential",
+        "Blue Clinch% differential"
+      ],
+      "oriented_coefficient": 0.042458017093309,
+      "coefficients": {
+        "market_logit": 0.9570965048878156,
+        "Red Clinch% differential": 0.042458017093309035,
+        "Blue Clinch% differential": -0.04245801709330897
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Head% defense side_pair",
+      "columns": [
+        "Red Head% defense",
+        "Blue Head% defense"
+      ],
+      "oriented_coefficient": 0.07404844414703865,
+      "coefficients": {
+        "market_logit": 0.9499437255057634,
+        "Red Head% defense": 0.07404844414703866,
+        "Blue Head% defense": -0.07404844414703864
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Ground% defense oppdiff",
+      "columns": [
+        "Ground% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.07932047558686792,
+      "coefficients": {
+        "market_logit": 0.9506786393220488,
+        "Ground% defense oppdiff": 0.07932047558686792
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Ground oppdiff",
+      "columns": [
+        "Ground oppdiff"
+      ],
+      "oriented_coefficient": -0.020817905806934732,
+      "coefficients": {
+        "market_logit": 0.9687892796446705,
+        "Ground oppdiff": -0.020817905806934732
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Head% differential oppdiff",
+      "columns": [
+        "Head% differential oppdiff"
+      ],
+      "oriented_coefficient": 0.1376599771192863,
+      "coefficients": {
+        "market_logit": 0.9310066382551704,
+        "Head% differential oppdiff": 0.1376599771192863
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Sig. str.% defense oppdiff",
+      "columns": [
+        "Sig. str.% defense oppdiff"
+      ],
+      "oriented_coefficient": 0.14756969051762886,
+      "coefficients": {
+        "market_logit": 0.9570751790895691,
+        "Sig. str.% defense oppdiff": 0.14756969051762886
+      }
+    },
+    {
+      "fold": 5,
+      "unit": "Ground differential oppdiff",
+      "columns": [
+        "Ground differential oppdiff"
+      ],
+      "oriented_coefficient": 0.18604326644828384,
+      "coefficients": {
+        "market_logit": 0.9269666186686291,
+        "Ground differential oppdiff": 0.18604326644828384
+      }
+    }
+  ]
+}
