@@ -968,6 +968,73 @@ strong live-edge claim: the last-365-day residual result is only `+0.38u`, and
 the lower-confidence favorite benchmark beats residual over that recent slice.
 Future paper tracking is still the deciding evidence.
 
+### Residual Uncapped Alpha Audit
+
+Residual uncapped-alpha audit:
+
+```text
+testing/residual_uncapped_alpha_audit.py
+test_results/residual_uncapped_alpha_audit/residual_uncapped_alpha_audit.md
+test_results/residual_uncapped_alpha_audit/residual_uncapped_alpha_audit.json
+```
+
+This audit reframes the evidence around the fundamental question: does the
+model residual contain incremental probability information after market
+control, and can that be monetized without relying on a per-event cap? A
+per-event cap is treated here as an exposure/risk overlay, not as the alpha
+itself.
+
+Probability/error metrics on the 704-fight residual-shrinkage holdout:
+
+| Policy | LL | Brier | Accuracy | Calibration Slope | ECE 10-bin | Actual - Pred |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| market | 0.6009 | 0.2067 | 68.75% | 1.1221 | 3.22% | -0.35% |
+| selected shrinkage | 0.5971 | 0.2049 | 69.32% | 0.9454 | 4.17% | -1.84% |
+| fixed half residual | 0.5979 | 0.2053 | 69.60% | 1.0254 | 2.50% | -1.17% |
+| unshrunk residual meta | 0.5979 | 0.2050 | 69.03% | 0.9245 | 3.45% | -1.98% |
+
+Probability evidence after market control:
+
+| Test | Fights | Delta LL | Delta Brier | Positive Folds | Bootstrap P(delta <= 0) | Market-Null p | Corrected p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| market + regularized residual meta | 704 | +0.0030 | +0.0016 | 4 / 5 | 0.218 | 0.012 | 0.048 |
+| selected shrinkage | 704 | +0.0038 | +0.0018 | 4 / 5 | 0.140 | 0.005 | 0.015 |
+| fixed half residual | 704 | +0.0030 | +0.0014 | 4 / 5 | 0.051 | 0.015 | 0.045 |
+| unshrunk residual meta | 704 | +0.0030 | +0.0016 | 4 / 5 | 0.218 | 0.015 | 0.045 |
+
+The selected-shrinkage signed residual buckets are directionally encouraging
+at the extremes but uneven in the middle: candidate-minus-market `<= -5%`
+had realized actual-minus-market `-13.25%` and Delta LL `+0.0270`, while
+candidate-minus-market `>= +5%` had realized actual-minus-market `+7.61%`
+and Delta LL `+0.0119`; however the `+2%` to `+5%` bucket had realized
+actual-minus-market `-1.60%` and Delta LL `-0.0071`.
+
+Recent probability stress remains the central caveat:
+
+| Period | Selected-Shrinkage Delta LL | Fixed-Half Delta LL | Unshrunk Delta LL |
+| --- | ---: | ---: | ---: |
+| aggregate | +0.0038 | +0.0030 | +0.0030 |
+| 2025-2026 only | -0.0001 | +0.0012 | -0.0014 |
+| last 365 days | -0.0032 | -0.0004 | -0.0050 |
+| latest fold 5 | -0.0047 | -0.0018 | -0.0093 |
+
+Uncapped PnL translation:
+
+| Family | Policy / Objective | Bets | Profit | ROI | Positive Folds | Market-Null p | Corrected p | Bootstrap P(profit <= 0) |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| residual meta threshold selection | profit | 363 | +7.46u | 2.06% | 4 / 5 | 0.066 | 0.198 | 0.258 |
+| residual meta threshold selection | fixed edge>=0.02, p>=0.60 | 354 | +2.44u | 0.69% | 3 / 5 | 0.117 | 0.117 | 0.421 |
+| fixed uncapped shrinkage thresholds | selected shrinkage | 399 | +4.55u | 1.14% | 3 / 5 | 0.046 | 0.139 | 0.354 |
+| fixed uncapped shrinkage thresholds | fixed half residual | 288 | +8.39u | 2.91% | 3 / 5 | 0.024 | 0.071 | 0.197 |
+| fixed uncapped shrinkage thresholds | unshrunk residual meta | 418 | +3.40u | 0.81% | 3 / 5 | 0.049 | 0.146 | 0.389 |
+
+Interpretation: the best current alpha is the weak historical
+model-after-market probability residual, not the event cap. The aggregate
+probability evidence improves log loss, Brier, and accuracy versus market, but
+uncapped monetization remains too fragile for a live edge claim after
+objective/policy correction, event-bootstrap uncertainty, and recent-slice
+stress.
+
 ### Residual Meta PnL Audit
 
 Residual meta PnL audit:
@@ -1681,17 +1748,27 @@ The most honest read:
 - residual edge concentration is a major caveat: removing only the top seven
   selected-shrinkage events erases the probability edge, and removing the top
   ten makes the aggregate log-loss delta negative
-- fixed-threshold shrinkage PnL is positive but still weak: selected shrinkage
-  produced `+4.55u`, fixed-half residual `+8.39u`, and unshrunk meta `+3.40u`;
-  the best conditional market-null p-value is `0.024`, or about `0.071` after
-  a simple three-policy correction, while event-bootstrap profit uncertainty
-  still crosses zero
-- per-event risk caps are the most promising PnL translation so far:
-  selected-shrinkage cap `3` produced `+17.45u` with market-null p-value
-  `0.003`, and the best variant across 15 inspected policy/cap combinations
-  had selection-adjusted market-null p-value `0.011`; this is still discovery
-  evidence, not a live edge claim, because the cap family was inspected after
-  the historical ledger existed
+- the uncapped-alpha audit makes the cap issue explicit: the best current
+  alpha is the weak model-after-market probability residual, not a per-event
+  cap; selected shrinkage improves aggregate log loss by `+0.0038`, Brier by
+  `+0.0018`, and accuracy by `+0.57pp` versus market, but its ECE is worse
+  than market (`4.17%` versus `3.22%`) and the recent slices are negative
+- selected-shrinkage residual buckets are directionally useful only at the
+  extremes: candidate-minus-market `<= -5%` had realized actual-minus-market
+  `-13.25%`, and `>= +5%` had `+7.61%`, but the `+2%` to `+5%` bucket was
+  wrong-way at `-1.60%`; this supports a real but uneven residual, not a broad
+  monotone edge
+- uncapped PnL remains positive but weak: residual-meta threshold selection
+  made `+7.46u` at best with market-null p `0.066` (`~0.198` after a simple
+  three-objective correction), while fixed uncapped shrinkage made `+4.55u`
+  to `+8.39u` with corrected p-values from `0.071` to `0.146`; all
+  event-bootstrap profit intervals still cross zero
+- per-event caps improved historical PnL but should be read as an
+  exposure/risk overlay, not as the alpha itself: selected-shrinkage cap `3`
+  produced `+17.45u` with market-null p-value `0.003`, and the best variant
+  across 15 inspected policy/cap combinations had selection-adjusted
+  market-null p-value `0.011`; this remains discovery evidence because the cap
+  family was inspected after the historical ledger existed
 - a capped residual paper policy is now frozen as of `2026-06-28`: it uses
   the frozen residual transform, fixed thresholds, flat `1u`, and max `3`
   bets per event ranked by residual edge; this is for future paper tracking
@@ -1760,14 +1837,13 @@ The most honest read:
 - the non-binary outcome handling is now audited beyond fight counts:
   draw/no-contest/overturned bouts update `last_fight` and weighted cumulative
   fight-stat features, while remaining out of supervised labels
-- the best raw market-null p-value is `0.048` from the exploratory ROI
-  objective, or about `0.096` after a simple two-objective correction
 - the earlier unshrunk probability-residual result had market-null p-value
   `0.012`, or about `0.048` after a simple four-variant correction; the newer
-  nested shrinkage audit is stronger on market-null but still not decisive on
-  event-bootstrap stability
-- the best residual-meta PnL result has market-null p-value `0.066`, or about
-  `0.20` after a simple three-objective correction
+  nested shrinkage audit is stronger on market-null (`0.005`, or about
+  `0.015` after a simple three-policy correction) but still not decisive on
+  event-bootstrap stability or recent performance
+- the best uncapped residual-meta PnL result has market-null p-value `0.066`,
+  or about `0.20` after a simple three-objective correction
 - the frozen residual-meta paper policy is intentionally conservative and
   historically weak; it exists to collect clean post-freeze evidence, not to
   justify live staking now
