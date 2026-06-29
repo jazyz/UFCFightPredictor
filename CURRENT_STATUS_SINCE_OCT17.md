@@ -1219,6 +1219,48 @@ against fixing the issue with generic feature capacity or looser thresholds;
 the next legitimate improvement would need a pre-registered drift-aware
 transform or fresh post-freeze evidence.
 
+### Residual Reliability Audit
+
+Residual reliability audit:
+
+```text
+testing/residual_reliability_audit.py
+test_results/residual_reliability_audit/residual_reliability_audit.md
+test_results/residual_reliability_audit/residual_reliability_audit.json
+```
+
+This diagnostic tests the residual-alpha claim more directly by regressing the
+realized market residual (`outcome - market_probability`) on the candidate
+adjustment (`candidate_probability - market_probability`). A slope near `1`
+means the residual adjustment size matches realized market error; a slope near
+`0` means the adjustment direction carries little useful error information.
+
+Aggregate reliability:
+
+| Policy | Fights | Mean Adj | Realized Market Residual | Slope Origin | Slope 95% CI | Market-Null p(slope) | Delta LL | Bootstrap P(delta <= 0) | Market-Null p(delta) |
+| --- | ---: | ---: | ---: | ---: | --- | ---: | ---: | ---: | ---: |
+| selected shrinkage | 704 | +1.49% | -0.35% | 1.0089 | 0.2797 to 1.7428 | 0.007 | +0.0038 | 0.141 | 0.013 |
+| fixed-half residual | 704 | +0.81% | -0.35% | 1.7349 | 0.4383 to 3.0442 | 0.008 | +0.0030 | 0.055 | 0.013 |
+| unshrunk meta | 704 | +1.63% | -0.35% | 0.8674 | 0.2104 to 1.5406 | 0.006 | +0.0030 | 0.222 | 0.014 |
+
+Selected-shrinkage reliability by period:
+
+| Period | Fights | Mean Adj | Realized Market Residual | Slope Origin | Delta LL | Directional Hit >=2pp |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| aggregate | 704 | +1.49% | -0.35% | 1.0089 | +0.0038 | 70.06% |
+| 2024 | 275 | +1.43% | +3.07% | 1.5839 | +0.0098 | 73.23% |
+| 2025-2026 | 429 | +1.52% | -2.54% | 0.6522 | -0.0001 | 67.99% |
+| last 365 days | 298 | +1.32% | -4.83% | 0.2504 | -0.0032 | 64.88% |
+| latest fold 5 | 129 | +0.93% | -5.90% | 0.3958 | -0.0047 | 63.74% |
+
+Interpretation: the full-sample selected-shrinkage slope looks well calibrated,
+but it is front-loaded. The slope falls from `1.5839` in 2024 to `0.6522` in
+2025-2026 and `0.3958` in the latest fold, while recent delta LL turns
+negative. This supports a weak historical market-residual signal, but it
+weakens the live-edge claim and says future transforms should be judged by
+forward reliability slope and recent delta LL, not only aggregate log-loss
+gain.
+
 ### Residual Directional Gate Audit
 
 Residual directional-gate audit:
@@ -2215,6 +2257,10 @@ The most honest read:
   by about `+1%` on average, but the realized red-vs-market residual was
   `-5.06%` in 2026 and `-5.90%` in the latest fold; upward residual
   adjustments had negative delta LL in 2026 and fold 5
+- residual reliability is supportive historically but weak recently:
+  selected-shrinkage's aggregate residual-vs-realized-error slope is `1.0089`
+  with market-null p `0.007`, but the slope falls to `0.6522` in 2025-2026
+  and `0.3958` in the latest fold, where delta LL is `-0.0047`
 - a simple directional residual gate does not validate as a fix: muting upward
   residual adjustments would have helped the latest fold after the fact
   (`up0_down1` delta LL `+0.0080`), but rolling prior-fold selection chose the
@@ -2276,6 +2322,12 @@ a secondary residual-signal monitor. A real edge claim needs future
 out-of-sample results that beat market-null and bootstrap tests after the model
 params, probability transform, selection objective, strategy grid, and staking
 policy have been frozen.
+
+Next research direction: go deeper on feature semantics and fight-context
+feature engineering. The useful work is to verify that each major feature
+family is leak-safe, symmetric, unit-correct, and meaningful for how fights are
+actually won, then test predeclared feature additions/ablations through the
+same rolling log-loss, calibration, market-null, and PnL validation stack.
 
 ## Independent PnL Investigation Update
 
@@ -2437,6 +2489,9 @@ Validation:
   fold had delta LL `-0.0047`, mean residual adjustment `+0.93%`, and realized
   red-vs-market residual `-5.90%`, supporting drift rather than a pure
   threshold/staking explanation
+- the residual reliability audit regenerated cleanly; selected-shrinkage had
+  aggregate residual reliability slope `1.0089` with market-null p `0.007`,
+  but the slope fell to `0.6522` in 2025-2026 and `0.3958` in latest fold `5`
 - the residual directional-gate audit tested prior-fold selection over
   up/down residual adjustment scales; the rolling gate reached only `+0.0012`
   delta LL with market-null p `0.072`, selected the failing full adjustment in
