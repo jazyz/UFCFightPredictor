@@ -454,6 +454,40 @@ small probability edge after controlling for market price. It still should not
 be treated as a live betting edge claim by itself: the absolute log-loss gain
 is small, and event-bootstrap intervals still cross zero.
 
+Residual-meta config-selection audit:
+
+```text
+testing/residual_meta_config_selection_audit.py
+test_results/residual_meta_config_selection_audit/residual_meta_config_selection_audit.md
+test_results/residual_meta_config_selection_audit/residual_meta_config_selection_audit.json
+test_results/residual_meta_config_selection_audit/rolling_selected_predictions.csv
+```
+
+This audit checks whether the tempting residual-meta config choices can be
+selected without looking at future folds. It compares the inspected configs
+(`365d/C=1.0`, `730d/C=1.0`, and `730d/C=0.25`) and all residual variants.
+For each evaluation fold after fold 1, it selects the candidate with the best
+prior holdout log-loss delta, then scores that candidate on the next fold.
+
+Rolling config-selection result:
+
+| Metric | Value |
+| --- | ---: |
+| eval folds | 4 |
+| fights | 539 |
+| market log loss | 0.6022 |
+| selected meta log loss | 0.6017 |
+| market - selected meta log loss | +0.0005 |
+| positive eval folds | 3 / 4 |
+| event-bootstrap P(delta <= 0) | 0.458 |
+| rolling market-null p | 0.084 |
+
+Interpretation: this weakens the case for promoting the best-looking `365d`
+residual-meta configuration. The full-holdout `365d/C=1.0` regularized-residual
+candidate has `+0.0047` delta LL, but a rolling selector over the inspected
+config family only achieves `+0.0005` with weak event-bootstrap support and a
+non-significant rolling market-null p-value.
+
 Conservative residual transform freeze:
 
 ```text
@@ -701,6 +735,35 @@ the latest fold is still negative for every rolling selector, and this remains
 historical evidence rather than post-freeze proof. It does, however,
 strengthen the case for the frozen capped residual policy as the next
 paper-tracked hypothesis.
+
+### Residual Event-Cap Ranking Audit
+
+Ranking audit:
+
+```text
+testing/residual_event_cap_ranking_audit.py
+test_results/residual_event_cap_ranking_audit/residual_event_cap_ranking_audit.md
+test_results/residual_event_cap_ranking_audit/residual_event_cap_ranking_audit.json
+test_results/residual_event_cap_ranking_audit/ranked_cap_bets.csv
+```
+
+This diagnostic tests whether the event cap works because of the residual-edge
+ranking rule, not merely because exposure is reduced. It compares cap `3` by
+top residual edge against bottom-edge, probability-ranked,
+market-probability-ranked, and random same-event selections.
+
+| Policy | Top Edge Profit | Bottom Edge Profit | Random Mean | P(random >= top edge) |
+| --- | ---: | ---: | ---: | ---: |
+| frozen residual-meta | +19.12u | +4.99u | +6.63u | 0.004 |
+| fixed half residual | +15.53u | +3.30u | +9.41u | 0.040 |
+| selected shrinkage | +17.45u | -3.53u | +8.44u | 0.042 |
+| unshrunk meta | +17.52u | -5.05u | +7.64u | 0.034 |
+
+Interpretation: the cap's residual-edge ordering appears to matter. For the
+frozen residual-meta ledger, only `0.4%` of random same-event cap simulations
+matched or beat the top-edge result. This supports the frozen ranking rule as
+more than generic exposure reduction, while remaining historical evidence that
+still needs post-freeze confirmation.
 
 ### Frozen Residual Event-Cap Paper Policy
 
@@ -1206,6 +1269,10 @@ The most honest read:
 - the longer market-blend audit selected pure market probability, not a model
   residual, but the newer residual meta audit finds a small positive
   model-after-market log-loss signal
+- residual-meta configuration selection is weak: although the full-holdout
+  `365d/C=1.0` residual-meta run shows `+0.0047` delta LL, rolling selection
+  across inspected configs/variants only produces `+0.0005` delta LL with
+  event-bootstrap `P(delta <= 0) = 0.458` and rolling market-null p `0.084`
 - residual negative controls support that signal: sign-flipped residuals lose
   badly, and residual permutations rarely match the observed log-loss gain
 - nested residual-shrinkage selection strengthens the probability evidence:
@@ -1235,6 +1302,9 @@ The most honest read:
   objective, selected-shrinkage caps made `+12.15u` under the profit objective,
   and rolling market-null p-values ranged from `0.008` to `0.047`; the latest
   fold remained negative, so this still needs post-freeze evidence
+- the event-cap ranking rule itself has support: for the frozen residual-meta
+  ledger, top residual-edge cap `3` made `+19.12u` versus a random-cap mean of
+  `+6.63u`, with `P(random >= top edge) = 0.004`
 - nested residual-meta PnL tests are positive across objective sensitivities,
   but their best selection-adjusted market-null p-value is only `0.066`
   before correcting for three inspected objectives
@@ -1361,6 +1431,8 @@ Validation:
 - compile check passed for `utils/incremental_processing.py`,
   `testing/residual_event_cap_rolling_selection_audit.py`,
   `testing/outcome_universe_audit.py`, and `testing/no_leakage_backtest.py`
+- compile check passed for `testing/residual_meta_config_selection_audit.py`
+  and `testing/residual_event_cap_ranking_audit.py`
 - a temporary in-range prediction input generated canonical prediction outputs
   under `/private/tmp/ufc_forward_prediction_smoke`
 - a direct frozen-policy betting smoke test selected the expected model/market
@@ -1380,6 +1452,12 @@ Validation:
 - the residual event-cap rolling selection audit regenerated cleanly; best
   result was selected-shrinkage caps with profit objective, `+12.15u`,
   rolling market-null p `0.008`
+- the residual event-cap ranking audit regenerated cleanly; frozen
+  residual-meta top-edge cap `3` made `+19.12u` and
+  `P(random >= top edge) = 0.004`
+- the residual-meta config-selection audit regenerated cleanly; rolling
+  selection over inspected configs/variants made only `+0.0005` delta LL with
+  rolling market-null p `0.084`
 
 Current operational caveat: the checked-in `data/predict_fights_alpha.csv` is
 stale and fails the live feature-range guard with out-of-training-range values.

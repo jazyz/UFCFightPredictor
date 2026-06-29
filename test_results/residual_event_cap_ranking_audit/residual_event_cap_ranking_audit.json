@@ -1,0 +1,734 @@
+{
+  "fixed_meta_bets": "test_results/residual_meta_pnl_audit/fixed_edge02_prob60/selected_holdout_bets.csv",
+  "shrinkage_bets": "test_results/residual_shrinkage_fixed_pnl_audit/fixed_policy_bets.csv",
+  "cap": 3,
+  "iterations": 20000,
+  "seed": 20260628,
+  "policies": [
+    {
+      "probability_policy": "frozen_residual_meta",
+      "source_bets": 354,
+      "source_events": 99,
+      "cap": 3,
+      "rankings": {
+        "top_edge": {
+          "bets": 262,
+          "events": 99,
+          "profit": 19.11636190664889,
+          "roi": 0.07296321338415607,
+          "actual_minus_market": 0.07675148735290827,
+          "positive_folds": 4,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 67,
+              "profit": 7.366980713091914,
+              "roi": 0.10995493601629723
+            },
+            {
+              "fold": 2,
+              "bets": 44,
+              "profit": 6.977209454129518,
+              "roi": 0.15857294213930723
+            },
+            {
+              "fold": 3,
+              "bets": 60,
+              "profit": 3.7061969956615286,
+              "roi": 0.06176994992769214
+            },
+            {
+              "fold": 4,
+              "bets": 46,
+              "profit": 2.8411543072537615,
+              "roi": 0.061764224070733946
+            },
+            {
+              "fold": 5,
+              "bets": 45,
+              "profit": -1.775179563487834,
+              "roi": -0.03944843474417409
+            }
+          ]
+        },
+        "bottom_edge": {
+          "bets": 262,
+          "events": 99,
+          "profit": 4.993797569960961,
+          "roi": 0.019060296068553285,
+          "actual_minus_market": 0.03954407275411065,
+          "positive_folds": 4,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 67,
+              "profit": 1.8721720009459613,
+              "roi": 0.027942865685760616
+            },
+            {
+              "fold": 2,
+              "bets": 44,
+              "profit": 2.745010778232963,
+              "roi": 0.06238660859620371
+            },
+            {
+              "fold": 3,
+              "bets": 60,
+              "profit": -3.8450209093223084,
+              "roi": -0.06408368182203847
+            },
+            {
+              "fold": 4,
+              "bets": 46,
+              "profit": 4.2130282497679,
+              "roi": 0.09158757064712826
+            },
+            {
+              "fold": 5,
+              "bets": 45,
+              "profit": 0.008607450336445444,
+              "roi": 0.00019127667414323209
+            }
+          ]
+        },
+        "top_probability": {
+          "bets": 262,
+          "events": 99,
+          "profit": 9.28677824591595,
+          "roi": 0.03544571849586241,
+          "actual_minus_market": 0.05251857747328814,
+          "positive_folds": 3,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 67,
+              "profit": 5.397230462700033,
+              "roi": 0.08055567854776169
+            },
+            {
+              "fold": 2,
+              "bets": 44,
+              "profit": 4.186469470375034,
+              "roi": 0.09514703341761441
+            },
+            {
+              "fold": 3,
+              "bets": 60,
+              "profit": -0.2825800490491458,
+              "roi": -0.00470966748415243
+            },
+            {
+              "fold": 4,
+              "bets": 46,
+              "profit": 1.8291703064016134,
+              "roi": 0.03976457187829594
+            },
+            {
+              "fold": 5,
+              "bets": 45,
+              "profit": -1.8435119445115855,
+              "roi": -0.04096693210025745
+            }
+          ]
+        },
+        "top_market_probability": {
+          "bets": 262,
+          "events": 99,
+          "profit": 6.578869230082649,
+          "roi": 0.02511018790107881,
+          "actual_minus_market": 0.04463310041340951,
+          "positive_folds": 3,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 67,
+              "profit": 4.1983097729287975,
+              "roi": 0.06266133989445967
+            },
+            {
+              "fold": 2,
+              "bets": 44,
+              "profit": 4.186469470375033,
+              "roi": 0.09514703341761438
+            },
+            {
+              "fold": 3,
+              "bets": 60,
+              "profit": -1.7133848237892302,
+              "roi": -0.028556413729820502
+            },
+            {
+              "fold": 4,
+              "bets": 46,
+              "profit": 1.8291703064016134,
+              "roi": 0.03976457187829594
+            },
+            {
+              "fold": 5,
+              "bets": 45,
+              "profit": -1.9216954958335677,
+              "roi": -0.04270434435185706
+            }
+          ]
+        }
+      },
+      "random_cap": {
+        "iterations": 20000,
+        "random_mean_profit": 6.632893465455226,
+        "random_profit_ci_95": [
+          -2.4081126860022115,
+          15.856487129719094
+        ],
+        "prob_random_profit_positive": 0.92385,
+        "random_positive_folds_mean": 3.2645,
+        "p_value_random_profit_at_least_top_edge": 0.004149792510374482,
+        "top_edge_minus_random_mean_profit": 12.483468441193665
+      }
+    },
+    {
+      "probability_policy": "fixed_half_residual",
+      "source_bets": 288,
+      "source_events": 96,
+      "cap": 3,
+      "rankings": {
+        "top_edge": {
+          "bets": 234,
+          "events": 96,
+          "profit": 15.525691234964846,
+          "roi": 0.0663491078417301,
+          "actual_minus_market": 0.07520481243368571,
+          "positive_folds": 4,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 59,
+              "profit": 6.200505839748207,
+              "roi": 0.10509331931776622
+            },
+            {
+              "fold": 2,
+              "bets": 42,
+              "profit": 7.3477379094140725,
+              "roi": 0.17494614070033507
+            },
+            {
+              "fold": 3,
+              "bets": 50,
+              "profit": 1.8199827591789153,
+              "roi": 0.03639965518357831
+            },
+            {
+              "fold": 4,
+              "bets": 42,
+              "profit": 2.0613651762015675,
+              "roi": 0.049080123242894465
+            },
+            {
+              "fold": 5,
+              "bets": 41,
+              "profit": -1.9039004495779162,
+              "roi": -0.046436596331168686
+            }
+          ]
+        },
+        "bottom_edge": {
+          "bets": 234,
+          "events": 96,
+          "profit": 3.3044839603680374,
+          "roi": 0.014121726326359134,
+          "actual_minus_market": 0.03556465157560651,
+          "positive_folds": 4,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 59,
+              "profit": 0.4381170136856857,
+              "roi": 0.007425712096367554
+            },
+            {
+              "fold": 2,
+              "bets": 42,
+              "profit": 4.968707439004142,
+              "roi": 0.11830255807152719
+            },
+            {
+              "fold": 3,
+              "bets": 50,
+              "profit": -3.906701131319826,
+              "roi": -0.07813402262639652
+            },
+            {
+              "fold": 4,
+              "bets": 42,
+              "profit": 1.7974977901666935,
+              "roi": 0.042797566432540325
+            },
+            {
+              "fold": 5,
+              "bets": 41,
+              "profit": 0.006862848831342083,
+              "roi": 0.00016738655686200204
+            }
+          ]
+        },
+        "top_probability": {
+          "bets": 234,
+          "events": 96,
+          "profit": 9.827661897458997,
+          "roi": 0.04199855511734614,
+          "actual_minus_market": 0.05718814025309671,
+          "positive_folds": 4,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 59,
+              "profit": 4.237903817771394,
+              "roi": 0.07182887826731175
+            },
+            {
+              "fold": 2,
+              "bets": 42,
+              "profit": 5.124356729646299,
+              "roi": 0.12200849356300711
+            },
+            {
+              "fold": 3,
+              "bets": 50,
+              "profit": 0.3890329748794522,
+              "roi": 0.007780659497589044
+            },
+            {
+              "fold": 4,
+              "bets": 42,
+              "profit": 1.5227448157766954,
+              "roi": 0.036255828947064174
+            },
+            {
+              "fold": 5,
+              "bets": 41,
+              "profit": -1.4463764406148438,
+              "roi": -0.035277474161337655
+            }
+          ]
+        },
+        "top_market_probability": {
+          "bets": 234,
+          "events": 96,
+          "profit": 9.792454862569526,
+          "roi": 0.041848097703288574,
+          "actual_minus_market": 0.05712969562588299,
+          "positive_folds": 4,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 59,
+              "profit": 4.237903817771394,
+              "roi": 0.07182887826731175
+            },
+            {
+              "fold": 2,
+              "bets": 42,
+              "profit": 5.124356729646299,
+              "roi": 0.12200849356300711
+            },
+            {
+              "fold": 3,
+              "bets": 50,
+              "profit": 0.35822820013936785,
+              "roi": 0.007164564002787357
+            },
+            {
+              "fold": 4,
+              "bets": 42,
+              "profit": 1.5227448157766954,
+              "roi": 0.036255828947064174
+            },
+            {
+              "fold": 5,
+              "bets": 41,
+              "profit": -1.4507787007642303,
+              "roi": -0.03538484636010318
+            }
+          ]
+        }
+      },
+      "random_cap": {
+        "iterations": 20000,
+        "random_mean_profit": 9.407624344927994,
+        "random_profit_ci_95": [
+          2.860321511231022,
+          16.23163500090402
+        ],
+        "prob_random_profit_positive": 0.9974,
+        "random_positive_folds_mean": 3.5364,
+        "p_value_random_profit_at_least_top_edge": 0.039648017599120046,
+        "top_edge_minus_random_mean_profit": 6.118066890036852
+      }
+    },
+    {
+      "probability_policy": "selected_shrinkage",
+      "source_bets": 399,
+      "source_events": 100,
+      "cap": 3,
+      "rankings": {
+        "top_edge": {
+          "bets": 279,
+          "events": 100,
+          "profit": 17.446638330721935,
+          "roi": 0.06253275387355532,
+          "actual_minus_market": 0.07188901164083072,
+          "positive_folds": 4,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 69,
+              "profit": 5.297422206528125,
+              "roi": 0.07677423487721921
+            },
+            {
+              "fold": 2,
+              "bets": 53,
+              "profit": 6.740262760290445,
+              "roi": 0.12717476906208386
+            },
+            {
+              "fold": 3,
+              "bets": 64,
+              "profit": 3.7372119891607207,
+              "roi": 0.05839393733063626
+            },
+            {
+              "fold": 4,
+              "bets": 47,
+              "profit": 3.2088257001352387,
+              "roi": 0.06827288723691997
+            },
+            {
+              "fold": 5,
+              "bets": 46,
+              "profit": -1.537084325392595,
+              "roi": -0.03341487663896946
+            }
+          ]
+        },
+        "bottom_edge": {
+          "bets": 279,
+          "events": 100,
+          "profit": -3.5317261134907008,
+          "roi": -0.012658516535808963,
+          "actual_minus_market": 0.01908248973567306,
+          "positive_folds": 3,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 69,
+              "profit": -4.315249990875816,
+              "roi": -0.06253985494022922
+            },
+            {
+              "fold": 2,
+              "bets": 53,
+              "profit": 3.4749824324743273,
+              "roi": 0.06556570627310052
+            },
+            {
+              "fold": 3,
+              "bets": 64,
+              "profit": -5.516345989373467,
+              "roi": -0.08619290608396042
+            },
+            {
+              "fold": 4,
+              "bets": 47,
+              "profit": 2.746349914017739,
+              "roi": 0.05843297689399445
+            },
+            {
+              "fold": 5,
+              "bets": 46,
+              "profit": 0.07853752026651523,
+              "roi": 0.001707337397098157
+            }
+          ]
+        },
+        "top_probability": {
+          "bets": 279,
+          "events": 100,
+          "profit": 11.78965901159442,
+          "roi": 0.04225684233546387,
+          "actual_minus_market": 0.05721767091970276,
+          "positive_folds": 4,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 69,
+              "profit": 3.518249196509678,
+              "roi": 0.05098911878999533
+            },
+            {
+              "fold": 2,
+              "bets": 53,
+              "profit": 4.716673532493149,
+              "roi": 0.0889938402357198
+            },
+            {
+              "fold": 3,
+              "bets": 64,
+              "profit": 3.6777122699830307,
+              "roi": 0.057464254218484855
+            },
+            {
+              "fold": 4,
+              "bets": 47,
+              "profit": 1.7243871783626714,
+              "roi": 0.03668908890133343
+            },
+            {
+              "fold": 5,
+              "bets": 46,
+              "profit": -1.8473631657541112,
+              "roi": -0.040160068820741544
+            }
+          ]
+        },
+        "top_market_probability": {
+          "bets": 279,
+          "events": 100,
+          "profit": 11.388991792094842,
+          "roi": 0.04082075911145105,
+          "actual_minus_market": 0.05678717849065018,
+          "positive_folds": 4,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 69,
+              "profit": 1.9142192403043428,
+              "roi": 0.02774230783049772
+            },
+            {
+              "fold": 2,
+              "bets": 53,
+              "profit": 4.652244002291807,
+              "roi": 0.08777818872248692
+            },
+            {
+              "fold": 3,
+              "bets": 64,
+              "profit": 3.6143363272408617,
+              "roi": 0.056474005113138465
+            },
+            {
+              "fold": 4,
+              "bets": 47,
+              "profit": 3.0599576481613293,
+              "roi": 0.06510548187577296
+            },
+            {
+              "fold": 5,
+              "bets": 46,
+              "profit": -1.8517654259034977,
+              "roi": -0.04025577012833691
+            }
+          ]
+        }
+      },
+      "random_cap": {
+        "iterations": 20000,
+        "random_mean_profit": 8.440649816500846,
+        "random_profit_ci_95": [
+          -1.6402699760946857,
+          18.682338267067884
+        ],
+        "prob_random_profit_positive": 0.9484,
+        "random_positive_folds_mean": 3.2839,
+        "p_value_random_profit_at_least_top_edge": 0.04214789260536973,
+        "top_edge_minus_random_mean_profit": 9.00598851422109
+      }
+    },
+    {
+      "probability_policy": "unshrunk_meta",
+      "source_bets": 418,
+      "source_events": 102,
+      "cap": 3,
+      "rankings": {
+        "top_edge": {
+          "bets": 288,
+          "events": 102,
+          "profit": 17.52126709304143,
+          "roi": 0.060837732961949414,
+          "actual_minus_market": 0.07100884629733495,
+          "positive_folds": 4,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 69,
+              "profit": 5.297422206528125,
+              "roi": 0.07677423487721921
+            },
+            {
+              "fold": 2,
+              "bets": 53,
+              "profit": 6.740262760290445,
+              "roi": 0.12717476906208386
+            },
+            {
+              "fold": 3,
+              "bets": 64,
+              "profit": 3.7372119891607207,
+              "roi": 0.05839393733063626
+            },
+            {
+              "fold": 4,
+              "bets": 51,
+              "profit": 3.18259390998956,
+              "roi": 0.062403802156658035
+            },
+            {
+              "fold": 5,
+              "bets": 51,
+              "profit": -1.4362237729274219,
+              "roi": -0.028161250449557293
+            }
+          ]
+        },
+        "bottom_edge": {
+          "bets": 288,
+          "events": 102,
+          "profit": -5.048966828998614,
+          "roi": -0.017531134822911854,
+          "actual_minus_market": 0.017320374239575664,
+          "positive_folds": 2,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 69,
+              "profit": -4.315249990875816,
+              "roi": -0.06253985494022922
+            },
+            {
+              "fold": 2,
+              "bets": 53,
+              "profit": 3.4749824324743273,
+              "roi": 0.06556570627310052
+            },
+            {
+              "fold": 3,
+              "bets": 64,
+              "profit": -5.516345989373467,
+              "roi": -0.08619290608396042
+            },
+            {
+              "fold": 4,
+              "bets": 51,
+              "profit": 1.7721939321989413,
+              "roi": 0.03474890063135179
+            },
+            {
+              "fold": 5,
+              "bets": 51,
+              "profit": -0.46454721342259675,
+              "roi": -0.009108768890639152
+            }
+          ]
+        },
+        "top_probability": {
+          "bets": 288,
+          "events": 102,
+          "profit": 13.676799628624916,
+          "roi": 0.04748888759939207,
+          "actual_minus_market": 0.060992749748070896,
+          "positive_folds": 4,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 69,
+              "profit": 3.518249196509678,
+              "roi": 0.05098911878999533
+            },
+            {
+              "fold": 2,
+              "bets": 53,
+              "profit": 4.716673532493149,
+              "roi": 0.0889938402357198
+            },
+            {
+              "fold": 3,
+              "bets": 64,
+              "profit": 3.6777122699830307,
+              "roi": 0.057464254218484855
+            },
+            {
+              "fold": 4,
+              "bets": 51,
+              "profit": 2.6002630642850546,
+              "roi": 0.05098555028009911
+            },
+            {
+              "fold": 5,
+              "bets": 51,
+              "profit": -0.8360984346459976,
+              "roi": -0.01639408695384309
+            }
+          ]
+        },
+        "top_market_probability": {
+          "bets": 288,
+          "events": 102,
+          "profit": 13.189724855326482,
+          "roi": 0.0457976557476614,
+          "actual_minus_market": 0.06044484302723252,
+          "positive_folds": 4,
+          "folds": [
+            {
+              "fold": 1,
+              "bets": 69,
+              "profit": 1.9142192403043428,
+              "roi": 0.02774230783049772
+            },
+            {
+              "fold": 2,
+              "bets": 53,
+              "profit": 4.652244002291807,
+              "roi": 0.08777818872248692
+            },
+            {
+              "fold": 3,
+              "bets": 64,
+              "profit": 3.6143363272408617,
+              "roi": 0.056474005113138465
+            },
+            {
+              "fold": 4,
+              "bets": 51,
+              "profit": 3.935833534083713,
+              "roi": 0.07717320655066104
+            },
+            {
+              "fold": 5,
+              "bets": 51,
+              "profit": -0.9269082485942424,
+              "roi": -0.018174671541063576
+            }
+          ]
+        }
+      },
+      "random_cap": {
+        "iterations": 20000,
+        "random_mean_profit": 7.6360512398338685,
+        "random_profit_ci_95": [
+          -2.7628526330607817,
+          18.296748696357103
+        ],
+        "prob_random_profit_positive": 0.922,
+        "random_positive_folds_mean": 3.22825,
+        "p_value_random_profit_at_least_top_edge": 0.033948302584870756,
+        "top_edge_minus_random_mean_profit": 9.885215853207562
+      }
+    }
+  ],
+  "outputs": {
+    "summary_json": "test_results/residual_event_cap_ranking_audit/residual_event_cap_ranking_audit.json",
+    "report_md": "test_results/residual_event_cap_ranking_audit/residual_event_cap_ranking_audit.md",
+    "ranked_bets_csv": "test_results/residual_event_cap_ranking_audit/ranked_cap_bets.csv"
+  }
+}

@@ -1,0 +1,527 @@
+{
+  "ledgers": [
+    {
+      "label": "baseline_default",
+      "csv_path": "test_results/nested_edge_long/ledgers/baseline_default_2022_2026/no_leakage_backtest.csv"
+    },
+    {
+      "label": "regularized_lgbm",
+      "csv_path": "test_results/nested_edge_long/ledgers/regularized_lgbm_2022_2026/no_leakage_backtest.csv"
+    }
+  ],
+  "labels": [
+    "baseline_default",
+    "regularized_lgbm"
+  ],
+  "aligned_fights": 1220,
+  "configs": [
+    {
+      "label": "dev365_c1.0",
+      "dev_days": 365,
+      "c": 1.0
+    },
+    {
+      "label": "dev730_c1.0",
+      "dev_days": 730,
+      "c": 1.0
+    },
+    {
+      "label": "dev730_c0.25",
+      "dev_days": 730,
+      "c": 0.25
+    }
+  ],
+  "first_holdout_start": "2024-02-05",
+  "last_holdout_end": "2026-06-27",
+  "holdout_days": 182,
+  "step_days": 182,
+  "min_dev_fights": 200,
+  "min_holdout_fights": 60,
+  "min_prior_selection_fights": 100,
+  "bootstrap_iterations": 20000,
+  "market_null_iterations": 1000,
+  "seed": 20260628,
+  "folds_by_config": {
+    "dev365_c1.0": [
+      {
+        "fold": 1,
+        "dev_start": "2023-02-05",
+        "dev_end": "2024-02-04",
+        "holdout_start": "2024-02-05",
+        "holdout_end": "2024-08-04",
+        "dev_fights": 244,
+        "holdout_fights": 165
+      },
+      {
+        "fold": 2,
+        "dev_start": "2023-08-06",
+        "dev_end": "2024-08-04",
+        "holdout_start": "2024-08-05",
+        "holdout_end": "2025-02-02",
+        "dev_fights": 276,
+        "holdout_fights": 130
+      },
+      {
+        "fold": 3,
+        "dev_start": "2024-02-04",
+        "dev_end": "2025-02-02",
+        "holdout_start": "2025-02-03",
+        "holdout_end": "2025-08-03",
+        "dev_fights": 295,
+        "holdout_fights": 150
+      },
+      {
+        "fold": 4,
+        "dev_start": "2024-08-04",
+        "dev_end": "2025-08-03",
+        "holdout_start": "2025-08-04",
+        "holdout_end": "2026-02-01",
+        "dev_fights": 280,
+        "holdout_fights": 130
+      },
+      {
+        "fold": 5,
+        "dev_start": "2025-02-02",
+        "dev_end": "2026-02-01",
+        "holdout_start": "2026-02-02",
+        "holdout_end": "2026-06-27",
+        "dev_fights": 280,
+        "holdout_fights": 129
+      }
+    ],
+    "dev730_c1.0": [
+      {
+        "fold": 1,
+        "dev_start": "2022-02-05",
+        "dev_end": "2024-02-04",
+        "holdout_start": "2024-02-05",
+        "holdout_end": "2024-08-04",
+        "dev_fights": 516,
+        "holdout_fights": 165
+      },
+      {
+        "fold": 2,
+        "dev_start": "2022-08-06",
+        "dev_end": "2024-08-04",
+        "holdout_start": "2024-08-05",
+        "holdout_end": "2025-02-02",
+        "dev_fights": 528,
+        "holdout_fights": 130
+      },
+      {
+        "fold": 3,
+        "dev_start": "2023-02-04",
+        "dev_end": "2025-02-02",
+        "holdout_start": "2025-02-03",
+        "holdout_end": "2025-08-03",
+        "dev_fights": 543,
+        "holdout_fights": 150
+      },
+      {
+        "fold": 4,
+        "dev_start": "2023-08-05",
+        "dev_end": "2025-08-03",
+        "holdout_start": "2025-08-04",
+        "holdout_end": "2026-02-01",
+        "dev_fights": 564,
+        "holdout_fights": 130
+      },
+      {
+        "fold": 5,
+        "dev_start": "2024-02-03",
+        "dev_end": "2026-02-01",
+        "holdout_start": "2026-02-02",
+        "holdout_end": "2026-06-27",
+        "dev_fights": 579,
+        "holdout_fights": 129
+      }
+    ],
+    "dev730_c0.25": [
+      {
+        "fold": 1,
+        "dev_start": "2022-02-05",
+        "dev_end": "2024-02-04",
+        "holdout_start": "2024-02-05",
+        "holdout_end": "2024-08-04",
+        "dev_fights": 516,
+        "holdout_fights": 165
+      },
+      {
+        "fold": 2,
+        "dev_start": "2022-08-06",
+        "dev_end": "2024-08-04",
+        "holdout_start": "2024-08-05",
+        "holdout_end": "2025-02-02",
+        "dev_fights": 528,
+        "holdout_fights": 130
+      },
+      {
+        "fold": 3,
+        "dev_start": "2023-02-04",
+        "dev_end": "2025-02-02",
+        "holdout_start": "2025-02-03",
+        "holdout_end": "2025-08-03",
+        "dev_fights": 543,
+        "holdout_fights": 150
+      },
+      {
+        "fold": 4,
+        "dev_start": "2023-08-05",
+        "dev_end": "2025-08-03",
+        "holdout_start": "2025-08-04",
+        "holdout_end": "2026-02-01",
+        "dev_fights": 564,
+        "holdout_fights": 130
+      },
+      {
+        "fold": 5,
+        "dev_start": "2024-02-03",
+        "dev_end": "2026-02-01",
+        "holdout_start": "2026-02-02",
+        "holdout_end": "2026-06-27",
+        "dev_fights": 579,
+        "holdout_fights": 129
+      }
+    ]
+  },
+  "candidate_summaries": [
+    {
+      "candidate": "dev365_c1.0|market_plus_all_models",
+      "config": "dev365_c1.0",
+      "variant": "market_plus_all_models",
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.5977815214726224,
+      "market_minus_meta_log_loss": 0.0031021533128526846,
+      "positive_folds": 4,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.0065238856188407635,
+        0.009003207727374951,
+        0.004551970624294688,
+        0.0018247323879955202,
+        -0.0076197907248277685
+      ]
+    },
+    {
+      "candidate": "dev365_c1.0|market_plus_baseline_default",
+      "config": "dev365_c1.0",
+      "variant": "market_plus_baseline_default",
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.5985521722652815,
+      "market_minus_meta_log_loss": 0.0023315025201936512,
+      "positive_folds": 4,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.006550625290254408,
+        0.007717046067913791,
+        0.0049391619280206855,
+        0.0003543794404197165,
+        -0.009532054294279613
+      ]
+    },
+    {
+      "candidate": "dev365_c1.0|market_plus_regularized_lgbm",
+      "config": "dev365_c1.0",
+      "variant": "market_plus_regularized_lgbm",
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.5962052261355842,
+      "market_minus_meta_log_loss": 0.004678448649890865,
+      "positive_folds": 4,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.006430313565461754,
+        0.009192645135063127,
+        0.004164788662868624,
+        0.0035710739696955818,
+        -0.0003982610219134264
+      ]
+    },
+    {
+      "candidate": "dev365_c1.0|market_recalibrated",
+      "config": "dev365_c1.0",
+      "variant": "market_recalibrated",
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.6001354692837485,
+      "market_minus_meta_log_loss": 0.0007482055017266065,
+      "positive_folds": 3,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.005806547693975039,
+        0.004303568197629337,
+        -0.004055414788363798,
+        -0.0035764065706006543,
+        0.0006390504686089038
+      ]
+    },
+    {
+      "candidate": "dev730_c0.25|market_plus_all_models",
+      "config": "dev730_c0.25",
+      "variant": "market_plus_all_models",
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.5985198203629053,
+      "market_minus_meta_log_loss": 0.002363854422569811,
+      "positive_folds": 4,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.006364623489905408,
+        0.005915658905804255,
+        0.003966560813046249,
+        0.003257333976692145,
+        -0.009096764023462711
+      ]
+    },
+    {
+      "candidate": "dev730_c0.25|market_plus_baseline_default",
+      "config": "dev730_c0.25",
+      "variant": "market_plus_baseline_default",
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.5990153910264513,
+      "market_minus_meta_log_loss": 0.0018682837590238144,
+      "positive_folds": 4,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.006540782530472078,
+        0.006223762630998886,
+        0.003908340575183855,
+        0.0021786471059385137,
+        -0.011182338784918366
+      ]
+    },
+    {
+      "candidate": "dev730_c0.25|market_plus_regularized_lgbm",
+      "config": "dev730_c0.25",
+      "variant": "market_plus_regularized_lgbm",
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.5981299669583487,
+      "market_minus_meta_log_loss": 0.0027537078271263615,
+      "positive_folds": 4,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.006232756951835006,
+        0.00600545707020439,
+        0.002423376732535787,
+        0.0037914981138289505,
+        -0.0056349245779881985
+      ]
+    },
+    {
+      "candidate": "dev730_c0.25|market_recalibrated",
+      "config": "dev730_c0.25",
+      "variant": "market_recalibrated",
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.6006225670957984,
+      "market_minus_meta_log_loss": 0.0002611076896766873,
+      "positive_folds": 2,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.005792234224785142,
+        0.004791495944789226,
+        -0.0024424885294791476,
+        -0.0008941958585172438,
+        -0.007071120661632513
+      ]
+    },
+    {
+      "candidate": "dev730_c1.0|market_plus_all_models",
+      "config": "dev730_c1.0",
+      "variant": "market_plus_all_models",
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.5982845234548604,
+      "market_minus_meta_log_loss": 0.002599151330614724,
+      "positive_folds": 4,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.006965108537103193,
+        0.007453531625167598,
+        0.00363041059074809,
+        0.0052964553442295115,
+        -0.01179457570932596
+      ]
+    },
+    {
+      "candidate": "dev730_c1.0|market_plus_baseline_default",
+      "config": "dev730_c1.0",
+      "variant": "market_plus_baseline_default",
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.5993465791996442,
+      "market_minus_meta_log_loss": 0.0015370955858309276,
+      "positive_folds": 4,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.007138639571591221,
+        0.007120835325964414,
+        0.00369083816776683,
+        0.0034046656666617547,
+        -0.015641093729410027
+      ]
+    },
+    {
+      "candidate": "dev730_c1.0|market_plus_regularized_lgbm",
+      "config": "dev730_c1.0",
+      "variant": "market_plus_regularized_lgbm",
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.5978903895335758,
+      "market_minus_meta_log_loss": 0.002993285251899347,
+      "positive_folds": 4,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.007024465020765369,
+        0.0077428737634708256,
+        0.0026278994840387426,
+        0.005736808380732761,
+        -0.009289205522800548
+      ]
+    },
+    {
+      "candidate": "dev730_c1.0|market_recalibrated",
+      "config": "dev730_c1.0",
+      "variant": "market_recalibrated",
+      "fights": 704,
+      "events": 102,
+      "market_log_loss": 0.6008836747854751,
+      "meta_log_loss": 0.6011153217049535,
+      "market_minus_meta_log_loss": -0.0002316469194784121,
+      "positive_folds": 3,
+      "folds": 5,
+      "fold_log_loss_deltas": [
+        0.006291513525388592,
+        0.004840937549785762,
+        -0.0043075747791875285,
+        2.8381453615944352e-05,
+        -0.00920972415942578
+      ]
+    }
+  ],
+  "rolling_selection": {
+    "fights": 539,
+    "events": 79,
+    "market_log_loss": 0.6021731633804815,
+    "meta_log_loss": 0.6016793937408859,
+    "market_minus_meta_log_loss": 0.000493769639595687,
+    "eval_folds": 4,
+    "positive_eval_folds": 3,
+    "selections": [
+      {
+        "eval_fold": 2,
+        "selected_candidate": "dev730_c1.0|market_plus_baseline_default",
+        "selected_config": "dev730_c1.0",
+        "selected_variant": "market_plus_baseline_default",
+        "prior_rows": 165,
+        "prior_market_log_loss": 0.5966713453751212,
+        "prior_meta_log_loss": 0.58953270580353,
+        "prior_delta_log_loss": 0.0071386395715912635,
+        "eval_fights": 130,
+        "eval_events": 19,
+        "eval_market_log_loss": 0.5788537585297809,
+        "eval_meta_log_loss": 0.5717329232038165,
+        "eval_delta_log_loss": 0.007120835325964414
+      },
+      {
+        "eval_fold": 3,
+        "selected_candidate": "dev365_c1.0|market_plus_regularized_lgbm",
+        "selected_config": "dev365_c1.0",
+        "selected_variant": "market_plus_regularized_lgbm",
+        "prior_rows": 295,
+        "prior_market_log_loss": 0.5888195274432764,
+        "prior_meta_log_loss": 0.5811719152200241,
+        "prior_delta_log_loss": 0.007647612223252246,
+        "eval_fights": 150,
+        "eval_events": 23,
+        "eval_market_log_loss": 0.6181220610242933,
+        "eval_meta_log_loss": 0.6139572723614247,
+        "eval_delta_log_loss": 0.004164788662868624
+      },
+      {
+        "eval_fold": 4,
+        "selected_candidate": "dev365_c1.0|market_plus_all_models",
+        "selected_config": "dev365_c1.0",
+        "selected_variant": "market_plus_all_models",
+        "prior_rows": 445,
+        "prior_market_log_loss": 0.5986967859537315,
+        "prior_meta_log_loss": 0.5921132944361772,
+        "prior_delta_log_loss": 0.006583491517554276,
+        "eval_fights": 130,
+        "eval_events": 18,
+        "eval_market_log_loss": 0.5821876198983189,
+        "eval_meta_log_loss": 0.5803628875103234,
+        "eval_delta_log_loss": 0.0018247323879955202
+      },
+      {
+        "eval_fold": 5,
+        "selected_candidate": "dev730_c1.0|market_plus_all_models",
+        "selected_config": "dev730_c1.0",
+        "selected_variant": "market_plus_all_models",
+        "prior_rows": 575,
+        "prior_market_log_loss": 0.5949642788455514,
+        "prior_meta_log_loss": 0.5891359261442367,
+        "prior_delta_log_loss": 0.005828352701314642,
+        "eval_fights": 129,
+        "eval_events": 19,
+        "eval_market_log_loss": 0.6272685791688568,
+        "eval_meta_log_loss": 0.6390631548781828,
+        "eval_delta_log_loss": -0.01179457570932596
+      }
+    ],
+    "event_bootstrap": {
+      "events": 79,
+      "iterations": 20000,
+      "delta_ci_95": [
+        -0.009868276130212206,
+        0.010340941454646507
+      ],
+      "prob_delta_le_zero": 0.45755
+    },
+    "market_null": {
+      "iterations": 1000,
+      "observed_market_minus_meta_log_loss": 0.000493769639595687,
+      "null_mean_delta": -0.003731499525042097,
+      "null_delta_ci_95": [
+        -0.012254220764576617,
+        0.002403967809831247
+      ],
+      "p_value_observed_or_better": 0.08391608391608392,
+      "prob_null_delta_positive": 0.123,
+      "selected_candidate_frequency": {
+        "dev365_c1.0|market_plus_all_models": 194,
+        "dev365_c1.0|market_plus_baseline_default": 196,
+        "dev730_c1.0|market_plus_all_models": 299,
+        "dev365_c1.0|market_recalibrated": 541,
+        "dev730_c1.0|market_recalibrated": 846,
+        "dev730_c0.25|market_plus_regularized_lgbm": 243,
+        "dev730_c0.25|market_recalibrated": 633,
+        "dev730_c0.25|market_plus_baseline_default": 205,
+        "dev730_c0.25|market_plus_all_models": 143,
+        "dev365_c1.0|market_plus_regularized_lgbm": 205,
+        "dev730_c1.0|market_plus_baseline_default": 262,
+        "dev730_c1.0|market_plus_regularized_lgbm": 233
+      }
+    }
+  },
+  "outputs": {
+    "summary_json": "test_results/residual_meta_config_selection_audit/residual_meta_config_selection_audit.json",
+    "report_md": "test_results/residual_meta_config_selection_audit/residual_meta_config_selection_audit.md",
+    "selected_predictions_csv": "test_results/residual_meta_config_selection_audit/rolling_selected_predictions.csv"
+  }
+}
