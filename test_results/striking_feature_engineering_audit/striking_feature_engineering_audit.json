@@ -1,0 +1,2114 @@
+{
+  "parameters": {
+    "source_fights": "data/modified_fight_details.csv",
+    "features": "data/detailed_fights.csv",
+    "odds": "data/fight_results_with_odds.csv",
+    "fight_details_source": "data/fight_details_date.csv",
+    "first_holdout_start": "2023-01-01",
+    "last_holdout_end": "2026-06-27",
+    "dev_days": 730,
+    "holdout_days": 182,
+    "step_days": 182,
+    "min_dev_fights": 200,
+    "min_holdout_fights": 60,
+    "c": 0.1,
+    "edge_threshold": 0.02,
+    "bootstrap_iterations": 20000,
+    "market_null_iterations": 200,
+    "bet_null_iterations": 20000,
+    "seed": 20260629
+  },
+  "metadata": {
+    "features_path": "data/detailed_fights.csv",
+    "odds_path": "data/fight_results_with_odds.csv",
+    "fight_details_source": "data/fight_details_date.csv",
+    "excluded_title_patterns": [
+      "Women"
+    ],
+    "feature_rows": 3999,
+    "odds_rows": 1824,
+    "aligned_rows": 1223,
+    "duplicate_feature_keys": 0,
+    "odds_rows_date_repaired": 22,
+    "odds_rows_excluded_universe": 345,
+    "odds_rows_non_binary_excluded": 7,
+    "skipped_missing_features": 601,
+    "skipped_duplicate_features": 0,
+    "skipped_bad_odds": 0,
+    "skipped_orientation_mismatch": 0,
+    "pace_feature_columns": [
+      "Sig. str. for_pm oppdiff",
+      "Sig. str. against_pm oppdiff",
+      "Sig. str. differential_pm oppdiff",
+      "Head for_pm oppdiff",
+      "Head against_pm oppdiff",
+      "Head differential_pm oppdiff",
+      "Body for_pm oppdiff",
+      "Body against_pm oppdiff",
+      "Body differential_pm oppdiff",
+      "Leg for_pm oppdiff",
+      "Leg against_pm oppdiff",
+      "Leg differential_pm oppdiff",
+      "Distance for_pm oppdiff",
+      "Distance against_pm oppdiff",
+      "Distance differential_pm oppdiff",
+      "Clinch for_pm oppdiff",
+      "Clinch against_pm oppdiff",
+      "Clinch differential_pm oppdiff",
+      "Ground for_pm oppdiff",
+      "Ground against_pm oppdiff",
+      "Ground differential_pm oppdiff",
+      "Total str. for_pm oppdiff",
+      "Total str. against_pm oppdiff",
+      "Total str. differential_pm oppdiff",
+      "KD differential_pf oppdiff",
+      "Td differential_pf oppdiff"
+    ],
+    "pace_feature_duplicate_keys": 0,
+    "aligned_rows_missing_pace_features": 0
+  },
+  "pace_reconstruction": {
+    "source_rows": 7730,
+    "feature_rows": 4322,
+    "expected_supervised_rows": 4322,
+    "matched_supervised_rows": 4322,
+    "missing_feature_rows": 0,
+    "extra_feature_rows": 0,
+    "side_rate_checks": 69152,
+    "side_rate_mismatches": 0,
+    "side_rate_max_abs_error": 2.1316282072803006e-14,
+    "derived_feature_rows": 4322
+  },
+  "variants": [
+    {
+      "name": "market_recalibrated",
+      "feature_columns": [
+        "market_logit"
+      ],
+      "note": "market logit recalibration only"
+    },
+    {
+      "name": "current_mixed_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "note": "frozen current count-differential mixed striking core"
+    },
+    {
+      "name": "current_sigpct_head",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "note": "frozen challenger-style count-differential sigpct/head core"
+    },
+    {
+      "name": "pace_adjusted_mixed_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "note": "replace raw significant/head count differentials with per-minute differentials"
+    },
+    {
+      "name": "rate_volume_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. for_pm oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "note": "pace-adjusted efficiency plus own significant-strike volume"
+    },
+    {
+      "name": "location_rate_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff",
+        "Body differential_pm oppdiff",
+        "Leg differential_pm oppdiff"
+      ],
+      "note": "pace-adjusted head/body/leg differential mix"
+    },
+    {
+      "name": "position_rate_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Distance differential_pm oppdiff",
+        "Clinch differential_pm oppdiff",
+        "Ground differential_pm oppdiff"
+      ],
+      "note": "pace-adjusted distance/clinch/ground differential mix"
+    },
+    {
+      "name": "damage_rate_core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "KD differential_pf oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "note": "knockdown differential plus pace-adjusted head striking"
+    }
+  ],
+  "folds": [
+    {
+      "fold": 1,
+      "dev_start": "2021-01-01",
+      "dev_end": "2022-12-31",
+      "holdout_start": "2023-01-01",
+      "holdout_end": "2023-07-01",
+      "dev_fights": 262,
+      "holdout_fights": 121,
+      "market_log_loss": 0.5904255132624963,
+      "market_recalibrated_log_loss": 0.5847301303210772,
+      "market_recalibrated_delta_log_loss": 0.005695382941419025,
+      "current_mixed_core_log_loss": 0.5831410176645639,
+      "current_mixed_core_delta_log_loss": 0.007284495597932317,
+      "current_sigpct_head_log_loss": 0.5840762660466,
+      "current_sigpct_head_delta_log_loss": 0.006349247215896248,
+      "pace_adjusted_mixed_core_log_loss": 0.5892294856614153,
+      "pace_adjusted_mixed_core_delta_log_loss": 0.0011960276010809512,
+      "rate_volume_core_log_loss": 0.5893697888437074,
+      "rate_volume_core_delta_log_loss": 0.0010557244187888726,
+      "location_rate_core_log_loss": 0.5920099846130997,
+      "location_rate_core_delta_log_loss": -0.0015844713506034669,
+      "position_rate_core_log_loss": 0.5899610687452759,
+      "position_rate_core_delta_log_loss": 0.00046444451722038593,
+      "damage_rate_core_log_loss": 0.5993964075324986,
+      "damage_rate_core_delta_log_loss": -0.008970894270002305
+    },
+    {
+      "fold": 2,
+      "dev_start": "2021-07-02",
+      "dev_end": "2023-07-01",
+      "holdout_start": "2023-07-02",
+      "holdout_end": "2023-12-30",
+      "dev_fights": 383,
+      "holdout_fights": 118,
+      "market_log_loss": 0.5988043542787147,
+      "market_recalibrated_log_loss": 0.5952652026457782,
+      "market_recalibrated_delta_log_loss": 0.003539151632936499,
+      "current_mixed_core_log_loss": 0.600426547052238,
+      "current_mixed_core_delta_log_loss": -0.0016221927735232677,
+      "current_sigpct_head_log_loss": 0.595387965806843,
+      "current_sigpct_head_delta_log_loss": 0.0034163884718717563,
+      "pace_adjusted_mixed_core_log_loss": 0.5910995333813911,
+      "pace_adjusted_mixed_core_delta_log_loss": 0.007704820897323605,
+      "rate_volume_core_log_loss": 0.5902287870465631,
+      "rate_volume_core_delta_log_loss": 0.008575567232151582,
+      "location_rate_core_log_loss": 0.5934357759826727,
+      "location_rate_core_delta_log_loss": 0.0053685782960419814,
+      "position_rate_core_log_loss": 0.5974586530484648,
+      "position_rate_core_delta_log_loss": 0.0013457012302499072,
+      "damage_rate_core_log_loss": 0.5946610658078287,
+      "damage_rate_core_delta_log_loss": 0.004143288470885964
+    },
+    {
+      "fold": 3,
+      "dev_start": "2021-12-31",
+      "dev_end": "2023-12-30",
+      "holdout_start": "2023-12-31",
+      "holdout_end": "2024-06-29",
+      "dev_fights": 501,
+      "holdout_fights": 151,
+      "market_log_loss": 0.6044524075111317,
+      "market_recalibrated_log_loss": 0.6019153114533267,
+      "market_recalibrated_delta_log_loss": 0.002537096057805055,
+      "current_mixed_core_log_loss": 0.6013443066072284,
+      "current_mixed_core_delta_log_loss": 0.0031081009039033436,
+      "current_sigpct_head_log_loss": 0.6014648277188837,
+      "current_sigpct_head_delta_log_loss": 0.002987579792248063,
+      "pace_adjusted_mixed_core_log_loss": 0.5997080548299797,
+      "pace_adjusted_mixed_core_delta_log_loss": 0.004744352681152031,
+      "rate_volume_core_log_loss": 0.6019794197244378,
+      "rate_volume_core_delta_log_loss": 0.0024729877866939143,
+      "location_rate_core_log_loss": 0.5989066100861402,
+      "location_rate_core_delta_log_loss": 0.005545797424991505,
+      "position_rate_core_log_loss": 0.6023795290870374,
+      "position_rate_core_delta_log_loss": 0.0020728784240943154,
+      "damage_rate_core_log_loss": 0.6061308819645218,
+      "damage_rate_core_delta_log_loss": -0.0016784744533900886
+    },
+    {
+      "fold": 4,
+      "dev_start": "2022-07-01",
+      "dev_end": "2024-06-29",
+      "holdout_start": "2024-06-30",
+      "holdout_end": "2024-12-28",
+      "dev_fights": 536,
+      "holdout_fights": 142,
+      "market_log_loss": 0.5621237764003885,
+      "market_recalibrated_log_loss": 0.5542618885870428,
+      "market_recalibrated_delta_log_loss": 0.007861887813345625,
+      "current_mixed_core_log_loss": 0.5507530872092969,
+      "current_mixed_core_delta_log_loss": 0.011370689191091521,
+      "current_sigpct_head_log_loss": 0.5511455704681099,
+      "current_sigpct_head_delta_log_loss": 0.010978205932278606,
+      "pace_adjusted_mixed_core_log_loss": 0.550603911788064,
+      "pace_adjusted_mixed_core_delta_log_loss": 0.01151986461232446,
+      "rate_volume_core_log_loss": 0.5523529007069223,
+      "rate_volume_core_delta_log_loss": 0.00977087569346613,
+      "location_rate_core_log_loss": 0.5502160241678082,
+      "location_rate_core_delta_log_loss": 0.011907752232580227,
+      "position_rate_core_log_loss": 0.5503065756673823,
+      "position_rate_core_delta_log_loss": 0.011817200733006183,
+      "damage_rate_core_log_loss": 0.552625976111291,
+      "damage_rate_core_delta_log_loss": 0.009497800289097413
+    },
+    {
+      "fold": 5,
+      "dev_start": "2022-12-30",
+      "dev_end": "2024-12-28",
+      "holdout_start": "2024-12-29",
+      "holdout_end": "2025-06-28",
+      "dev_fights": 532,
+      "holdout_fights": 138,
+      "market_log_loss": 0.6149679311270025,
+      "market_recalibrated_log_loss": 0.6194259669398848,
+      "market_recalibrated_delta_log_loss": -0.004458035812882288,
+      "current_mixed_core_log_loss": 0.6099326887875146,
+      "current_mixed_core_delta_log_loss": 0.005035242339487933,
+      "current_sigpct_head_log_loss": 0.6101095532553806,
+      "current_sigpct_head_delta_log_loss": 0.004858377871621911,
+      "pace_adjusted_mixed_core_log_loss": 0.6176399351221667,
+      "pace_adjusted_mixed_core_delta_log_loss": -0.002672003995164207,
+      "rate_volume_core_log_loss": 0.6173567870933614,
+      "rate_volume_core_delta_log_loss": -0.0023888559663588493,
+      "location_rate_core_log_loss": 0.6190633627367187,
+      "location_rate_core_delta_log_loss": -0.004095431609716149,
+      "position_rate_core_log_loss": 0.620140690627993,
+      "position_rate_core_delta_log_loss": -0.005172759500990498,
+      "damage_rate_core_log_loss": 0.6204884403041608,
+      "damage_rate_core_delta_log_loss": -0.005520509177158295
+    },
+    {
+      "fold": 6,
+      "dev_start": "2023-06-30",
+      "dev_end": "2025-06-28",
+      "holdout_start": "2025-06-29",
+      "holdout_end": "2025-12-27",
+      "dev_fights": 553,
+      "holdout_fights": 147,
+      "market_log_loss": 0.6123632574531143,
+      "market_recalibrated_log_loss": 0.6130616997682871,
+      "market_recalibrated_delta_log_loss": -0.0006984423151727981,
+      "current_mixed_core_log_loss": 0.6055902008491139,
+      "current_mixed_core_delta_log_loss": 0.006773056604000405,
+      "current_sigpct_head_log_loss": 0.6059786189292347,
+      "current_sigpct_head_delta_log_loss": 0.006384638523879604,
+      "pace_adjusted_mixed_core_log_loss": 0.5993518334057641,
+      "pace_adjusted_mixed_core_delta_log_loss": 0.013011424047350117,
+      "rate_volume_core_log_loss": 0.5941172851545752,
+      "rate_volume_core_delta_log_loss": 0.01824597229853908,
+      "location_rate_core_log_loss": 0.5990257243839199,
+      "location_rate_core_delta_log_loss": 0.013337533069194385,
+      "position_rate_core_log_loss": 0.5915671982026716,
+      "position_rate_core_delta_log_loss": 0.0207960592504427,
+      "damage_rate_core_log_loss": 0.6011002414382199,
+      "damage_rate_core_delta_log_loss": 0.011263016014894323
+    },
+    {
+      "fold": 7,
+      "dev_start": "2023-12-29",
+      "dev_end": "2025-12-27",
+      "holdout_start": "2025-12-28",
+      "holdout_end": "2026-06-27",
+      "dev_fights": 578,
+      "holdout_fights": 144,
+      "market_log_loss": 0.6155529816284095,
+      "market_recalibrated_log_loss": 0.6176301212434319,
+      "market_recalibrated_delta_log_loss": -0.0020771396150223165,
+      "current_mixed_core_log_loss": 0.6011651335408984,
+      "current_mixed_core_delta_log_loss": 0.014387848087511146,
+      "current_sigpct_head_log_loss": 0.6014552767014913,
+      "current_sigpct_head_delta_log_loss": 0.014097704926918198,
+      "pace_adjusted_mixed_core_log_loss": 0.6045226445866814,
+      "pace_adjusted_mixed_core_delta_log_loss": 0.011030337041728178,
+      "rate_volume_core_log_loss": 0.6101861315738915,
+      "rate_volume_core_delta_log_loss": 0.005366850054518091,
+      "location_rate_core_log_loss": 0.6029570109702418,
+      "location_rate_core_delta_log_loss": 0.012595970658167754,
+      "position_rate_core_log_loss": 0.6146601916109531,
+      "position_rate_core_delta_log_loss": 0.0008927900174564574,
+      "damage_rate_core_log_loss": 0.6058750026986703,
+      "damage_rate_core_delta_log_loss": 0.009677978929739206
+    }
+  ],
+  "coefficients": [
+    {
+      "fold": 1,
+      "variant": "market_recalibrated",
+      "intercept": 1.401336806353319e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        0.873028477407305
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "current_mixed_core",
+      "intercept": -4.0678860835647753e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.8194160429998546,
+        0.10671770823535644,
+        0.09517567811498735,
+        0.058321582803649206
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "current_sigpct_head",
+      "intercept": 1.0201557106324018e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.8216180820959288,
+        0.12844400332674072,
+        0.116983270916937
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": 2.667438706291024e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8376353835033943,
+        0.16658434531034375,
+        -0.0943184577006596,
+        0.0913806863800209
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "rate_volume_core",
+      "intercept": 1.2086149528320917e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. for_pm oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8378634828819606,
+        0.1686618212760675,
+        0.05072373270760743,
+        -0.11874032536684581,
+        0.08244245188014444
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "location_rate_core",
+      "intercept": -8.308691323787093e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff",
+        "Body differential_pm oppdiff",
+        "Leg differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8407535672248329,
+        0.19348489149292164,
+        -0.02342502212651776,
+        0.06213204498573798,
+        -0.16248369943537025
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "position_rate_core",
+      "intercept": -1.1087043073875353e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Distance differential_pm oppdiff",
+        "Clinch differential_pm oppdiff",
+        "Ground differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8398513710193742,
+        0.16184960852043218,
+        0.008968838134334819,
+        -0.052032885446546065,
+        -0.0005935119249054845
+      ]
+    },
+    {
+      "fold": 1,
+      "variant": "damage_rate_core",
+      "intercept": -1.5776675505904538e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "KD differential_pf oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8317353961755215,
+        0.14089709669388334,
+        0.1239597574350976,
+        0.001306968813749288
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "market_recalibrated",
+      "intercept": 2.7813756747247735e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        0.9446555950464343
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "current_mixed_core",
+      "intercept": -8.386038071416039e-17,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.8887829908821877,
+        0.02474436760848652,
+        0.10744767299932505,
+        0.10561542669443971
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "current_sigpct_head",
+      "intercept": -1.7174078998162453e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.8918291351080496,
+        0.04786709123445642,
+        0.17465985859843097
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": -2.408831333634617e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9217290248358736,
+        0.08886090643107702,
+        -0.09402118733748349,
+        0.10918818657085402
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "rate_volume_core",
+      "intercept": 9.38184194167805e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. for_pm oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9234552277115102,
+        0.09202140558413117,
+        0.040251647929241983,
+        -0.11553357897933958,
+        0.10287581501226849
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "location_rate_core",
+      "intercept": -5.767156348573397e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff",
+        "Body differential_pm oppdiff",
+        "Leg differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.919172092526198,
+        0.11196559184593775,
+        0.0035083475686082614,
+        0.02117022768210484,
+        -0.12037321595648993
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "position_rate_core",
+      "intercept": 4.4286513012310956e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Distance differential_pm oppdiff",
+        "Clinch differential_pm oppdiff",
+        "Ground differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9338613555923517,
+        0.07196816782595053,
+        0.07798545810379767,
+        -0.01702576211505059,
+        -0.07175036210692964
+      ]
+    },
+    {
+      "fold": 2,
+      "variant": "damage_rate_core",
+      "intercept": 6.20808534541787e-17,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "KD differential_pf oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9240510347512748,
+        0.0699029830306211,
+        -0.016489551600655912,
+        0.04063677725653381
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "market_recalibrated",
+      "intercept": -3.983304219966593e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        0.9544804072555839
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "current_mixed_core",
+      "intercept": 8.742302900902178e-17,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.9020383189843861,
+        0.0892059044475433,
+        -0.014473554745337134,
+        0.1472405879792908
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "current_sigpct_head",
+      "intercept": 6.177211270866188e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.9010818156223421,
+        0.0862153696087521,
+        0.1379270157096225
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": -1.5319508878297267e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9287661361064082,
+        0.14849285604018922,
+        -0.18913651724743996,
+        0.15516124585687335
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "rate_volume_core",
+      "intercept": 3.6296292642079485e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. for_pm oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9317625902419152,
+        0.15320369410483814,
+        0.07380345720855716,
+        -0.2301582459134919,
+        0.1477077132017685
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "location_rate_core",
+      "intercept": -3.9371947167920587e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff",
+        "Body differential_pm oppdiff",
+        "Leg differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9256015542106789,
+        0.16545006057219916,
+        -0.022846967873550075,
+        -0.050107766262680806,
+        -0.1147663349803136
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "position_rate_core",
+      "intercept": -2.4921138002791616e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Distance differential_pm oppdiff",
+        "Clinch differential_pm oppdiff",
+        "Ground differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9330533628661034,
+        0.12994683645962218,
+        0.007182955862397369,
+        -0.09563835588836557,
+        -0.01979982588908356
+      ]
+    },
+    {
+      "fold": 3,
+      "variant": "damage_rate_core",
+      "intercept": -1.690433624089269e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "KD differential_pf oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.921928835947913,
+        0.10252275938159618,
+        0.07861111452620363,
+        -0.006237246494986619
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "market_recalibrated",
+      "intercept": 2.163249966667052e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        0.9257848972822504
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "current_mixed_core",
+      "intercept": -3.2407305976834626e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.89854652622405,
+        0.045676232784285176,
+        -0.06305606568391883,
+        0.12403504376585553
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "current_sigpct_head",
+      "intercept": 7.198885435538981e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.8943819720832815,
+        0.03284953748022458,
+        0.08253193953225323
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": -1.918103826948773e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9187512357206087,
+        0.102707519554715,
+        -0.21421916453330833,
+        0.14702073415230701
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "rate_volume_core",
+      "intercept": -4.777940942778979e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. for_pm oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9232397656049521,
+        0.10767276479749358,
+        0.059977970115892766,
+        -0.25087150891619897,
+        0.14261618900344508
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "location_rate_core",
+      "intercept": -1.9896538203701004e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff",
+        "Body differential_pm oppdiff",
+        "Leg differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9162376380021884,
+        0.11712287071814186,
+        -0.04808095800256168,
+        -0.07633609221678321,
+        -0.10241740535016387
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "position_rate_core",
+      "intercept": -4.812812791341283e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Distance differential_pm oppdiff",
+        "Clinch differential_pm oppdiff",
+        "Ground differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9237445362416897,
+        0.0862091530585385,
+        -0.030370101001044415,
+        -0.0936069088309454,
+        -0.02550377021372343
+      ]
+    },
+    {
+      "fold": 4,
+      "variant": "damage_rate_core",
+      "intercept": 9.142747558921436e-17,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "KD differential_pf oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9210517755172037,
+        0.05570590510962249,
+        -0.049419193692769856,
+        -0.0019027927017275649
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "market_recalibrated",
+      "intercept": 2.3041474438934994e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        1.0287896623688162
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "current_mixed_core",
+      "intercept": -7.389431155394306e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.9754235320033682,
+        0.1125488299655678,
+        -0.11045810991440598,
+        0.21328636355362096
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "current_sigpct_head",
+      "intercept": 6.67451126676602e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.9695340132193884,
+        0.0901480266217096,
+        0.14017522090307832
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": -2.10084089791011e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        1.0052282716835865,
+        0.17433718244289415,
+        -0.2711160464033198,
+        0.21703933014965857
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "rate_volume_core",
+      "intercept": -1.2607927034157593e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. for_pm oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9953609316555164,
+        0.16871852716535904,
+        -0.07116877712406032,
+        -0.22538200684299273,
+        0.22247470727119664
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "location_rate_core",
+      "intercept": 1.173377340889748e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff",
+        "Body differential_pm oppdiff",
+        "Leg differential_pm oppdiff"
+      ],
+      "coefficients": [
+        1.0121191324348056,
+        0.18325203681860996,
+        -0.02108285788181854,
+        -0.14069782421389537,
+        -0.08793523399670754
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "position_rate_core",
+      "intercept": 2.5484155117192653e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Distance differential_pm oppdiff",
+        "Clinch differential_pm oppdiff",
+        "Ground differential_pm oppdiff"
+      ],
+      "coefficients": [
+        1.0176813318839188,
+        0.14805533800669565,
+        -0.03306069293123677,
+        -0.12233408325577734,
+        0.0018590550650358334
+      ]
+    },
+    {
+      "fold": 5,
+      "variant": "damage_rate_core",
+      "intercept": -1.8460934733497353e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "KD differential_pf oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        1.0025054499067583,
+        0.12278810282499733,
+        -0.08295040955547586,
+        0.0367748953059011
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "market_recalibrated",
+      "intercept": -5.884730172342468e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        0.9711767203384762
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "current_mixed_core",
+      "intercept": 1.2009086278429108e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.915714699519563,
+        0.18859027976134318,
+        -0.13650662602876928,
+        0.22488013822085556
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "current_sigpct_head",
+      "intercept": 1.2348116699334173e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.906641049963051,
+        0.16167885390818887,
+        0.13485500881697524
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": 4.324961630587226e-17,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9395013614014678,
+        0.22992189670425253,
+        -0.24147602297409643,
+        0.18909961626442173
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "rate_volume_core",
+      "intercept": -1.9379592205055713e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. for_pm oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9302668472595196,
+        0.22218418556880049,
+        -0.1105358531257389,
+        -0.17903034472404636,
+        0.2126534619192426
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "location_rate_core",
+      "intercept": -4.05126342835407e-17,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff",
+        "Body differential_pm oppdiff",
+        "Leg differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9434809277290146,
+        0.24475314708300375,
+        -0.025976891676655345,
+        -0.09977219706038755,
+        -0.08685407557557212
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "position_rate_core",
+      "intercept": -2.682004927987211e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Distance differential_pm oppdiff",
+        "Clinch differential_pm oppdiff",
+        "Ground differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9504983005893527,
+        0.2197041377016282,
+        -0.03502128716123996,
+        -0.10653956746712116,
+        -0.0006170049642902451
+      ]
+    },
+    {
+      "fold": 6,
+      "variant": "damage_rate_core",
+      "intercept": 2.517193005776289e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "KD differential_pf oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9279009637038649,
+        0.18662028726443222,
+        0.09252058150312353,
+        -0.042171213547015994
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "market_recalibrated",
+      "intercept": -2.7815705446630326e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit"
+      ],
+      "coefficients": [
+        0.9423695292864203
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "current_mixed_core",
+      "intercept": -1.6004944455339311e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.8845384133151449,
+        0.22146619619360197,
+        -0.07461994478747365,
+        0.15236269140559228
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "current_sigpct_head",
+      "intercept": 9.603960313995374e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "coefficients": [
+        0.8822946971379816,
+        0.20652134026803737,
+        0.10212488031123405
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "pace_adjusted_mixed_core",
+      "intercept": -1.2380966011560532e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9134430511048506,
+        0.2723024709297162,
+        -0.2065253053365259,
+        0.12546595046938944
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "rate_volume_core",
+      "intercept": 1.8730676286316662e-15,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. for_pm oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.8870013973441407,
+        0.25075042901555156,
+        -0.30353742447776,
+        -0.037311296782980986,
+        0.20177208088682705
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "location_rate_core",
+      "intercept": -2.81167548279425e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff",
+        "Body differential_pm oppdiff",
+        "Leg differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9112407437848171,
+        0.28822275490608135,
+        -0.0657158869319029,
+        -0.05772253142743536,
+        -0.09877177696726375
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "position_rate_core",
+      "intercept": -2.604523749910987e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Distance differential_pm oppdiff",
+        "Clinch differential_pm oppdiff",
+        "Ground differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9307681171836036,
+        0.27059185868972796,
+        -0.015588252206159406,
+        -0.15100506395373772,
+        -0.026748729373780433
+      ]
+    },
+    {
+      "fold": 7,
+      "variant": "damage_rate_core",
+      "intercept": 3.4067295514970276e-16,
+      "constant_fallback": false,
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "KD differential_pf oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "coefficients": [
+        0.9111206014627998,
+        0.2457971271509179,
+        -0.010904360669442548,
+        -0.049797079594186215
+      ]
+    }
+  ],
+  "summary": {
+    "market_recalibrated": {
+      "note": "market logit recalibration only",
+      "feature_columns": [
+        "market_logit"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.598467877890282,
+        "brier": 0.20562858608685244
+      },
+      "market_minus_candidate_log_loss": 0.0016537593504167836,
+      "market_minus_candidate_brier": 0.0007151362614427614,
+      "mean_row_loss_delta": 0.0016537593504167168,
+      "positive_folds": 4,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.005695382941419025,
+        0.003539151632936499,
+        0.002537096057805055,
+        0.007861887813345625,
+        -0.004458035812882288,
+        -0.0006984423151727981,
+        -0.0020771396150223165
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.0027023531657224234,
+          0.005826063682486427
+        ],
+        "prob_delta_le_zero": 0.21625
+      }
+    },
+    "current_mixed_core": {
+      "note": "frozen current count-differential mixed striking core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6899063475546305,
+        "log_loss": 0.5933200563770803,
+        "brier": 0.20379865611766326
+      },
+      "market_minus_candidate_log_loss": 0.006801580863618484,
+      "market_minus_candidate_brier": 0.0025450662306319427,
+      "mean_row_loss_delta": 0.006801580863618605,
+      "positive_folds": 6,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.007284495597932317,
+        -0.0016221927735232677,
+        0.0031081009039033436,
+        0.011370689191091521,
+        0.005035242339487933,
+        0.006773056604000405,
+        0.014387848087511146
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          0.00019908677127558621,
+          0.013329593600977806
+        ],
+        "prob_delta_le_zero": 0.0222
+      }
+    },
+    "current_sigpct_head": {
+      "note": "frozen challenger-style count-differential sigpct/head core",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6940686784599376,
+        "log_loss": 0.5930243530964869,
+        "brier": 0.203609926115508
+      },
+      "market_minus_candidate_log_loss": 0.007097284144211846,
+      "market_minus_candidate_brier": 0.0027337962327872167,
+      "mean_row_loss_delta": 0.007097284144211936,
+      "positive_folds": 7,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.006349247215896248,
+        0.0034163884718717563,
+        0.002987579792248063,
+        0.010978205932278606,
+        0.004858377871621911,
+        0.006384638523879604,
+        0.014097704926918198
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          0.0007709991043858475,
+          0.013309268607056318
+        ],
+        "prob_delta_le_zero": 0.01455
+      }
+    },
+    "pace_adjusted_mixed_core": {
+      "note": "replace raw significant/head count differentials with per-minute differentials",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6930280957336108,
+        "log_loss": 0.5933178728774774,
+        "brier": 0.20351945807769173
+      },
+      "market_minus_candidate_log_loss": 0.006803764363221387,
+      "market_minus_candidate_brier": 0.002824264270603477,
+      "mean_row_loss_delta": 0.006803764363221309,
+      "positive_folds": 6,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.0011960276010809512,
+        0.007704820897323605,
+        0.004744352681152031,
+        0.01151986461232446,
+        -0.002672003995164207,
+        0.013011424047350117,
+        0.011030337041728178
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          0.00023696886886293478,
+          0.013282236588631802
+        ],
+        "prob_delta_le_zero": 0.0206
+      }
+    },
+    "rate_volume_core": {
+      "note": "pace-adjusted efficiency plus own significant-strike volume",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Sig. str. for_pm oppdiff",
+        "Sig. str. differential_pm oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6951092611862643,
+        "log_loss": 0.5938512238122818,
+        "brier": 0.20379159993556148
+      },
+      "market_minus_candidate_log_loss": 0.006270413428416943,
+      "market_minus_candidate_brier": 0.002552122412733726,
+      "mean_row_loss_delta": 0.0062704134284168765,
+      "positive_folds": 6,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.0010557244187888726,
+        0.008575567232151582,
+        0.0024729877866939143,
+        0.00977087569346613,
+        -0.0023888559663588493,
+        0.01824597229853908,
+        0.005366850054518091
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.0007834396553031445,
+          0.013152079148310137
+        ],
+        "prob_delta_le_zero": 0.03995
+      }
+    },
+    "location_rate_core": {
+      "note": "pace-adjusted head/body/leg differential mix",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Head differential_pm oppdiff",
+        "Body differential_pm oppdiff",
+        "Leg differential_pm oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6857440166493236,
+        "log_loss": 0.593691507160036,
+        "brier": 0.2036844648560707
+      },
+      "market_minus_candidate_log_loss": 0.006430130080662733,
+      "market_minus_candidate_brier": 0.0026592574922245094,
+      "mean_row_loss_delta": 0.0064301300806627595,
+      "positive_folds": 5,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        -0.0015844713506034669,
+        0.0053685782960419814,
+        0.005545797424991505,
+        0.011907752232580227,
+        -0.004095431609716149,
+        0.013337533069194385,
+        0.012595970658167754
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.0005465114178613727,
+          0.013200291016338104
+        ],
+        "prob_delta_le_zero": 0.03525
+      }
+    },
+    "position_rate_core": {
+      "note": "pace-adjusted distance/clinch/ground differential mix",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "Distance differential_pm oppdiff",
+        "Clinch differential_pm oppdiff",
+        "Ground differential_pm oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6888657648283039,
+        "log_loss": 0.5952540208628939,
+        "brier": 0.20434572016222863
+      },
+      "market_minus_candidate_log_loss": 0.004867616377804862,
+      "market_minus_candidate_brier": 0.0019980021860665775,
+      "mean_row_loss_delta": 0.004867616377804776,
+      "positive_folds": 6,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        0.00046444451722038593,
+        0.0013457012302499072,
+        0.0020728784240943154,
+        0.011817200733006183,
+        -0.005172759500990498,
+        0.0207960592504427,
+        0.0008927900174564574
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.0029316544952596355,
+          0.012428763722172487
+        ],
+        "prob_delta_le_zero": 0.1109
+      }
+    },
+    "damage_rate_core": {
+      "note": "knockdown differential plus pace-adjusted head striking",
+      "feature_columns": [
+        "market_logit",
+        "Sig. str.% differential oppdiff",
+        "KD differential_pf oppdiff",
+        "Head differential_pm oppdiff"
+      ],
+      "market": {
+        "fights": 961,
+        "accuracy": 0.6867845993756504,
+        "log_loss": 0.6001216372406988,
+        "brier": 0.2063437223482952
+      },
+      "candidate": {
+        "fights": 961,
+        "accuracy": 0.6951092611862643,
+        "log_loss": 0.5972224386089524,
+        "brier": 0.2049799437182468
+      },
+      "market_minus_candidate_log_loss": 0.002899198631746369,
+      "market_minus_candidate_brier": 0.0013637786300484123,
+      "mean_row_loss_delta": 0.00289919863174638,
+      "positive_folds": 4,
+      "folds": 7,
+      "fold_log_loss_deltas": [
+        -0.008970894270002305,
+        0.004143288470885964,
+        -0.0016784744533900886,
+        0.009497800289097413,
+        -0.005520509177158295,
+        0.011263016014894323,
+        0.009677978929739206
+      ],
+      "event_bootstrap": {
+        "events": 148,
+        "iterations": 20000,
+        "delta_ci_95": [
+          -0.0039794545380235444,
+          0.009566914605296862
+        ],
+        "prob_delta_le_zero": 0.2013
+      }
+    }
+  },
+  "market_null": {
+    "market_recalibrated": {
+      "iterations": 200,
+      "observed_market_minus_candidate_log_loss": 0.0016537593504167836,
+      "null_mean_delta": -0.001197578637311607,
+      "null_delta_ci_95": [
+        -0.00479937940125833,
+        0.0015229503264992156
+      ],
+      "p_value_observed_or_better": 0.029850746268656716,
+      "prob_null_delta_positive": 0.155
+    },
+    "current_mixed_core": {
+      "iterations": 200,
+      "observed_market_minus_candidate_log_loss": 0.006801580863618484,
+      "null_mean_delta": -0.0035183367930190896,
+      "null_delta_ci_95": [
+        -0.008250452082974095,
+        0.0005502302934113511
+      ],
+      "p_value_observed_or_better": 0.004975124378109453,
+      "prob_null_delta_positive": 0.05
+    },
+    "current_sigpct_head": {
+      "iterations": 200,
+      "observed_market_minus_candidate_log_loss": 0.007097284144211846,
+      "null_mean_delta": -0.0027688844959000538,
+      "null_delta_ci_95": [
+        -0.006890641534829545,
+        0.0015613681764580962
+      ],
+      "p_value_observed_or_better": 0.004975124378109453,
+      "prob_null_delta_positive": 0.08
+    },
+    "pace_adjusted_mixed_core": {
+      "iterations": 200,
+      "observed_market_minus_candidate_log_loss": 0.006803764363221387,
+      "null_mean_delta": -0.0035520317697863824,
+      "null_delta_ci_95": [
+        -0.008668446349591885,
+        0.002137391230020983
+      ],
+      "p_value_observed_or_better": 0.004975124378109453,
+      "prob_null_delta_positive": 0.07
+    },
+    "rate_volume_core": {
+      "iterations": 200,
+      "observed_market_minus_candidate_log_loss": 0.006270413428416943,
+      "null_mean_delta": -0.004457349054748245,
+      "null_delta_ci_95": [
+        -0.01034892138648096,
+        0.0018288737221436354
+      ],
+      "p_value_observed_or_better": 0.004975124378109453,
+      "prob_null_delta_positive": 0.06
+    },
+    "location_rate_core": {
+      "iterations": 200,
+      "observed_market_minus_candidate_log_loss": 0.006430130080662733,
+      "null_mean_delta": -0.004797768519048987,
+      "null_delta_ci_95": [
+        -0.00981959877492142,
+        0.0015771180306024316
+      ],
+      "p_value_observed_or_better": 0.004975124378109453,
+      "prob_null_delta_positive": 0.065
+    },
+    "position_rate_core": {
+      "iterations": 200,
+      "observed_market_minus_candidate_log_loss": 0.004867616377804862,
+      "null_mean_delta": -0.005207934149163738,
+      "null_delta_ci_95": [
+        -0.01266506980530617,
+        0.001193713212814876
+      ],
+      "p_value_observed_or_better": 0.004975124378109453,
+      "prob_null_delta_positive": 0.055
+    },
+    "damage_rate_core": {
+      "iterations": 200,
+      "observed_market_minus_candidate_log_loss": 0.002899198631746369,
+      "null_mean_delta": -0.003864396299629958,
+      "null_delta_ci_95": [
+        -0.009414621546467569,
+        0.0005290666775233813
+      ],
+      "p_value_observed_or_better": 0.004975124378109453,
+      "prob_null_delta_positive": 0.06
+    }
+  },
+  "probability_rows": [
+    {
+      "variant": "market_recalibrated",
+      "fights": 961,
+      "market_log_loss": 0.6001216372406988,
+      "candidate_log_loss": 0.598467877890282,
+      "delta_log_loss": 0.0016537593504167836,
+      "delta_brier": 0.0007151362614427614,
+      "accuracy": 0.6867845993756504,
+      "mean_abs_move": 0.02579599240821731
+    },
+    {
+      "variant": "current_mixed_core",
+      "fights": 961,
+      "market_log_loss": 0.6001216372406988,
+      "candidate_log_loss": 0.5933200563770803,
+      "delta_log_loss": 0.006801580863618484,
+      "delta_brier": 0.0025450662306319427,
+      "accuracy": 0.6899063475546305,
+      "mean_abs_move": 0.03959659150623887
+    },
+    {
+      "variant": "current_sigpct_head",
+      "fights": 961,
+      "market_log_loss": 0.6001216372406988,
+      "candidate_log_loss": 0.5930243530964869,
+      "delta_log_loss": 0.007097284144211846,
+      "delta_brier": 0.0027337962327872167,
+      "accuracy": 0.6940686784599376,
+      "mean_abs_move": 0.038379291246722715
+    },
+    {
+      "variant": "pace_adjusted_mixed_core",
+      "fights": 961,
+      "market_log_loss": 0.6001216372406988,
+      "candidate_log_loss": 0.5933178728774774,
+      "delta_log_loss": 0.006803764363221387,
+      "delta_brier": 0.002824264270603477,
+      "accuracy": 0.6930280957336108,
+      "mean_abs_move": 0.03728974295294992
+    },
+    {
+      "variant": "rate_volume_core",
+      "fights": 961,
+      "market_log_loss": 0.6001216372406988,
+      "candidate_log_loss": 0.5938512238122818,
+      "delta_log_loss": 0.006270413428416943,
+      "delta_brier": 0.002552122412733726,
+      "accuracy": 0.6951092611862643,
+      "mean_abs_move": 0.03798435884432669
+    },
+    {
+      "variant": "location_rate_core",
+      "fights": 961,
+      "market_log_loss": 0.6001216372406988,
+      "candidate_log_loss": 0.593691507160036,
+      "delta_log_loss": 0.006430130080662733,
+      "delta_brier": 0.0026592574922245094,
+      "accuracy": 0.6857440166493236,
+      "mean_abs_move": 0.04054776704769804
+    },
+    {
+      "variant": "position_rate_core",
+      "fights": 961,
+      "market_log_loss": 0.6001216372406988,
+      "candidate_log_loss": 0.5952540208628939,
+      "delta_log_loss": 0.004867616377804862,
+      "delta_brier": 0.0019980021860665775,
+      "accuracy": 0.6888657648283039,
+      "mean_abs_move": 0.03895860381682722
+    },
+    {
+      "variant": "damage_rate_core",
+      "fights": 961,
+      "market_log_loss": 0.6001216372406988,
+      "candidate_log_loss": 0.5972224386089524,
+      "delta_log_loss": 0.002899198631746369,
+      "delta_brier": 0.0013637786300484123,
+      "accuracy": 0.6951092611862643,
+      "mean_abs_move": 0.03768996595195945
+    }
+  ],
+  "bet_rows": [
+    {
+      "variant": "market_recalibrated",
+      "bets": 615,
+      "events": 144,
+      "profit": -1.629940612733444,
+      "roi": -0.002650309939403974,
+      "actual_minus_market": 0.028384776256117683,
+      "positive_folds": 4,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.53745,
+      "market_null_p": 0.06059697015149242
+    },
+    {
+      "variant": "current_mixed_core",
+      "bets": 714,
+      "events": 148,
+      "profit": 33.38448710534056,
+      "roi": 0.04675698474137333,
+      "actual_minus_market": 0.051152346518489544,
+      "positive_folds": 6,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.0542,
+      "market_null_p": 0.0015999200039998
+    },
+    {
+      "variant": "current_sigpct_head",
+      "bets": 705,
+      "events": 148,
+      "profit": 31.849858620600912,
+      "roi": 0.04517710442638427,
+      "actual_minus_market": 0.047448717142983154,
+      "positive_folds": 5,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.0661,
+      "market_null_p": 0.002049897505124744
+    },
+    {
+      "variant": "pace_adjusted_mixed_core",
+      "bets": 695,
+      "events": 148,
+      "profit": 41.971283371967395,
+      "roi": 0.060390335787003445,
+      "actual_minus_market": 0.058472594528633404,
+      "positive_folds": 6,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.02055,
+      "market_null_p": 0.0010999450027498626
+    },
+    {
+      "variant": "rate_volume_core",
+      "bets": 681,
+      "events": 147,
+      "profit": 25.660944682984955,
+      "roi": 0.03768126972538172,
+      "actual_minus_market": 0.04792231646327394,
+      "positive_folds": 6,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.11105,
+      "market_null_p": 0.0034998250087495625
+    },
+    {
+      "variant": "location_rate_core",
+      "bets": 710,
+      "events": 148,
+      "profit": 34.05642197008061,
+      "roi": 0.04796679150715579,
+      "actual_minus_market": 0.04899622715320584,
+      "positive_folds": 5,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.04945,
+      "market_null_p": 0.003399830008499575
+    },
+    {
+      "variant": "position_rate_core",
+      "bets": 694,
+      "events": 147,
+      "profit": 13.250988134988965,
+      "roi": 0.019093642845805427,
+      "actual_minus_market": 0.041406566933665956,
+      "positive_folds": 4,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.26605,
+      "market_null_p": 0.035048247587620616
+    },
+    {
+      "variant": "damage_rate_core",
+      "bets": 713,
+      "events": 148,
+      "profit": 25.515531258068254,
+      "roi": 0.035786158847220556,
+      "actual_minus_market": 0.046392640549668074,
+      "positive_folds": 6,
+      "folds": 7,
+      "bootstrap_p_profit_le_zero": 0.1025,
+      "market_null_p": 0.0073996300184990755
+    }
+  ],
+  "rolling_probability_rows": [
+    {
+      "variant": "rolling_prior_probability_delta",
+      "fights": 840,
+      "market_log_loss": 0.6015183408137494,
+      "candidate_log_loss": 0.5976633904615684,
+      "delta_log_loss": 0.0038549503521810857,
+      "delta_brier": 0.001594231729543344,
+      "accuracy": 0.6952380952380952,
+      "mean_abs_move": 0.04183391734129923,
+      "positive_folds": 4,
+      "folds": 6,
+      "bootstrap_p_delta_le_zero": 0.1668
+    }
+  ],
+  "rolling_probability_selection_path": [
+    {
+      "variant": "current_mixed_core",
+      "prior_rows": 121,
+      "prior_delta_log_loss": 0.007284495597932317,
+      "fold": 2,
+      "eval_rows": 118,
+      "eval_delta_log_loss": -0.0016221927735232677
+    },
+    {
+      "variant": "current_sigpct_head",
+      "prior_rows": 239,
+      "prior_delta_log_loss": 0.004901224907130963,
+      "fold": 3,
+      "eval_rows": 151,
+      "eval_delta_log_loss": 0.002987579792248063
+    },
+    {
+      "variant": "pace_adjusted_mixed_core",
+      "prior_rows": 390,
+      "prior_delta_log_loss": 0.004539193488381943,
+      "fold": 4,
+      "eval_rows": 142,
+      "eval_delta_log_loss": 0.01151986461232446
+    },
+    {
+      "variant": "pace_adjusted_mixed_core",
+      "prior_rows": 532,
+      "prior_delta_log_loss": 0.006402455329734935,
+      "fold": 5,
+      "eval_rows": 138,
+      "eval_delta_log_loss": -0.002672003995164207
+    },
+    {
+      "variant": "current_sigpct_head",
+      "prior_rows": 670,
+      "prior_delta_log_loss": 0.00574907267179281,
+      "fold": 6,
+      "eval_rows": 147,
+      "eval_delta_log_loss": 0.006384638523879604
+    },
+    {
+      "variant": "rate_volume_core",
+      "prior_rows": 817,
+      "prior_delta_log_loss": 0.0064296706203893494,
+      "fold": 7,
+      "eval_rows": 144,
+      "eval_delta_log_loss": 0.005366850054518091
+    }
+  ],
+  "rolling_bet_rows": [
+    {
+      "variant": "rolling_prior_profit",
+      "bets": 615,
+      "events": 125,
+      "profit": 30.726620479318527,
+      "roi": 0.049961984519217115,
+      "actual_minus_market": 0.049454344272868545,
+      "positive_folds": 6,
+      "folds": 6,
+      "bootstrap_p_profit_le_zero": 0.0558,
+      "market_null_p": 0.004349782510874456
+    }
+  ],
+  "rolling_profit_selection_path": [
+    {
+      "variant": "current_mixed_core",
+      "prior_bets": 87,
+      "prior_profit": 0.9063568505955844,
+      "prior_roi": 0.010417894834432005,
+      "fold": 2,
+      "eval_bets": 92,
+      "eval_profit": 2.8474192326426717,
+      "eval_roi": 0.030950209050463823
+    },
+    {
+      "variant": "rate_volume_core",
+      "prior_bets": 160,
+      "prior_profit": 6.0339607898749446,
+      "prior_roi": 0.037712254936718405,
+      "fold": 3,
+      "eval_bets": 103,
+      "eval_profit": 2.540849449994302,
+      "eval_roi": 0.024668441262080603
+    },
+    {
+      "variant": "rate_volume_core",
+      "prior_bets": 263,
+      "prior_profit": 8.574810239869247,
+      "prior_roi": 0.03260384121623288,
+      "fold": 4,
+      "eval_bets": 96,
+      "eval_profit": 1.8966096375013677,
+      "eval_roi": 0.019756350390639246
+    },
+    {
+      "variant": "pace_adjusted_mixed_core",
+      "prior_bets": 371,
+      "prior_profit": 18.52954121278721,
+      "prior_roi": 0.04994485502098978,
+      "fold": 5,
+      "eval_bets": 101,
+      "eval_profit": 0.8266074421617402,
+      "eval_roi": 0.00818423210061129
+    },
+    {
+      "variant": "pace_adjusted_mixed_core",
+      "prior_bets": 472,
+      "prior_profit": 19.35614865494895,
+      "prior_roi": 0.04100878952319693,
+      "fold": 6,
+      "eval_bets": 113,
+      "eval_profit": 7.978984879581034,
+      "eval_roi": 0.07061048566000916
+    },
+    {
+      "variant": "pace_adjusted_mixed_core",
+      "prior_bets": 585,
+      "prior_profit": 27.335133534529987,
+      "prior_roi": 0.04672672399064955,
+      "fold": 7,
+      "eval_bets": 110,
+      "eval_profit": 14.636149837437415,
+      "eval_roi": 0.1330559076130674
+    }
+  ],
+  "outputs": {
+    "predictions_csv": "test_results/striking_feature_engineering_audit/striking_feature_engineering_predictions.csv",
+    "bets_csv": "test_results/striking_feature_engineering_audit/striking_feature_engineering_edge02_bets.csv",
+    "pace_features_csv": "test_results/striking_feature_engineering_audit/source_derived_pace_features.csv",
+    "summary_json": "test_results/striking_feature_engineering_audit/striking_feature_engineering_audit.json",
+    "report_md": "test_results/striking_feature_engineering_audit/striking_feature_engineering_audit.md"
+  }
+}

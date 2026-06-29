@@ -2225,6 +2225,78 @@ concentration and regime dependence: the edge is not broad enough to call live
 without future paper settlement, especially because top-event removal and the
 mid-market-probability bin expose clear weak spots.
 
+### Striking Feature Engineering Audit
+
+Striking feature-engineering audit:
+
+```text
+testing/striking_feature_engineering_audit.py
+test_results/striking_feature_engineering_audit/striking_feature_engineering_audit.md
+test_results/striking_feature_engineering_audit/striking_feature_engineering_audit.json
+```
+
+This audit tests whether more fight-interpretable pace-adjusted striking
+features improve the market-aware striking-core signal. It reconstructs
+source-derived per-minute striking features from chronological fight details,
+verifies the existing side rate columns, and compares compact variants on the
+same seven rolling folds. It keeps fixed `2%` positive-edge ledgers uncapped by
+event.
+
+Feature reconstruction:
+
+| Check | Value |
+| --- | ---: |
+| source rows | 7,730 |
+| feature rows | 4,322 |
+| expected / matched supervised rows | 4,322 / 4,322 |
+| missing / extra feature rows | 0 / 0 |
+| side rate checks | 69,152 |
+| side rate mismatches | 0 |
+| max side-rate abs error | 2.13e-14 |
+
+Interpretation of the feature mechanics:
+
+- current side columns such as `Red Sig. str.` are weighted prior per-minute
+  rates
+- current frozen raw differential columns such as `Sig. str. differential
+  oppdiff` are weighted count differentials per fight
+- the audit-created `*_differential_pm oppdiff` columns are pace-adjusted
+  alternatives for the same fight concepts
+
+Probability results:
+
+| Variant | Fights | Delta LL | Delta Brier | Accuracy | Positive Folds | Bootstrap P(delta <= 0) | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `current_sigpct_head` | 961 | +0.0071 | +0.0027 | 69.41% | 7 / 7 | 0.015 | 0.005 |
+| `pace_adjusted_mixed_core` | 961 | +0.0068 | +0.0028 | 69.30% | 6 / 7 | 0.021 | 0.005 |
+| `current_mixed_core` | 961 | +0.0068 | +0.0025 | 68.99% | 6 / 7 | 0.022 | 0.005 |
+| `location_rate_core` | 961 | +0.0064 | +0.0027 | 68.57% | 5 / 7 | 0.035 | 0.005 |
+| `rate_volume_core` | 961 | +0.0063 | +0.0026 | 69.51% | 6 / 7 | 0.040 | 0.005 |
+
+Fixed `2%` positive-edge uncapped ledgers:
+
+| Variant | Bets | Profit | ROI | Actual - Market | Positive Folds | Bootstrap P(profit <= 0) | Market-Null p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `pace_adjusted_mixed_core` | 695 | +41.97u | 6.04% | 5.85% | 6 / 7 | 0.021 | 0.001 |
+| `location_rate_core` | 710 | +34.06u | 4.80% | 4.90% | 5 / 7 | 0.049 | 0.003 |
+| `current_mixed_core` | 714 | +33.38u | 4.68% | 5.12% | 6 / 7 | 0.054 | 0.002 |
+| `current_sigpct_head` | 705 | +31.85u | 4.52% | 4.74% | 5 / 7 | 0.066 | 0.002 |
+
+Rolling prior-fold diagnostics over the inspected feature variants:
+
+| Selector | Eval Folds | Fights/Bets | Delta LL / Profit | Positive Folds | Bootstrap P |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| probability-delta selector | 6 | 840 fights | +0.0039 LL | 4 / 6 | 0.167 |
+| profit selector | 6 | 615 bets | +30.73u | 6 / 6 | 0.056 |
+
+Interpretation: pace-adjusting the raw strike/head differentials is a
+plausible feature-engineering direction, especially for uncapped PnL, but it
+does not displace the current policies yet. `current_sigpct_head` remains the
+best probability variant, the pace-adjusted mixed core is effectively tied
+with current mixed core on log loss, and the rolling probability selector is
+weaker than the best fixed variants. The pace-adjusted PnL result is
+interesting discovery evidence, not a frozen policy change.
+
 ### Frozen SigPct-Head Challenger Paper Policy
 
 Frozen challenger paper policy:
@@ -2775,6 +2847,13 @@ The most honest read:
   their top five profit events, but all turn negative after removing their top
   ten; the `0.60-0.70` market-probability bin is also weak or negative for the
   fixed reference policies
+- pace-adjusted striking feature engineering is promising but not enough for a
+  policy change: source-derived side rate columns reconstructed with `69,152`
+  checks and `0` mismatches; `pace_adjusted_mixed_core` made the best fixed
+  uncapped PnL (`+41.97u`, `6.04%` ROI), but `current_sigpct_head` remained the
+  best probability variant (`+0.0071` delta LL), and the rolling probability
+  selector over inspected variants was weaker (`+0.0039` delta LL,
+  bootstrap `P(delta <= 0) = 0.167`)
 - a separate frozen `sigpct_head|all` challenger paper policy now exists for
   future pre-outcome tracking; it uses `market_logit`, `Sig. str.% differential
   oppdiff`, and `Head differential oppdiff`, fixed `2.00%` positive-edge
@@ -2969,6 +3048,11 @@ men-only filtering, and fight-context meaning. The goal is to distinguish
 features that genuinely describe ways fighters win from generator artifacts
 that merely worked historically.
 
+Immediate follow-up: if pace-adjusted striking remains interesting, run a
+selection-adjusted audit that reruns the rolling feature-variant selector under
+market-null outcomes. Without that, the `+41.97u` pace-adjusted PnL result
+should stay discovery-only.
+
 ## Independent PnL Investigation Update
 
 Latest independent investigation date: 2026-06-28.
@@ -3058,6 +3142,7 @@ Validation:
 - compile check passed for `testing/striking_core_robustness_selection_audit.py`
 - compile check passed for `testing/striking_core_betting_calibration_audit.py`
 - compile check passed for `testing/striking_core_regime_stress_audit.py`
+- compile check passed for `testing/striking_feature_engineering_audit.py`
 - compile check passed for `utils/incremental_processing.py`,
   `testing/residual_event_cap_rolling_selection_audit.py`,
   `testing/outcome_universe_audit.py`, and `testing/no_leakage_backtest.py`
@@ -3102,6 +3187,11 @@ Validation:
   events, but all turned negative after removing their top ten, and the
   `0.60-0.70` market-probability bin was weak or negative for the fixed
   reference policies
+- the striking feature-engineering audit regenerated cleanly; source-derived
+  side rate columns matched the feature table with `69,152` checks and `0`
+  mismatches, pace-adjusted mixed core had the best fixed uncapped PnL
+  (`+41.97u`), but current `sigpct_head` remained best on log loss and the
+  rolling probability selector was only `+0.0039` delta LL
 - a five-fight capped residual scorer smoke test exercised the event cap itself:
   the scorer placed exactly three paper bets and marked two otherwise eligible
   candidates as `event cap 3 reached`
