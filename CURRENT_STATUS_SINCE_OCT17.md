@@ -2603,6 +2603,53 @@ Caveat: the feature family was motivated by prior component forensics and has
 no post-freeze evidence. Treat this as future paper-tracking only, not a live
 staking claim.
 
+### SigPct-Head-RawPM Feature Context Audit
+
+New diagnostic artifact:
+
+```text
+testing/striking_policy_feature_context_audit.py
+test_results/striking_policy_feature_context_audit/striking_policy_feature_context_audit.md
+test_results/striking_policy_feature_context_audit/striking_policy_feature_context_audit.json
+```
+
+This audit checks the exact frozen `sigpct_head_raw_pm` challenger inputs
+without selecting a new policy. It reconstructs the raw sigpct/head columns,
+reconstructs source-derived head pace, checks chronology and same-day ordering,
+then refits the frozen mirrored logistic model to inspect standardized
+coefficient direction.
+
+Integrity result:
+
+- hard feature failures: `0`
+- raw `Sig. str.%` / `Head` side and oppdiff reconstruction mismatches: `0`
+- source-derived pace checks: `69,152` side-rate checks, `0` mismatches
+- aligned rows missing pace features: `0`
+- `totalfights` chronology checks: `8,644`, mismatches: `0`
+- same-day prior feature sides: `0`; same-day prior market-aligned sides: `0`
+- supervised rows with prior non-binary state: `1,138`, confirming draws/no
+  contests/overturns can affect later feature state while not becoming labels
+
+Model-context result:
+
+| Feature | Mean Standardized Coef | Positive Folds | Residual High-Low |
+| --- | ---: | ---: | ---: |
+| `market_logit` | `+0.8999` | `7 / 7` |  |
+| `Sig. str.% differential oppdiff` | `+0.1199` | `7 / 7` | `+12.98%` |
+| `Head differential oppdiff` | `+0.1547` | `7 / 7` | `+11.00%` |
+| `Head differential_pm oppdiff` | `-0.0663` | `0 / 7` | `+0.62%` |
+
+Interpretation: this materially reduces the risk that the frozen
+`sigpct_head_raw_pm` evidence is a simple feature-computation leak. The raw
+sigpct/head inputs are directionally coherent after market control. The
+source-derived `Head differential_pm oppdiff` input is the semantic caveat:
+inside the raw-plus-pace policy it has a consistently negative conditional
+coefficient and weak standalone residual shape. That means it should be read
+as a pace-normalizing interaction with raw head differential, not as a clean
+"more head-strike pace is better" fight-mechanics feature. This supports
+keeping the policy as a paper challenger, but argues against upgrading it to a
+live edge claim before post-freeze evidence or a cleaner feature redesign.
+
 ### Frozen SigPct-Head Challenger Paper Policy
 
 Frozen challenger paper policy:
@@ -3189,6 +3236,12 @@ The most honest read:
   `Sig. str.% differential oppdiff`, `Head differential oppdiff`, and
   source-derived `Head differential_pm oppdiff`, fixed `2.00%` positive-edge
   threshold, flat `1u` stake, and no event cap
+- the exact `sigpct_head_raw_pm` feature-context audit found `0` hard
+  reconstruction/chronology failures and no same-day market-aligned leakage,
+  but also found `Head differential_pm oppdiff` has a consistently negative
+  standardized coefficient when paired with raw `Head differential oppdiff`;
+  treat it as a conditional pace-normalizer, not a standalone "more head pace
+  is better" feature
 - a separate frozen `sigpct_head|all` challenger paper policy now exists for
   future pre-outcome tracking; it uses `market_logit`, `Sig. str.% differential
   oppdiff`, and `Head differential oppdiff`, fixed `2.00%` positive-edge
@@ -3384,10 +3437,12 @@ features that genuinely describe ways fighters win from generator artifacts
 that merely worked historically.
 
 Immediate follow-up: the simple `sigpct_head_raw_pm` challenger is now frozen
-for future pre-outcome evidence. The next useful work is to keep the frozen
-paper ledgers separate, collect post-freeze cards without changing rules, and
-optionally run a higher-iteration selection-null or recent-card stress before
-promoting any new feature family beyond challenger status.
+for future pre-outcome evidence and its exact feature-construction audit is
+clean, but the head pace term is semantically conditional rather than a clean
+positive feature. The next useful work is to keep the frozen paper ledgers
+separate, collect post-freeze cards without changing rules, and investigate
+cleaner feature families or interactions before promoting any new feature
+family beyond challenger status.
 
 ## Independent PnL Investigation Update
 
@@ -3477,6 +3532,10 @@ Operational PnL implementation update:
 - `testing/striking_redesign_selection_audit.py` tests a small predeclared
   head-focused redesign family with fixed-variant diagnostics, rolling
   prior-fold selectors, and market selection-null reruns
+- `testing/striking_policy_feature_context_audit.py` checks the exact frozen
+  `sigpct_head_raw_pm` challenger features for reconstruction, chronology,
+  same-day source-order leakage, non-binary state handling, coefficient
+  direction, and market-residual shape
 - `testing/score_frozen_striking_core_policy.py` can now score the frozen
   `sigpct_head_raw_pm` challenger as a separate pre-outcome paper ledger:
   `test_results/forward_paper_tracking/latest_sigpct_head_raw_pm_challenger_paper_bets.csv`
@@ -3573,6 +3632,12 @@ Validation:
   features, scored a two-fight temporary card, wrote compatible CSV/JSON
   ledgers under `/private/tmp`, generated a settlement outcome template, and
   settled a synthetic result
+- the exact `sigpct_head_raw_pm` feature-context audit regenerated cleanly:
+  `0` hard failures, `0` raw sig/head reconstruction mismatches, `69,152`
+  source-derived pace checks with `0` mismatches, `8,644` chronology checks
+  with `0` mismatches, `0` same-day prior market-aligned sides, and
+  standardized coefficients positive for market/sigpct/raw-head but negative
+  for `Head differential_pm oppdiff` in `7/7` folds
 - a five-fight capped residual scorer smoke test exercised the event cap itself:
   the scorer placed exactly three paper bets and marked two otherwise eligible
   candidates as `event cap 3 reached`

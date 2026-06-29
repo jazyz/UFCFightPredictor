@@ -74,6 +74,19 @@ Rolling prior-fold redesign-selector diagnostics:
 | probability-delta selector | +0.0066 LL | 0.0050 | 0.0365 |
 | profit selector | +34.41u | 0.0299 | 0.0368 |
 
+Follow-up feature-context audit:
+
+```text
+test_results/striking_policy_feature_context_audit/striking_policy_feature_context_audit.md
+```
+
+That audit found `0` hard reconstruction/chronology failures for the exact
+frozen inputs and no same-day market-aligned source-order leakage. It also
+found that `Head differential_pm oppdiff` has a negative standardized
+coefficient in all seven folds when paired with raw `Head differential
+oppdiff`, so read it as a conditional pace-normalizer rather than a standalone
+"more head pace is better" feature.
+
 ## Generate Paper Ledger
 
 ```bash
@@ -97,5 +110,6 @@ columns are preserved in the ledger.
 This is the strongest historical feature-redesign evidence so far, but it is
 still not a live-edge proof. The redesign family was motivated by prior
 striking feature forensics, the selection-null run has only `200` simulations,
-and no post-freeze outcomes exist. Treat this as a frozen future-evidence
-collection contract, not a live staking recommendation.
+the head pace term is semantically conditional, and no post-freeze outcomes
+exist. Treat this as a frozen future-evidence collection contract, not a live
+staking recommendation.
