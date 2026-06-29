@@ -1,0 +1,183 @@
+{
+  "iterations": 20000,
+  "seed": 20260628,
+  "runs": [
+    {
+      "label": "profit_objective",
+      "csv_path": "test_results/feature_ablation_nested_validation_audit/profit_objective/selected_holdouts.csv",
+      "summary_path": "test_results/feature_ablation_nested_validation_audit/profit_objective/no_leakage_backtest_summary.json",
+      "start_date": "2023-02-11",
+      "end_date": "2026-06-27",
+      "strategy": null,
+      "min_edge": null,
+      "starting_bankroll": 1000.0,
+      "final_bankroll": 1130.8292061885857,
+      "summary_profit_pct": null,
+      "prediction": {
+        "fights": 962,
+        "model_accuracy": 0.6309771309771309,
+        "model_accuracy_p_vs_50": 1.9940723840712696e-16,
+        "model_log_loss": 0.6416027759343313,
+        "model_brier": 0.22518625346335988,
+        "model_calibration": {
+          "ece": 0.05302064208715774,
+          "mean_probability": 0.5024963926226079,
+          "actual_rate": 0.5103950103950103,
+          "bins": [
+            {
+              "bin": "0.1-0.2",
+              "n": 15,
+              "mean_probability": 0.16484548465154797,
+              "actual_rate": 0.13333333333333333,
+              "gap": -0.03151215131821464
+            },
+            {
+              "bin": "0.2-0.3",
+              "n": 89,
+              "mean_probability": 0.25834771538534623,
+              "actual_rate": 0.24719101123595505,
+              "gap": -0.011156704149391183
+            },
+            {
+              "bin": "0.3-0.4",
+              "n": 161,
+              "mean_probability": 0.35039177988169357,
+              "actual_rate": 0.2919254658385093,
+              "gap": -0.05846631404318425
+            },
+            {
+              "bin": "0.4-0.5",
+              "n": 201,
+              "mean_probability": 0.45391312901416697,
+              "actual_rate": 0.5174129353233831,
+              "gap": 0.06349980630921609
+            },
+            {
+              "bin": "0.5-0.6",
+              "n": 224,
+              "mean_probability": 0.5510113599969947,
+              "actual_rate": 0.6071428571428571,
+              "gap": 0.05613149714586241
+            },
+            {
+              "bin": "0.6-0.7",
+              "n": 173,
+              "mean_probability": 0.6480103173181515,
+              "actual_rate": 0.5953757225433526,
+              "gap": -0.052634594774798926
+            },
+            {
+              "bin": "0.7-0.8",
+              "n": 81,
+              "mean_probability": 0.74116978316515,
+              "actual_rate": 0.7901234567901234,
+              "gap": 0.04895367362497338
+            },
+            {
+              "bin": "0.8-0.9",
+              "n": 18,
+              "mean_probability": 0.8177335166297426,
+              "actual_rate": 0.7222222222222222,
+              "gap": -0.09551129440752038
+            }
+          ]
+        },
+        "market_comparable_fights": 948,
+        "market_favorite_accuracy": 0.6867088607594937,
+        "market_log_loss": 0.600842640176081,
+        "market_brier": 0.20661961481185498,
+        "market_minus_model_log_loss": -0.0403779938195552,
+        "market_minus_model_brier": -0.018380788042909352,
+        "mcnemar_vs_market": {
+          "model_only_correct": 101,
+          "market_only_correct": 154,
+          "discordant": 255,
+          "one_sided_p_model_better": 0.9996547615459432
+        },
+        "logloss_event_bootstrap": {
+          "events": 145,
+          "market_minus_model_logloss_ci_95": [
+            -0.05833882124167437,
+            -0.021992311011378513
+          ],
+          "prob_model_not_better": 1.0
+        }
+      },
+      "betting": {
+        "bets": 220,
+        "events_with_bets": 111,
+        "wins": 120,
+        "win_rate": 0.5454545454545454,
+        "mean_model_bet_probability": 0.6575710619354325,
+        "mean_market_devig_bet_probability": 0.4907029628258902,
+        "mean_raw_edge_used_by_strategy": 0.16686809910954237,
+        "mean_devig_edge": 0.16686809910954242,
+        "total_staked": 3068.7239060724487,
+        "profit": 130.8292061885856,
+        "profit_pct_bankroll": 0.13082920618858565,
+        "roi_on_staked": 0.04263309772824408,
+        "mean_profit_per_bet": 0.5946782099481169,
+        "mean_return_per_bet": 0.05277884595448631,
+        "return_t_stat": 0.7585556316947774,
+        "return_t_p_one_sided": 0.224059211137178,
+        "bet_calibration": {
+          "ece": 0.11211651648088714,
+          "mean_probability": 0.6575710619354325,
+          "actual_rate": 0.5454545454545454,
+          "bins": [
+            {
+              "bin": "0.5-0.6",
+              "n": 50,
+              "mean_probability": 0.5483220644693438,
+              "actual_rate": 0.36,
+              "gap": -0.18832206446934385
+            },
+            {
+              "bin": "0.6-0.7",
+              "n": 109,
+              "mean_probability": 0.6533082078916213,
+              "actual_rate": 0.5779816513761468,
+              "gap": -0.07532655651547449
+            },
+            {
+              "bin": "0.7-0.8",
+              "n": 51,
+              "mean_probability": 0.7390393626639624,
+              "actual_rate": 0.6666666666666666,
+              "gap": -0.07237269599729579
+            },
+            {
+              "bin": "0.8-0.9",
+              "n": 10,
+              "mean_probability": 0.8347928246279173,
+              "actual_rate": 0.5,
+              "gap": -0.33479282462791726
+            }
+          ]
+        },
+        "event_bootstrap": {
+          "events": 111,
+          "profit_ci_95": [
+            -419.8847347211299,
+            683.8081911031892
+          ],
+          "roi_ci_95": [
+            -0.13866429058673724,
+            0.21942331860327827
+          ],
+          "prob_profit_le_zero": 0.32955
+        },
+        "market_null_path": {
+          "simulated_bets": 220,
+          "null_mean_final_bankroll": 975.0805857189596,
+          "null_final_bankroll_ci_95": [
+            525.6662016090241,
+            1677.2117778173417
+          ],
+          "p_value_observed_or_better": 0.25723713814309285,
+          "prob_null_profitable": 0.40485
+        }
+      }
+    }
+  ]
+}

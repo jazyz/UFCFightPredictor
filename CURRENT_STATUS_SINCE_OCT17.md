@@ -1761,6 +1761,47 @@ de-vigged market on aligned log loss, so the honest next step is nested
 validation of the narrow probability cleanup and/or a redesigned
 fight-interpretable percentage feature family.
 
+### Feature Ablation Nested Validation Audit
+
+Feature ablation nested-validation audit:
+
+```text
+testing/feature_ablation_nested_validation_audit.py
+test_results/feature_ablation_nested_validation_audit/feature_ablation_nested_validation_audit.md
+test_results/feature_ablation_nested_validation_audit/feature_ablation_nested_validation_audit.json
+```
+
+This stricter follow-up builds long `2022-02-05` to `2026-06-27` leak-safe
+ledgers for the semantic ablations, then lets the existing nested selector
+choose among `baseline_default`, `current_regularized`, and all three
+ablation models using only prior 365-day development windows.
+
+Long standalone ledgers:
+
+| Model | Fights | Accuracy | Model LL | Market LL | Profit |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| baseline default | 1,249 | 62.53% | 0.6447 | 0.6006 | +25.07% |
+| current regularized | 1,249 | 63.65% | 0.6396 | 0.6006 | +29.61% |
+| drop target-mix defense | 1,249 | 62.85% | 0.6398 | 0.6006 | +7.00% |
+| drop muddy pct and DOB | 1,249 | 63.49% | 0.6402 | 0.6006 | +20.12% |
+| drop all percentage | 1,249 | 62.45% | 0.6449 | 0.6006 | -29.99% |
+
+Nested selection with ablation candidates:
+
+| Objective | Folds | Bets | Profit | ROI | Positive Folds | Selected Ablation Folds | Market-Null p | Bootstrap P(profit <= 0) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| profit | 7 | 220 | +$130.83 | 4.26% | 3 / 7 | 5 / 7 | 0.257 | 0.330 |
+| ROI | 7 | 147 | -$19.65 | -2.00% | 3 / 7 | 5 / 7 | 0.580 | 0.574 |
+
+Interpretation: do not promote the semantic ablations. The stricter long
+ledger check restores `current_regularized` as the best standalone model by
+both log loss and plain-strategy PnL, and every model still trails de-vigged
+market log loss. The nested selector often chooses ablations, but that hurts
+rather than helps the edge claim: the profit objective weakens versus the
+earlier baseline/current-only nested audit, and the ROI objective turns
+negative. Percentage/defense semantics remain a feature-design concern, but
+simple removal is not validated.
+
 ### Market Disagreement Audit
 
 Disagreement audit:
@@ -2010,6 +2051,12 @@ The most honest read:
   dropping the broader muddy percentage/DOB family improved 2y PnL
   (`+78.75%` vs `+61.20%`) at worse log loss and weaker 1y evidence; no
   ablation beat de-vigged market log loss
+- nested validation rejects those semantic ablations as an edge improvement:
+  on long `2022-2026` ledgers, current regularized is again best by model log
+  loss (`0.6396`) and plain PnL (`+29.61%`); nested selection with ablation
+  candidates chooses ablations in `5/7` folds but weakens profit-objective
+  evidence (`+$130.83`, market-null p `0.257`) and makes the ROI objective
+  negative (`-$19.65`, p `0.580`)
 - recent-form/activity feature engineering did not help: adding 128 leak-safe
   last-3/last-5 and recent-activity columns worsened one-year and two-year log
   loss and sharply reduced PnL versus the current regularized feature set
@@ -2295,6 +2342,11 @@ Validation:
   improved model log loss slightly but reduced PnL, the broader muddy
   percentage/DOB drop improved 2y PnL but worsened log loss, and every variant
   still trailed de-vigged market log loss
+- the feature ablation nested-validation audit generated long `2022-2026`
+  ablation ledgers and reran profit/ROI nested selection across baseline,
+  current regularized, and ablation candidates; ablations were selected in
+  `5/7` folds for both objectives but failed validation, with profit objective
+  market-null p `0.257` and ROI objective losing `-$19.65`
 - the residual recent-stress audit regenerated cleanly; selected-shrinkage
   probability delta was `-0.0032` over the last 365 days, and frozen
   residual-meta cap-3 PnL was only `+0.38u` over the last 365 days

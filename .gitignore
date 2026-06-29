@@ -18,3 +18,4 @@ test_results/no_leakage_backtest.csv
 test_results/no_leakage_backtest_summary.json
 test_results/no_leakage_backtest_*/
 test_results/feature_semantic_ablation_audit/features/*.csv
+test_results/feature_ablation_nested_validation_audit/features/*.csv
