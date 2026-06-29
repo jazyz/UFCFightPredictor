@@ -1,0 +1,48 @@
+{
+  "as_of_date": "2026-06-29",
+  "source_backtest": "test_results/striking_core_predeclared_backtest/striking_core_predeclared_backtest.json",
+  "source_report": "test_results/striking_core_predeclared_backtest/striking_core_predeclared_backtest.md",
+  "policy": {
+    "name": "mixed_sig_head_core_forward_paper",
+    "variant": "mixed_sig_head_core",
+    "feature_columns": [
+      "market_logit",
+      "Sig. str.% differential oppdiff",
+      "Sig. str. differential oppdiff",
+      "Head differential oppdiff"
+    ],
+    "logistic_l2_c": 0.1,
+    "training_protocol": "Train on all currently known aligned historical men-only fights before scoring; use de-vigged market_logit, red/blue mirrored logistic training, median imputation, standard scaling, and mirrored probability averaging.",
+    "min_edge": 0.02,
+    "min_probability": 0.0,
+    "stake_units": 1.0,
+    "event_cap": null,
+    "include_womens_fights": false,
+    "settlement": "flat_units"
+  },
+  "evidence": {
+    "aligned_rows": 1223,
+    "evaluated_fights": 961,
+    "rolling_folds": 7,
+    "first_holdout_start": "2023-01-01",
+    "last_holdout_end": "2026-06-27",
+    "probability_market_delta_log_loss": 0.006801580863618484,
+    "brier_delta": 0.0025450662306319427,
+    "accuracy": 0.6899063475546305,
+    "positive_folds": 6,
+    "folds": 7,
+    "event_bootstrap_prob_delta_le_zero": 0.0222,
+    "market_null_p": 0.0033222591362126247,
+    "candidate_ece": 0.0278,
+    "descriptive_edge_threshold": 0.02,
+    "descriptive_bets": 714,
+    "descriptive_profit_units": 33.38448710534056,
+    "descriptive_roi": 0.04675698474137333,
+    "descriptive_positive_folds": 6,
+    "descriptive_folds_with_bets": 7,
+    "descriptive_mean_edge": 0.05000376734806447,
+    "descriptive_profit_market_null_p": 0.001799910004499775,
+    "descriptive_profit_bootstrap_prob_profit_le_zero": 0.0547
+  },
+  "freeze_warning": "This striking-core paper policy is frozen for future paper tracking only. Do not alter feature columns, regularization strength, universe, thresholds, side-selection rule, event-cap setting, or stake size after future outcomes are known."
+}

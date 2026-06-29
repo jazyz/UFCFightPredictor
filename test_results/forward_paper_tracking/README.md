@@ -83,3 +83,34 @@ The input CSV must include `fighter1`, `fighter2`, `fighter1_odds`, and
 columns are preserved in the ledger. Archive the generated CSV/JSON before
 outcomes are known. After the card, settle it with the same
 `testing/settle_forward_paper_ledger.py` workflow above.
+
+## Striking-Core Paper Policy
+
+The strongest current probability-edge candidate is frozen here:
+
+```text
+test_results/frozen_striking_core_paper_policy/frozen_striking_core_paper_policy.md
+test_results/frozen_striking_core_paper_policy/frozen_striking_core_paper_policy.json
+```
+
+It uses a men-only market-aware logistic model with `market_logit`,
+`Sig. str.% differential oppdiff`, `Sig. str. differential oppdiff`, and
+`Head differential oppdiff`; L2 logistic `C = 0.1`; a fixed `2%` positive-edge
+threshold; flat `1u` paper stakes; and no event cap. Generate pre-outcome
+paper ledgers with:
+
+```bash
+.venv/bin/python testing/score_frozen_striking_core_policy.py \
+  --fights path/to/fight_card_odds.csv \
+  --event-key unique-event-key \
+  --fight-card-link https://example.com/card \
+  --output-csv test_results/forward_paper_tracking/latest_striking_core_paper_bets.csv \
+  --output-json test_results/forward_paper_tracking/latest_striking_core_paper_bets.json
+```
+
+Before using this as evidence, regenerate `data/predict_fights_alpha.csv` for
+the target card before outcomes are known. The input CSV must include
+`fighter1`, `fighter2`, `fighter1_odds`, and `fighter2_odds`; optional
+`fight_index`, `event_key`, and `fight_card_link` columns are preserved in the
+ledger. After the card, settle it with the same
+`testing/settle_forward_paper_ledger.py` workflow above.

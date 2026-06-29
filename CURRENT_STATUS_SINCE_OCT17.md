@@ -1965,6 +1965,49 @@ especially the fixed `2%` positive-edge threshold, but those threshold rows are
 descriptive and should not be treated as selected staking policy. This is a
 strong candidate for pre-outcome paper tracking, not proof of live edge yet.
 
+### Frozen Striking-Core Paper Policy
+
+Frozen paper policy:
+
+```text
+testing/score_frozen_striking_core_policy.py
+test_results/frozen_striking_core_paper_policy/frozen_striking_core_paper_policy.md
+test_results/frozen_striking_core_paper_policy/frozen_striking_core_paper_policy.json
+```
+
+This freezes the strongest current alpha candidate for future pre-outcome
+paper tracking. The rule is the fixed `mixed_sig_head_core` market-aware model:
+
+```text
+market_logit
++ Sig. str.% differential oppdiff
++ Sig. str. differential oppdiff
++ Head differential oppdiff
+```
+
+Frozen scoring contract:
+
+- men-only universe; do not train on or evaluate women's fights
+- fit L2 logistic regression with `C = 0.1`
+- train on all aligned historical feature/odds rows available before scoring,
+  or before an explicit `--train-through` replay date
+- use red/blue mirrored training and mirrored probability averaging
+- select the side with highest `policy probability - market probability`
+- paper bet only when selected edge is at least `2.00%`
+- flat `1u` stake
+- no event cap
+
+The scorer writes settlement-compatible ledgers:
+
+```text
+test_results/forward_paper_tracking/latest_striking_core_paper_bets.csv
+test_results/forward_paper_tracking/latest_striking_core_paper_bets.json
+```
+
+Regenerate `data/predict_fights_alpha.csv` before the target card and before
+outcomes are known. The checked-in file is stale and should not be treated as
+current forward evidence.
+
 ### Feature Semantic Integrity Audit
 
 Feature semantic-integrity audit:
@@ -2434,6 +2477,10 @@ The most honest read:
   `P(delta <= 0) = 0.022`, and `300`-refit market-null p `0.003`; after a
   simple three-challenger correction, market-null remains supportive while
   bootstrap evidence is marginal
+- a frozen uncapped striking-core paper policy now exists for that candidate:
+  it keeps the men-only universe, `C = 0.1` L2 logistic model, fixed
+  `2.00%` positive-edge threshold, flat `1u` stake, and no event cap; it is
+  for future pre-outcome paper tracking only
 - feature-forensics did not find a hard arithmetic or pre-fight-state bug:
   `64` oppdiff pairs, `276,527` row-level diff checks, all `4,322` source
   supervised rows, `69,152` core state checks, and active side-swap coverage
@@ -2606,20 +2653,21 @@ The most honest read:
 Recommendation:
 
 Do not materially increase staking based only on these backtests. Use the
-frozen forward betting artifact above as the current main PnL paper-tracking
-policy, keep the frozen residual transform as a secondary probability monitor,
-and treat `mixed_sig_head_core` as the strongest new candidate for a frozen
-pre-outcome paper tracker. A real edge claim needs future out-of-sample
+frozen striking-core paper policy as the main current alpha candidate to track
+pre-outcome, keep the frozen forward betting artifact and frozen residual
+transform as secondary monitors, and do not revise the tracked rules after
+future outcomes are known. A real edge claim needs future out-of-sample
 results that beat market-null and bootstrap tests after the model parameters,
-probability transform, selection objective, strategy grid, and staking policy
-have been frozen.
+probability transform, selection objective, universe, strategy grid, and
+staking policy have been frozen.
 
-Next research direction: freeze a forward paper-scoring contract for
-`mixed_sig_head_core` and/or its fixed `2%` positive-edge descriptive ledger,
-then settle future pre-outcome predictions without revising the policy. In
-parallel, keep auditing the significant-strike/head-strike percentage and raw
-differential formulas for leak-safety, symmetry, unit correctness, and fight
-meaning.
+Next research direction: run a deeper feature-engineering audit on the
+specific high-signal striking features before expanding the feature set. Check
+whether the significant-strike percentage, raw significant-strike differential,
+and head-strike differential columns are time-safe, orientation-symmetric,
+unit-consistent, and meaningful in fight context; also keep the men-only
+training/evaluation question and non-binary outcome state-update behavior
+explicit in the audit design.
 
 ## Independent PnL Investigation Update
 
@@ -2690,6 +2738,10 @@ Operational PnL implementation update:
   pre-outcome paper ledgers for the frozen capped residual policy:
   `test_results/forward_paper_tracking/latest_residual_event_cap_paper_bets.csv`
   and `.json`
+- `testing/score_frozen_striking_core_policy.py` generates separate
+  pre-outcome paper ledgers for the frozen uncapped striking-core policy:
+  `test_results/forward_paper_tracking/latest_striking_core_paper_bets.csv`
+  and `.json`
 
 Validation:
 
@@ -2697,6 +2749,7 @@ Validation:
   `predict_single_model.py`, `load_ensemble.py`, and
   `utils/production_predictions.py`
 - compile check passed for `testing/score_frozen_residual_event_cap_policy.py`
+- compile check passed for `testing/score_frozen_striking_core_policy.py`
 - compile check passed for `utils/incremental_processing.py`,
   `testing/residual_event_cap_rolling_selection_audit.py`,
   `testing/outcome_universe_audit.py`, and `testing/no_leakage_backtest.py`
@@ -2715,6 +2768,10 @@ Validation:
 - a capped residual scorer smoke test wrote a compatible pre-outcome ledger,
   generated a settlement outcome template, and settled a synthetic result under
   `/private/tmp`
+- a frozen striking-core scorer smoke test trained on `1,223` aligned
+  historical rows, scored a two-fight temporary card, wrote compatible
+  CSV/JSON ledgers under `/private/tmp`, and generated a settlement outcome
+  template
 - a five-fight capped residual scorer smoke test exercised the event cap itself:
   the scorer placed exactly three paper bets and marked two otherwise eligible
   candidates as `event cap 3 reached`
@@ -2808,5 +2865,6 @@ Validation:
 
 Current operational caveat: the checked-in `data/predict_fights_alpha.csv` is
 stale and fails the live feature-range guard with out-of-training-range values.
-Regenerate that file from the next card before running `predict_single_model.py`
-or `ml_web.py` for forward paper scoring.
+Regenerate that file from the next card before running `predict_single_model.py`,
+`ml_web.py`, or `testing/score_frozen_striking_core_policy.py` for forward
+paper scoring.
