@@ -1,0 +1,962 @@
+{
+  "parameters": {
+    "first_holdout_start": "2023-01-01",
+    "last_holdout_end": "2026-06-27",
+    "dev_days": 730,
+    "holdout_days": 182,
+    "step_days": 182,
+    "min_dev_fights": 200,
+    "min_holdout_fights": 60,
+    "c": 0.1,
+    "clip_quantile": 0.99,
+    "min_prior_selection_rows": 80,
+    "bootstrap_iterations": 20000,
+    "bet_null_iterations": 20000,
+    "seed": 20260629
+  },
+  "metadata": {
+    "features_path": "data/detailed_fights.csv",
+    "odds_path": "data/fight_results_with_odds.csv",
+    "fight_details_source": "data/fight_details_date.csv",
+    "excluded_title_patterns": [
+      "Women"
+    ],
+    "feature_rows": 3999,
+    "odds_rows": 1824,
+    "aligned_rows": 1223,
+    "duplicate_feature_keys": 0,
+    "odds_rows_date_repaired": 22,
+    "odds_rows_excluded_universe": 345,
+    "odds_rows_non_binary_excluded": 7,
+    "skipped_missing_features": 601,
+    "skipped_duplicate_features": 0,
+    "skipped_bad_odds": 0,
+    "skipped_orientation_mismatch": 0
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "dev_start": "2021-01-01",
+      "dev_end": "2022-12-31",
+      "holdout_start": "2023-01-01",
+      "holdout_end": "2023-07-01",
+      "dev_fights": 262,
+      "holdout_fights": 121,
+      "market_log_loss": 0.5904255132624963,
+      "mixed_core_delta_log_loss": 0.007284495597932317,
+      "mixed_core_clip99_delta_log_loss": 0.007197836628619947,
+      "sigpct_head_delta_log_loss": 0.006349247215896248,
+      "sigpct_only_delta_log_loss": 0.0008104748315450605,
+      "raw_sig_head_delta_log_loss": 0.011248607635681362
+    },
+    {
+      "fold": 2,
+      "dev_start": "2021-07-02",
+      "dev_end": "2023-07-01",
+      "holdout_start": "2023-07-02",
+      "holdout_end": "2023-12-30",
+      "dev_fights": 383,
+      "holdout_fights": 118,
+      "market_log_loss": 0.5988043542787147,
+      "mixed_core_delta_log_loss": -0.0016221927735232677,
+      "mixed_core_clip99_delta_log_loss": -0.001955795405474192,
+      "sigpct_head_delta_log_loss": 0.0034163884718717563,
+      "sigpct_only_delta_log_loss": 0.006047331181149085,
+      "raw_sig_head_delta_log_loss": -0.0028601550539564258
+    },
+    {
+      "fold": 3,
+      "dev_start": "2021-12-31",
+      "dev_end": "2023-12-30",
+      "holdout_start": "2023-12-31",
+      "holdout_end": "2024-06-29",
+      "dev_fights": 501,
+      "holdout_fights": 151,
+      "market_log_loss": 0.6044524075111317,
+      "mixed_core_delta_log_loss": 0.0031081009039033436,
+      "mixed_core_clip99_delta_log_loss": 0.002842986077677412,
+      "sigpct_head_delta_log_loss": 0.002987579792248063,
+      "sigpct_only_delta_log_loss": 0.0029113786558161436,
+      "raw_sig_head_delta_log_loss": 0.0028039144136705607
+    },
+    {
+      "fold": 4,
+      "dev_start": "2022-07-01",
+      "dev_end": "2024-06-29",
+      "holdout_start": "2024-06-30",
+      "holdout_end": "2024-12-28",
+      "dev_fights": 536,
+      "holdout_fights": 142,
+      "market_log_loss": 0.5621237764003885,
+      "mixed_core_delta_log_loss": 0.011370689191091521,
+      "mixed_core_clip99_delta_log_loss": 0.011455937209280398,
+      "sigpct_head_delta_log_loss": 0.010978205932278606,
+      "sigpct_only_delta_log_loss": 0.009659474202094787,
+      "raw_sig_head_delta_log_loss": 0.009878180603082654
+    },
+    {
+      "fold": 5,
+      "dev_start": "2022-12-30",
+      "dev_end": "2024-12-28",
+      "holdout_start": "2024-12-29",
+      "holdout_end": "2025-06-28",
+      "dev_fights": 532,
+      "holdout_fights": 138,
+      "market_log_loss": 0.6149679311270025,
+      "mixed_core_delta_log_loss": 0.005035242339487933,
+      "mixed_core_clip99_delta_log_loss": 0.005183017690262415,
+      "sigpct_head_delta_log_loss": 0.004858377871621911,
+      "sigpct_only_delta_log_loss": -0.0006850523236675565,
+      "raw_sig_head_delta_log_loss": 0.0025716766864416485
+    },
+    {
+      "fold": 6,
+      "dev_start": "2023-06-30",
+      "dev_end": "2025-06-28",
+      "holdout_start": "2025-06-29",
+      "holdout_end": "2025-12-27",
+      "dev_fights": 553,
+      "holdout_fights": 147,
+      "market_log_loss": 0.6123632574531143,
+      "mixed_core_delta_log_loss": 0.006773056604000405,
+      "mixed_core_clip99_delta_log_loss": 0.006889792368916292,
+      "sigpct_head_delta_log_loss": 0.006384638523879604,
+      "sigpct_only_delta_log_loss": 0.010225897376362925,
+      "raw_sig_head_delta_log_loss": -0.0040181672000561
+    },
+    {
+      "fold": 7,
+      "dev_start": "2023-12-29",
+      "dev_end": "2025-12-27",
+      "holdout_start": "2025-12-28",
+      "holdout_end": "2026-06-27",
+      "dev_fights": 578,
+      "holdout_fights": 144,
+      "market_log_loss": 0.6155529816284095,
+      "mixed_core_delta_log_loss": 0.014387848087511146,
+      "mixed_core_clip99_delta_log_loss": 0.013030920144775693,
+      "sigpct_head_delta_log_loss": 0.014097704926918198,
+      "sigpct_only_delta_log_loss": 0.009603679329255987,
+      "raw_sig_head_delta_log_loss": 0.00626238867301665
+    }
+  ],
+  "selected_eval_folds": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "selection_path": [
+    {
+      "fold": 2,
+      "selected_policy": "raw_sig_head|all",
+      "prior_score": 0.011248607635681421,
+      "prior_rows": 121,
+      "prior_positive_folds": 1,
+      "eval_rows": 118,
+      "eval_delta_log_loss": -0.002860155053956438,
+      "candidate_scores": {
+        "mixed_core|all": 0.007284495597932158,
+        "mixed_core_clip99|all": 0.007197836628619893,
+        "sigpct_head|all": 0.006349247215896075,
+        "sigpct_only|all": 0.0008104748315450942,
+        "raw_sig_head|all": 0.011248607635681421
+      }
+    },
+    {
+      "fold": 3,
+      "selected_policy": "sigpct_head|all",
+      "prior_score": 0.0049012249071309156,
+      "prior_rows": 239,
+      "prior_positive_folds": 2,
+      "eval_rows": 151,
+      "eval_delta_log_loss": 0.0029875797922481965,
+      "candidate_scores": {
+        "mixed_core|all": 0.0028870511300170343,
+        "mixed_core|min5": -0.00512916311566876,
+        "mixed_core_clip99|all": 0.002678470185008533,
+        "mixed_core_clip99|min5": -0.005321695592293521,
+        "sigpct_head|all": 0.0049012249071309156,
+        "sigpct_head|min5": -0.007324932373308254,
+        "sigpct_only|all": 0.0033960357070818062,
+        "sigpct_only|min5": -0.0054938487120992615,
+        "raw_sig_head|all": 0.004282775010671936,
+        "raw_sig_head|min5": -0.0016505022397094223
+      }
+    },
+    {
+      "fold": 4,
+      "selected_policy": "sigpct_head|all",
+      "prior_score": 0.004160300772907093,
+      "prior_rows": 390,
+      "prior_positive_folds": 3,
+      "eval_rows": 142,
+      "eval_delta_log_loss": 0.010978205932278733,
+      "candidate_scores": {
+        "mixed_core|all": 0.0029726370681114936,
+        "mixed_core|min5": 0.00030896698004543265,
+        "mixed_core|min10": -0.006245641661400663,
+        "mixed_core_clip99|all": 0.00274216736396496,
+        "mixed_core_clip99|min5": 7.948926890025132e-05,
+        "mixed_core_clip99|min10": -0.006384978578740143,
+        "sigpct_head|all": 0.004160300772907093,
+        "sigpct_head|min5": -0.00098004538256934,
+        "sigpct_head|min10": -0.0036015541613540936,
+        "sigpct_only|all": 0.0032083864385148283,
+        "sigpct_only|min5": -0.0009586708504899386,
+        "sigpct_only|min10": -0.00246606170664958,
+        "raw_sig_head|all": 0.0037101905231150018,
+        "raw_sig_head|min5": 0.002601623102096774,
+        "raw_sig_head|min10": -0.00588719212408299
+      }
+    },
+    {
+      "fold": 5,
+      "selected_policy": "sigpct_head|all",
+      "prior_score": 0.005980117563566439,
+      "prior_rows": 532,
+      "prior_positive_folds": 4,
+      "eval_rows": 138,
+      "eval_delta_log_loss": 0.004858377871621831,
+      "candidate_scores": {
+        "mixed_core|all": 0.005214222409207687,
+        "mixed_core|min5": 0.002690796202351352,
+        "mixed_core|min10": -0.0028601303364530297,
+        "mixed_core_clip99|all": 0.005068023224932657,
+        "mixed_core_clip99|min5": 0.0025106623794516007,
+        "mixed_core_clip99|min10": -0.0030816344902549545,
+        "sigpct_head|all": 0.005980117563566439,
+        "sigpct_head|min5": 0.0015379751819003188,
+        "sigpct_head|min10": -0.0004116428349681495,
+        "sigpct_only|all": 0.004930293322778699,
+        "sigpct_only|min5": 0.001096304353133461,
+        "sigpct_only|min10": -0.001101825814430841,
+        "raw_sig_head|all": 0.005356533739948496,
+        "raw_sig_head|min5": 0.004332253821253119,
+        "raw_sig_head|min10": -0.0019148638324055622
+      }
+    },
+    {
+      "fold": 6,
+      "selected_policy": "raw_sig_head|min5",
+      "prior_score": 0.00618419025136209,
+      "prior_rows": 413,
+      "prior_positive_folds": 4,
+      "eval_rows": 89,
+      "eval_delta_log_loss": -0.00039222072864623377,
+      "candidate_scores": {
+        "mixed_core|all": 0.00517735785753405,
+        "mixed_core|min5": 0.005110240679615303,
+        "mixed_core|min10": 0.0023203224498129058,
+        "mixed_core_clip99|all": 0.005091708652119967,
+        "mixed_core_clip99|min5": 0.004961081081667777,
+        "mixed_core_clip99|min10": 0.002172976567256907,
+        "sigpct_head|all": 0.005749072671792774,
+        "sigpct_head|min5": 0.004322742981457822,
+        "sigpct_head|min10": 0.004716104033324029,
+        "sigpct_only|all": 0.0037736997418688837,
+        "sigpct_only|min5": 0.0030549347535993305,
+        "sigpct_only|min10": 0.0019461794533531282,
+        "raw_sig_head|all": 0.004782936316987356,
+        "raw_sig_head|min5": 0.00618419025136209,
+        "raw_sig_head|min10": 0.00487093123575805
+      }
+    },
+    {
+      "fold": 7,
+      "selected_policy": "mixed_core|min5",
+      "prior_score": 0.007199206446576807,
+      "prior_rows": 502,
+      "prior_positive_folds": 5,
+      "eval_rows": 80,
+      "eval_delta_log_loss": 0.006892622490971323,
+      "candidate_scores": {
+        "mixed_core|all": 0.005464466444719549,
+        "mixed_core|min5": 0.007199206446576807,
+        "mixed_core|min10": 0.004034617731856478,
+        "mixed_core_clip99|all": 0.005415231670931557,
+        "mixed_core_clip99|min5": 0.007088307620270162,
+        "mixed_core_clip99|min10": 0.003933693629757044,
+        "sigpct_head|all": 0.005863427849585633,
+        "sigpct_head|min5": 0.006746906138164085,
+        "sigpct_head|min10": 0.006165579230964826,
+        "sigpct_only|all": 0.004934621470474312,
+        "sigpct_only|min5": 0.0055806902146798955,
+        "sigpct_only|min10": 0.004183568737715984,
+        "raw_sig_head|all": 0.0031993840317910472,
+        "raw_sig_head|min5": 0.005018252846539896,
+        "raw_sig_head|min10": 0.001931573103140028
+      }
+    }
+  ],
+  "reference_policies": [
+    "mixed_core|all",
+    "sigpct_head|all",
+    "mixed_core|min5",
+    "sigpct_head|min5"
+  ],
+  "policy_summaries": [
+    {
+      "name": "rolling_selected_prior_delta",
+      "calibration": {
+        "rows": 718,
+        "events": 126,
+        "market": {
+          "fights": 718,
+          "accuracy": 0.6880222841225627,
+          "log_loss": 0.602327247655875,
+          "brier": 0.20702505428685128
+        },
+        "candidate": {
+          "fights": 718,
+          "accuracy": 0.6949860724233984,
+          "log_loss": 0.5983446713392202,
+          "brier": 0.2054413160769929
+        },
+        "market_minus_candidate_log_loss": 0.003982576316654773,
+        "market_minus_candidate_brier": 0.0015837382098583819,
+        "market_ece": 0.03298212087242496,
+        "candidate_ece": 0.04139049837155927,
+        "candidate_minus_market_ece": 0.008408377499134305,
+        "mean_abs_candidate_minus_market": 0.03696453322825261
+      },
+      "betting": [
+        {
+          "threshold": 0.0,
+          "bets": 718,
+          "profit": -1.9648064376284253,
+          "roi": -0.0027364992167526817,
+          "positive_folds": 3,
+          "folds_with_bets": 6,
+          "mean_edge": 0.03696453322825261,
+          "mean_market_probability": 0.6235294164277689,
+          "mean_model_probability": 0.6604939496560216,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": -1.9648064376284253,
+            "null_mean_profit": -29.949631201920262,
+            "null_profit_ci_95": [
+              -72.67326505066183,
+              11.949927396440554
+            ],
+            "p_value_observed_or_better": 0.0967451627418629,
+            "prob_null_profitable": 0.0822
+          },
+          "event_bootstrap": {
+            "events": 126,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -40.471598563270746,
+              37.62185080321761
+            ],
+            "roi_ci_95": [
+              -0.05596441050009482,
+              0.05288111075951782
+            ],
+            "prob_profit_le_zero": 0.5421
+          }
+        },
+        {
+          "threshold": 0.02,
+          "bets": 526,
+          "profit": 20.982172108944983,
+          "roi": 0.03989006104362164,
+          "positive_folds": 5,
+          "folds_with_bets": 6,
+          "mean_edge": 0.04663468624622759,
+          "mean_market_probability": 0.6506261410976546,
+          "mean_model_probability": 0.6972608273438823,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 20.982172108944983,
+            "null_mean_profit": -22.07108875700828,
+            "null_profit_ci_95": [
+              -56.252495341087304,
+              12.240442783611627
+            ],
+            "p_value_observed_or_better": 0.005949702514874256,
+            "prob_null_profitable": 0.1018
+          },
+          "event_bootstrap": {
+            "events": 124,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -10.296060398537678,
+              52.0456700069163
+            ],
+            "roi_ci_95": [
+              -0.019375089329965543,
+              0.10062431310008149
+            ],
+            "prob_profit_le_zero": 0.09035
+          }
+        },
+        {
+          "threshold": 0.05,
+          "bets": 163,
+          "profit": 12.3158468331512,
+          "roi": 0.07555734253466993,
+          "positive_folds": 5,
+          "folds_with_bets": 6,
+          "mean_edge": 0.0720829690864049,
+          "mean_market_probability": 0.6625285692390144,
+          "mean_model_probability": 0.7346115383254193,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 12.3158468331512,
+            "null_mean_profit": -6.909942748084489,
+            "null_profit_ci_95": [
+              -24.933190717238375,
+              11.045981173263346
+            ],
+            "p_value_observed_or_better": 0.01749912504374781,
+            "prob_null_profitable": 0.2245
+          },
+          "event_bootstrap": {
+            "events": 78,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -5.78671149345618,
+              30.23916962851224
+            ],
+            "roi_ci_95": [
+              -0.0354495144683921,
+              0.18715032832230205
+            ],
+            "prob_profit_le_zero": 0.0915
+          }
+        }
+      ]
+    },
+    {
+      "name": "mixed_core|all",
+      "calibration": {
+        "rows": 840,
+        "events": 126,
+        "market": {
+          "fights": 840,
+          "accuracy": 0.6892857142857143,
+          "log_loss": 0.6015183408137494,
+          "brier": 0.20679355222591986
+        },
+        "candidate": {
+          "fights": 840,
+          "accuracy": 0.6952380952380952,
+          "log_loss": 0.5947863226678118,
+          "brier": 0.20414811784814835
+        },
+        "market_minus_candidate_log_loss": 0.006732018145937602,
+        "market_minus_candidate_brier": 0.0026454343777715106,
+        "market_ece": 0.034745260858658755,
+        "candidate_ece": 0.04054308317541871,
+        "candidate_minus_market_ece": 0.005797822316759953,
+        "mean_abs_candidate_minus_market": 0.04010948073680963
+      },
+      "betting": [
+        {
+          "threshold": 0.0,
+          "bets": 840,
+          "profit": 8.707901044582735,
+          "roi": 0.010366548862598494,
+          "positive_folds": 3,
+          "folds_with_bets": 6,
+          "mean_edge": 0.04010948073680963,
+          "mean_market_probability": 0.6165918874707133,
+          "mean_model_probability": 0.656701368207523,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 8.707901044582735,
+            "null_mean_profit": -31.832087165291817,
+            "null_profit_ci_95": [
+              -80.41860558410328,
+              16.884111579648497
+            ],
+            "p_value_observed_or_better": 0.05144742762861857,
+            "prob_null_profitable": 0.10075
+          },
+          "event_bootstrap": {
+            "events": 126,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -39.598023213130126,
+              57.15788538408354
+            ],
+            "roi_ci_95": [
+              -0.04721625938956033,
+              0.06822193734324113
+            ],
+            "prob_profit_le_zero": 0.3525
+          }
+        },
+        {
+          "threshold": 0.02,
+          "bets": 627,
+          "profit": 32.478130254744976,
+          "roi": 0.05179925080501591,
+          "positive_folds": 5,
+          "folds_with_bets": 6,
+          "mean_edge": 0.05037613385857165,
+          "mean_market_probability": 0.6386830193721292,
+          "mean_model_probability": 0.6890591532307008,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 32.478130254744976,
+            "null_mean_profit": -26.909261449778306,
+            "null_profit_ci_95": [
+              -65.17744059869602,
+              11.806484688819715
+            ],
+            "p_value_observed_or_better": 0.0011499425028748563,
+            "prob_null_profitable": 0.08685
+          },
+          "event_bootstrap": {
+            "events": 126,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -5.0198980918994875,
+              70.68848665537507
+            ],
+            "roi_ci_95": [
+              -0.007941179207635313,
+              0.11397541197685444
+            ],
+            "prob_profit_le_zero": 0.04605
+          }
+        },
+        {
+          "threshold": 0.05,
+          "bets": 250,
+          "profit": 11.269270428934998,
+          "roi": 0.04507708171573999,
+          "positive_folds": 5,
+          "folds_with_bets": 6,
+          "mean_edge": 0.07353842852741015,
+          "mean_market_probability": 0.64362556284181,
+          "mean_model_probability": 0.7171639913692203,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 11.269270428934998,
+            "null_mean_profit": -10.661782456130247,
+            "null_profit_ci_95": [
+              -34.51996525504379,
+              13.300964459248938
+            ],
+            "p_value_observed_or_better": 0.036698165091745415,
+            "prob_null_profitable": 0.18805
+          },
+          "event_bootstrap": {
+            "events": 102,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -12.873023788170498,
+              35.825571442365124
+            ],
+            "roi_ci_95": [
+              -0.05164362230322796,
+              0.14278769401590302
+            ],
+            "prob_profit_le_zero": 0.18065
+          }
+        }
+      ]
+    },
+    {
+      "name": "sigpct_head|all",
+      "calibration": {
+        "rows": 840,
+        "events": 126,
+        "market": {
+          "fights": 840,
+          "accuracy": 0.6892857142857143,
+          "log_loss": 0.6015183408137494,
+          "brier": 0.20679355222591986
+        },
+        "candidate": {
+          "fights": 840,
+          "accuracy": 0.6976190476190476,
+          "log_loss": 0.594313303731054,
+          "brier": 0.2038819780305149
+        },
+        "market_minus_candidate_log_loss": 0.007205037082695487,
+        "market_minus_candidate_brier": 0.00291157419540497,
+        "market_ece": 0.034745260858658755,
+        "candidate_ece": 0.03592814069458167,
+        "candidate_minus_market_ece": 0.001182879835922912,
+        "mean_abs_candidate_minus_market": 0.039010746628787306
+      },
+      "betting": [
+        {
+          "threshold": 0.0,
+          "bets": 840,
+          "profit": 7.751958018383428,
+          "roi": 0.009228521450456462,
+          "positive_folds": 4,
+          "folds_with_bets": 6,
+          "mean_edge": 0.039010746628787306,
+          "mean_market_probability": 0.6183843326185595,
+          "mean_model_probability": 0.6573950792473467,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 7.751958018383428,
+            "null_mean_profit": -31.702736449277214,
+            "null_profit_ci_95": [
+              -79.27622476414761,
+              16.47265741599053
+            ],
+            "p_value_observed_or_better": 0.05379731013449328,
+            "prob_null_profitable": 0.09655
+          },
+          "event_bootstrap": {
+            "events": 126,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -37.3867004085376,
+              52.74514987315223
+            ],
+            "roi_ci_95": [
+              -0.04435596050302859,
+              0.06319543230893977
+            ],
+            "prob_profit_le_zero": 0.37265
+          }
+        },
+        {
+          "threshold": 0.02,
+          "bets": 619,
+          "profit": 32.77509461399065,
+          "roi": 0.05294845656541301,
+          "positive_folds": 5,
+          "folds_with_bets": 6,
+          "mean_edge": 0.049053603579505924,
+          "mean_market_probability": 0.6404548179407306,
+          "mean_model_probability": 0.6895084215202365,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 32.77509461399065,
+            "null_mean_profit": -26.021364096139312,
+            "null_profit_ci_95": [
+              -64.14801528879727,
+              12.575983261313542
+            ],
+            "p_value_observed_or_better": 0.0018499075046247689,
+            "prob_null_profitable": 0.0906
+          },
+          "event_bootstrap": {
+            "events": 126,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -6.85125050501762,
+              71.68407966903271
+            ],
+            "roi_ci_95": [
+              -0.011167857690762473,
+              0.11748129400706718
+            ],
+            "prob_profit_le_zero": 0.0525
+          }
+        },
+        {
+          "threshold": 0.05,
+          "bets": 218,
+          "profit": 23.36560885471782,
+          "roi": 0.10718169199411844,
+          "positive_folds": 5,
+          "folds_with_bets": 6,
+          "mean_edge": 0.07423495088366074,
+          "mean_market_probability": 0.6470540754934446,
+          "mean_model_probability": 0.7212890263771052,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 23.36560885471782,
+            "null_mean_profit": -9.300408323053071,
+            "null_profit_ci_95": [
+              -31.181585950986364,
+              12.785213243110071
+            ],
+            "p_value_observed_or_better": 0.0016499175041247937,
+            "prob_null_profitable": 0.20175
+          },
+          "event_bootstrap": {
+            "events": 96,
+            "iterations": 20000,
+            "profit_ci_95": [
+              1.8423900433115312,
+              45.09126073729037
+            ],
+            "roi_ci_95": [
+              0.008362981743938442,
+              0.2079684818135462
+            ],
+            "prob_profit_le_zero": 0.0176
+          }
+        }
+      ]
+    },
+    {
+      "name": "mixed_core|min5",
+      "calibration": {
+        "rows": 509,
+        "events": 125,
+        "market": {
+          "fights": 509,
+          "accuracy": 0.6777996070726916,
+          "log_loss": 0.6083590328579869,
+          "brier": 0.21013456063843125
+        },
+        "candidate": {
+          "fights": 509,
+          "accuracy": 0.6777996070726916,
+          "log_loss": 0.6002338037853987,
+          "brier": 0.20710147372562554
+        },
+        "market_minus_candidate_log_loss": 0.00812522907258817,
+        "market_minus_candidate_brier": 0.0030330869128057103,
+        "market_ece": 0.03581445934154968,
+        "candidate_ece": 0.04344577205282544,
+        "candidate_minus_market_ece": 0.007631312711275762,
+        "mean_abs_candidate_minus_market": 0.037305862176347224
+      },
+      "betting": [
+        {
+          "threshold": 0.0,
+          "bets": 509,
+          "profit": 13.476521605726504,
+          "roi": 0.026476466808892936,
+          "positive_folds": 4,
+          "folds_with_bets": 6,
+          "mean_edge": 0.03730586217634723,
+          "mean_market_probability": 0.6169177832225349,
+          "mean_model_probability": 0.654223645398882,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 13.476521605726504,
+            "null_mean_profit": -21.331739072221094,
+            "null_profit_ci_95": [
+              -57.91356823355571,
+              14.206909730923257
+            ],
+            "p_value_observed_or_better": 0.02774861256937153,
+            "prob_null_profitable": 0.1247
+          },
+          "event_bootstrap": {
+            "events": 125,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -22.94232182463784,
+              51.27570498747277
+            ],
+            "roi_ci_95": [
+              -0.04514795733893657,
+              0.10018611068810142
+            ],
+            "prob_profit_le_zero": 0.23545
+          }
+        },
+        {
+          "threshold": 0.02,
+          "bets": 372,
+          "profit": 23.099330987224825,
+          "roi": 0.06209497577210974,
+          "positive_folds": 6,
+          "folds_with_bets": 6,
+          "mean_edge": 0.047553973892664886,
+          "mean_market_probability": 0.6394954821848081,
+          "mean_model_probability": 0.687049456077473,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 23.099330987224825,
+            "null_mean_profit": -15.740079746260168,
+            "null_profit_ci_95": [
+              -44.95293399631759,
+              13.627543617720727
+            ],
+            "p_value_observed_or_better": 0.004999750012499375,
+            "prob_null_profitable": 0.1468
+          },
+          "event_bootstrap": {
+            "events": 123,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -5.939079216899383,
+              52.92466570872888
+            ],
+            "roi_ci_95": [
+              -0.016066415009410574,
+              0.1419373498297327
+            ],
+            "prob_profit_le_zero": 0.0622
+          }
+        },
+        {
+          "threshold": 0.05,
+          "bets": 138,
+          "profit": 15.23702480231694,
+          "roi": 0.11041322320519521,
+          "positive_folds": 5,
+          "folds_with_bets": 6,
+          "mean_edge": 0.06946964080134778,
+          "mean_market_probability": 0.647727671965164,
+          "mean_model_probability": 0.7171973127665118,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 15.23702480231694,
+            "null_mean_profit": -5.880246028088857,
+            "null_profit_ci_95": [
+              -23.050994457680048,
+              11.228856616616548
+            ],
+            "p_value_observed_or_better": 0.007999600019999,
+            "prob_null_profitable": 0.25465
+          },
+          "event_bootstrap": {
+            "events": 81,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -2.1803436190908574,
+              33.36580637917271
+            ],
+            "roi_ci_95": [
+              -0.016102078883669903,
+              0.23970249922321857
+            ],
+            "prob_profit_le_zero": 0.04385
+          }
+        }
+      ]
+    },
+    {
+      "name": "sigpct_head|min5",
+      "calibration": {
+        "rows": 509,
+        "events": 125,
+        "market": {
+          "fights": 509,
+          "accuracy": 0.6777996070726916,
+          "log_loss": 0.6083590328579869,
+          "brier": 0.21013456063843125
+        },
+        "candidate": {
+          "fights": 509,
+          "accuracy": 0.6836935166994106,
+          "log_loss": 0.5999956610150816,
+          "brier": 0.20701576064339333
+        },
+        "market_minus_candidate_log_loss": 0.008363371842905254,
+        "market_minus_candidate_brier": 0.0031187999950379186,
+        "market_ece": 0.03581445934154968,
+        "candidate_ece": 0.05009574599210818,
+        "candidate_minus_market_ece": 0.0142812866505585,
+        "mean_abs_candidate_minus_market": 0.03607264837964353
+      },
+      "betting": [
+        {
+          "threshold": 0.0,
+          "bets": 509,
+          "profit": 11.822644411165935,
+          "roi": 0.023227199236082387,
+          "positive_folds": 4,
+          "folds_with_bets": 6,
+          "mean_edge": 0.03607264837964353,
+          "mean_market_probability": 0.6179824548432435,
+          "mean_model_probability": 0.654055103222887,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 11.822644411165935,
+            "null_mean_profit": -21.502711452951292,
+            "null_profit_ci_95": [
+              -57.50685704082552,
+              14.704704327931111
+            ],
+            "p_value_observed_or_better": 0.03489825508724564,
+            "prob_null_profitable": 0.12095
+          },
+          "event_bootstrap": {
+            "events": 125,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -23.04143544575182,
+              47.65367654336289
+            ],
+            "roi_ci_95": [
+              -0.045141205885898844,
+              0.09420360099196129
+            ],
+            "prob_profit_le_zero": 0.2515
+          }
+        },
+        {
+          "threshold": 0.02,
+          "bets": 363,
+          "profit": 28.171415266216997,
+          "roi": 0.07760720459012947,
+          "positive_folds": 5,
+          "folds_with_bets": 6,
+          "mean_edge": 0.046421410764370355,
+          "mean_market_probability": 0.6412954574062143,
+          "mean_model_probability": 0.6877168681705845,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 28.171415266216997,
+            "null_mean_profit": -15.350955299134101,
+            "null_profit_ci_95": [
+              -44.427049570825915,
+              13.49607943089846
+            ],
+            "p_value_observed_or_better": 0.001399930003499825,
+            "prob_null_profitable": 0.14945
+          },
+          "event_bootstrap": {
+            "events": 122,
+            "iterations": 20000,
+            "profit_ci_95": [
+              -1.8007925967891862,
+              59.01459200543436
+            ],
+            "roi_ci_95": [
+              -0.0049472130791168335,
+              0.1612325384828252
+            ],
+            "prob_profit_le_zero": 0.03315
+          }
+        },
+        {
+          "threshold": 0.05,
+          "bets": 117,
+          "profit": 16.150262196587665,
+          "roi": 0.1380364290306638,
+          "positive_folds": 5,
+          "folds_with_bets": 6,
+          "mean_edge": 0.07011096804306899,
+          "mean_market_probability": 0.6531390019982434,
+          "mean_model_probability": 0.7232499700413126,
+          "market_null": {
+            "iterations": 20000,
+            "observed_profit": 16.150262196587665,
+            "null_mean_profit": -4.956685110594571,
+            "null_profit_ci_95": [
+              -20.72534262914691,
+              10.557175409648185
+            ],
+            "p_value_observed_or_better": 0.003649817509124544,
+            "prob_null_profitable": 0.27105
+          },
+          "event_bootstrap": {
+            "events": 70,
+            "iterations": 20000,
+            "profit_ci_95": [
+              0.3681541652061128,
+              31.80585019939306
+            ],
+            "roi_ci_95": [
+              0.0030998735961586354,
+              0.2736348923610516
+            ],
+            "prob_profit_le_zero": 0.02215
+          }
+        }
+      ]
+    }
+  ]
+}

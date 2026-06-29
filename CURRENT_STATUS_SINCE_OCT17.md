@@ -2135,6 +2135,52 @@ selected folds are negative, and the candidate family was designed after the
 earlier striking-feature discovery. This is stronger robustness evidence, not
 a live-edge proof.
 
+### Striking Core Betting And Calibration Audit
+
+Striking core betting/calibration audit:
+
+```text
+testing/striking_core_betting_calibration_audit.py
+test_results/striking_core_betting_calibration_audit/striking_core_betting_calibration_audit.md
+test_results/striking_core_betting_calibration_audit/striking_core_betting_calibration_audit.json
+```
+
+This audit asks whether the striking-core probability edge translates into
+uncapped flat betting at fixed positive-edge thresholds, and whether Brier/ECE
+calibration diagnostics agree with log loss. It reuses the same rolling
+selection eval folds (`2-7`) and keeps exposure uncapped by event.
+
+Calibration/probability metrics:
+
+| Policy | Rows | Market Delta LL | Brier Delta | Market ECE | Candidate ECE | Mean Abs Move |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| rolling prior-delta selection | 718 | +0.0040 | +0.0016 | 3.30% | 4.14% | 3.70% |
+| `mixed_core|all` | 840 | +0.0067 | +0.0026 | 3.47% | 4.05% | 4.01% |
+| `sigpct_head|all` | 840 | +0.0072 | +0.0029 | 3.47% | 3.59% | 3.90% |
+| `mixed_core|min5` | 509 | +0.0081 | +0.0030 | 3.58% | 4.34% | 3.73% |
+| `sigpct_head|min5` | 509 | +0.0084 | +0.0031 | 3.58% | 5.01% | 3.61% |
+
+Primary fixed `2%` positive-edge uncapped ledgers:
+
+| Policy | Bets | Profit | ROI | Positive Folds | Mean Edge | Market-Null p | Bootstrap P(profit <= 0) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| rolling prior-delta selection | 526 | +20.98u | 3.99% | 5 / 6 | 4.66% | 0.006 | 0.090 |
+| `mixed_core|all` | 627 | +32.48u | 5.18% | 5 / 6 | 5.04% | 0.001 | 0.046 |
+| `sigpct_head|all` | 619 | +32.78u | 5.29% | 5 / 6 | 4.91% | 0.002 | 0.052 |
+| `mixed_core|min5` | 372 | +23.10u | 6.21% | 6 / 6 | 4.76% | 0.005 | 0.062 |
+| `sigpct_head|min5` | 363 | +28.17u | 7.76% | 5 / 6 | 4.64% | 0.001 | 0.033 |
+
+Interpretation: this strengthens the PnL side of the striking-core evidence.
+The rolling-selected fixed `2%` ledger is profitable and clears a conditional
+market-null PnL screen, and the fixed reference policies are also strong
+without any event cap. The caveat is calibration: log loss and Brier improve,
+but candidate ECE is usually worse than market ECE, except `sigpct_head|all`
+is nearly neutral. This suggests the signal is more useful for ranking
+positive-edge disagreements than as a globally better probability surface.
+The PnL market-null tests are conditional on historical selected bets; the
+selection-adjusted probability evidence remains the robustness-selection audit,
+and the live-edge claim still needs future frozen paper ledgers.
+
 ### Feature Semantic Integrity Audit
 
 Feature semantic-integrity audit:
@@ -2623,6 +2669,12 @@ The most honest read:
   `4/6` positive folds over `718` fights, with selection-null p `0.035`; the
   important caveat is weak event-bootstrap support (`P(delta <= 0) = 0.131`)
   and two negative selected folds
+- uncapped striking-core PnL support is stronger than the calibration story:
+  on the same folds, the rolling-selected fixed `2%` positive-edge ledger made
+  `+20.98u` at `3.99%` ROI with conditional market-null p `0.006`, while
+  fixed `sigpct_head|all` made `+32.78u` at `5.29%` ROI; however ECE usually
+  worsened versus market, so the signal looks more like a ranking/edge filter
+  than a globally better probability surface
 - feature-forensics did not find a hard arithmetic or pre-fight-state bug:
   `64` oppdiff pairs, `276,527` row-level diff checks, all `4,322` source
   supervised rows, `69,152` core state checks, and active side-swap coverage
@@ -2894,6 +2946,7 @@ Validation:
 - compile check passed for `testing/score_frozen_striking_core_policy.py`
 - compile check passed for `testing/striking_feature_forensics_audit.py`
 - compile check passed for `testing/striking_core_robustness_selection_audit.py`
+- compile check passed for `testing/striking_core_betting_calibration_audit.py`
 - compile check passed for `utils/incremental_processing.py`,
   `testing/residual_event_cap_rolling_selection_audit.py`,
   `testing/outcome_universe_audit.py`, and `testing/no_leakage_backtest.py`
@@ -2925,6 +2978,10 @@ Validation:
   prior-fold selection over `15` predefined striking policies kept `+0.0040`
   market delta LL over `718` fights with selection-null p `0.035`, but
   event-bootstrap `P(delta <= 0) = 0.131`
+- the striking core betting/calibration audit regenerated cleanly; the
+  rolling-selected fixed `2%` uncapped ledger made `+20.98u` at `3.99%` ROI
+  with conditional market-null p `0.006`, while calibration ECE worsened
+  versus market
 - a five-fight capped residual scorer smoke test exercised the event cap itself:
   the scorer placed exactly three paper bets and marked two otherwise eligible
   candidates as `event cap 3 reached`
