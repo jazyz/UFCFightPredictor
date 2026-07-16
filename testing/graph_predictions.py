@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('agg')
 
-# Read the text file
-with open('predictions.txt', 'r') as file:
+# Read the live paper-bets log (also rendered on the Bets page)
+with open(os.path.join('frontend', 'src', 'constants', 'predictions.txt'), 'r') as file:
     data = file.read()
 
 # Extract bankroll numbers using regex

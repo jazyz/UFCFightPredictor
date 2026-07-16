@@ -63,7 +63,7 @@ def closerToOdds(avb_win, avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob):
         b_win=avb_lose
         a_win=1-b_win
 
-    if a_win + b_win != 1:
+    if abs(a_win + b_win - 1) > 1e-9:
         a_win = avg_win(avb_win, bva_lose)
         b_win = 1-a_win
     return a_win, b_win
@@ -112,7 +112,10 @@ with open(os.path.join("data", "betting_results.txt"), "w") as test:
         test.write("---\n")
 
         # Extract and print the odds for each fight on the current card
-        for i in range(0, len(fighter_names), 2):
+        for i in range(0, len(fighter_names) - 1, 2):
+            # a cancelled bout can leave fewer odds blocks than name pairs
+            if i // 2 >= len(odds_wrappers):
+                break
             fighter1_name = fighter_names[i]
             fighter2_name = fighter_names[i + 1]
             winner_name = ""
@@ -144,17 +147,14 @@ with open(os.path.join("data", "betting_results.txt"), "w") as test:
                 # b_win = avg_win(bva_win, avb_lose)
 
                 # choose AvB or BvA based on how close they are to odds
-                odds1_prob = 0
-                odds2_prob = 0
-                if (fighter1_odds != "-" and fighter2_odds != "-"):
-                    odds1_prob = odds_to_prob(fighter1_odds)
-                    odds2_prob = odds_to_prob(fighter2_odds)
+                # (missing odds were already skipped above, so these are always ints here)
+                odds1_prob = odds_to_prob(fighter1_odds)
+                odds2_prob = odds_to_prob(fighter2_odds)
 
                 a_win, b_win = closerToOdds(avb_win,avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob)
 
-                if (fighter1_odds != "-" and fighter2_odds != "-"):
-                    kc_a = kelly_criterion(fighter1_odds, a_win)
-                    kc_b = kelly_criterion(fighter2_odds, b_win)
+                kc_a = kelly_criterion(fighter1_odds, a_win)
+                kc_b = kelly_criterion(fighter2_odds, b_win)
 
                 test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.3f} {kc_a:.3f}\n")
                 test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.3f} {kc_b:.3f}\n")
