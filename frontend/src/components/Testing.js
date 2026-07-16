@@ -3,8 +3,8 @@ import axios from "axios";
 import { baseURL } from "../constants";
 
 const Testing = () => {
-  const [startYear, setStartYear] = useState(null);
-  const [endYear, setEndYear] = useState(null);
+  const [startYear, setStartYear] = useState("");
+  const [endYear, setEndYear] = useState("");
   const [results, setResults] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
@@ -14,30 +14,34 @@ const Testing = () => {
   const row2Buttons = ["Kelly Criterion", "Flat"];
   const [strategy, setStrategy] = useState([0.05, 0.05, 0]);
 
-  // # conservative strategy: 0.05, 0.05, 0
-  // # normal strategy: 0.1, 0.1, 0
-  // # risky strategy: 0.2, 0.2, 0
+  // strategy = [fraction, max_fraction, flat] (see testing/testing_time_period.py)
+  // # conservative strategy: 0.025, 0.025, 0
+  // # normal strategy: 0.05, 0.05, 0
+  // # risky strategy: 0.1, 0.1, 0
   // # kc strategy: don't do anything
-  // # flat strategy: change parameter 3 to 0.01 (if 3rd parameter > 0 then flat all predictions)
+  // # flat strategy: 3rd parameter > 0 flat-bets all predictions
   // # conservative flat = 1% of bankroll per bet
   // # normal flat = 1.5% of bankroll per bet
   // # risky flat = 2% of bankroll per bet
+  const fractions = [0.025, 0.05, 0.1];
+  const flats = [0.01, 0.015, 0.02];
 
   const handleButtonClick = (row, buttonIndex) => {
     // console.log(row, buttonIndex);
     let updatedStrategy = [...strategy];
     if (row === 1) {
       setSelectedRow1(buttonIndex);
-      updatedStrategy[0] = [0.025, 0.05, 0.1][buttonIndex];
+      updatedStrategy[0] = fractions[buttonIndex];
+      updatedStrategy[1] = fractions[buttonIndex];
       if (selectedRow2 === 1) {
-        updatedStrategy[2] = 0.005 * buttonIndex + 0.005;
+        updatedStrategy[2] = flats[buttonIndex];
       } else {
         updatedStrategy[2] = 0;
       }
     } else if (row === 2) {
       setSelectedRow2(buttonIndex);
       if (buttonIndex === 1) {
-        updatedStrategy[2] = 0.005 * selectedRow1 + 0.005;
+        updatedStrategy[2] = flats[selectedRow1];
       } else {
         updatedStrategy[2] = 0;
       }
