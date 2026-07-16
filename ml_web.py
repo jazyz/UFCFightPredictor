@@ -33,8 +33,14 @@ def main():
 
     new_data = pd.read_csv('data/predict_fights_alpha.csv')
 
+    if len(new_data) == 0:
+        raise ValueError(
+            "No fights to predict: predict_fights_alpha.csv is empty "
+            "(fighter not found in stats, missing DOB, or fewer than 2 recorded fights)"
+        )
+
     X_new = preprocess_data(new_data, selected_columns)
-    X_new = X_new.drop(['Result'], axis=1)  
+    X_new = X_new.drop(['Result'], axis=1)
 
     predicted_probabilities = [model.predict_proba(X_new) for model in models]
 
@@ -45,10 +51,14 @@ def main():
 
     new_data['Predicted Result'] = predicted_labels
 
-    fighter_data = new_data[['Red Fighter', 'Blue Fighter']]
+    # look up class positions instead of assuming column 1 is "win"
+    win_index = list(label_encoder.classes_).index('win')
+    loss_index = list(label_encoder.classes_).index('loss')
 
-    fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, 1]
-    fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, 0]
+    fighter_data = new_data[['Red Fighter', 'Blue Fighter']].copy()
+
+    fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, win_index]
+    fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, loss_index]
 
     fighter_data.to_csv('data/fight_predictions.csv', index=False)
 
@@ -61,8 +71,8 @@ def main():
             "Probability Lose": fighter_data.iloc[i]['Probability Lose'],
         })
     class_probabilities = {
-        "Win": ensemble_predicted_probabilities[:, 1].tolist(),
-        "Lose": ensemble_predicted_probabilities[:, 0].tolist(),
+        "Win": ensemble_predicted_probabilities[:, win_index].tolist(),
+        "Lose": ensemble_predicted_probabilities[:, loss_index].tolist(),
     }
     predicted_data_dict = {
         "predict_data": predict_data,
