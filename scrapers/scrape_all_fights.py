@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
+import os
 
 def get_additional_links(url):
     # Initialize a dictionary to hold the date and links
@@ -123,24 +124,29 @@ def get_fight_details(url):
         return {"Error": str(e)}
 
 is_header_required = True
+# stat-key order captured from the first fight so every row lines up with the header
+fighter1_stat_keys = []
+fighter2_stat_keys = []
 
-def write_to_csv(fight_details, filename=r'data\fight_details_date.csv'):
-    global is_header_required
+def write_to_csv(fight_details, filename=os.path.join('data', 'fight_details_date.csv')):
+    global is_header_required, fighter1_stat_keys, fighter2_stat_keys
     file_mode = 'w' if is_header_required else 'a'
     with open(filename, mode=file_mode, newline='') as file:
         writer = csv.writer(file)
-        
+
         # Prepare headers only if it's required (for the first time)
         if is_header_required:
+            fighter1_stat_keys = list(fight_details['Fighter 1 Stats'].keys())
+            fighter2_stat_keys = list(fight_details['Fighter 2 Stats'].keys())
             headers = [
                 'Title', 'Winner', 'Loser', 'Draw', 'Method', 'Round', 'Time', 'Time Format', 'Referee', 'Details', 'Date',
-            ] + [f"Red {key}" for key in fight_details['Fighter 1 Stats'].keys()] + [f"Blue {key}" for key in fight_details['Fighter 2 Stats'].keys()]
+            ] + [f"Red {key}" for key in fighter1_stat_keys] + [f"Blue {key}" for key in fighter2_stat_keys]
             writer.writerow(headers)
 
-        is_header_required=False        
+        is_header_required=False
         # Prepare fight info for easier access
         fi = fight_details['Fight Info']
-        
+
         # Prepare row with fight info and both fighters' stats
         row = [
             fi.get('Title', ''),
@@ -154,19 +160,23 @@ def write_to_csv(fight_details, filename=r'data\fight_details_date.csv'):
             fi.get('Referee', ''),
             fi.get('Details', ''),
             fight_details.get('Date', ''),
-        ] + list(fight_details['Fighter 1 Stats'].values()) + list(fight_details['Fighter 2 Stats'].values())
+        ] + [fight_details['Fighter 1 Stats'].get(key, '') for key in fighter1_stat_keys] \
+          + [fight_details['Fighter 2 Stats'].get(key, '') for key in fighter2_stat_keys]
 
         # Write the combined row
         writer.writerow(row)
 
-def process_fight_urls(all_links_details, filename=r'data\fight_details_date.csv'):
+def process_fight_urls(all_links_details, filename=os.path.join('data', 'fight_details_date.csv')):
     for embedded_link, details in all_links_details.items():
         for fight_link in details['links']:
             fight_details = get_fight_details(fight_link)
+            if 'Error' in fight_details:
+                print(f"Skipping {fight_link}: {fight_details['Error']}")
+                continue
             fight_details['Date'] = details['date']  # Add the date to fight details
             write_to_csv(fight_details, filename)
 
-def read_and_print_csv(filename=r'data\fight_details_date.csv'):
+def read_and_print_csv(filename=os.path.join('data', 'fight_details_date.csv')):
     with open(filename, mode='r', newline='') as file:
         reader = csv.reader(file)
         

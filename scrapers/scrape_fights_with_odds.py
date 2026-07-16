@@ -23,12 +23,13 @@ def findWinner(fighter1_name, fighter2_name):
     winner_name = ""
     for row in data:
         if row['Red Fighter'] == fighter1_name and row['Blue Fighter'] == fighter2_name:
-            if (row['Draw'] == True):
+            # csv values are strings, not booleans
+            if (row['Draw'] == 'True'):
                 winner_name = "draw/no contest"
             else:
                 winner_name = row['Winner']
         elif row['Red Fighter'] == fighter2_name and row['Blue Fighter'] == fighter1_name:
-            if (row['Draw'] == True):
+            if (row['Draw'] == 'True'):
                 winner_name = "draw/no contest"
             else:
                 winner_name = row['Winner']
@@ -117,7 +118,10 @@ with open(os.path.join("data", "fight_results_with_odds.csv"), "w") as test:
             if (len(winners) == 0):
                 continue
             
-            for i in range(0, len(fighter_names), 2):
+            for i in range(0, len(fighter_names) - 1, 2):
+                # a cancelled bout can leave fewer winner/odds blocks than name pairs
+                if i // 2 >= len(winners) or i // 2 >= len(odds_wrappers):
+                    break
                 fighter1_name = fighter_names[i]
                 fighter2_name = fighter_names[i + 1]
                 winner = winners[i // 2]
@@ -149,5 +153,3 @@ with open(os.path.join("data", "fight_results_with_odds.csv"), "w") as test:
 
         else:
             test.write(f"Failed to retrieve the fight card page. Status code: {response.status_code}\n")
-    else:
-        test.write(f"Failed to retrieve the events page. Status code: {response.status_code}\n")
