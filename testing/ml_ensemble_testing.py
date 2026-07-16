@@ -70,10 +70,16 @@ new_data['Predicted Result'] = predicted_labels
 
 # new_data.to_csv('predictions.csv', index=False)
 
-fighter_data = new_data[['Red Fighter', 'Blue Fighter']]
+# look up class positions instead of assuming column 1 is "win"
+win_index = list(label_encoder.classes_).index('win')
+loss_index = list(label_encoder.classes_).index('loss')
 
-fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, 1]
-fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, 0]
+# include 'Predicted Result' so consumers of predicted_results.csv
+# (testing_time_period.py, test_from_site.py) can read this output
+fighter_data = new_data[['Red Fighter', 'Blue Fighter', 'Predicted Result']].copy()
+
+fighter_data['Probability Win'] = ensemble_predicted_probabilities[:, win_index]
+fighter_data['Probability Lose'] = ensemble_predicted_probabilities[:, loss_index]
 fighter_data['Probability'] = np.maximum(fighter_data['Probability Win'],fighter_data['Probability Lose'])
 
 fighter_data.to_csv('data/predicted_results.csv', index=False)

@@ -23,12 +23,21 @@ def main():
     label_encoder = LabelEncoder()
     df["Result"] = label_encoder.fit_transform(df["Result"])
 
+    df["Date"] = pd.to_datetime(df["Date"])
+    df.sort_values(by="Date", inplace=True)
+
+    df = df[df["Date"] >= pd.to_datetime("2009-01-01")]
+
+    split_date = pd.to_datetime("2021-01-01")
+
     selected_columns = df.columns.tolist()
-    
+
     def prune_features(selected_columns):
         columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date"]
         selected_columns = [col for col in selected_columns if col not in columns_to_remove]
-        corr_matrix = df[selected_columns].corr().abs()
+        # correlations computed on training rows only, so feature selection can't see the test set
+        train_rows = df[df["Date"] < split_date]
+        corr_matrix = train_rows[selected_columns].corr().abs()
         upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
         to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
         df.drop(to_drop, axis=1, inplace=True)
@@ -38,12 +47,6 @@ def main():
 
     selected_columns = prune_features(selected_columns)
     df = df[selected_columns]
-    df["Date"] = pd.to_datetime(df["Date"])
-    df.sort_values(by="Date", inplace=True)
-
-    df = df[df["Date"] >= pd.to_datetime("2009-01-01")]
-    
-    split_date = pd.to_datetime("2021-01-01")  
     # print(df.head())
     # Split based on the date
     train_df = df[df["Date"] < split_date]
@@ -68,6 +71,11 @@ def main():
 
     X_train_swapped.rename(columns=swap_columns, inplace=True)
 
+    # oppdiff columns are red-minus-blue values, so the mirrored rows need them negated
+    for column in X_train.columns:
+        if "oppdiff" in column:
+            X_train_swapped[column] = X_train[column] * -1
+
     y_train_swapped = y_train_swapped.apply(
         lambda x: 0 if x == 1 else 1
     )
@@ -75,7 +83,7 @@ def main():
     # Step 3: Concatenate the original and the modified copy to form the extended training set
     X_train_extended = pd.concat([X_train, X_train_swapped], ignore_index=True)
     y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
-    
+
     from sklearn.model_selection import TimeSeriesSplit
     def objective(trial):
         param = {
@@ -90,8 +98,10 @@ def main():
             'colsample_bytree': trial.suggest_float('colsample_bytree', 0.5, 1.0),  
             'num_class': 2  
         }
-        data = lgb.Dataset(X_train_extended, label=y_train_extended)
-        # data = lgb.Dataset(X_train_extended, label=y_train_extended)
+        # CV runs on the un-augmented training set: with the mirrored copies appended,
+        # TimeSeriesSplit folds would validate on swapped duplicates of fights already
+        # seen in training, leaking data into early stopping and the tuning score.
+        data = lgb.Dataset(X_train, label=y_train)
 
         # Initialize TimeSeriesSplit
         tscv = TimeSeriesSplit(n_splits=5)  # Adjust the number of splits as needed
@@ -155,7 +165,8 @@ def main():
         df_with_details.sort_values(by="Date", inplace=True)
         df_with_details = df_with_details[df_with_details["Date"] >= split_date]
         df_with_details.reset_index(drop=True, inplace=True)
-        df_with_details["Result"] = label_encoder.fit_transform(df_with_details["Result"])
+        # transform with the already-fit encoder; refitting on the test slice can flip the mapping
+        df_with_details["Result"] = label_encoder.transform(df_with_details["Result"])
 
         # Convert the predicted and actual results back to the original labels if necessary.
         predicted_labels = label_encoder.inverse_transform(y_pred)

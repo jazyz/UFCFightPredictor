@@ -33,7 +33,10 @@ low_importance_to_remove = [
 selected_columns = [col for col in selected_columns if col not in low_importance_to_remove]
 # selected_columns = [col for col in selected_columns if 'red' not in col.lower() and 'blue' not in col.lower()]
 selected_columns = [col for col in selected_columns if 'oppdiff' not in col]
-corr_matrix = df[selected_columns].corr().abs()
+
+split_index = int(len(df) * 0.95)
+# correlations computed on training rows only, so feature selection can't see the test set
+corr_matrix = df[selected_columns].iloc[:split_index].corr().abs()
 
 upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
 
@@ -49,7 +52,6 @@ df = df[selected_columns]
 X = df.drop(["Result"], axis=1)
 y = df["Result"]
 
-split_index = int(len(df) * 0.95)
 last_index = int(len(df) * 1)
 X_train, X_test = X[:split_index], X[split_index:last_index]
 y_train, y_test = y[:split_index], y[split_index:last_index]
@@ -114,8 +116,10 @@ def objective(trial):
     'colsample_bytree': trial.suggest_float('colsample_bytree', 0.5, 0.8),
         'num_class': 2  
     }
-    # data = lgb.Dataset(X_train, label=y_train)
-    data = lgb.Dataset(X_train_extended, label=y_train_extended)
+    # CV runs on the un-augmented training set: with the mirrored copies appended,
+    # TimeSeriesSplit folds would validate on swapped duplicates of fights already
+    # seen in training, leaking data into early stopping and the tuning score.
+    data = lgb.Dataset(X_train, label=y_train)
 
     # Initialize TimeSeriesSplit
     tscv = TimeSeriesSplit(n_splits=5)  # Adjust the number of splits as needed
@@ -167,16 +171,20 @@ shap_values_list = []
 for model in models:
     explainer = shap.TreeExplainer(model)
     shap_values = explainer.shap_values(X_test)
+    # older shap returns a list of per-class arrays; newer returns a single
+    # (samples, features) or (samples, features, classes) array
+    if isinstance(shap_values, list):
+        shap_values = shap_values[0]
+    elif shap_values.ndim == 3:
+        shap_values = shap_values[:, :, 0]
     shap_values_list.append(shap_values)
 
-shap_values_array = np.array(shap_values_list)  # Shape: [num_models, 2, num_samples, num_features]
+shap_values_array = np.array(shap_values_list)  # Shape: [num_models, num_samples, num_features]
 
 average_shap_values = np.mean(shap_values_array, axis=0)
 
-class_index = 0  # or 1
-
 # Summing SHAP values across all samples to get an overall measure of feature importance
-feature_importance = np.abs(average_shap_values[class_index]).mean(axis=0)
+feature_importance = np.abs(average_shap_values).mean(axis=0)
 
 # Sorting features by their importance
 sorted_feature_indices = np.argsort(feature_importance)[::-1]
@@ -185,7 +193,7 @@ sorted_feature_indices = np.argsort(feature_importance)[::-1]
 sorted_features = np.array(X_test.columns)[sorted_feature_indices]
 
 # Sorted SHAP values
-sorted_shap_values = average_shap_values[class_index][:, sorted_feature_indices]
+sorted_shap_values = average_shap_values[:, sorted_feature_indices]
 
 # Plotting
 shap.summary_plot(sorted_shap_values, features=X_test[sorted_features], plot_type='bar')
@@ -216,7 +224,9 @@ df_with_details = pd.read_csv(file_path)[
 ]
 df_with_details = df_with_details.iloc[split_index:]  # Align with the test data split
 df_with_details.reset_index(drop=True, inplace=True)
-df_with_details["Result"] = label_encoder.fit_transform(df_with_details["Result"])
+# transform with the already-fit encoder; refitting on the test slice could change
+# the class mapping and that encoder is saved for production use below
+df_with_details["Result"] = label_encoder.transform(df_with_details["Result"])
 
 # Convert the predicted and actual results back to the original labels if necessary.
 predicted_labels = label_encoder.inverse_transform(ensemble_preds)
