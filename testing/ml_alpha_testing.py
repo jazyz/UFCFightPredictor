@@ -23,12 +23,19 @@ def main(split_date = "2021-01-01"):    # Step 1: Read the data
     # Assuming 'Result' is the target variable and the rest are features
     label_encoder = LabelEncoder()
     df["Result"] = label_encoder.fit_transform(df["Result"])
+
+    df["Date"] = pd.to_datetime(df["Date"])
+    df.sort_values(by="Date", inplace=True)
+
+    df = df[df["Date"] >= pd.to_datetime("2009-01-01")]
+
     selected_columns = df.columns.tolist()
 
     columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date"]
     selected_columns = [col for col in selected_columns if col not in columns_to_remove]
 
-    corr_matrix = df[selected_columns].corr().abs()
+    # correlations computed on training rows only, so feature selection can't see the test set
+    corr_matrix = df[df["Date"] < split_date][selected_columns].corr().abs()
 
     # Select upper triangle of correlation matrix
     upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
@@ -44,13 +51,8 @@ def main(split_date = "2021-01-01"):    # Step 1: Read the data
     selected_columns = [column for column in selected_columns if column not in to_drop]
 
     selected_columns.append("Date")
-            
+
     df = df[selected_columns]
-
-    df["Date"] = pd.to_datetime(df["Date"])
-    df.sort_values(by="Date", inplace=True)
-
-    df = df[df["Date"] >= pd.to_datetime("2009-01-01")] 
     # print(df.head())
     # Split based on the date
     train_df = df[df["Date"] < split_date]
@@ -118,7 +120,9 @@ def main(split_date = "2021-01-01"):    # Step 1: Read the data
 
     # Duplicate and swap 'Red' and 'Blue' in the second half of df_with_details
     df_with_details_swapped = df_with_details.copy()
-    df_with_details_swapped[["Red Fighter", "Blue Fighter"]] = df_with_details_swapped[["Blue Fighter", "Red Fighter"]]
+    df_with_details_swapped[["Red Fighter", "Blue Fighter"]] = df_with_details_swapped[["Blue Fighter", "Red Fighter"]].values
+    # with the corners swapped, the actual result flips too
+    df_with_details_swapped["Result"] = df_with_details_swapped["Result"].replace({"win": "loss", "loss": "win"})
     df_with_details_extended = pd.concat([df_with_details, df_with_details_swapped], ignore_index=True)
 
     # Encode the Result in the extended details

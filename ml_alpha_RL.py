@@ -49,7 +49,12 @@ class HyperparameterOptimizationEnv(gym.Env):
         # Episode limit
         self.max_steps = 20
         self.current_step = 0
-        
+
+        # best result seen across all episodes; tracked here because DummyVecEnv
+        # auto-resets the env when an episode ends, wiping per-episode state
+        self.best_log_loss = float('inf')
+        self.best_hyperparams = self.hyperparams.copy()
+
     def reset(self):
         # Reset hyperparameters to initial values
         self.hyperparams = {
@@ -97,7 +102,11 @@ class HyperparameterOptimizationEnv(gym.Env):
         model.fit(self.X_train, self.y_train)
         y_pred_proba = model.predict_proba(self.X_val)
         current_log_loss = log_loss(self.y_val, y_pred_proba)
-        
+
+        if current_log_loss < self.best_log_loss:
+            self.best_log_loss = current_log_loss
+            self.best_hyperparams = self.hyperparams.copy()
+
         # Reward: inverse of log loss (since we want to minimize log loss)
         reward = -current_log_loss
         
@@ -125,28 +134,23 @@ def rl_hyperparameter_optimization(X_train, y_train, X_val, y_val, n_trials=20):
     # Train the agent
     model.learn(total_timesteps=10000)
     
-    # Collect the best hyperparameters based on rewards
-    best_log_loss = float('inf')
-    best_hyperparams = None
-    
+    # Roll out the trained policy; the env tracks the best step it has ever seen.
+    # (Reading env.envs[0].hyperparams after an episode would return the reset
+    # defaults because DummyVecEnv auto-resets on done.)
     for trial in range(n_trials):
         obs = env.reset()
         done = False
-        total_reward = 0
-        
+
         while not done:
             action, _states = model.predict(obs)
             obs, reward, done, info = env.step(action)
-            total_reward += reward
-        
-        current_log_loss = -total_reward
-        if current_log_loss < best_log_loss:
-            best_log_loss = current_log_loss
-            best_hyperparams = env.envs[0].hyperparams.copy()
-    
+
+    best_hyperparams = env.envs[0].best_hyperparams.copy()
+    best_log_loss = env.envs[0].best_log_loss
+
     print(f"Best Hyperparameters from RL: {best_hyperparams}")
     print(f"Best Log Loss from RL: {best_log_loss}")
-    
+
     return best_hyperparams, best_log_loss
 
 def main():
@@ -157,12 +161,21 @@ def main():
     label_encoder = LabelEncoder()
     df["Result"] = label_encoder.fit_transform(df["Result"])
 
+    df["Date"] = pd.to_datetime(df["Date"])
+    df.sort_values(by="Date", inplace=True)
+
+    df = df[df["Date"] >= pd.to_datetime("2009-01-01")]
+
+    split_date = pd.to_datetime("2021-01-01")
+
     selected_columns = df.columns.tolist()
-    
+
     def prune_features(selected_columns):
         columns_to_remove = ["Red Fighter", "Blue Fighter", "Title", "Date"]
         selected_columns = [col for col in selected_columns if col not in columns_to_remove]
-        corr_matrix = df[selected_columns].corr().abs()
+        # correlations computed on training rows only, so feature selection can't see the test set
+        train_rows = df[df["Date"] < split_date]
+        corr_matrix = train_rows[selected_columns].corr().abs()
         upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
         to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
         df.drop(to_drop, axis=1, inplace=True)
@@ -172,12 +185,6 @@ def main():
 
     selected_columns = prune_features(selected_columns)
     df = df[selected_columns]
-    df["Date"] = pd.to_datetime(df["Date"])
-    df.sort_values(by="Date", inplace=True)
-
-    df = df[df["Date"] >= pd.to_datetime("2009-01-01")]
-    
-    split_date = pd.to_datetime("2021-01-01")  
     # print(df.head())
     # Split based on the date
     train_df = df[df["Date"] < split_date]
@@ -202,6 +209,11 @@ def main():
 
     X_train_swapped.rename(columns=swap_columns, inplace=True)
 
+    # oppdiff columns are red-minus-blue values, so the mirrored rows need them negated
+    for column in X_train.columns:
+        if "oppdiff" in column:
+            X_train_swapped[column] = X_train[column] * -1
+
     y_train_swapped = y_train_swapped.apply(
         lambda x: 0 if x == 1 else 1
     )
@@ -224,7 +236,10 @@ def main():
             'colsample_bytree': trial.suggest_float('colsample_bytree', 0.5, 1.0),  
             'num_class': 2  
         }
-        data = lgb.Dataset(X_train_extended, label=y_train_extended)
+        # CV runs on the un-augmented training set: with the mirrored copies appended,
+        # TimeSeriesSplit folds would validate on swapped duplicates of fights already
+        # seen in training, leaking data into early stopping and the tuning score.
+        data = lgb.Dataset(X_train, label=y_train)
 
         # Initialize TimeSeriesSplit
         tscv = TimeSeriesSplit(n_splits=5)  # Adjust the number of splits as needed
@@ -280,9 +295,10 @@ def main():
     print(f"Optuna - Log Loss: {logloss_optuna:.4f}")
 
     # RL-Based Hyperparameter Optimization
-    # Split a validation set from the training data
+    # Split a validation set from the un-augmented training data — the extended set
+    # would put mirrored duplicates of training fights into the validation split
     X_train_rl, X_val_rl, y_train_rl, y_val_rl = train_test_split(
-        X_train_extended, y_train_extended, test_size=0.2, random_state=42, shuffle=False
+        X_train, y_train, test_size=0.2, random_state=42, shuffle=False
     )
 
     best_hyperparams_rl, best_log_loss_rl = rl_hyperparameter_optimization(
@@ -315,7 +331,8 @@ def main():
         df_with_details.sort_values(by="Date", inplace=True)
         df_with_details = df_with_details[df_with_details["Date"] >= split_date]
         df_with_details.reset_index(drop=True, inplace=True)
-        df_with_details["Result"] = label_encoder.fit_transform(df_with_details["Result"])
+        # transform with the already-fit encoder; refitting on the test slice can flip the mapping
+        df_with_details["Result"] = label_encoder.transform(df_with_details["Result"])
 
         # Convert the predicted and actual results back to the original labels if necessary.
         predicted_labels = label_encoder.inverse_transform(y_pred_optuna)
