@@ -18,7 +18,7 @@ def split_at_first_space(text):
 
 def sqrSum(n):
     x = float(n)
-    return x*(x+1)*(2*x+1)//6
+    return x*(x+1)*(2*x+1)/6
 
 # ****** CONSTANTS ******
 # where to read stats from
@@ -42,7 +42,7 @@ file_path = os.path.join('data', 'modified_fight_details.csv')
 headers=get_csv_headers(file_path)
 
 hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins",]
-hardcoded_features_divide = ["oppelo","wins","losses", "avg age"]
+hardcoded_features_divide = ["oppelo","wins","avg age"]
 
 feature_list=[]
 feature_list.extend(hardcoded_features)
@@ -74,6 +74,9 @@ def extract_fighter_stats(fighter_name, opponent_name):
         return
 
     if int(fighter_stats["totalfights"]) <= 1 or int(opponent_stats["totalfights"]) <= 1:
+        return
+    if int(float(fighter_stats["dob"])) == 0 or int(float(opponent_stats["dob"])) == 0:
+        print(f"Missing DOB for {fighter_name} or {opponent_name}, skipping.")
         return
     combined_stats = {}
     combined_stats = process_fight(fighter_stats, opponent_stats, combined_stats)
@@ -111,15 +114,16 @@ def process_fight(fighter_stats, opponent_stats, processed_fight):
                 processed_fight[f'Red {feature}'] = fighter_stats[feature]
                 processed_fight[f'Blue {feature}'] = opponent_stats[feature]
                 if feature in header_features:
-                    processed_fight[f'Red {feature} differential'] = fighter_stats[f'{feature} differential']
-                    processed_fight[f'Blue {feature} differential'] = opponent_stats[f'{feature} differential']
                     processed_fight[f'Red {feature}'] = float(fighter_stats[feature]) / sqrSum(fighter_stats["totalfights"])
                     processed_fight[f'Blue {feature}'] = float(opponent_stats[feature]) / sqrSum(opponent_stats["totalfights"])
-                    processed_fight[f'Red {feature} differential'] = float(fighter_stats[feature]) / sqrSum(fighter_stats["totalfights"])
-                    processed_fight[f'Blue {feature} differential'] = float(opponent_stats[feature]) / sqrSum(opponent_stats["totalfights"])
+                    processed_fight[f'Red {feature} differential'] = float(fighter_stats[f'{feature} differential']) / sqrSum(fighter_stats["totalfights"])
+                    processed_fight[f'Blue {feature} differential'] = float(opponent_stats[f'{feature} differential']) / sqrSum(opponent_stats["totalfights"])
                     if "%" in feature:
                         processed_fight[f'Red {feature} defense'] = sqrSum(float(fighter_stats[f"{feature} defense"]) / float(fighter_stats["totalfights"]))
                         processed_fight[f'Blue {feature} defense'] = sqrSum(float(opponent_stats[f"{feature} defense"]) / float(opponent_stats["totalfights"]))
+                if feature in hardcoded_features_divide:
+                    processed_fight[f'Red {feature}'] = float(fighter_stats[feature]) / float(fighter_stats["totalfights"])
+                    processed_fight[f'Blue {feature}'] = float(opponent_stats[feature]) / float(opponent_stats["totalfights"])
         for feature in feature_list:
             # Basic feature difference
             red_key = f'Red {feature}'
