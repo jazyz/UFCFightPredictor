@@ -46,7 +46,7 @@ def closerToOdds(avb_win, avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob):
         b_win=avb_lose
         a_win=1-b_win
 
-    if a_win + b_win != 1:
+    if abs(a_win + b_win - 1) > 1e-9:
         a_win = avg_win(avb_win, bva_lose)
         b_win = 1-a_win
     return a_win, b_win
@@ -208,7 +208,8 @@ def find_fights(start_date, end_date, last_training_date, strategy):
     # Convert start_date and end_date from 'YYYY-MM-DD' to datetime objects
     start_date = datetime.strptime(start_date, '%Y-%m-%d')
     end_date = datetime.strptime(end_date, '%Y-%m-%d')
-    final_training_date = datetime.strptime('2023-12-01', '%Y-%m-%d')
+    # retrain throughout the tested window instead of silently stopping at a hardcoded date
+    final_training_date = end_date
     retrain_time = timedelta(days=182)  
     filepath = 'data/fight_results_with_odds.csv'
     
@@ -229,9 +230,14 @@ def train_ml(start_date):
 
 def process_dates(start_date, end_date, strategy):
     print(strategy)
-    global bankroll, bankrolls
+    global bankroll, bankrolls, ev, underdogs, favourites, underdogsHit, favouritesHit
     bankroll = 1000
     bankrolls = []
+    ev = 0
+    underdogs = 0
+    favourites = 0
+    underdogsHit = 0
+    favouritesHit = 0
     with open(os.path.join("test_results", "testing_time_period.txt"), "w") as test:
         test.write(f"{start_date} to {end_date}\n")
     start_year = datetime.strptime(start_date, '%Y-%m-%d').year
@@ -267,4 +273,5 @@ def plot_bankrolls():
     plt.savefig(os.path.join("data", "bankroll_plot.png"))  # Save the plot as an image file
     plt.close()  # Close the plot
 
-process_dates('2023-01-01', '2024-01-01', strategy=[0.05,0.05,0.005])
+if __name__ == "__main__":
+    process_dates('2023-01-01', '2024-01-01', strategy=[0.05,0.05,0.005])
