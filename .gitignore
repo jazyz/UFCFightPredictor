@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+
+# VS Code Code Runner artifacts
+tempCodeRunnerFile.py
+
+# Claude Code worktrees
+.claude/
+
+# Debug scraper output
+data/fight_details_single.csv

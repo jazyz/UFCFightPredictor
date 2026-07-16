@@ -1,11 +1,16 @@
 requests==2.31.0
 beautifulsoup4==4.12.2
 flask==2.3.3
-flask-sqlalchemy==3.0.5
+Flask-SQLAlchemy==3.0.5
+Flask-CORS==4.0.0
 pandas==2.1.0
+numpy==1.26.0
 lightgbm==4.0.0
 scikit-learn==1.3.0
+joblib==1.3.2
 matplotlib==3.7.2
-Flask-CORS==4.0.0
-Flask-SQLAlchemy==3.0.5
 optuna==3.5.0
+shap==0.43.0
+# used only by ml_alpha_RL.py (written against the legacy gym API)
+gym==0.21.0
+stable-baselines3==1.8.0
