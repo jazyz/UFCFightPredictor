@@ -1,7 +1,8 @@
+import os
 import pandas as pd
 
-# Reading the data from data\fight_details.csv file
-df = pd.read_csv(r'data\fight_details_date.csv')
+# Reading the data from data/fight_details_date.csv file
+df = pd.read_csv(os.path.join('data', 'fight_details_date.csv'))
 
 # Function to convert "x of y" strings to a tuple of (x, x/y)
 def convert_ratio(value):
@@ -32,26 +33,17 @@ for col in df.columns:
         df[col] = df[col].apply(time_to_seconds)
 
 
-# Identify rows to delete based on 'Draw' being True
-rows_to_delete = set()
-i = 0
-while i < len(df) - 1:
-    if pd.isna(df.loc[i, 'Winner']) or df.loc[i, 'Winner'] == '':
-        rows_to_delete.add(i + 1)
-        i += 2  
-    else:
-        i += 1 
-
-# Delete the identified rows
-df = df.drop(list(rows_to_delete))
+# Drop draws/no-contests: rows with no winner
+df = df[~(df['Winner'].isna() | (df['Winner'].astype(str).str.strip() == ''))]
+df.reset_index(drop=True, inplace=True)
 
 # Deleting the old percentage columns as specified
 columns_to_delete = ["Red Sig. str. %", "Red Td %", "Blue Sig. str. %", "Blue Td %", "Red Sig. str", "Blue Sig. str", "Red Sig. str%", "Blue Sig. str%"]
 df = df.drop(columns=columns_to_delete)
-df = df[~df['Title'].str.contains("Women")]
-df = df[~df['Title'].str.contains("Open")]
+df = df[~df['Title'].str.contains("Women", na=False)]
+df = df[~df['Title'].str.contains("Open", na=False)]
 #df = df[~df['Title'].str.contains("Title")]
 # Saving the modified DataFrame back to CSV or you can use it as is in your Python environment
-df.to_csv('data\modified_fight_details.csv', index=False)
+df.to_csv(os.path.join('data', 'modified_fight_details.csv'), index=False)
 
 

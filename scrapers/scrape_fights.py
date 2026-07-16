@@ -1,6 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
+import os
+
+# single-fight debug scraper: writes to its own file so it can never
+# clobber the real dataset (data/fight_details_date.csv)
+debug_csv_filename = os.path.join('data', 'fight_details_single.csv')
 
 def merge_dicts(d1, d2):
     result = d1.copy()  # Start with keys and values of the first dictionary
@@ -74,7 +79,7 @@ def get_fight_details(url):
     except Exception as e:
         return {"Error": str(e)}
 
-def write_to_csv(fight_details, filename=r'data\fight_details.csv', is_header_required=True):
+def write_to_csv(fight_details, filename=debug_csv_filename, is_header_required=True):
     file_mode = 'w' if is_header_required else 'a'
     with open(filename, mode=file_mode, newline='') as file:
         writer = csv.writer(file)
@@ -106,13 +111,16 @@ def write_to_csv(fight_details, filename=r'data\fight_details.csv', is_header_re
         # Write the combined row
         writer.writerow(row)
 
-def process_fight_urls(url_list, filename=r'data\fight_details_date.csv'):
+def process_fight_urls(url_list, filename=debug_csv_filename):
     # Write details for each URL
     for i, url in enumerate(url_list):
         fight_details = get_fight_details(url)
+        if 'Error' in fight_details:
+            print(f"Skipping {url}: {fight_details['Error']}")
+            continue
         write_to_csv(fight_details, filename, is_header_required=(i==0))  # Header only for the first one
 
-def read_and_print_csv(filename=r'data\fight_details_date.csv'):
+def read_and_print_csv(filename=debug_csv_filename):
     with open(filename, mode='r', newline='') as file:
         reader = csv.reader(file)
         
@@ -128,6 +136,7 @@ def read_and_print_csv(filename=r'data\fight_details_date.csv'):
                 print(f"{header}: {value}")
             print("-" * 100)  # Separator for each fight
 
-urls=["http://ufcstats.com/fight-details/3fa8ee3fdc04fe36"]
-process_fight_urls(urls)
-read_and_print_csv()
+if __name__ == "__main__":
+    urls=["http://ufcstats.com/fight-details/3fa8ee3fdc04fe36"]
+    process_fight_urls(urls)
+    read_and_print_csv()
