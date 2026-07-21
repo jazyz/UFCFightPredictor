@@ -172,6 +172,19 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
         fraction = strategy[0]
         max_fraction = strategy[1]
         flat = strategy[2]
+        # minimum model-vs-market edge required to bet (0 keeps legacy always-bet behavior)
+        min_edge = strategy[3] if len(strategy) > 3 else 0
+
+        if min_edge > 0:
+            edge = (a_win - odds1_prob) if a_win > b_win else (b_win - odds2_prob)
+            kc = kc_a if a_win > b_win else kc_b
+            if edge < min_edge or kc <= 0:
+                test.write(f"(no bet: edge {edge:.3f})\n")
+                test.write(f" *** {winner_name} *** \n")
+                test.write("---\n")
+                bankrolls.append(bankroll)
+                return
+
         if a_win > b_win:
 
             if (kc_a > 0):
