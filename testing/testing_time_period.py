@@ -155,9 +155,14 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
 
         odds1_prob, odds2_prob = devig(odds_to_prob(fighter1_odds), odds_to_prob(fighter2_odds))
 
-        a_win, b_win = closerToOdds(avb_win,avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob)
-        # a_win = avg_win(avb_win, bva_lose)
-        # b_win = avg_win(bva_win, avb_lose)
+        # strategy[4]: blend weight w -> w*model + (1-w)*devigged market; None = legacy closerToOdds
+        blend_w = strategy[4] if len(strategy) > 4 else None
+        if blend_w is not None:
+            model_a = avg_win(avb_win, bva_lose)
+            a_win = blend_w * model_a + (1 - blend_w) * odds1_prob
+            b_win = 1 - a_win
+        else:
+            a_win, b_win = closerToOdds(avb_win,avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob)
         kc_a = kelly_criterion(fighter1_odds, a_win)
         kc_b = kelly_criterion(fighter2_odds, b_win)
         test.write(f"Bankroll: {bankroll:.2f}\n")

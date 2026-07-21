@@ -59,22 +59,9 @@ def pt(odds, bet):
     else:
         return (bet * (odds / 100))
 
-# choosing win/lose probability based on how close they are to odds
-def closerToOdds(avb_win, avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob):
-    a_win=avb_win
-    b_win=bva_win
-    if(abs(avb_win-odds1_prob) > abs(bva_lose-odds1_prob)):
-        a_win=bva_lose
-        b_win=1-a_win
-
-    if(abs(bva_win-odds2_prob) > abs(avb_lose-odds2_prob)):
-        b_win=avb_lose
-        a_win=1-b_win
-
-    if abs(a_win + b_win - 1) > 1e-9:
-        a_win = avg_win(avb_win, bva_lose)
-        b_win = 1-a_win
-    return a_win, b_win
+# weight on the model's estimate when blending with the devigged market probability;
+# tuned on 2021-2022 and validated on 2023 (see testing/blend_compare.py)
+BLEND_W = 0.8
 
 # if we bet on a fight, write the bet to the file
 def processBet(bet, fighter_name, fighter_odds):
@@ -154,11 +141,13 @@ with open(os.path.join("data", "betting_results.txt"), "w") as test:
                 # a_win = avg_win(avb_win, bva_lose)
                 # b_win = avg_win(bva_win, avb_lose)
 
-                # choose AvB or BvA based on how close they are to odds
+                # blend the model's symmetric estimate with the devigged market probability
                 # (missing odds were already skipped above, so these are always ints here)
                 odds1_prob, odds2_prob = devig(odds_to_prob(fighter1_odds), odds_to_prob(fighter2_odds))
 
-                a_win, b_win = closerToOdds(avb_win,avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob)
+                model_a = avg_win(avb_win, bva_lose)
+                a_win = BLEND_W * model_a + (1 - BLEND_W) * odds1_prob
+                b_win = 1 - a_win
 
                 kc_a = kelly_criterion(fighter1_odds, a_win)
                 kc_b = kelly_criterion(fighter2_odds, b_win)
