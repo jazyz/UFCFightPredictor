@@ -18,3 +18,4 @@ tempCodeRunnerFile.py
 
 # Debug scraper output
 data/fight_details_single.csv
+test_results/.edge_tune_cache/
