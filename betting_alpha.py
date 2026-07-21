@@ -35,7 +35,15 @@ def odds_to_prob(odds):
         prob = 100 / (odds + 100)
     else:
         prob = -odds / (-odds + 100)
-    return prob    
+    return prob
+
+# bookmaker implied probabilities include the vig (they sum to >1);
+# proportional normalization recovers the market's fair probabilities
+def devig(prob1, prob2):
+    total = prob1 + prob2
+    if total <= 0:
+        return prob1, prob2
+    return prob1 / total, prob2 / total
 
 # average win probability between AvB and BvA
 def avg_win(avb_win, bva_lose):
@@ -148,8 +156,7 @@ with open(os.path.join("data", "betting_results.txt"), "w") as test:
 
                 # choose AvB or BvA based on how close they are to odds
                 # (missing odds were already skipped above, so these are always ints here)
-                odds1_prob = odds_to_prob(fighter1_odds)
-                odds2_prob = odds_to_prob(fighter2_odds)
+                odds1_prob, odds2_prob = devig(odds_to_prob(fighter1_odds), odds_to_prob(fighter2_odds))
 
                 a_win, b_win = closerToOdds(avb_win,avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob)
 
