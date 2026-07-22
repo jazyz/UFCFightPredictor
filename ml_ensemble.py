@@ -110,6 +110,14 @@ y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
 
 from sklearn.model_selection import TimeSeriesSplit
 
+def pruning_callback(trial):
+    # report per-iteration CV loss so the pruner can stop hopeless trials early
+    def _callback(env):
+        trial.report(env.evaluation_result_list[0][2], env.iteration)
+        if trial.should_prune():
+            raise optuna.TrialPruned()
+    return _callback
+
 def objective(trial):
     param = {
         'objective': 'multiclass',
@@ -142,40 +150,50 @@ def objective(trial):
         param,
         data,
         num_boost_round=1000,
-        folds=tscv,  
-        stratified=False, 
-        shuffle=False, 
-        callbacks=[lgb.early_stopping(stopping_rounds=10)],
+        folds=tscv,
+        stratified=False,
+        shuffle=False,
+        callbacks=[lgb.early_stopping(stopping_rounds=50, verbose=False), pruning_callback(trial)],
     )
-    
-    print(cv_results.keys())
 
-    # best_score = cv_results['valid multi_error-mean'][-1]
-    
-    # best_accuracy = 1 - best_score  # Converting error rate to accuracy
+    scores = cv_results['valid multi_logloss-mean']
+    # early stopping truncates the history at the best iteration; keep it so the
+    # final refit trains that many trees instead of the sklearn default of 100
+    trial.set_user_attr('best_iteration', len(scores))
 
-    # return best_accuracy 
-    best_score = cv_results['valid multi_logloss-mean'][-1]
-
-    return best_score
+    return scores[-1]
 
 n_models = 5
 
-studies = []
+sampler = optuna.samplers.TPESampler(seed=seed)
+pruner = optuna.pruners.MedianPruner(n_startup_trials=10, n_warmup_steps=50)
+study = optuna.create_study(direction='minimize', sampler=sampler, pruner=pruner)
+study.optimize(objective, n_trials=150)
+
+# ensemble the top-N distinct completed trials instead of N one-trial studies:
+# same diversity mechanism (different param sets per member), but each member
+# is now a tuned draw instead of a random one
+completed = sorted(
+    (t for t in study.trials if t.state == optuna.trial.TrialState.COMPLETE),
+    key=lambda t: t.value,
+)
+top_trials, seen = [], set()
+for t in completed:
+    key = tuple(sorted(t.params.items()))
+    if key in seen:
+        continue
+    seen.add(key)
+    top_trials.append(t)
+    if len(top_trials) == n_models:
+        break
+
 models = []
-
-
-for _ in range(n_models):
-    study = optuna.create_study(direction='minimize')
-    study.optimize(objective, n_trials=1)
-
-    best_params = study.best_params
-
-    model = lgb.LGBMClassifier(**best_params)
-    # model.fit(X_train, y_train)
+for t in top_trials:
+    member_params = dict(t.params)
+    member_params['n_estimators'] = t.user_attrs['best_iteration']
+    print(f"ensemble member: cv_logloss={t.value:.4f} params={member_params}")
+    model = lgb.LGBMClassifier(**member_params)
     model.fit(X_train_extended, y_train_extended)
-
-    studies.append(study)
     models.append(model)
 
 import shap

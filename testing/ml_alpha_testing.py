@@ -105,6 +105,20 @@ def main(split_date = "2021-01-01", calibration=None):    # Step 1: Read the dat
     # Extracting the best parameters and score from the loaded data
     best_params = data_loaded['best_params']
     best_score = data_loaded['best_score']
+    # top trials saved by ml_alpha_date.py; averaged as a small ensemble to avoid
+    # betting on a single winner-of-the-search (older files only have best_params)
+    best_params_list = data_loaded.get('best_params_list', [best_params])
+
+    def fit_members(X, y):
+        members = []
+        for member_params in best_params_list:
+            m = lgb.LGBMClassifier(**member_params)
+            m.fit(X, y)
+            members.append(m)
+        return members
+
+    def ensemble_proba(members, X):
+        return np.mean([m.predict_proba(X) for m in members], axis=0)
 
     # with open(os.path.join("test_results", "results.txt"), "a") as f:
     #     f.write(f"Best params: {best_params}\n")
@@ -125,10 +139,9 @@ def main(split_date = "2021-01-01", calibration=None):    # Step 1: Read the dat
         X_fit_ext, y_fit_ext = extend(X_fit, y_fit)
         X_cal_ext, y_cal_ext = extend(X_cal, y_cal)
 
-        model = lgb.LGBMClassifier(**best_params)
-        model.fit(X_fit_ext, y_fit_ext)
+        members = fit_members(X_fit_ext, y_fit_ext)
 
-        p_cal = model.predict_proba(X_cal_ext)[:, 1]
+        p_cal = ensemble_proba(members, X_cal_ext)[:, 1]
         if calibration == "isotonic":
             from sklearn.isotonic import IsotonicRegression
             iso = IsotonicRegression(out_of_bounds="clip")
@@ -145,20 +158,18 @@ def main(split_date = "2021-01-01", calibration=None):    # Step 1: Read the dat
         else:
             raise ValueError(f"unknown calibration method: {calibration}")
 
-        raw_probs = model.predict_proba(X_test_extended)
+        raw_probs = ensemble_proba(members, X_test_extended)
         p_win = calibrate(raw_probs[:, 1])
         predicted_probabilities = np.column_stack([1 - p_win, p_win])
         y_pred = np.argmax(predicted_probabilities, axis=1)
         print(f"raw   logloss {log_loss(y_test_extended, raw_probs):.4f}  brier {brier_score_loss(y_test_extended, raw_probs[:, 1]):.4f}")
         print(f"calib logloss {log_loss(y_test_extended, predicted_probabilities):.4f}  brier {brier_score_loss(y_test_extended, p_win):.4f}")
     else:
-        model = lgb.LGBMClassifier(**best_params)
-        # model = lgb.LGBMClassifier(random_state=seed)
-        model.fit(X_train_extended, y_train_extended)
+        members = fit_members(X_train_extended, y_train_extended)
 
         # Make predictions and evaluate the model
-        y_pred = model.predict(X_test_extended)
-        predicted_probabilities = model.predict_proba(X_test_extended)
+        predicted_probabilities = ensemble_proba(members, X_test_extended)
+        y_pred = np.argmax(predicted_probabilities, axis=1)
 
     accuracy = accuracy_score(y_test_extended, y_pred)
     print(f"Extended Test Set Accuracy: {accuracy:.4f}")
