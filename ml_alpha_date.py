@@ -40,6 +40,15 @@ def main():
         corr_matrix = train_rows[selected_columns].corr().abs()
         upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
         to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
+        # keep the feature set Red/Blue-symmetric for the swap augmentation:
+        # drop a correlated column together with its mirror, never one side alone
+        def mirror(col):
+            if col.startswith("Red "):
+                return "Blue " + col[len("Red "):]
+            if col.startswith("Blue "):
+                return "Red " + col[len("Blue "):]
+            return col
+        to_drop = sorted({c for col in to_drop for c in (col, mirror(col)) if c in df.columns})
         df.drop(to_drop, axis=1, inplace=True)
         selected_columns = [column for column in selected_columns if column not in to_drop]
         selected_columns.append("Date")

@@ -42,6 +42,19 @@ upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bo
 
 to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
 
+
+def mirror_red_blue(col):
+    if col.startswith("Red "):
+        return "Blue " + col[len("Red "):]
+    if col.startswith("Blue "):
+        return "Red " + col[len("Blue "):]
+    return col
+
+
+# The red/blue swap augmentation requires a Red/Blue-symmetric feature set, so
+# always drop a correlated column together with its mirror (never one side alone).
+to_drop = sorted({c for col in to_drop for c in (col, mirror_red_blue(col)) if c in df.columns})
+
 # Drop highly correlated features
 df.drop(to_drop, axis=1, inplace=True)
 

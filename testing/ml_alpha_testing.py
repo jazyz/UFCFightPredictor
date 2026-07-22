@@ -43,6 +43,16 @@ def main(split_date = "2021-01-01", calibration=None):    # Step 1: Read the dat
     # Find features with correlation greater than 95%
     to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
 
+    # keep the feature set Red/Blue-symmetric for the swap augmentation:
+    # drop a correlated column together with its mirror, never one side alone
+    def mirror(col):
+        if col.startswith("Red "):
+            return "Blue " + col[len("Red "):]
+        if col.startswith("Blue "):
+            return "Red " + col[len("Blue "):]
+        return col
+    to_drop = sorted({c for col in to_drop for c in (col, mirror(col)) if c in df.columns})
+
     # Drop highly correlated features
     df.drop(to_drop, axis=1, inplace=True)
 
