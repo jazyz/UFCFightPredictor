@@ -1,67 +1,67 @@
 Red Fighter,Blue Fighter,Predicted Result,Probability
-Song Yadong,Deiveson Figueiredo,win,0.6503005904450757
-Jake Matthews,Carlston Harris,win,0.6465005662272449
-Alonzo Menifield,Zhang Mingyang,loss,0.6112398460563336
-Joanderson Brito,Jordan Leavitt,loss,0.5105005693482818
-Bruno Silva,Edgar Chairez,loss,0.6260681839678855
-Matt Schnell,Alessandro Costa,loss,0.5810326118742989
-Tom Nolan,Fares Ziam,loss,0.6308866148555867
-Brendan Allen,Edmen Shahbazyan,loss,0.5237138542908875
-Belal Muhammad,Gabriel Bonfim,loss,0.7182655256670036
-Ciryl Gane,Alex Pereira,win,0.5656654002362033
-Steve Garcia,Diego Lopes,win,0.5991124410493683
-Bo Nickal,Kyle Daukaus,win,0.7281191124321685
-Mauricio Ruffy,Michael Chandler,win,0.7104585385948667
-Sean O'Malley,Aiemann Zahabi,win,0.5561328496841171
-Justin Gaethje,Ilia Topuria,loss,0.777108149715362
-Manel Kape,Kyoji Horiguchi,loss,0.6394286241810252
-Hyder Amil,Christian Rodriguez,loss,0.7492491817398784
-Allan Nascimento,Mitch Raposo,win,0.516666913317865
-Andre Lima,Kevin Borjas,win,0.7989447549260418
-Andre Fili,Vinicius Oliveira,loss,0.6960874741043344
-Abus Magomedov,Michal Oleksiejczuk,loss,0.6192392896195246
-Brunno Ferreira,Ikram Aliskerov,loss,0.5798061819984779
-Shara Magomedov,Michel Pereira,win,0.5828645146244396
-Manuel Torres,Rafael Fiziev,win,0.6496316110306504
-Cory Sandhagen,Mario Bautista,loss,0.575084138599198
-Robert Whittaker,Nikita Krylov,loss,0.5356068073426081
-Paddy Pimblett,Benoit Saint Denis,loss,0.6192774717977549
-Alessandro Costa,Cody Durden,win,0.6735097333367864
-Adrian Yanez,Cody Garbrandt,win,0.5350181026745598
-Max Holloway,Conor McGregor,win,0.6821443648145401
-Jared Cannonier,Christian Leroy Duncan,loss,0.6955570056079146
-Mitch Ramirez,Chase Hooper,loss,0.7714705777812954
-Kamaru Usman,Dricus Du Plessis,win,0.5274842785783374
-Deiveson Figueiredo,Song Yadong,loss,0.6823657895111948
-Carlston Harris,Jake Matthews,loss,0.6777303973248233
-Zhang Mingyang,Alonzo Menifield,win,0.6076358508397026
-Jordan Leavitt,Joanderson Brito,win,0.5097419334266371
-Edgar Chairez,Bruno Silva,win,0.5766574757394938
-Alessandro Costa,Matt Schnell,win,0.5639255570958538
-Fares Ziam,Tom Nolan,win,0.6189311955585696
-Edmen Shahbazyan,Brendan Allen,win,0.5416245798922301
-Gabriel Bonfim,Belal Muhammad,win,0.7467849148174883
-Alex Pereira,Ciryl Gane,loss,0.5802103200104193
-Diego Lopes,Steve Garcia,loss,0.5892804216245244
-Kyle Daukaus,Bo Nickal,loss,0.7369234754355289
-Michael Chandler,Mauricio Ruffy,loss,0.716699580465086
-Aiemann Zahabi,Sean O'Malley,loss,0.5791192803296713
-Ilia Topuria,Justin Gaethje,win,0.773956476045632
-Kyoji Horiguchi,Manel Kape,win,0.6302143864622067
-Christian Rodriguez,Hyder Amil,win,0.7508900766663802
-Mitch Raposo,Allan Nascimento,win,0.5172551355218987
-Kevin Borjas,Andre Lima,loss,0.7733668467225375
-Vinicius Oliveira,Andre Fili,win,0.7023316213879951
-Michal Oleksiejczuk,Abus Magomedov,win,0.5837386454347883
-Ikram Aliskerov,Brunno Ferreira,win,0.6398470340696124
-Michel Pereira,Shara Magomedov,loss,0.521768108234814
-Rafael Fiziev,Manuel Torres,loss,0.6726581146115957
-Mario Bautista,Cory Sandhagen,win,0.607208436737072
-Nikita Krylov,Robert Whittaker,win,0.5488430156745793
-Benoit Saint Denis,Paddy Pimblett,win,0.6085932796316695
-Cody Durden,Alessandro Costa,loss,0.6851858935817736
-Cody Garbrandt,Adrian Yanez,loss,0.5017511298894711
-Conor McGregor,Max Holloway,loss,0.6151492190307619
-Christian Leroy Duncan,Jared Cannonier,win,0.6813842881934786
-Chase Hooper,Mitch Ramirez,win,0.7793690977245531
-Dricus Du Plessis,Kamaru Usman,loss,0.5190140862635608
+Song Yadong,Deiveson Figueiredo,win,0.674263855392029
+Jake Matthews,Carlston Harris,win,0.6635977316204239
+Alonzo Menifield,Zhang Mingyang,loss,0.6165847105317693
+Joanderson Brito,Jordan Leavitt,win,0.5150853644076133
+Bruno Silva,Edgar Chairez,loss,0.576984102867586
+Matt Schnell,Alessandro Costa,loss,0.5529008612697994
+Tom Nolan,Fares Ziam,loss,0.6251236942129816
+Brendan Allen,Edmen Shahbazyan,loss,0.5464138179895308
+Belal Muhammad,Gabriel Bonfim,loss,0.6918255023644844
+Ciryl Gane,Alex Pereira,win,0.5744792718128671
+Steve Garcia,Diego Lopes,win,0.5940213529256406
+Bo Nickal,Kyle Daukaus,win,0.7188795991444346
+Mauricio Ruffy,Michael Chandler,win,0.7296553173924837
+Sean O'Malley,Aiemann Zahabi,win,0.5758359251686349
+Justin Gaethje,Ilia Topuria,loss,0.7559596504161519
+Manel Kape,Kyoji Horiguchi,loss,0.6067482186662687
+Hyder Amil,Christian Rodriguez,loss,0.7143265154302936
+Allan Nascimento,Mitch Raposo,loss,0.5329849391804349
+Andre Lima,Kevin Borjas,win,0.7600488236614552
+Andre Fili,Vinicius Oliveira,loss,0.7006815598229239
+Abus Magomedov,Michal Oleksiejczuk,loss,0.5606199342312268
+Brunno Ferreira,Ikram Aliskerov,loss,0.6226816965752926
+Shara Magomedov,Michel Pereira,win,0.5543722121512966
+Manuel Torres,Rafael Fiziev,win,0.6408354372084556
+Cory Sandhagen,Mario Bautista,loss,0.5752082758202245
+Robert Whittaker,Nikita Krylov,loss,0.5876738602285873
+Paddy Pimblett,Benoit Saint Denis,loss,0.5890122193072349
+Alessandro Costa,Cody Durden,win,0.6202546956691163
+Adrian Yanez,Cody Garbrandt,win,0.5231314635490077
+Max Holloway,Conor McGregor,win,0.6653150440067189
+Jared Cannonier,Christian Leroy Duncan,loss,0.6669297411545452
+Mitch Ramirez,Chase Hooper,loss,0.7523631064112799
+Kamaru Usman,Dricus Du Plessis,loss,0.5264342692979394
+Deiveson Figueiredo,Song Yadong,loss,0.66827569528696
+Carlston Harris,Jake Matthews,loss,0.6244208027125311
+Zhang Mingyang,Alonzo Menifield,win,0.6312535743274855
+Jordan Leavitt,Joanderson Brito,loss,0.5010632963723718
+Edgar Chairez,Bruno Silva,win,0.5933611189032548
+Alessandro Costa,Matt Schnell,win,0.5873997347000802
+Fares Ziam,Tom Nolan,win,0.6566315314437536
+Edmen Shahbazyan,Brendan Allen,win,0.5116126880463996
+Gabriel Bonfim,Belal Muhammad,win,0.7312219029787368
+Alex Pereira,Ciryl Gane,loss,0.536571216321773
+Diego Lopes,Steve Garcia,loss,0.5989469297107528
+Kyle Daukaus,Bo Nickal,loss,0.689495110019549
+Michael Chandler,Mauricio Ruffy,loss,0.7196359484712591
+Aiemann Zahabi,Sean O'Malley,loss,0.5841982096575405
+Ilia Topuria,Justin Gaethje,win,0.7453595733920417
+Kyoji Horiguchi,Manel Kape,win,0.6089353510610891
+Christian Rodriguez,Hyder Amil,win,0.7164603817687467
+Mitch Raposo,Allan Nascimento,win,0.5401209102505062
+Kevin Borjas,Andre Lima,loss,0.7602241354612891
+Vinicius Oliveira,Andre Fili,win,0.6918398510044799
+Michal Oleksiejczuk,Abus Magomedov,win,0.5650326633644378
+Ikram Aliskerov,Brunno Ferreira,win,0.6107137063334601
+Michel Pereira,Shara Magomedov,loss,0.6238237830792291
+Rafael Fiziev,Manuel Torres,loss,0.6572114400597803
+Mario Bautista,Cory Sandhagen,win,0.5762603897054068
+Nikita Krylov,Robert Whittaker,win,0.5692719935881903
+Benoit Saint Denis,Paddy Pimblett,win,0.6184476734485305
+Cody Durden,Alessandro Costa,loss,0.6636925431860276
+Cody Garbrandt,Adrian Yanez,loss,0.527090540723267
+Conor McGregor,Max Holloway,loss,0.6699985462684523
+Christian Leroy Duncan,Jared Cannonier,win,0.6685476455528034
+Chase Hooper,Mitch Ramirez,win,0.7668345473900681
+Dricus Du Plessis,Kamaru Usman,loss,0.5145305823035924

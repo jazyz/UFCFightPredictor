@@ -1,5 +1,6 @@
 import csv
 import random
+import re
 from flask import Flask
 
 # seed so the red/blue corner swap (and therefore the generated dataset) is reproducible
@@ -71,6 +72,16 @@ def split_at_first_space(text):
     parts = text.split(" ", 1)
     # Return both parts, before and after the first space
     return parts[0], parts[1] if len(parts) > 1 else ""
+
+def parse_height_inches(text):
+    # ufcstats format: 5' 11"
+    m = re.match(r"(\d+)'\s*(\d+)", text or "")
+    return int(m.group(1)) * 12 + int(m.group(2)) if m else 0
+
+def parse_reach_inches(text):
+    # ufcstats format: 72"
+    m = re.match(r'(\d+)"', text or "")
+    return int(m.group(1)) if m else 0
     
 fighter_stats = dict()
 
@@ -88,7 +99,7 @@ for fight in fights:
 # store it back into the dicts
 headers=get_csv_headers(file_path)
 
-hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins"]
+hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins","height","reach"]
 hardcoded_features_divide = ["oppelo","wins","avg age"]
 feature_list=[]
 feature_list.extend(hardcoded_features)
@@ -122,6 +133,10 @@ with app.app_context():
             except ValueError:
                 fighter_stats[fighter]["dob"] = 0
             #print(fighter_object.DOB)
+            fighter_stats[fighter]["height"] = parse_height_inches(fighter_object.Height)
+            # reach is unlisted for ~half of all fighters; height is the standard proxy
+            reach = parse_reach_inches(fighter_object.Reach)
+            fighter_stats[fighter]["reach"] = reach if reach else fighter_stats[fighter]["height"]
 
 processed_fights=[]
 count=0
@@ -169,8 +184,11 @@ def processFight(fight, Red, Blue):
         processed_fight['Title'] = fight['Title']
         processed_fight['Date'] = fight['Date']
         fight_date=getDate(fight['Date'], "%B %d, %Y")
-        # skip fights we can't date or where a fighter's DOB is unknown (age would be garbage)
+        # skip fights we can't date or where a fighter's DOB or height is unknown
+        # (age/height/reach features would be garbage)
         if not fight_date or fighter_stats[Red]['dob'] == 0 or fighter_stats[Blue]['dob'] == 0:
+            return
+        if fighter_stats[Red]['height'] == 0 or fighter_stats[Blue]['height'] == 0:
             return
         processed_fight['Red age'] = fight_date.year - fighter_stats[Red]['dob']
         processed_fight['Blue age'] = fight_date.year - fighter_stats[Blue]['dob']
