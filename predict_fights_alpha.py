@@ -41,7 +41,7 @@ file_path = os.path.join('data', 'modified_fight_details.csv')
 # store it back into the dicts
 headers=get_csv_headers(file_path)
 
-hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins",]
+hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins","height","reach",]
 hardcoded_features_divide = ["oppelo","wins","avg age"]
 
 feature_list=[]
@@ -77,6 +77,9 @@ def extract_fighter_stats(fighter_name, opponent_name):
         return
     if int(float(fighter_stats["dob"])) == 0 or int(float(opponent_stats["dob"])) == 0:
         print(f"Missing DOB for {fighter_name} or {opponent_name}, skipping.")
+        return
+    if int(float(fighter_stats["height"])) == 0 or int(float(opponent_stats["height"])) == 0:
+        print(f"Missing height for {fighter_name} or {opponent_name}, skipping.")
         return
     combined_stats = {}
     combined_stats = process_fight(fighter_stats, opponent_stats, combined_stats)
