@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-01-14T10:47:50.155295",
+  "holdout_start_date": "2024-01-01T00:00:00",
+  "dev_fights": 10350,
+  "holdout_fights": 953,
+  "holdout_hash": "4803a6540e24730f226c203b03ed0f77b907554270cf5411be5c58d59efd1f28",
+  "dev_date_range": {
+    "start": "1994-12-16T00:00:00",
+    "end": "2023-12-16T00:00:00"
+  },
+  "holdout_date_range": {
+    "start": "2024-01-13T00:00:00",
+    "end": "2025-12-13T00:00:00"
+  },
+  "warning": "NEVER use holdout_data.csv for development, training, or tuning!"
+}
