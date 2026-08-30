@@ -41,7 +41,7 @@ file_path = os.path.join('data', 'modified_fight_details.csv')
 # store it back into the dicts
 headers=get_csv_headers(file_path)
 
-hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins","height","reach",]
+hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins","height","reach","southpaw",]
 hardcoded_features_divide = ["oppelo","wins","avg age"]
 
 feature_list=[]

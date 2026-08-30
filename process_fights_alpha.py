@@ -99,7 +99,7 @@ for fight in fights:
 # store it back into the dicts
 headers=get_csv_headers(file_path)
 
-hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins","height","reach"]
+hardcoded_features = ["dob","totalfights","elo","losestreak","winstreak","titlewins","height","reach","southpaw"]
 hardcoded_features_divide = ["oppelo","wins","avg age"]
 feature_list=[]
 feature_list.extend(hardcoded_features)
@@ -137,6 +137,9 @@ with app.app_context():
             # reach is unlisted for ~half of all fighters; height is the standard proxy
             reach = parse_reach_inches(fighter_object.Reach)
             fighter_stats[fighter]["reach"] = reach if reach else fighter_stats[fighter]["height"]
+            # Switch/Open Stance/unknown count as 0: the flag encodes the
+            # southpaw-vs-orthodox matchup via its oppdiff, not full stance
+            fighter_stats[fighter]["southpaw"] = 1 if (fighter_object.Stance or "").strip() == "Southpaw" else 0
 
 processed_fights=[]
 count=0
