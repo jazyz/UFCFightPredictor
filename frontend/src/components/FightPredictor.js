@@ -12,15 +12,13 @@ const FightPredictor = ({ nameOptions }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showExtraStats, setShowExtraStats] = useState(false);
 
+  // the backend sends dob as a birth year ("1990"); "0" means unknown
   const calculateAge = (dob) => {
-    const birthDate = new Date(dob);
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
+    const birthYear = parseInt(dob, 10);
+    if (!birthYear || birthYear < 1900) {
+      return "N/A";
     }
-    return age;
+    return new Date().getFullYear() - birthYear;
   };
 
   const toggleExtraStats = () => {
@@ -60,7 +58,7 @@ const FightPredictor = ({ nameOptions }) => {
       setPredictedData(results.data.predicted_data);
       setIsLoading(false);
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
       setIsLoading(false);
       console.error("Error predicting fight:", error);
     }
@@ -128,7 +126,10 @@ const FightPredictor = ({ nameOptions }) => {
             </button>
           </div>
         </form>
-        {predictedData && (
+        {predictedData &&
+          predictedData.length === 2 &&
+          fighter1_stats?.Fighter &&
+          fighter2_stats?.Fighter && (
           <div className="mt-4 p-4 bg-blue-100 rounded-md">
             <h3 className="text-lg font-semibold text-center">
               Prediction Results

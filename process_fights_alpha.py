@@ -1,6 +1,9 @@
 import csv
 import random
 from flask import Flask
+
+# seed so the red/blue corner swap (and therefore the generated dataset) is reproducible
+random.seed(42)
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from models import db, Fighter, Fight
@@ -130,7 +133,7 @@ def sqr(n):
     return n*n
 
 def sqrSum(n):
-    return n*(n+1)*(2*n+1)//6
+    return n*(n+1)*(2*n+1)/6
 
 def getTime(fight):
     return (float(fight['Round'])-1)*5 + float(fight['Time'])
@@ -166,9 +169,9 @@ def processFight(fight, Red, Blue):
         processed_fight['Title'] = fight['Title']
         processed_fight['Date'] = fight['Date']
         fight_date=getDate(fight['Date'], "%B %d, %Y")
-        # if not (fight_date or fighter_stats[Red]['dob'] or fighter_stats[Blue]['dob']):
-        #     print("BAD")
-        #     return
+        # skip fights we can't date or where a fighter's DOB is unknown (age would be garbage)
+        if not fight_date or fighter_stats[Red]['dob'] == 0 or fighter_stats[Blue]['dob'] == 0:
+            return
         processed_fight['Red age'] = fight_date.year - fighter_stats[Red]['dob']
         processed_fight['Blue age'] = fight_date.year - fighter_stats[Blue]['dob']
         processed_fight['age oppdiff'] = processed_fight['Red age'] - processed_fight['Blue age'] 
@@ -231,24 +234,23 @@ for fight in fights:
             continue
         red_feature_key = "Red " + feature
         blue_feature_key = "Blue " + feature
+        # parse everything first so a bad value can't leave a fighter's stats half-updated
         try:
             red_value = float(fight[red_feature_key])
             blue_value = float(fight[blue_feature_key])
-            
-            if "%" in feature:
-                fighter_stats[Red][f"{feature} differential"] += (red_value - blue_value) * sqr(redfights)
-                fighter_stats[Blue][f"{feature} differential"] += (blue_value - red_value) * sqr(bluefights)
-            else:
-                fighter_stats[Red][f"{feature} differential"] += (red_value - blue_value) * sqr(redfights) 
-                fighter_stats[Blue][f"{feature} differential"] += (blue_value - red_value) * sqr(bluefights) 
-            
-            fighter_stats[Red][f"{feature}"] += red_value * sqr(redfights) / getTime(fight)
-            fighter_stats[Blue][f"{feature}"] += blue_value * sqr(bluefights) / getTime(fight)
-            if "%" in feature:
-                fighter_stats[Red][f"{feature} defense"] += (1 - blue_value) * sqr(redfights)
-                fighter_stats[Blue][f"{feature} defense"] += (1 - red_value) * sqr(bluefights)
-        except:
-            pass
+            fight_time = getTime(fight)
+        except (KeyError, ValueError):
+            continue
+        if fight_time <= 0:
+            continue
+
+        fighter_stats[Red][f"{feature} differential"] += (red_value - blue_value) * sqr(redfights)
+        fighter_stats[Blue][f"{feature} differential"] += (blue_value - red_value) * sqr(bluefights)
+        fighter_stats[Red][f"{feature}"] += red_value * sqr(redfights) / fight_time
+        fighter_stats[Blue][f"{feature}"] += blue_value * sqr(bluefights) / fight_time
+        if "%" in feature:
+            fighter_stats[Red][f"{feature} defense"] += (1 - blue_value) * sqr(redfights)
+            fighter_stats[Blue][f"{feature} defense"] += (1 - red_value) * sqr(bluefights)
     winner = fight['Winner']
     Result='draw'
     if winner == Red:

@@ -57,16 +57,9 @@ def build(src=SRC, dst=DST, backup=True, log=print):
         if df[col].apply(lambda x: isinstance(x, str) and ":" in x).any():
             df[col] = df[col].apply(time_to_minutes)
 
-    # Preserved upstream behaviour — see module docstring.
-    to_delete = set()
-    i = 0
-    while i < len(df) - 1:
-        if pd.isna(df.loc[i, "Winner"]) or df.loc[i, "Winner"] == "":
-            to_delete.add(i + 1)
-            i += 2
-        else:
-            i += 1
-    df = df.drop(list(to_delete))
+    # Drop draws/no-contests: rows with no winner.
+    df = df[~(df["Winner"].isna() | (df["Winner"].astype(str).str.strip() == ""))]
+    df.reset_index(drop=True, inplace=True)
 
     df = df.drop(columns=DROP_COLUMNS)
     df = df[~df["Title"].str.contains("Women", na=False)]

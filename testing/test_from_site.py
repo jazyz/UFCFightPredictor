@@ -36,7 +36,22 @@ def main(testFrom="Jan 22 2022", testTo="Dec 16 2023"):
     global bankroll, correct_predictions, total_predictions, correct_bets, total_bets, correct_underdogs, total_underdogs, correct_favourites, total_favourites
     global max_bankroll, min_bankroll, favourite_loss, underdog_loss, favourite_gain, underdog_gain
 
+    # reset all stats so repeated calls don't accumulate across runs
     bankroll = 1000.00
+    correct_predictions = 0
+    total_predictions = 0
+    correct_bets = 0
+    total_bets = 0
+    correct_underdogs = 0
+    total_underdogs = 0
+    correct_favourites = 0
+    total_favourites = 0
+    max_bankroll = bankroll
+    min_bankroll = bankroll
+    favourite_loss = 0
+    underdog_loss = 0
+    favourite_gain = 0
+    underdog_gain = 0
 
     # TODO: figure out how to do rematches (maybe just use a set)
     def get_ml(p1, p2):
@@ -191,11 +206,9 @@ def main(testFrom="Jan 22 2022", testTo="Dec 16 2023"):
             # b_win_avg = avg_win(bva_win, avb_lose)
 
             # choose AvB or BvA based on how close they are to odds
-            odds1_prob = 0
-            odds2_prob = 0
-            if (ft1_odds != "-" and ft2_odds != "-"):
-                odds1_prob = odds_to_prob(ft1_odds)
-                odds2_prob = odds_to_prob(ft2_odds)
+            # (missing odds were already skipped above, so these are always ints here)
+            odds1_prob = odds_to_prob(ft1_odds)
+            odds2_prob = odds_to_prob(ft2_odds)
             a_win_avg=avb_win
             b_win_avg=bva_win
             if(abs(avb_win-odds1_prob) > abs(bva_lose-odds1_prob)):
@@ -203,9 +216,8 @@ def main(testFrom="Jan 22 2022", testTo="Dec 16 2023"):
             if(abs(bva_win-odds2_prob) > abs(avb_lose-odds2_prob)):
                 b_win_avg=avb_lose
 
-            if (ft1_odds != "-" and ft2_odds != "-"):
-                kc_a = kelly_criterion(ft1_odds, a_win_avg)
-                kc_b = kelly_criterion(ft2_odds, b_win_avg)
+            kc_a = kelly_criterion(ft1_odds, a_win_avg)
+            kc_b = kelly_criterion(ft2_odds, b_win_avg)
             test.write(f"{fighter1_name}: {ft1_odds} {a_win_avg:.2f} {kc_a:.2f}\n")
             test.write(f"{fighter2_name}: {ft2_odds} {b_win_avg:.2f} {kc_b:.2f}\n")
 
@@ -278,15 +290,18 @@ def main(testFrom="Jan 22 2022", testTo="Dec 16 2023"):
             test.write("---\n")
 
             
+        def pct(n, d):
+            return n / d * 100 if d else 0
+
         test.write(f"Bankroll: ${bankroll:.2f}\n")
         test.write(f"Max Bankroll: ${max_bankroll:.2f}\n")
         test.write(f"Min Bankroll: ${min_bankroll:.2f}\n")
-        test.write(f"{correct_bets}/{total_bets} = {correct_bets/total_bets * 100}% correct bets\n")
-        test.write(f"{correct_predictions}/{total_predictions} = {correct_predictions/total_predictions*100}% correct predictions\n")
-        test.write(f"{total_underdogs}/{total_bets} {correct_underdogs}/{total_underdogs} = {correct_underdogs/total_underdogs*100}% correct underdog bets\n")
+        test.write(f"{correct_bets}/{total_bets} = {pct(correct_bets, total_bets)}% correct bets\n")
+        test.write(f"{correct_predictions}/{total_predictions} = {pct(correct_predictions, total_predictions)}% correct predictions\n")
+        test.write(f"{total_underdogs}/{total_bets} {correct_underdogs}/{total_underdogs} = {pct(correct_underdogs, total_underdogs)}% correct underdog bets\n")
         test.write(f"Total underdog loss: ${underdog_loss:.2f}\n")
         test.write(f"Total underdog gain: ${underdog_gain:.2f}\n")
-        test.write(f"{total_favourites}/{total_bets} {correct_favourites}/{total_favourites} = {correct_favourites/total_favourites*100}% correct favourite bets\n")
+        test.write(f"{total_favourites}/{total_bets} {correct_favourites}/{total_favourites} = {pct(correct_favourites, total_favourites)}% correct favourite bets\n")
         test.write(f"Total favourite loss: ${favourite_loss:.2f}\n")
         test.write(f"Total favourite gain: ${favourite_gain:.2f}\n")
 
