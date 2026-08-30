@@ -39,6 +39,30 @@ upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bo
 
 to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
 
+
+def _mirror(column):
+    """The Red/Blue counterpart of a feature name."""
+    if column.startswith("Red "):
+        return "Blue " + column[len("Red "):]
+    if column.startswith("Blue "):
+        return "Red " + column[len("Blue "):]
+    return column
+
+
+# The training set below is augmented with Red/Blue-swapped copies of every row,
+# so the retained feature set has to be closed under that swap. The triangular
+# correlation scan above is order-dependent and drops only one side of a pair --
+# leaving e.g. "Blue Body% defense" with no "Red Body% defense". Renaming then
+# produces a column the original frame lacks, pd.concat unions the two frames,
+# and the orphaned columns are silently filled with NaN for half the rows. Drop
+# both halves of any such pair so the set stays symmetric.
+_asymmetric = {_mirror(c) for c in to_drop
+               if _mirror(c) != c and _mirror(c) in selected_columns} - set(to_drop)
+if _asymmetric:
+    print(f"pruning {len(_asymmetric)} column(s) to keep Red/Blue symmetry: {sorted(_asymmetric)}")
+    to_drop = to_drop + sorted(_asymmetric)
+to_drop = [c for c in to_drop if c != "Result"]
+
 # Drop highly correlated features
 df.drop(to_drop, axis=1, inplace=True)
 
@@ -90,8 +114,15 @@ for column in X_train.columns:
 
 y_train_swapped = y_train_swapped.apply(lambda x: 0 if x == 1 else 1)
 
+# Guard the invariant the swap depends on: mirroring must not invent columns.
+if set(X_train_swapped.columns) != set(X_train.columns):
+    raise RuntimeError(
+        "Red/Blue swap changed the feature set -- concat would pad with NaN. "
+        f"only in swapped: {sorted(set(X_train_swapped.columns) - set(X_train.columns))}")
+
 X_train_extended = pd.concat([X_train, X_train_swapped], ignore_index=True)
 y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
+assert list(X_train_extended.columns) == list(X_test.columns), "train/test feature mismatch"
 
 from sklearn.model_selection import TimeSeriesSplit
 
@@ -161,43 +192,53 @@ for _ in range(n_models):
     studies.append(study)
     models.append(model)
 
-import shap
-shap_values_list = []
+# SHAP feature-importance diagnostics — reporting only, and deliberately optional.
+# shap is not in requirements.txt, and summary_plot() blocks on render, so a
+# scheduled retrain must be able to skip this and still reach the joblib dump below.
+try:
+    import shap
+except ImportError:
+    shap = None
+    print('shap not installed — skipping feature-importance diagnostics')
 
-for model in models:
-    explainer = shap.TreeExplainer(model)
-    shap_values = explainer.shap_values(X_test)
-    shap_values_list.append(shap_values)
+if shap is not None:
+    shap_values_list = []
 
-shap_values_array = np.array(shap_values_list)  # Shape: [num_models, 2, num_samples, num_features]
+    for model in models:
+        explainer = shap.TreeExplainer(model)
+        shap_values = explainer.shap_values(X_test)
+        shap_values_list.append(shap_values)
 
-average_shap_values = np.mean(shap_values_array, axis=0)
+    shap_values_array = np.array(shap_values_list)  # Shape: [num_models, 2, num_samples, num_features]
 
-class_index = 0  # or 1
+    average_shap_values = np.mean(shap_values_array, axis=0)
 
-# Summing SHAP values across all samples to get an overall measure of feature importance
-feature_importance = np.abs(average_shap_values[class_index]).mean(axis=0)
+    class_index = 0  # or 1
 
-# Sorting features by their importance
-sorted_feature_indices = np.argsort(feature_importance)[::-1]
+    # Summing SHAP values across all samples to get an overall measure of feature importance
+    feature_importance = np.abs(average_shap_values[class_index]).mean(axis=0)
 
-# Sorted feature names
-sorted_features = np.array(X_test.columns)[sorted_feature_indices]
+    # Sorting features by their importance
+    sorted_feature_indices = np.argsort(feature_importance)[::-1]
 
-# Sorted SHAP values
-sorted_shap_values = average_shap_values[class_index][:, sorted_feature_indices]
+    # Sorted feature names
+    sorted_features = np.array(X_test.columns)[sorted_feature_indices]
 
-# Plotting
-shap.summary_plot(sorted_shap_values, features=X_test[sorted_features], plot_type='bar')
+    # Sorted SHAP values
+    sorted_shap_values = average_shap_values[class_index][:, sorted_feature_indices]
 
-threshold_percentile = 15
-threshold = np.percentile(feature_importance, threshold_percentile)
+    # Plotting
+    shap.summary_plot(sorted_shap_values, features=X_test[sorted_features],
+                          plot_type='bar', show=False)
 
-# Get the features whose importance is below the threshold
-low_importance_features = X_test.columns[feature_importance < threshold]
+    threshold_percentile = 15
+    threshold = np.percentile(feature_importance, threshold_percentile)
 
-print("low importance")
-print(low_importance_features)
+    # Get the features whose importance is below the threshold
+    low_importance_features = X_test.columns[feature_importance < threshold]
+
+    print("low importance")
+    print(low_importance_features)
 
 
 predicted_probabilities = [model.predict_proba(X_test) for model in models]

@@ -1,0 +1,16 @@
+# Local safety copies written by the pipeline before it overwrites anything
+*.bak-*
+
+# Per-run logs from auto_retrain.py / launchd
+logs/
+
+# Timestamped model backups taken before each retrain
+saved_models/backup_*/
+
+__pycache__/
+*.py[cod]
+.visflow/
+.venv/
+.conda/
+.DS_Store
+.pytest_cache/
