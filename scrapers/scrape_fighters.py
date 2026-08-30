@@ -63,7 +63,7 @@ def scrape_fighter_records(fighter_links):
             record_match = re.search(r"Record: (\d+-\d+-\d+ \(.*\))", fighter_name)
             if not record_match:
                 record_match = re.search(r'Record: (\d+-\d+-\d+)', fighter_name)
-            record = record_match.group(1).strip()
+            record = record_match.group(1).strip() if record_match else ""
 
             fighter_stats = {'name': name, 'record': record}
 

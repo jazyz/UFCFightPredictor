@@ -4,16 +4,17 @@ from predict_fights_alpha import predict_fight
 from ml_web import main
 from testing.testing_time_period import process_dates
 import os
-import subprocess
-import pandas as pd
 from flask_cors import CORS
-import sys
 import csv
 import base64
-import time
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=[
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://betufc.ca",
+    "https://betufc.ca",
+])
 
 @app.route('/get_all_fighter_names', methods=['GET'])
 def get_all_fighter_names():
@@ -32,13 +33,19 @@ def predict():
     fighter_name2 = data.get("fighter_name2")
     print(fighter_name1, fighter_name2)
 
+    if not fighter_name1 or not fighter_name2:
+        return jsonify({"message": "Both fighter names are required"}), 400
+
     if os.environ.get("FLASK_APP") != "app":
         os.environ["FLASK_APP"] = "app"
 
-    # predict_fihts_alpha 
-    predict_fight(fighter_name1, fighter_name2)
-    # ml_web
-    main()
+    try:
+        # predict_fihts_alpha
+        predict_fight(fighter_name1, fighter_name2)
+        # ml_web
+        main()
+    except Exception as e:
+        return jsonify({"message": f"Error predicting fight: {e}"}), 500
 
     response = {"message": "Fighter stats processed"}
     return jsonify(response)
@@ -127,14 +134,20 @@ def test():
 
 @app.route('/get_bankroll_plot', methods=['GET'])
 def get_bankroll_plot():
-    with open(os.path.join("data", "bankroll_plot.png"), "rb") as image_file:
-        encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
+    try:
+        with open(os.path.join("data", "bankroll_plot.png"), "rb") as image_file:
+            encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
+    except FileNotFoundError:
+        return {"message": "Bankroll plot not found"}, 404
     return {"image": encoded_image}
 
 @app.route('/get_predictions_plot', methods=['GET'])
 def get_predictions_plot():
-    with open(os.path.join("data", "predictions_bankroll_plot.png"), "rb") as image_file:
-        encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
+    try:
+        with open(os.path.join("data", "predictions_bankroll_plot.png"), "rb") as image_file:
+            encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
+    except FileNotFoundError:
+        return {"message": "Predictions plot not found"}, 404
     return {"image": encoded_image}
 
 # test to see if flask is running
@@ -143,4 +156,5 @@ def test_flask():
     return {"message": "Flask is running"}
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # never run the Werkzeug debugger by default; opt in with FLASK_DEBUG=1
+    app.run(debug=os.environ.get("FLASK_DEBUG") == "1")

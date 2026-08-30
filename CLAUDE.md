@@ -155,20 +155,26 @@ Runs Monday & Friday at 2:00 AM via launchd:
 
 Any step that fails, or produces nothing, exits non-zero.
 
-### Known quirks, preserved deliberately
-- `modify_fights.py` (ported to `utils/incremental_processing.py`) marks the row **after**
-  each missing-Winner row for deletion rather than that row itself, so every draw or
-  no-contest also costs the following bout — currently ~296 rows. Fixing it would make new
-  features inconsistent with every model trained so far.
-- The same cleaning step drops every `Title` containing "Women", so **women's bouts are
-  absent from training and cannot be predicted**. `predict_event.py` reports them as
-  fighters with no history.
-- `modify_fights.py` itself hardcodes Windows path separators and cannot run on macOS/Linux.
-  Use `utils/incremental_processing.py`.
+### Known quirks
+- The cleaning step drops every `Title` containing "Women", so **women's bouts are absent
+  from training and cannot be predicted**. `predict_event.py` reports them as fighters with
+  no history.
 - `Time Format` and `Details` are empty for every row: ufcstats labels them differently and
   the original scraper never captured them. New rows match this on purpose.
 - The `shap` block in `ml_ensemble.py` is optional diagnostics — `shap` is not in
   `requirements.txt` and `summary_plot` blocks on render, so it is skipped when absent.
+
+### Leakage fixes to preserve
+Several are load-bearing and easy to undo by accident:
+- `ml_ensemble.py` computes the correlation matrix on **training rows only**; computing it
+  over the full frame lets feature selection see the test set.
+- Optuna CV runs on the **un-augmented** training set. With the mirrored copies appended,
+  `TimeSeriesSplit` folds validate on swapped duplicates of fights already trained on.
+- `predict_fights_alpha.py` divides differential features by `sqrSum(totalfights)` exactly
+  as `process_fights_alpha.py` does at training time. These drifted apart once and produced
+  training/serving skew.
+- `tests/test_no_data_leakage.py` and `validation/` exist to guard this; run them after
+  touching the feature or training path.
 
 ### File Naming
 - `*_alpha.py` — Alpha model variants
