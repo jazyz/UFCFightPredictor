@@ -51,18 +51,22 @@ def decide_bet(model_p1, model_p2, odds1, odds2, *, blend_w=0.8, min_edge=0.05,
     """Full decision for one bout; None when neither side clears the gates.
 
     model_p2 may be None when the model's probabilities are complementary.
-    The chosen side is the one the model likes more than the market, its edge
-    is always measured against its DE-VIGGED probability, and a bet requires
-    edge >= min_edge and a positive Kelly. dog_multiplier scales the stake
-    when the chosen side has positive odds (1.0 = no scaling; the
-    half-stake-dogs experiment is a knob, not a default).
+    The chosen side is the PICK — the side with the higher betting
+    probability — never the "value side" (the side where model most exceeds
+    market): value-side selection concentrates bets on underdogs, the segment
+    measured at flat-stake -3.5%/bet, and is exactly what the validated
+    backtests did not do. The pick's edge is measured against its DE-VIGGED
+    probability, and a bet requires edge >= min_edge and a positive Kelly.
+    dog_multiplier scales the stake when the pick has positive odds
+    (1.0 = no scaling; the half-stake-dogs experiment is a knob, not a
+    default).
     """
     if model_p2 is None:
         model_p2 = 1.0 - model_p1
     market1, market2 = devig(american_to_prob(odds1), american_to_prob(odds2))
     p1 = blend_prob(model_p1, market1, blend_w)
     p2 = blend_prob(model_p2, market2, blend_w)
-    side = 1 if p1 - market1 >= p2 - market2 else 2
+    side = 1 if p1 >= p2 else 2
     prob, market_prob, odds = (p1, market1, odds1) if side == 1 else (p2, market2, odds2)
     edge = prob - market_prob
     kc = kelly(odds, prob)
