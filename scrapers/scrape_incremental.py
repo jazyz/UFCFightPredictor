@@ -179,6 +179,7 @@ def run(dry_run=False, full=False, skip_fighters=False, log=print):
         return 0
 
     new_rows = []
+    failed = []
     for i, (date, url, name) in enumerate(reversed(todo), 1):  # newest first
         page = BeautifulSoup(ufcnet.get(session, url), "html.parser")
         date_text = ""
@@ -196,8 +197,17 @@ def run(dry_run=False, full=False, skip_fighters=False, log=print):
                 fight = parse_fight(ufcnet.get(session, link))
             except ScrapeError as exc:
                 log(f"    !! skipping {link}: {exc}")
+                failed.append(link)
                 continue
             new_rows.append(to_row(fight, date_text or date.strftime("%B %d, %Y"), header))
+
+    if failed:
+        # Writing the event's other fights would advance the cutoff past the
+        # failed ones, making them unreachable without --full. Write nothing;
+        # the next scheduled run retries the whole event set.
+        raise ScrapeError(
+            f"{len(failed)} fight(s) failed to parse (see '!! skipping' above) — "
+            "nothing written so the next run retries these events")
 
     if not new_rows:
         raise ScrapeError(f"{len(todo)} new events but zero fights parsed")
