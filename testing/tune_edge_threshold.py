@@ -7,9 +7,9 @@ import sys
 
 sys.path.insert(0, 'testing')
 import testing_time_period as ttp
+import backtest_cache
 
-CACHE_DIR = os.path.join('test_results', '.edge_tune_cache')
-os.makedirs(CACHE_DIR, exist_ok=True)
+CACHE_DIR = backtest_cache.cache_dir(os.path.join('test_results', '.edge_tune_cache'))
 
 _orig_train = ttp.train_ml
 

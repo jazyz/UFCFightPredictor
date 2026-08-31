@@ -8,9 +8,9 @@ import sys
 sys.path.insert(0, 'testing')
 import testing_time_period as ttp
 import ml_alpha_testing
+import backtest_cache
 
-CACHE = os.path.join('test_results', '.oos2024_cache')
-os.makedirs(CACHE, exist_ok=True)
+CACHE = backtest_cache.cache_dir(os.path.join('test_results', '.oos2024_cache'))
 
 def cached_train(date):
     cf = os.path.join(CACHE, f'pred_{date}.csv')
