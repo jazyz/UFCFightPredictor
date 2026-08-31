@@ -95,8 +95,6 @@ def scrape_fighter_records(fighter_links):
                         value = value_elem.text.strip() if value_elem else ""
                         label = label_elem.text.strip()
                         label = label.replace(":", "")
-                        if label == "STANCE":
-                            label = label.title()
                         if label in key_mapping:
                             physical_characteristics[key_mapping[label]] = value
 

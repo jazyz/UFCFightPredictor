@@ -40,6 +40,15 @@ def main():
         corr_matrix = train_rows[selected_columns].corr().abs()
         upper_tri = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
         to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
+        # keep the feature set Red/Blue-symmetric for the swap augmentation:
+        # drop a correlated column together with its mirror, never one side alone
+        def mirror(col):
+            if col.startswith("Red "):
+                return "Blue " + col[len("Red "):]
+            if col.startswith("Blue "):
+                return "Red " + col[len("Blue "):]
+            return col
+        to_drop = sorted({c for col in to_drop for c in (col, mirror(col)) if c in df.columns})
         df.drop(to_drop, axis=1, inplace=True)
         selected_columns = [column for column in selected_columns if column not in to_drop]
         selected_columns.append("Date")
@@ -85,6 +94,15 @@ def main():
     y_train_extended = pd.concat([y_train, y_train_swapped], ignore_index=True)
 
     from sklearn.model_selection import TimeSeriesSplit
+
+    def pruning_callback(trial):
+        # report per-iteration CV loss so the pruner can stop hopeless trials early
+        def _callback(env):
+            trial.report(env.evaluation_result_list[0][2], env.iteration)
+            if trial.should_prune():
+                raise optuna.TrialPruned()
+        return _callback
+
     def objective(trial):
         param = {
             'objective': 'multiclass',
@@ -111,46 +129,71 @@ def main():
             param,
             data,
             num_boost_round=1000,
-            folds=tscv,  
-            stratified=False, 
-            shuffle=False, 
-            callbacks=[lgb.early_stopping(stopping_rounds=50)],
+            folds=tscv,
+            stratified=False,
+            shuffle=False,
+            callbacks=[lgb.early_stopping(stopping_rounds=50, verbose=False), pruning_callback(trial)],
         )
-        
-        print(cv_results.keys())
 
-        best_score = cv_results['valid multi_logloss-mean'][-1]
+        scores = cv_results['valid multi_logloss-mean']
+        # early stopping truncates the history at the best iteration; keep it so the
+        # final refit trains that many trees instead of the sklearn default of 100
+        trial.set_user_attr('best_iteration', len(scores))
 
-        return best_score
+        return scores[-1]
 
     def run_study():
-        study = optuna.create_study(direction="minimize")
-        study.optimize(objective, n_trials=1)
+        sampler = optuna.samplers.TPESampler(seed=seed)
+        pruner = optuna.pruners.MedianPruner(n_startup_trials=10, n_warmup_steps=50)
+        study = optuna.create_study(direction="minimize", sampler=sampler, pruner=pruner)
+        study.optimize(objective, n_trials=150)
 
-        best_params = study.best_params
+        # save the top-5 distinct trials, not just the winner: a single best-of-150
+        # pick overfits the noisy CV objective (winner's curse), while averaging a
+        # small ensemble of top trials generalizes better (same design as ml_ensemble.py)
+        completed = sorted(
+            (t for t in study.trials if t.state == optuna.trial.TrialState.COMPLETE),
+            key=lambda t: t.value,
+        )
+        top_params, seen = [], set()
+        for t in completed:
+            key = tuple(sorted(t.params.items()))
+            if key in seen:
+                continue
+            seen.add(key)
+            params = dict(t.params)
+            params["n_estimators"] = t.user_attrs["best_iteration"]
+            top_params.append(params)
+            if len(top_params) == 5:
+                break
+
         best_score = study.best_value
-
-        print(f"Best params: {best_params}")
+        print(f"Best params: {top_params[0]}")
         print(f"Best score: {best_score}")
 
         with open("data/best_params.json", "w") as file:
-            data_to_save = {"best_params": best_params, "best_score": best_score}
+            data_to_save = {
+                "best_params": top_params[0],
+                "best_params_list": top_params,
+                "best_score": best_score,
+            }
             json.dump(data_to_save, file, indent=4)
 
     run_study()
     with open("data/best_params.json", "r") as file:
         data_loaded = json.load(file)
 
-    best_params = data_loaded["best_params"]
+    best_params_list = data_loaded.get("best_params_list", [data_loaded["best_params"]])
     best_score = data_loaded["best_score"]
 
-    model = lgb.LGBMClassifier(**best_params)
-    # model = lgb.LGBMClassifier(random_state=seed)
-    model.fit(X_train_extended, y_train_extended)
-    # model.fit(X_train, y_train)
+    models = []
+    for member_params in best_params_list:
+        model = lgb.LGBMClassifier(**member_params)
+        model.fit(X_train_extended, y_train_extended)
+        models.append(model)
 
-    y_pred = model.predict(X_test)
-    predicted_probabilities = model.predict_proba(X_test)
+    predicted_probabilities = np.mean([m.predict_proba(X_test) for m in models], axis=0)
+    y_pred = np.argmax(predicted_probabilities, axis=1)
     accuracy = accuracy_score(y_test, y_pred)
     logloss = log_loss(y_test, predicted_probabilities)
 
@@ -199,7 +242,7 @@ def main():
                 )
     print_results()
 
-    feature_importances = model.feature_importances_
+    feature_importances = np.mean([m.feature_importances_ for m in models], axis=0)
 
     feature_importance_df = pd.DataFrame(
         {"Feature": X_train.columns, "Importance": feature_importances}

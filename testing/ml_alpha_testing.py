@@ -11,11 +11,11 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import cross_val_score
 import numpy as np
 import optuna
-from sklearn.metrics import log_loss
+from sklearn.metrics import log_loss, brier_score_loss
 
 file_path = os.path.join("data", "detailed_fights.csv")
 
-def main(split_date = "2021-01-01"):    # Step 1: Read the data
+def main(split_date = "2021-01-01", calibration=None):    # Step 1: Read the data
     split_date = pd.to_datetime(split_date)
     df = pd.read_csv(file_path)
     # df = df[(df['Red totalfights'] > 4) & (df['Blue totalfights'] > 4)]
@@ -42,6 +42,16 @@ def main(split_date = "2021-01-01"):    # Step 1: Read the data
 
     # Find features with correlation greater than 95%
     to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.95)]
+
+    # keep the feature set Red/Blue-symmetric for the swap augmentation:
+    # drop a correlated column together with its mirror, never one side alone
+    def mirror(col):
+        if col.startswith("Red "):
+            return "Blue " + col[len("Red "):]
+        if col.startswith("Blue "):
+            return "Red " + col[len("Blue "):]
+        return col
+    to_drop = sorted({c for col in to_drop for c in (col, mirror(col)) if c in df.columns})
 
     # Drop highly correlated features
     df.drop(to_drop, axis=1, inplace=True)
@@ -95,17 +105,72 @@ def main(split_date = "2021-01-01"):    # Step 1: Read the data
     # Extracting the best parameters and score from the loaded data
     best_params = data_loaded['best_params']
     best_score = data_loaded['best_score']
+    # top trials saved by ml_alpha_date.py; averaged as a small ensemble to avoid
+    # betting on a single winner-of-the-search (older files only have best_params)
+    best_params_list = data_loaded.get('best_params_list', [best_params])
+
+    def fit_members(X, y):
+        members = []
+        for member_params in best_params_list:
+            m = lgb.LGBMClassifier(**member_params)
+            m.fit(X, y)
+            members.append(m)
+        return members
+
+    def ensemble_proba(members, X):
+        return np.mean([m.predict_proba(X) for m in members], axis=0)
 
     # with open(os.path.join("test_results", "results.txt"), "a") as f:
     #     f.write(f"Best params: {best_params}\n")
 
-    model = lgb.LGBMClassifier(**best_params)
-    # model = lgb.LGBMClassifier(random_state=seed)
-    model.fit(X_train_extended, y_train_extended)
+    if calibration:
+        # hold out the most recent 15% of the (time-ordered) training fights to fit
+        # a probability calibrator; the model trains on the remaining 85%
+        calib_start = int(len(X_train) * 0.85)
+        X_fit, X_cal = X_train.iloc[:calib_start], X_train.iloc[calib_start:]
+        y_fit, y_cal = y_train.iloc[:calib_start], y_train.iloc[calib_start:]
 
-    # Make predictions and evaluate the model
-    y_pred = model.predict(X_test_extended)
-    predicted_probabilities = model.predict_proba(X_test_extended)
+        def extend(X, y):
+            X_sw = X.copy()
+            X_sw.rename(columns=swap_red_blue, inplace=True)
+            y_sw = y.apply(lambda x: 0 if x == 1 else 1)
+            return pd.concat([X, X_sw], ignore_index=True), pd.concat([y, y_sw], ignore_index=True)
+
+        X_fit_ext, y_fit_ext = extend(X_fit, y_fit)
+        X_cal_ext, y_cal_ext = extend(X_cal, y_cal)
+
+        members = fit_members(X_fit_ext, y_fit_ext)
+
+        p_cal = ensemble_proba(members, X_cal_ext)[:, 1]
+        if calibration == "isotonic":
+            from sklearn.isotonic import IsotonicRegression
+            iso = IsotonicRegression(out_of_bounds="clip")
+            iso.fit(p_cal, y_cal_ext)
+            calibrate = lambda p: np.clip(iso.predict(p), 1e-6, 1 - 1e-6)
+        elif calibration == "platt":
+            from sklearn.linear_model import LogisticRegression
+            def logit(p):
+                p = np.clip(p, 1e-6, 1 - 1e-6)
+                return np.log(p / (1 - p))
+            lr = LogisticRegression()
+            lr.fit(logit(p_cal).reshape(-1, 1), y_cal_ext)
+            calibrate = lambda p: lr.predict_proba(logit(p).reshape(-1, 1))[:, 1]
+        else:
+            raise ValueError(f"unknown calibration method: {calibration}")
+
+        raw_probs = ensemble_proba(members, X_test_extended)
+        p_win = calibrate(raw_probs[:, 1])
+        predicted_probabilities = np.column_stack([1 - p_win, p_win])
+        y_pred = np.argmax(predicted_probabilities, axis=1)
+        print(f"raw   logloss {log_loss(y_test_extended, raw_probs):.4f}  brier {brier_score_loss(y_test_extended, raw_probs[:, 1]):.4f}")
+        print(f"calib logloss {log_loss(y_test_extended, predicted_probabilities):.4f}  brier {brier_score_loss(y_test_extended, p_win):.4f}")
+    else:
+        members = fit_members(X_train_extended, y_train_extended)
+
+        # Make predictions and evaluate the model
+        predicted_probabilities = ensemble_proba(members, X_test_extended)
+        y_pred = np.argmax(predicted_probabilities, axis=1)
+
     accuracy = accuracy_score(y_test_extended, y_pred)
     print(f"Extended Test Set Accuracy: {accuracy:.4f}")
 
