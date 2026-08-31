@@ -122,8 +122,8 @@ def process_fight(fighter_stats, opponent_stats, processed_fight):
                     processed_fight[f'Red {feature} differential'] = float(fighter_stats[f'{feature} differential']) / sqrSum(fighter_stats["totalfights"])
                     processed_fight[f'Blue {feature} differential'] = float(opponent_stats[f'{feature} differential']) / sqrSum(opponent_stats["totalfights"])
                     if "%" in feature:
-                        processed_fight[f'Red {feature} defense'] = sqrSum(float(fighter_stats[f"{feature} defense"]) / float(fighter_stats["totalfights"]))
-                        processed_fight[f'Blue {feature} defense'] = sqrSum(float(opponent_stats[f"{feature} defense"]) / float(opponent_stats["totalfights"]))
+                        processed_fight[f'Red {feature} defense'] = float(fighter_stats[f"{feature} defense"]) / sqrSum(fighter_stats["totalfights"])
+                        processed_fight[f'Blue {feature} defense'] = float(opponent_stats[f"{feature} defense"]) / sqrSum(opponent_stats["totalfights"])
                 if feature in hardcoded_features_divide:
                     processed_fight[f'Red {feature}'] = float(fighter_stats[feature]) / float(fighter_stats["totalfights"])
                     processed_fight[f'Blue {feature}'] = float(opponent_stats[feature]) / float(opponent_stats["totalfights"])

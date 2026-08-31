@@ -211,8 +211,8 @@ def processFight(fight, Red, Blue):
                     processed_fight[f'Red {feature} differential'] /= sqrSum(fighter_stats[Red]["totalfights"])
                     processed_fight[f'Blue {feature} differential'] /= sqrSum(fighter_stats[Blue]["totalfights"])
                     if "%" in feature:
-                        processed_fight[f'Red {feature} defense'] = sqrSum(fighter_stats[Red][f"{feature} defense"] / fighter_stats[Red]["totalfights"])
-                        processed_fight[f'Blue {feature} defense'] = sqrSum(fighter_stats[Blue][f"{feature} defense"] / fighter_stats[Blue]["totalfights"])
+                        processed_fight[f'Red {feature} defense'] = fighter_stats[Red][f"{feature} defense"] / sqrSum(fighter_stats[Red]["totalfights"])
+                        processed_fight[f'Blue {feature} defense'] = fighter_stats[Blue][f"{feature} defense"] / sqrSum(fighter_stats[Blue]["totalfights"])
                 if feature in hardcoded_features_divide:
                     processed_fight[f'Red {feature}'] /= fighter_stats[Red]["totalfights"]
                     processed_fight[f'Blue {feature}'] /= fighter_stats[Blue]["totalfights"]
@@ -267,11 +267,15 @@ for fight in fights:
 
         fighter_stats[Red][f"{feature} differential"] += (red_value - blue_value) * sqr(redfights)
         fighter_stats[Blue][f"{feature} differential"] += (blue_value - red_value) * sqr(bluefights)
-        fighter_stats[Red][f"{feature}"] += red_value * sqr(redfights) / fight_time
-        fighter_stats[Blue][f"{feature}"] += blue_value * sqr(bluefights) / fight_time
         if "%" in feature:
+            # accuracy decimals are already rates; dividing by fight_time would make them per-minute
+            fighter_stats[Red][f"{feature}"] += red_value * sqr(redfights)
+            fighter_stats[Blue][f"{feature}"] += blue_value * sqr(bluefights)
             fighter_stats[Red][f"{feature} defense"] += (1 - blue_value) * sqr(redfights)
             fighter_stats[Blue][f"{feature} defense"] += (1 - red_value) * sqr(bluefights)
+        else:
+            fighter_stats[Red][f"{feature}"] += red_value * sqr(redfights) / fight_time
+            fighter_stats[Blue][f"{feature}"] += blue_value * sqr(bluefights) / fight_time
     winner = fight['Winner']
     Result='draw'
     if winner == Red:
