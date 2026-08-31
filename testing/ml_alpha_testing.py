@@ -57,7 +57,8 @@ def main(split_date = "2021-01-01", calibration=None):    # Step 1: Read the dat
     df.drop(to_drop, axis=1, inplace=True)
 
     # Make sure to update the 'selected_columns' to reflect the dropped columns
-    selected_columns = [col for col in selected_columns if 'oppdiff' not in col]
+    # oppdiff columns re-admitted 2026-08-31 to match ml_ensemble.py; their sign
+    # is flipped in the swapped copies below (they carry Red-minus-Blue values)
     selected_columns = [column for column in selected_columns if column not in to_drop]
 
     selected_columns.append("Date")
@@ -83,6 +84,10 @@ def main(split_date = "2021-01-01", calibration=None):    # Step 1: Read the dat
 
     # Swap the column names for the training data
     X_train_swapped.rename(columns=swap_red_blue, inplace=True)
+    # oppdiff columns are Red-minus-Blue: renaming can't touch them, so negate
+    for column in X_train.columns:
+        if "oppdiff" in column:
+            X_train_swapped[column] = X_train[column] * -1
 
     # Inverse the target variable for the swapped training data
     y_train_swapped = y_train_swapped.apply(lambda x: 0 if x == 1 else 1)
@@ -95,6 +100,9 @@ def main(split_date = "2021-01-01", calibration=None):    # Step 1: Read the dat
     X_test_swapped = X_test.copy()
     y_test_swapped = y_test.copy()
     X_test_swapped.rename(columns=swap_red_blue, inplace=True)
+    for column in X_test.columns:
+        if "oppdiff" in column:
+            X_test_swapped[column] = X_test[column] * -1
     y_test_swapped = y_test_swapped.apply(lambda x: 0 if x == 1 else 1)
     X_test_extended = pd.concat([X_test, X_test_swapped], ignore_index=True)
     y_test_extended = pd.concat([y_test, y_test_swapped], ignore_index=True)
@@ -133,6 +141,9 @@ def main(split_date = "2021-01-01", calibration=None):    # Step 1: Read the dat
         def extend(X, y):
             X_sw = X.copy()
             X_sw.rename(columns=swap_red_blue, inplace=True)
+            for column in X.columns:
+                if "oppdiff" in column:
+                    X_sw[column] = X[column] * -1
             y_sw = y.apply(lambda x: 0 if x == 1 else 1)
             return pd.concat([X, X_sw], ignore_index=True), pd.concat([y, y_sw], ignore_index=True)
 

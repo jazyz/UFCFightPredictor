@@ -32,7 +32,11 @@ low_importance_to_remove = [
 ]
 selected_columns = [col for col in selected_columns if col not in low_importance_to_remove]
 # selected_columns = [col for col in selected_columns if 'red' not in col.lower() and 'blue' not in col.lower()]
-selected_columns = [col for col in selected_columns if 'oppdiff' not in col]
+# oppdiff (Red-minus-Blue matchup) columns re-admitted 2026-08-31: the strip
+# below dated to 2024-01 (pre-leakage-fixes). The swap augmentation already
+# sign-flips them correctly, and they give the trees direct resolution on
+# close matchups. Re-strip by uncommenting if a retrain degrades calibration.
+# selected_columns = [col for col in selected_columns if 'oppdiff' not in col]
 
 split_index = int(len(df) * 0.95)
 # correlations computed on training rows only, so feature selection can't see the test set
