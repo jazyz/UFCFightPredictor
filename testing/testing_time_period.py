@@ -1,9 +1,14 @@
 import csv
 from datetime import datetime, timedelta
 import os
+import sys
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('agg')
+
+# betting_math lives at the repo root; backtests must stake with production semantics
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import betting_math
 
 # Check if running in Flask context
 try:
@@ -14,30 +19,6 @@ except ImportError:
 
 bankroll = 1000
 bankrolls = []
-def kelly_criterion(odds, prob_win):
-        kc = 0
-        if (odds < 0):
-            n = 100 / -odds
-            kc = (n * prob_win - (1 - prob_win)) / n
-        else:
-            n = odds / 100  
-            kc = (n * prob_win - (1 - prob_win)) / n
-        return kc
-
-def odds_to_prob(odds):
-    if odds >= 0:
-        prob = 100 / (odds + 100)
-    else:
-        prob = -odds / (-odds + 100)
-    return prob
-
-# bookmaker implied probabilities include the vig (they sum to >1);
-# proportional normalization recovers the market's fair probabilities
-def devig(prob1, prob2):
-    total = prob1 + prob2
-    if total <= 0:
-        return prob1, prob2
-    return prob1 / total, prob2 / total
 
 def avg_win(avb_win, bva_lose):
     avg_win = (float(avb_win) + float(bva_lose)) / 2
@@ -153,18 +134,20 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
 
 
 
-        odds1_prob, odds2_prob = devig(odds_to_prob(fighter1_odds), odds_to_prob(fighter2_odds))
+        odds1_prob, odds2_prob = betting_math.devig(
+            betting_math.american_to_prob(fighter1_odds),
+            betting_math.american_to_prob(fighter2_odds))
 
         # strategy[4]: blend weight w -> w*model + (1-w)*devigged market; None = legacy closerToOdds
         blend_w = strategy[4] if len(strategy) > 4 else None
+        model_a = avg_win(avb_win, bva_lose)
         if blend_w is not None:
-            model_a = avg_win(avb_win, bva_lose)
-            a_win = blend_w * model_a + (1 - blend_w) * odds1_prob
+            a_win = betting_math.blend_prob(model_a, odds1_prob, blend_w)
             b_win = 1 - a_win
         else:
             a_win, b_win = closerToOdds(avb_win,avb_lose, bva_win, bva_lose, odds1_prob, odds2_prob)
-        kc_a = kelly_criterion(fighter1_odds, a_win)
-        kc_b = kelly_criterion(fighter2_odds, b_win)
+        kc_a = betting_math.kelly(fighter1_odds, a_win)
+        kc_b = betting_math.kelly(fighter2_odds, b_win)
         test.write(f"Bankroll: {bankroll:.2f}\n")
         test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.3f} {kc_a:.2f}\n")
         test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.3f} {kc_b:.2f}\n")
@@ -173,56 +156,33 @@ def process_fight(fight, strategy=[0.05, 0.05, 0]):
         # normal strategy: 0.05, 0.05, 0
         # risky strategy: 0.1, 0.1, 0
         # kc strategy: don't do anything
-        # flat: 0.01, 0.015, 0.02 (if 3rd parameter > 0 then flat all predictions)
         fraction = strategy[0]
         max_fraction = strategy[1]
-        flat = strategy[2]
-        # minimum model-vs-market edge required to bet (0 keeps legacy always-bet behavior)
+        # strategy[2] (the old flat floor / forced-bet size) is inert: production
+        # sizing has no floor and never bets a non-positive Kelly, so the slot is
+        # accepted for interface compatibility but ignored
+        # minimum de-vigged edge required to bet (0 = bet whenever Kelly is positive)
         min_edge = strategy[3] if len(strategy) > 3 else 0
 
-        if min_edge > 0:
-            edge = (a_win - odds1_prob) if a_win > b_win else (b_win - odds2_prob)
-            kc = kc_a if a_win > b_win else kc_b
-            if edge < min_edge or kc <= 0:
-                test.write(f"(no bet: edge {edge:.3f})\n")
-                test.write(f" *** {winner_name} *** \n")
-                test.write("---\n")
-                bankrolls.append(bankroll)
-                return
-
-        if a_win > b_win:
-
-            if (kc_a > 0):
-                bet = bankroll * fraction * kc_a
-                bet = min(bet,max_fraction*bankroll)
-                bet=max(bet,bankroll*flat)
-                # if flat>0:
-                #     bet = bankroll * flat
-                bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
-            else:
-                if (kc_a>-0.5):
-                    bet = bankroll * flat
-                    bankroll+=processBet(bet, fighter1_name, fighter1_odds, winner_name)
-                else:
-                    test.write(f"(no bet)")
+        if blend_w is not None:
+            bet = betting_math.decide_bet(model_a, None, fighter1_odds, fighter2_odds,
+                                          blend_w=blend_w, min_edge=min_edge,
+                                          fraction=fraction, cap=max_fraction,
+                                          bankroll=bankroll)
+        else:
+            # closerToOdds already picked the anchors; blend_w=1.0 passes them through
+            bet = betting_math.decide_bet(a_win, b_win, fighter1_odds, fighter2_odds,
+                                          blend_w=1.0, min_edge=min_edge,
+                                          fraction=fraction, cap=max_fraction,
+                                          bankroll=bankroll)
+        if bet is None:
+            edge = max(a_win - odds1_prob, b_win - odds2_prob)
+            test.write(f"(no bet: edge {edge:.3f})\n")
+        elif bet["name_index"] == 0:
+            bankroll+=processBet(bet["stake"], fighter1_name, fighter1_odds, winner_name)
             test.write("\n")
         else:
-
-            if (kc_b > 0):
-                bet = bankroll * fraction * kc_b
-                bet = min(bet,max_fraction*bankroll)
-                bet=max(bet,bankroll*flat)
-                # if flat>0:
-                #     bet = bankroll * flat
-                bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
-            else:
-                if (kc_b>-0.5):
-                    bet = bankroll * flat
-                    bankroll+=processBet(bet, fighter2_name, fighter2_odds, winner_name)
-                else:
-                    test.write(f"(no bet)")
-                
-                
+            bankroll+=processBet(bet["stake"], fighter2_name, fighter2_odds, winner_name)
             test.write("\n")
         test.write(f" *** {winner_name} *** \n")
         test.write("---\n")

@@ -4,8 +4,8 @@
 Feeds data/predicted_data.json, which is what app.py's /get_predicted_data
 endpoint serves, plus data/betting_predictions.csv, which betting_alpha.py
 reads. Every fight is scored in both corner orientations (A-vs-B and B-vs-A),
-as the rest of the pipeline expects: the two runs disagree slightly, and the
-betting math picks whichever is closer to the market.
+as the rest of the pipeline expects: the two runs disagree slightly, so the
+betting math averages them, then blends with the devigged market price.
 
     python predict_event.py                  next upcoming event
     python predict_event.py --list           show the upcoming schedule
@@ -44,6 +44,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.join(ROOT, "scrapers"))
 
+import betting_math
 import ufcnet
 from ufcnet import ScrapeError
 
@@ -53,10 +54,13 @@ PREP_DIR = os.path.join(ROOT, "saved_preprocessing")
 PRED_JSON = os.path.join(ROOT, "data", "predicted_data.json")
 BET_CSV = os.path.join(ROOT, "data", "betting_predictions.csv")
 
-# Betting strategy (see CLAUDE.md): fractional Kelly, conservative.
+# Betting strategy (see CLAUDE.md): fractional Kelly, conservative. Edge is
+# measured against the DE-VIGGED market probability, which is what MIN_EDGE
+# was validated on.
 KELLY_FRACTION = 0.05
 KELLY_MAX = 0.05
 MIN_EDGE = 0.05
+BLEND_W = 0.8
 BANKROLL = 100.0
 
 
@@ -180,33 +184,6 @@ def predict_rows():
 
 # ------------------------------------------------------------------- betting
 
-def kelly(odds, prob_win):
-    n = (100 / -odds) if odds < 0 else (odds / 100)
-    return (n * prob_win - (1 - prob_win)) / n
-
-
-def implied(odds):
-    return 100 / (odds + 100) if odds >= 0 else -odds / (-odds + 100)
-
-
-def reconcile(ab_win, ba_win, odds_a, odds_b):
-    """Pick between the A-vs-B and B-vs-A runs, favouring the market-closer one.
-
-    Mirrors betting_alpha.closerToOdds so recommendations stay consistent.
-    """
-    a_win, b_win = ab_win, ba_win
-    if abs(ab_win - implied(odds_a)) > abs((1 - ba_win) - implied(odds_a)):
-        a_win = 1 - ba_win
-        b_win = 1 - a_win
-    if abs(ba_win - implied(odds_b)) > abs((1 - ab_win) - implied(odds_b)):
-        b_win = 1 - ab_win
-        a_win = 1 - b_win
-    if abs(a_win + b_win - 1) > 1e-9:
-        a_win = (ab_win + (1 - ba_win)) / 2
-        b_win = 1 - a_win
-    return a_win, b_win
-
-
 def _slug_candidates(event_name, when):
     """ufc.com event slugs, most likely first.
 
@@ -282,7 +259,12 @@ def fetch_odds(event_name, when=None):
 
 
 def recommend(bouts, prob_of, odds_map):
-    """Kelly stakes for bouts where the model has a >MIN_EDGE edge on the price."""
+    """Kelly stakes where the blended probability clears MIN_EDGE.
+
+    The betting probability is BLEND_W * (two-orientation model average) +
+    (1 - BLEND_W) * the de-vigged market probability, and the edge is measured
+    against the de-vigged price, all via betting_math.
+    """
     picks = []
     for a, b in bouts:
         ab, ba = prob_of.get((a, b)), prob_of.get((b, a))
@@ -297,20 +279,20 @@ def recommend(bouts, prob_of, odds_map):
             continue
         odds_a, odds_b = (odds[1], odds[0]) if flip else odds
 
-        a_win, b_win = reconcile(ab, ba, odds_a, odds_b)
-        for name, prob, price in ((a, a_win, odds_a), (b, b_win, odds_b)):
-            edge = prob - implied(price)
-            if edge <= MIN_EDGE:
-                continue
-            kc = kelly(price, prob)
-            if kc <= 0:
-                continue
-            stake = min(BANKROLL * KELLY_FRACTION * kc, BANKROLL * KELLY_MAX)
-            picks.append(dict(fighter=name, opponent=b if name == a else a,
-                              odds=price, model_prob=round(prob, 4),
-                              implied_prob=round(implied(price), 4),
-                              edge=round(edge, 4), kelly=round(kc, 4),
-                              stake_pct=round(stake / BANKROLL * 100, 2)))
+        model_a = (ab + (1 - ba)) / 2
+        bet = betting_math.decide_bet(model_a, None, odds_a, odds_b,
+                                      blend_w=BLEND_W, min_edge=MIN_EDGE,
+                                      fraction=KELLY_FRACTION, cap=KELLY_MAX,
+                                      bankroll=BANKROLL)
+        if bet is None:
+            continue
+        name, opponent, price = ((a, b, odds_a) if bet["name_index"] == 0
+                                 else (b, a, odds_b))
+        picks.append(dict(fighter=name, opponent=opponent, odds=price,
+                          model_prob=round(bet["prob"], 4),
+                          implied_prob=round(bet["market_prob"], 4),
+                          edge=round(bet["edge"], 4), kelly=round(bet["kc"], 4),
+                          stake_pct=round(bet["stake"] / BANKROLL * 100, 2)))
     return picks
 
 
@@ -399,12 +381,12 @@ def main():
         print(f"{a + ' vs ' + b:<48}{favourite + ' ' + format(pf, '.1%'):>26}")
 
     if bets:
-        print(f"\n{'BET':<26}{'ODDS':>7}{'MODEL*':>8}{'IMPLIED':>9}{'EDGE':>7}{'STAKE':>8}")
+        print(f"\n{'BET':<26}{'ODDS':>7}{'BLEND*':>8}{'MARKET':>9}{'EDGE':>7}{'STAKE':>8}")
         for x in bets:
             print(f"{x['fighter']:<26}{x['odds']:>7}{x['model_prob']:>8.1%}"
                   f"{x['implied_prob']:>9.1%}{x['edge']:>7.1%}{x['stake_pct']:>7.2f}%")
-        print("\n* Sizing uses the corner orientation closer to the market price, so"
-              "\n  this can differ from the averaged number above. Stake is % of bankroll.")
+        print("\n* Sizing blends the model average with the devigged market probability"
+              "\n  (w=0.8), so this differs from the number above. Stake is % of bankroll.")
     elif args.odds:
         print("\nNo bet cleared the 5% edge threshold.")
 

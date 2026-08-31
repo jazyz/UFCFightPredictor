@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 import csv
 import os
 
+from betting_math import american_to_prob, blend_prob, decide_bet, devig, kelly
+
 # TODO: figure out how to do rematches 
 def get_ml(p1, p2):
     with open("data/betting_predictions.csv", mode='r') as file:
@@ -18,32 +20,8 @@ def get_ml(p1, p2):
 bankroll = 100
 
 # ***** HELPER FUNCTIONS *****
-# kelly criterion function, conservative betting strategy
-def kelly_criterion(odds, prob_win):
-        kc = 0
-        if (odds < 0):
-            n = 100 / -odds
-            kc = (n * prob_win - (1 - prob_win)) / n
-        else:
-            n = odds / 100  
-            kc = (n * prob_win - (1 - prob_win)) / n
-        return kc
-
-# convert odds to probability
-def odds_to_prob(odds):
-    if odds >= 0:
-        prob = 100 / (odds + 100)
-    else:
-        prob = -odds / (-odds + 100)
-    return prob
-
-# bookmaker implied probabilities include the vig (they sum to >1);
-# proportional normalization recovers the market's fair probabilities
-def devig(prob1, prob2):
-    total = prob1 + prob2
-    if total <= 0:
-        return prob1, prob2
-    return prob1 / total, prob2 / total
+# kelly/devig/blend/sizing all live in betting_math so this file, predict_event.py
+# and the backtests stake with identical semantics
 
 # average win probability between AvB and BvA
 def avg_win(avb_win, bva_lose):
@@ -143,47 +121,31 @@ with open(os.path.join("data", "betting_results.txt"), "w") as test:
 
                 # blend the model's symmetric estimate with the devigged market probability
                 # (missing odds were already skipped above, so these are always ints here)
-                odds1_prob, odds2_prob = devig(odds_to_prob(fighter1_odds), odds_to_prob(fighter2_odds))
+                odds1_prob, odds2_prob = devig(american_to_prob(fighter1_odds), american_to_prob(fighter2_odds))
 
                 model_a = avg_win(avb_win, bva_lose)
-                a_win = BLEND_W * model_a + (1 - BLEND_W) * odds1_prob
+                a_win = blend_prob(model_a, odds1_prob, BLEND_W)
                 b_win = 1 - a_win
 
-                kc_a = kelly_criterion(fighter1_odds, a_win)
-                kc_b = kelly_criterion(fighter2_odds, b_win)
+                kc_a = kelly(fighter1_odds, a_win)
+                kc_b = kelly(fighter2_odds, b_win)
 
                 test.write(f"{fighter1_name}: {fighter1_odds} {a_win:.3f} {kc_a:.3f}\n")
                 test.write(f"{fighter2_name}: {fighter2_odds} {b_win:.3f} {kc_b:.3f}\n")
 
-                fraction = 0.05
-                max_fraction = 0.05
-                flat = 0.005
-                if a_win > b_win:
-                    if (kc_a > 0):
-                        bet = bankroll * fraction * kc_a
-                        bet = min(bet,max_fraction*bankroll)
-                        bet = max(bet,flat*bankroll)
-                        processBet(bet, fighter1_name, fighter1_odds)
-                    else:
-                        if (kc_a > -0.5):
-                            bet = flat*bankroll
-                            processBet(bet, fighter1_name, fighter1_odds)
-                        else:
-                            test.write(f"{fighter1_name} (no bet)")
-                    test.write("\n")
+                # decide_bet gates on the de-vigged edge and a positive Kelly:
+                # no flat floor, and no forced bet when Kelly <= 0
+                # min_edge=0.05 is a behavior change: betting_alpha previously bet
+                # nearly every fight; it now applies the same gate as predict_event
+                bet = decide_bet(model_a, None, fighter1_odds, fighter2_odds,
+                                 blend_w=BLEND_W, min_edge=0.05, bankroll=bankroll)
+                if bet is None:
+                    test.write("(no bet)\n")
                 else:
-                    if (kc_b > 0):
-                        bet = bankroll * fraction * kc_b
-                        bet = min(bet,max_fraction*bankroll)
-                        bet = max(bet,flat*bankroll)
-                        processBet(bet, fighter2_name, fighter2_odds)
+                    if bet["name_index"] == 0:
+                        processBet(bet["stake"], fighter1_name, fighter1_odds)
                     else:
-                        if (kc_b > -0.5):
-                            bet = flat*bankroll
-                            processBet(bet, fighter2_name, fighter2_odds)
-                        else:
-                            test.write(f"{fighter2_name} (no bet)")
-                        
+                        processBet(bet["stake"], fighter2_name, fighter2_odds)
                     test.write("\n")
                 test.write("---\n")
 

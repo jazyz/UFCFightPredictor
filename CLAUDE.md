@@ -137,11 +137,14 @@ any such pair and asserts that mirroring did not change the column set. Do not r
 guard.
 
 ### Betting Strategy
-Fractional Kelly with conservative defaults:
-- 5% Kelly fraction, 5% max cap
-- Requires >5% edge (model prob − implied prob) to bet
-- Where odds exist, sizing uses whichever corner orientation is closer to the market price
-  (`closerToOdds`), which can differ from the plain average of the two orientations
+Fractional Kelly with conservative defaults; all sizing paths (`predict_event.py`,
+`betting_alpha.py`, the backtests) route through `betting_math.py`:
+- 5% Kelly fraction, 5% max cap, **no floor** — Kelly ≤ 0 means no bet
+- Requires ≥5% edge, measured against the **de-vigged** market probability of the chosen side
+- The betting probability blends model and market: 0.8 × (two-orientation model average)
+  + 0.2 × de-vigged market prob. The displayed headline probability stays the plain model
+  average; `closerToOdds` survives only as a legacy comparison path in the backtests
+  (`strategy[4] = None`)
 
 ### Auto-Retraining System
 Runs Monday & Friday at 2:00 AM via launchd:
