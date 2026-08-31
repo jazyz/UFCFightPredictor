@@ -1,0 +1,1158 @@
+event_name,event_date,fighter1_name,fighter2_name,sportsbook,cutoff_utc,fighter1_quote_ts,fighter2_quote_ts,kalshi_available
+ufc-fight-night-january-13-2024,Jan 13 2024,Magomed Ankalaev,Johnny Walker,fanduel,2024-01-13T08:00:00+00:00,2024-01-12T02:16:03.395743+00:00,2024-01-13T02:17:17.689855+00:00,false
+ufc-fight-night-january-13-2024,Jan 13 2024,Jim Miller,Gabriel Benitez,fanduel,2024-01-13T08:00:00+00:00,2024-01-13T02:17:17.633436+00:00,2024-01-13T02:17:17.646367+00:00,false
+ufc-fight-night-january-13-2024,Jan 13 2024,Ricky Simon,Mario Bautista,fanduel,2024-01-13T08:00:00+00:00,2024-01-13T00:46:18.300036+00:00,2024-01-13T00:46:18.278151+00:00,false
+ufc-fight-night-january-13-2024,Jan 13 2024,Phil Hawes,Brunno Ferreira,fanduel,2024-01-13T08:00:00+00:00,2024-01-12T00:15:58.263453+00:00,2024-01-13T00:21:39.238858+00:00,false
+ufc-fight-night-january-13-2024,Jan 13 2024,Andrei Arlovski,Waldo Cortes Acosta,fanduel,2024-01-13T08:00:00+00:00,2024-01-12T23:41:27.309642+00:00,2024-01-12T23:41:27.315537+00:00,false
+ufc-fight-night-january-13-2024,Jan 13 2024,Matthew Semelsberger,Preston Parsons,fanduel,2024-01-13T08:00:00+00:00,2024-01-13T06:40:22.695153+00:00,2024-01-13T06:40:22.711026+00:00,false
+ufc-fight-night-january-13-2024,Jan 13 2024,Marcus McGhee,Gaston Bolanos,fanduel,2024-01-13T08:00:00+00:00,2024-01-12T22:56:21.651299+00:00,2024-01-12T22:56:21.664258+00:00,false
+ufc-fight-night-january-13-2024,Jan 13 2024,Farid Basharat,Taylor Lapilus,fanduel,2024-01-13T08:00:00+00:00,2024-01-12T13:21:18.284050+00:00,2024-01-12T22:26:00.024432+00:00,false
+ufc-fight-night-january-13-2024,Jan 13 2024,Westin Wilson,Jean Silva,fanduel,2024-01-13T08:00:00+00:00,2024-01-12T22:06:02.013629+00:00,2024-01-12T13:35:11.555375+00:00,false
+ufc-fight-night-january-13-2024,Jan 13 2024,Nikolas Motta,Tom Nolan,fanduel,2024-01-13T08:00:00+00:00,2024-01-12T21:41:59.978629+00:00,2024-01-12T21:41:59.971172+00:00,false
+ufc-fight-night-january-13-2024,Jan 13 2024,Joshua Van,Felipe Bunes,fanduel,2024-01-13T08:00:00+00:00,2024-01-12T21:16:55.259555+00:00,2024-01-12T21:16:55.273869+00:00,false
+ufc-297,Jan 20 2024,Sean Strickland,Dricus Du Plessis,fanduel,2024-01-20T08:00:00+00:00,2024-01-20T05:16:20.340359+00:00,2024-01-20T05:16:20.358145+00:00,false
+ufc-297,Jan 20 2024,Neil Magny,Mike Malott,fanduel,2024-01-20T08:00:00+00:00,2024-01-20T04:16:09.970012+00:00,2024-01-20T04:16:10.009045+00:00,false
+ufc-297,Jan 20 2024,Chris Curtis,Marc-Andre Barriault,fanduel,2024-01-20T08:00:00+00:00,2024-01-20T03:50:52.697429+00:00,2024-01-20T03:50:52.704768+00:00,false
+ufc-297,Jan 20 2024,Arnold Allen,Movsar Evloev,fanduel,2024-01-20T08:00:00+00:00,2024-01-20T03:16:00.701992+00:00,2024-01-20T03:16:00.723154+00:00,false
+ufc-297,Jan 20 2024,Brad Katona,Garrett Armfield,fanduel,2024-01-20T08:00:00+00:00,2024-01-20T02:36:17.202064+00:00,2024-01-20T02:36:17.217265+00:00,false
+ufc-297,Jan 20 2024,Charles Jourdain,Sean Woodson,fanduel,2024-01-20T08:00:00+00:00,2024-01-20T02:10:59.748950+00:00,2024-01-20T02:10:59.758557+00:00,false
+ufc-297,Jan 20 2024,Serhiy Sidey,Ramon Taveras,fanduel,2024-01-20T08:00:00+00:00,2024-01-20T01:45:48.444169+00:00,2024-01-20T01:45:48.461974+00:00,false
+ufc-297,Jan 20 2024,Yohan Lainesse,Sam Patterson,fanduel,2024-01-20T08:00:00+00:00,2024-01-20T00:31:02.732058+00:00,2024-01-20T00:31:02.747988+00:00,false
+ufc-297,Jan 20 2024,Malcolm Gordon,Jimmy Flick,fanduel,2024-01-20T08:00:00+00:00,2024-01-19T23:45:46.869175+00:00,2024-01-18T23:40:29.667545+00:00,false
+ufc-fight-night-february-03-2024,Feb 03 2024,Roman Dolidze,Nassourdine Imavov,fanduel,2024-02-03T08:00:00+00:00,2024-02-02T15:11:08.671816+00:00,2024-02-03T02:31:00.516518+00:00,false
+ufc-fight-night-february-03-2024,Feb 03 2024,Renato Moicano,Drew Dober,fanduel,2024-02-03T08:00:00+00:00,2024-02-02T02:00:36.717275+00:00,2024-02-03T02:01:33.345191+00:00,false
+ufc-fight-night-february-03-2024,Feb 03 2024,Randy Brown,Muslim Salikhov,fanduel,2024-02-03T08:00:00+00:00,2024-02-03T01:41:05.320420+00:00,2024-02-02T01:35:26.510048+00:00,false
+ufc-fight-night-february-03-2024,Feb 03 2024,Gilbert Urbina,Charles Radtke,fanduel,2024-02-03T08:00:00+00:00,2024-02-03T00:21:17.099189+00:00,2024-02-02T00:15:23.347605+00:00,false
+ufc-fight-night-february-03-2024,Feb 03 2024,Azat Maksum,Charles Johnson,fanduel,2024-02-03T08:00:00+00:00,2024-02-02T23:31:17.503494+00:00,2024-02-02T23:31:17.527338+00:00,false
+ufc-fight-night-february-03-2024,Feb 03 2024,Themba Gorimbo,Pete Rodriguez,fanduel,2024-02-03T08:00:00+00:00,2024-02-02T22:46:25.164375+00:00,2024-02-02T22:46:25.182312+00:00,false
+ufc-fight-night-february-03-2024,Feb 03 2024,JeongYeong Lee,Blake Bilder,fanduel,2024-02-03T08:00:00+00:00,2024-02-02T22:20:53.083349+00:00,2024-02-02T22:20:53.063234+00:00,false
+ufc-fight-night-february-03-2024,Feb 03 2024,Landon Quinones,MarQuel Mederos,fanduel,2024-02-03T08:00:00+00:00,2024-02-02T21:31:32.363153+00:00,2024-02-02T21:31:32.353992+00:00,false
+ufc-fight-night-february-03-2024,Feb 03 2024,Thomas Petersen,Jamal Pogues,fanduel,2024-02-03T08:00:00+00:00,2024-02-02T21:15:53.803102+00:00,2024-02-02T21:15:53.823066+00:00,false
+ufc-fight-night-february-10-2024,Feb 10 2024,Jack Hermansson,Joe Pyfer,fanduel,2024-02-10T08:00:00+00:00,2024-02-10T02:50:18.287024+00:00,2024-02-10T02:50:18.332418+00:00,false
+ufc-fight-night-february-10-2024,Feb 10 2024,Dan Ige,Andre Fili,fanduel,2024-02-10T08:00:00+00:00,2024-02-10T02:20:15.253984+00:00,2024-02-10T02:20:15.265954+00:00,false
+ufc-fight-night-february-10-2024,Feb 10 2024,Robert Bryczek,Ihor Potieria,fanduel,2024-02-10T08:00:00+00:00,2024-02-10T01:50:36.179327+00:00,2024-02-10T01:50:36.189019+00:00,false
+ufc-fight-night-february-10-2024,Feb 10 2024,Brad Tavares,Gregory Rodrigues,fanduel,2024-02-10T08:00:00+00:00,2024-02-10T01:20:12.720471+00:00,2024-02-10T01:20:12.748360+00:00,false
+ufc-fight-night-february-10-2024,Feb 10 2024,Michael Johnson,Darrius Flowers,fanduel,2024-02-10T08:00:00+00:00,2024-02-10T00:45:15.850238+00:00,2024-02-10T00:45:15.858003+00:00,false
+ufc-fight-night-february-10-2024,Feb 10 2024,Rodolfo Vieira,Armen Petrosyan,fanduel,2024-02-10T08:00:00+00:00,2024-02-10T00:20:28.047823+00:00,2024-02-10T00:20:28.138486+00:00,false
+ufc-fight-night-february-10-2024,Feb 10 2024,Trevin Giles,Carlos Prates,fanduel,2024-02-10T08:00:00+00:00,2024-02-09T23:40:22.925094+00:00,2024-02-09T23:40:22.936675+00:00,false
+ufc-fight-night-february-10-2024,Feb 10 2024,Bolaji Oki,Timmy Cuamba,fanduel,2024-02-10T08:00:00+00:00,2024-02-09T23:20:36.654501+00:00,2024-02-09T23:20:36.589710+00:00,false
+ufc-fight-night-february-10-2024,Feb 10 2024,Devin Clark,Marcin Prachnio,fanduel,2024-02-10T08:00:00+00:00,2024-02-09T22:30:29.468768+00:00,2024-02-09T16:00:30.089779+00:00,false
+ufc-fight-night-february-10-2024,Feb 10 2024,Max Griffin,Jeremiah Wells,fanduel,2024-02-10T08:00:00+00:00,2024-02-09T22:10:31.922480+00:00,2024-02-09T22:10:31.902662+00:00,false
+ufc-fight-night-february-10-2024,Feb 10 2024,Zac Pauga,Bogdan Guskov,fanduel,2024-02-10T08:00:00+00:00,2024-02-09T21:50:19.014648+00:00,2024-02-09T21:50:19.052430+00:00,false
+ufc-fight-night-february-10-2024,Feb 10 2024,Fernie Garcia,Hyder Amil,fanduel,2024-02-10T08:00:00+00:00,2024-02-09T21:35:11.904346+00:00,2024-02-09T21:35:11.891250+00:00,false
+ufc-298,Feb 17 2024,Alexander Volkanovski,Ilia Topuria,fanduel,2024-02-17T08:00:00+00:00,2024-02-17T05:15:29.194565+00:00,2024-02-17T05:15:29.248538+00:00,false
+ufc-298,Feb 17 2024,Robert Whittaker,Paulo Costa,fanduel,2024-02-17T08:00:00+00:00,2024-02-17T04:45:09.796202+00:00,2024-02-17T04:45:09.803536+00:00,false
+ufc-298,Feb 17 2024,Geoff Neal,Ian Machado Garry,fanduel,2024-02-17T08:00:00+00:00,2024-02-16T04:15:36.525433+00:00,2024-02-17T04:15:27.327098+00:00,false
+ufc-298,Feb 17 2024,Merab Dvalishvili,Henry Cejudo,fanduel,2024-02-17T08:00:00+00:00,2024-02-17T03:45:20.173387+00:00,2024-02-17T03:45:20.184616+00:00,false
+ufc-298,Feb 17 2024,Anthony Hernandez,Roman Kopylov,fanduel,2024-02-17T08:00:00+00:00,2024-02-17T03:20:23.573546+00:00,2024-02-16T03:15:16.522094+00:00,false
+ufc-298,Feb 17 2024,Marcos Rogerio de Lima,Junior Tafa,fanduel,2024-02-17T08:00:00+00:00,2024-02-17T02:25:23.834085+00:00,2024-02-17T02:25:23.849911+00:00,false
+ufc-298,Feb 17 2024,Rinya Nakamura,Carlos Vera,fanduel,2024-02-17T08:00:00+00:00,2024-02-17T01:40:24.238593+00:00,2024-02-17T01:40:24.291478+00:00,false
+ufc-298,Feb 17 2024,Zhang Mingyang,Brendson Ribeiro,fanduel,2024-02-17T08:00:00+00:00,2024-02-17T01:10:29.332585+00:00,2024-02-17T01:10:29.366601+00:00,false
+ufc-298,Feb 17 2024,Josh Quinlan,Danny Barlow,fanduel,2024-02-17T08:00:00+00:00,2024-02-17T07:40:18.792189+00:00,2024-02-17T07:40:18.811413+00:00,false
+ufc-298,Feb 17 2024,Oban Elliott,Val Woodburn,fanduel,2024-02-17T08:00:00+00:00,2024-02-16T23:46:08.022492+00:00,2024-02-15T23:45:37.621237+00:00,false
+ufc-fight-night-february-24-2024,Feb 24 2024,Brandon Moreno,Brandon Royval,fanduel,2024-02-24T08:00:00+00:00,2024-02-23T05:45:12.542969+00:00,2024-02-24T05:45:25.043260+00:00,false
+ufc-fight-night-february-24-2024,Feb 24 2024,Yair Rodriguez,Brian Ortega,fanduel,2024-02-24T08:00:00+00:00,2024-02-24T05:15:15.780407+00:00,2024-02-24T05:15:15.801862+00:00,false
+ufc-fight-night-february-24-2024,Feb 24 2024,Daniel Zellhuber,Francisco Prado,fanduel,2024-02-24T08:00:00+00:00,2024-02-24T04:45:24.424056+00:00,2024-02-23T08:25:56.546063+00:00,false
+ufc-fight-night-february-24-2024,Feb 24 2024,Manuel Torres,Chris Duncan,fanduel,2024-02-24T08:00:00+00:00,2024-02-24T03:15:18.686986+00:00,2024-02-24T03:15:18.664898+00:00,false
+ufc-fight-night-february-24-2024,Feb 24 2024,Cristian Quinonez,Raoni Barcelos,fanduel,2024-02-24T08:00:00+00:00,2024-02-24T02:35:21.782461+00:00,2024-02-24T02:35:21.796673+00:00,false
+ufc-fight-night-february-24-2024,Feb 24 2024,Jesus Aguilar,Mateus Mendonca,fanduel,2024-02-24T08:00:00+00:00,2024-02-24T02:25:14.691395+00:00,2024-02-24T02:25:14.704924+00:00,false
+ufc-fight-night-february-24-2024,Feb 24 2024,Edgar Chairez,Daniel Lacerda,fanduel,2024-02-24T08:00:00+00:00,2024-02-24T01:50:23.403782+00:00,2024-02-24T01:50:23.386061+00:00,false
+ufc-fight-night-february-24-2024,Feb 24 2024,Claudio Puelles,Fares Ziam,fanduel,2024-02-24T08:00:00+00:00,2024-02-23T08:31:05.742376+00:00,2024-02-24T01:25:19.883082+00:00,false
+ufc-fight-night-february-24-2024,Feb 24 2024,Ronaldo Rodriguez,Denys Bondar,fanduel,2024-02-24T08:00:00+00:00,2024-02-24T01:00:22.338951+00:00,2024-02-24T01:00:22.318039+00:00,false
+ufc-fight-night-february-24-2024,Feb 24 2024,Victor Altamirano,Felipe dos Santos,fanduel,2024-02-24T08:00:00+00:00,2024-02-24T00:35:11.765086+00:00,2024-02-24T00:35:11.757790+00:00,false
+ufc-fight-night-february-24-2024,Feb 24 2024,Erik Silva,Muhammad Naimov,fanduel,2024-02-24T08:00:00+00:00,2024-02-24T00:10:15.472164+00:00,2024-02-24T00:10:15.456130+00:00,false
+ufc-fight-night-march-02-2024,Mar 02 2024,Vitor Petrino,Tyson Pedro,fanduel,2024-03-02T08:00:00+00:00,2024-03-01T22:45:10.341599+00:00,2024-03-01T22:45:10.334110+00:00,false
+ufc-fight-night-march-02-2024,Mar 02 2024,Alex Perez,Muhammad Mokaev,fanduel,2024-03-02T08:00:00+00:00,2024-03-02T07:45:51.101551+00:00,2024-03-02T07:45:51.147992+00:00,false
+ufc-fight-night-march-02-2024,Mar 02 2024,Umar Nurmagomedov,Bekzat Almakhan,fanduel,2024-03-02T08:00:00+00:00,2024-03-01T21:45:58.951659+00:00,2024-03-01T21:45:58.990531+00:00,false
+ufc-fight-night-march-02-2024,Mar 02 2024,Matt Schnell,Steve Erceg,fanduel,2024-03-02T08:00:00+00:00,2024-02-29T22:20:32.804522+00:00,2024-03-01T21:16:01.173225+00:00,false
+ufc-fight-night-march-02-2024,Mar 02 2024,Eryk Anders,Jamie Pickett,fanduel,2024-03-02T08:00:00+00:00,2024-03-01T20:35:34.707023+00:00,2024-03-01T20:35:34.721869+00:00,false
+ufc-fight-night-march-02-2024,Mar 02 2024,Vinicius Oliveira,Benardo Sopaj,fanduel,2024-03-02T08:00:00+00:00,2024-03-02T07:45:50.877411+00:00,2024-03-02T07:45:50.905500+00:00,false
+ufc-fight-night-march-02-2024,Mar 02 2024,Aiemann Zahabi,Javid Basharat,fanduel,2024-03-02T08:00:00+00:00,2024-03-01T19:50:54.526844+00:00,2024-03-01T19:50:54.534107+00:00,false
+ufc-fight-night-march-02-2024,Mar 02 2024,Christian Leroy Duncan,Claudio Ribeiro,fanduel,2024-03-02T08:00:00+00:00,2024-03-01T19:55:55.217611+00:00,2024-03-01T19:55:55.252574+00:00,false
+ufc-fight-night-march-02-2024,Mar 02 2024,Ludovit Klein,AJ Cunningham,fanduel,2024-03-02T08:00:00+00:00,2024-03-02T07:45:50.774549+00:00,2024-03-02T07:45:50.794509+00:00,false
+ufc-fight-night-march-02-2024,Mar 02 2024,Abdul-Kareem Al-Selwady,Loik Radzhabov,fanduel,2024-03-02T08:00:00+00:00,2024-03-01T18:40:40.859645+00:00,2024-03-01T18:40:40.939638+00:00,false
+ufc-299,Mar 09 2024,Sean O'Malley,Marlon Vera,fanduel,2024-03-09T08:00:00+00:00,2024-03-09T05:15:10.298960+00:00,2024-03-04T00:31:08.665008+00:00,false
+ufc-299,Mar 09 2024,Dustin Poirier,Benoit Saint Denis,fanduel,2024-03-09T08:00:00+00:00,2024-03-08T04:45:07.012329+00:00,2024-03-09T04:45:11.453829+00:00,false
+ufc-299,Mar 09 2024,Kevin Holland,Michael Page,fanduel,2024-03-09T08:00:00+00:00,2024-03-09T04:20:15.103255+00:00,2024-03-09T04:20:15.069738+00:00,false
+ufc-299,Mar 09 2024,Gilbert Burns,Jack Della Maddalena,fanduel,2024-03-09T08:00:00+00:00,2024-03-08T03:45:21.850431+00:00,2024-03-09T03:45:20.563351+00:00,false
+ufc-299,Mar 09 2024,Petr Yan,Song Yadong,fanduel,2024-03-09T08:00:00+00:00,2024-03-09T03:15:10.621731+00:00,2024-03-09T03:15:10.629175+00:00,false
+ufc-299,Mar 09 2024,Curtis Blaydes,Jailton Almeida,fanduel,2024-03-09T08:00:00+00:00,2024-03-09T00:55:11.257591+00:00,2024-03-09T02:30:26.416184+00:00,false
+ufc-299,Mar 09 2024,Mateusz Gamrot,Rafael Dos Anjos,fanduel,2024-03-09T08:00:00+00:00,2024-03-08T01:35:18.493414+00:00,2024-03-09T01:35:18.709315+00:00,false
+ufc-299,Mar 09 2024,Pedro Munhoz,Kyler Phillips,fanduel,2024-03-09T08:00:00+00:00,2024-03-09T01:10:23.646885+00:00,2024-03-09T01:10:23.669222+00:00,false
+ufc-299,Mar 09 2024,Ion Cutelaba,Philipe Lins,fanduel,2024-03-09T08:00:00+00:00,2024-03-09T00:40:23.088254+00:00,2024-03-09T00:40:23.064315+00:00,false
+ufc-299,Mar 09 2024,Michel Pereira,Michal Oleksiejczuk,fanduel,2024-03-09T08:00:00+00:00,2024-03-09T00:15:18.713308+00:00,2024-03-09T00:15:18.687404+00:00,false
+ufc-299,Mar 09 2024,Robelis Despaigne,Josh Parisian,fanduel,2024-03-09T08:00:00+00:00,2024-03-08T23:50:17.191048+00:00,2024-03-08T23:50:17.173846+00:00,false
+ufc-299,Mar 09 2024,CJ Vergara,Asu Almabayev,fanduel,2024-03-09T08:00:00+00:00,2024-03-08T23:25:12.078717+00:00,2024-03-08T23:25:12.091623+00:00,false
+ufc-fight-night-march-16-2024,Mar 16 2024,Tai Tuivasa,Marcin Tybura,fanduel,2024-03-16T07:00:00+00:00,2024-03-16T01:47:02.941319+00:00,2024-03-16T01:47:02.956062+00:00,false
+ufc-fight-night-march-16-2024,Mar 16 2024,Ovince Saint Preux,Kennedy Nzechukwu,fanduel,2024-03-16T07:00:00+00:00,2024-03-16T00:41:52.121090+00:00,2024-03-16T00:41:52.113886+00:00,false
+ufc-fight-night-march-16-2024,Mar 16 2024,Christian Rodriguez,Isaac Dulgarian,fanduel,2024-03-16T07:00:00+00:00,2024-03-16T03:15:14.297818+00:00,2024-03-16T03:15:14.313744+00:00,false
+ufc-fight-night-march-16-2024,Mar 16 2024,Gerald Meerschaert,Bryan Barberena,fanduel,2024-03-16T07:00:00+00:00,2024-03-15T23:21:39.053405+00:00,2024-03-14T23:16:37.182119+00:00,false
+ufc-fight-night-march-16-2024,Mar 16 2024,Natan Levy,Mike Davis,fanduel,2024-03-16T07:00:00+00:00,2024-03-16T03:05:08.057049+00:00,2024-03-16T03:05:08.040991+00:00,false
+ufc-fight-night-march-16-2024,Mar 16 2024,Jafel Filho,Ode Osbourne,fanduel,2024-03-16T07:00:00+00:00,2024-03-15T21:51:59.691697+00:00,2024-03-15T21:51:59.683932+00:00,false
+ufc-fight-night-march-16-2024,Mar 16 2024,Josh Culibao,Danny Silva,fanduel,2024-03-16T07:00:00+00:00,2024-03-15T22:26:32.719105+00:00,2024-03-15T22:26:32.743364+00:00,false
+ufc-fight-night-march-16-2024,Mar 16 2024,Thiago Moises,Mitch Ramirez,fanduel,2024-03-16T07:00:00+00:00,2024-03-15T21:21:57.285240+00:00,2024-03-15T21:21:57.295181+00:00,false
+ufc-fight-night-march-16-2024,Mar 16 2024,Charalampos Grigoriou,Chad Anheliger,fanduel,2024-03-16T07:00:00+00:00,2024-03-14T20:25:53.195870+00:00,2024-03-15T21:21:57.250344+00:00,false
+ufc-fight-night-march-23-2024,Mar 23 2024,Karl Williams,Justin Tafa,fanduel,2024-03-23T07:00:00+00:00,2024-03-23T04:05:59.643222+00:00,2024-03-23T04:05:59.652547+00:00,false
+ufc-fight-night-march-23-2024,Mar 23 2024,Edmen Shahbazyan,AJ Dobson,fanduel,2024-03-23T07:00:00+00:00,2024-03-23T03:36:03.495121+00:00,2024-03-23T03:36:03.480113+00:00,false
+ufc-fight-night-march-23-2024,Mar 23 2024,Payton Talbott,Cameron Saaiman,fanduel,2024-03-23T07:00:00+00:00,2024-03-23T03:36:03.431156+00:00,2024-03-23T03:36:03.411277+00:00,false
+ufc-fight-night-march-23-2024,Mar 23 2024,Billy Quarantillo,Youssef Zalal,fanduel,2024-03-23T07:00:00+00:00,2024-03-23T02:31:05.702096+00:00,2024-03-23T02:31:05.714202+00:00,false
+ufc-fight-night-march-23-2024,Mar 23 2024,Fernando Padilla,Luis Pajuelo,fanduel,2024-03-23T07:00:00+00:00,2024-03-22T02:05:46.227975+00:00,2024-03-23T02:05:55.374144+00:00,false
+ufc-fight-night-march-23-2024,Mar 23 2024,Kurt Holobaugh,Trey Ogden,fanduel,2024-03-23T07:00:00+00:00,2024-03-23T01:36:11.266270+00:00,2024-03-23T01:36:11.252051+00:00,false
+ufc-fight-night-march-23-2024,Mar 23 2024,Ricardo Ramos,Julian Erosa,fanduel,2024-03-23T07:00:00+00:00,2024-03-22T01:21:19.231335+00:00,2024-03-23T01:36:11.190136+00:00,false
+ufc-fight-night-march-23-2024,Mar 23 2024,Miles Johns,Cody Gibson,fanduel,2024-03-23T07:00:00+00:00,2024-03-23T00:51:28.512986+00:00,2024-03-23T00:51:28.575425+00:00,false
+ufc-fight-night-march-23-2024,Mar 23 2024,Jarno Errens,Steven Nguyen,fanduel,2024-03-23T07:00:00+00:00,2024-03-23T00:46:10.367195+00:00,2024-03-23T00:46:10.342387+00:00,false
+ufc-fight-night-march-23-2024,Mar 23 2024,Igor Severino,Andre Lima,fanduel,2024-03-23T07:00:00+00:00,2024-03-22T20:20:59.510250+00:00,2024-03-22T23:35:07.277243+00:00,false
+ufc-fight-night-march-23-2024,Mar 23 2024,Mohammed Usman,Mick Parkin,fanduel,2024-03-23T07:00:00+00:00,2024-03-22T23:20:54.013410+00:00,2024-03-22T23:20:53.998323+00:00,false
+ufc-fight-night-march-30-2024,Mar 30 2024,Vicente Luque,Joaquin Buckley,fanduel,2024-03-30T07:00:00+00:00,2024-03-30T04:31:38.999117+00:00,2024-03-30T04:31:39.011305+00:00,false
+ufc-fight-night-march-30-2024,Mar 30 2024,Chris Weidman,Bruno Silva,fanduel,2024-03-30T07:00:00+00:00,2024-03-30T01:36:11.129197+00:00,2024-03-30T03:46:54.858037+00:00,false
+ufc-fight-night-march-30-2024,Mar 30 2024,Nursulton Ruziboev,Sedriques Dumas,fanduel,2024-03-30T07:00:00+00:00,2024-03-30T03:36:37.222767+00:00,2024-03-30T03:36:37.255263+00:00,false
+ufc-fight-night-march-30-2024,Mar 30 2024,Bill Algeo,Kyle Nelson,fanduel,2024-03-30T07:00:00+00:00,2024-03-30T03:36:37.142401+00:00,2024-03-30T03:36:37.174397+00:00,false
+ufc-fight-night-march-30-2024,Mar 30 2024,Chidi Njokuani,Rhys McKee,fanduel,2024-03-30T07:00:00+00:00,2024-03-30T02:16:26.123355+00:00,2024-03-30T02:16:26.146570+00:00,false
+ufc-fight-night-march-30-2024,Mar 30 2024,Nate Landwehr,Jamall Emmers,fanduel,2024-03-30T07:00:00+00:00,2024-03-30T01:50:14.177316+00:00,2024-03-30T01:50:14.192030+00:00,false
+ufc-fight-night-march-30-2024,Mar 30 2024,Julio Arce,Herbert Burns,fanduel,2024-03-30T07:00:00+00:00,2024-03-30T01:16:47.791344+00:00,2024-03-30T01:16:47.804714+00:00,false
+ufc-fight-night-march-30-2024,Mar 30 2024,Dennis Buzukja,Connor Matthews,fanduel,2024-03-30T07:00:00+00:00,2024-03-30T00:56:10.758521+00:00,2024-03-30T00:56:10.750227+00:00,false
+ufc-fight-night-march-30-2024,Mar 30 2024,Ibo Aslan,Anton Turkalj,fanduel,2024-03-30T07:00:00+00:00,2024-03-30T00:21:19.645361+00:00,2024-03-30T00:21:19.633041+00:00,false
+ufc-fight-night-march-30-2024,Mar 30 2024,Andre Petroski,Jacob Malkoun,fanduel,2024-03-30T07:00:00+00:00,2024-03-28T23:31:25.392020+00:00,2024-03-29T23:41:13.729343+00:00,false
+ufc-fight-night-march-30-2024,Mar 30 2024,Angel Pacheco,Caolan Loughran,fanduel,2024-03-30T07:00:00+00:00,2024-03-29T23:41:13.637648+00:00,2024-03-29T23:41:13.658245+00:00,false
+ufc-fight-night-april-06-2024,Apr 06 2024,Brendan Allen,Chris Curtis,fanduel,2024-04-06T07:00:00+00:00,2024-04-06T00:30:39.232938+00:00,2024-04-05T00:30:24.203301+00:00,false
+ufc-fight-night-april-06-2024,Apr 06 2024,Alexander Hernandez,Damon Jackson,fanduel,2024-04-06T07:00:00+00:00,2024-04-06T00:00:49.131338+00:00,2024-04-06T00:00:49.151245+00:00,false
+ufc-fight-night-april-06-2024,Apr 06 2024,Morgan Charriere,Chepe Mariscal,fanduel,2024-04-06T07:00:00+00:00,2024-04-05T23:35:40.300307+00:00,2024-04-05T23:35:40.277878+00:00,false
+ufc-fight-night-april-06-2024,Apr 06 2024,Ignacio Bahamondes,Christos Giagos,fanduel,2024-04-06T07:00:00+00:00,2024-04-05T23:00:45.851799+00:00,2024-04-05T23:00:45.878971+00:00,false
+ufc-fight-night-april-06-2024,Apr 06 2024,Trevor Peek,Charlie Campbell,fanduel,2024-04-06T07:00:00+00:00,2024-04-05T23:50:41.222395+00:00,2024-04-05T23:50:41.242275+00:00,false
+ufc-fight-night-april-06-2024,Apr 06 2024,Court McGee,Alex Morono,fanduel,2024-04-06T07:00:00+00:00,2024-04-04T14:41:15.131560+00:00,2024-04-05T21:40:31.302929+00:00,false
+ufc-fight-night-april-06-2024,Apr 06 2024,Valter Walker,Lukasz Brzeski,fanduel,2024-04-06T07:00:00+00:00,2024-04-06T03:25:37.653673+00:00,2024-04-06T03:25:37.619529+00:00,false
+ufc-fight-night-april-06-2024,Apr 06 2024,Pedro Falcao,Victor Hugo,fanduel,2024-04-06T07:00:00+00:00,2024-04-05T20:50:32.546110+00:00,2024-04-05T20:50:32.565410+00:00,false
+ufc-fight-night-april-06-2024,Apr 06 2024,Dan Argueta,Jean Matsumoto,fanduel,2024-04-06T07:00:00+00:00,2024-04-05T20:00:46.901034+00:00,2024-04-04T20:05:04.230228+00:00,false
+ufc-fight-night-april-06-2024,Apr 06 2024,Dylan Budka,Cesar Almeida,fanduel,2024-04-06T07:00:00+00:00,2024-04-05T19:40:31.036728+00:00,2024-04-05T19:40:31.019817+00:00,false
+ufc-300,Apr 13 2024,Alex Pereira,Jamahal Hill,fanduel,2024-04-13T07:00:00+00:00,2024-04-13T04:26:50.371810+00:00,2024-04-13T04:26:50.378558+00:00,false
+ufc-300,Apr 13 2024,Justin Gaethje,Max Holloway,fanduel,2024-04-13T07:00:00+00:00,2024-04-13T03:16:12.901375+00:00,2024-04-13T03:16:12.922148+00:00,false
+ufc-300,Apr 13 2024,Charles Oliveira,Arman Tsarukyan,fanduel,2024-04-13T07:00:00+00:00,2024-04-13T02:56:18.800287+00:00,2024-04-13T02:56:18.806731+00:00,false
+ufc-300,Apr 13 2024,Bo Nickal,Cody Brundage,fanduel,2024-04-13T07:00:00+00:00,2024-04-13T02:56:18.776312+00:00,2024-04-13T02:56:18.785467+00:00,false
+ufc-300,Apr 13 2024,Jiri Prochazka,Aleksandar Rakic,fanduel,2024-04-13T07:00:00+00:00,2024-04-13T01:36:25.422458+00:00,2024-04-13T01:36:25.429769+00:00,false
+ufc-300,Apr 13 2024,Calvin Kattar,Aljamain Sterling,fanduel,2024-04-13T07:00:00+00:00,2024-04-13T01:05:57.337143+00:00,2024-04-13T01:05:57.349282+00:00,false
+ufc-300,Apr 13 2024,Sodiq Yusuff,Diego Lopes,fanduel,2024-04-13T07:00:00+00:00,2024-04-13T00:26:01.276070+00:00,2024-04-13T00:26:01.287060+00:00,false
+ufc-300,Apr 13 2024,Jalin Turner,Renato Moicano,fanduel,2024-04-13T07:00:00+00:00,2024-04-13T00:26:01.229986+00:00,2024-04-13T00:26:01.239140+00:00,false
+ufc-300,Apr 13 2024,Deiveson Figueiredo,Cody Garbrandt,fanduel,2024-04-13T07:00:00+00:00,2024-04-12T22:15:37.651222+00:00,2024-04-12T22:15:37.640317+00:00,false
+ufc-fight-night-april-27-2024,Apr 27 2024,Matheus Nicolau,Alex Perez,fanduel,2024-04-27T07:00:00+00:00,2024-04-27T04:55:21.461837+00:00,2024-04-27T04:55:21.478558+00:00,false
+ufc-fight-night-april-27-2024,Apr 27 2024,Ryan Spann,Bogdan Guskov,fanduel,2024-04-27T07:00:00+00:00,2024-04-27T01:00:43.707884+00:00,2024-04-27T01:00:43.721034+00:00,false
+ufc-fight-night-april-27-2024,Apr 27 2024,Austen Lane,Jhonata Diniz,fanduel,2024-04-27T07:00:00+00:00,2024-04-27T05:35:26.413122+00:00,2024-04-27T05:35:26.405075+00:00,false
+ufc-fight-night-april-27-2024,Apr 27 2024,Jonathan Pearce,David Onama,fanduel,2024-04-27T07:00:00+00:00,2024-04-27T04:55:21.353255+00:00,2024-04-27T04:55:21.366760+00:00,false
+ufc-fight-night-april-27-2024,Apr 27 2024,Tim Means,Uros Medic,fanduel,2024-04-27T07:00:00+00:00,2024-04-26T23:15:18.549232+00:00,2024-04-26T23:15:18.568346+00:00,false
+ufc-fight-night-april-27-2024,Apr 27 2024,Rani Yahya,Victor Henry,fanduel,2024-04-27T07:00:00+00:00,2024-04-27T06:00:12.883903+00:00,2024-04-27T06:00:12.892885+00:00,false
+ufc-fight-night-april-27-2024,Apr 27 2024,Austin Hubbard,Michal Figlak,fanduel,2024-04-27T07:00:00+00:00,2024-04-26T22:10:23.702281+00:00,2024-04-26T22:10:23.722517+00:00,false
+ufc-fight-night-april-27-2024,Apr 27 2024,Don'Tale Mayes,Caio Machado,fanduel,2024-04-27T07:00:00+00:00,2024-04-26T21:50:11.554730+00:00,2024-04-26T21:50:11.565285+00:00,false
+ufc-fight-night-april-27-2024,Apr 27 2024,James Llontop,Chris Padilla,fanduel,2024-04-27T07:00:00+00:00,2024-04-26T14:16:40.267583+00:00,2024-04-26T21:00:23.055868+00:00,false
+ufc-fight-night-april-27-2024,Apr 27 2024,Gabriel Benitez,Maheshate,fanduel,2024-04-27T07:00:00+00:00,2024-04-27T05:45:16.423397+00:00,2024-04-27T05:45:16.431584+00:00,false
+ufc-301,May 04 2024,Alexandre Pantoja,Steve Erceg,fanduel,2024-05-04T07:00:00+00:00,2024-05-04T04:20:45.988051+00:00,2024-05-04T04:20:46.001256+00:00,false
+ufc-301,May 04 2024,Jose Aldo,Jonathan Martinez,fanduel,2024-05-04T07:00:00+00:00,2024-05-04T03:45:11.566851+00:00,2024-05-04T03:45:11.558244+00:00,false
+ufc-301,May 04 2024,Anthony Smith,Vitor Petrino,fanduel,2024-05-04T07:00:00+00:00,2024-05-04T04:40:57.286289+00:00,2024-05-04T04:40:57.293405+00:00,false
+ufc-301,May 04 2024,Michel Pereira,Ihor Potieria,fanduel,2024-05-04T07:00:00+00:00,2024-05-04T02:45:58.476977+00:00,2024-05-04T02:45:58.486489+00:00,false
+ufc-301,May 04 2024,Paul Craig,Caio Borralho,fanduel,2024-05-04T07:00:00+00:00,2024-05-04T06:35:07.282143+00:00,2024-05-04T06:35:07.289660+00:00,false
+ufc-301,May 04 2024,Jack Shore,Joanderson Brito,fanduel,2024-05-04T07:00:00+00:00,2024-05-04T01:35:45.996167+00:00,2024-05-04T01:35:46.003403+00:00,false
+ufc-301,May 04 2024,Elves Brener,Myktybek Orolbai,fanduel,2024-05-04T07:00:00+00:00,2024-05-03T00:45:55.120177+00:00,2024-05-04T00:40:51.353140+00:00,false
+ufc-301,May 04 2024,Joaquim Silva,Drakkar Klose,fanduel,2024-05-04T07:00:00+00:00,2024-05-02T23:36:44.743331+00:00,2024-05-03T23:35:50.909065+00:00,false
+ufc-301,May 04 2024,Mauricio Ruffy,Jamie Mullarkey,fanduel,2024-05-04T07:00:00+00:00,2024-05-02T23:16:02.178855+00:00,2024-05-03T23:15:50.903957+00:00,false
+ufc-301,May 04 2024,Ismael Bonfim,Vinc Pichel,fanduel,2024-05-04T07:00:00+00:00,2024-05-03T22:35:41.858192+00:00,2024-05-03T22:35:41.865886+00:00,false
+ufc-301,May 04 2024,Alessandro Costa,Kevin Borjas,fanduel,2024-05-04T07:00:00+00:00,2024-05-03T22:05:46.610304+00:00,2024-05-03T22:05:46.616668+00:00,false
+ufc-fight-night-may-11-2024,May 11 2024,Derrick Lewis,Rodrigo Nascimento,fanduel,2024-05-11T07:00:00+00:00,2024-05-11T02:06:05.589959+00:00,2024-05-10T03:06:09.880849+00:00,false
+ufc-fight-night-may-11-2024,May 11 2024,Joaquin Buckley,Nursulton Ruziboev,fanduel,2024-05-11T07:00:00+00:00,2024-05-11T01:35:57.478172+00:00,2024-05-11T01:35:57.487653+00:00,false
+ufc-fight-night-may-11-2024,May 11 2024,Alonzo Menifield,Carlos Ulberg,fanduel,2024-05-11T07:00:00+00:00,2024-05-10T17:15:50.574584+00:00,2024-05-11T00:51:16.424066+00:00,false
+ufc-fight-night-may-11-2024,May 11 2024,Diego Ferreira,Mateusz Rebecki,fanduel,2024-05-11T07:00:00+00:00,2024-05-11T04:20:18.740381+00:00,2024-05-11T04:20:18.783688+00:00,false
+ufc-fight-night-may-11-2024,May 11 2024,Alex Caceres,Sean Woodson,fanduel,2024-05-11T07:00:00+00:00,2024-05-10T23:45:24.144478+00:00,2024-05-10T23:45:24.150517+00:00,false
+ufc-fight-night-may-11-2024,May 11 2024,Waldo Cortes Acosta,Robelis Despaigne,fanduel,2024-05-11T07:00:00+00:00,2024-05-10T01:11:08.399308+00:00,2024-05-10T23:11:09.430941+00:00,false
+ufc-fight-night-may-11-2024,May 11 2024,Chase Hooper,Viacheslav Borshchev,fanduel,2024-05-11T07:00:00+00:00,2024-05-10T22:41:20.363020+00:00,2024-05-10T17:15:50.442362+00:00,false
+ufc-fight-night-may-11-2024,May 11 2024,Terrance McKinney,Esteban Ribovics,fanduel,2024-05-11T07:00:00+00:00,2024-05-10T17:15:50.394339+00:00,2024-05-10T22:21:34.515134+00:00,false
+ufc-fight-night-may-11-2024,May 11 2024,Billy Ray Goff,Trey Waters,fanduel,2024-05-11T07:00:00+00:00,2024-05-10T21:21:48.086074+00:00,2024-05-09T15:25:34.252157+00:00,false
+ufc-fight-night-may-11-2024,May 11 2024,Charles Johnson,Jake Hadley,fanduel,2024-05-11T07:00:00+00:00,2024-05-10T21:21:48.059601+00:00,2024-05-10T21:21:48.050085+00:00,false
+ufc-fight-night-may-18-2024,May 18 2024,Edson Barboza,Lerone Murphy,fanduel,2024-05-18T00:00:00+00:00,2024-05-17T16:55:29.291216+00:00,2024-05-17T16:55:29.298688+00:00,false
+ufc-fight-night-may-18-2024,May 18 2024,Khaos Williams,Carlston Harris,fanduel,2024-05-18T00:00:00+00:00,2024-05-17T00:45:20.604138+00:00,2024-05-17T00:45:20.610846+00:00,false
+ufc-fight-night-may-18-2024,May 18 2024,Themba Gorimbo,Ramiz Brahimaj,fanduel,2024-05-18T00:00:00+00:00,2024-05-17T23:45:36.085888+00:00,2024-05-17T23:45:36.071136+00:00,false
+ufc-fight-night-may-18-2024,May 18 2024,Adrian Yanez,Vinicius Salvador,fanduel,2024-05-18T00:00:00+00:00,2024-05-17T23:45:36.021173+00:00,2024-05-17T23:45:36.040186+00:00,false
+ufc-fight-night-may-18-2024,May 18 2024,Victor Martinez,Tom Nolan,fanduel,2024-05-18T00:00:00+00:00,2024-05-17T22:15:31.394843+00:00,2024-05-17T22:15:31.381919+00:00,false
+ufc-fight-night-may-18-2024,May 18 2024,Oumar Sy,Tuco Tokkos,fanduel,2024-05-18T00:00:00+00:00,2024-05-17T01:15:17.154074+00:00,2024-05-17T22:35:30.026973+00:00,false
+ufc-fight-night-may-18-2024,May 18 2024,Abus Magomedov,Warlley Alves,fanduel,2024-05-18T00:00:00+00:00,2024-05-16T21:25:15.657351+00:00,2024-05-17T21:25:32.716203+00:00,false
+ufc-fight-night-may-18-2024,May 18 2024,Alatengheili,Kleydson Rodrigues,fanduel,2024-05-18T00:00:00+00:00,2024-05-17T20:40:49.580164+00:00,2024-05-17T20:40:49.595606+00:00,false
+ufc-302,Jun 01 2024,Islam Makhachev,Dustin Poirier,fanduel,2024-06-01T07:00:00+00:00,2024-06-01T05:31:29.098968+00:00,2024-06-01T05:31:29.104889+00:00,false
+ufc-302,Jun 01 2024,Sean Strickland,Paulo Costa,fanduel,2024-06-01T07:00:00+00:00,2024-06-01T05:06:49.292382+00:00,2024-06-01T05:06:49.299167+00:00,false
+ufc-302,Jun 01 2024,Kevin Holland,Michal Oleksiejczuk,fanduel,2024-06-01T07:00:00+00:00,2024-06-01T03:21:34.468001+00:00,2024-06-01T03:21:34.474612+00:00,false
+ufc-302,Jun 01 2024,Niko Price,Alex Morono,fanduel,2024-06-01T07:00:00+00:00,2024-06-01T05:31:29.051401+00:00,2024-06-01T05:31:29.056703+00:00,false
+ufc-302,Jun 01 2024,Randy Brown,Elizeu Zaleski dos Santos,fanduel,2024-06-01T07:00:00+00:00,2024-06-01T05:31:29.021365+00:00,2024-06-01T05:31:29.030257+00:00,false
+ufc-302,Jun 01 2024,Cesar Almeida,Roman Kopylov,fanduel,2024-06-01T07:00:00+00:00,2024-06-01T03:21:34.424448+00:00,2024-06-01T03:21:34.411934+00:00,false
+ufc-302,Jun 01 2024,Jailton Almeida,Alexandr Romanov,fanduel,2024-06-01T07:00:00+00:00,2024-06-01T01:16:07.271329+00:00,2024-06-01T01:16:07.279742+00:00,false
+ufc-302,Jun 01 2024,Grant Dawson,Joe Solecki,fanduel,2024-06-01T07:00:00+00:00,2024-06-01T03:21:34.315127+00:00,2024-06-01T03:21:34.355051+00:00,false
+ufc-302,Jun 01 2024,Phil Rowe,Jake Matthews,fanduel,2024-06-01T07:00:00+00:00,2024-06-01T00:16:03.789998+00:00,2024-06-01T00:16:03.779270+00:00,false
+ufc-302,Jun 01 2024,Mickey Gall,Bassil Hafez,fanduel,2024-06-01T07:00:00+00:00,2024-06-01T06:06:02.470279+00:00,2024-06-01T06:06:02.481228+00:00,false
+ufc-302,Jun 01 2024,Mitch Raposo,Andre Lima,fanduel,2024-06-01T07:00:00+00:00,2024-05-31T22:41:26.855558+00:00,2024-05-31T22:41:26.882574+00:00,false
+ufc-fight-night-june-08-2024,Jun 08 2024,Jared Cannonier,Nassourdine Imavov,fanduel,2024-06-08T07:00:00+00:00,2024-06-08T02:31:33.956471+00:00,2024-06-08T02:31:33.962879+00:00,false
+ufc-fight-night-june-08-2024,Jun 08 2024,Dominick Reyes,Dustin Jacoby,fanduel,2024-06-08T07:00:00+00:00,2024-06-07T17:46:08.337394+00:00,2024-06-08T02:11:11.255302+00:00,false
+ufc-fight-night-june-08-2024,Jun 08 2024,Raul Rosas Jr.,Ricky Turcios,fanduel,2024-06-08T07:00:00+00:00,2024-06-08T04:26:46.470419+00:00,2024-06-08T04:26:46.478468+00:00,false
+ufc-fight-night-june-08-2024,Jun 08 2024,Brunno Ferreira,Dustin Stoltzfus,fanduel,2024-06-08T07:00:00+00:00,2024-06-08T01:31:21.690580+00:00,2024-06-07T17:56:15.604095+00:00,false
+ufc-fight-night-june-08-2024,Jun 08 2024,Julian Marquez,Zach Reese,fanduel,2024-06-08T07:00:00+00:00,2024-06-08T00:46:38.448166+00:00,2024-06-08T00:46:38.455729+00:00,false
+ufc-fight-night-june-08-2024,Jun 08 2024,Miguel Baeza,Punahele Soriano,fanduel,2024-06-08T07:00:00+00:00,2024-06-08T00:16:19.663980+00:00,2024-06-08T00:16:19.652074+00:00,false
+ufc-fight-night-june-08-2024,Jun 08 2024,Thiago Moises,Ludovit Klein,fanduel,2024-06-08T07:00:00+00:00,2024-06-08T04:41:23.564012+00:00,2024-06-08T04:41:23.573709+00:00,false
+ufc-fight-night-june-08-2024,Jun 08 2024,Charles Radtke,Carlos Prates,fanduel,2024-06-08T07:00:00+00:00,2024-06-08T03:56:22.073649+00:00,2024-06-08T03:56:22.106548+00:00,false
+ufc-fight-night-june-08-2024,Jun 08 2024,Brad Katona,Jesse Butler,fanduel,2024-06-08T07:00:00+00:00,2024-06-08T02:16:34.630330+00:00,2024-06-08T02:16:34.646014+00:00,false
+ufc-fight-night-june-08-2024,Jun 08 2024,John Castaneda,Daniel Marcos,fanduel,2024-06-08T07:00:00+00:00,2024-06-07T22:21:28.967813+00:00,2024-06-07T22:21:28.960143+00:00,false
+ufc-fight-night-june-08-2024,Jun 08 2024,Cody Stamann,Taylor Lapilus,fanduel,2024-06-08T07:00:00+00:00,2024-06-07T17:46:08.099911+00:00,2024-06-07T21:51:35.241130+00:00,false
+ufc-fight-night-june-15-2024,Jun 15 2024,Alex Perez,Tatsuro Taira,fanduel,2024-06-15T07:00:00+00:00,2024-06-14T16:05:53.126192+00:00,2024-06-15T04:46:09.036283+00:00,false
+ufc-fight-night-june-15-2024,Jun 15 2024,Douglas Silva de Andrade,Miles Johns,fanduel,2024-06-15T07:00:00+00:00,2024-06-15T04:16:20.802499+00:00,2024-06-15T04:16:20.779313+00:00,false
+ufc-fight-night-june-15-2024,Jun 15 2024,Timmy Cuamba,Lucas Almeida,fanduel,2024-06-15T07:00:00+00:00,2024-06-15T03:51:36.404406+00:00,2024-06-15T03:51:36.397964+00:00,false
+ufc-fight-night-june-15-2024,Jun 15 2024,Brady Hiestand,Garrett Armfield,fanduel,2024-06-15T07:00:00+00:00,2024-06-15T03:16:18.288149+00:00,2024-06-15T03:16:18.281571+00:00,false
+ufc-fight-night-june-15-2024,Jun 15 2024,Asu Almabayev,Jose Johnson,fanduel,2024-06-15T07:00:00+00:00,2024-06-14T22:25:59.227683+00:00,2024-06-15T02:46:04.878156+00:00,false
+ufc-fight-night-june-15-2024,Jun 15 2024,Josh Quinlan,Adam Fugitt,fanduel,2024-06-15T07:00:00+00:00,2024-06-15T02:21:03.793093+00:00,2024-06-15T02:21:03.770311+00:00,false
+ufc-fight-night-june-15-2024,Jun 15 2024,Jimmy Flick,Nate Maness,fanduel,2024-06-15T07:00:00+00:00,2024-06-15T01:11:18.384234+00:00,2024-06-15T01:11:18.359285+00:00,false
+ufc-fight-night-june-15-2024,Jun 15 2024,Jeka Saragih,Westin Wilson,fanduel,2024-06-15T07:00:00+00:00,2024-06-15T00:11:30.068687+00:00,2024-06-15T00:11:30.083600+00:00,false
+ufc-fight-night-june-22-2024,Jun 22 2024,Robert Whittaker,Ikram Aliskerov,fanduel,2024-06-22T07:00:00+00:00,2024-06-21T21:15:12.307483+00:00,2024-06-21T21:15:12.334255+00:00,false
+ufc-fight-night-june-22-2024,Jun 22 2024,Sergei Pavlovich,Alexander Volkov,fanduel,2024-06-22T07:00:00+00:00,2024-06-21T20:45:13.870538+00:00,2024-06-21T00:15:07.796332+00:00,false
+ufc-fight-night-june-22-2024,Jun 22 2024,Kelvin Gastelum,Daniel Rodriguez,fanduel,2024-06-22T07:00:00+00:00,2024-06-22T00:20:19.006797+00:00,2024-06-22T00:20:19.021637+00:00,false
+ufc-fight-night-june-22-2024,Jun 22 2024,Shara Magomedov,Antonio Trocoli,fanduel,2024-06-22T07:00:00+00:00,2024-06-21T23:55:15.331111+00:00,2024-06-21T23:55:15.343172+00:00,false
+ufc-fight-night-june-22-2024,Jun 22 2024,Johnny Walker,Volkan Oezdemir,fanduel,2024-06-22T07:00:00+00:00,2024-06-22T06:15:22.435439+00:00,2024-06-22T06:15:22.460306+00:00,false
+ufc-fight-night-june-22-2024,Jun 22 2024,Nasrat Haqparast,Jared Gordon,fanduel,2024-06-22T07:00:00+00:00,2024-06-21T18:40:19.281417+00:00,2024-06-21T18:40:19.307207+00:00,false
+ufc-fight-night-june-22-2024,Jun 22 2024,Muhammad Naimov,Felipe Lima,fanduel,2024-06-22T07:00:00+00:00,2024-06-21T18:10:16.630128+00:00,2024-06-21T18:10:16.641439+00:00,false
+ufc-fight-night-june-22-2024,Jun 22 2024,Rinat Fakhretdinov,Nicolas Dalby,fanduel,2024-06-22T07:00:00+00:00,2024-06-21T17:45:12.511811+00:00,2024-06-21T17:45:12.521321+00:00,false
+ufc-fight-night-june-22-2024,Jun 22 2024,Kyung Ho Kang,Muin Gafurov,fanduel,2024-06-22T07:00:00+00:00,2024-06-21T17:20:12.961010+00:00,2024-06-21T17:20:12.938037+00:00,false
+ufc-fight-night-june-22-2024,Jun 22 2024,Magomed Gadzhiyasulov,Brendson Ribeiro,fanduel,2024-06-22T07:00:00+00:00,2024-06-21T16:50:12.502862+00:00,2024-06-21T16:50:12.510653+00:00,false
+ufc-fight-night-june-22-2024,Jun 22 2024,Xiao Long,ChangHo Lee,fanduel,2024-06-22T07:00:00+00:00,2024-06-21T16:15:11.854950+00:00,2024-06-21T16:15:11.870099+00:00,false
+ufc-303,Jun 29 2024,Alex Pereira,Jiri Prochazka,fanduel,2024-06-29T07:00:00+00:00,2024-06-29T04:15:14.396035+00:00,2024-06-29T04:15:14.413948+00:00,false
+ufc-303,Jun 29 2024,Anthony Smith,Roman Dolidze,fanduel,2024-06-29T07:00:00+00:00,2024-06-29T03:30:31.523431+00:00,2024-06-29T03:30:31.583981+00:00,false
+ufc-303,Jun 29 2024,Ian Machado Garry,Michael Page,fanduel,2024-06-29T07:00:00+00:00,2024-06-29T02:20:17.366998+00:00,2024-06-29T02:20:17.380684+00:00,false
+ufc-303,Jun 29 2024,Joe Pyfer,Marc-Andre Barriault,fanduel,2024-06-29T07:00:00+00:00,2024-06-29T01:30:53.972737+00:00,2024-06-29T01:30:53.980415+00:00,false
+ufc-303,Jun 29 2024,Cub Swanson,Andre Fili,fanduel,2024-06-29T07:00:00+00:00,2024-06-29T01:05:46.757879+00:00,2024-06-29T01:05:46.771417+00:00,false
+ufc-303,Jun 29 2024,Charles Jourdain,Jean Silva,fanduel,2024-06-29T07:00:00+00:00,2024-06-29T00:45:40.534859+00:00,2024-06-29T00:45:40.549675+00:00,false
+ufc-303,Jun 29 2024,Payton Talbott,Yanis Ghemmouri,fanduel,2024-06-29T07:00:00+00:00,2024-06-29T00:10:42.771142+00:00,2024-06-29T00:10:42.778518+00:00,false
+ufc-303,Jun 29 2024,Andrei Arlovski,Martin Buday,fanduel,2024-06-29T07:00:00+00:00,2024-06-28T23:10:48.077533+00:00,2024-06-28T23:10:48.070345+00:00,false
+ufc-303,Jun 29 2024,Rei Tsuruya,Carlos Hernandez,fanduel,2024-06-29T07:00:00+00:00,2024-06-28T22:40:52.639670+00:00,2024-06-28T22:40:52.651780+00:00,false
+ufc-303,Jun 29 2024,Ricky Simon,Vinicius Oliveira,fanduel,2024-06-29T07:00:00+00:00,2024-06-28T22:10:40.439055+00:00,2024-06-28T22:10:40.453400+00:00,false
+ufc-fight-night-july-13-2024,Jul 13 2024,Santiago Ponzinibbio,Muslim Salikhov,fanduel,2024-07-13T07:00:00+00:00,2024-07-13T04:15:17.483638+00:00,2024-07-13T04:15:17.499575+00:00,false
+ufc-fight-night-july-13-2024,Jul 13 2024,Drew Dober,Jean Silva,fanduel,2024-07-13T07:00:00+00:00,2024-07-13T03:45:18.845370+00:00,2024-07-13T03:45:18.918049+00:00,false
+ufc-fight-night-july-13-2024,Jul 13 2024,Gabriel Bonfim,Ange Loosa,fanduel,2024-07-13T07:00:00+00:00,2024-07-13T03:15:15.202073+00:00,2024-07-13T03:15:15.216053+00:00,false
+ufc-fight-night-july-13-2024,Jul 13 2024,Julian Erosa,Christian Rodriguez,fanduel,2024-07-13T07:00:00+00:00,2024-07-13T02:45:20.987865+00:00,2024-07-13T02:45:20.975663+00:00,false
+ufc-fight-night-july-13-2024,Jul 13 2024,Joshua Van,Charles Johnson,fanduel,2024-07-13T07:00:00+00:00,2024-07-13T02:55:19.743126+00:00,2024-07-13T02:55:19.756695+00:00,false
+ufc-fight-night-july-13-2024,Jul 13 2024,Montel Jackson,Da'Mon Blackshear,fanduel,2024-07-13T07:00:00+00:00,2024-07-13T00:40:36.083372+00:00,2024-07-13T00:40:36.100572+00:00,false
+ufc-fight-night-july-13-2024,Jul 13 2024,Josh Fremd,Andre Petroski,fanduel,2024-07-13T07:00:00+00:00,2024-07-13T00:20:41.066225+00:00,2024-07-13T00:20:41.082102+00:00,false
+ufc-fight-night-july-13-2024,Jul 13 2024,Evan Elder,Darrius Flowers,fanduel,2024-07-13T07:00:00+00:00,2024-07-12T01:08:56.681277+00:00,2024-07-12T23:20:19.127355+00:00,false
+ufc-fight-night-july-20-2024,Jul 20 2024,Steve Garcia,SeungWoo Choi,fanduel,2024-07-20T07:00:00+00:00,2024-07-20T02:15:16.003585+00:00,2024-07-20T02:15:16.012390+00:00,false
+ufc-fight-night-july-20-2024,Jul 20 2024,Kurt Holobaugh,Kaynan Kruschewsky,fanduel,2024-07-20T07:00:00+00:00,2024-07-20T01:45:25.096349+00:00,2024-07-20T01:45:25.118209+00:00,false
+ufc-fight-night-july-20-2024,Jul 20 2024,Cody Durden,Bruno Silva,fanduel,2024-07-20T07:00:00+00:00,2024-07-20T01:45:25.155511+00:00,2024-07-20T01:45:25.170505+00:00,false
+ufc-fight-night-july-20-2024,Jul 20 2024,Dooho Choi,Bill Algeo,fanduel,2024-07-20T07:00:00+00:00,2024-07-20T00:37:59.374656+00:00,2024-07-20T00:37:59.367447+00:00,false
+ufc-fight-night-july-20-2024,Jul 20 2024,JeongYeong Lee,Hyder Amil,fanduel,2024-07-20T07:00:00+00:00,2024-07-20T00:58:16.835710+00:00,2024-07-20T00:58:16.826507+00:00,false
+ufc-fight-night-july-20-2024,Jul 20 2024,Brian Kelleher,Cody Gibson,fanduel,2024-07-20T07:00:00+00:00,2024-07-20T06:15:15.014546+00:00,2024-07-20T06:15:15.029714+00:00,false
+ufc-fight-night-july-20-2024,Jul 20 2024,Loik Radzhabov,Trey Ogden,fanduel,2024-07-20T07:00:00+00:00,2024-07-19T22:18:03.290570+00:00,2024-07-19T22:18:03.297460+00:00,false
+ufc-fight-night-july-20-2024,Jul 20 2024,Mohammed Usman,Thomas Petersen,fanduel,2024-07-20T07:00:00+00:00,2024-07-19T22:37:05.146952+00:00,2024-07-19T22:37:05.155308+00:00,false
+ufc-304,Jul 27 2024,Leon Edwards,Belal Muhammad,fanduel,2024-07-27T07:00:00+00:00,2024-07-27T05:05:12.588929+00:00,2024-07-26T05:05:04.434825+00:00,false
+ufc-304,Jul 27 2024,Tom Aspinall,Curtis Blaydes,fanduel,2024-07-27T07:00:00+00:00,2024-07-27T04:05:09.392975+00:00,2024-07-27T04:05:09.383596+00:00,false
+ufc-304,Jul 27 2024,Christian Leroy Duncan,Gregory Rodrigues,fanduel,2024-07-27T07:00:00+00:00,2024-07-27T03:00:54.047419+00:00,2024-07-27T03:00:54.053404+00:00,false
+ufc-304,Jul 27 2024,Arnold Allen,Giga Chikadze,fanduel,2024-07-27T07:00:00+00:00,2024-07-27T03:00:54.028026+00:00,2024-07-27T03:00:54.019750+00:00,false
+ufc-304,Jul 27 2024,Nathaniel Wood,Daniel Pineda,fanduel,2024-07-27T07:00:00+00:00,2024-07-27T06:05:14.759065+00:00,2024-07-27T06:05:14.766288+00:00,false
+ufc-304,Jul 27 2024,Jake Hadley,Caolan Loughran,fanduel,2024-07-27T07:00:00+00:00,2024-07-27T01:00:37.183040+00:00,2024-07-27T01:00:37.195633+00:00,false
+ufc-304,Jul 27 2024,Muhammad Mokaev,Manel Kape,fanduel,2024-07-27T07:00:00+00:00,2024-07-27T00:00:16.469744+00:00,2024-07-27T00:00:16.462039+00:00,false
+ufc-304,Jul 27 2024,Oban Elliott,Preston Parsons,fanduel,2024-07-27T07:00:00+00:00,2024-07-27T00:00:16.492946+00:00,2024-07-27T00:00:16.487261+00:00,false
+ufc-304,Jul 27 2024,Modestas Bukauskas,Marcin Prachnio,fanduel,2024-07-27T07:00:00+00:00,2024-07-27T01:00:37.143756+00:00,2024-07-27T01:00:37.135776+00:00,false
+ufc-304,Jul 27 2024,Sam Patterson,Kiefer Crosbie,fanduel,2024-07-27T07:00:00+00:00,2024-07-27T00:00:16.432329+00:00,2024-07-27T00:00:16.425883+00:00,false
+ufc-304,Jul 27 2024,Mick Parkin,Lukasz Brzeski,fanduel,2024-07-27T07:00:00+00:00,2024-07-27T02:00:29.055599+00:00,2024-07-27T02:00:29.041030+00:00,false
+ufc-fight-night-august-03-2024,Aug 03 2024,Cory Sandhagen,Umar Nurmagomedov,fanduel,2024-08-03T07:00:00+00:00,2024-08-03T00:01:33.491801+00:00,2024-08-03T00:01:33.498199+00:00,false
+ufc-fight-night-august-03-2024,Aug 03 2024,Shara Magomedov,Michal Oleksiejczuk,fanduel,2024-08-03T07:00:00+00:00,2024-08-02T22:05:13.946925+00:00,2024-08-02T22:05:13.959941+00:00,false
+ufc-fight-night-august-03-2024,Aug 03 2024,Marlon Vera,Deiveson Figueiredo,fanduel,2024-08-03T07:00:00+00:00,2024-08-01T21:05:07.141276+00:00,2024-08-02T21:00:24.370700+00:00,false
+ufc-fight-night-august-03-2024,Aug 03 2024,Tony Ferguson,Michael Chiesa,fanduel,2024-08-03T07:00:00+00:00,2024-08-03T06:05:08.640127+00:00,2024-08-03T06:05:08.632187+00:00,false
+ufc-fight-night-august-03-2024,Aug 03 2024,Joel Alvarez,Elves Brener,fanduel,2024-08-03T07:00:00+00:00,2024-08-03T01:05:39.102649+00:00,2024-08-03T01:05:39.083850+00:00,false
+ufc-fight-night-august-03-2024,Aug 03 2024,Azamat Murzakanov,Alonzo Menifield,fanduel,2024-08-03T07:00:00+00:00,2024-08-02T23:00:46.431751+00:00,2024-08-02T23:00:46.418780+00:00,false
+ufc-fight-night-august-03-2024,Aug 03 2024,Mohammad Yahya,Kaue Fernandes,fanduel,2024-08-03T07:00:00+00:00,2024-08-02T19:05:13.823947+00:00,2024-08-02T19:05:13.816533+00:00,false
+ufc-fight-night-august-03-2024,Aug 03 2024,Shamil Gaziev,Don'Tale Mayes,fanduel,2024-08-03T07:00:00+00:00,2024-08-02T19:05:13.797935+00:00,2024-08-02T19:05:13.788595+00:00,false
+ufc-fight-night-august-03-2024,Aug 03 2024,Guram Kutateladze,Jordan Vucenic,fanduel,2024-08-03T07:00:00+00:00,2024-08-02T18:05:10.124083+00:00,2024-08-02T18:05:10.134916+00:00,false
+ufc-fight-night-august-03-2024,Aug 03 2024,Jai Herbert,Rolando Bedoya,fanduel,2024-08-03T07:00:00+00:00,2024-08-03T03:00:40.501120+00:00,2024-08-03T03:00:40.481349+00:00,false
+ufc-fight-night-august-03-2024,Aug 03 2024,Sedriques Dumas,Denis Tiuliulin,fanduel,2024-08-03T07:00:00+00:00,2024-08-02T17:05:26.691080+00:00,2024-08-02T17:05:26.676964+00:00,false
+ufc-fight-night-august-10-2024,Aug 10 2024,Marcin Tybura,Serghei Spivac,fanduel,2024-08-10T07:00:00+00:00,2024-08-10T02:00:54.200188+00:00,2024-08-10T02:00:54.208562+00:00,false
+ufc-fight-night-august-10-2024,Aug 10 2024,Damon Jackson,Chepe Mariscal,fanduel,2024-08-10T07:00:00+00:00,2024-08-10T04:00:54.590838+00:00,2024-08-10T04:00:54.573017+00:00,false
+ufc-fight-night-august-10-2024,Aug 10 2024,Danny Barlow,Nikolay Veretennikov,fanduel,2024-08-10T07:00:00+00:00,2024-08-10T01:05:31.495185+00:00,2024-08-10T01:05:31.475360+00:00,false
+ufc-fight-night-august-10-2024,Aug 10 2024,Chris Gutierrez,Quang Le,fanduel,2024-08-10T07:00:00+00:00,2024-08-10T01:05:31.401331+00:00,2024-08-10T01:05:31.425192+00:00,false
+ufc-fight-night-august-10-2024,Aug 10 2024,Toshiomi Kazama,Charalampos Grigoriou,fanduel,2024-08-10T07:00:00+00:00,2024-08-10T00:05:33.496455+00:00,2024-08-10T00:05:33.507252+00:00,false
+ufc-fight-night-august-10-2024,Aug 10 2024,Jhonata Diniz,Karl Williams,fanduel,2024-08-10T07:00:00+00:00,2024-08-09T22:05:08.505999+00:00,2024-08-09T22:05:08.498964+00:00,false
+ufc-fight-night-august-10-2024,Aug 10 2024,Youssef Zalal,Jarno Errens,fanduel,2024-08-10T07:00:00+00:00,2024-08-09T23:05:13.805877+00:00,2024-08-09T23:05:13.796402+00:00,false
+ufc-305,Aug 17 2024,Dricus Du Plessis,Israel Adesanya,fanduel,2024-08-17T07:00:00+00:00,2024-08-17T05:00:27.136383+00:00,2024-08-17T05:00:27.152030+00:00,false
+ufc-305,Aug 17 2024,Kai Kara-France,Steve Erceg,fanduel,2024-08-17T07:00:00+00:00,2024-08-17T04:00:25.721868+00:00,2024-08-17T04:00:25.730583+00:00,false
+ufc-305,Aug 17 2024,Mateusz Gamrot,Dan Hooker,fanduel,2024-08-17T07:00:00+00:00,2024-08-17T04:00:25.687076+00:00,2024-08-17T04:00:25.696991+00:00,false
+ufc-305,Aug 17 2024,Tai Tuivasa,Jairzinho Rozenstruik,fanduel,2024-08-17T07:00:00+00:00,2024-08-17T03:05:18.568555+00:00,2024-08-17T03:05:18.586483+00:00,false
+ufc-305,Aug 17 2024,Li Jingliang,Carlos Prates,fanduel,2024-08-17T07:00:00+00:00,2024-08-17T03:05:18.492041+00:00,2024-08-17T03:05:18.508469+00:00,false
+ufc-305,Aug 17 2024,Junior Tafa,Valter Walker,fanduel,2024-08-17T07:00:00+00:00,2024-08-17T02:05:14.024153+00:00,2024-08-17T02:05:14.017996+00:00,false
+ufc-305,Aug 17 2024,Josh Culibao,Ricardo Ramos,fanduel,2024-08-17T07:00:00+00:00,2024-08-17T02:05:13.988755+00:00,2024-08-17T02:05:13.979801+00:00,false
+ufc-305,Aug 17 2024,Jack Jenkins,Herbert Burns,fanduel,2024-08-17T07:00:00+00:00,2024-08-16T10:05:13.006680+00:00,2024-08-17T01:05:19.413532+00:00,false
+ufc-305,Aug 17 2024,Tom Nolan,Alex Reyes,fanduel,2024-08-17T07:00:00+00:00,2024-08-17T00:00:16.102083+00:00,2024-08-17T00:00:16.114951+00:00,false
+ufc-305,Aug 17 2024,Song Kenan,Ricky Glenn,fanduel,2024-08-17T07:00:00+00:00,2024-08-17T00:00:16.082359+00:00,2024-08-17T00:00:16.073403+00:00,false
+ufc-305,Aug 17 2024,Stewart Nicoll,Jesus Aguilar,fanduel,2024-08-17T07:00:00+00:00,2024-08-17T00:00:16.049583+00:00,2024-08-17T00:00:16.056259+00:00,false
+ufc-fight-night-august-24-2024,Aug 24 2024,Jared Cannonier,Caio Borralho,fanduel,2024-08-24T07:00:00+00:00,2024-08-24T05:05:15.302891+00:00,2024-08-24T05:05:15.310886+00:00,false
+ufc-fight-night-august-24-2024,Aug 24 2024,Robert Valentin,Ryan Loder,fanduel,2024-08-24T07:00:00+00:00,2024-08-24T04:05:09.149129+00:00,2024-08-24T04:05:09.155645+00:00,false
+ufc-fight-night-august-24-2024,Aug 24 2024,Kaan Ofli,Mairon Santos,fanduel,2024-08-24T07:00:00+00:00,2024-08-24T04:05:09.208992+00:00,2024-08-24T04:05:09.216978+00:00,false
+ufc-fight-night-august-24-2024,Aug 24 2024,Neil Magny,Michael Morales,fanduel,2024-08-24T07:00:00+00:00,2024-08-24T03:05:04.345050+00:00,2024-08-24T03:05:04.356566+00:00,false
+ufc-fight-night-august-24-2024,Aug 24 2024,Edmen Shahbazyan,Gerald Meerschaert,fanduel,2024-08-24T07:00:00+00:00,2024-08-24T05:05:15.259429+00:00,2024-08-24T05:05:15.274603+00:00,false
+ufc-fight-night-august-24-2024,Aug 24 2024,Dennis Buzukja,Francis Marshall,fanduel,2024-08-24T07:00:00+00:00,2024-08-23T02:05:28.579657+00:00,2024-08-24T02:05:07.324615+00:00,false
+ufc-fight-night-august-24-2024,Aug 24 2024,Zach Reese,Jose Daniel Medina,fanduel,2024-08-24T07:00:00+00:00,2024-08-24T02:05:07.288748+00:00,2024-08-24T02:05:07.297424+00:00,false
+ufc-fight-night-august-24-2024,Aug 24 2024,Viacheslav Borshchev,James Llontop,fanduel,2024-08-24T07:00:00+00:00,2024-08-24T01:00:26.248544+00:00,2024-08-24T01:00:26.230831+00:00,false
+ufc-fight-night-september-07-2024,Sep 07 2024,Gilbert Burns,Sean Brady,fanduel,2024-09-07T07:00:00+00:00,2024-09-06T02:05:27.430329+00:00,2024-09-07T02:01:36.171568+00:00,false
+ufc-fight-night-september-07-2024,Sep 07 2024,Steve Garcia,Kyle Nelson,fanduel,2024-09-07T07:00:00+00:00,2024-09-06T01:01:05.584426+00:00,2024-09-07T01:05:53.265707+00:00,false
+ufc-fight-night-september-07-2024,Sep 07 2024,Matt Schnell,Cody Durden,fanduel,2024-09-07T07:00:00+00:00,2024-09-07T00:05:35.005374+00:00,2024-09-07T00:05:35.046346+00:00,false
+ufc-fight-night-september-07-2024,Sep 07 2024,Trevor Peek,Yanal Ashmouz,fanduel,2024-09-07T07:00:00+00:00,2024-09-07T00:05:35.131310+00:00,2024-09-07T00:05:35.150400+00:00,false
+ufc-fight-night-september-07-2024,Sep 07 2024,Rongzhu,Chris Padilla,fanduel,2024-09-07T07:00:00+00:00,2024-09-06T23:01:08.562417+00:00,2024-09-06T23:01:08.589505+00:00,false
+ufc-fight-night-september-07-2024,Sep 07 2024,Felipe dos Santos,Andre Lima,fanduel,2024-09-07T07:00:00+00:00,2024-09-06T22:01:46.263151+00:00,2024-09-06T22:01:46.272067+00:00,false
+ufc-fight-night-september-07-2024,Sep 07 2024,Yizha,Gabriel Santos,fanduel,2024-09-07T07:00:00+00:00,2024-09-06T22:01:46.392547+00:00,2024-09-06T21:05:44.664958+00:00,false
+ufc-fight-night-september-07-2024,Sep 07 2024,Andre Petroski,Dylan Budka,fanduel,2024-09-07T07:00:00+00:00,2024-09-07T03:01:47.361431+00:00,2024-09-07T03:01:47.384382+00:00,false
+ufc-fight-night-september-07-2024,Sep 07 2024,Zygimantas Ramaska,Nathan Fletcher,fanduel,2024-09-07T07:00:00+00:00,2024-09-06T21:05:44.489402+00:00,2024-09-06T21:05:44.509344+00:00,false
+ufc-306,Sep 14 2024,Sean O'Malley,Merab Dvalishvili,fanduel,2024-09-14T07:00:00+00:00,2024-09-14T05:05:47.948151+00:00,2024-09-14T05:05:47.977041+00:00,false
+ufc-306,Sep 14 2024,Brian Ortega,Diego Lopes,fanduel,2024-09-14T07:00:00+00:00,2024-09-14T04:05:13.536282+00:00,2024-09-14T04:05:13.542907+00:00,false
+ufc-306,Sep 14 2024,Daniel Zellhuber,Esteban Ribovics,fanduel,2024-09-14T07:00:00+00:00,2024-09-14T02:01:47.695000+00:00,2024-09-14T03:00:38.378715+00:00,false
+ufc-306,Sep 14 2024,Ronaldo Rodriguez,Ode Osbourne,fanduel,2024-09-14T07:00:00+00:00,2024-09-14T03:00:38.356525+00:00,2024-09-14T03:00:38.347357+00:00,false
+ufc-306,Sep 14 2024,Manuel Torres,Ignacio Bahamondes,fanduel,2024-09-14T07:00:00+00:00,2024-09-14T02:01:47.622070+00:00,2024-09-14T02:01:47.629379+00:00,false
+ufc-306,Sep 14 2024,Edgar Chairez,Joshua Van,fanduel,2024-09-14T07:00:00+00:00,2024-09-14T01:00:43.128495+00:00,2024-09-14T01:00:43.160047+00:00,false
+ufc-306,Sep 14 2024,Raul Rosas Jr.,Aoriqileng,fanduel,2024-09-14T07:00:00+00:00,2024-09-14T00:00:46.369117+00:00,2024-09-14T00:00:46.395989+00:00,false
+ufc-fight-night-september-28-2024,Sep 28 2024,Renato Moicano,Benoit Saint Denis,fanduel,2024-09-28T07:00:00+00:00,2024-09-27T22:05:24.887241+00:00,2024-09-26T22:05:15.742598+00:00,false
+ufc-fight-night-september-28-2024,Sep 28 2024,Nassourdine Imavov,Brendan Allen,fanduel,2024-09-28T07:00:00+00:00,2024-09-27T22:05:24.862238+00:00,2024-09-27T20:00:56.473087+00:00,false
+ufc-fight-night-september-28-2024,Sep 28 2024,William Gomis,Joanderson Brito,fanduel,2024-09-28T07:00:00+00:00,2024-09-27T21:05:39.308600+00:00,2024-09-27T21:05:39.314915+00:00,false
+ufc-fight-night-september-28-2024,Sep 28 2024,Kevin Jousset,Bryan Battle,fanduel,2024-09-28T07:00:00+00:00,2024-09-27T21:05:39.291715+00:00,2024-09-27T21:05:39.284125+00:00,false
+ufc-fight-night-september-28-2024,Sep 28 2024,Morgan Charriere,Gabriel Miranda,fanduel,2024-09-28T07:00:00+00:00,2024-09-26T20:05:22.231040+00:00,2024-09-27T20:00:56.324723+00:00,false
+ufc-fight-night-september-28-2024,Sep 28 2024,Fares Ziam,Matt Frevola,fanduel,2024-09-28T07:00:00+00:00,2024-09-27T20:00:56.218106+00:00,2024-09-27T20:00:56.251053+00:00,false
+ufc-fight-night-september-28-2024,Sep 28 2024,Ion Cutelaba,Ivan Erslan,fanduel,2024-09-28T07:00:00+00:00,2024-09-27T19:05:26.631557+00:00,2024-09-27T19:05:26.624821+00:00,false
+ufc-fight-night-september-28-2024,Sep 28 2024,Oumar Sy,Da Woon Jung,fanduel,2024-09-28T07:00:00+00:00,2024-09-27T19:05:26.593137+00:00,2024-09-26T19:05:53.986009+00:00,false
+ufc-fight-night-september-28-2024,Sep 28 2024,Ludovit Klein,Roosevelt Roberts,fanduel,2024-09-28T07:00:00+00:00,2024-09-28T01:01:12.416051+00:00,2024-09-28T01:01:12.441999+00:00,false
+ufc-fight-night-september-28-2024,Sep 28 2024,Taylor Lapilus,Vince Morales,fanduel,2024-09-28T07:00:00+00:00,2024-09-27T18:01:00.088521+00:00,2024-09-27T18:01:00.094579+00:00,false
+ufc-fight-night-september-28-2024,Sep 28 2024,Daniel Barez,Victor Altamirano,fanduel,2024-09-28T07:00:00+00:00,2024-09-27T17:00:19.771104+00:00,2024-09-27T17:00:19.778528+00:00,false
+ufc-fight-night-september-28-2024,Sep 28 2024,Bolaji Oki,Chris Duncan,fanduel,2024-09-28T07:00:00+00:00,2024-09-27T17:00:19.727456+00:00,2024-09-27T17:00:19.718252+00:00,false
+ufc-307,Oct 05 2024,Alex Pereira,Khalil Rountree Jr.,fanduel,2024-10-05T07:00:00+00:00,2024-10-04T14:00:43.015080+00:00,2024-10-05T05:00:52.160090+00:00,false
+ufc-307,Oct 05 2024,Jose Aldo,Mario Bautista,fanduel,2024-10-05T07:00:00+00:00,2024-10-05T04:00:54.729960+00:00,2024-10-05T04:00:54.787957+00:00,false
+ufc-307,Oct 05 2024,Roman Dolidze,Kevin Holland,fanduel,2024-10-05T07:00:00+00:00,2024-10-05T03:00:55.422480+00:00,2024-10-05T03:00:55.430186+00:00,false
+ufc-307,Oct 05 2024,Stephen Thompson,Joaquin Buckley,fanduel,2024-10-05T07:00:00+00:00,2024-10-05T02:00:49.149989+00:00,2024-10-05T02:00:49.174999+00:00,false
+ufc-307,Oct 05 2024,Austin Hubbard,Alexander Hernandez,fanduel,2024-10-05T07:00:00+00:00,2024-10-05T01:00:45.667665+00:00,2024-10-05T01:00:45.661253+00:00,false
+ufc-307,Oct 05 2024,Cesar Almeida,Ihor Potieria,fanduel,2024-10-05T07:00:00+00:00,2024-10-05T01:00:45.641775+00:00,2024-10-04T16:05:14.156549+00:00,false
+ufc-307,Oct 05 2024,Ryan Spann,Ovince Saint Preux,fanduel,2024-10-05T07:00:00+00:00,2024-10-05T00:05:27.281631+00:00,2024-10-04T16:05:14.119452+00:00,false
+ufc-307,Oct 05 2024,Court McGee,Tim Means,fanduel,2024-10-05T07:00:00+00:00,2024-10-04T23:05:23.821212+00:00,2024-10-04T23:05:23.812881+00:00,false
+ufc-fight-night-october-12-2024,Oct 12 2024,Brandon Royval,Tatsuro Taira,fanduel,2024-10-12T07:00:00+00:00,2024-10-12T04:05:44.121170+00:00,2024-10-12T04:05:44.132836+00:00,false
+ufc-fight-night-october-12-2024,Oct 12 2024,Brad Tavares,JunYong Park,fanduel,2024-10-12T07:00:00+00:00,2024-10-11T02:00:35.622991+00:00,2024-10-12T02:05:13.570908+00:00,false
+ufc-fight-night-october-12-2024,Oct 12 2024,Chidi Njokuani,Jared Gooden,fanduel,2024-10-12T07:00:00+00:00,2024-10-12T01:00:55.896412+00:00,2024-10-12T01:00:55.910422+00:00,false
+ufc-fight-night-october-12-2024,Oct 12 2024,Grant Dawson,Rafa Garcia,fanduel,2024-10-12T07:00:00+00:00,2024-10-12T01:00:56.199080+00:00,2024-10-12T01:00:56.207368+00:00,false
+ufc-fight-night-october-12-2024,Oct 12 2024,Daniel Rodriguez,Alex Morono,fanduel,2024-10-12T07:00:00+00:00,2024-10-12T00:05:16.068706+00:00,2024-10-11T00:05:05.395298+00:00,false
+ufc-fight-night-october-12-2024,Oct 12 2024,CJ Vergara,Ramazan Temirov,fanduel,2024-10-12T07:00:00+00:00,2024-10-11T23:00:38.796410+00:00,2024-10-11T23:00:38.786030+00:00,false
+ufc-fight-night-october-12-2024,Oct 12 2024,Jonathan Pearce,Pat Sabatini,fanduel,2024-10-12T07:00:00+00:00,2024-10-11T23:00:38.882242+00:00,2024-10-11T23:00:38.874365+00:00,false
+ufc-fight-night-october-12-2024,Oct 12 2024,Themba Gorimbo,Niko Price,fanduel,2024-10-12T07:00:00+00:00,2024-10-11T23:00:38.910705+00:00,2024-10-11T23:00:38.903160+00:00,false
+ufc-fight-night-october-12-2024,Oct 12 2024,Junior Tafa,Sean Sharaf,fanduel,2024-10-12T07:00:00+00:00,2024-10-11T22:05:35.357122+00:00,2024-10-11T22:05:35.366162+00:00,false
+ufc-fight-night-october-12-2024,Oct 12 2024,Dan Argueta,Cody Haddon,fanduel,2024-10-12T07:00:00+00:00,2024-10-11T21:00:34.731464+00:00,2024-10-11T21:00:34.716550+00:00,false
+ufc-fight-night-october-12-2024,Oct 12 2024,Clayton Carpenter,Lucas Rocha,fanduel,2024-10-12T07:00:00+00:00,2024-10-11T23:00:38.839693+00:00,2024-10-11T23:00:38.847535+00:00,false
+ufc-fight-night-october-19-2024,Oct 19 2024,Anthony Hernandez,Michel Pereira,fanduel,2024-10-19T07:00:00+00:00,2024-10-18T15:02:38.523859+00:00,2024-10-19T02:05:51.314156+00:00,false
+ufc-fight-night-october-19-2024,Oct 19 2024,Rob Font,Kyler Phillips,fanduel,2024-10-19T07:00:00+00:00,2024-10-19T01:05:06.565712+00:00,2024-10-19T01:05:06.576850+00:00,false
+ufc-fight-night-october-19-2024,Oct 19 2024,Charles Johnson,Sumudaerji,fanduel,2024-10-19T07:00:00+00:00,2024-10-19T01:05:06.628039+00:00,2024-10-19T01:05:06.619230+00:00,false
+ufc-fight-night-october-19-2024,Oct 19 2024,Jake Hadley,Cameron Smotherman,fanduel,2024-10-19T07:00:00+00:00,2024-10-18T15:02:38.465398+00:00,2024-10-19T00:05:58.196958+00:00,false
+ufc-fight-night-october-19-2024,Oct 19 2024,Darren Elkins,Daniel Pineda,fanduel,2024-10-19T07:00:00+00:00,2024-10-19T00:05:58.143661+00:00,2024-10-19T00:05:58.165606+00:00,false
+ufc-fight-night-october-19-2024,Oct 19 2024,Matheus Nicolau,Asu Almabayev,fanduel,2024-10-19T07:00:00+00:00,2024-10-18T23:01:25.861341+00:00,2024-10-18T23:01:25.870269+00:00,false
+ufc-fight-night-october-19-2024,Oct 19 2024,Brad Katona,Jean Matsumoto,fanduel,2024-10-19T07:00:00+00:00,2024-10-18T23:01:25.825304+00:00,2024-10-18T23:01:25.835387+00:00,false
+ufc-fight-night-october-19-2024,Oct 19 2024,Austen Lane,Robelis Despaigne,fanduel,2024-10-19T07:00:00+00:00,2024-10-18T21:05:23.734881+00:00,2024-10-18T21:05:23.726811+00:00,false
+ufc-308,Oct 26 2024,Ilia Topuria,Max Holloway,fanduel,2024-10-26T07:00:00+00:00,2024-10-25T17:05:29.117104+00:00,2024-10-25T21:05:29.577081+00:00,false
+ufc-308,Oct 26 2024,Robert Whittaker,Khamzat Chimaev,fanduel,2024-10-26T07:00:00+00:00,2024-10-26T05:00:28.672047+00:00,2024-10-26T05:00:28.680496+00:00,false
+ufc-308,Oct 26 2024,Magomed Ankalaev,Aleksandar Rakic,fanduel,2024-10-26T07:00:00+00:00,2024-10-26T05:00:28.645778+00:00,2024-10-26T05:00:28.653770+00:00,false
+ufc-308,Oct 26 2024,Lerone Murphy,Dan Ige,fanduel,2024-10-26T07:00:00+00:00,2024-10-26T01:00:16.059829+00:00,2024-10-26T01:00:16.015201+00:00,false
+ufc-308,Oct 26 2024,Shara Magomedov,Armen Petrosyan,fanduel,2024-10-26T07:00:00+00:00,2024-10-26T01:00:15.941423+00:00,2024-10-26T01:00:15.921250+00:00,false
+ufc-308,Oct 26 2024,Ibo Aslan,Rafael Cerqueira,fanduel,2024-10-26T07:00:00+00:00,2024-10-25T21:05:29.344174+00:00,2024-10-25T21:05:29.323540+00:00,false
+ufc-308,Oct 26 2024,Geoff Neal,Rafael Dos Anjos,fanduel,2024-10-26T07:00:00+00:00,2024-10-24T18:16:08.698722+00:00,2024-10-25T18:05:15.520538+00:00,false
+ufc-308,Oct 26 2024,Mateusz Rebecki,Myktybek Orolbai,fanduel,2024-10-26T07:00:00+00:00,2024-10-25T17:05:28.941555+00:00,2024-10-25T17:05:28.951654+00:00,false
+ufc-308,Oct 26 2024,Abus Magomedov,Brunno Ferreira,fanduel,2024-10-26T07:00:00+00:00,2024-10-26T03:05:11.626249+00:00,2024-10-26T03:05:11.634378+00:00,false
+ufc-308,Oct 26 2024,Kennedy Nzechukwu,Chris Barnett,fanduel,2024-10-26T07:00:00+00:00,2024-10-26T06:05:14.066660+00:00,2024-10-26T06:05:14.074741+00:00,false
+ufc-308,Oct 26 2024,Farid Basharat,Victor Hugo,fanduel,2024-10-26T07:00:00+00:00,2024-10-25T17:05:28.842144+00:00,2024-10-25T17:05:28.828134+00:00,false
+ufc-308,Oct 26 2024,Ismail Naurdiev,Bruno Silva,fanduel,2024-10-26T07:00:00+00:00,2024-10-25T15:05:03.590210+00:00,2024-10-25T15:05:03.596976+00:00,false
+ufc-308,Oct 26 2024,Rinat Fakhretdinov,Carlos Leal,fanduel,2024-10-26T07:00:00+00:00,2024-10-25T15:05:03.572101+00:00,2024-10-25T15:05:03.561873+00:00,false
+ufc-fight-night-november-02-2024,Nov 02 2024,Brandon Moreno,Amir Albazi,fanduel,2024-11-02T07:00:00+00:00,2024-11-01T12:05:24.732599+00:00,2024-11-01T12:05:24.674230+00:00,false
+ufc-fight-night-november-02-2024,Nov 02 2024,Caio Machado,Brendson Ribeiro,fanduel,2024-11-02T07:00:00+00:00,2024-11-01T12:05:24.395622+00:00,2024-11-01T12:05:24.444588+00:00,false
+ufc-fight-night-november-02-2024,Nov 02 2024,Marc-Andre Barriault,Dustin Stoltzfus,fanduel,2024-11-02T07:00:00+00:00,2024-11-01T01:05:20.740359+00:00,2024-10-31T17:05:27.036363+00:00,false
+ufc-fight-night-november-02-2024,Nov 02 2024,Mike Malott,Trevin Giles,fanduel,2024-11-02T07:00:00+00:00,2024-11-01T12:05:24.230631+00:00,2024-11-01T12:05:24.272874+00:00,false
+ufc-fight-night-november-02-2024,Nov 02 2024,Aiemann Zahabi,Pedro Munhoz,fanduel,2024-11-02T07:00:00+00:00,2024-11-01T13:00:25.881065+00:00,2024-11-01T13:00:25.890417+00:00,false
+ufc-fight-night-november-02-2024,Nov 02 2024,Charles Jourdain,Victor Henry,fanduel,2024-11-02T07:00:00+00:00,2024-11-01T00:05:20.514010+00:00,2024-11-01T00:05:20.521992+00:00,false
+ufc-fight-night-november-02-2024,Nov 02 2024,Jack Shore,Youssef Zalal,fanduel,2024-11-02T07:00:00+00:00,2024-11-01T13:00:25.807602+00:00,2024-11-01T13:00:25.827870+00:00,false
+ufc-fight-night-november-02-2024,Nov 02 2024,Alexandr Romanov,Rodrigo Nascimento,fanduel,2024-11-02T07:00:00+00:00,2024-11-01T13:00:25.762772+00:00,2024-11-01T13:00:25.769896+00:00,false
+ufc-fight-night-november-02-2024,Nov 02 2024,Serhiy Sidey,Garrett Armfield,fanduel,2024-11-02T07:00:00+00:00,2024-11-01T13:00:25.733807+00:00,2024-11-01T13:00:25.740760+00:00,false
+ufc-fight-night-november-02-2024,Nov 02 2024,Chad Anheliger,Cody Gibson,fanduel,2024-11-02T07:00:00+00:00,2024-11-01T13:00:25.665491+00:00,2024-11-01T13:00:25.697139+00:00,false
+ufc-fight-night-november-09-2024,Nov 09 2024,Neil Magny,Carlos Prates,fanduel,2024-11-09T08:00:00+00:00,2024-11-09T03:05:11.272838+00:00,2024-11-09T03:05:11.318738+00:00,false
+ufc-fight-night-november-09-2024,Nov 09 2024,Gerald Meerschaert,Reinier de Ridder,fanduel,2024-11-09T08:00:00+00:00,2024-11-09T02:05:08.941433+00:00,2024-11-09T02:05:08.911114+00:00,false
+ufc-fight-night-november-09-2024,Nov 09 2024,Gaston Bolanos,Cortavious Romious,fanduel,2024-11-09T08:00:00+00:00,2024-11-09T00:05:09.195143+00:00,2024-11-09T00:05:09.201852+00:00,false
+ufc-fight-night-november-09-2024,Nov 09 2024,Mansur Abdul-Malik,Dusko Todorovic,fanduel,2024-11-09T08:00:00+00:00,2024-11-09T01:05:08.493237+00:00,2024-11-09T01:05:08.485346+00:00,false
+ufc-fight-night-november-09-2024,Nov 09 2024,Elizeu Zaleski dos Santos,Zachary Scroggin,fanduel,2024-11-09T08:00:00+00:00,2024-11-08T23:00:37.342847+00:00,2024-11-08T23:00:37.397256+00:00,false
+ufc-fight-night-november-09-2024,Nov 09 2024,Matthew Semelsberger,Charles Radtke,fanduel,2024-11-09T08:00:00+00:00,2024-11-08T23:00:37.588563+00:00,2024-11-08T18:05:12.437387+00:00,false
+ufc-fight-night-november-09-2024,Nov 09 2024,Cody Stamann,Da'Mon Blackshear,fanduel,2024-11-09T08:00:00+00:00,2024-11-08T22:05:07.828781+00:00,2024-11-08T23:00:37.543613+00:00,false
+ufc-fight-night-november-09-2024,Nov 09 2024,Tresean Gore,Antonio Trocoli,fanduel,2024-11-09T08:00:00+00:00,2024-11-08T22:05:07.793467+00:00,2024-11-08T22:05:07.800337+00:00,false
+ufc-309,Nov 16 2024,Jon Jones,Stipe Miocic,fanduel,2024-11-16T08:00:00+00:00,2024-11-16T06:05:32.169149+00:00,2024-11-16T06:05:32.180387+00:00,false
+ufc-309,Nov 16 2024,Charles Oliveira,Michael Chandler,fanduel,2024-11-16T08:00:00+00:00,2024-11-16T05:05:21.529159+00:00,2024-11-15T14:00:38.902139+00:00,false
+ufc-309,Nov 16 2024,Bo Nickal,Paul Craig,fanduel,2024-11-16T08:00:00+00:00,2024-11-16T05:05:21.483202+00:00,2024-11-16T05:05:21.498204+00:00,false
+ufc-309,Nov 16 2024,Mauricio Ruffy,James Llontop,fanduel,2024-11-16T08:00:00+00:00,2024-11-15T14:00:38.717271+00:00,2024-11-16T04:05:37.808292+00:00,false
+ufc-309,Nov 16 2024,Jonathan Martinez,Marcus McGhee,fanduel,2024-11-16T08:00:00+00:00,2024-11-16T03:05:38.893302+00:00,2024-11-16T03:05:38.918174+00:00,false
+ufc-309,Nov 16 2024,Jim Miller,Damon Jackson,fanduel,2024-11-16T08:00:00+00:00,2024-11-16T02:05:17.580462+00:00,2024-11-16T02:05:17.555432+00:00,false
+ufc-309,Nov 16 2024,David Onama,Roberto Romero,fanduel,2024-11-16T08:00:00+00:00,2024-11-16T02:05:17.487531+00:00,2024-11-16T02:05:17.510473+00:00,false
+ufc-309,Nov 16 2024,Marcin Tybura,Jhonata Diniz,fanduel,2024-11-16T08:00:00+00:00,2024-11-16T01:05:25.963910+00:00,2024-11-16T01:05:25.988449+00:00,false
+ufc-309,Nov 16 2024,Mickey Gall,Ramiz Brahimaj,fanduel,2024-11-16T08:00:00+00:00,2024-11-16T01:05:25.909216+00:00,2024-11-16T01:05:25.926474+00:00,false
+ufc-309,Nov 16 2024,Bassil Hafez,Oban Elliott,fanduel,2024-11-16T08:00:00+00:00,2024-11-16T00:05:23.621405+00:00,2024-11-16T00:05:23.634400+00:00,false
+ufc-fight-night-november-23-2024,Nov 23 2024,Petr Yan,Deiveson Figueiredo,fanduel,2024-11-23T08:00:00+00:00,2024-11-23T03:05:35.043636+00:00,2024-11-23T03:05:35.030237+00:00,false
+ufc-fight-night-november-23-2024,Nov 23 2024,Song Kenan,Muslim Salikhov,fanduel,2024-11-23T08:00:00+00:00,2024-11-23T06:07:51.139519+00:00,2024-11-23T06:07:51.090516+00:00,false
+ufc-fight-night-november-23-2024,Nov 23 2024,Volkan Oezdemir,Carlos Ulberg,fanduel,2024-11-23T08:00:00+00:00,2024-11-23T03:05:34.927620+00:00,2024-11-23T03:05:34.938379+00:00,false
+ufc-fight-night-november-23-2024,Nov 23 2024,Zhang Mingyang,Ozzy Diaz,fanduel,2024-11-23T08:00:00+00:00,2024-11-23T05:01:03.533069+00:00,2024-11-23T05:01:03.539755+00:00,false
+ufc-fight-night-november-23-2024,Nov 23 2024,Baergeng Jieleyisi,SuYoung You,fanduel,2024-11-23T08:00:00+00:00,2024-11-23T03:05:34.845762+00:00,2024-11-23T03:05:34.829695+00:00,false
+ufc-fight-night-november-23-2024,Nov 23 2024,Kiru Sahota,DongHun Choi,fanduel,2024-11-23T08:00:00+00:00,2024-11-23T03:05:34.791666+00:00,2024-11-23T03:05:34.803609+00:00,false
+ufc-fight-night-november-23-2024,Nov 23 2024,Nyamjargal Tumendemberel,Carlos Hernandez,fanduel,2024-11-23T08:00:00+00:00,2024-11-17T13:05:28.829105+00:00,2024-11-17T13:05:28.834724+00:00,false
+ufc-fight-night-november-23-2024,Nov 23 2024,Lone'er Kavanagh,Jose Ochoa,fanduel,2024-11-23T08:00:00+00:00,2024-11-23T03:05:34.725787+00:00,2024-11-23T03:05:34.743691+00:00,false
+ufc-fight-night-november-23-2024,Nov 23 2024,Xiao Long,Quang Le,fanduel,2024-11-23T08:00:00+00:00,2024-11-22T09:05:30.158456+00:00,2024-11-22T09:05:30.216506+00:00,false
+ufc-fight-night-november-23-2024,Nov 23 2024,Maheshate,Nikolas Motta,fanduel,2024-11-23T08:00:00+00:00,2024-11-23T01:00:42.380472+00:00,2024-11-23T01:00:42.393371+00:00,false
+ufc-310,Dec 07 2024,Alexandre Pantoja,Kai Asakura,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T06:05:21.328259+00:00,2024-12-06T06:05:40.908187+00:00,false
+ufc-310,Dec 07 2024,Shavkat Rakhmonov,Ian Machado Garry,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T05:05:13.871427+00:00,2024-12-06T05:05:21.566616+00:00,false
+ufc-310,Dec 07 2024,Ciryl Gane,Alexander Volkov,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T05:05:13.843299+00:00,2024-12-07T05:05:13.835567+00:00,false
+ufc-310,Dec 07 2024,Bryce Mitchell,Kron Gracie,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T04:05:34.906108+00:00,2024-12-07T04:05:34.896029+00:00,false
+ufc-310,Dec 07 2024,Nate Landwehr,Dooho Choi,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T04:05:34.844094+00:00,2024-12-06T04:05:09.542428+00:00,false
+ufc-310,Dec 07 2024,Dominick Reyes,Anthony Smith,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T07:01:00.024793+00:00,2024-12-07T07:01:00.037898+00:00,false
+ufc-310,Dec 07 2024,Vicente Luque,Themba Gorimbo,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T03:05:24.326549+00:00,2024-12-07T03:05:24.301589+00:00,false
+ufc-310,Dec 07 2024,Movsar Evloev,Aljamain Sterling,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T02:05:33.983596+00:00,2024-12-06T10:05:25.543655+00:00,false
+ufc-310,Dec 07 2024,Randy Brown,Bryan Battle,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T02:05:33.964713+00:00,2024-12-07T02:05:33.954637+00:00,false
+ufc-310,Dec 07 2024,Chris Weidman,Eryk Anders,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T01:05:04.451174+00:00,2024-12-07T01:05:04.443768+00:00,false
+ufc-310,Dec 07 2024,Cody Durden,Joshua Van,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T01:05:04.404346+00:00,2024-12-07T01:05:04.416178+00:00,false
+ufc-310,Dec 07 2024,Michael Chiesa,Max Griffin,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T00:01:12.585598+00:00,2024-12-07T00:01:12.632541+00:00,false
+ufc-310,Dec 07 2024,Clay Guida,Chase Hooper,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T00:01:12.453562+00:00,2024-12-07T00:01:12.490656+00:00,false
+ufc-310,Dec 07 2024,Kennedy Nzechukwu,Lukasz Brzeski,fanduel,2024-12-07T08:00:00+00:00,2024-12-07T00:01:12.394714+00:00,2024-12-07T00:01:12.365610+00:00,false
+ufc-fight-night-december-14-2024,Dec 14 2024,Colby Covington,Joaquin Buckley,fanduel,2024-12-14T08:00:00+00:00,2024-12-14T06:01:35.367708+00:00,2024-12-14T06:01:35.362207+00:00,false
+ufc-fight-night-december-14-2024,Dec 14 2024,Cub Swanson,Billy Quarantillo,fanduel,2024-12-14T08:00:00+00:00,2024-12-13T06:05:16.432971+00:00,2024-12-14T06:01:35.331748+00:00,false
+ufc-fight-night-december-14-2024,Dec 14 2024,Manel Kape,Bruno Silva,fanduel,2024-12-14T08:00:00+00:00,2024-12-14T05:11:01.408979+00:00,2024-12-14T05:11:01.436885+00:00,false
+ufc-fight-night-december-14-2024,Dec 14 2024,Vitor Petrino,Dustin Jacoby,fanduel,2024-12-14T08:00:00+00:00,2024-12-14T05:11:01.495418+00:00,2024-12-14T05:11:01.518872+00:00,false
+ufc-fight-night-december-14-2024,Dec 14 2024,Adrian Yanez,Daniel Marcos,fanduel,2024-12-14T08:00:00+00:00,2024-12-14T04:06:02.258522+00:00,2024-12-14T04:06:02.233541+00:00,false
+ufc-fight-night-december-14-2024,Dec 14 2024,Navajo Stirling,Tuco Tokkos,fanduel,2024-12-14T08:00:00+00:00,2024-12-14T04:06:02.185536+00:00,2024-12-14T04:06:02.158561+00:00,false
+ufc-fight-night-december-14-2024,Dec 14 2024,Michael Johnson,Ottman Azaitar,fanduel,2024-12-14T08:00:00+00:00,2024-12-14T03:05:21.488972+00:00,2024-12-14T03:05:21.495000+00:00,false
+ufc-fight-night-december-14-2024,Dec 14 2024,Joel Alvarez,Drakkar Klose,fanduel,2024-12-14T08:00:00+00:00,2024-12-14T03:05:21.465335+00:00,2024-12-14T03:05:21.458899+00:00,false
+ufc-fight-night-december-14-2024,Dec 14 2024,Sean Woodson,Fernando Padilla,fanduel,2024-12-14T08:00:00+00:00,2024-12-14T02:06:52.120887+00:00,2024-12-13T02:05:21.762441+00:00,false
+ufc-fight-night-december-14-2024,Dec 14 2024,Miles Johns,Felipe Lima,fanduel,2024-12-14T08:00:00+00:00,2024-12-12T15:05:41.299272+00:00,2024-12-14T02:06:52.083931+00:00,false
+ufc-fight-night-december-14-2024,Dec 14 2024,Davey Grant,Ramon Taveras,fanduel,2024-12-14T08:00:00+00:00,2024-12-13T20:16:00.026830+00:00,2024-12-14T01:05:51.185934+00:00,false
+ufc-fight-night-january-11-2025,Jan 11 2025,Santiago Ponzinibbio,Carlston Harris,fanduel,2025-01-11T08:00:00+00:00,2025-01-11T03:11:49.736376+00:00,2025-01-11T03:11:49.723097+00:00,false
+ufc-fight-night-january-11-2025,Jan 11 2025,Cesar Almeida,Abdul Razak Alhassan,fanduel,2025-01-11T08:00:00+00:00,2025-01-11T02:01:21.617633+00:00,2025-01-11T02:01:21.567568+00:00,false
+ufc-fight-night-january-11-2025,Jan 11 2025,Chris Curtis,Roman Kopylov,fanduel,2025-01-11T08:00:00+00:00,2025-01-11T01:07:03.463418+00:00,2025-01-11T01:07:03.457150+00:00,false
+ufc-fight-night-january-11-2025,Jan 11 2025,Christian Rodriguez,Austin Bashi,fanduel,2025-01-11T08:00:00+00:00,2025-01-11T01:07:03.422189+00:00,2025-01-11T01:07:03.428476+00:00,false
+ufc-fight-night-january-11-2025,Jan 11 2025,Punahele Soriano,Uros Medic,fanduel,2025-01-11T08:00:00+00:00,2025-01-11T01:07:03.392771+00:00,2025-01-11T01:07:03.385163+00:00,false
+ufc-fight-night-january-11-2025,Jan 11 2025,Jose Johnson,Felipe Bunes,fanduel,2025-01-11T08:00:00+00:00,2025-01-11T04:05:21.678161+00:00,2025-01-11T04:05:21.672071+00:00,false
+ufc-fight-night-january-11-2025,Jan 11 2025,Marco Tulio,Ihor Potieria,fanduel,2025-01-11T08:00:00+00:00,2025-01-10T00:05:21.479519+00:00,2025-01-11T00:01:29.294023+00:00,false
+ufc-fight-night-january-11-2025,Jan 11 2025,Thiago Moises,Trey Ogden,fanduel,2025-01-11T08:00:00+00:00,2025-01-11T00:01:29.195964+00:00,2025-01-11T00:01:29.205852+00:00,false
+ufc-fight-night-january-11-2025,Jan 11 2025,Preston Parsons,Jacobe Smith,fanduel,2025-01-11T08:00:00+00:00,2025-01-10T23:01:27.902103+00:00,2025-01-10T23:01:27.910934+00:00,false
+ufc-fight-night-january-11-2025,Jan 11 2025,Magomed Gadzhiyasulov,Bruno Lopes,fanduel,2025-01-11T08:00:00+00:00,2025-01-10T23:01:27.806012+00:00,2025-01-10T23:01:27.818035+00:00,false
+ufc-fight-night-january-11-2025,Jan 11 2025,Nurullo Aliev,Joe Solecki,fanduel,2025-01-11T08:00:00+00:00,2025-01-10T22:11:04.616911+00:00,2025-01-10T22:11:04.606308+00:00,false
+ufc-311,Jan 18 2025,Islam Makhachev,Renato Moicano,fanduel,2025-01-18T08:00:00+00:00,2025-01-18T06:05:12.300599+00:00,2025-01-18T06:05:12.307344+00:00,false
+ufc-311,Jan 18 2025,Merab Dvalishvili,Umar Nurmagomedov,fanduel,2025-01-18T08:00:00+00:00,2025-01-17T05:00:27.376175+00:00,2025-01-18T05:05:07.053717+00:00,false
+ufc-311,Jan 18 2025,Jiri Prochazka,Jamahal Hill,fanduel,2025-01-18T08:00:00+00:00,2025-01-18T05:05:07.029306+00:00,2025-01-18T05:05:07.036572+00:00,false
+ufc-311,Jan 18 2025,Jailton Almeida,Serghei Spivac,fanduel,2025-01-18T08:00:00+00:00,2025-01-18T02:05:18.906365+00:00,2025-01-18T02:05:18.913251+00:00,false
+ufc-311,Jan 18 2025,Kevin Holland,Reinier de Ridder,fanduel,2025-01-18T08:00:00+00:00,2025-01-18T03:05:18.660500+00:00,2025-01-18T03:05:18.668012+00:00,false
+ufc-311,Jan 18 2025,Payton Talbott,Raoni Barcelos,fanduel,2025-01-18T08:00:00+00:00,2025-01-18T03:05:18.620145+00:00,2025-01-18T03:05:18.627169+00:00,false
+ufc-311,Jan 18 2025,Zach Reese,Azamat Bekoev,fanduel,2025-01-18T08:00:00+00:00,2025-01-18T01:05:28.085597+00:00,2025-01-18T01:05:28.115571+00:00,false
+ufc-311,Jan 18 2025,Bogdan Guskov,Billy Elekana,fanduel,2025-01-18T08:00:00+00:00,2025-01-18T02:05:18.883641+00:00,2025-01-18T02:05:18.890315+00:00,false
+ufc-311,Jan 18 2025,Grant Dawson,Diego Ferreira,fanduel,2025-01-18T08:00:00+00:00,2025-01-18T02:05:18.859610+00:00,2025-01-18T02:05:18.867855+00:00,false
+ufc-311,Jan 18 2025,Rinya Nakamura,Muin Gafurov,fanduel,2025-01-18T08:00:00+00:00,2025-01-18T00:00:34.082505+00:00,2025-01-18T00:00:34.118372+00:00,false
+ufc-311,Jan 18 2025,Ricky Turcios,Benardo Sopaj,fanduel,2025-01-18T08:00:00+00:00,2025-01-18T00:00:34.221756+00:00,2025-01-18T00:00:34.272628+00:00,false
+ufc-311,Jan 18 2025,Tagir Ulanbekov,Clayton Carpenter,fanduel,2025-01-18T08:00:00+00:00,2025-01-18T00:00:34.048530+00:00,2025-01-18T00:00:34.025580+00:00,false
+ufc-fight-night-february-01-2025,Feb 01 2025,Israel Adesanya,Nassourdine Imavov,fanduel,2025-02-01T08:00:00+00:00,2025-01-31T20:05:26.361534+00:00,2025-01-31T20:05:26.371607+00:00,false
+ufc-fight-night-february-01-2025,Feb 01 2025,Shara Magomedov,Michael Page,fanduel,2025-02-01T08:00:00+00:00,2025-01-31T22:05:41.129817+00:00,2025-01-31T22:05:41.082898+00:00,false
+ufc-fight-night-february-01-2025,Feb 01 2025,Sergei Pavlovich,Jairzinho Rozenstruik,fanduel,2025-02-01T08:00:00+00:00,2025-01-31T20:05:26.303467+00:00,2025-01-31T20:05:26.313553+00:00,false
+ufc-fight-night-february-01-2025,Feb 01 2025,Said Nurmagomedov,Vinicius Oliveira,fanduel,2025-02-01T08:00:00+00:00,2025-01-31T18:00:40.031903+00:00,2025-01-31T14:01:27.956797+00:00,false
+ufc-fight-night-february-01-2025,Feb 01 2025,Fares Ziam,Mike Davis,fanduel,2025-02-01T08:00:00+00:00,2025-01-31T23:05:28.341404+00:00,2025-01-31T23:05:28.364425+00:00,false
+ufc-fight-night-february-01-2025,Feb 01 2025,Muhammad Naimov,Kaan Ofli,fanduel,2025-02-01T08:00:00+00:00,2025-01-31T17:05:20.834785+00:00,2025-01-31T17:05:20.867141+00:00,false
+ufc-fight-night-february-01-2025,Feb 01 2025,Shamil Gaziev,Thomas Petersen,fanduel,2025-02-01T08:00:00+00:00,2025-01-31T17:05:20.666456+00:00,2025-01-31T17:05:20.684776+00:00,false
+ufc-fight-night-february-01-2025,Feb 01 2025,Terrance McKinney,Damir Hadzovic,fanduel,2025-02-01T08:00:00+00:00,2025-01-31T14:01:27.622788+00:00,2025-01-31T16:00:14.976450+00:00,false
+ufc-fight-night-february-01-2025,Feb 01 2025,Bogdan Grad,Lucas Alexander,fanduel,2025-02-01T08:00:00+00:00,2025-01-31T23:05:28.138246+00:00,2025-01-31T23:05:28.161972+00:00,false
+ufc-fight-night-february-01-2025,Feb 01 2025,Hamdy Abdelwahab,Jamal Pogues,fanduel,2025-02-01T08:00:00+00:00,2025-01-31T15:00:16.052632+00:00,2025-01-31T15:00:16.118378+00:00,false
+ufc-312,Feb 08 2025,Dricus Du Plessis,Sean Strickland,fanduel,2025-02-08T08:00:00+00:00,2025-02-08T06:14:33.105642+00:00,2025-02-08T06:14:33.111006+00:00,false
+ufc-312,Feb 08 2025,Justin Tafa,Tallison Teixeira,fanduel,2025-02-08T08:00:00+00:00,2025-02-08T06:14:33.083479+00:00,2025-02-08T06:14:33.078132+00:00,false
+ufc-312,Feb 08 2025,Jake Matthews,Francisco Prado,fanduel,2025-02-08T08:00:00+00:00,2025-02-08T06:14:32.900628+00:00,2025-02-08T06:14:32.905974+00:00,false
+ufc-312,Feb 08 2025,Jack Jenkins,Gabriel Santos,fanduel,2025-02-08T08:00:00+00:00,2025-02-08T06:14:32.941543+00:00,2025-02-08T06:14:32.936379+00:00,false
+ufc-312,Feb 08 2025,Tom Nolan,Viacheslav Borshchev,fanduel,2025-02-08T08:00:00+00:00,2025-02-08T06:14:32.754509+00:00,2025-02-08T06:14:32.760416+00:00,false
+ufc-312,Feb 08 2025,Colby Thicknesse,Aleksandre Topuria,fanduel,2025-02-08T08:00:00+00:00,2025-02-08T06:14:32.773657+00:00,2025-02-08T06:14:32.778982+00:00,false
+ufc-312,Feb 08 2025,Rongzhu,Kody Steele,fanduel,2025-02-08T08:00:00+00:00,2025-02-08T06:14:32.959396+00:00,2025-02-08T06:14:32.954425+00:00,false
+ufc-312,Feb 08 2025,Jonathan Micallef,Kevin Jousset,fanduel,2025-02-08T08:00:00+00:00,2025-02-08T00:09:00.668499+00:00,2025-02-08T00:09:00.661695+00:00,false
+ufc-312,Feb 08 2025,Quillan Salkilld,Anshul Jubli,fanduel,2025-02-08T08:00:00+00:00,2025-02-08T00:09:00.293366+00:00,2025-02-08T00:09:00.463932+00:00,false
+ufc-fight-night-february-15-2025,Feb 15 2025,Jared Cannonier,Gregory Rodrigues,fanduel,2025-02-15T08:00:00+00:00,2025-02-15T05:08:53.663524+00:00,2025-02-15T05:08:53.628529+00:00,false
+ufc-fight-night-february-15-2025,Feb 15 2025,Calvin Kattar,Youssef Zalal,fanduel,2025-02-15T08:00:00+00:00,2025-02-15T05:08:52.340588+00:00,2025-02-15T05:08:52.380536+00:00,false
+ufc-fight-night-february-15-2025,Feb 15 2025,Edmen Shahbazyan,Dylan Budka,fanduel,2025-02-15T08:00:00+00:00,2025-02-15T05:08:53.729556+00:00,2025-02-15T05:08:53.764535+00:00,false
+ufc-fight-night-february-15-2025,Feb 15 2025,Ismael Bonfim,Nazim Sadykhov,fanduel,2025-02-15T08:00:00+00:00,2025-02-15T01:34:08.479554+00:00,2025-02-15T01:34:08.497379+00:00,false
+ufc-fight-night-february-15-2025,Feb 15 2025,Rodolfo Vieira,Andre Petroski,fanduel,2025-02-15T08:00:00+00:00,2025-02-14T18:04:17.552311+00:00,2025-02-15T01:08:41.841211+00:00,false
+ufc-fight-night-february-15-2025,Feb 15 2025,Connor Matthews,Jose Delgado,fanduel,2025-02-15T08:00:00+00:00,2025-02-15T00:37:27.616351+00:00,2025-02-14T00:32:34.488465+00:00,false
+ufc-fight-night-february-15-2025,Feb 15 2025,Rafael Estevam,Jesus Aguilar,fanduel,2025-02-15T08:00:00+00:00,2025-02-14T23:04:31.138649+00:00,2025-02-14T23:04:31.130955+00:00,false
+ufc-fight-night-february-15-2025,Feb 15 2025,Gabriel Bonfim,Khaos Williams,fanduel,2025-02-15T08:00:00+00:00,2025-02-15T00:37:27.084528+00:00,2025-02-15T00:37:27.109485+00:00,false
+ufc-fight-night-february-15-2025,Feb 15 2025,Vince Morales,Elijah Smith,fanduel,2025-02-15T08:00:00+00:00,2025-02-14T22:04:14.316262+00:00,2025-02-14T22:04:14.322468+00:00,false
+ufc-fight-night-february-15-2025,Feb 15 2025,Don'Tale Mayes,Valter Walker,fanduel,2025-02-15T08:00:00+00:00,2025-02-15T01:34:08.175588+00:00,2025-02-15T01:34:08.216316+00:00,false
+ufc-fight-night-february-22-2025,Feb 22 2025,Henry Cejudo,Song Yadong,fanduel,2025-02-22T08:00:00+00:00,2025-02-21T14:32:58.065819+00:00,2025-02-22T04:34:35.949340+00:00,false
+ufc-fight-night-february-22-2025,Feb 22 2025,Brendan Allen,Anthony Hernandez,fanduel,2025-02-22T08:00:00+00:00,2025-02-22T04:34:35.870729+00:00,2025-02-22T04:34:35.878342+00:00,false
+ufc-fight-night-february-22-2025,Feb 22 2025,Rob Font,Jean Matsumoto,fanduel,2025-02-22T08:00:00+00:00,2025-02-22T03:34:00.673949+00:00,2025-02-22T03:34:00.695391+00:00,false
+ufc-fight-night-february-22-2025,Feb 22 2025,Jean Silva,Melsik Baghdasaryan,fanduel,2025-02-22T08:00:00+00:00,2025-02-22T03:34:00.894019+00:00,2025-02-22T03:34:00.914884+00:00,false
+ufc-fight-night-february-22-2025,Feb 22 2025,Alonzo Menifield,Julius Walker,fanduel,2025-02-22T08:00:00+00:00,2025-02-22T02:34:11.886888+00:00,2025-02-21T17:04:07.928285+00:00,false
+ufc-fight-night-february-22-2025,Feb 22 2025,Ion Cutelaba,Ibo Aslan,fanduel,2025-02-22T08:00:00+00:00,2025-02-22T02:06:20.828484+00:00,2025-02-22T02:06:20.849917+00:00,false
+ufc-fight-night-february-22-2025,Feb 22 2025,Andre Fili,Melquizael Costa,fanduel,2025-02-22T08:00:00+00:00,2025-02-22T02:06:20.418454+00:00,2025-02-22T02:06:20.437735+00:00,false
+ufc-fight-night-february-22-2025,Feb 22 2025,Mansur Abdul-Malik,Nick Klein,fanduel,2025-02-22T08:00:00+00:00,2025-02-22T02:06:20.764461+00:00,2025-02-22T02:06:20.745545+00:00,false
+ufc-fight-night-february-22-2025,Feb 22 2025,Ricky Simon,Javid Basharat,fanduel,2025-02-22T08:00:00+00:00,2025-02-22T02:06:20.310541+00:00,2025-02-22T02:06:20.329948+00:00,false
+ufc-fight-night-february-22-2025,Feb 22 2025,Nikolay Veretennikov,Austin Vanderford,fanduel,2025-02-22T08:00:00+00:00,2025-02-22T07:38:44.782517+00:00,2025-02-22T07:38:44.773404+00:00,false
+ufc-fight-night-february-22-2025,Feb 22 2025,Nursulton Ruziboev,Eric McConico,fanduel,2025-02-22T08:00:00+00:00,2025-02-22T07:38:44.842392+00:00,2025-02-22T07:38:44.850891+00:00,false
+ufc-fight-night-february-22-2025,Feb 22 2025,Modestas Bukauskas,Rafael Cerqueira,fanduel,2025-02-22T08:00:00+00:00,2025-02-22T00:04:26.966817+00:00,2025-02-21T02:33:03.062643+00:00,false
+ufc-fight-night-march-01-2025,Mar 01 2025,Manel Kape,Asu Almabayev,fanduel,2025-03-01T08:00:00+00:00,2025-03-01T02:41:09.448885+00:00,2025-03-01T02:41:09.470756+00:00,false
+ufc-fight-night-march-01-2025,Mar 01 2025,Cody Brundage,Julian Marquez,fanduel,2025-03-01T08:00:00+00:00,2025-03-01T02:08:54.930743+00:00,2025-03-01T02:08:54.940342+00:00,false
+ufc-fight-night-march-01-2025,Mar 01 2025,Nasrat Haqparast,Esteban Ribovics,fanduel,2025-03-01T08:00:00+00:00,2025-03-01T01:42:40.408438+00:00,2025-03-01T01:42:40.417786+00:00,false
+ufc-fight-night-march-01-2025,Mar 01 2025,Hyder Amil,William Gomis,fanduel,2025-03-01T08:00:00+00:00,2025-03-01T01:10:39.938870+00:00,2025-03-01T01:10:39.931797+00:00,false
+ufc-fight-night-march-01-2025,Mar 01 2025,Danny Barlow,Sam Patterson,fanduel,2025-03-01T08:00:00+00:00,2025-03-01T00:40:57.968999+00:00,2025-03-01T00:40:58.001101+00:00,false
+ufc-fight-night-march-01-2025,Mar 01 2025,Austen Lane,Mario Pinto,fanduel,2025-03-01T08:00:00+00:00,2025-03-01T00:08:23.594519+00:00,2025-02-28T02:14:22.639002+00:00,false
+ufc-fight-night-march-01-2025,Mar 01 2025,Ricardo Ramos,Chepe Mariscal,fanduel,2025-03-01T08:00:00+00:00,2025-02-28T23:38:32.325156+00:00,2025-02-28T23:38:32.332158+00:00,false
+ufc-fight-night-march-01-2025,Mar 01 2025,Danny Silva,Lucas Almeida,fanduel,2025-03-01T08:00:00+00:00,2025-03-01T00:40:59.135912+00:00,2025-03-01T00:40:59.121923+00:00,false
+ufc-fight-night-march-01-2025,Mar 01 2025,Charles Johnson,Ramazan Temirov,fanduel,2025-03-01T08:00:00+00:00,2025-02-28T22:10:44.664353+00:00,2025-02-28T22:10:44.680729+00:00,false
+ufc-313,Mar 08 2025,Alex Pereira,Magomed Ankalaev,fanduel,2025-03-08T08:00:00+00:00,2025-03-08T05:35:11.873171+00:00,2025-03-08T05:35:11.929098+00:00,false
+ufc-313,Mar 08 2025,Justin Gaethje,Rafael Fiziev,fanduel,2025-03-08T08:00:00+00:00,2025-03-08T05:07:51.423697+00:00,2025-03-08T05:07:51.444836+00:00,false
+ufc-313,Mar 08 2025,Jalin Turner,Ignacio Bahamondes,fanduel,2025-03-08T08:00:00+00:00,2025-03-08T04:38:22.765630+00:00,2025-03-08T04:38:22.778986+00:00,false
+ufc-313,Mar 08 2025,Joshua Van,Rei Tsuruya,fanduel,2025-03-08T08:00:00+00:00,2025-03-08T02:39:13.254661+00:00,2025-03-08T02:39:13.247463+00:00,false
+ufc-313,Mar 08 2025,Brunno Ferreira,Armen Petrosyan,fanduel,2025-03-08T08:00:00+00:00,2025-03-08T02:16:12.151277+00:00,2025-03-08T02:16:12.194581+00:00,false
+ufc-313,Mar 08 2025,Alex Morono,Carlos Leal,fanduel,2025-03-08T08:00:00+00:00,2025-03-08T03:38:13.512881+00:00,2025-03-08T03:38:13.530763+00:00,false
+ufc-313,Mar 08 2025,Mairon Santos,Francis Marshall,fanduel,2025-03-08T08:00:00+00:00,2025-03-08T03:38:13.709819+00:00,2025-03-08T03:38:13.725044+00:00,false
+ufc-313,Mar 08 2025,Djorden Santos,Ozzy Diaz,fanduel,2025-03-08T08:00:00+00:00,2025-03-08T00:37:04.238749+00:00,2025-03-08T00:37:04.210239+00:00,false
+ufc-fight-night-march-15-2025,Mar 15 2025,Marvin Vettori,Roman Dolidze,fanduel,2025-03-15T07:00:00+00:00,2025-03-15T01:48:51.362830+00:00,2025-03-14T01:48:54.722170+00:00,false
+ufc-fight-night-march-15-2025,Mar 15 2025,Chidi Njokuani,Elizeu Zaleski dos Santos,fanduel,2025-03-15T07:00:00+00:00,2025-03-15T01:18:07.903124+00:00,2025-03-15T01:18:07.881163+00:00,false
+ufc-fight-night-march-15-2025,Mar 15 2025,Alexander Hernandez,Kurt Holobaugh,fanduel,2025-03-15T07:00:00+00:00,2025-03-15T00:47:27.537118+00:00,2025-03-15T00:47:27.546169+00:00,false
+ufc-fight-night-march-15-2025,Mar 15 2025,Da'Mon Blackshear,Cody Gibson,fanduel,2025-03-15T07:00:00+00:00,2025-03-14T19:23:16.940886+00:00,2025-03-15T00:17:39.254795+00:00,false
+ufc-fight-night-march-15-2025,Mar 15 2025,Diyar Nurgozhay,Brendson Ribeiro,fanduel,2025-03-15T07:00:00+00:00,2025-03-14T23:47:43.890465+00:00,2025-03-14T23:47:43.899692+00:00,false
+ufc-fight-night-march-15-2025,Mar 15 2025,SeungWoo Choi,Kevin Vallejos,fanduel,2025-03-15T07:00:00+00:00,2025-03-13T23:18:18.135248+00:00,2025-03-14T23:17:18.082000+00:00,false
+ufc-fight-night-march-15-2025,Mar 15 2025,Waldo Cortes Acosta,Ryan Spann,fanduel,2025-03-15T07:00:00+00:00,2025-03-14T22:53:36.997987+00:00,2025-03-14T22:53:37.006438+00:00,false
+ufc-fight-night-march-15-2025,Mar 15 2025,SuYoung You,AJ Cunningham,fanduel,2025-03-15T07:00:00+00:00,2025-03-14T19:32:17.152722+00:00,2025-03-14T22:17:09.890765+00:00,false
+ufc-fight-night-march-15-2025,Mar 15 2025,Carlos Vera,Josias Musasa,fanduel,2025-03-15T07:00:00+00:00,2025-03-14T21:53:33.700140+00:00,2025-03-14T21:53:33.721830+00:00,false
+ufc-fight-night-march-15-2025,Mar 15 2025,Daniel Barez,Andre Lima,fanduel,2025-03-15T07:00:00+00:00,2025-03-14T21:03:09.264117+00:00,2025-03-13T21:03:40.161224+00:00,false
+ufc-fight-night-march-22-2025,Mar 22 2025,Leon Edwards,Sean Brady,fanduel,2025-03-22T07:00:00+00:00,2025-03-21T23:23:24.023886+00:00,2025-03-21T23:23:24.058549+00:00,false
+ufc-fight-night-march-22-2025,Mar 22 2025,Jan Blachowicz,Carlos Ulberg,fanduel,2025-03-22T07:00:00+00:00,2025-03-21T22:53:24.673998+00:00,2025-03-20T22:41:26.514950+00:00,false
+ufc-fight-night-march-22-2025,Mar 22 2025,Gunnar Nelson,Kevin Holland,fanduel,2025-03-22T07:00:00+00:00,2025-03-22T02:18:31.402518+00:00,2025-03-22T02:18:31.374547+00:00,false
+ufc-fight-night-march-22-2025,Mar 22 2025,Jordan Vucenic,Chris Duncan,fanduel,2025-03-22T07:00:00+00:00,2025-03-20T21:39:05.021072+00:00,2025-03-21T21:21:34.922708+00:00,false
+ufc-fight-night-march-22-2025,Mar 22 2025,Nathaniel Wood,Morgan Charriere,fanduel,2025-03-22T07:00:00+00:00,2025-03-21T20:44:07.009014+00:00,2025-03-22T02:18:31.046642+00:00,false
+ufc-fight-night-march-22-2025,Mar 22 2025,Jai Herbert,Chris Padilla,fanduel,2025-03-22T07:00:00+00:00,2025-03-21T20:26:10.501740+00:00,2025-03-21T20:26:10.513537+00:00,false
+ufc-fight-night-march-22-2025,Mar 22 2025,Lone'er Kavanagh,Felipe dos Santos,fanduel,2025-03-22T07:00:00+00:00,2025-03-20T18:34:43.025759+00:00,2025-03-21T19:47:11.669831+00:00,false
+ufc-fight-night-march-22-2025,Mar 22 2025,Marcin Tybura,Mick Parkin,fanduel,2025-03-22T07:00:00+00:00,2025-03-22T05:59:32.223000+00:00,2025-03-22T05:59:32.230529+00:00,false
+ufc-fight-night-march-22-2025,Mar 22 2025,Christian Leroy Duncan,Andrey Pulyaev,fanduel,2025-03-22T07:00:00+00:00,2025-03-22T02:18:31.656578+00:00,2025-03-22T02:18:31.625642+00:00,false
+ufc-fight-night-march-22-2025,Mar 22 2025,Nathan Fletcher,Caolan Loughran,fanduel,2025-03-22T07:00:00+00:00,2025-03-21T18:22:02.176518+00:00,2025-03-21T18:22:02.188007+00:00,false
+ufc-fight-night-march-22-2025,Mar 22 2025,Guram Kutateladze,Kaue Fernandes,fanduel,2025-03-22T07:00:00+00:00,2025-03-22T03:53:17.690344+00:00,2025-03-22T03:53:17.696940+00:00,false
+ufc-fight-night-march-29-2025,Mar 29 2025,Brandon Moreno,Steve Erceg,fanduel,2025-03-29T07:00:00+00:00,2025-03-29T03:51:55.856464+00:00,2025-03-28T02:48:02.154412+00:00,false
+ufc-fight-night-march-29-2025,Mar 29 2025,Manuel Torres,Drew Dober,fanduel,2025-03-29T07:00:00+00:00,2025-03-29T03:51:55.715466+00:00,2025-03-29T03:51:55.738439+00:00,false
+ufc-fight-night-march-29-2025,Mar 29 2025,Edgar Chairez,CJ Vergara,fanduel,2025-03-29T07:00:00+00:00,2025-03-28T23:11:33.874348+00:00,2025-03-26T14:53:41.113038+00:00,false
+ufc-fight-night-march-29-2025,Mar 29 2025,Raul Rosas Jr.,Vince Morales,fanduel,2025-03-29T07:00:00+00:00,2025-03-28T02:48:02.082138+00:00,2025-03-29T01:57:38.608938+00:00,false
+ufc-fight-night-march-29-2025,Mar 29 2025,David Martinez,Saimon Oliveira,fanduel,2025-03-29T07:00:00+00:00,2025-03-28T02:48:01.739009+00:00,2025-03-29T01:57:38.323926+00:00,false
+ufc-fight-night-march-29-2025,Mar 29 2025,Ronaldo Rodriguez,Kevin Borjas,fanduel,2025-03-29T07:00:00+00:00,2025-03-29T01:57:38.351842+00:00,2025-03-29T01:57:38.345163+00:00,false
+ufc-fight-night-march-29-2025,Mar 29 2025,Jose Daniel Medina,Ateba Gautier,fanduel,2025-03-29T07:00:00+00:00,2025-03-28T22:39:59.785785+00:00,2025-03-28T22:39:59.795554+00:00,false
+ufc-fight-night-march-29-2025,Mar 29 2025,Christian Rodriguez,Melquizael Costa,fanduel,2025-03-29T07:00:00+00:00,2025-03-29T03:51:54.674594+00:00,2025-03-29T03:51:54.699480+00:00,false
+ufc-fight-night-march-29-2025,Mar 29 2025,Rafa Garcia,Vinc Pichel,fanduel,2025-03-29T07:00:00+00:00,2025-03-28T22:28:01.712908+00:00,2025-03-28T22:28:01.719867+00:00,false
+ufc-fight-night-march-29-2025,Mar 29 2025,Jamall Emmers,Gabriel Miranda,fanduel,2025-03-29T07:00:00+00:00,2025-03-28T05:17:53.257719+00:00,2025-03-28T22:28:01.498997+00:00,false
+ufc-fight-night-march-29-2025,Mar 29 2025,MarQuel Mederos,Austin Hubbard,fanduel,2025-03-29T07:00:00+00:00,2025-03-28T20:51:50.162137+00:00,2025-03-28T20:51:50.146493+00:00,false
+ufc-fight-night-april-05-2025,Apr 05 2025,Josh Emmett,Lerone Murphy,fanduel,2025-04-05T07:00:00+00:00,2025-04-05T04:36:39.405072+00:00,2025-04-05T04:36:39.412031+00:00,false
+ufc-fight-night-april-05-2025,Apr 05 2025,Pat Sabatini,Joanderson Brito,fanduel,2025-04-05T07:00:00+00:00,2025-04-05T03:10:14.555941+00:00,2025-04-05T03:10:14.496956+00:00,false
+ufc-fight-night-april-05-2025,Apr 05 2025,Cortavious Romious,ChangHo Lee,fanduel,2025-04-05T07:00:00+00:00,2025-04-05T05:05:09.984691+00:00,2025-04-05T05:05:10.026311+00:00,false
+ufc-fight-night-april-05-2025,Apr 05 2025,Brad Tavares,Gerald Meerschaert,fanduel,2025-04-05T07:00:00+00:00,2025-04-05T03:10:11.235880+00:00,2025-04-05T03:10:11.172938+00:00,false
+ufc-fight-night-april-05-2025,Apr 05 2025,Ode Osbourne,Luis Gurule,fanduel,2025-04-05T07:00:00+00:00,2025-04-05T03:10:13.198935+00:00,2025-04-05T03:10:13.133943+00:00,false
+ufc-fight-night-april-05-2025,Apr 05 2025,Torrez Finney,Robert Valentin,fanduel,2025-04-05T07:00:00+00:00,2025-04-04T23:05:41.891903+00:00,2025-04-05T03:10:11.816935+00:00,false
+ufc-fight-night-april-05-2025,Apr 05 2025,Rhys McKee,Daniel Frunza,fanduel,2025-04-05T07:00:00+00:00,2025-04-05T03:10:13.406953+00:00,2025-04-05T03:10:13.474962+00:00,false
+ufc-fight-night-april-05-2025,Apr 05 2025,Victor Henry,Pedro Falcao,fanduel,2025-04-05T07:00:00+00:00,2025-04-04T23:05:42.163398+00:00,2025-04-04T23:05:42.174332+00:00,false
+ufc-fight-night-april-05-2025,Apr 05 2025,Martin Buday,Uran Satybaldiev,fanduel,2025-04-05T07:00:00+00:00,2025-04-04T21:38:39.531976+00:00,2025-04-04T23:05:42.599018+00:00,false
+ufc-314,Apr 12 2025,Alexander Volkanovski,Diego Lopes,fanduel,2025-04-12T07:00:00+00:00,2025-04-12T04:37:35.612627+00:00,2025-04-12T04:37:35.619902+00:00,false
+ufc-314,Apr 12 2025,Michael Chandler,Paddy Pimblett,fanduel,2025-04-12T07:00:00+00:00,2025-04-12T04:37:35.868470+00:00,2025-04-12T04:37:35.877984+00:00,false
+ufc-314,Apr 12 2025,Yair Rodriguez,Patricio Pitbull,fanduel,2025-04-12T07:00:00+00:00,2025-04-12T04:37:35.666002+00:00,2025-04-12T04:37:35.673158+00:00,false
+ufc-314,Apr 12 2025,Bryce Mitchell,Jean Silva,fanduel,2025-04-12T07:00:00+00:00,2025-04-12T03:19:38.164663+00:00,2025-04-12T03:19:38.205447+00:00,false
+ufc-314,Apr 12 2025,Nikita Krylov,Dominick Reyes,fanduel,2025-04-12T07:00:00+00:00,2025-04-12T03:19:38.554363+00:00,2025-04-12T03:19:38.579354+00:00,false
+ufc-314,Apr 12 2025,Dan Ige,Sean Woodson,fanduel,2025-04-12T07:00:00+00:00,2025-04-12T06:36:49.915188+00:00,2025-04-12T06:36:49.941566+00:00,false
+ufc-314,Apr 12 2025,Jim Miller,Chase Hooper,fanduel,2025-04-12T07:00:00+00:00,2025-04-12T06:36:49.828564+00:00,2025-04-12T06:36:49.794634+00:00,false
+ufc-314,Apr 12 2025,Darren Elkins,Julian Erosa,fanduel,2025-04-12T07:00:00+00:00,2025-04-12T05:10:33.084253+00:00,2025-04-12T05:10:33.094729+00:00,false
+ufc-314,Apr 12 2025,Sedriques Dumas,Michal Oleksiejczuk,fanduel,2025-04-12T07:00:00+00:00,2025-04-12T06:36:50.466563+00:00,2025-04-12T06:36:50.438603+00:00,false
+ufc-314,Apr 12 2025,Sumudaerji,Mitch Raposo,fanduel,2025-04-12T07:00:00+00:00,2025-04-12T03:19:39.054514+00:00,2025-04-12T03:19:39.081389+00:00,false
+ufc-314,Apr 12 2025,Tresean Gore,Marco Tulio,fanduel,2025-04-12T07:00:00+00:00,2025-04-10T23:04:50.262016+00:00,2025-04-11T23:08:51.223505+00:00,false
+ufc-fight-night-april-26-2025,Apr 26 2025,Ian Machado Garry,Carlos Prates,fanduel,2025-04-26T07:00:00+00:00,2025-04-25T16:55:05.641696+00:00,2025-04-25T16:55:05.674430+00:00,false
+ufc-fight-night-april-26-2025,Apr 26 2025,Anthony Smith,Zhang Mingyang,fanduel,2025-04-26T07:00:00+00:00,2025-04-25T05:15:26.245078+00:00,2025-04-25T05:15:26.255855+00:00,false
+ufc-fight-night-april-26-2025,Apr 26 2025,Giga Chikadze,David Onama,fanduel,2025-04-26T07:00:00+00:00,2025-04-25T01:52:33.749640+00:00,2025-04-25T05:15:27.975388+00:00,false
+ufc-fight-night-april-26-2025,Apr 26 2025,Michel Pereira,Abus Magomedov,fanduel,2025-04-26T07:00:00+00:00,2025-04-25T05:15:26.304855+00:00,2025-04-24T10:50:45.600706+00:00,false
+ufc-fight-night-april-26-2025,Apr 26 2025,Randy Brown,Nicolas Dalby,fanduel,2025-04-26T07:00:00+00:00,2025-04-25T14:21:56.745233+00:00,2025-04-25T14:21:56.752156+00:00,false
+ufc-fight-night-april-26-2025,Apr 26 2025,Ikram Aliskerov,Andre Muniz,fanduel,2025-04-26T07:00:00+00:00,2025-04-25T01:52:32.790771+00:00,2025-04-24T16:53:09.816288+00:00,false
+ufc-fight-night-april-26-2025,Apr 26 2025,Matt Schnell,Jimmy Flick,fanduel,2025-04-26T07:00:00+00:00,2025-04-25T01:52:32.843327+00:00,2025-04-25T01:52:32.836102+00:00,false
+ufc-fight-night-april-26-2025,Apr 26 2025,Evan Elder,Gauge Young,fanduel,2025-04-26T07:00:00+00:00,2025-04-25T16:55:04.703663+00:00,2025-04-25T16:55:04.734347+00:00,false
+ufc-fight-night-april-26-2025,Apr 26 2025,Chris Gutierrez,John Castaneda,fanduel,2025-04-26T07:00:00+00:00,2025-04-25T08:52:04.970893+00:00,2025-04-25T08:52:04.982016+00:00,false
+ufc-fight-night-april-26-2025,Apr 26 2025,Da'Mon Blackshear,Alatengheili,fanduel,2025-04-26T07:00:00+00:00,2025-04-25T00:59:18.499597+00:00,2025-04-24T16:53:09.915336+00:00,false
+ufc-fight-night-april-26-2025,Apr 26 2025,Malcolm Wellmaker,Cameron Saaiman,fanduel,2025-04-26T07:00:00+00:00,2025-04-25T16:55:05.790452+00:00,2025-04-25T16:55:05.754456+00:00,false
+ufc-fight-night-april-26-2025,Apr 26 2025,Timmy Cuamba,Roberto Romero,fanduel,2025-04-26T07:00:00+00:00,2025-04-25T14:21:56.511875+00:00,2025-04-25T14:21:56.519799+00:00,false
+ufc-fight-night-may-03-2025,May 03 2025,Cory Sandhagen,Deiveson Figueiredo,fanduel,2025-05-03T07:00:00+00:00,2025-05-02T13:36:49.179658+00:00,2025-05-03T04:29:12.103487+00:00,false
+ufc-fight-night-may-03-2025,May 03 2025,Reinier de Ridder,Bo Nickal,fanduel,2025-05-03T07:00:00+00:00,2025-05-03T04:42:28.456422+00:00,2025-05-03T04:42:28.445303+00:00,false
+ufc-fight-night-may-03-2025,May 03 2025,Santiago Ponzinibbio,Daniel Rodriguez,fanduel,2025-05-03T07:00:00+00:00,2025-05-03T03:45:46.250027+00:00,2025-05-03T03:45:46.238885+00:00,false
+ufc-fight-night-may-03-2025,May 03 2025,Montel Jackson,Daniel Marcos,fanduel,2025-05-03T07:00:00+00:00,2025-05-03T02:46:44.837409+00:00,2025-05-03T02:46:44.860028+00:00,false
+ufc-fight-night-may-03-2025,May 03 2025,Cameron Smotherman,Serhiy Sidey,fanduel,2025-05-03T07:00:00+00:00,2025-05-03T02:13:41.437676+00:00,2025-05-02T20:16:20.993752+00:00,false
+ufc-fight-night-may-03-2025,May 03 2025,Jeremy Stephens,Mason Jones,fanduel,2025-05-03T07:00:00+00:00,2025-05-03T01:51:31.877238+00:00,2025-05-03T01:51:31.907296+00:00,false
+ufc-fight-night-may-03-2025,May 03 2025,Ryan Loder,Azamat Bekoev,fanduel,2025-05-03T07:00:00+00:00,2025-05-03T04:29:12.202094+00:00,2025-05-03T04:29:12.195661+00:00,false
+ufc-fight-night-may-03-2025,May 03 2025,Gaston Bolanos,Quang Le,fanduel,2025-05-03T07:00:00+00:00,2025-05-03T03:45:45.603873+00:00,2025-05-03T03:45:45.624780+00:00,false
+ufc-fight-night-may-03-2025,May 03 2025,Thomas Petersen,Don'Tale Mayes,fanduel,2025-05-03T07:00:00+00:00,2025-05-03T00:25:16.353202+00:00,2025-05-03T00:25:16.338613+00:00,false
+ufc-315,May 10 2025,Belal Muhammad,Jack Della Maddalena,fanduel,2025-05-10T07:00:00+00:00,2025-05-10T05:28:38.968980+00:00,2025-05-10T05:28:38.977306+00:00,false
+ufc-315,May 10 2025,Jose Aldo,Aiemann Zahabi,fanduel,2025-05-10T07:00:00+00:00,2025-05-10T03:42:15.431901+00:00,2025-05-10T03:42:15.458881+00:00,false
+ufc-315,May 10 2025,Benoit Saint Denis,Kyle Prepolec,fanduel,2025-05-10T07:00:00+00:00,2025-05-10T03:27:13.995358+00:00,2025-05-10T03:27:14.013544+00:00,false
+ufc-315,May 10 2025,Mike Malott,Charles Radtke,fanduel,2025-05-10T07:00:00+00:00,2025-05-10T02:28:44.818863+00:00,2025-05-10T00:18:33.432989+00:00,false
+ufc-315,May 10 2025,Modestas Bukauskas,Ion Cutelaba,fanduel,2025-05-10T07:00:00+00:00,2025-05-10T01:23:31.522709+00:00,2025-05-10T01:23:31.542542+00:00,false
+ufc-315,May 10 2025,Navajo Stirling,Ivan Erslan,fanduel,2025-05-10T07:00:00+00:00,2025-05-10T00:40:55.342895+00:00,2025-05-10T00:40:55.394680+00:00,false
+ufc-315,May 10 2025,Marc-Andre Barriault,Bruno Silva,fanduel,2025-05-10T07:00:00+00:00,2025-05-10T00:18:33.324951+00:00,2025-05-10T00:18:33.333547+00:00,false
+ufc-315,May 10 2025,Daniel Santos,JeongYeong Lee,fanduel,2025-05-10T07:00:00+00:00,2025-05-10T00:40:55.804388+00:00,2025-05-10T00:40:55.818881+00:00,false
+ufc-315,May 10 2025,Brad Katona,Bekzat Almakhan,fanduel,2025-05-10T07:00:00+00:00,2025-05-09T23:07:31.803699+00:00,2025-05-09T23:07:31.828617+00:00,false
+ufc-fight-night-may-17-2025,May 17 2025,Gilbert Burns,Michael Morales,fanduel,2025-05-17T07:00:00+00:00,2025-05-17T04:17:58.963472+00:00,2025-05-17T04:17:58.971989+00:00,false
+ufc-fight-night-may-17-2025,May 17 2025,Sodiq Yusuff,Mairon Santos,fanduel,2025-05-17T07:00:00+00:00,2025-05-17T01:43:40.884713+00:00,2025-05-17T01:43:40.891449+00:00,false
+ufc-fight-night-may-17-2025,May 17 2025,Dustin Stoltzfus,Nursulton Ruziboev,fanduel,2025-05-17T07:00:00+00:00,2025-05-17T00:11:21.110646+00:00,2025-05-17T00:11:21.097216+00:00,false
+ufc-fight-night-may-17-2025,May 17 2025,Julian Erosa,Melquizael Costa,fanduel,2025-05-17T07:00:00+00:00,2025-05-16T23:38:58.014297+00:00,2025-05-17T00:42:22.698755+00:00,false
+ufc-fight-night-may-17-2025,May 17 2025,Gabe Green,Matheus Camilo,fanduel,2025-05-17T07:00:00+00:00,2025-05-16T23:16:16.661621+00:00,2025-05-16T07:46:47.240943+00:00,false
+ufc-fight-night-may-17-2025,May 17 2025,Jared Gordon,Thiago Moises,fanduel,2025-05-17T07:00:00+00:00,2025-05-16T22:39:27.947441+00:00,2025-05-16T22:39:27.954084+00:00,false
+ufc-fight-night-may-17-2025,May 17 2025,Yadier del Valle,Connor Matthews,fanduel,2025-05-17T07:00:00+00:00,2025-05-16T22:10:53.080769+00:00,2025-05-16T22:10:53.105388+00:00,false
+ufc-fight-night-may-17-2025,May 17 2025,HyunSung Park,Carlos Hernandez,fanduel,2025-05-17T07:00:00+00:00,2025-05-16T17:41:18.257511+00:00,2025-05-16T21:04:33.210194+00:00,false
+ufc-fight-night-may-31-2025,May 31 2025,Mateusz Gamrot,Ludovit Klein,fanduel,2025-05-31T07:00:00+00:00,2025-05-31T06:28:32.510553+00:00,2025-05-30T03:15:28.448267+00:00,false
+ufc-fight-night-may-31-2025,May 31 2025,Billy Ray Goff,Ramiz Brahimaj,fanduel,2025-05-31T07:00:00+00:00,2025-05-31T02:55:15.924106+00:00,2025-05-31T02:55:15.929523+00:00,false
+ufc-fight-night-may-31-2025,May 31 2025,Dustin Jacoby,Bruno Lopes,fanduel,2025-05-31T07:00:00+00:00,2025-05-31T06:28:32.214692+00:00,2025-05-31T06:28:32.222546+00:00,false
+ufc-fight-night-may-31-2025,May 31 2025,Zach Reese,Dusko Todorovic,fanduel,2025-05-31T07:00:00+00:00,2025-05-31T02:55:16.368291+00:00,2025-05-31T02:55:16.373347+00:00,false
+ufc-fight-night-may-31-2025,May 31 2025,Jafel Filho,Allan Nascimento,fanduel,2025-05-31T07:00:00+00:00,2025-05-31T06:28:32.325982+00:00,2025-05-31T06:28:32.317290+00:00,false
+ufc-fight-night-may-31-2025,May 31 2025,Kurt Holobaugh,Jordan Leavitt,fanduel,2025-05-31T07:00:00+00:00,2025-05-30T23:59:32.627305+00:00,2025-05-30T21:57:31.984863+00:00,false
+ufc-fight-night-may-31-2025,May 31 2025,Bolaji Oki,Michael Aswell Jr.,fanduel,2025-05-31T07:00:00+00:00,2025-05-30T23:59:33.350108+00:00,2025-05-30T23:59:33.344573+00:00,false
+ufc-316,Jun 07 2025,Merab Dvalishvili,Sean O'Malley,fanduel,2025-06-07T07:00:00+00:00,2025-06-07T05:55:51.266632+00:00,2025-06-07T00:27:22.910133+00:00,false
+ufc-316,Jun 07 2025,Kelvin Gastelum,Joe Pyfer,fanduel,2025-06-07T07:00:00+00:00,2025-06-07T03:41:10.473952+00:00,2025-06-07T03:41:10.445513+00:00,false
+ufc-316,Jun 07 2025,Vicente Luque,Kevin Holland,fanduel,2025-06-07T07:00:00+00:00,2025-06-06T21:21:30.933483+00:00,2025-06-07T02:59:02.410942+00:00,false
+ufc-316,Jun 07 2025,Bruno Silva,Joshua Van,fanduel,2025-06-07T07:00:00+00:00,2025-06-07T02:20:00.921493+00:00,2025-06-07T02:20:00.912416+00:00,false
+ufc-316,Jun 07 2025,Azamat Murzakanov,Brendson Ribeiro,fanduel,2025-06-07T07:00:00+00:00,2025-06-07T01:48:43.368375+00:00,2025-06-07T01:48:43.361730+00:00,false
+ufc-316,Jun 07 2025,Serghei Spivac,Waldo Cortes Acosta,fanduel,2025-06-07T07:00:00+00:00,2025-06-07T01:15:53.892933+00:00,2025-06-07T01:15:53.904329+00:00,false
+ufc-316,Jun 07 2025,Khaos Williams,Andreas Gustafsson,fanduel,2025-06-07T07:00:00+00:00,2025-06-07T00:49:37.211507+00:00,2025-06-07T00:49:37.217792+00:00,false
+ufc-316,Jun 07 2025,Jeka Saragih,JooSang Yoo,fanduel,2025-06-07T07:00:00+00:00,2025-06-06T23:55:18.851512+00:00,2025-06-06T23:55:18.809702+00:00,false
+ufc-316,Jun 07 2025,Quillan Salkilld,Yanal Ashmouz,fanduel,2025-06-07T07:00:00+00:00,2025-06-06T23:09:07.999950+00:00,2025-06-06T23:09:08.007820+00:00,false
+ufc-316,Jun 07 2025,MarQuel Mederos,Mark Choinski,fanduel,2025-06-07T07:00:00+00:00,2025-06-06T22:59:55.778693+00:00,2025-06-06T22:59:55.785023+00:00,false
+ufc-fight-night-june-14-2025,Jun 14 2025,Kamaru Usman,Joaquin Buckley,fanduel,2025-06-14T07:00:00+00:00,2025-06-14T05:27:43.811334+00:00,2025-06-14T05:27:43.816998+00:00,false
+ufc-fight-night-june-14-2025,Jun 14 2025,Edmen Shahbazyan,Andre Petroski,fanduel,2025-06-14T07:00:00+00:00,2025-06-14T04:29:10.914957+00:00,2025-06-14T02:59:29.523970+00:00,false
+ufc-fight-night-june-14-2025,Jun 14 2025,Cody Garbrandt,Raoni Barcelos,fanduel,2025-06-14T07:00:00+00:00,2025-06-14T04:29:11.031050+00:00,2025-06-14T04:29:11.037679+00:00,false
+ufc-fight-night-june-14-2025,Jun 14 2025,Alonzo Menifield,Oumar Sy,fanduel,2025-06-14T07:00:00+00:00,2025-06-14T02:59:29.886540+00:00,2025-06-14T02:59:29.891507+00:00,false
+ufc-fight-night-june-14-2025,Jun 14 2025,Michael Chiesa,Court McGee,fanduel,2025-06-14T07:00:00+00:00,2025-06-14T02:59:29.570582+00:00,2025-06-13T02:26:59.320519+00:00,false
+ufc-fight-night-june-14-2025,Jun 14 2025,Malcolm Wellmaker,Kris Moutinho,fanduel,2025-06-14T07:00:00+00:00,2025-06-13T02:26:59.837848+00:00,2025-06-14T02:59:30.023031+00:00,false
+ufc-fight-night-june-14-2025,Jun 14 2025,Cody Durden,Jose Ochoa,fanduel,2025-06-14T07:00:00+00:00,2025-06-14T02:59:29.613740+00:00,2025-06-14T02:59:29.618806+00:00,false
+ufc-fight-night-june-14-2025,Jun 14 2025,Ricky Simon,Cameron Smotherman,fanduel,2025-06-14T07:00:00+00:00,2025-06-14T02:59:30.129733+00:00,2025-06-14T02:59:30.151127+00:00,false
+ufc-fight-night-june-14-2025,Jun 14 2025,Phil Rowe,Ange Loosa,fanduel,2025-06-14T07:00:00+00:00,2025-06-14T02:59:30.234434+00:00,2025-06-14T02:59:30.241188+00:00,false
+ufc-fight-night-june-21-2025,Jun 21 2025,Jamahal Hill,Khalil Rountree Jr.,fanduel,2025-06-21T07:00:00+00:00,2025-06-20T21:51:54.423515+00:00,2025-06-20T21:51:54.430662+00:00,false
+ufc-fight-night-june-21-2025,Jun 21 2025,Rafael Fiziev,Ignacio Bahamondes,fanduel,2025-06-21T07:00:00+00:00,2025-06-21T02:53:04.810225+00:00,2025-06-21T02:53:04.815955+00:00,false
+ufc-fight-night-june-21-2025,Jun 21 2025,Curtis Blaydes,Rizvan Kuniev,fanduel,2025-06-21T07:00:00+00:00,2025-06-20T21:51:54.078604+00:00,2025-06-20T21:51:54.119532+00:00,false
+ufc-fight-night-june-21-2025,Jun 21 2025,Tofiq Musayev,Myktybek Orolbai,fanduel,2025-06-21T07:00:00+00:00,2025-06-20T21:51:54.241515+00:00,2025-06-20T21:51:54.229904+00:00,false
+ufc-fight-night-june-21-2025,Jun 21 2025,Nazim Sadykhov,Nikolas Motta,fanduel,2025-06-21T07:00:00+00:00,2025-06-20T05:24:58.484972+00:00,2025-06-20T19:57:49.826436+00:00,false
+ufc-fight-night-june-21-2025,Jun 21 2025,Muhammad Naimov,Bogdan Grad,fanduel,2025-06-21T07:00:00+00:00,2025-06-20T19:57:49.719142+00:00,2025-06-20T05:24:58.431069+00:00,false
+ufc-fight-night-june-21-2025,Jun 21 2025,Seokhyeon Ko,Oban Elliott,fanduel,2025-06-21T07:00:00+00:00,2025-06-20T19:57:49.496086+00:00,2025-06-20T19:57:49.490662+00:00,false
+ufc-fight-night-june-21-2025,Jun 21 2025,Ismail Naurdiev,JunYong Park,fanduel,2025-06-21T07:00:00+00:00,2025-06-21T03:49:34.924704+00:00,2025-06-21T03:49:34.918419+00:00,false
+ufc-fight-night-june-21-2025,Jun 21 2025,Tagir Ulanbekov,Azat Maksum,fanduel,2025-06-21T07:00:00+00:00,2025-06-20T19:57:49.883347+00:00,2025-06-20T19:57:49.878028+00:00,false
+ufc-fight-night-june-21-2025,Jun 21 2025,Hamdy Abdelwahab,Mohammed Usman,fanduel,2025-06-21T07:00:00+00:00,2025-06-20T19:57:49.803878+00:00,2025-06-20T19:57:49.798029+00:00,false
+ufc-317,Jun 28 2025,Ilia Topuria,Charles Oliveira,fanduel,2025-06-28T07:00:00+00:00,2025-06-28T05:13:10.640084+00:00,2025-06-27T06:21:43.394837+00:00,false
+ufc-317,Jun 28 2025,Alexandre Pantoja,Kai Kara-France,fanduel,2025-06-28T07:00:00+00:00,2025-06-28T05:13:12.408699+00:00,2025-06-27T04:21:59.080346+00:00,false
+ufc-317,Jun 28 2025,Brandon Royval,Joshua Van,fanduel,2025-06-28T07:00:00+00:00,2025-06-28T05:13:12.938240+00:00,2025-06-28T05:13:13.170663+00:00,false
+ufc-317,Jun 28 2025,Beneil Dariush,Renato Moicano,fanduel,2025-06-28T07:00:00+00:00,2025-06-28T05:13:11.111218+00:00,2025-06-28T05:13:11.341417+00:00,false
+ufc-317,Jun 28 2025,Payton Talbott,Felipe Lima,fanduel,2025-06-28T07:00:00+00:00,2025-06-28T05:13:14.983941+00:00,2025-06-28T05:13:15.208975+00:00,false
+ufc-317,Jun 28 2025,Jack Hermansson,Gregory Rodrigues,fanduel,2025-06-28T07:00:00+00:00,2025-06-28T05:13:16.348452+00:00,2025-06-28T05:13:16.576238+00:00,false
+ufc-317,Jun 28 2025,Hyder Amil,Jose Delgado,fanduel,2025-06-28T07:00:00+00:00,2025-06-28T05:13:15.661718+00:00,2025-06-28T05:13:15.888511+00:00,false
+ufc-317,Jun 28 2025,Terrance McKinney,Viacheslav Borshchev,fanduel,2025-06-28T07:00:00+00:00,2025-06-28T00:29:01.283584+00:00,2025-06-28T00:29:01.308756+00:00,false
+ufc-317,Jun 28 2025,Jhonata Diniz,Alvin Hines,fanduel,2025-06-28T07:00:00+00:00,2025-06-27T23:26:15.626069+00:00,2025-06-27T23:26:15.893275+00:00,false
+ufc-fight-night-july-12-2025,Jul 12 2025,Derrick Lewis,Tallison Teixeira,fanduel,2025-07-12T07:00:00+00:00,2025-07-12T04:18:04.794109+00:00,2025-07-11T15:22:50.575598+00:00,false
+ufc-fight-night-july-12-2025,Jul 12 2025,Stephen Thompson,Gabriel Bonfim,fanduel,2025-07-12T07:00:00+00:00,2025-07-12T03:18:42.459562+00:00,2025-07-11T15:22:50.593378+00:00,false
+ufc-fight-night-july-12-2025,Jul 12 2025,Calvin Kattar,Steve Garcia,fanduel,2025-07-12T07:00:00+00:00,2025-07-12T03:18:42.443559+00:00,2025-07-12T03:18:42.443636+00:00,false
+ufc-fight-night-july-12-2025,Jul 12 2025,Nate Landwehr,Morgan Charriere,fanduel,2025-07-12T07:00:00+00:00,2025-07-12T02:20:18.773581+00:00,2025-07-12T02:20:18.773633+00:00,false
+ufc-fight-night-july-12-2025,Jul 12 2025,Vitor Petrino,Austen Lane,fanduel,2025-07-12T07:00:00+00:00,2025-07-11T15:22:50.556066+00:00,2025-07-12T02:20:18.679305+00:00,false
+ufc-fight-night-july-12-2025,Jul 12 2025,Junior Tafa,Tuco Tokkos,fanduel,2025-07-12T07:00:00+00:00,2025-07-12T01:21:15.293544+00:00,2025-07-12T01:21:15.293605+00:00,false
+ufc-fight-night-july-12-2025,Jul 12 2025,Max Griffin,Chris Curtis,fanduel,2025-07-12T07:00:00+00:00,2025-07-12T01:21:15.284875+00:00,2025-07-12T01:21:15.284794+00:00,false
+ufc-fight-night-july-12-2025,Jul 12 2025,Jake Matthews,Chidi Njokuani,fanduel,2025-07-12T07:00:00+00:00,2025-07-12T01:21:15.287139+00:00,2025-07-12T01:21:15.287189+00:00,false
+ufc-fight-night-july-12-2025,Jul 12 2025,Kennedy Nzechukwu,Valter Walker,fanduel,2025-07-12T07:00:00+00:00,2025-07-11T23:18:32.318347+00:00,2025-07-11T23:18:32.318426+00:00,false
+ufc-fight-night-july-12-2025,Jul 12 2025,Mitch Ramirez,Mike Davis,fanduel,2025-07-12T07:00:00+00:00,2025-07-11T23:18:32.344955+00:00,2025-07-11T23:18:32.345004+00:00,false
+ufc-318,Jul 19 2025,Max Holloway,Dustin Poirier,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T05:22:52.036386+00:00,2025-07-19T05:22:52.036476+00:00,false
+ufc-318,Jul 19 2025,Paulo Costa,Roman Kopylov,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T04:26:02.610513+00:00,2025-07-19T04:26:02.610605+00:00,false
+ufc-318,Jul 19 2025,Kevin Holland,Daniel Rodriguez,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T03:25:48.680677+00:00,2025-07-19T03:25:48.680764+00:00,false
+ufc-318,Jul 19 2025,Dan Ige,Patricio Pitbull,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T03:25:48.684595+00:00,2025-07-19T03:25:48.684646+00:00,false
+ufc-318,Jul 19 2025,Michael Johnson,Daniel Zellhuber,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T02:24:48.733907+00:00,2025-07-18T16:27:58.321105+00:00,false
+ufc-318,Jul 19 2025,Kyler Phillips,Vinicius Oliveira,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T02:24:48.755952+00:00,2025-07-19T02:24:48.756004+00:00,false
+ufc-318,Jul 19 2025,Marvin Vettori,Brendan Allen,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T01:25:30.261998+00:00,2025-07-19T01:25:30.262119+00:00,false
+ufc-318,Jul 19 2025,Francisco Prado,Nikolay Veretennikov,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T01:25:30.273873+00:00,2025-07-19T01:25:30.273927+00:00,false
+ufc-318,Jul 19 2025,Ateba Gautier,Robert Valentin,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T00:25:37.987266+00:00,2025-07-19T00:25:37.987312+00:00,false
+ufc-318,Jul 19 2025,Adam Fugitt,Islam Dulatov,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T00:25:37.989604+00:00,2025-07-19T00:25:37.989647+00:00,false
+ufc-318,Jul 19 2025,Jimmy Crute,Marcin Prachnio,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T00:25:37.997874+00:00,2025-07-19T00:25:37.997925+00:00,false
+ufc-318,Jul 19 2025,Ryan Spann,Lukasz Brzeski,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T00:25:37.986051+00:00,2025-07-19T00:25:37.986098+00:00,false
+ufc-318,Jul 19 2025,Brunno Ferreira,Jackson McVey,fanduel,2025-07-19T07:00:00+00:00,2025-07-19T00:25:37.990840+00:00,2025-07-19T00:25:37.990904+00:00,false
+ufc-fight-night-july-26-2025,Jul 26 2025,Robert Whittaker,Reinier de Ridder,fanduel,2025-07-26T07:00:00+00:00,2025-07-25T21:46:02.974025+00:00,2025-07-25T21:46:02.974110+00:00,false
+ufc-fight-night-july-26-2025,Jul 26 2025,Petr Yan,Marcus McGhee,fanduel,2025-07-26T07:00:00+00:00,2025-07-25T21:46:02.976686+00:00,2025-07-25T21:46:02.976739+00:00,false
+ufc-fight-night-july-26-2025,Jul 26 2025,Shara Magomedov,Marc-Andre Barriault,fanduel,2025-07-26T07:00:00+00:00,2025-07-25T20:46:35.620929+00:00,2025-07-25T20:46:35.620975+00:00,false
+ufc-fight-night-july-26-2025,Jul 26 2025,Asu Almabayev,Jose Ochoa,fanduel,2025-07-26T07:00:00+00:00,2025-07-25T20:46:35.625091+00:00,2025-07-25T20:46:35.625136+00:00,false
+ufc-fight-night-july-26-2025,Jul 26 2025,Nikita Krylov,Bogdan Guskov,fanduel,2025-07-26T07:00:00+00:00,2025-07-26T01:42:45.972715+00:00,2025-07-26T01:42:45.972780+00:00,false
+ufc-fight-night-july-26-2025,Jul 26 2025,Bryce Mitchell,Said Nurmagomedov,fanduel,2025-07-26T07:00:00+00:00,2025-07-26T01:42:45.713531+00:00,2025-07-26T01:42:45.713634+00:00,false
+ufc-fight-night-july-26-2025,Jul 26 2025,Muslim Salikhov,Carlos Leal,fanduel,2025-07-26T07:00:00+00:00,2025-07-25T20:46:35.622305+00:00,2025-07-25T20:46:35.622350+00:00,false
+ufc-fight-night-july-26-2025,Jul 26 2025,Davey Grant,Da'Mon Blackshear,fanduel,2025-07-26T07:00:00+00:00,2025-07-26T01:42:45.760829+00:00,2025-07-26T01:42:45.760768+00:00,false
+ufc-fight-night-july-26-2025,Jul 26 2025,Ibo Aslan,Billy Elekana,fanduel,2025-07-26T07:00:00+00:00,2025-07-25T20:46:35.596985+00:00,2025-07-25T20:46:35.597035+00:00,false
+ufc-fight-night-july-26-2025,Jul 26 2025,Mohammad Yahya,Steven Nguyen,fanduel,2025-07-26T07:00:00+00:00,2025-07-26T01:42:45.738320+00:00,2025-07-26T01:42:45.738396+00:00,false
+ufc-fight-night-july-26-2025,Jul 26 2025,Martin Buday,Marcus Buchecha,fanduel,2025-07-26T07:00:00+00:00,2025-07-26T01:42:45.952843+00:00,2025-07-26T01:42:45.952777+00:00,false
+ufc-fight-night-august-02-2025,Aug 02 2025,Tatsuro Taira,HyunSung Park,fanduel,2025-08-02T07:00:00+00:00,2025-08-02T03:58:37.120179+00:00,2025-08-02T03:58:37.120284+00:00,false
+ufc-fight-night-august-02-2025,Aug 02 2025,Mateusz Rebecki,Chris Duncan,fanduel,2025-08-02T07:00:00+00:00,2025-08-02T03:58:37.137414+00:00,2025-08-02T03:58:37.137366+00:00,false
+ufc-fight-night-august-02-2025,Aug 02 2025,Elves Brener,Esteban Ribovics,fanduel,2025-08-02T07:00:00+00:00,2025-08-02T03:58:37.145723+00:00,2025-08-02T03:58:37.145645+00:00,false
+ufc-fight-night-august-02-2025,Aug 02 2025,Neil Magny,Elizeu Zaleski dos Santos,fanduel,2025-08-02T07:00:00+00:00,2025-08-02T03:58:37.133199+00:00,2025-08-02T03:58:37.133272+00:00,false
+ufc-fight-night-august-02-2025,Aug 02 2025,Danny Silva,Kevin Vallejos,fanduel,2025-08-02T07:00:00+00:00,2025-08-02T01:28:49.497716+00:00,2025-08-01T02:49:02.300488+00:00,false
+ufc-fight-night-august-02-2025,Aug 02 2025,Rinya Nakamura,Nathan Fletcher,fanduel,2025-08-02T07:00:00+00:00,2025-08-02T01:28:49.495026+00:00,2025-08-02T01:28:49.495114+00:00,false
+ufc-fight-night-august-02-2025,Aug 02 2025,Rodolfo Vieira,Tresean Gore,fanduel,2025-08-02T07:00:00+00:00,2025-08-02T00:33:28.279740+00:00,2025-08-02T00:33:28.279843+00:00,false
+ufc-fight-night-august-02-2025,Aug 02 2025,Nick Klein,Andrey Pulyaev,fanduel,2025-08-02T07:00:00+00:00,2025-08-01T00:52:49.257412+00:00,2025-08-02T00:33:28.367938+00:00,false
+ufc-fight-night-august-02-2025,Aug 02 2025,Austin Bashi,John Yannis,fanduel,2025-08-02T07:00:00+00:00,2025-08-01T14:20:05.774763+00:00,2025-08-01T23:31:40.637267+00:00,false
+ufc-fight-night-august-02-2025,Aug 02 2025,Rafael Estevam,Felipe Bunes,fanduel,2025-08-02T07:00:00+00:00,2025-08-02T05:22:15.098918+00:00,2025-08-02T05:22:15.098838+00:00,false
+ufc-fight-night-august-09-2025,Aug 09 2025,Roman Dolidze,Anthony Hernandez,fanduel,2025-08-09T07:00:00+00:00,2025-08-09T06:34:08.245639+00:00,2025-08-09T06:34:08.245690+00:00,false
+ufc-fight-night-august-09-2025,Aug 09 2025,Steve Erceg,Ode Osbourne,fanduel,2025-08-09T07:00:00+00:00,2025-08-08T02:22:40.943869+00:00,2025-08-09T01:40:04.212527+00:00,false
+ufc-fight-night-august-09-2025,Aug 09 2025,Andre Fili,Christian Rodriguez,fanduel,2025-08-09T07:00:00+00:00,2025-08-09T03:21:12.609084+00:00,2025-08-09T03:21:12.609014+00:00,false
+ufc-fight-night-august-09-2025,Aug 09 2025,Miles Johns,Jean Matsumoto,fanduel,2025-08-09T07:00:00+00:00,2025-08-09T00:38:06.916651+00:00,2025-08-09T00:38:06.916704+00:00,false
+ufc-fight-night-august-09-2025,Aug 09 2025,Eryk Anders,Christian Leroy Duncan,fanduel,2025-08-09T07:00:00+00:00,2025-08-09T00:38:06.912205+00:00,2025-08-09T00:38:06.912265+00:00,false
+ufc-fight-night-august-09-2025,Aug 09 2025,Julius Walker,Rafael Cerqueira,fanduel,2025-08-09T07:00:00+00:00,2025-08-07T23:21:22.124079+00:00,2025-08-08T23:25:34.783794+00:00,false
+ufc-fight-night-august-09-2025,Aug 09 2025,Elijah Smith,Toshiomi Kazama,fanduel,2025-08-09T07:00:00+00:00,2025-08-09T06:34:08.241935+00:00,2025-08-09T06:34:08.242021+00:00,false
+ufc-fight-night-august-09-2025,Aug 09 2025,Uros Medic,Gilbert Urbina,fanduel,2025-08-09T07:00:00+00:00,2025-08-08T23:25:34.769932+00:00,2025-08-08T23:25:34.770040+00:00,false
+ufc-fight-night-august-09-2025,Aug 09 2025,Cody Brundage,Eric McConico,fanduel,2025-08-09T07:00:00+00:00,2025-08-09T01:40:04.172401+00:00,2025-08-09T01:40:04.172485+00:00,false
+ufc-319,Aug 16 2025,Dricus Du Plessis,Khamzat Chimaev,fanduel,2025-08-16T07:00:00+00:00,2025-08-16T05:20:03.830300+00:00,2025-08-16T05:20:03.830387+00:00,false
+ufc-319,Aug 16 2025,Lerone Murphy,Aaron Pico,fanduel,2025-08-16T07:00:00+00:00,2025-08-16T04:20:17.265559+00:00,2025-08-16T04:20:17.265506+00:00,false
+ufc-319,Aug 16 2025,Geoff Neal,Carlos Prates,fanduel,2025-08-16T07:00:00+00:00,2025-08-16T04:20:17.286896+00:00,2025-08-16T04:20:17.286950+00:00,false
+ufc-319,Aug 16 2025,Jared Cannonier,Michael Page,fanduel,2025-08-16T07:00:00+00:00,2025-08-16T03:19:10.891897+00:00,2025-08-16T03:19:10.891974+00:00,false
+ufc-319,Aug 16 2025,Tim Elliott,Kai Asakura,fanduel,2025-08-16T07:00:00+00:00,2025-08-16T02:20:03.391822+00:00,2025-08-16T02:20:03.391874+00:00,false
+ufc-319,Aug 16 2025,Baisangur Susurkaev,Eric Nolan,fanduel,2025-08-16T07:00:00+00:00,2025-08-16T02:20:03.397821+00:00,2025-08-16T02:20:03.397875+00:00,false
+ufc-319,Aug 16 2025,Gerald Meerschaert,Michal Oleksiejczuk,fanduel,2025-08-16T07:00:00+00:00,2025-08-16T02:20:03.343941+00:00,2025-08-16T02:20:03.344019+00:00,false
+ufc-319,Aug 16 2025,Chase Hooper,Alexander Hernandez,fanduel,2025-08-16T07:00:00+00:00,2025-08-16T00:25:11.967711+00:00,2025-08-16T00:25:11.967644+00:00,false
+ufc-319,Aug 16 2025,Edson Barboza,Drakkar Klose,fanduel,2025-08-16T07:00:00+00:00,2025-08-16T04:20:17.251446+00:00,2025-08-16T04:20:17.251526+00:00,false
+ufc-319,Aug 16 2025,Alibi Idiris,Joseph Morales,fanduel,2025-08-16T07:00:00+00:00,2025-08-15T14:23:30.714402+00:00,2025-08-15T22:22:20.768215+00:00,false
+ufc-fight-night-august-23-2025,Aug 23 2025,Johnny Walker,Zhang Mingyang,fanduel,2025-08-23T07:00:00+00:00,2025-08-23T03:18:52.366379+00:00,2025-08-23T03:18:52.366503+00:00,false
+ufc-fight-night-august-23-2025,Aug 23 2025,Sergei Pavlovich,Waldo Cortes Acosta,fanduel,2025-08-23T07:00:00+00:00,2025-08-22T11:19:17.374943+00:00,2025-08-22T11:19:17.375020+00:00,false
+ufc-fight-night-august-23-2025,Aug 23 2025,Sumudaerji,Kevin Borjas,fanduel,2025-08-23T07:00:00+00:00,2025-08-23T00:20:10.790035+00:00,2025-08-23T00:20:10.790111+00:00,false
+ufc-fight-night-august-23-2025,Aug 23 2025,Taiyilake Nueraji,Kiefer Crosbie,fanduel,2025-08-23T07:00:00+00:00,2025-08-23T05:21:04.105874+00:00,2025-08-23T05:21:04.105971+00:00,false
+ufc-fight-night-august-23-2025,Aug 23 2025,Maheshate,Gauge Young,fanduel,2025-08-23T07:00:00+00:00,2025-08-22T20:24:34.066456+00:00,2025-08-22T20:24:34.066518+00:00,false
+ufc-fight-night-august-23-2025,Aug 23 2025,Charles Johnson,Lone'er Kavanagh,fanduel,2025-08-23T07:00:00+00:00,2025-08-23T02:21:26.732936+00:00,2025-08-23T02:21:26.733048+00:00,false
+ufc-fight-night-august-23-2025,Aug 23 2025,Rongzhu,Austin Hubbard,fanduel,2025-08-23T07:00:00+00:00,2025-08-22T19:29:07.025191+00:00,2025-08-22T19:29:07.025329+00:00,false
+ufc-fight-night-august-23-2025,Aug 23 2025,Michel Pereira,Kyle Daukaus,fanduel,2025-08-23T07:00:00+00:00,2025-08-22T22:21:13.321710+00:00,2025-08-22T22:21:13.321805+00:00,false
+ufc-fight-night-august-23-2025,Aug 23 2025,Yizha,Westin Wilson,fanduel,2025-08-23T07:00:00+00:00,2025-08-23T04:19:00.423400+00:00,2025-08-23T04:19:00.423483+00:00,false
+ufc-fight-night-august-23-2025,Aug 23 2025,Xiao Long,SuYoung You,fanduel,2025-08-23T07:00:00+00:00,2025-08-23T05:21:04.144025+00:00,2025-08-22T22:21:13.336856+00:00,false
+ufc-fight-night-august-23-2025,Aug 23 2025,Uran Satybaldiev,Diyar Nurgozhay,fanduel,2025-08-23T07:00:00+00:00,2025-08-23T04:19:00.472618+00:00,2025-08-23T04:19:00.472670+00:00,false
+ufc-fight-night-september-06-2025,Sep 06 2025,Nassourdine Imavov,Caio Borralho,fanduel,2025-09-06T07:00:00+00:00,2025-09-05T21:27:31.046573+00:00,2025-09-05T21:27:31.046631+00:00,false
+ufc-fight-night-september-06-2025,Sep 06 2025,Benoit Saint Denis,Mauricio Ruffy,fanduel,2025-09-06T07:00:00+00:00,2025-09-05T21:27:31.044716+00:00,2025-09-05T21:27:31.044867+00:00,false
+ufc-fight-night-september-06-2025,Sep 06 2025,Modestas Bukauskas,Paul Craig,fanduel,2025-09-06T07:00:00+00:00,2025-09-05T20:34:57.634506+00:00,2025-09-05T20:34:57.634549+00:00,false
+ufc-fight-night-september-06-2025,Sep 06 2025,Bolaji Oki,Mason Jones,fanduel,2025-09-06T07:00:00+00:00,2025-09-05T20:34:57.637849+00:00,2025-09-05T20:34:57.637895+00:00,false
+ufc-fight-night-september-06-2025,Sep 06 2025,Axel Sola,Rhys McKee,fanduel,2025-09-06T07:00:00+00:00,2025-09-05T20:34:57.644972+00:00,2025-09-05T20:34:57.644919+00:00,false
+ufc-fight-night-september-06-2025,Sep 06 2025,William Gomis,Robert Ruchala,fanduel,2025-09-06T07:00:00+00:00,2025-09-04T19:25:50.978094+00:00,2025-09-05T19:30:45.791696+00:00,false
+ufc-fight-night-september-06-2025,Sep 06 2025,Oumar Sy,Brendson Ribeiro,fanduel,2025-09-06T07:00:00+00:00,2025-09-06T06:34:51.500577+00:00,2025-09-06T06:34:51.500654+00:00,false
+ufc-fight-night-september-06-2025,Sep 06 2025,Marcin Tybura,Ante Delija,fanduel,2025-09-06T07:00:00+00:00,2025-09-06T02:33:10.848229+00:00,2025-09-06T02:33:10.848321+00:00,false
+ufc-fight-night-september-06-2025,Sep 06 2025,Harry Hardwick,Kaue Fernandes,fanduel,2025-09-06T07:00:00+00:00,2025-09-05T20:34:57.636158+00:00,2025-09-05T20:34:57.636107+00:00,false
+ufc-fight-night-september-06-2025,Sep 06 2025,Sam Patterson,Trey Waters,fanduel,2025-09-06T07:00:00+00:00,2025-09-05T18:26:54.036117+00:00,2025-09-05T18:26:54.036191+00:00,false
+ufc-fight-night-september-06-2025,Sep 06 2025,Brad Tavares,Robert Bryczek,fanduel,2025-09-06T07:00:00+00:00,2025-09-05T17:25:26.286619+00:00,2025-09-05T17:25:26.286665+00:00,false
+ufc-fight-night-september-06-2025,Sep 06 2025,Andreas Gustafsson,Rinat Fakhretdinov,fanduel,2025-09-06T07:00:00+00:00,2025-09-05T17:25:26.270050+00:00,2025-09-05T17:25:26.270134+00:00,false
+ufc-fight-night-september-13-2025,Sep 13 2025,Diego Lopes,Jean Silva,fanduel,2025-09-13T07:00:00+00:00,2025-09-13T01:30:03.896681+00:00,2025-09-13T01:30:03.896769+00:00,false
+ufc-fight-night-september-13-2025,Sep 13 2025,Rob Font,David Martinez,fanduel,2025-09-13T07:00:00+00:00,2025-09-13T00:26:16.800211+00:00,2025-09-13T00:26:16.800292+00:00,false
+ufc-fight-night-september-13-2025,Sep 13 2025,Rafa Garcia,Jared Gordon,fanduel,2025-09-13T07:00:00+00:00,2025-09-08T20:23:06.852718+00:00,2025-09-13T00:26:16.818761+00:00,false
+ufc-fight-night-september-13-2025,Sep 13 2025,Kelvin Gastelum,Dustin Stoltzfus,fanduel,2025-09-13T07:00:00+00:00,2025-09-13T00:26:16.802719+00:00,2025-09-13T00:26:16.802778+00:00,false
+ufc-fight-night-september-13-2025,Sep 13 2025,Alexander Hernandez,Diego Ferreira,fanduel,2025-09-13T07:00:00+00:00,2025-09-12T23:23:04.207166+00:00,2025-09-12T23:23:04.207211+00:00,false
+ufc-fight-night-september-13-2025,Sep 13 2025,Santiago Luna,Quang Le,fanduel,2025-09-13T07:00:00+00:00,2025-09-12T23:23:04.197862+00:00,2025-09-12T23:23:04.197908+00:00,false
+ufc-fight-night-september-13-2025,Sep 13 2025,Jose Daniel Medina,Dusko Todorovic,fanduel,2025-09-13T07:00:00+00:00,2025-09-13T00:26:16.825930+00:00,2025-09-13T00:26:16.825989+00:00,false
+ufc-fight-night-september-13-2025,Sep 13 2025,Claudio Puelles,Joaquim Silva,fanduel,2025-09-13T07:00:00+00:00,2025-09-13T00:26:16.823931+00:00,2025-09-13T00:26:16.823988+00:00,false
+ufc-fight-night-september-13-2025,Sep 13 2025,Jesus Aguilar,Luis Gurule,fanduel,2025-09-13T07:00:00+00:00,2025-09-12T21:25:10.074618+00:00,2025-09-12T21:25:10.074666+00:00,false
+ufc-fight-night-september-13-2025,Sep 13 2025,Alessandro Costa,Alden Coria,fanduel,2025-09-13T07:00:00+00:00,2025-09-12T20:23:50.590077+00:00,2025-09-12T20:23:50.590195+00:00,false
+ufc-fight-night-september-13-2025,Sep 13 2025,Rodrigo Sezinando,Daniil Donchenko,fanduel,2025-09-13T07:00:00+00:00,2025-09-12T19:24:27.743606+00:00,2025-09-12T19:24:27.743694+00:00,false
+ufc-fight-night-september-27-2025,Sep 27 2025,Carlos Ulberg,Dominick Reyes,fanduel,2025-09-27T07:00:00+00:00,2025-09-27T05:27:00.209881+00:00,2025-09-27T05:27:00.209977+00:00,false
+ufc-fight-night-september-27-2025,Sep 27 2025,Jimmy Crute,Ivan Erslan,fanduel,2025-09-27T07:00:00+00:00,2025-09-27T04:30:47.681300+00:00,2025-09-27T04:30:47.681387+00:00,false
+ufc-fight-night-september-27-2025,Sep 27 2025,Jack Jenkins,Ramon Taveras,fanduel,2025-09-27T07:00:00+00:00,2025-09-27T00:28:34.894004+00:00,2025-09-27T04:30:47.669081+00:00,false
+ufc-fight-night-september-27-2025,Sep 27 2025,Jake Matthews,Neil Magny,fanduel,2025-09-27T07:00:00+00:00,2025-09-27T03:31:52.760821+00:00,2025-09-27T03:31:52.760890+00:00,false
+ufc-fight-night-september-27-2025,Sep 27 2025,Tom Nolan,Charlie Campbell,fanduel,2025-09-27T07:00:00+00:00,2025-09-27T02:26:11.779603+00:00,2025-09-27T02:26:11.779662+00:00,false
+ufc-fight-night-september-27-2025,Sep 27 2025,Navajo Stirling,Rodolfo Bellato,fanduel,2025-09-27T07:00:00+00:00,2025-09-27T02:26:11.766592+00:00,2025-09-26T03:37:28.254418+00:00,false
+ufc-fight-night-september-27-2025,Sep 27 2025,Cam Rowston,Andre Petroski,fanduel,2025-09-27T07:00:00+00:00,2025-09-27T02:26:11.718790+00:00,2025-09-27T02:26:11.718702+00:00,false
+ufc-fight-night-september-27-2025,Sep 27 2025,Jamie Mullarkey,Rolando Bedoya,fanduel,2025-09-27T07:00:00+00:00,2025-09-27T01:30:37.824075+00:00,2025-09-27T01:30:37.824148+00:00,false
+ufc-fight-night-september-27-2025,Sep 27 2025,Colby Thicknesse,Josias Musasa,fanduel,2025-09-27T07:00:00+00:00,2025-09-27T00:28:34.872072+00:00,2025-09-27T00:28:34.872138+00:00,false
+ufc-fight-night-september-27-2025,Sep 27 2025,Brando Pericic,Elisha Ellison,fanduel,2025-09-27T07:00:00+00:00,2025-09-27T00:28:34.900144+00:00,2025-09-27T00:28:34.900185+00:00,false
+ufc-320,Oct 04 2025,Magomed Ankalaev,Alex Pereira,fanduel,2025-10-04T07:00:00+00:00,2025-10-04T05:29:36.024075+00:00,2025-10-04T05:29:36.024007+00:00,false
+ufc-320,Oct 04 2025,Merab Dvalishvili,Cory Sandhagen,fanduel,2025-10-04T07:00:00+00:00,2025-10-04T04:27:07.619570+00:00,2025-10-03T20:26:24.279668+00:00,false
+ufc-320,Oct 04 2025,Jiri Prochazka,Khalil Rountree Jr.,fanduel,2025-10-04T07:00:00+00:00,2025-10-04T03:24:07.866820+00:00,2025-10-04T03:24:07.866753+00:00,false
+ufc-320,Oct 04 2025,Josh Emmett,Youssef Zalal,fanduel,2025-10-04T07:00:00+00:00,2025-10-04T03:24:07.817926+00:00,2025-10-04T03:24:07.821519+00:00,false
+ufc-320,Oct 04 2025,Abus Magomedov,Joe Pyfer,fanduel,2025-10-04T07:00:00+00:00,2025-10-04T02:26:21.954285+00:00,2025-10-03T21:24:55.767768+00:00,false
+ufc-320,Oct 04 2025,Ateba Gautier,Tre'ston Vines,fanduel,2025-10-04T07:00:00+00:00,2025-10-04T02:26:21.888831+00:00,2025-10-04T02:26:21.888947+00:00,false
+ufc-320,Oct 04 2025,Daniel Santos,JooSang Yoo,fanduel,2025-10-04T07:00:00+00:00,2025-10-04T01:26:46.112296+00:00,2025-10-04T01:26:46.112391+00:00,false
+ufc-320,Oct 04 2025,Edmen Shahbazyan,Andre Muniz,fanduel,2025-10-04T07:00:00+00:00,2025-10-03T01:22:09.442336+00:00,2025-10-04T01:26:46.119696+00:00,false
+ufc-320,Oct 04 2025,Punahele Soriano,Nikolay Veretennikov,fanduel,2025-10-04T07:00:00+00:00,2025-10-03T23:24:45.241110+00:00,2025-10-03T23:24:45.241167+00:00,false
+ufc-320,Oct 04 2025,Chris Gutierrez,Farid Basharat,fanduel,2025-10-04T07:00:00+00:00,2025-10-04T01:26:46.086445+00:00,2025-10-04T01:26:46.086332+00:00,false
+ufc-320,Oct 04 2025,Ramiz Brahimaj,Austin Vanderford,fanduel,2025-10-04T07:00:00+00:00,2025-10-03T23:24:45.205148+00:00,2025-10-03T23:24:45.205238+00:00,false
+ufc-fight-night-october-11-2025,Oct 11 2025,Charles Oliveira,Mateusz Gamrot,fanduel,2025-10-11T07:00:00+00:00,2025-10-11T02:44:20.765928+00:00,2025-10-11T02:44:20.766049+00:00,false
+ufc-fight-night-october-11-2025,Oct 11 2025,Deiveson Figueiredo,Montel Jackson,fanduel,2025-10-11T07:00:00+00:00,2025-10-11T01:44:18.851505+00:00,2025-10-11T01:44:18.851566+00:00,false
+ufc-fight-night-october-11-2025,Oct 11 2025,Vicente Luque,Joel Alvarez,fanduel,2025-10-11T07:00:00+00:00,2025-10-10T01:25:05.604558+00:00,2025-10-11T05:27:15.268552+00:00,false
+ufc-fight-night-october-11-2025,Oct 11 2025,Jhonata Diniz,Mario Pinto,fanduel,2025-10-11T07:00:00+00:00,2025-10-11T05:27:15.277379+00:00,2025-10-11T05:27:15.277455+00:00,false
+ufc-fight-night-october-11-2025,Oct 11 2025,Ricardo Ramos,Kaan Ofli,fanduel,2025-10-11T07:00:00+00:00,2025-10-11T00:45:08.810617+00:00,2025-10-11T00:45:08.810677+00:00,false
+ufc-fight-night-october-11-2025,Oct 11 2025,Lucas Almeida,Michael Aswell Jr.,fanduel,2025-10-11T07:00:00+00:00,2025-10-11T04:31:09.957215+00:00,2025-10-11T04:31:09.957058+00:00,false
+ufc-fight-night-october-11-2025,Oct 11 2025,Jafel Filho,Clayton Carpenter,fanduel,2025-10-11T07:00:00+00:00,2025-10-11T03:39:52.057978+00:00,2025-10-11T03:39:52.058049+00:00,false
+ufc-fight-night-october-11-2025,Oct 11 2025,Vitor Petrino,Thomas Petersen,fanduel,2025-10-11T07:00:00+00:00,2025-10-10T22:34:40.332034+00:00,2025-10-10T22:34:40.332104+00:00,false
+ufc-fight-night-october-11-2025,Oct 11 2025,Lucas Rocha,Stewart Nicoll,fanduel,2025-10-11T07:00:00+00:00,2025-10-10T22:34:40.347806+00:00,2025-10-10T22:34:40.347866+00:00,false
+ufc-fight-night-october-11-2025,Oct 11 2025,Luan Lacerda,Saimon Oliveira,fanduel,2025-10-11T07:00:00+00:00,2025-10-10T21:35:30.416764+00:00,2025-10-10T21:35:30.416803+00:00,false
+ufc-fight-night-october-18-2025,Oct 18 2025,Reinier de Ridder,Brendan Allen,fanduel,2025-10-18T07:00:00+00:00,2025-10-18T02:31:32.708984+00:00,2025-10-18T02:31:32.709107+00:00,false
+ufc-fight-night-october-18-2025,Oct 18 2025,Kevin Holland,Mike Malott,fanduel,2025-10-18T07:00:00+00:00,2025-10-18T01:35:41.370575+00:00,2025-10-18T01:35:41.370627+00:00,false
+ufc-fight-night-october-18-2025,Oct 18 2025,Marlon Vera,Aiemann Zahabi,fanduel,2025-10-18T07:00:00+00:00,2025-10-18T01:35:41.347139+00:00,2025-10-18T01:35:41.347243+00:00,false
+ufc-fight-night-october-18-2025,Oct 18 2025,Charles Jourdain,Davey Grant,fanduel,2025-10-18T07:00:00+00:00,2025-10-17T23:36:13.674098+00:00,2025-10-17T23:36:13.674179+00:00,false
+ufc-fight-night-october-18-2025,Oct 18 2025,Kyle Nelson,Matt Frevola,fanduel,2025-10-18T07:00:00+00:00,2025-10-17T23:36:13.664728+00:00,2025-10-17T23:36:13.664837+00:00,false
+ufc-fight-night-october-18-2025,Oct 18 2025,Kyle Prepolec,Drew Dober,fanduel,2025-10-18T07:00:00+00:00,2025-10-17T23:36:13.686342+00:00,2025-10-17T23:36:13.686274+00:00,false
+ufc-fight-night-october-18-2025,Oct 18 2025,Cody Gibson,Aoriqileng,fanduel,2025-10-18T07:00:00+00:00,2025-10-18T03:31:42.385163+00:00,2025-10-18T03:31:42.385209+00:00,false
+ufc-fight-night-october-18-2025,Oct 18 2025,Bruno Silva,HyunSung Park,fanduel,2025-10-18T07:00:00+00:00,2025-10-18T03:31:42.360168+00:00,2025-10-18T03:31:42.360087+00:00,false
+ufc-fight-night-october-18-2025,Oct 18 2025,Danny Barlow,Djorden Santos,fanduel,2025-10-18T07:00:00+00:00,2025-10-17T22:32:29.722379+00:00,2025-10-17T22:32:29.722426+00:00,false
+ufc-fight-night-october-18-2025,Oct 18 2025,Azamat Bekoev,Yousri Belgaroui,fanduel,2025-10-18T07:00:00+00:00,2025-10-17T21:31:09.436538+00:00,2025-10-17T21:31:09.436619+00:00,false
+ufc-321,Oct 25 2025,Umar Nurmagomedov,Mario Bautista,fanduel,2025-10-25T07:00:00+00:00,2025-10-25T04:20:42.609417+00:00,2025-10-25T04:20:42.609522+00:00,false
+ufc-321,Oct 25 2025,Alexander Volkov,Jailton Almeida,fanduel,2025-10-25T07:00:00+00:00,2025-10-25T04:20:42.573247+00:00,2025-10-25T04:20:42.573320+00:00,false
+ufc-321,Oct 25 2025,Aleksandar Rakic,Azamat Murzakanov,fanduel,2025-10-25T07:00:00+00:00,2025-10-25T04:20:42.579386+00:00,2025-10-25T04:20:42.579450+00:00,false
+ufc-321,Oct 25 2025,Nasrat Haqparast,Quillan Salkilld,fanduel,2025-10-25T07:00:00+00:00,2025-10-25T04:20:42.597010+00:00,2025-10-25T04:20:42.597073+00:00,false
+ufc-321,Oct 25 2025,Ikram Aliskerov,JunYong Park,fanduel,2025-10-25T07:00:00+00:00,2025-10-25T04:20:42.648544+00:00,2025-10-25T04:20:42.649389+00:00,false
+ufc-321,Oct 25 2025,Ludovit Klein,Mateusz Rebecki,fanduel,2025-10-25T07:00:00+00:00,2025-10-25T04:20:42.654068+00:00,2025-10-25T04:20:42.654153+00:00,false
+ufc-321,Oct 25 2025,Valter Walker,Louie Sutherland,fanduel,2025-10-25T07:00:00+00:00,2025-10-25T04:20:42.600528+00:00,2025-10-24T02:57:25.692439+00:00,false
+ufc-321,Oct 25 2025,Nathaniel Wood,Jose Delgado,fanduel,2025-10-25T07:00:00+00:00,2025-10-25T04:20:42.667733+00:00,2025-10-25T04:20:42.667836+00:00,false
+ufc-321,Oct 25 2025,Hamdy Abdelwahab,Chris Barnett,fanduel,2025-10-25T07:00:00+00:00,2025-10-25T04:20:42.594152+00:00,2025-10-25T04:20:42.594075+00:00,false
+ufc-321,Oct 25 2025,Azat Maksum,Mitch Raposo,fanduel,2025-10-25T07:00:00+00:00,2025-10-25T04:20:42.564681+00:00,2025-10-25T04:20:42.564808+00:00,false
+ufc-fight-night-november-01-2025,Nov 01 2025,Steve Garcia,David Onama,fanduel,2025-11-01T07:00:00+00:00,2025-11-01T02:32:42.894329+00:00,2025-11-01T02:32:42.894424+00:00,false
+ufc-fight-night-november-01-2025,Nov 01 2025,Waldo Cortes Acosta,Ante Delija,fanduel,2025-11-01T07:00:00+00:00,2025-11-01T05:31:43.688876+00:00,2025-11-01T05:31:43.688915+00:00,false
+ufc-fight-night-november-01-2025,Nov 01 2025,Jeremiah Wells,Themba Gorimbo,fanduel,2025-11-01T07:00:00+00:00,2025-11-01T05:31:43.690112+00:00,2025-11-01T05:31:43.690149+00:00,false
+ufc-fight-night-november-01-2025,Nov 01 2025,Isaac Dulgarian,Yadier del Valle,fanduel,2025-11-01T07:00:00+00:00,2025-11-01T06:33:56.405953+00:00,2025-11-01T06:33:56.406016+00:00,false
+ufc-fight-night-november-01-2025,Nov 01 2025,Charles Radtke,Daniel Frunza,fanduel,2025-11-01T07:00:00+00:00,2025-11-01T05:31:43.681604+00:00,2025-11-01T05:31:43.681664+00:00,false
+ufc-fight-night-november-01-2025,Nov 01 2025,Allan Nascimento,Cody Durden,fanduel,2025-11-01T07:00:00+00:00,2025-10-31T23:22:44.116296+00:00,2025-10-31T17:28:37.140483+00:00,false
+ufc-fight-night-november-01-2025,Nov 01 2025,Billy Elekana,Kevin Christian,fanduel,2025-11-01T07:00:00+00:00,2025-10-31T23:22:44.118611+00:00,2025-10-31T23:22:44.118648+00:00,false
+ufc-fight-night-november-01-2025,Nov 01 2025,Timmy Cuamba,ChangHo Lee,fanduel,2025-11-01T07:00:00+00:00,2025-11-01T03:28:09.737899+00:00,2025-11-01T03:28:09.737798+00:00,false
+ufc-fight-night-november-01-2025,Nov 01 2025,Donte Johnson,Sedriques Dumas,fanduel,2025-11-01T07:00:00+00:00,2025-10-31T22:29:08.538649+00:00,2025-10-31T22:29:08.538712+00:00,false
+ufc-fight-night-november-01-2025,Nov 01 2025,Phil Rowe,Seokhyeon Ko,fanduel,2025-11-01T07:00:00+00:00,2025-10-30T21:21:43.680785+00:00,2025-10-31T21:32:22.563740+00:00,false
+ufc-fight-night-november-08-2025,Nov 08 2025,Gabriel Bonfim,Randy Brown,fanduel,2025-11-08T08:00:00+00:00,2025-11-08T02:21:25.631666+00:00,2025-11-08T02:21:25.631710+00:00,false
+ufc-fight-night-november-08-2025,Nov 08 2025,Matt Schnell,Joseph Morales,fanduel,2025-11-08T08:00:00+00:00,2025-11-08T06:20:08.353400+00:00,2025-11-08T06:20:08.353494+00:00,false
+ufc-fight-night-november-08-2025,Nov 08 2025,Muslim Salikhov,Uros Medic,fanduel,2025-11-08T08:00:00+00:00,2025-11-08T02:21:25.619110+00:00,2025-11-08T02:21:25.619155+00:00,false
+ufc-fight-night-november-08-2025,Nov 08 2025,Chris Padilla,Ismael Bonfim,fanduel,2025-11-08T08:00:00+00:00,2025-11-08T02:21:25.602055+00:00,2025-11-08T02:21:25.602012+00:00,false
+ufc-fight-night-november-08-2025,Nov 08 2025,Christian Leroy Duncan,Marco Tulio,fanduel,2025-11-08T08:00:00+00:00,2025-11-08T06:20:08.631462+00:00,2025-11-08T06:20:08.631406+00:00,false
+ufc-fight-night-november-08-2025,Nov 08 2025,Hyder Amil,Jamall Emmers,fanduel,2025-11-08T08:00:00+00:00,2025-11-08T00:18:03.767989+00:00,2025-11-08T00:18:03.767901+00:00,false
+ufc-fight-night-november-08-2025,Nov 08 2025,Ricky Simon,Raoni Barcelos,fanduel,2025-11-08T08:00:00+00:00,2025-11-07T23:21:22.043832+00:00,2025-11-07T23:21:22.043902+00:00,false
+ufc-fight-night-november-08-2025,Nov 08 2025,Josh Hokit,Max Gimenis,fanduel,2025-11-08T08:00:00+00:00,2025-11-07T23:21:22.057857+00:00,2025-11-06T23:19:52.263630+00:00,false
+ufc-fight-night-november-08-2025,Nov 08 2025,Miles Johns,Daniel Marcos,fanduel,2025-11-08T08:00:00+00:00,2025-11-07T22:21:43.560742+00:00,2025-11-07T22:21:43.560804+00:00,false
+ufc-fight-night-november-08-2025,Nov 08 2025,Zach Reese,Jackson McVey,fanduel,2025-11-08T08:00:00+00:00,2025-11-08T07:20:20.566826+00:00,2025-11-08T07:20:20.566967+00:00,false
+ufc-322,Nov 15 2025,Jack Della Maddalena,Islam Makhachev,fanduel,2025-11-15T08:00:00+00:00,2025-11-14T20:33:09.360030+00:00,2025-11-15T06:07:15.214440+00:00,false
+ufc-322,Nov 15 2025,Sean Brady,Michael Morales,fanduel,2025-11-15T08:00:00+00:00,2025-11-15T04:53:39.004145+00:00,2025-11-15T04:53:39.004190+00:00,false
+ufc-322,Nov 15 2025,Leon Edwards,Carlos Prates,fanduel,2025-11-15T08:00:00+00:00,2025-11-14T20:33:09.349209+00:00,2025-11-15T04:53:38.999431+00:00,false
+ufc-322,Nov 15 2025,Beneil Dariush,Benoit Saint Denis,fanduel,2025-11-15T08:00:00+00:00,2025-11-15T03:50:16.765316+00:00,2025-11-15T03:50:16.765385+00:00,false
+ufc-322,Nov 15 2025,Bo Nickal,Rodolfo Vieira,fanduel,2025-11-15T08:00:00+00:00,2025-11-15T03:50:16.685457+00:00,2025-11-15T03:50:16.685550+00:00,false
+ufc-322,Nov 15 2025,Roman Kopylov,Gregory Rodrigues,fanduel,2025-11-15T08:00:00+00:00,2025-11-15T03:09:34.426590+00:00,2025-11-15T03:09:34.426629+00:00,false
+ufc-322,Nov 15 2025,Malcolm Wellmaker,Ethyn Ewing,fanduel,2025-11-15T08:00:00+00:00,2025-11-15T07:01:13.353290+00:00,2025-11-15T07:01:13.353416+00:00,false
+ufc-322,Nov 15 2025,Kyle Daukaus,Gerald Meerschaert,fanduel,2025-11-15T08:00:00+00:00,2025-11-15T03:50:16.708282+00:00,2025-11-15T03:50:16.708202+00:00,false
+ufc-322,Nov 15 2025,Pat Sabatini,Chepe Mariscal,fanduel,2025-11-15T08:00:00+00:00,2025-11-15T04:53:39.027725+00:00,2025-11-15T04:53:39.027647+00:00,false
+ufc-322,Nov 15 2025,Baisangur Susurkaev,Eric McConico,fanduel,2025-11-15T08:00:00+00:00,2025-11-15T01:03:35.067867+00:00,2025-11-15T01:03:35.067944+00:00,false
+ufc-322,Nov 15 2025,Viacheslav Borshchev,Matheus Camilo,fanduel,2025-11-15T08:00:00+00:00,2025-11-15T03:50:16.826151+00:00,2025-11-15T03:50:16.826228+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Arman Tsarukyan,Dan Hooker,fanduel,2025-11-22T08:00:00+00:00,2025-11-22T06:31:50.428926+00:00,2025-11-22T06:31:50.429048+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Belal Muhammad,Ian Machado Garry,fanduel,2025-11-22T08:00:00+00:00,2025-11-21T20:31:19.615664+00:00,2025-11-21T20:31:19.615752+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Volkan Oezdemir,Alonzo Menifield,fanduel,2025-11-22T08:00:00+00:00,2025-11-21T20:31:19.582342+00:00,2025-11-21T20:31:19.582442+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Jack Hermansson,Myktybek Orolbai,fanduel,2025-11-22T08:00:00+00:00,2025-11-22T01:31:13.214297+00:00,2025-11-22T01:31:13.214467+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Waldo Cortes Acosta,Shamil Gaziev,fanduel,2025-11-22T08:00:00+00:00,2025-11-22T00:31:20.342415+00:00,2025-11-22T00:31:20.342560+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Tagir Ulanbekov,Kyoji Horiguchi,fanduel,2025-11-22T08:00:00+00:00,2025-11-21T17:31:13.864862+00:00,2025-11-21T17:31:13.864962+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Bogdan Grad,Luke Riley,fanduel,2025-11-22T08:00:00+00:00,2025-11-22T06:31:50.458968+00:00,2025-11-22T06:31:50.458893+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Nicolas Dalby,Saygid Izagakhmaev,fanduel,2025-11-22T08:00:00+00:00,2025-11-21T15:30:57.316959+00:00,2025-11-21T15:30:57.317041+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Alex Perez,Asu Almabayev,fanduel,2025-11-22T08:00:00+00:00,2025-11-22T02:31:27.289830+00:00,2025-11-22T02:31:27.289961+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Abdul Rakhman Yakhyaev,Rafael Cerqueira,fanduel,2025-11-22T08:00:00+00:00,2025-11-21T23:31:32.031233+00:00,2025-11-21T23:31:32.031327+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Bekzat Almakhan,Aleksandre Topuria,fanduel,2025-11-22T08:00:00+00:00,2025-11-22T06:31:50.448799+00:00,2025-11-22T06:31:50.448877+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Ismail Naurdiev,Ryan Loder,fanduel,2025-11-22T08:00:00+00:00,2025-11-22T03:31:10.296333+00:00,2025-11-22T03:31:10.296452+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Nurullo Aliev,Shem Rock,fanduel,2025-11-22T08:00:00+00:00,2025-11-20T16:31:14.164100+00:00,2025-11-21T16:31:02.522642+00:00,false
+ufc-fight-night-november-22-2025,Nov 22 2025,Marek Bujlo,Denzel Freeman,fanduel,2025-11-22T08:00:00+00:00,2025-11-21T15:30:57.329207+00:00,2025-11-21T15:30:57.329251+00:00,false
+ufc-323,Dec 06 2025,Merab Dvalishvili,Petr Yan,fanduel,2025-12-06T08:00:00+00:00,2025-12-06T06:35:18.217936+00:00,2025-12-06T06:35:18.218085+00:00,false
+ufc-323,Dec 06 2025,Alexandre Pantoja,Joshua Van,fanduel,2025-12-06T08:00:00+00:00,2025-12-06T06:35:18.208755+00:00,2025-12-05T05:31:24.231926+00:00,false
+ufc-323,Dec 06 2025,Brandon Moreno,Tatsuro Taira,fanduel,2025-12-06T08:00:00+00:00,2025-12-06T06:35:18.223822+00:00,2025-12-06T06:35:18.223894+00:00,false
+ufc-323,Dec 06 2025,Henry Cejudo,Payton Talbott,fanduel,2025-12-06T08:00:00+00:00,2025-12-05T04:32:35.175260+00:00,2025-12-06T04:35:37.785864+00:00,false
+ufc-323,Dec 06 2025,Grant Dawson,Manuel Torres,fanduel,2025-12-06T08:00:00+00:00,2025-12-06T04:35:37.775879+00:00,2025-12-06T04:35:37.775999+00:00,false
+ufc-323,Dec 06 2025,Terrance McKinney,Chris Duncan,fanduel,2025-12-06T08:00:00+00:00,2025-12-06T02:34:14.795909+00:00,2025-12-06T02:34:14.795969+00:00,false
+ufc-323,Dec 06 2025,Nazim Sadykhov,Fares Ziam,fanduel,2025-12-06T08:00:00+00:00,2025-12-06T01:37:03.272848+00:00,2025-12-06T01:37:03.272751+00:00,false
+ufc-323,Dec 06 2025,Marvin Vettori,Brunno Ferreira,fanduel,2025-12-06T08:00:00+00:00,2025-12-06T01:37:03.289351+00:00,2025-12-06T01:37:03.289418+00:00,false
+ufc-323,Dec 06 2025,Edson Barboza,Jalin Turner,fanduel,2025-12-06T08:00:00+00:00,2025-12-06T00:36:15.843154+00:00,2025-12-06T00:36:15.845313+00:00,false
+ufc-323,Dec 06 2025,Iwo Baraniewski,Ibo Aslan,fanduel,2025-12-06T08:00:00+00:00,2025-12-06T00:36:15.859054+00:00,2025-12-06T00:36:15.858985+00:00,false
+ufc-323,Dec 06 2025,Mansur Abdul-Malik,Antonio Trocoli,fanduel,2025-12-06T08:00:00+00:00,2025-12-05T23:35:26.483294+00:00,2025-12-05T23:35:26.483376+00:00,false
+ufc-323,Dec 06 2025,Muhammad Naimov,Mairon Santos,fanduel,2025-12-06T08:00:00+00:00,2025-12-05T23:35:26.458333+00:00,2025-12-05T23:35:26.458418+00:00,false
+ufc-fight-night-december-13-2025,Dec 13 2025,Brandon Royval,Manel Kape,fanduel,2025-12-13T08:00:00+00:00,2025-12-12T05:36:04.655558+00:00,2025-12-13T05:31:16.458106+00:00,false
+ufc-fight-night-december-13-2025,Dec 13 2025,Giga Chikadze,Kevin Vallejos,fanduel,2025-12-13T08:00:00+00:00,2025-12-13T05:31:16.460613+00:00,2025-12-13T05:31:16.460689+00:00,false
+ufc-fight-night-december-13-2025,Dec 13 2025,Cesar Almeida,Cezary Oleksiejczuk,fanduel,2025-12-13T08:00:00+00:00,2025-12-13T04:31:27.647962+00:00,2025-12-13T04:31:27.648086+00:00,false
+ufc-fight-night-december-13-2025,Dec 13 2025,Melquizael Costa,Morgan Charriere,fanduel,2025-12-13T08:00:00+00:00,2025-12-13T04:31:27.688124+00:00,2025-12-13T04:31:27.688275+00:00,false
+ufc-fight-night-december-13-2025,Dec 13 2025,Neil Magny,Yaroslav Amosov,fanduel,2025-12-13T08:00:00+00:00,2025-12-13T02:31:32.599491+00:00,2025-12-12T02:36:23.262061+00:00,false
+ufc-fight-night-december-13-2025,Dec 13 2025,Joanderson Brito,Isaac Thomson,fanduel,2025-12-13T08:00:00+00:00,2025-12-13T02:31:32.597797+00:00,2025-12-13T02:31:32.597892+00:00,false
+ufc-fight-night-december-13-2025,Dec 13 2025,Sean Sharaf,Steven Asplund,fanduel,2025-12-13T08:00:00+00:00,2025-12-13T01:31:19.563589+00:00,2025-12-13T01:31:19.563499+00:00,false
+ufc-fight-night-december-13-2025,Dec 13 2025,Allen Frye Jr.,Guilherme Pat,fanduel,2025-12-13T08:00:00+00:00,2025-12-13T01:31:19.504806+00:00,2025-12-13T01:31:19.504881+00:00,false
+ufc-324,Jan 24 2026,Justin Gaethje,Paddy Pimblett,fanduel,2026-01-24T08:00:00+00:00,2026-01-23T08:02:25.610315+00:00,2026-01-23T08:02:25.610419+00:00,false
+ufc-324,Jan 24 2026,Sean O'Malley,Song Yadong,fanduel,2026-01-24T08:00:00+00:00,2026-01-24T04:07:02.937086+00:00,2026-01-23T04:02:09.368478+00:00,false
+ufc-324,Jan 24 2026,Waldo Cortes Acosta,Derrick Lewis,fanduel,2026-01-24T08:00:00+00:00,2026-01-24T04:07:02.952128+00:00,2026-01-24T04:07:02.952198+00:00,false
+ufc-324,Jan 24 2026,Arnold Allen,Jean Silva,fanduel,2026-01-24T08:00:00+00:00,2026-01-24T00:07:45.635971+00:00,2026-01-24T04:07:02.942135+00:00,false
+ufc-324,Jan 24 2026,Umar Nurmagomedov,Deiveson Figueiredo,fanduel,2026-01-24T08:00:00+00:00,2026-01-24T04:07:02.898844+00:00,2026-01-24T04:07:02.898904+00:00,false
+ufc-324,Jan 24 2026,Ateba Gautier,Andrey Pulyaev,fanduel,2026-01-24T08:00:00+00:00,2026-01-24T04:07:02.892177+00:00,2026-01-24T04:07:02.892291+00:00,false
+ufc-324,Jan 24 2026,Nikita Krylov,Modestas Bukauskas,fanduel,2026-01-24T08:00:00+00:00,2026-01-24T04:07:02.900539+00:00,2026-01-24T04:07:02.900591+00:00,false
+ufc-324,Jan 24 2026,Alex Perez,Charles Johnson,fanduel,2026-01-24T08:00:00+00:00,2026-01-24T04:07:02.919877+00:00,2026-01-24T04:07:02.919944+00:00,false
+ufc-324,Jan 24 2026,Josh Hokit,Denzel Freeman,fanduel,2026-01-24T08:00:00+00:00,2026-01-24T00:07:45.597690+00:00,2026-01-24T00:07:45.597781+00:00,false
+ufc-324,Jan 24 2026,Adam Fugitt,Ty Miller,fanduel,2026-01-24T08:00:00+00:00,2026-01-24T00:07:45.640863+00:00,2026-01-24T00:07:45.640935+00:00,false
+ufc-325,Jan 31 2026,Alexander Volkanovski,Diego Lopes,fanduel,2026-01-31T08:00:00+00:00,2026-01-30T16:02:29.098673+00:00,2026-01-30T20:02:16.750121+00:00,false
+ufc-325,Jan 31 2026,Dan Hooker,Benoit Saint Denis,fanduel,2026-01-31T08:00:00+00:00,2026-01-31T04:01:42.183037+00:00,2026-01-30T16:02:29.117259+00:00,false
+ufc-325,Jan 31 2026,Rafael Fiziev,Mauricio Ruffy,fanduel,2026-01-31T08:00:00+00:00,2026-01-31T04:01:42.168112+00:00,2026-01-31T04:01:42.168180+00:00,false
+ufc-325,Jan 31 2026,Tai Tuivasa,Tallison Teixeira,fanduel,2026-01-31T08:00:00+00:00,2026-01-31T04:01:42.164605+00:00,2026-01-31T04:01:42.164683+00:00,false
+ufc-325,Jan 31 2026,Quillan Salkilld,Jamie Mullarkey,fanduel,2026-01-31T08:00:00+00:00,2026-01-31T04:01:42.199642+00:00,2026-01-31T04:01:42.199706+00:00,false
+ufc-325,Jan 31 2026,Junior Tafa,Billy Elekana,fanduel,2026-01-31T08:00:00+00:00,2026-01-31T04:01:42.178770+00:00,2026-01-31T04:01:42.178830+00:00,false
+ufc-325,Jan 31 2026,Cam Rowston,Cody Brundage,fanduel,2026-01-31T08:00:00+00:00,2026-01-31T04:01:42.184912+00:00,2026-01-31T04:01:42.184989+00:00,false
+ufc-325,Jan 31 2026,Jacob Malkoun,Torrez Finney,fanduel,2026-01-31T08:00:00+00:00,2026-01-31T04:01:42.187944+00:00,2026-01-31T04:01:42.188009+00:00,false
+ufc-325,Jan 31 2026,Jonathan Micallef,Oban Elliott,fanduel,2026-01-31T08:00:00+00:00,2026-01-31T04:01:42.191304+00:00,2026-01-31T04:01:42.191387+00:00,false
+ufc-325,Jan 31 2026,Kaan Ofli,Yizha,fanduel,2026-01-31T08:00:00+00:00,2026-01-30T00:11:03.725469+00:00,2026-01-31T00:02:31.374071+00:00,false
+ufc-325,Jan 31 2026,Sangwook Kim,Dom Mar Fan,fanduel,2026-01-31T08:00:00+00:00,2026-01-31T00:02:31.388307+00:00,2026-01-31T00:02:31.388347+00:00,false
+ufc-325,Jan 31 2026,Keiichiro Nakamura,Sebastian Szalay,fanduel,2026-01-31T08:00:00+00:00,2026-01-31T00:02:31.386926+00:00,2026-01-31T00:02:31.386975+00:00,false
+ufc-325,Jan 31 2026,Sulangrangbo,Lawrence Lui,fanduel,2026-01-31T08:00:00+00:00,2026-01-31T00:02:31.372835+00:00,2026-01-31T00:02:31.372906+00:00,false
+ufc-fight-night-february-07-2026,Feb 07 2026,Mario Bautista,Vinicius Oliveira,fanduel,2026-02-07T08:00:00+00:00,2026-02-07T04:01:41.219330+00:00,2026-02-07T04:01:41.219463+00:00,false
+ufc-fight-night-february-07-2026,Feb 07 2026,Amir Albazi,Kyoji Horiguchi,fanduel,2026-02-07T08:00:00+00:00,2026-02-07T04:01:41.157019+00:00,2026-02-07T04:01:41.157119+00:00,false
+ufc-fight-night-february-07-2026,Feb 07 2026,Jailton Almeida,Rizvan Kuniev,fanduel,2026-02-07T08:00:00+00:00,2026-02-07T04:01:41.203258+00:00,2026-02-07T04:01:41.203329+00:00,false
+ufc-fight-night-february-07-2026,Feb 07 2026,Michal Oleksiejczuk,Marc-Andre Barriault,fanduel,2026-02-07T08:00:00+00:00,2026-02-07T04:01:41.177518+00:00,2026-02-07T04:01:41.177612+00:00,false
+ufc-fight-night-february-07-2026,Feb 07 2026,Jean Matsumoto,Farid Basharat,fanduel,2026-02-07T08:00:00+00:00,2026-02-07T04:01:41.223651+00:00,2026-02-07T04:01:41.223710+00:00,false
+ufc-fight-night-february-07-2026,Feb 07 2026,Dustin Jacoby,Julius Walker,fanduel,2026-02-07T08:00:00+00:00,2026-02-07T04:01:41.196591+00:00,2026-02-07T04:01:41.196673+00:00,false
+ufc-fight-night-february-07-2026,Feb 07 2026,Alex Morono,Daniil Donchenko,fanduel,2026-02-07T08:00:00+00:00,2026-02-07T04:01:41.236409+00:00,2026-02-06T04:00:50.615946+00:00,false
+ufc-fight-night-february-07-2026,Feb 07 2026,Nikolay Veretennikov,Niko Price,fanduel,2026-02-07T08:00:00+00:00,2026-02-07T04:01:41.165214+00:00,2026-02-05T08:02:05.410827+00:00,false
+ufc-fight-night-february-07-2026,Feb 07 2026,Javid Basharat,Gianni Vazquez,fanduel,2026-02-07T08:00:00+00:00,2026-02-07T04:01:41.158899+00:00,2026-02-07T04:01:41.158827+00:00,false
+ufc-fight-night-february-07-2026,Feb 07 2026,Wang Cong,Eduarda Moura,fanduel,2026-02-07T08:00:00+00:00,2026-02-07T00:06:04.611231+00:00,2026-02-07T00:06:04.611152+00:00,false
+ufc-fight-night-february-07-2026,Feb 07 2026,Muin Gafurov,Jakub Wiklacz,fanduel,2026-02-07T08:00:00+00:00,2026-02-07T04:01:41.233351+00:00,2026-02-07T04:01:41.233271+00:00,false
+ufc-fight-night-february-21-2026,Feb 21 2026,Sean Strickland,Anthony Hernandez,fanduel,2026-02-21T08:00:00+00:00,2026-02-20T20:06:40.509134+00:00,2026-02-21T04:22:57.337673+00:00,false
+ufc-fight-night-february-21-2026,Feb 21 2026,Geoff Neal,Uros Medic,fanduel,2026-02-21T08:00:00+00:00,2026-02-21T04:22:57.331568+00:00,2026-02-21T04:22:57.331634+00:00,false
+ufc-fight-night-february-21-2026,Feb 21 2026,Dan Ige,Melquizael Costa,fanduel,2026-02-21T08:00:00+00:00,2026-02-21T04:22:57.323241+00:00,2026-02-21T04:22:57.323287+00:00,false
+ufc-fight-night-february-21-2026,Feb 21 2026,Serghei Spivac,Ante Delija,fanduel,2026-02-21T08:00:00+00:00,2026-02-21T04:22:57.334634+00:00,2026-02-21T04:22:57.334688+00:00,false
+ufc-fight-night-february-21-2026,Feb 21 2026,Jacobe Smith,Josiah Harrell,fanduel,2026-02-21T08:00:00+00:00,2026-02-21T04:22:57.308473+00:00,2026-02-21T04:22:57.308547+00:00,false
+ufc-fight-night-february-21-2026,Feb 21 2026,Zach Reese,Michel Pereira,fanduel,2026-02-21T08:00:00+00:00,2026-02-21T04:22:57.326013+00:00,2026-02-21T04:22:57.326087+00:00,false
+ufc-fight-night-february-21-2026,Feb 21 2026,Chidi Njokuani,Carlos Leal,fanduel,2026-02-21T08:00:00+00:00,2026-02-21T04:22:57.318659+00:00,2026-02-21T04:22:57.318611+00:00,false
+ufc-fight-night-february-21-2026,Feb 21 2026,Alden Coria,Luis Gurule,fanduel,2026-02-21T08:00:00+00:00,2026-02-21T04:22:57.320906+00:00,2026-02-20T20:06:40.488109+00:00,false
+ufc-fight-night-february-21-2026,Feb 21 2026,Ramiz Brahimaj,Punahele Soriano,fanduel,2026-02-21T08:00:00+00:00,2026-02-21T00:06:37.496308+00:00,2026-02-21T00:06:37.496420+00:00,false
+ufc-fight-night-february-21-2026,Feb 21 2026,Phil Rowe,Jean-Paul Lebosnoyani,fanduel,2026-02-21T08:00:00+00:00,2026-02-21T00:06:37.560409+00:00,2026-02-21T00:06:37.560519+00:00,false
+ufc-fight-night-february-21-2026,Feb 21 2026,Jordan Leavitt,Yadier del Valle,fanduel,2026-02-21T08:00:00+00:00,2026-02-21T00:06:37.018947+00:00,2026-02-21T00:06:37.018785+00:00,false
+ufc-fight-night-february-28-2026,Feb 28 2026,Brandon Moreno,Lone'er Kavanagh,fanduel,2026-02-28T08:00:00+00:00,2026-02-28T04:01:33.573047+00:00,2026-02-28T04:01:33.573102+00:00,false
+ufc-fight-night-february-28-2026,Feb 28 2026,Marlon Vera,David Martinez,fanduel,2026-02-28T08:00:00+00:00,2026-02-28T04:01:33.590104+00:00,2026-02-28T04:01:33.590148+00:00,false
+ufc-fight-night-february-28-2026,Feb 28 2026,Edgar Chairez,Felipe Bunes,fanduel,2026-02-28T08:00:00+00:00,2026-02-28T04:01:33.603435+00:00,2026-02-28T04:01:33.603482+00:00,false
+ufc-fight-night-february-28-2026,Feb 28 2026,Imanol Rodriguez,Kevin Borjas,fanduel,2026-02-28T08:00:00+00:00,2026-02-28T04:01:33.576233+00:00,2026-02-28T04:01:33.576293+00:00,false
+ufc-fight-night-february-28-2026,Feb 28 2026,Santiago Luna,Angel Pacheco,fanduel,2026-02-28T08:00:00+00:00,2026-02-27T04:00:45.562456+00:00,2026-02-28T04:01:33.583973+00:00,false
+ufc-fight-night-february-28-2026,Feb 28 2026,Ryan Gandra,Jose Daniel Medina,fanduel,2026-02-28T08:00:00+00:00,2026-02-28T04:01:33.599452+00:00,2026-02-28T04:01:33.599404+00:00,false
+ufc-fight-night-february-28-2026,Feb 28 2026,Cristian Quinonez,Kris Moutinho,fanduel,2026-02-28T08:00:00+00:00,2026-02-28T04:01:33.587058+00:00,2026-02-28T04:01:33.587127+00:00,false
+ufc-fight-night-february-28-2026,Feb 28 2026,Douglas Silva de Andrade,Javier Reyes,fanduel,2026-02-28T08:00:00+00:00,2026-02-28T04:01:33.564937+00:00,2026-02-28T04:01:33.565027+00:00,false
+ufc-fight-night-february-28-2026,Feb 28 2026,Regina Tarin,Ernesta Kareckaite,fanduel,2026-02-28T08:00:00+00:00,2026-02-28T00:03:54.235210+00:00,2026-02-28T00:03:54.235281+00:00,false
+ufc-fight-night-february-28-2026,Feb 28 2026,Erik Silva,Francis Marshall,fanduel,2026-02-28T08:00:00+00:00,2026-02-28T00:03:54.214191+00:00,2026-02-27T00:04:25.541969+00:00,false
+ufc-fight-night-february-28-2026,Feb 28 2026,Damian Pinas,Wes Schultz,fanduel,2026-02-28T08:00:00+00:00,2026-02-28T00:03:54.210346+00:00,2026-02-28T00:03:54.210265+00:00,false
+ufc-326,Mar 07 2026,Max Holloway,Charles Oliveira,fanduel,2026-03-07T08:00:00+00:00,2026-03-06T08:06:11.555431+00:00,2026-03-06T08:06:11.555582+00:00,false
+ufc-326,Mar 07 2026,Caio Borralho,Reinier de Ridder,fanduel,2026-03-07T08:00:00+00:00,2026-03-07T04:01:17.245740+00:00,2026-03-07T04:01:17.245818+00:00,false
+ufc-326,Mar 07 2026,Rob Font,Raul Rosas Jr.,fanduel,2026-03-07T08:00:00+00:00,2026-03-06T20:02:05.921061+00:00,2026-03-07T04:01:17.266464+00:00,false
+ufc-326,Mar 07 2026,Drew Dober,Michael Johnson,fanduel,2026-03-07T08:00:00+00:00,2026-03-07T04:01:17.226344+00:00,2026-03-07T04:01:17.226409+00:00,false
+ufc-326,Mar 07 2026,Gregory Rodrigues,Brunno Ferreira,fanduel,2026-03-07T08:00:00+00:00,2026-03-07T04:01:17.283975+00:00,2026-03-07T04:01:17.283869+00:00,false
+ufc-326,Mar 07 2026,Cody Garbrandt,Xiao Long,fanduel,2026-03-07T08:00:00+00:00,2026-03-07T04:01:17.310585+00:00,2026-03-06T08:06:11.581361+00:00,false
+ufc-326,Mar 07 2026,Donte Johnson,Cody Brundage,fanduel,2026-03-07T08:00:00+00:00,2026-03-07T04:01:17.318081+00:00,2026-03-07T04:01:17.318187+00:00,false
+ufc-326,Mar 07 2026,Ricky Turcios,Alberto Montes,fanduel,2026-03-07T08:00:00+00:00,2026-03-07T04:01:17.213592+00:00,2026-03-07T04:01:17.213665+00:00,false
+ufc-326,Mar 07 2026,Cody Durden,Nyamjargal Tumendemberel,fanduel,2026-03-07T08:00:00+00:00,2026-03-07T04:01:17.157509+00:00,2026-03-07T04:01:17.157657+00:00,false
+ufc-326,Mar 07 2026,Sumudaerji,Jesus Aguilar,fanduel,2026-03-07T08:00:00+00:00,2026-03-07T04:01:17.172396+00:00,2026-03-07T04:01:17.172463+00:00,false
+ufc-326,Mar 07 2026,Rafael Tobias,Diyar Nurgozhay,fanduel,2026-03-07T08:00:00+00:00,2026-03-07T00:00:57.483175+00:00,2026-03-07T00:00:57.483257+00:00,false
+ufc-326,Mar 07 2026,Luke Fernandez,Rodolfo Bellato,fanduel,2026-03-07T08:00:00+00:00,2026-03-07T00:00:57.478805+00:00,2026-03-07T00:00:57.478858+00:00,false
+ufc-fight-night-march-14-2026,Mar 14 2026,Josh Emmett,Kevin Vallejos,fanduel,2026-03-14T07:00:00+00:00,2026-03-14T04:01:14.791846+00:00,2026-03-13T04:14:00.164635+00:00,false
+ufc-fight-night-march-14-2026,Mar 14 2026,Andre Fili,Jose Delgado,fanduel,2026-03-14T07:00:00+00:00,2026-03-13T20:01:39.064781+00:00,2026-03-14T04:01:14.800234+00:00,false
+ufc-fight-night-march-14-2026,Mar 14 2026,Marwan Rahiki,Harry Hardwick,fanduel,2026-03-14T07:00:00+00:00,2026-03-14T04:01:14.802912+00:00,2026-03-14T04:01:14.802841+00:00,false
+ufc-fight-night-march-14-2026,Mar 14 2026,Ion Cutelaba,Oumar Sy,fanduel,2026-03-14T07:00:00+00:00,2026-03-14T04:01:14.742728+00:00,2026-03-14T04:01:14.742605+00:00,false
+ufc-fight-night-march-14-2026,Mar 14 2026,Charles Johnson,Bruno Silva,fanduel,2026-03-14T07:00:00+00:00,2026-03-14T04:01:14.809157+00:00,2026-03-14T04:01:14.809066+00:00,false
+ufc-fight-night-march-14-2026,Mar 14 2026,Chris Curtis,Myktybek Orolbai,fanduel,2026-03-14T07:00:00+00:00,2026-03-14T00:01:44.807016+00:00,2026-03-14T00:01:44.807106+00:00,false
+ufc-fight-night-march-14-2026,Mar 14 2026,Vitor Petrino,Steven Asplund,fanduel,2026-03-14T07:00:00+00:00,2026-03-11T16:03:03.828162+00:00,2026-03-14T00:01:44.833656+00:00,false
+ufc-fight-night-march-14-2026,Mar 14 2026,Elijah Smith,SuYoung You,fanduel,2026-03-14T07:00:00+00:00,2026-03-14T00:01:45.023596+00:00,2026-03-14T00:01:45.023666+00:00,false
+ufc-fight-night-march-14-2026,Mar 14 2026,Bolaji Oki,Manoel Sousa,fanduel,2026-03-14T07:00:00+00:00,2026-03-14T00:01:44.687757+00:00,2026-03-14T00:01:44.687835+00:00,false
+ufc-fight-night-march-14-2026,Mar 14 2026,Brad Tavares,Eryk Anders,fanduel,2026-03-14T07:00:00+00:00,2026-03-14T00:01:44.742286+00:00,2026-03-14T00:01:44.742355+00:00,false
+ufc-fight-night-march-14-2026,Mar 14 2026,Luan Lacerda,Hecher Sosa,fanduel,2026-03-14T07:00:00+00:00,2026-03-14T00:01:44.647316+00:00,2026-03-14T00:01:44.647210+00:00,false
+ufc-fight-night-march-21-2026,Mar 21 2026,Movsar Evloev,Lerone Murphy,fanduel,2026-03-21T07:00:00+00:00,2026-03-21T00:01:54.819336+00:00,2026-03-20T00:02:21.834193+00:00,false
+ufc-fight-night-march-21-2026,Mar 21 2026,Luke Riley,Michael Aswell Jr.,fanduel,2026-03-21T07:00:00+00:00,2026-03-21T00:01:54.737420+00:00,2026-03-20T16:03:21.031221+00:00,false
+ufc-fight-night-march-21-2026,Mar 21 2026,Michael Page,Sam Patterson,fanduel,2026-03-21T07:00:00+00:00,2026-03-21T04:01:22.031582+00:00,2026-03-21T04:01:22.031649+00:00,false
+ufc-fight-night-march-21-2026,Mar 21 2026,Iwo Baraniewski,Austen Lane,fanduel,2026-03-21T07:00:00+00:00,2026-03-20T00:02:21.796597+00:00,2026-03-21T00:01:54.800827+00:00,false
+ufc-fight-night-march-21-2026,Mar 21 2026,Roman Dolidze,Christian Leroy Duncan,fanduel,2026-03-21T07:00:00+00:00,2026-03-21T00:01:54.741299+00:00,2026-03-21T00:01:54.741362+00:00,false
+ufc-fight-night-march-21-2026,Mar 21 2026,Kurtis Campbell,Danny Silva,fanduel,2026-03-21T07:00:00+00:00,2026-03-21T00:01:54.832247+00:00,2026-03-21T00:01:54.832320+00:00,false
+ufc-fight-night-march-21-2026,Mar 21 2026,Mason Jones,Axel Sola,fanduel,2026-03-21T07:00:00+00:00,2026-03-21T04:01:22.026315+00:00,2026-03-21T04:01:22.026375+00:00,false
+ufc-fight-night-march-21-2026,Mar 21 2026,Nathaniel Wood,Losene Keita,fanduel,2026-03-21T07:00:00+00:00,2026-03-21T04:01:22.021264+00:00,2026-03-21T04:01:22.021330+00:00,false
+ufc-fight-night-march-21-2026,Mar 21 2026,Mario Pinto,Felipe Franco,fanduel,2026-03-21T07:00:00+00:00,2026-03-20T20:02:56.631649+00:00,2026-03-20T20:02:56.632955+00:00,false
+ufc-fight-night-march-21-2026,Mar 21 2026,Mantas Kondratavicius,Antonio Trocoli,fanduel,2026-03-21T07:00:00+00:00,2026-03-20T20:02:56.856471+00:00,2026-03-20T20:02:56.853894+00:00,false
+ufc-fight-night-march-21-2026,Mar 21 2026,Louie Sutherland,Brando Pericic,fanduel,2026-03-21T07:00:00+00:00,2026-03-21T04:01:22.018375+00:00,2026-03-21T04:01:22.018466+00:00,false
+ufc-fight-night-march-21-2026,Mar 21 2026,Shem Rock,Abdul-Kareem Al-Selwady,fanduel,2026-03-21T07:00:00+00:00,2026-03-21T00:01:54.804596+00:00,2026-03-21T00:01:54.804674+00:00,false
+ufc-fight-night-march-28-2026,Mar 28 2026,Israel Adesanya,Joe Pyfer,fanduel,2026-03-28T07:00:00+00:00,2026-03-28T04:01:53.826057+00:00,2026-03-28T04:01:53.826156+00:00,false
+ufc-fight-night-march-28-2026,Mar 28 2026,Michael Chiesa,Niko Price,fanduel,2026-03-28T07:00:00+00:00,2026-03-28T04:01:53.796764+00:00,2026-03-28T04:01:53.796812+00:00,false
+ufc-fight-night-march-28-2026,Mar 28 2026,Julian Erosa,Lerryan Douglas,fanduel,2026-03-28T07:00:00+00:00,2026-03-28T04:01:53.812426+00:00,2026-03-28T04:01:53.812528+00:00,false
+ufc-fight-night-march-28-2026,Mar 28 2026,Mansur Abdul-Malik,Yousri Belgaroui,fanduel,2026-03-28T07:00:00+00:00,2026-03-28T04:01:53.780587+00:00,2026-03-28T04:01:53.780722+00:00,false
+ufc-fight-night-march-28-2026,Mar 28 2026,Terrance McKinney,Kyle Nelson,fanduel,2026-03-28T07:00:00+00:00,2026-03-28T04:01:53.814507+00:00,2026-03-27T04:26:32.103868+00:00,false
+ufc-fight-night-march-28-2026,Mar 28 2026,Ignacio Bahamondes,Tofiq Musayev,fanduel,2026-03-28T07:00:00+00:00,2026-03-28T00:03:30.390415+00:00,2026-03-28T00:03:30.390478+00:00,false
+ufc-fight-night-march-28-2026,Mar 28 2026,Chase Hooper,Lance Gibson Jr.,fanduel,2026-03-28T07:00:00+00:00,2026-03-28T00:03:30.345572+00:00,2026-03-28T00:03:30.345658+00:00,false
+ufc-fight-night-march-28-2026,Mar 28 2026,Marcin Tybura,Tyrell Fortune,fanduel,2026-03-28T07:00:00+00:00,2026-03-28T00:03:30.387466+00:00,2026-03-28T00:03:30.387563+00:00,false
+ufc-fight-night-march-28-2026,Mar 28 2026,Navajo Stirling,Bruno Lopes,fanduel,2026-03-28T07:00:00+00:00,2026-03-27T04:26:32.068952+00:00,2026-03-28T00:03:30.323181+00:00,false
+ufc-fight-night-april-04-2026,Apr 04 2026,Renato Moicano,Chris Duncan,fanduel,2026-04-04T07:00:00+00:00,2026-04-04T04:02:07.470778+00:00,2026-04-04T04:02:07.470830+00:00,false
+ufc-fight-night-april-04-2026,Apr 04 2026,Abdul Rakhman Yakhyaev,Brendson Ribeiro,fanduel,2026-04-04T07:00:00+00:00,2026-04-04T04:02:07.509879+00:00,2026-04-04T04:02:07.509932+00:00,false
+ufc-fight-night-april-04-2026,Apr 04 2026,Ethyn Ewing,Rafael Estevam,fanduel,2026-04-04T07:00:00+00:00,2026-04-04T04:02:07.449274+00:00,2026-04-04T04:02:07.449199+00:00,false
+ufc-fight-night-april-04-2026,Apr 04 2026,Tommy McMillen,Manolo Zecchini,fanduel,2026-04-04T07:00:00+00:00,2026-04-04T04:02:07.489229+00:00,2026-04-04T04:02:07.489282+00:00,false
+ufc-fight-night-april-04-2026,Apr 04 2026,Jose Delano,Robert Ruchala,fanduel,2026-04-04T07:00:00+00:00,2026-04-04T04:02:07.480065+00:00,2026-04-04T04:02:07.480117+00:00,false
+ufc-fight-night-april-04-2026,Apr 04 2026,Guilherme Pat,Thomas Petersen,fanduel,2026-04-04T07:00:00+00:00,2026-04-03T00:04:00.974821+00:00,2026-04-04T00:02:18.278009+00:00,false
+ufc-fight-night-april-04-2026,Apr 04 2026,Alessandro Costa,Stewart Nicoll,fanduel,2026-04-04T07:00:00+00:00,2026-04-03T00:04:00.994247+00:00,2026-04-04T00:02:18.369986+00:00,false
+ufc-fight-night-april-04-2026,Apr 04 2026,Lando Vannata,Darrius Flowers,fanduel,2026-04-04T07:00:00+00:00,2026-04-04T00:02:18.350941+00:00,2026-04-04T00:02:18.351046+00:00,false
+ufc-fight-night-april-04-2026,Apr 04 2026,Azamat Bekoev,Tresean Gore,fanduel,2026-04-04T07:00:00+00:00,2026-04-03T00:04:00.956359+00:00,2026-04-04T00:02:18.205649+00:00,false
+ufc-fight-night-april-04-2026,Apr 04 2026,Kai Kamaka III,Dakota Hope,fanduel,2026-04-04T07:00:00+00:00,2026-04-04T00:02:18.195021+00:00,2026-04-04T00:02:18.195129+00:00,false
+ufc-327,Apr 11 2026,Jiri Prochazka,Carlos Ulberg,fanduel,2026-04-11T22:30:00+00:00,2026-04-11T04:03:00.865669+00:00,2026-04-11T04:03:00.865742+00:00,false
+ufc-327,Apr 11 2026,Azamat Murzakanov,Paulo Costa,fanduel,2026-04-11T22:30:00+00:00,2026-04-11T04:03:00.825818+00:00,2026-04-11T04:03:00.825871+00:00,false
+ufc-327,Apr 11 2026,Curtis Blaydes,Josh Hokit,fanduel,2026-04-11T22:30:00+00:00,2026-04-11T16:06:14.705696+00:00,2026-04-11T16:06:14.705878+00:00,false
+ufc-327,Apr 11 2026,Dominick Reyes,Johnny Walker,fanduel,2026-04-11T22:30:00+00:00,2026-04-11T20:08:38.938475+00:00,2026-04-11T20:08:38.938549+00:00,false
+ufc-327,Apr 11 2026,Cub Swanson,Nate Landwehr,fanduel,2026-04-11T22:30:00+00:00,2026-04-11T12:03:43.649315+00:00,2026-04-11T12:03:43.649368+00:00,false
+ufc-327,Apr 11 2026,Patricio Pitbull,Aaron Pico,fanduel,2026-04-11T22:30:00+00:00,2026-04-11T20:08:38.940179+00:00,2026-04-11T20:08:38.940235+00:00,false
+ufc-327,Apr 11 2026,Kevin Holland,Randy Brown,fanduel,2026-04-11T22:30:00+00:00,2026-04-11T20:08:38.964120+00:00,2026-04-11T20:08:38.964171+00:00,false
+ufc-327,Apr 11 2026,Mateusz Gamrot,Esteban Ribovics,fanduel,2026-04-11T22:30:00+00:00,2026-04-11T16:06:14.724617+00:00,2026-04-11T16:06:14.724738+00:00,false
+ufc-327,Apr 11 2026,Kelvin Gastelum,Vicente Luque,fanduel,2026-04-11T22:30:00+00:00,2026-04-11T00:02:56.254578+00:00,2026-04-11T00:02:56.254631+00:00,false
+ufc-327,Apr 11 2026,Charles Radtke,Francisco Prado,fanduel,2026-04-11T22:30:00+00:00,2026-04-11T00:02:56.239717+00:00,2026-04-11T00:02:56.239824+00:00,false
+ufc-fight-night-april-18-2026,Apr 18 2026,Gilbert Burns,Mike Malott,fanduel,2026-04-18T22:00:00+00:00,2026-04-18T16:06:14.209981+00:00,2026-04-18T16:06:14.210062+00:00,false
+ufc-fight-night-april-18-2026,Apr 18 2026,Kyler Phillips,Charles Jourdain,fanduel,2026-04-18T22:00:00+00:00,2026-04-18T16:06:14.202629+00:00,2026-04-18T16:06:14.202723+00:00,false
+ufc-fight-night-april-18-2026,Apr 18 2026,Mandel Nallo,Jai Herbert,fanduel,2026-04-18T22:00:00+00:00,2026-04-18T16:06:14.232616+00:00,2026-04-18T16:06:14.232689+00:00,false
+ufc-fight-night-april-18-2026,Apr 18 2026,Thiago Moises,Gauge Young,fanduel,2026-04-18T22:00:00+00:00,2026-04-18T20:13:03.633480+00:00,2026-04-18T20:13:03.633542+00:00,false
+ufc-fight-night-april-18-2026,Apr 18 2026,Dennis Buzukja,Marcio Barbosa,fanduel,2026-04-18T22:00:00+00:00,2026-04-18T08:03:45.799323+00:00,2026-04-18T08:03:45.799374+00:00,false
+ufc-fight-night-april-18-2026,Apr 18 2026,Julien Leblanc,Robert Valentin,fanduel,2026-04-18T22:00:00+00:00,2026-04-18T20:13:03.627988+00:00,2026-04-18T20:13:03.628098+00:00,false
+ufc-fight-night-april-18-2026,Apr 18 2026,Tanner Boser,Gokhan Saricam,fanduel,2026-04-18T22:00:00+00:00,2026-04-18T16:06:14.191732+00:00,2026-04-18T16:06:14.191801+00:00,false
+ufc-fight-night-april-18-2026,Apr 18 2026,Jamie Siraj,John Yannis,fanduel,2026-04-18T22:00:00+00:00,2026-04-18T00:02:41.372558+00:00,2026-04-18T00:02:41.372614+00:00,false
+ufc-fight-night-april-25-2026,Apr 25 2026,Aljamain Sterling,Youssef Zalal,fanduel,2026-04-25T22:00:00+00:00,2026-04-25T04:01:55.829981+00:00,2026-04-25T04:01:55.830062+00:00,false
+ufc-fight-night-april-25-2026,Apr 25 2026,Rafa Garcia,Alexander Hernandez,fanduel,2026-04-25T22:00:00+00:00,2026-04-25T20:01:48.851077+00:00,2026-04-25T20:01:48.851135+00:00,false
+ufc-fight-night-april-25-2026,Apr 25 2026,Davey Grant,Adrian Luna Martinetti,fanduel,2026-04-25T22:00:00+00:00,2026-04-25T04:01:55.819819+00:00,2026-04-25T04:01:55.819896+00:00,false
+ufc-fight-night-april-25-2026,Apr 25 2026,Montel Jackson,Raoni Barcelos,fanduel,2026-04-25T22:00:00+00:00,2026-04-25T20:01:48.874134+00:00,2026-04-25T20:01:48.874079+00:00,false
+ufc-fight-night-april-25-2026,Apr 25 2026,Marcus Buchecha,Ryan Spann,fanduel,2026-04-25T22:00:00+00:00,2026-04-25T20:01:48.813926+00:00,2026-04-25T20:01:48.813996+00:00,false
+ufc-fight-night-april-25-2026,Apr 25 2026,Rodolfo Vieira,Eric McConico,fanduel,2026-04-25T22:00:00+00:00,2026-04-25T04:01:55.798623+00:00,2026-04-25T04:01:55.798731+00:00,false
+ufc-fight-night-april-25-2026,Apr 25 2026,Jackson McVey,Sedriques Dumas,fanduel,2026-04-25T22:00:00+00:00,2026-04-25T00:03:49.314280+00:00,2026-04-25T00:03:49.314196+00:00,false
+ufc-fight-night-april-25-2026,Apr 25 2026,Jafel Filho,Cody Durden,fanduel,2026-04-25T22:00:00+00:00,2026-04-24T00:18:08.069065+00:00,2026-04-25T00:03:49.330657+00:00,false
+ufc-fight-night-april-25-2026,Apr 25 2026,Francis Marshall,Lucas Brennan,fanduel,2026-04-25T22:00:00+00:00,2026-04-25T00:03:49.424622+00:00,2026-04-25T00:03:49.424722+00:00,false
+ufc-fight-night-april-25-2026,Apr 25 2026,Max Griffin,Victor Valenzuela,fanduel,2026-04-25T22:00:00+00:00,2026-04-25T20:01:48.826658+00:00,2026-04-25T20:01:48.826702+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Jack Della Maddalena,Carlos Prates,fanduel,2026-05-02T07:00:00+00:00,2026-05-01T16:08:55.507840+00:00,2026-05-01T16:08:55.507892+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Beneil Dariush,Quillan Salkilld,fanduel,2026-05-02T07:00:00+00:00,2026-05-02T04:04:19.518931+00:00,2026-05-02T04:04:19.519018+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Tim Elliott,Steve Erceg,fanduel,2026-05-02T07:00:00+00:00,2026-05-02T04:04:19.513024+00:00,2026-05-02T04:04:19.513105+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Marwan Rahiki,Ollie Schmid,fanduel,2026-05-02T07:00:00+00:00,2026-05-02T04:04:19.493150+00:00,2026-05-02T04:04:19.493265+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Shamil Gaziev,Brando Pericic,fanduel,2026-05-02T07:00:00+00:00,2026-05-02T04:04:19.532946+00:00,2026-05-02T04:04:19.533026+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Tai Tuivasa,Louie Sutherland,fanduel,2026-05-02T07:00:00+00:00,2026-05-01T12:09:06.976329+00:00,2026-05-01T12:09:06.976388+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Cam Rowston,Robert Bryczek,fanduel,2026-05-02T07:00:00+00:00,2026-05-01T12:09:06.985440+00:00,2026-05-01T12:09:06.985501+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Junior Tafa,Kevin Christian,fanduel,2026-05-02T07:00:00+00:00,2026-05-01T12:09:06.957157+00:00,2026-05-01T12:09:06.957277+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Jacob Malkoun,Gerald Meerschaert,fanduel,2026-05-02T07:00:00+00:00,2026-05-01T12:09:06.949522+00:00,2026-05-01T12:09:06.949614+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Colby Thicknesse,Vince Morales,fanduel,2026-05-02T07:00:00+00:00,2026-05-01T12:09:07.042416+00:00,2026-05-02T04:04:19.623490+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Ben Johnston,Wes Schultz,fanduel,2026-05-02T07:00:00+00:00,2026-05-02T00:01:48.638575+00:00,2026-05-02T00:01:48.638503+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Jonathan Micallef,Themba Gorimbo,fanduel,2026-05-02T07:00:00+00:00,2026-05-02T00:01:48.674076+00:00,2026-05-02T00:01:48.674129+00:00,false
+ufc-fight-night-may-02-2026,May 02 2026,Dom Mar Fan,Kody Steele,fanduel,2026-05-02T07:00:00+00:00,2026-05-02T04:04:19.643503+00:00,2026-05-02T04:04:19.643417+00:00,false
+ufc-328,May 09 2026,Khamzat Chimaev,Sean Strickland,fanduel,2026-05-09T07:00:00+00:00,2026-05-09T04:02:45.878412+00:00,2026-05-08T16:06:20.033767+00:00,false
+ufc-328,May 09 2026,Joshua Van,Tatsuro Taira,fanduel,2026-05-09T07:00:00+00:00,2026-05-09T04:02:45.710653+00:00,2026-05-09T04:02:45.710805+00:00,false
+ufc-328,May 09 2026,Alexander Volkov,Waldo Cortes Acosta,fanduel,2026-05-09T07:00:00+00:00,2026-05-09T04:02:45.819513+00:00,2026-05-09T04:02:45.819595+00:00,false
+ufc-328,May 09 2026,Sean Brady,Joaquin Buckley,fanduel,2026-05-09T07:00:00+00:00,2026-05-09T04:02:45.807730+00:00,2026-05-09T04:02:45.807810+00:00,false
+ufc-328,May 09 2026,Ateba Gautier,Ozzy Diaz,fanduel,2026-05-09T07:00:00+00:00,2026-05-09T04:02:45.684823+00:00,2026-05-09T04:02:45.684891+00:00,false
+ufc-328,May 09 2026,Joel Alvarez,Yaroslav Amosov,fanduel,2026-05-09T07:00:00+00:00,2026-05-09T04:02:45.721624+00:00,2026-05-09T04:02:45.721710+00:00,false
+ufc-328,May 09 2026,Grant Dawson,Mateusz Rebecki,fanduel,2026-05-09T07:00:00+00:00,2026-05-09T04:02:45.760970+00:00,2026-05-09T04:02:45.761102+00:00,false
+ufc-328,May 09 2026,Jim Miller,Jared Gordon,fanduel,2026-05-09T07:00:00+00:00,2026-05-08T20:11:50.497488+00:00,2026-05-09T04:02:45.746538+00:00,false
+ufc-328,May 09 2026,Roman Kopylov,Marco Tulio,fanduel,2026-05-09T07:00:00+00:00,2026-05-09T04:02:45.595922+00:00,2026-05-09T04:02:45.599107+00:00,false
+ufc-328,May 09 2026,Pat Sabatini,William Gomis,fanduel,2026-05-09T07:00:00+00:00,2026-05-09T04:02:45.691392+00:00,2026-05-09T04:02:45.691461+00:00,false
+ufc-328,May 09 2026,Baisangur Susurkaev,Djorden Santos,fanduel,2026-05-09T07:00:00+00:00,2026-05-09T04:02:45.611857+00:00,2026-05-09T04:02:45.611919+00:00,false
+ufc-328,May 09 2026,Clayton Carpenter,Jose Ochoa,fanduel,2026-05-09T07:00:00+00:00,2026-05-08T00:06:43.520498+00:00,2026-05-09T04:02:45.636523+00:00,false
+ufc-fight-night-may-16-2026,May 16 2026,Arnold Allen,Melquizael Costa,fanduel,2026-05-16T22:00:00+00:00,2026-05-16T04:02:50.322679+00:00,2026-05-16T04:02:50.322747+00:00,false
+ufc-fight-night-may-16-2026,May 16 2026,Dooho Choi,Daniel Santos,fanduel,2026-05-16T22:00:00+00:00,2026-05-16T16:02:22.011385+00:00,2026-05-16T16:02:22.011561+00:00,false
+ufc-fight-night-may-16-2026,May 16 2026,Malcolm Wellmaker,Juan Diaz,fanduel,2026-05-16T22:00:00+00:00,2026-05-16T20:01:27.147004+00:00,2026-05-16T20:01:27.147067+00:00,false
+ufc-fight-night-may-16-2026,May 16 2026,Modestas Bukauskas,Christian Edwards,fanduel,2026-05-16T22:00:00+00:00,2026-05-16T04:02:50.390999+00:00,2026-05-16T04:02:50.391058+00:00,false
+ufc-fight-night-may-16-2026,May 16 2026,Timmy Cuamba,Benardo Sopaj,fanduel,2026-05-16T22:00:00+00:00,2026-05-16T04:02:50.342315+00:00,2026-05-15T12:08:50.993038+00:00,false
+ufc-fight-night-may-16-2026,May 16 2026,Nikolay Veretennikov,Khaos Williams,fanduel,2026-05-16T22:00:00+00:00,2026-05-16T04:02:50.362646+00:00,2026-05-16T04:02:50.362721+00:00,false
+ufc-fight-night-may-16-2026,May 16 2026,Tuco Tokkos,Ivan Erslan,fanduel,2026-05-16T22:00:00+00:00,2026-05-16T00:03:30.383099+00:00,2026-05-16T00:03:30.383170+00:00,false
+ufc-fight-night-may-16-2026,May 16 2026,Tommy Gantt,Artur Minev,fanduel,2026-05-16T22:00:00+00:00,2026-05-16T00:03:30.447998+00:00,2026-05-16T00:03:30.448064+00:00,false
+ufc-fight-night-may-16-2026,May 16 2026,Cody Brundage,Andre Petroski,fanduel,2026-05-16T22:00:00+00:00,2026-05-16T20:01:27.226063+00:00,2026-05-16T20:01:27.225993+00:00,false
+ufc-fight-night-may-16-2026,May 16 2026,Daniel Barez,Luis Gurule,fanduel,2026-05-16T22:00:00+00:00,2026-05-16T20:01:27.105298+00:00,2026-05-16T20:01:27.105414+00:00,false
+ufc-fight-night-may-30-2026,May 30 2026,Song Yadong,Deiveson Figueiredo,kalshi,2026-05-30T09:00:00+00:00,2026-05-30T01:00:18.274368+00:00,2026-05-30T08:59:23.590924+00:00,true
+ufc-fight-night-may-30-2026,May 30 2026,Zhang Mingyang,Alonzo Menifield,kalshi,2026-05-30T09:00:00+00:00,2026-05-29T17:49:34.569155+00:00,2026-05-29T22:24:56.746622+00:00,true
+ufc-fight-night-may-30-2026,May 30 2026,Sergei Pavlovich,Tallison Teixeira,kalshi,2026-05-30T09:00:00+00:00,2026-05-30T03:30:27.224569+00:00,2026-05-30T07:59:12.159516+00:00,true
+ufc-fight-night-may-30-2026,May 30 2026,Kai Asakura,Cameron Smotherman,kalshi,2026-05-30T09:00:00+00:00,2026-05-29T03:09:22.470641+00:00,2026-05-30T08:24:36.516696+00:00,true
+ufc-fight-night-may-30-2026,May 30 2026,Jake Matthews,Carlston Harris,kalshi,2026-05-30T09:00:00+00:00,2026-05-30T08:49:10.933960+00:00,2026-05-30T07:59:12.214583+00:00,true
+ufc-fight-night-may-30-2026,May 30 2026,YiSak Lee,Luis Felipe Dias,kalshi,2026-05-30T09:00:00+00:00,2026-05-30T08:29:26.956995+00:00,2026-05-30T08:14:16.255489+00:00,true
+ufc-fight-night-may-30-2026,May 30 2026,Ding Meng,Jose Souza,kalshi,2026-05-30T09:00:00+00:00,2026-05-30T05:20:53.293904+00:00,2026-05-30T02:30:17.992003+00:00,true
+ufc-fight-night-may-30-2026,May 30 2026,Aoriqileng,Cody Haddon,kalshi,2026-05-30T09:00:00+00:00,2026-05-30T04:05:00.120220+00:00,2026-05-30T08:44:31.376220+00:00,true
+ufc-fight-night-may-30-2026,May 30 2026,Rei Tsuruya,Luis Gurule,kalshi,2026-05-30T09:00:00+00:00,2026-05-30T08:44:31.456678+00:00,2026-05-30T08:54:25.198464+00:00,true
+ufc-fight-night-may-30-2026,May 30 2026,Zhu Kangjie,Rodrigo Vera,kalshi,2026-05-30T09:00:00+00:00,2026-05-30T08:24:36.601739+00:00,2026-05-30T08:24:36.601840+00:00,true
+ufc-fight-night-june-06-2026,Jun 06 2026,Belal Muhammad,Gabriel Bonfim,kalshi,2026-06-06T22:00:00+00:00,2026-06-06T06:34:16.521417+00:00,2026-06-06T06:29:20.844200+00:00,true
+ufc-fight-night-june-06-2026,Jun 06 2026,Brendan Allen,Edmen Shahbazyan,kalshi,2026-06-06T22:00:00+00:00,2026-06-06T21:44:45.990472+00:00,2026-06-06T13:54:37.757116+00:00,true
+ufc-fight-night-june-06-2026,Jun 06 2026,Fares Ziam,Tom Nolan,kalshi,2026-06-06T22:00:00+00:00,2026-06-06T20:44:32.523145+00:00,2026-06-06T14:59:30.747516+00:00,true
+ufc-fight-night-june-06-2026,Jun 06 2026,Bryce Mitchell,Santiago Luna,kalshi,2026-06-06T22:00:00+00:00,2026-06-06T20:19:28.362126+00:00,2026-06-06T21:35:05.671790+00:00,true
+ufc-fight-night-june-06-2026,Jun 06 2026,Iwo Baraniewski,Junior Tafa,kalshi,2026-06-06T22:00:00+00:00,2026-06-06T20:54:47.323912+00:00,2026-06-06T15:19:34.599120+00:00,true
+ufc-fight-night-june-06-2026,Jun 06 2026,Matt Schnell,Alessandro Costa,kalshi,2026-06-06T22:00:00+00:00,2026-06-06T18:54:47.477603+00:00,2026-06-06T19:14:25.540001+00:00,true
+ufc-fight-night-june-06-2026,Jun 06 2026,Marcus McGhee,John Yannis,kalshi,2026-06-06T22:00:00+00:00,2026-06-06T21:29:39.384061+00:00,2026-06-06T18:04:32.233966+00:00,true
+ufc-fight-night-june-06-2026,Jun 06 2026,Bruno Silva,Edgar Chairez,kalshi,2026-06-06T22:00:00+00:00,2026-06-06T21:59:44.547204+00:00,2026-06-06T09:19:15.769065+00:00,true
+ufc-fight-night-june-06-2026,Jun 06 2026,Jordan Leavitt,Joanderson Brito,kalshi,2026-06-06T22:00:00+00:00,2026-06-06T21:59:44.551576+00:00,2026-06-06T21:59:44.551654+00:00,true
+ufc-fight-night-june-14-2026,Jun 14 2026,Ilia Topuria,Justin Gaethje,kalshi,2026-06-15T01:00:00+00:00,2026-06-14T13:35:48.558042+00:00,2026-06-14T09:35:25.663144+00:00,true
+ufc-fight-night-june-14-2026,Jun 14 2026,Alex Pereira,Ciryl Gane,kalshi,2026-06-15T01:00:00+00:00,2026-06-14T21:25:41.487166+00:00,2026-06-14T22:06:14.983567+00:00,true
+ufc-fight-night-june-14-2026,Jun 14 2026,Sean O'Malley,Aiemann Zahabi,kalshi,2026-06-15T01:00:00+00:00,2026-06-15T00:31:24.753902+00:00,2026-06-15T00:26:03.548950+00:00,true
+ufc-fight-night-june-14-2026,Jun 14 2026,Josh Hokit,Derrick Lewis,kalshi,2026-06-15T01:00:00+00:00,2026-06-14T22:00:59.192619+00:00,2026-06-15T00:46:03.481069+00:00,true
+ufc-fight-night-june-14-2026,Jun 14 2026,Mauricio Ruffy,Michael Chandler,kalshi,2026-06-15T01:00:00+00:00,2026-06-15T00:46:03.484671+00:00,2026-06-14T21:16:52.510597+00:00,true
+ufc-fight-night-june-14-2026,Jun 14 2026,Bo Nickal,Kyle Daukaus,kalshi,2026-06-15T01:00:00+00:00,2026-06-14T22:56:24.399591+00:00,2026-06-14T23:51:21.583294+00:00,true
+ufc-fight-night-june-14-2026,Jun 14 2026,Diego Lopes,Steve Garcia,kalshi,2026-06-15T01:00:00+00:00,2026-06-15T00:57:19.978890+00:00,2026-06-15T00:57:19.978941+00:00,true
+ufc-fight-night-june-20-2026,Jun 20 2026,Manel Kape,Kyoji Horiguchi,kalshi,2026-06-20T22:00:00+00:00,2026-06-20T17:34:45.674617+00:00,2026-06-20T21:04:50.670524+00:00,true
+ufc-fight-night-june-20-2026,Jun 20 2026,Ion Cutelaba,Navajo Stirling,kalshi,2026-06-20T22:00:00+00:00,2026-06-20T21:59:48.964616+00:00,2026-06-20T14:49:25.980186+00:00,true
+ufc-fight-night-june-20-2026,Jun 20 2026,Hyder Amil,Christian Rodriguez,kalshi,2026-06-20T22:00:00+00:00,2026-06-20T21:59:48.968595+00:00,2026-06-20T20:39:35.784673+00:00,true
+ufc-fight-night-june-20-2026,Jun 20 2026,Melsik Baghdasaryan,Murtazali Magomedov,kalshi,2026-06-20T22:00:00+00:00,2026-06-20T21:59:48.972544+00:00,2026-06-20T21:19:34.963867+00:00,true
+ufc-fight-night-june-20-2026,Jun 20 2026,Vinicius Oliveira,Andre Fili,kalshi,2026-06-20T22:00:00+00:00,2026-06-20T19:24:36.202092+00:00,2026-06-19T18:30:59.698650+00:00,true
+ufc-fight-night-june-20-2026,Jun 20 2026,Andre Lima,Kevin Borjas,kalshi,2026-06-20T22:00:00+00:00,2026-06-20T21:49:43.135413+00:00,2026-06-20T21:49:43.135485+00:00,true
+ufc-fight-night-june-20-2026,Jun 20 2026,Allan Nascimento,Mitch Raposo,kalshi,2026-06-20T22:00:00+00:00,2026-06-20T21:44:38.543109+00:00,2026-06-20T21:04:50.688009+00:00,true
+ufc-fight-night-june-20-2026,Jun 20 2026,Gaston Bolanos,Michael Aswell Jr.,kalshi,2026-06-20T22:00:00+00:00,2026-06-20T20:24:44.411515+00:00,2026-06-20T19:24:36.195133+00:00,true
+ufc-fight-night-june-20-2026,Jun 20 2026,Leon Shahbazyan,Levan Chokheli,kalshi,2026-06-20T22:00:00+00:00,2026-06-20T21:39:48.498911+00:00,2026-06-20T21:54:37.964036+00:00,true
+ufc-fight-night-june-20-2026,Jun 20 2026,Shane Collins,Otari Tanzilovi,fanduel,2026-06-20T22:00:00+00:00,2026-06-20T04:01:26.043823+00:00,2026-06-20T04:01:26.043767+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Rafael Fiziev,Manuel Torres,kalshi,2026-06-27T14:00:00+00:00,2026-06-26T04:04:20.036959+00:00,2026-06-27T13:29:25.534461+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Shara Magomedov,Michel Pereira,kalshi,2026-06-27T14:00:00+00:00,2026-06-27T05:16:43.328248+00:00,2026-06-27T13:39:15.496024+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Nazim Sadykhov,Matheus Camilo,kalshi,2026-06-27T14:00:00+00:00,2026-06-27T11:39:20.502340+00:00,2026-06-27T12:29:23.739380+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Asu Almabayev,Charles Johnson,kalshi,2026-06-27T14:00:00+00:00,2026-06-27T10:39:23.933345+00:00,2026-06-27T11:54:26.901563+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Ikram Aliskerov,Brunno Ferreira,kalshi,2026-06-27T14:00:00+00:00,2026-06-27T13:44:17.567702+00:00,2026-06-26T20:55:32.902638+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Abus Magomedov,Michal Oleksiejczuk,kalshi,2026-06-27T14:00:00+00:00,2026-06-27T13:34:33.010928+00:00,2026-06-27T13:49:20.904554+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Farman Hasanov,Eric Nolan,kalshi,2026-06-27T14:00:00+00:00,2026-06-27T13:09:26.016717+00:00,2026-06-27T13:59:26.885786+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Abdul Rakhman Yakhyaev,Julius Walker,kalshi,2026-06-27T14:00:00+00:00,2026-06-27T13:39:15.512945+00:00,2026-06-27T13:49:20.925640+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Nursulton Ruziboev,Andrey Pulyaev,kalshi,2026-06-27T14:00:00+00:00,2026-06-27T12:44:28.897841+00:00,2026-06-27T13:14:16.766199+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Kaan Ofli,Javier Reyes,kalshi,2026-06-27T14:00:00+00:00,2026-06-27T09:44:31.660591+00:00,2026-06-27T13:59:26.897862+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Daniil Donchenko,Theodor Berggren,kalshi,2026-06-27T14:00:00+00:00,2026-06-27T13:49:20.962254+00:00,2026-06-27T13:49:20.962337+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Bekzat Almakhan,Jean Matsumoto,kalshi,2026-06-27T14:00:00+00:00,2026-06-27T13:59:26.905122+00:00,2026-06-27T13:59:26.905173+00:00,true
+ufc-fight-night-june-27-2026,Jun 27 2026,Tahir Abdullayev,Jefferson Nascimento,kalshi,2026-06-27T14:00:00+00:00,2026-06-27T13:29:25.571796+00:00,2026-06-27T13:29:25.571882+00:00,true
+ufc-329,Jul 11 2026,Conor McGregor,Max Holloway,kalshi,2026-07-11T22:00:00+00:00,2026-07-11T20:39:25.927777+00:00,2026-07-11T21:39:26.781749+00:00,true
+ufc-329,Jul 11 2026,Benoit Saint Denis,Paddy Pimblett,kalshi,2026-07-11T22:00:00+00:00,2026-07-11T18:14:11.082820+00:00,2026-07-11T17:14:15.837958+00:00,true
+ufc-329,Jul 11 2026,Cory Sandhagen,Mario Bautista,kalshi,2026-07-11T22:00:00+00:00,2026-07-11T05:39:21.668536+00:00,2026-07-11T04:44:47.776829+00:00,true
+ufc-329,Jul 11 2026,Brandon Royval,Lone'er Kavanagh,kalshi,2026-07-11T22:00:00+00:00,2026-07-11T03:44:41.910278+00:00,2026-07-11T11:14:38.037322+00:00,true
+ufc-329,Jul 11 2026,Nikita Krylov,Robert Whittaker,kalshi,2026-07-11T22:00:00+00:00,2026-07-11T21:09:18.757945+00:00,2026-07-11T21:54:16.014788+00:00,true
+ufc-329,Jul 11 2026,Gable Steveson,Elisha Ellison,kalshi,2026-07-11T22:00:00+00:00,2026-07-11T21:34:31.551337+00:00,2026-07-11T21:59:16.395647+00:00,true
+ufc-329,Jul 11 2026,Cody Garbrandt,Adrian Yanez,kalshi,2026-07-11T22:00:00+00:00,2026-07-11T20:49:08.724271+00:00,2026-07-08T00:49:30.519725+00:00,true
+ufc-329,Jul 11 2026,Luke Riley,Kai Kamaka III,kalshi,2026-07-11T22:00:00+00:00,2026-07-11T19:49:15.833896+00:00,2026-07-11T20:09:14.099818+00:00,true
+ufc-329,Jul 11 2026,Damian Pinas,Cesar Almeida,kalshi,2026-07-11T22:00:00+00:00,2026-07-11T21:49:10.570411+00:00,2026-07-11T21:49:10.570443+00:00,true
+ufc-329,Jul 11 2026,Farid Basharat,John Garza,kalshi,2026-07-11T22:00:00+00:00,2026-07-11T21:59:16.408550+00:00,2026-07-11T21:59:16.408587+00:00,true
+ufc-329,Jul 11 2026,Ryan Gandra,Zach Reese,kalshi,2026-07-11T22:00:00+00:00,2026-07-11T21:24:20.546284+00:00,2026-07-11T21:09:18.818758+00:00,true
+ufc-329,Jul 11 2026,Alessandro Costa,Cody Durden,kalshi,2026-07-11T22:00:00+00:00,2026-07-11T21:09:18.827929+00:00,2026-07-11T21:09:18.827878+00:00,true
+ufc-fight-night-july-18-2026,Jul 18 2026,Dricus Du Plessis,Kamaru Usman,kalshi,2026-07-18T22:00:00+00:00,2026-07-18T14:53:17.189262+00:00,2026-07-18T15:12:47.614496+00:00,true
+ufc-fight-night-july-18-2026,Jul 18 2026,Jared Cannonier,Christian Leroy Duncan,kalshi,2026-07-18T22:00:00+00:00,2026-07-18T19:39:14.481899+00:00,2026-07-18T19:44:27.842860+00:00,true
+ufc-fight-night-july-18-2026,Jul 18 2026,Chase Hooper,Mitch Ramirez,kalshi,2026-07-18T22:00:00+00:00,2026-07-17T21:34:17.531999+00:00,2026-07-17T19:29:58.162677+00:00,true
+ufc-fight-night-july-18-2026,Jul 18 2026,Tommy McMillen,Alberto Montes,kalshi,2026-07-18T22:00:00+00:00,2026-07-18T19:09:10.776861+00:00,2026-07-18T19:09:10.776974+00:00,true
+ufc-fight-night-july-18-2026,Jul 18 2026,Austin Bashi,Jose Delgado,kalshi,2026-07-18T22:00:00+00:00,2026-07-18T21:49:21.557806+00:00,2026-07-18T16:04:30.101161+00:00,true
+ufc-fight-night-july-18-2026,Jul 18 2026,Jean-Paul Lebosnoyani,Seokhyeon Ko,kalshi,2026-07-18T22:00:00+00:00,2026-07-18T21:34:41.255021+00:00,2026-07-18T18:09:15.210743+00:00,true
+ufc-fight-night-july-18-2026,Jul 18 2026,Levi Rodrigues Jr.,Felipe Franco,kalshi,2026-07-18T22:00:00+00:00,2026-07-18T19:49:14.673010+00:00,2026-07-18T21:44:35.970744+00:00,true
+ufc-fight-night-july-18-2026,Jul 18 2026,Ezra Elliott,Damien Anderson,kalshi,2026-07-18T22:00:00+00:00,2026-07-18T21:59:20.273293+00:00,2026-07-18T21:59:20.273246+00:00,true
+ufc-fight-night-july-18-2026,Jul 18 2026,Alden Coria,Stewart Nicoll,kalshi,2026-07-18T22:00:00+00:00,2026-07-18T21:59:20.267777+00:00,2026-07-18T21:59:20.267881+00:00,true
+ufc-fight-night-july-18-2026,Jul 18 2026,RJ Harris,Alvin Hines,kalshi,2026-07-18T22:00:00+00:00,2026-07-18T21:34:41.268071+00:00,2026-07-18T21:34:41.268121+00:00,true
+ufc-fight-night-july-25-2026,Jul 25 2026,Magomed Ankalaev,Bogdan Guskov,kalshi,2026-07-25T14:00:00+00:00,2026-07-22T23:24:41.560951+00:00,2026-07-20T23:37:32.680534+00:00,true
+ufc-fight-night-july-25-2026,Jul 25 2026,Steve Erceg,Ramazan Temirov,kalshi,2026-07-25T14:00:00+00:00,2026-07-25T13:29:41.533515+00:00,2026-07-25T13:09:59.345844+00:00,true
+ufc-fight-night-july-25-2026,Jul 25 2026,Magomed Zaynukov,Damian Rzepecki,kalshi,2026-07-25T14:00:00+00:00,2026-07-25T03:24:39.737698+00:00,2026-07-25T10:04:55.605252+00:00,true
+ufc-fight-night-july-25-2026,Jul 25 2026,Rizvan Kuniev,Tyrell Fortune,kalshi,2026-07-25T14:00:00+00:00,2026-07-25T08:34:41.475495+00:00,2026-07-25T00:24:20.835857+00:00,true
+ufc-fight-night-july-25-2026,Jul 25 2026,Abubakar Vagaev,Saygid Izagakhmaev,kalshi,2026-07-25T14:00:00+00:00,2026-07-24T14:03:49.677212+00:00,2026-07-25T13:14:44.040790+00:00,true
+ufc-fight-night-july-25-2026,Jul 25 2026,Valter Walker,Thomas Petersen,kalshi,2026-07-25T14:00:00+00:00,2026-07-21T16:04:28.681810+00:00,2026-07-23T19:20:44.700035+00:00,true
+ufc-fight-night-july-25-2026,Jul 25 2026,Dustin Jacoby,Muhammad Saidov,kalshi,2026-07-25T14:00:00+00:00,2026-07-25T06:54:37.659156+00:00,2026-07-25T12:24:41.915482+00:00,true
+ufc-fight-night-july-25-2026,Jul 25 2026,Santiago Ponzinibbio,Sam Patterson,kalshi,2026-07-25T14:00:00+00:00,2026-07-25T10:59:33.998644+00:00,2026-07-25T10:59:33.998728+00:00,true
+ufc-fight-night-july-25-2026,Jul 25 2026,Ismael Bonfim,Axel Sola,kalshi,2026-07-25T14:00:00+00:00,2026-07-24T21:54:15.613565+00:00,2026-07-24T11:27:56.498679+00:00,true
+ufc-fight-night-july-25-2026,Jul 25 2026,Magomed Tuchalov,Brendson Ribeiro,kalshi,2026-07-25T14:00:00+00:00,2026-07-25T12:34:47.483962+00:00,2026-07-25T13:25:04.130648+00:00,true
+ufc-fight-night-july-25-2026,Jul 25 2026,Nurullo Aliev,Mike Davis,kalshi,2026-07-25T14:00:00+00:00,2026-07-25T13:54:39.330918+00:00,2026-07-25T13:54:39.330975+00:00,true
+ufc-fight-night-july-25-2026,Jul 25 2026,Cody Gibson,Abdul Hussein,fanduel,2026-07-25T14:00:00+00:00,2026-07-24T20:00:59.545720+00:00,2026-07-23T16:03:37.807364+00:00,true
+ufc-fight-night-august-01-2026,Aug 01 2026,Uros Medic,Daniel Rodriguez,kalshi,2026-08-01T15:00:00+00:00,2026-07-31T05:04:47.303362+00:00,2026-07-31T05:04:47.303456+00:00,true
+ufc-fight-night-august-01-2026,Aug 01 2026,Jan Blachowicz,Navajo Stirling,kalshi,2026-08-01T15:00:00+00:00,2026-07-31T01:24:25.211154+00:00,2026-07-31T01:24:25.211248+00:00,true
+ufc-fight-night-august-01-2026,Aug 01 2026,Aleksandar Rakic,Marcin Tybura,kalshi,2026-08-01T15:00:00+00:00,2026-07-31T17:19:10.360615+00:00,2026-07-31T21:19:12.986393+00:00,true
+ufc-fight-night-august-01-2026,Aug 01 2026,Dusko Todorovic,Robert Valentin,kalshi,2026-08-01T15:00:00+00:00,2026-07-31T16:49:13.273850+00:00,2026-08-01T04:09:08.734230+00:00,true
+ufc-fight-night-august-01-2026,Aug 01 2026,Vlasto Cepo,Gilbert Urbina,kalshi,2026-08-01T15:00:00+00:00,2026-07-31T18:04:15.421149+00:00,2026-08-01T06:14:38.664418+00:00,true
+ufc-fight-night-august-01-2026,Aug 01 2026,Milos Janicic,Noah Gugnon,kalshi,2026-08-01T15:00:00+00:00,2026-08-01T14:49:19.931724+00:00,2026-08-01T14:24:30.586208+00:00,true
+ufc-fight-night-august-01-2026,Aug 01 2026,Ludovit Klein,Tofiq Musayev,kalshi,2026-08-01T15:00:00+00:00,2026-07-31T14:34:56.341671+00:00,2026-07-31T16:14:59.992310+00:00,true
+ufc-fight-night-august-01-2026,Aug 01 2026,Oban Elliott,Michael Oliveira,kalshi,2026-08-01T15:00:00+00:00,2026-08-01T07:04:41.219785+00:00,2026-08-01T04:49:36.702667+00:00,true
+ufc-fight-night-august-01-2026,Aug 01 2026,Borislav Nikolic,Mark Vologdin,kalshi,2026-08-01T15:00:00+00:00,2026-08-01T13:39:27.753017+00:00,2026-08-01T06:24:45.977732+00:00,true
+ufc-fight-night-august-01-2026,Aug 01 2026,Dennis Buzukja,Bogdan Grad,kalshi,2026-08-01T15:00:00+00:00,2026-07-31T18:24:12.275914+00:00,2026-08-01T03:44:57.317947+00:00,true
+ufc-fight-night-august-01-2026,Aug 01 2026,Mateusz Rebecki,Kyle Prepolec,kalshi,2026-08-01T15:00:00+00:00,2026-08-01T14:59:26.698893+00:00,2026-08-01T14:54:29.300660+00:00,true
+ufc-fight-night-august-01-2026,Aug 01 2026,Jovan Leka,Alexander Poppeck,kalshi,2026-08-01T15:00:00+00:00,2026-08-01T14:29:33.302104+00:00,2026-08-01T14:29:33.302195+00:00,true
+ufc-fight-night-august-08-2026,Aug 08 2026,Mateusz Gamrot,Quillan Salkilld,kalshi,2026-08-08T22:00:00+00:00,2026-08-06T04:14:35.506361+00:00,2026-08-05T01:56:54.225969+00:00,true
+ufc-fight-night-august-08-2026,Aug 08 2026,Diego Ferreira,Billy Quarantillo,kalshi,2026-08-08T22:00:00+00:00,2026-08-07T21:14:40.392584+00:00,2026-08-07T03:14:21.464847+00:00,true
+ufc-fight-night-august-08-2026,Aug 08 2026,Darren Elkins,Yadier del Valle,kalshi,2026-08-08T22:00:00+00:00,2026-08-08T05:04:43.254183+00:00,2026-08-08T05:34:32.810440+00:00,true
+ufc-fight-night-august-08-2026,Aug 08 2026,Billy Ray Goff,Ty Miller,kalshi,2026-08-08T22:00:00+00:00,2026-08-08T21:44:24.977680+00:00,2026-08-08T21:09:09.567193+00:00,true
+ufc-fight-night-august-08-2026,Aug 08 2026,Steven Asplund,Guilherme Pat,kalshi,2026-08-08T22:00:00+00:00,2026-08-08T14:44:27.329985+00:00,2026-08-08T20:59:18.121851+00:00,true
+ufc-fight-night-august-08-2026,Aug 08 2026,Diyar Nurgozhay,Bruno Lopes,kalshi,2026-08-08T22:00:00+00:00,2026-08-08T19:14:31.286721+00:00,2026-08-08T19:29:14.337779+00:00,true
+ufc-fight-night-august-08-2026,Aug 08 2026,Manoel Sousa,Richie Miranda,kalshi,2026-08-08T22:00:00+00:00,2026-08-08T21:49:07.065156+00:00,2026-08-08T20:54:14.745153+00:00,true
+ufc-fight-night-august-08-2026,Aug 08 2026,Miles Johns,Gianni Vazquez,kalshi,2026-08-08T22:00:00+00:00,2026-08-08T16:44:28.829618+00:00,2026-08-08T16:34:13.613623+00:00,true
+ufc-330,Aug 15 2026,Islam Makhachev,Ian Machado Garry,kalshi,2026-08-15T22:30:00+00:00,2026-08-15T15:54:14.926388+00:00,2026-08-15T21:54:34.664902+00:00,true
+ufc-330,Aug 15 2026,Jalin Turner,Kaue Fernandes,kalshi,2026-08-15T22:30:00+00:00,2026-08-15T12:34:28.734533+00:00,2026-08-15T16:59:20.652890+00:00,true
+ufc-330,Aug 15 2026,Mansur Abdul-Malik,Dustin Stoltzfus,kalshi,2026-08-15T22:30:00+00:00,2026-08-15T02:19:11.615852+00:00,2026-08-15T01:39:05.189497+00:00,true
+ufc-330,Aug 15 2026,Edson Barboza,Esteban Ribovics,kalshi,2026-08-15T22:30:00+00:00,2026-08-15T13:44:31.206543+00:00,2026-08-15T12:29:06.656653+00:00,true
+ufc-330,Aug 15 2026,Chidi Njokuani,Joel Alvarez,kalshi,2026-08-15T22:30:00+00:00,2026-08-15T21:49:40.170431+00:00,2026-08-13T17:29:21.750596+00:00,true
+ufc-330,Aug 15 2026,Charles Johnson,Eduardo Chapolin,kalshi,2026-08-15T22:30:00+00:00,2026-08-15T19:09:20.149769+00:00,2026-08-15T17:49:17.667114+00:00,true
+ufc-330,Aug 15 2026,Donte Johnson,Eric McConico,kalshi,2026-08-15T22:30:00+00:00,2026-08-15T17:24:35.442856+00:00,2026-08-15T22:05:02.662588+00:00,true
+ufc-330,Aug 15 2026,Vicente Luque,Tresean Gore,kalshi,2026-08-15T22:30:00+00:00,2026-08-15T17:34:27.132725+00:00,2026-08-15T17:34:27.132806+00:00,true
+ufc-330,Aug 15 2026,Rafael Tobias,Lucas Fernando,kalshi,2026-08-15T22:30:00+00:00,2026-08-15T22:29:32.583674+00:00,2026-08-15T22:29:32.583585+00:00,true
+ufc-330,Aug 15 2026,Neil Magny,Ramiz Brahimaj,kalshi,2026-08-15T22:30:00+00:00,2026-08-15T22:19:26.147590+00:00,2026-08-15T22:19:26.147671+00:00,true
+ufc-330,Aug 15 2026,Jeremiah Wells,Myktybek Orolbai,fanduel,2026-08-15T22:30:00+00:00,2026-08-15T16:01:18.335183+00:00,2026-08-15T16:01:18.335266+00:00,true
+ufc-fight-night-august-22-2026,Aug 22 2026,Anthony Hernandez,Gregory Rodrigues,kalshi,2026-08-22T22:00:00+00:00,2026-08-21T22:09:42.323926+00:00,2026-08-22T21:04:30.782297+00:00,true
+ufc-fight-night-august-22-2026,Aug 22 2026,Serghei Spivac,Vitor Petrino,kalshi,2026-08-22T22:00:00+00:00,2026-08-22T03:54:15.701011+00:00,2026-08-22T00:04:17.829636+00:00,true
+ufc-fight-night-august-22-2026,Aug 22 2026,Reinier de Ridder,Roman Dolidze,kalshi,2026-08-22T22:00:00+00:00,2026-08-22T21:54:19.760405+00:00,2026-08-22T21:54:19.760476+00:00,true
+ufc-fight-night-august-22-2026,Aug 22 2026,MarQuel Mederos,Mason Jones,kalshi,2026-08-22T22:00:00+00:00,2026-08-22T14:24:15.293334+00:00,2026-08-22T15:44:14.506447+00:00,true
+ufc-fight-night-august-22-2026,Aug 22 2026,Anthony Wint,Terrance Chatman,kalshi,2026-08-22T22:00:00+00:00,2026-08-22T21:54:19.732740+00:00,2026-08-22T21:54:19.732669+00:00,true
+ufc-fight-night-august-22-2026,Aug 22 2026,Jamall Emmers,Lerryan Douglas,kalshi,2026-08-22T22:00:00+00:00,2026-08-21T21:07:11.970026+00:00,2026-08-20T12:29:20.408340+00:00,true
+ufc-fight-night-august-22-2026,Aug 22 2026,Kennedy Nzechukwu,Shamil Gaziev,kalshi,2026-08-22T22:00:00+00:00,2026-08-22T14:45:09.753870+00:00,2026-08-22T16:24:35.095111+00:00,true
+ufc-fight-night-august-22-2026,Aug 22 2026,Chris Padilla,Nasrat Haqparast,kalshi,2026-08-22T22:00:00+00:00,2026-08-22T21:14:17.780134+00:00,2026-08-22T20:39:49.489243+00:00,true
+ufc-fight-night-august-22-2026,Aug 22 2026,Marcio Barbosa,Ryan Kuse,kalshi,2026-08-22T22:00:00+00:00,2026-08-22T09:24:44.763434+00:00,2026-08-22T06:39:21.606445+00:00,true
+ufc-fight-night-august-22-2026,Aug 22 2026,Gauge Young,Stan Dorsainvil,kalshi,2026-08-22T22:00:00+00:00,2026-08-22T21:59:40.657390+00:00,2026-08-22T21:59:40.657534+00:00,true
+ufc-fight-night-august-22-2026,Aug 22 2026,Wes Schultz,Jackson McVey,kalshi,2026-08-22T22:00:00+00:00,2026-08-22T21:39:30.890811+00:00,2026-08-22T21:39:30.890889+00:00,true
+ufc-fight-night-august-29-2026,Aug 29 2026,Umar Nurmagomedov,Song Yadong,kalshi,2026-08-29T08:00:00+00:00,2026-08-28T22:44:43.675022+00:00,2026-08-28T23:19:42.177486+00:00,true
+ufc-fight-night-august-29-2026,Aug 29 2026,Aoriqileng,Kai Asakura,kalshi,2026-08-29T08:00:00+00:00,2026-08-29T07:09:13.749271+00:00,2026-08-29T03:29:17.148410+00:00,true
+ufc-fight-night-august-29-2026,Aug 29 2026,Alex Perez,Sumudaerji,kalshi,2026-08-29T08:00:00+00:00,2026-08-29T02:59:36.778193+00:00,2026-08-24T17:05:41.108250+00:00,true
+ufc-fight-night-august-29-2026,Aug 29 2026,Liu Ce,Levi Rodrigues Jr.,kalshi,2026-08-29T08:00:00+00:00,2026-08-29T03:49:32.722773+00:00,2026-08-29T05:57:48.776429+00:00,true
+ufc-fight-night-august-29-2026,Aug 29 2026,Bilal Hasan,Nilson Rojas,kalshi,2026-08-29T08:00:00+00:00,2026-08-29T00:59:25.065057+00:00,2026-08-29T06:29:14.461568+00:00,true
+ufc-fight-night-august-29-2026,Aug 29 2026,Namsrai Batbayar,Andre Lima,kalshi,2026-08-29T08:00:00+00:00,2026-08-27T14:10:06.562654+00:00,2026-08-24T20:39:26.864511+00:00,true
+ufc-fight-night-august-29-2026,Aug 29 2026,Rei Tsuruya,Kevin Borjas,kalshi,2026-08-29T08:00:00+00:00,2026-08-29T04:09:14.744033+00:00,2026-08-29T07:14:30.127176+00:00,true
+ufc-fight-night-august-29-2026,Aug 29 2026,Jack Jenkins,Sean Woodson,kalshi,2026-08-29T08:00:00+00:00,2026-08-28T22:04:41.861245+00:00,2026-08-29T03:54:42.695741+00:00,true
+ufc-fight-night-august-29-2026,Aug 29 2026,Xiao Long,Francesco Nuzzi,kalshi,2026-08-29T08:00:00+00:00,2026-08-28T23:34:50.618904+00:00,2026-08-26T16:55:31.509139+00:00,true
+ufc-fight-night-august-29-2026,Aug 29 2026,Lawrence Lui,Hector Santiago,kalshi,2026-08-29T08:00:00+00:00,2026-08-29T07:39:13.668084+00:00,2026-08-29T07:54:10.627585+00:00,true
+ufc-fight-night-august-29-2026,Aug 29 2026,Ding Meng,Cam Nelson,kalshi,2026-08-29T08:00:00+00:00,2026-08-29T07:29:18.509614+00:00,2026-08-29T07:29:18.509721+00:00,true
