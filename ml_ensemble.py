@@ -210,13 +210,63 @@ for t in completed:
         break
 
 models = []
-for t in top_trials:
+for i, t in enumerate(top_trials):
     member_params = dict(t.params)
     member_params['n_estimators'] = t.user_attrs['best_iteration']
+    # distinct seed per member: with LightGBM's fixed default seed the five
+    # members' bagging/feature subsamples are identical draws, so near-clone
+    # params produce near-clone predictions and averaging removes no variance
+    member_params['random_state'] = seed + i
     print(f"ensemble member: cv_logloss={t.value:.4f} params={member_params}")
     model = lgb.LGBMClassifier(**member_params)
     model.fit(X_train_extended, y_train_extended)
     models.append(model)
+
+# ---- temperature calibration on pooled out-of-fold predictions ----
+# logit(q) = a * logit(p): no intercept, so calibrated corner probabilities stay
+# complementary under the Red/Blue swap, and a = 1 is the identity. Fit on OOF
+# predictions so the calibrator never scores a fight its models trained on.
+# (Full beta calibration was rejected: an intercept or a != b breaks the swap
+# invariant — predictions would depend on which corner ordering was fed in.)
+from scipy.optimize import minimize_scalar
+import joblib
+
+oof_splits = TimeSeriesSplit(n_splits=5)
+oof_probs, oof_labels = [], []
+for fold_train, fold_val in oof_splits.split(X_train):
+    X_fold, y_fold = X_train.iloc[fold_train], y_train.iloc[fold_train]
+    # augment within the fold exactly as the final members are trained
+    X_fold_swapped = X_fold.rename(columns=swap_columns)
+    for column in X_fold.columns:
+        if "oppdiff" in column:
+            X_fold_swapped[column] = X_fold[column] * -1
+    X_fold_ext = pd.concat([X_fold, X_fold_swapped], ignore_index=True)
+    y_fold_ext = pd.concat([y_fold, y_fold.apply(lambda v: 0 if v == 1 else 1)],
+                           ignore_index=True)
+    fold_member_probs = []
+    for t in top_trials:
+        fold_params = dict(t.params)
+        fold_params['n_estimators'] = t.user_attrs['best_iteration']
+        fold_params['random_state'] = seed
+        fold_model = lgb.LGBMClassifier(**fold_params)
+        fold_model.fit(X_fold_ext, y_fold_ext)
+        fold_member_probs.append(fold_model.predict_proba(X_train.iloc[fold_val])[:, 1])
+    oof_probs.append(np.mean(fold_member_probs, axis=0))
+    oof_labels.append(y_train.iloc[fold_val].to_numpy())
+
+oof_probs = np.clip(np.concatenate(oof_probs), 1e-6, 1 - 1e-6)
+oof_labels = np.concatenate(oof_labels)
+oof_logits = np.log(oof_probs / (1 - oof_probs))
+
+def oof_nll(a):
+    q = np.clip(1.0 / (1.0 + np.exp(-a * oof_logits)), 1e-9, 1 - 1e-9)
+    return -np.mean(oof_labels * np.log(q) + (1 - oof_labels) * np.log(1 - q))
+
+temperature = float(minimize_scalar(oof_nll, bounds=(0.25, 4.0), method='bounded').x)
+print(f"temperature calibrator: a={temperature:.3f} (identity=1.0), "
+      f"OOF logloss {oof_nll(1.0):.4f} -> {oof_nll(temperature):.4f} on {len(oof_labels)} fights")
+os.makedirs('saved_preprocessing', exist_ok=True)
+joblib.dump({'a': temperature}, os.path.join('saved_preprocessing', 'calibrator.joblib'))
 
 # SHAP feature-importance diagnostics — reporting only, and deliberately optional.
 # shap is not in requirements.txt, and summary_plot() blocks on render, so a
