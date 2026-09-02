@@ -2,7 +2,7 @@ services:
   - type: web
     name: ufcalpha-api
     runtime: python
-    plan: free
+    plan: starter
     buildCommand: pip install -r requirements-render.txt
     startCommand: gunicorn app:app
     envVars:
