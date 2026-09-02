@@ -15,6 +15,7 @@ CORS(app, origins=[
     "http://ufcalpha.com",
     "https://ufcalpha.com",
     "https://www.ufcalpha.com",
+    "https://ufcalpha.pages.dev",
 ])
 
 @app.route('/get_all_fighter_names', methods=['GET'])
