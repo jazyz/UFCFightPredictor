@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import FightPredictor from "./components/FightPredictor";
-import About from "./components/About";
 import Bets from "./components/Bets";
 import Testing from "./components/Testing";
 import axios from "axios";
