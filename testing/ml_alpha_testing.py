@@ -10,7 +10,6 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 from sklearn.model_selection import cross_val_score
 import numpy as np
-import optuna
 from sklearn.metrics import log_loss, brier_score_loss
 
 file_path = os.path.join("data", "detailed_fights.csv")
