@@ -12,8 +12,9 @@ app = Flask(__name__)
 CORS(app, origins=[
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "http://betufc.ca",
-    "https://betufc.ca",
+    "http://ufcalpha.com",
+    "https://ufcalpha.com",
+    "https://www.ufcalpha.com",
 ])
 
 @app.route('/get_all_fighter_names', methods=['GET'])

@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: ufcalpha-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements-render.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.6
