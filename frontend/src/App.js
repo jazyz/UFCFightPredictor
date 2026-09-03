@@ -1,48 +1,23 @@
-// App.js
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./components/Home";
-import FightPredictor from "./components/FightPredictor";
-import Bets from "./components/Bets";
-import Testing from "./components/Testing";
-import axios from "axios";
-import { baseURL } from "./constants";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import backtest from "./data/backtest.json";
+import ledger from "./data/ledger.json";
 
-const App = () => {
-  const [nameOptions, setNameOptions] = useState([""]);
-
-  // fetch all fighter names from backend
-  useEffect(() => {
-    axios
-      .get(`${baseURL}/get_all_fighter_names`)
-      .then((res) => {
-        setNameOptions(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error("Error fetching fighter names.");
-      });
-  }, []);
-
-  return (
-    <Router>
+const App = () => (
+  <Router>
+    <ScrollToTop />
+    <div className="min-h-screen bg-ground font-body text-ink">
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/about" element={<About />} /> */}
-        <Route
-          path="/predict"
-          element={<FightPredictor nameOptions={nameOptions} />}
-        />
-        <Route path="/bets" element={<Bets />} />
-        <Route path="/testing" element={<Testing />} />
+        <Route path="/" element={<Home data={backtest} ledger={ledger} />} />
       </Routes>
-      <ToastContainer />
-    </Router>
-  );
-};
+      <Footer />
+    </div>
+  </Router>
+);
 
 export default App;

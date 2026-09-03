@@ -1,44 +1,48 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { MEMBERSHIP_URL, SITE_NAME } from "../constants";
 
-const Navbar = () => {
+const LINKS = [
+  ["/results", "Results"],
+  ["/bets", "Bet log"],
+  ["/methodology", "Methodology"],
+];
+
+const linkClass = ({ isActive }) =>
+  `text-sm font-medium ${isActive ? "text-ink" : "text-ink-2 hover:text-ink"}`;
+
+export default function Navbar() {
   return (
-    <nav className="bg-gray-900 p-4">
-      <div className="container mx-auto flex items-center justify-between">
-        <div className="text-white text-2xl font-bold">
-          <Link to="/" className="hover:text-gray-300">
-            betUFC
-          </Link>
-        </div>
-        <div className="hidden md:flex space-x-4">
-          {/* <Link
-            to="/about"
-            className="text-white hover:text-gray-300 font-semibold"
+    <header className="sticky top-0 z-10 border-b border-hairline bg-ground/90 backdrop-blur">
+      <div className="mx-auto flex max-w-content items-center justify-between px-6 py-4">
+        <Link to="/" className="font-display text-2xl font-bold uppercase tracking-wide text-ink">
+          {SITE_NAME}
+        </Link>
+        <nav className="flex items-center gap-6">
+          <div className="hidden items-center gap-6 sm:flex">
+            {LINKS.map(([to, label]) => (
+              <NavLink key={to} to={to} className={linkClass}>
+                {label}
+              </NavLink>
+            ))}
+          </div>
+          <a
+            href={MEMBERSHIP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-[#f04e43]"
           >
-            About
-          </Link> */}
-          <Link
-            to="/predict"
-            className="text-white hover:text-gray-300 font-semibold"
-          >
-            Predict
-          </Link>
-          <Link
-            to="/bets"
-            className="text-white hover:text-gray-300 font-semibold"
-          >
-            Bets
-          </Link>
-          <Link
-            to="/testing"
-            className="text-white hover:text-gray-300 font-semibold"
-          >
-            Testing
-          </Link>
-        </div>
+            Get the picks
+          </a>
+        </nav>
       </div>
-    </nav>
+      <nav className="flex gap-5 px-6 pb-3 sm:hidden">
+        {LINKS.map(([to, label]) => (
+          <NavLink key={to} to={to} className={linkClass}>
+            {label}
+          </NavLink>
+        ))}
+      </nav>
+    </header>
   );
-};
-
-export default Navbar;
+}
