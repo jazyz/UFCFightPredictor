@@ -53,6 +53,14 @@ cd frontend && CI=true npx react-scripts test --watchAll=false   # Frontend test
 # then commit and push so Cloudflare Pages rebuilds.
 python testing/export_site_data.py
 git add frontend/src/data && git commit -m "Refresh site data" && git push
+
+# The export's default input, test_results/.lastyear_tier0_cache/ (one pred_YYYY-MM-DD.csv per
+# walk-forward retrain), is committed so the published numbers are reproducible. To roll the window,
+# build a new cache with testing.testing_time_period.process_dates and a train_ml that copies each
+# retrain's data/predicted_results.csv into the cache dir (testing/oos_2024_report.py shows the
+# pattern), then run the export with --cache, --start and --end.
+# Before launch, replace MEMBERSHIP_URL in frontend/src/constants.js (an inert example.com
+# placeholder) with the real Patreon or Discord invite; /join is the only page that links out to it.
 ```
 
 ### Scheduler Management (macOS launchd)
@@ -100,7 +108,8 @@ ufcstats.com → scrapers/scrape_incremental.py → data/fight_details_date.csv
 - `data/detailed_fights.csv` — feature-engineered dataset, oldest-first (full recompute each run)
 - `data/detailed_fighter_stats.csv` — per-fighter career state, read by `predict_fights_alpha.py`
 - `data/predicted_data.json` — latest predictions; served by `/get_predicted_data`
-- `data/fight_results_with_odds.csv` — historical odds, **stops at 2024-03-30**, so betting backtests cannot cover anything more recent
+- `data/fight_results_with_odds.csv` — historical closing odds through 2026-08-29; must stay sorted
+  oldest-first because the backtests walk it in file order (re-sort after any backfill)
 - `data/bet_ledger.json` — live picks written by `predict_event.py --odds`, graded by
   `auto_retrain.py`; copied into the site by `testing/export_site_data.py`
 
