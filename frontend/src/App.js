@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -22,6 +22,7 @@ const App = () => (
         <Route path="/bets" element={<Bets data={backtest} ledger={ledger} />} />
         <Route path="/methodology" element={<Methodology data={backtest} />} />
         <Route path="/join" element={<Join data={backtest} />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
     </div>

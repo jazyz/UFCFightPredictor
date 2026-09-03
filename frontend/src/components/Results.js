@@ -61,12 +61,14 @@ export default function Results({ data }) {
         <H2>No peeking</H2>
         <p className="mt-4 max-w-2xl text-ink-2">
           Every prediction comes from a model that had never seen the fight, or anything after it. The ensemble
-          trained on fights before {span.start}, then retrained on {retrains.join(" and ")} as the year
-          advanced, matching the production cadence. Hyperparameters were frozen before the window opened.
+          trained on fights before {shortDate(span.start)}, then retrained on{" "}
+          {retrains.map(shortDate).join(" and ")} as the year advanced. Production retrains twice a week, so the
+          live model is fresher than the one tested here. One hyperparameter set, tuned once on the full dataset,
+          is shared by every retrain: the walk-forward isolates training data, not hyperparameter selection.
         </p>
         <p className="mt-4 max-w-2xl text-ink-2">
           Coverage: the window had {coverage.fights_in_window} fights with recorded results. The model scored{" "}
-          {coverage.scored} of them and skipped the rest by design: women's bouts are excluded from the training
+          {coverage.scored} of them and skipped the rest, mostly by design: women's bouts are excluded from the training
           data, both fighters need at least two prior UFC fights, and draws and no contests are not graded.
           Betting uses the {coverage.with_odds} scored fights with usable closing odds, de-vigged to remove the
           bookmaker's margin.
@@ -89,7 +91,7 @@ export default function Results({ data }) {
         <p className="mt-4 max-w-2xl text-ink-2">
           Month-to-month swings ({pct(worst.hit, 0)} in {monthLabel(worst.month)} to {pct(best.hit, 0)} in {monthLabel(best.month)}) are
           what {Math.min(...monthly.map((m) => m.n))} to {Math.max(...monthly.map((m) => m.n))} fight samples do.
-          The reference line is the year's hit rate.
+          The reference line is the year's hit rate, {pct(metrics.accuracy, 0)}.
         </p>
         <Card><MonthlyAccuracyChart monthly={monthly} overall={metrics.accuracy} /></Card>
       </section>

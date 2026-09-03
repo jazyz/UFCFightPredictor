@@ -22,6 +22,7 @@ function Segmented({ value, onChange, counts }) {
           key={key}
           type="button"
           onClick={() => onChange(key)}
+          aria-pressed={value === key}
           className={`rounded px-4 py-1.5 text-sm font-medium ${
             value === key ? "bg-ground text-ink" : "text-ink-2 hover:text-ink"
           }`}
@@ -34,7 +35,7 @@ function Segmented({ value, onChange, counts }) {
 }
 
 const Th = ({ children, right }) => (
-  <th className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider text-muted ${right ? "text-right" : "text-left"}`}>
+  <th scope="col" className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider text-muted ${right ? "text-right" : "text-left"}`}>
     {children}
   </th>
 );

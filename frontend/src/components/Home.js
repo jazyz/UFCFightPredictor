@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import StatTile from "./StatTile";
 import CalibrationChart from "./charts/CalibrationChart";
-import { MEMBERSHIP_URL } from "../constants";
 import { pct, shortDate, signedPct, stdErrPts } from "../format";
 
 const Eyebrow = ({ children }) => (
@@ -14,20 +13,18 @@ const H2 = ({ children }) => (
 );
 
 const CtaButton = ({ children }) => (
-  <a
-    href={MEMBERSHIP_URL}
-    target="_blank"
-    rel="noreferrer"
+  <Link
+    to="/join"
     className="inline-block rounded-md bg-accent px-6 py-3 text-base font-semibold text-white hover:bg-accent-hover"
   >
     {children}
-  </a>
+  </Link>
 );
 
 const STEPS = [
   ["Data", "Every UFC fight since 1994, scraped from ufcstats.com: strikes, takedowns, control time, finishes. Each fight is described only by what was known before it happened."],
   ["Model", "180+ engineered features per fighter feed a five-model LightGBM ensemble retrained twice a week. It outputs a win probability, not a hot take."],
-  ["Bets", "Probability meets closing odds. A fractional Kelly stake goes down only when the model's edge over the de-vigged market clears 5%."],
+  ["Bets", "Probability meets closing odds. A fractional Kelly stake goes down only when the blended probability's edge over the de-vigged market clears 5%."],
 ];
 
 export default function Home({ data }) {

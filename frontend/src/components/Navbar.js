@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { MEMBERSHIP_URL, SITE_NAME } from "../constants";
+import { SITE_NAME } from "../constants";
 
 const LINKS = [
   ["/results", "Results"],
@@ -18,7 +18,7 @@ export default function Navbar() {
         <Link to="/" className="font-display text-2xl font-bold uppercase tracking-wide text-ink">
           {SITE_NAME}
         </Link>
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-6" aria-label="Primary">
           <div className="hidden items-center gap-6 sm:flex">
             {LINKS.map(([to, label]) => (
               <NavLink key={to} to={to} className={linkClass}>
@@ -26,17 +26,15 @@ export default function Navbar() {
               </NavLink>
             ))}
           </div>
-          <a
-            href={MEMBERSHIP_URL}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to="/join"
             className="rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent-hover"
           >
             Get the picks
-          </a>
+          </Link>
         </nav>
       </div>
-      <nav className="flex gap-5 px-6 pb-3 sm:hidden">
+      <nav className="flex gap-5 px-6 pb-3 sm:hidden" aria-label="Primary, compact">
         {LINKS.map(([to, label]) => (
           <NavLink key={to} to={to} className={linkClass}>
             {label}

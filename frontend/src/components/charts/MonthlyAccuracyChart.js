@@ -34,12 +34,7 @@ export default function MonthlyAccuracyChart({ monthly, overall }) {
               tickLine={false}
             />
             <Tooltip cursor={{ fill: "rgba(255,255,255,0.04)" }} content={<MonthTooltip />} />
-            <ReferenceLine
-              y={overall}
-              stroke={C.gray}
-              strokeWidth={1}
-              label={{ value: `year ${pct(overall, 0)}`, position: "insideTopRight", fill: C.ink2, fontSize: 12 }}
-            />
+            <ReferenceLine y={overall} stroke={C.gray} strokeWidth={1} />
             <Bar dataKey="hit" fill={C.accent} barSize={20} radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>

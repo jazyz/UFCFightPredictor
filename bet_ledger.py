@@ -99,6 +99,8 @@ def grade(results_csv: str = RESULTS_CSV, path: str = LEDGER_PATH, now=None) -> 
                 continue
             if abs(datetime.strptime(row["Date"], "%B %d, %Y") - when) > MATCH_WINDOW:
                 continue
+            if row["Winner"] and row["Winner"] not in (entry.fighter, entry.opponent):
+                continue  # malformed row: a named winner who is neither corner
             entry.result, entry.pnl_per_unit = _outcome(row, entry)
             entry.graded = stamp
             graded += 1

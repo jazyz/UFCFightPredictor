@@ -82,3 +82,12 @@ def test_grade_positive_odds_pay_odds_over_100(tmp_path):
 
 def test_grade_without_a_ledger_file_returns_zero(tmp_path):
     assert bet_ledger.grade(results_csv=str(tmp_path / "none.csv"), path=str(tmp_path / "missing.json")) == 0
+
+
+def test_grade_ignores_rows_whose_winner_is_neither_fighter(tmp_path):
+    path = str(tmp_path / "ledger.json")
+    results = str(tmp_path / "results.csv")
+    bet_ledger.record("UFC 999", "2026-09-06", "2026-09-04T02:00:00", [PICKS[0]], path=path)
+    write_results(results, [row("Someone Else", "", "False", "September 06, 2026", "A", "B")])
+    assert bet_ledger.grade(results_csv=results, path=path) == 0
+    assert bet_ledger.load(path)[0].result == "pending"

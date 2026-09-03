@@ -1,6 +1,6 @@
 import React from "react";
 import { GITHUB_URL } from "../constants";
-import { pct } from "../format";
+import { pct, shortDate } from "../format";
 
 const Section = ({ eyebrow, title, children }) => (
   <section className="mt-16">
@@ -66,8 +66,9 @@ export default function Methodology({ data }) {
 
       <Section eyebrow="Evaluation" title="Walk-forward, never in-sample">
         <p>
-          The published record trains on fights before {span.start}, then retrains on the production cadence
-          as the window advances, so every prediction comes from a model that stopped learning before the fight.
+          The published record trains on fights before {shortDate(span.start)}, then retrains{" "}
+          {span.retrains.length - 1} more times as the window advances, so every prediction comes from a model
+          that stopped learning before the fight. Production retrains twice a week, more often than the backtest.
           Of {coverage.fights_in_window} fights in the window, {coverage.scored} were scorable.
         </p>
         <p>
