@@ -1,0 +1,2461 @@
+{
+ "generated": "2026-09-02T17:52:49",
+ "window": {
+  "start": "2025-08-30",
+  "end": "2026-08-30",
+  "retrains": [
+   "2025-08-30",
+   "2026-02-28",
+   "2026-08-29"
+  ]
+ },
+ "coverage": {
+  "fights_in_window": 547,
+  "scored": 282,
+  "with_odds": 281
+ },
+ "metrics": {
+  "accuracy": 0.6844,
+  "auc": 0.7004,
+  "log_loss": 0.6366,
+  "brier": 0.2224,
+  "n": 282
+ },
+ "bands": [
+  {
+   "label": "50\u201355%",
+   "lo": 0.5,
+   "hi": 0.55,
+   "n": 80,
+   "stated": 0.5247,
+   "hit": 0.625
+  },
+  {
+   "label": "55\u201360%",
+   "lo": 0.55,
+   "hi": 0.6,
+   "n": 70,
+   "stated": 0.5772,
+   "hit": 0.6714
+  },
+  {
+   "label": "60\u201365%",
+   "lo": 0.6,
+   "hi": 0.65,
+   "n": 61,
+   "stated": 0.6248,
+   "hit": 0.7049
+  },
+  {
+   "label": "65\u201370%",
+   "lo": 0.65,
+   "hi": 0.7,
+   "n": 41,
+   "stated": 0.6753,
+   "hit": 0.7561
+  },
+  {
+   "label": "70%+",
+   "lo": 0.7,
+   "hi": 1.0,
+   "n": 30,
+   "stated": 0.7342,
+   "hit": 0.7333
+  }
+ ],
+ "monthly": [
+  {
+   "month": "2025-09",
+   "n": 17,
+   "hit": 0.5294
+  },
+  {
+   "month": "2025-10",
+   "n": 32,
+   "hit": 0.7188
+  },
+  {
+   "month": "2025-11",
+   "n": 28,
+   "hit": 0.7143
+  },
+  {
+   "month": "2025-12",
+   "n": 14,
+   "hit": 0.8571
+  },
+  {
+   "month": "2026-01",
+   "n": 15,
+   "hit": 0.7333
+  },
+  {
+   "month": "2026-02",
+   "n": 20,
+   "hit": 0.6
+  },
+  {
+   "month": "2026-03",
+   "n": 20,
+   "hit": 0.75
+  },
+  {
+   "month": "2026-04",
+   "n": 22,
+   "hit": 0.6818
+  },
+  {
+   "month": "2026-05",
+   "n": 33,
+   "hit": 0.6061
+  },
+  {
+   "month": "2026-06",
+   "n": 32,
+   "hit": 0.625
+  },
+  {
+   "month": "2026-07",
+   "n": 17,
+   "hit": 0.8235
+  },
+  {
+   "month": "2026-08",
+   "n": 32,
+   "hit": 0.6875
+  }
+ ],
+ "market": {
+  "rows": [
+   {
+    "name": "De-vigged market",
+    "accuracy": 0.6833,
+    "auc": 0.7363,
+    "log_loss": 0.6032,
+    "brier": 0.2073
+   },
+   {
+    "name": "Model (ensemble)",
+    "accuracy": 0.6868,
+    "auc": 0.7028,
+    "log_loss": 0.6356,
+    "brier": 0.2219
+   },
+   {
+    "name": "Blend \u00b7 0.8 model + 0.2 market",
+    "accuracy": 0.669,
+    "auc": 0.7252,
+    "log_loss": 0.6228,
+    "brier": 0.216
+   }
+  ],
+  "agree": {
+   "n": 216,
+   "hit": 0.7407
+  },
+  "disagree": {
+   "n": 65,
+   "model_hit": 0.5077
+  }
+ },
+ "flat": {
+  "market_favorite_per_bet": -0.0058,
+  "model_pick_per_bet": 0.0861,
+  "stake": 10.0
+ },
+ "betting": {
+  "final": 1012.35,
+  "return_pct": 1.2,
+  "bets": 58,
+  "hit": 0.5172,
+  "favorites": {
+   "won": 13,
+   "total": 19
+  },
+  "underdogs": {
+   "won": 17,
+   "total": 39
+  },
+  "max_drawdown_pct": 9.4,
+  "low": 968.51
+ },
+ "bankroll": [
+  {
+   "date": "2025-09-06",
+   "event": "ufc-fight-night-september-06-2025",
+   "bankroll": 990.91
+  },
+  {
+   "date": "2025-09-06",
+   "event": "ufc-fight-night-september-06-2025",
+   "bankroll": 990.91
+  },
+  {
+   "date": "2025-09-06",
+   "event": "ufc-fight-night-september-06-2025",
+   "bankroll": 987.08
+  },
+  {
+   "date": "2025-09-06",
+   "event": "ufc-fight-night-september-06-2025",
+   "bankroll": 987.08
+  },
+  {
+   "date": "2025-09-06",
+   "event": "ufc-fight-night-september-06-2025",
+   "bankroll": 987.08
+  },
+  {
+   "date": "2025-09-13",
+   "event": "ufc-fight-night-september-13-2025",
+   "bankroll": 987.08
+  },
+  {
+   "date": "2025-09-13",
+   "event": "ufc-fight-night-september-13-2025",
+   "bankroll": 1014.32
+  },
+  {
+   "date": "2025-09-13",
+   "event": "ufc-fight-night-september-13-2025",
+   "bankroll": 1014.32
+  },
+  {
+   "date": "2025-09-13",
+   "event": "ufc-fight-night-september-13-2025",
+   "bankroll": 1020.81
+  },
+  {
+   "date": "2025-09-13",
+   "event": "ufc-fight-night-september-13-2025",
+   "bankroll": 1016.87
+  },
+  {
+   "date": "2025-09-13",
+   "event": "ufc-fight-night-september-13-2025",
+   "bankroll": 1016.87
+  },
+  {
+   "date": "2025-09-27",
+   "event": "ufc-fight-night-september-27-2025",
+   "bankroll": 1016.87
+  },
+  {
+   "date": "2025-09-27",
+   "event": "ufc-fight-night-september-27-2025",
+   "bankroll": 1021.26
+  },
+  {
+   "date": "2025-09-27",
+   "event": "ufc-fight-night-september-27-2025",
+   "bankroll": 1021.26
+  },
+  {
+   "date": "2025-09-27",
+   "event": "ufc-fight-night-september-27-2025",
+   "bankroll": 1021.26
+  },
+  {
+   "date": "2025-09-27",
+   "event": "ufc-fight-night-september-27-2025",
+   "bankroll": 1014.64
+  },
+  {
+   "date": "2025-09-27",
+   "event": "ufc-fight-night-september-27-2025",
+   "bankroll": 1014.64
+  },
+  {
+   "date": "2025-10-04",
+   "event": "ufc-320",
+   "bankroll": 1014.64
+  },
+  {
+   "date": "2025-10-04",
+   "event": "ufc-320",
+   "bankroll": 1014.64
+  },
+  {
+   "date": "2025-10-04",
+   "event": "ufc-320",
+   "bankroll": 1014.64
+  },
+  {
+   "date": "2025-10-04",
+   "event": "ufc-320",
+   "bankroll": 1014.64
+  },
+  {
+   "date": "2025-10-04",
+   "event": "ufc-320",
+   "bankroll": 1014.64
+  },
+  {
+   "date": "2025-10-04",
+   "event": "ufc-320",
+   "bankroll": 1014.64
+  },
+  {
+   "date": "2025-10-04",
+   "event": "ufc-320",
+   "bankroll": 1014.64
+  },
+  {
+   "date": "2025-10-04",
+   "event": "ufc-320",
+   "bankroll": 1014.64
+  },
+  {
+   "date": "2025-10-11",
+   "event": "ufc-fight-night-october-11-2025",
+   "bankroll": 1005.42
+  },
+  {
+   "date": "2025-10-11",
+   "event": "ufc-fight-night-october-11-2025",
+   "bankroll": 1005.42
+  },
+  {
+   "date": "2025-10-11",
+   "event": "ufc-fight-night-october-11-2025",
+   "bankroll": 1005.42
+  },
+  {
+   "date": "2025-10-11",
+   "event": "ufc-fight-night-october-11-2025",
+   "bankroll": 1005.42
+  },
+  {
+   "date": "2025-10-11",
+   "event": "ufc-fight-night-october-11-2025",
+   "bankroll": 1005.42
+  },
+  {
+   "date": "2025-10-11",
+   "event": "ufc-fight-night-october-11-2025",
+   "bankroll": 1005.42
+  },
+  {
+   "date": "2025-10-11",
+   "event": "ufc-fight-night-october-11-2025",
+   "bankroll": 1005.42
+  },
+  {
+   "date": "2025-10-18",
+   "event": "ufc-fight-night-october-18-2025",
+   "bankroll": 1005.42
+  },
+  {
+   "date": "2025-10-18",
+   "event": "ufc-fight-night-october-18-2025",
+   "bankroll": 1005.42
+  },
+  {
+   "date": "2025-10-18",
+   "event": "ufc-fight-night-october-18-2025",
+   "bankroll": 1005.42
+  },
+  {
+   "date": "2025-10-18",
+   "event": "ufc-fight-night-october-18-2025",
+   "bankroll": 1005.42
+  },
+  {
+   "date": "2025-10-18",
+   "event": "ufc-fight-night-october-18-2025",
+   "bankroll": 1008.91
+  },
+  {
+   "date": "2025-10-18",
+   "event": "ufc-fight-night-october-18-2025",
+   "bankroll": 1008.91
+  },
+  {
+   "date": "2025-10-18",
+   "event": "ufc-fight-night-october-18-2025",
+   "bankroll": 1023.82
+  },
+  {
+   "date": "2025-10-18",
+   "event": "ufc-fight-night-october-18-2025",
+   "bankroll": 1023.82
+  },
+  {
+   "date": "2025-10-25",
+   "event": "ufc-321",
+   "bankroll": 1023.82
+  },
+  {
+   "date": "2025-10-25",
+   "event": "ufc-321",
+   "bankroll": 1023.82
+  },
+  {
+   "date": "2025-10-25",
+   "event": "ufc-321",
+   "bankroll": 1034.96
+  },
+  {
+   "date": "2025-10-25",
+   "event": "ufc-321",
+   "bankroll": 1034.96
+  },
+  {
+   "date": "2025-10-25",
+   "event": "ufc-321",
+   "bankroll": 1034.96
+  },
+  {
+   "date": "2025-10-25",
+   "event": "ufc-321",
+   "bankroll": 1034.96
+  },
+  {
+   "date": "2025-10-25",
+   "event": "ufc-321",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-10-25",
+   "event": "ufc-321",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-10-25",
+   "event": "ufc-321",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-01",
+   "event": "ufc-fight-night-november-01-2025",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-01",
+   "event": "ufc-fight-night-november-01-2025",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-01",
+   "event": "ufc-fight-night-november-01-2025",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-01",
+   "event": "ufc-fight-night-november-01-2025",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-08",
+   "event": "ufc-fight-night-november-08-2025",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-08",
+   "event": "ufc-fight-night-november-08-2025",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-08",
+   "event": "ufc-fight-night-november-08-2025",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-08",
+   "event": "ufc-fight-night-november-08-2025",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-08",
+   "event": "ufc-fight-night-november-08-2025",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-08",
+   "event": "ufc-fight-night-november-08-2025",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-08",
+   "event": "ufc-fight-night-november-08-2025",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-08",
+   "event": "ufc-fight-night-november-08-2025",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-15",
+   "event": "ufc-322",
+   "bankroll": 1042.29
+  },
+  {
+   "date": "2025-11-15",
+   "event": "ufc-322",
+   "bankroll": 1049.01
+  },
+  {
+   "date": "2025-11-15",
+   "event": "ufc-322",
+   "bankroll": 1049.01
+  },
+  {
+   "date": "2025-11-15",
+   "event": "ufc-322",
+   "bankroll": 1049.01
+  },
+  {
+   "date": "2025-11-15",
+   "event": "ufc-322",
+   "bankroll": 1049.01
+  },
+  {
+   "date": "2025-11-15",
+   "event": "ufc-322",
+   "bankroll": 1049.01
+  },
+  {
+   "date": "2025-11-15",
+   "event": "ufc-322",
+   "bankroll": 1049.01
+  },
+  {
+   "date": "2025-11-15",
+   "event": "ufc-322",
+   "bankroll": 1049.01
+  },
+  {
+   "date": "2025-11-22",
+   "event": "ufc-fight-night-november-22-2025",
+   "bankroll": 1049.01
+  },
+  {
+   "date": "2025-11-22",
+   "event": "ufc-fight-night-november-22-2025",
+   "bankroll": 1049.01
+  },
+  {
+   "date": "2025-11-22",
+   "event": "ufc-fight-night-november-22-2025",
+   "bankroll": 1049.01
+  },
+  {
+   "date": "2025-11-22",
+   "event": "ufc-fight-night-november-22-2025",
+   "bankroll": 1049.01
+  },
+  {
+   "date": "2025-11-22",
+   "event": "ufc-fight-night-november-22-2025",
+   "bankroll": 1053.44
+  },
+  {
+   "date": "2025-11-22",
+   "event": "ufc-fight-night-november-22-2025",
+   "bankroll": 1053.44
+  },
+  {
+   "date": "2025-11-22",
+   "event": "ufc-fight-night-november-22-2025",
+   "bankroll": 1053.44
+  },
+  {
+   "date": "2025-11-22",
+   "event": "ufc-fight-night-november-22-2025",
+   "bankroll": 1061.98
+  },
+  {
+   "date": "2025-12-06",
+   "event": "ufc-323",
+   "bankroll": 1061.98
+  },
+  {
+   "date": "2025-12-06",
+   "event": "ufc-323",
+   "bankroll": 1061.98
+  },
+  {
+   "date": "2025-12-06",
+   "event": "ufc-323",
+   "bankroll": 1061.98
+  },
+  {
+   "date": "2025-12-06",
+   "event": "ufc-323",
+   "bankroll": 1061.98
+  },
+  {
+   "date": "2025-12-06",
+   "event": "ufc-323",
+   "bankroll": 1061.98
+  },
+  {
+   "date": "2025-12-06",
+   "event": "ufc-323",
+   "bankroll": 1061.98
+  },
+  {
+   "date": "2025-12-06",
+   "event": "ufc-323",
+   "bankroll": 1061.98
+  },
+  {
+   "date": "2025-12-06",
+   "event": "ufc-323",
+   "bankroll": 1061.98
+  },
+  {
+   "date": "2025-12-06",
+   "event": "ufc-323",
+   "bankroll": 1061.98
+  },
+  {
+   "date": "2025-12-06",
+   "event": "ufc-323",
+   "bankroll": 1061.98
+  },
+  {
+   "date": "2025-12-06",
+   "event": "ufc-323",
+   "bankroll": 1069.13
+  },
+  {
+   "date": "2025-12-13",
+   "event": "ufc-fight-night-december-13-2025",
+   "bankroll": 1069.13
+  },
+  {
+   "date": "2025-12-13",
+   "event": "ufc-fight-night-december-13-2025",
+   "bankroll": 1069.13
+  },
+  {
+   "date": "2025-12-13",
+   "event": "ufc-fight-night-december-13-2025",
+   "bankroll": 1069.13
+  },
+  {
+   "date": "2026-01-24",
+   "event": "ufc-324",
+   "bankroll": 1069.13
+  },
+  {
+   "date": "2026-01-24",
+   "event": "ufc-324",
+   "bankroll": 1069.13
+  },
+  {
+   "date": "2026-01-24",
+   "event": "ufc-324",
+   "bankroll": 1069.13
+  },
+  {
+   "date": "2026-01-24",
+   "event": "ufc-324",
+   "bankroll": 1041.04
+  },
+  {
+   "date": "2026-01-24",
+   "event": "ufc-324",
+   "bankroll": 1041.04
+  },
+  {
+   "date": "2026-01-24",
+   "event": "ufc-324",
+   "bankroll": 1041.04
+  },
+  {
+   "date": "2026-01-24",
+   "event": "ufc-324",
+   "bankroll": 1041.04
+  },
+  {
+   "date": "2026-01-24",
+   "event": "ufc-324",
+   "bankroll": 1041.04
+  },
+  {
+   "date": "2026-01-31",
+   "event": "ufc-325",
+   "bankroll": 1041.04
+  },
+  {
+   "date": "2026-01-31",
+   "event": "ufc-325",
+   "bankroll": 1036.0
+  },
+  {
+   "date": "2026-01-31",
+   "event": "ufc-325",
+   "bankroll": 1036.0
+  },
+  {
+   "date": "2026-01-31",
+   "event": "ufc-325",
+   "bankroll": 1036.0
+  },
+  {
+   "date": "2026-01-31",
+   "event": "ufc-325",
+   "bankroll": 1036.0
+  },
+  {
+   "date": "2026-01-31",
+   "event": "ufc-325",
+   "bankroll": 1036.0
+  },
+  {
+   "date": "2026-01-31",
+   "event": "ufc-325",
+   "bankroll": 1036.0
+  },
+  {
+   "date": "2026-02-07",
+   "event": "ufc-fight-night-february-07-2026",
+   "bankroll": 1019.08
+  },
+  {
+   "date": "2026-02-07",
+   "event": "ufc-fight-night-february-07-2026",
+   "bankroll": 1019.08
+  },
+  {
+   "date": "2026-02-07",
+   "event": "ufc-fight-night-february-07-2026",
+   "bankroll": 1019.08
+  },
+  {
+   "date": "2026-02-07",
+   "event": "ufc-fight-night-february-07-2026",
+   "bankroll": 1019.08
+  },
+  {
+   "date": "2026-02-07",
+   "event": "ufc-fight-night-february-07-2026",
+   "bankroll": 1006.35
+  },
+  {
+   "date": "2026-02-07",
+   "event": "ufc-fight-night-february-07-2026",
+   "bankroll": 989.78
+  },
+  {
+   "date": "2026-02-21",
+   "event": "ufc-fight-night-february-21-2026",
+   "bankroll": 989.78
+  },
+  {
+   "date": "2026-02-21",
+   "event": "ufc-fight-night-february-21-2026",
+   "bankroll": 989.78
+  },
+  {
+   "date": "2026-02-21",
+   "event": "ufc-fight-night-february-21-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-02-21",
+   "event": "ufc-fight-night-february-21-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-02-21",
+   "event": "ufc-fight-night-february-21-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-02-21",
+   "event": "ufc-fight-night-february-21-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-02-21",
+   "event": "ufc-fight-night-february-21-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-02-21",
+   "event": "ufc-fight-night-february-21-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-02-28",
+   "event": "ufc-fight-night-february-28-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-02-28",
+   "event": "ufc-fight-night-february-28-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-02-28",
+   "event": "ufc-fight-night-february-28-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-02-28",
+   "event": "ufc-fight-night-february-28-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-02-28",
+   "event": "ufc-fight-night-february-28-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-07",
+   "event": "ufc-326",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-07",
+   "event": "ufc-326",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-07",
+   "event": "ufc-326",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-07",
+   "event": "ufc-326",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-07",
+   "event": "ufc-326",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-07",
+   "event": "ufc-326",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-07",
+   "event": "ufc-326",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-14",
+   "event": "ufc-fight-night-march-14-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-14",
+   "event": "ufc-fight-night-march-14-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-14",
+   "event": "ufc-fight-night-march-14-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-14",
+   "event": "ufc-fight-night-march-14-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-14",
+   "event": "ufc-fight-night-march-14-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-14",
+   "event": "ufc-fight-night-march-14-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-21",
+   "event": "ufc-fight-night-march-21-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-21",
+   "event": "ufc-fight-night-march-21-2026",
+   "bankroll": 1002.27
+  },
+  {
+   "date": "2026-03-21",
+   "event": "ufc-fight-night-march-21-2026",
+   "bankroll": 987.45
+  },
+  {
+   "date": "2026-03-28",
+   "event": "ufc-fight-night-march-28-2026",
+   "bankroll": 1006.73
+  },
+  {
+   "date": "2026-03-28",
+   "event": "ufc-fight-night-march-28-2026",
+   "bankroll": 1006.73
+  },
+  {
+   "date": "2026-03-28",
+   "event": "ufc-fight-night-march-28-2026",
+   "bankroll": 994.42
+  },
+  {
+   "date": "2026-03-28",
+   "event": "ufc-fight-night-march-28-2026",
+   "bankroll": 994.42
+  },
+  {
+   "date": "2026-04-04",
+   "event": "ufc-fight-night-april-04-2026",
+   "bankroll": 994.42
+  },
+  {
+   "date": "2026-04-04",
+   "event": "ufc-fight-night-april-04-2026",
+   "bankroll": 994.42
+  },
+  {
+   "date": "2026-04-04",
+   "event": "ufc-fight-night-april-04-2026",
+   "bankroll": 994.42
+  },
+  {
+   "date": "2026-04-04",
+   "event": "ufc-fight-night-april-04-2026",
+   "bankroll": 994.42
+  },
+  {
+   "date": "2026-04-11",
+   "event": "ufc-327",
+   "bankroll": 994.42
+  },
+  {
+   "date": "2026-04-11",
+   "event": "ufc-327",
+   "bankroll": 994.42
+  },
+  {
+   "date": "2026-04-11",
+   "event": "ufc-327",
+   "bankroll": 994.42
+  },
+  {
+   "date": "2026-04-11",
+   "event": "ufc-327",
+   "bankroll": 1002.03
+  },
+  {
+   "date": "2026-04-11",
+   "event": "ufc-327",
+   "bankroll": 1002.03
+  },
+  {
+   "date": "2026-04-11",
+   "event": "ufc-327",
+   "bankroll": 1002.03
+  },
+  {
+   "date": "2026-04-11",
+   "event": "ufc-327",
+   "bankroll": 1002.03
+  },
+  {
+   "date": "2026-04-11",
+   "event": "ufc-327",
+   "bankroll": 1002.03
+  },
+  {
+   "date": "2026-04-11",
+   "event": "ufc-327",
+   "bankroll": 1010.78
+  },
+  {
+   "date": "2026-04-18",
+   "event": "ufc-fight-night-april-18-2026",
+   "bankroll": 1010.78
+  },
+  {
+   "date": "2026-04-18",
+   "event": "ufc-fight-night-april-18-2026",
+   "bankroll": 1010.78
+  },
+  {
+   "date": "2026-04-18",
+   "event": "ufc-fight-night-april-18-2026",
+   "bankroll": 1010.78
+  },
+  {
+   "date": "2026-04-25",
+   "event": "ufc-fight-night-april-25-2026",
+   "bankroll": 1014.47
+  },
+  {
+   "date": "2026-04-25",
+   "event": "ufc-fight-night-april-25-2026",
+   "bankroll": 1023.77
+  },
+  {
+   "date": "2026-04-25",
+   "event": "ufc-fight-night-april-25-2026",
+   "bankroll": 1023.77
+  },
+  {
+   "date": "2026-04-25",
+   "event": "ufc-fight-night-april-25-2026",
+   "bankroll": 1023.77
+  },
+  {
+   "date": "2026-04-25",
+   "event": "ufc-fight-night-april-25-2026",
+   "bankroll": 1023.77
+  },
+  {
+   "date": "2026-04-25",
+   "event": "ufc-fight-night-april-25-2026",
+   "bankroll": 1023.77
+  },
+  {
+   "date": "2026-05-02",
+   "event": "ufc-fight-night-may-02-2026",
+   "bankroll": 1010.91
+  },
+  {
+   "date": "2026-05-02",
+   "event": "ufc-fight-night-may-02-2026",
+   "bankroll": 1010.91
+  },
+  {
+   "date": "2026-05-02",
+   "event": "ufc-fight-night-may-02-2026",
+   "bankroll": 1010.91
+  },
+  {
+   "date": "2026-05-02",
+   "event": "ufc-fight-night-may-02-2026",
+   "bankroll": 1010.91
+  },
+  {
+   "date": "2026-05-02",
+   "event": "ufc-fight-night-may-02-2026",
+   "bankroll": 1010.91
+  },
+  {
+   "date": "2026-05-02",
+   "event": "ufc-fight-night-may-02-2026",
+   "bankroll": 1013.69
+  },
+  {
+   "date": "2026-05-02",
+   "event": "ufc-fight-night-may-02-2026",
+   "bankroll": 1013.69
+  },
+  {
+   "date": "2026-05-02",
+   "event": "ufc-fight-night-may-02-2026",
+   "bankroll": 1016.8
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "bankroll": 1016.8
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "bankroll": 1029.35
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "bankroll": 1010.49
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "bankroll": 1010.49
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "bankroll": 1010.49
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "bankroll": 1010.49
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "bankroll": 1010.49
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "bankroll": 1010.49
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "bankroll": 1010.49
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "bankroll": 1010.49
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "bankroll": 1010.49
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "bankroll": 1016.32
+  },
+  {
+   "date": "2026-05-16",
+   "event": "ufc-fight-night-may-16-2026",
+   "bankroll": 1013.05
+  },
+  {
+   "date": "2026-05-16",
+   "event": "ufc-fight-night-may-16-2026",
+   "bankroll": 1028.32
+  },
+  {
+   "date": "2026-05-16",
+   "event": "ufc-fight-night-may-16-2026",
+   "bankroll": 1020.28
+  },
+  {
+   "date": "2026-05-16",
+   "event": "ufc-fight-night-may-16-2026",
+   "bankroll": 1020.28
+  },
+  {
+   "date": "2026-05-16",
+   "event": "ufc-fight-night-may-16-2026",
+   "bankroll": 1008.4
+  },
+  {
+   "date": "2026-05-16",
+   "event": "ufc-fight-night-may-16-2026",
+   "bankroll": 1008.4
+  },
+  {
+   "date": "2026-05-16",
+   "event": "ufc-fight-night-may-16-2026",
+   "bankroll": 1008.4
+  },
+  {
+   "date": "2026-05-30",
+   "event": "ufc-fight-night-may-30-2026",
+   "bankroll": 1008.4
+  },
+  {
+   "date": "2026-05-30",
+   "event": "ufc-fight-night-may-30-2026",
+   "bankroll": 1008.4
+  },
+  {
+   "date": "2026-05-30",
+   "event": "ufc-fight-night-may-30-2026",
+   "bankroll": 1008.4
+  },
+  {
+   "date": "2026-05-30",
+   "event": "ufc-fight-night-may-30-2026",
+   "bankroll": 989.94
+  },
+  {
+   "date": "2026-05-30",
+   "event": "ufc-fight-night-may-30-2026",
+   "bankroll": 989.94
+  },
+  {
+   "date": "2026-05-30",
+   "event": "ufc-fight-night-may-30-2026",
+   "bankroll": 989.94
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "bankroll": 1005.84
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "bankroll": 1005.84
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "bankroll": 994.13
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "bankroll": 994.13
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "bankroll": 994.13
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "bankroll": 994.13
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "bankroll": 1008.07
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "bankroll": 998.85
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "bankroll": 998.85
+  },
+  {
+   "date": "2026-06-14",
+   "event": "ufc-freedom-250",
+   "bankroll": 998.85
+  },
+  {
+   "date": "2026-06-14",
+   "event": "ufc-freedom-250",
+   "bankroll": 1003.82
+  },
+  {
+   "date": "2026-06-14",
+   "event": "ufc-freedom-250",
+   "bankroll": 1003.82
+  },
+  {
+   "date": "2026-06-14",
+   "event": "ufc-freedom-250",
+   "bankroll": 1003.82
+  },
+  {
+   "date": "2026-06-14",
+   "event": "ufc-freedom-250",
+   "bankroll": 1003.82
+  },
+  {
+   "date": "2026-06-14",
+   "event": "ufc-freedom-250",
+   "bankroll": 1003.82
+  },
+  {
+   "date": "2026-06-14",
+   "event": "ufc-freedom-250",
+   "bankroll": 989.24
+  },
+  {
+   "date": "2026-06-20",
+   "event": "ufc-fight-night-june-20-2026",
+   "bankroll": 978.26
+  },
+  {
+   "date": "2026-06-20",
+   "event": "ufc-fight-night-june-20-2026",
+   "bankroll": 978.26
+  },
+  {
+   "date": "2026-06-20",
+   "event": "ufc-fight-night-june-20-2026",
+   "bankroll": 978.26
+  },
+  {
+   "date": "2026-06-20",
+   "event": "ufc-fight-night-june-20-2026",
+   "bankroll": 978.26
+  },
+  {
+   "date": "2026-06-20",
+   "event": "ufc-fight-night-june-20-2026",
+   "bankroll": 978.26
+  },
+  {
+   "date": "2026-06-20",
+   "event": "ufc-fight-night-june-20-2026",
+   "bankroll": 978.26
+  },
+  {
+   "date": "2026-06-20",
+   "event": "ufc-fight-night-june-20-2026",
+   "bankroll": 978.26
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "bankroll": 968.51
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "bankroll": 968.51
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "bankroll": 992.74
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "bankroll": 992.74
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "bankroll": 992.74
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "bankroll": 992.74
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "bankroll": 992.74
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "bankroll": 982.1
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "bankroll": 993.59
+  },
+  {
+   "date": "2026-07-11",
+   "event": "ufc-329",
+   "bankroll": 993.59
+  },
+  {
+   "date": "2026-07-11",
+   "event": "ufc-329",
+   "bankroll": 1001.32
+  },
+  {
+   "date": "2026-07-11",
+   "event": "ufc-329",
+   "bankroll": 1001.32
+  },
+  {
+   "date": "2026-07-11",
+   "event": "ufc-329",
+   "bankroll": 1001.32
+  },
+  {
+   "date": "2026-07-11",
+   "event": "ufc-329",
+   "bankroll": 1001.32
+  },
+  {
+   "date": "2026-07-11",
+   "event": "ufc-329",
+   "bankroll": 1001.32
+  },
+  {
+   "date": "2026-07-11",
+   "event": "ufc-329",
+   "bankroll": 1001.32
+  },
+  {
+   "date": "2026-07-11",
+   "event": "ufc-329",
+   "bankroll": 1001.32
+  },
+  {
+   "date": "2026-07-18",
+   "event": "ufc-fight-night-july-18-2026",
+   "bankroll": 1001.32
+  },
+  {
+   "date": "2026-07-18",
+   "event": "ufc-fight-night-july-18-2026",
+   "bankroll": 1001.32
+  },
+  {
+   "date": "2026-07-18",
+   "event": "ufc-fight-night-july-18-2026",
+   "bankroll": 1001.32
+  },
+  {
+   "date": "2026-07-18",
+   "event": "ufc-fight-night-july-18-2026",
+   "bankroll": 1001.32
+  },
+  {
+   "date": "2026-07-18",
+   "event": "ufc-fight-night-july-18-2026",
+   "bankroll": 1010.58
+  },
+  {
+   "date": "2026-07-25",
+   "event": "ufc-fight-night-july-25-2026",
+   "bankroll": 1010.58
+  },
+  {
+   "date": "2026-07-25",
+   "event": "ufc-fight-night-july-25-2026",
+   "bankroll": 1005.5
+  },
+  {
+   "date": "2026-07-25",
+   "event": "ufc-fight-night-july-25-2026",
+   "bankroll": 1005.5
+  },
+  {
+   "date": "2026-07-25",
+   "event": "ufc-fight-night-july-25-2026",
+   "bankroll": 1005.5
+  },
+  {
+   "date": "2026-08-01",
+   "event": "ufc-fight-night-august-01-2026",
+   "bankroll": 1005.5
+  },
+  {
+   "date": "2026-08-01",
+   "event": "ufc-fight-night-august-01-2026",
+   "bankroll": 1005.5
+  },
+  {
+   "date": "2026-08-01",
+   "event": "ufc-fight-night-august-01-2026",
+   "bankroll": 1005.5
+  },
+  {
+   "date": "2026-08-01",
+   "event": "ufc-fight-night-august-01-2026",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-01",
+   "event": "ufc-fight-night-august-01-2026",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-01",
+   "event": "ufc-fight-night-august-01-2026",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-01",
+   "event": "ufc-fight-night-august-01-2026",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-08",
+   "event": "ufc-fight-night-august-08-2026",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-08",
+   "event": "ufc-fight-night-august-08-2026",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-08",
+   "event": "ufc-fight-night-august-08-2026",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-08",
+   "event": "ufc-fight-night-august-08-2026",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-08",
+   "event": "ufc-fight-night-august-08-2026",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-15",
+   "event": "ufc-330",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-15",
+   "event": "ufc-330",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-15",
+   "event": "ufc-330",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-15",
+   "event": "ufc-330",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-15",
+   "event": "ufc-330",
+   "bankroll": 995.63
+  },
+  {
+   "date": "2026-08-15",
+   "event": "ufc-330",
+   "bankroll": 989.25
+  },
+  {
+   "date": "2026-08-15",
+   "event": "ufc-330",
+   "bankroll": 1017.73
+  },
+  {
+   "date": "2026-08-15",
+   "event": "ufc-330",
+   "bankroll": 1017.73
+  },
+  {
+   "date": "2026-08-22",
+   "event": "ufc-fight-night-august-22-2026",
+   "bankroll": 1017.73
+  },
+  {
+   "date": "2026-08-22",
+   "event": "ufc-fight-night-august-22-2026",
+   "bankroll": 1017.73
+  },
+  {
+   "date": "2026-08-22",
+   "event": "ufc-fight-night-august-22-2026",
+   "bankroll": 1017.73
+  },
+  {
+   "date": "2026-08-22",
+   "event": "ufc-fight-night-august-22-2026",
+   "bankroll": 1017.73
+  },
+  {
+   "date": "2026-08-22",
+   "event": "ufc-fight-night-august-22-2026",
+   "bankroll": 1012.35
+  },
+  {
+   "date": "2026-08-22",
+   "event": "ufc-fight-night-august-22-2026",
+   "bankroll": 1012.35
+  },
+  {
+   "date": "2026-08-22",
+   "event": "ufc-fight-night-august-22-2026",
+   "bankroll": 1012.35
+  },
+  {
+   "date": "2026-08-29",
+   "event": "ufc-fight-night-august-29-2026",
+   "bankroll": 1012.35
+  },
+  {
+   "date": "2026-08-29",
+   "event": "ufc-fight-night-august-29-2026",
+   "bankroll": 1012.35
+  },
+  {
+   "date": "2026-08-29",
+   "event": "ufc-fight-night-august-29-2026",
+   "bankroll": 1012.35
+  },
+  {
+   "date": "2026-08-29",
+   "event": "ufc-fight-night-august-29-2026",
+   "bankroll": 1012.35
+  },
+  {
+   "date": "2026-08-29",
+   "event": "ufc-fight-night-august-29-2026",
+   "bankroll": 1012.35
+  }
+ ],
+ "bets": [
+  {
+   "date": "2025-09-06",
+   "event": "ufc-fight-night-september-06-2025",
+   "fighter": "Caio Borralho",
+   "opponent": "Nassourdine Imavov",
+   "odds": -132,
+   "model_prob": 0.6473,
+   "market_prob": 0.5467,
+   "edge": 0.1006,
+   "stake": 9.09,
+   "result": "loss",
+   "pnl": -9.09,
+   "bankroll_after": 990.91,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-09-06",
+   "event": "ufc-fight-night-september-06-2025",
+   "fighter": "Bolaji Oki",
+   "opponent": "Mason Jones",
+   "odds": 110,
+   "model_prob": 0.5167,
+   "market_prob": 0.4573,
+   "edge": 0.0595,
+   "stake": 3.83,
+   "result": "loss",
+   "pnl": -3.83,
+   "bankroll_after": 987.08,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-09-13",
+   "event": "ufc-fight-night-september-13-2025",
+   "fighter": "Rafa Garcia",
+   "opponent": "Jared Gordon",
+   "odds": 190,
+   "model_prob": 0.5352,
+   "market_prob": 0.331,
+   "edge": 0.2042,
+   "stake": 14.34,
+   "result": "win",
+   "pnl": 27.24,
+   "bankroll_after": 1014.32,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-09-13",
+   "event": "ufc-fight-night-september-13-2025",
+   "fighter": "Alexander Hernandez",
+   "opponent": "Diego Ferreira",
+   "odds": 100,
+   "model_prob": 0.564,
+   "market_prob": 0.4802,
+   "edge": 0.0838,
+   "stake": 6.49,
+   "result": "win",
+   "pnl": 6.49,
+   "bankroll_after": 1020.81,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-09-13",
+   "event": "ufc-fight-night-september-13-2025",
+   "fighter": "Claudio Puelles",
+   "opponent": "Joaquim Silva",
+   "odds": -124,
+   "model_prob": 0.588,
+   "market_prob": 0.5328,
+   "edge": 0.0553,
+   "stake": 3.94,
+   "result": "loss",
+   "pnl": -3.94,
+   "bankroll_after": 1016.87,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-09-27",
+   "event": "ufc-fight-night-september-27-2025",
+   "fighter": "Jimmy Crute",
+   "opponent": "Ivan Erslan",
+   "odds": -215,
+   "model_prob": 0.7415,
+   "market_prob": 0.6565,
+   "edge": 0.085,
+   "stake": 9.45,
+   "result": "win",
+   "pnl": 4.39,
+   "bankroll_after": 1021.26,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-09-27",
+   "event": "ufc-fight-night-september-27-2025",
+   "fighter": "Charlie Campbell",
+   "opponent": "Tom Nolan",
+   "odds": 130,
+   "model_prob": 0.5081,
+   "market_prob": 0.4176,
+   "edge": 0.0905,
+   "stake": 6.63,
+   "result": "loss",
+   "pnl": -6.63,
+   "bankroll_after": 1014.64,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-10-11",
+   "event": "ufc-fight-night-october-11-2025",
+   "fighter": "Mateusz Gamrot",
+   "opponent": "Charles Oliveira",
+   "odds": -112,
+   "model_prob": 0.614,
+   "market_prob": 0.5089,
+   "edge": 0.1051,
+   "stake": 9.22,
+   "result": "loss",
+   "pnl": -9.22,
+   "bankroll_after": 1005.42,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-10-18",
+   "event": "ufc-fight-night-october-18-2025",
+   "fighter": "Kyle Nelson",
+   "opponent": "Matt Frevola",
+   "odds": 102,
+   "model_prob": 0.5294,
+   "market_prob": 0.4758,
+   "edge": 0.0536,
+   "stake": 3.42,
+   "result": "win",
+   "pnl": 3.49,
+   "bankroll_after": 1008.91,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-10-18",
+   "event": "ufc-fight-night-october-18-2025",
+   "fighter": "Aoriqileng",
+   "opponent": "Cody Gibson",
+   "odds": 152,
+   "model_prob": 0.5141,
+   "market_prob": 0.3817,
+   "edge": 0.1324,
+   "stake": 9.81,
+   "result": "win",
+   "pnl": 14.91,
+   "bankroll_after": 1023.82,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-10-25",
+   "event": "ufc-321",
+   "fighter": "Quillan Salkilld",
+   "opponent": "Nasrat Haqparast",
+   "odds": -118,
+   "model_prob": 0.6591,
+   "market_prob": 0.5198,
+   "edge": 0.1393,
+   "stake": 13.15,
+   "result": "win",
+   "pnl": 11.14,
+   "bankroll_after": 1034.96,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-10-25",
+   "event": "ufc-321",
+   "fighter": "Azamat Murzakanov",
+   "opponent": "Aleksandar Rakic",
+   "odds": -104,
+   "model_prob": 0.5821,
+   "market_prob": 0.4911,
+   "edge": 0.091,
+   "stake": 7.63,
+   "result": "win",
+   "pnl": 7.34,
+   "bankroll_after": 1042.29,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-11-15",
+   "event": "ufc-322",
+   "fighter": "Michael Morales",
+   "opponent": "Sean Brady",
+   "odds": 120,
+   "model_prob": 0.5131,
+   "market_prob": 0.4365,
+   "edge": 0.0766,
+   "stake": 5.6,
+   "result": "win",
+   "pnl": 6.72,
+   "bankroll_after": 1049.01,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-11-22",
+   "event": "ufc-fight-night-november-22-2025",
+   "fighter": "Waldo Cortes Acosta",
+   "opponent": "Shamil Gaziev",
+   "odds": -134,
+   "model_prob": 0.621,
+   "market_prob": 0.5507,
+   "edge": 0.0704,
+   "stake": 5.94,
+   "result": "win",
+   "pnl": 4.43,
+   "bankroll_after": 1053.44,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-11-22",
+   "event": "ufc-fight-night-november-22-2025",
+   "fighter": "Ismail Naurdiev",
+   "opponent": "Ryan Loder",
+   "odds": -134,
+   "model_prob": 0.6655,
+   "market_prob": 0.5507,
+   "edge": 0.1148,
+   "stake": 11.44,
+   "result": "win",
+   "pnl": 8.54,
+   "bankroll_after": 1061.98,
+   "source": "backtest"
+  },
+  {
+   "date": "2025-12-06",
+   "event": "ufc-323",
+   "fighter": "Fares Ziam",
+   "opponent": "Nazim Sadykhov",
+   "odds": -158,
+   "model_prob": 0.6949,
+   "market_prob": 0.589,
+   "edge": 0.1059,
+   "stake": 11.3,
+   "result": "win",
+   "pnl": 7.15,
+   "bankroll_after": 1069.13,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-01-24",
+   "event": "ufc-324",
+   "fighter": "Arnold Allen",
+   "opponent": "Jean Silva",
+   "odds": 220,
+   "model_prob": 0.6737,
+   "market_prob": 0.2998,
+   "edge": 0.3739,
+   "stake": 28.09,
+   "result": "loss",
+   "pnl": -28.09,
+   "bankroll_after": 1041.04,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-01-31",
+   "event": "ufc-325",
+   "fighter": "Rafael Fiziev",
+   "opponent": "Mauricio Ruffy",
+   "odds": 108,
+   "model_prob": 0.531,
+   "market_prob": 0.463,
+   "edge": 0.068,
+   "stake": 5.04,
+   "result": "loss",
+   "pnl": -5.04,
+   "bankroll_after": 1036.0,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-02-07",
+   "event": "ufc-fight-night-february-07-2026",
+   "fighter": "Vinicius Oliveira",
+   "opponent": "Mario Bautista",
+   "odds": 130,
+   "model_prob": 0.6194,
+   "market_prob": 0.4176,
+   "edge": 0.2018,
+   "stake": 16.92,
+   "result": "loss",
+   "pnl": -16.92,
+   "bankroll_after": 1019.08,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-02-07",
+   "event": "ufc-fight-night-february-07-2026",
+   "fighter": "Julius Walker",
+   "opponent": "Dustin Jacoby",
+   "odds": 150,
+   "model_prob": 0.5499,
+   "market_prob": 0.3845,
+   "edge": 0.1654,
+   "stake": 12.73,
+   "result": "loss",
+   "pnl": -12.73,
+   "bankroll_after": 1006.35,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-02-07",
+   "event": "ufc-fight-night-february-07-2026",
+   "fighter": "Niko Price",
+   "opponent": "Nikolay Veretennikov",
+   "odds": 220,
+   "model_prob": 0.5389,
+   "market_prob": 0.2998,
+   "edge": 0.239,
+   "stake": 16.57,
+   "result": "loss",
+   "pnl": -16.57,
+   "bankroll_after": 989.78,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-02-21",
+   "event": "ufc-fight-night-february-21-2026",
+   "fighter": "Serghei Spivac",
+   "opponent": "Ante Delija",
+   "odds": 100,
+   "model_prob": 0.6262,
+   "market_prob": 0.4802,
+   "edge": 0.146,
+   "stake": 12.49,
+   "result": "win",
+   "pnl": 12.49,
+   "bankroll_after": 1002.27,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-03-21",
+   "event": "ufc-fight-night-march-21-2026",
+   "fighter": "Sam Patterson",
+   "opponent": "Michael Page",
+   "odds": 160,
+   "model_prob": 0.5666,
+   "market_prob": 0.3699,
+   "edge": 0.1967,
+   "stake": 14.82,
+   "result": "loss",
+   "pnl": -14.82,
+   "bankroll_after": 987.45,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-03-28",
+   "event": "ufc-fight-night-march-28-2026",
+   "fighter": "Joe Pyfer",
+   "opponent": "Israel Adesanya",
+   "odds": 124,
+   "model_prob": 0.6208,
+   "market_prob": 0.4293,
+   "edge": 0.1915,
+   "stake": 15.55,
+   "result": "win",
+   "pnl": 19.28,
+   "bankroll_after": 1006.73,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-03-28",
+   "event": "ufc-fight-night-march-28-2026",
+   "fighter": "Kyle Nelson",
+   "opponent": "Terrance McKinney",
+   "odds": 152,
+   "model_prob": 0.5443,
+   "market_prob": 0.3817,
+   "edge": 0.1626,
+   "stake": 12.31,
+   "result": "loss",
+   "pnl": -12.31,
+   "bankroll_after": 994.42,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-04-11",
+   "event": "ufc-327",
+   "fighter": "Cub Swanson",
+   "opponent": "Nate Landwehr",
+   "odds": -116,
+   "model_prob": 0.6192,
+   "market_prob": 0.5154,
+   "edge": 0.1038,
+   "stake": 8.82,
+   "result": "win",
+   "pnl": 7.61,
+   "bankroll_after": 1002.03,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-04-11",
+   "event": "ufc-327",
+   "fighter": "Carlos Ulberg",
+   "opponent": "Jiri Prochazka",
+   "odds": -104,
+   "model_prob": 0.5989,
+   "market_prob": 0.4911,
+   "edge": 0.1078,
+   "stake": 9.11,
+   "result": "win",
+   "pnl": 8.76,
+   "bankroll_after": 1010.78,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-04-25",
+   "event": "ufc-fight-night-april-25-2026",
+   "fighter": "Aljamain Sterling",
+   "opponent": "Youssef Zalal",
+   "odds": 114,
+   "model_prob": 0.5013,
+   "market_prob": 0.4493,
+   "edge": 0.052,
+   "stake": 3.23,
+   "result": "win",
+   "pnl": 3.68,
+   "bankroll_after": 1014.47,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-04-25",
+   "event": "ufc-fight-night-april-25-2026",
+   "fighter": "Rafa Garcia",
+   "opponent": "Alexander Hernandez",
+   "odds": -102,
+   "model_prob": 0.5975,
+   "market_prob": 0.4846,
+   "edge": 0.1129,
+   "stake": 9.49,
+   "result": "win",
+   "pnl": 9.3,
+   "bankroll_after": 1023.77,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-05-02",
+   "event": "ufc-fight-night-may-02-2026",
+   "fighter": "Jack Della Maddalena",
+   "opponent": "Carlos Prates",
+   "odds": -102,
+   "model_prob": 0.6293,
+   "market_prob": 0.4846,
+   "edge": 0.1447,
+   "stake": 12.86,
+   "result": "loss",
+   "pnl": -12.86,
+   "bankroll_after": 1010.91,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-05-02",
+   "event": "ufc-fight-night-may-02-2026",
+   "fighter": "Colby Thicknesse",
+   "opponent": "Vince Morales",
+   "odds": -142,
+   "model_prob": 0.6191,
+   "market_prob": 0.5612,
+   "edge": 0.0579,
+   "stake": 3.96,
+   "result": "win",
+   "pnl": 2.79,
+   "bankroll_after": 1013.69,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-05-02",
+   "event": "ufc-fight-night-may-02-2026",
+   "fighter": "Brando Pericic",
+   "opponent": "Shamil Gaziev",
+   "odds": -116,
+   "model_prob": 0.5699,
+   "market_prob": 0.5154,
+   "edge": 0.0545,
+   "stake": 3.6,
+   "result": "win",
+   "pnl": 3.1,
+   "bankroll_after": 1016.8,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "fighter": "Joshua Van",
+   "opponent": "Tatsuro Taira",
+   "odds": 142,
+   "model_prob": 0.5153,
+   "market_prob": 0.3973,
+   "edge": 0.118,
+   "stake": 8.84,
+   "result": "win",
+   "pnl": 12.55,
+   "bankroll_after": 1029.35,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "fighter": "Waldo Cortes Acosta",
+   "opponent": "Alexander Volkov",
+   "odds": 124,
+   "model_prob": 0.6493,
+   "market_prob": 0.4293,
+   "edge": 0.22,
+   "stake": 18.86,
+   "result": "loss",
+   "pnl": -18.86,
+   "bankroll_after": 1010.49,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-05-09",
+   "event": "ufc-328",
+   "fighter": "Grant Dawson",
+   "opponent": "Mateusz Rebecki",
+   "odds": -146,
+   "model_prob": 0.662,
+   "market_prob": 0.5707,
+   "edge": 0.0913,
+   "stake": 8.51,
+   "result": "win",
+   "pnl": 5.83,
+   "bankroll_after": 1016.32,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-05-16",
+   "event": "ufc-fight-night-may-16-2026",
+   "fighter": "Melquizael Costa",
+   "opponent": "Arnold Allen",
+   "odds": 108,
+   "model_prob": 0.5142,
+   "market_prob": 0.463,
+   "edge": 0.0511,
+   "stake": 3.27,
+   "result": "loss",
+   "pnl": -3.27,
+   "bankroll_after": 1013.05,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-05-16",
+   "event": "ufc-fight-night-may-16-2026",
+   "fighter": "Dooho Choi",
+   "opponent": "Daniel Santos",
+   "odds": 148,
+   "model_prob": 0.5248,
+   "market_prob": 0.3874,
+   "edge": 0.1374,
+   "stake": 10.32,
+   "result": "win",
+   "pnl": 15.27,
+   "bankroll_after": 1028.32,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-05-16",
+   "event": "ufc-fight-night-may-16-2026",
+   "fighter": "Timmy Cuamba",
+   "opponent": "Benardo Sopaj",
+   "odds": 116,
+   "model_prob": 0.5469,
+   "market_prob": 0.4455,
+   "edge": 0.1015,
+   "stake": 8.04,
+   "result": "loss",
+   "pnl": -8.04,
+   "bankroll_after": 1020.28,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-05-16",
+   "event": "ufc-fight-night-may-16-2026",
+   "fighter": "Tuco Tokkos",
+   "opponent": "Ivan Erslan",
+   "odds": 142,
+   "model_prob": 0.5499,
+   "market_prob": 0.3973,
+   "edge": 0.1526,
+   "stake": 11.88,
+   "result": "loss",
+   "pnl": -11.88,
+   "bankroll_after": 1008.4,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-05-30",
+   "event": "ufc-fight-night-may-30-2026",
+   "fighter": "Cameron Smotherman",
+   "opponent": "Kai Asakura",
+   "odds": 257,
+   "model_prob": 0.5436,
+   "market_prob": 0.2774,
+   "edge": 0.2662,
+   "stake": 18.45,
+   "result": "loss",
+   "pnl": -18.45,
+   "bankroll_after": 989.94,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "fighter": "Gabriel Bonfim",
+   "opponent": "Belal Muhammad",
+   "odds": 100,
+   "model_prob": 0.6606,
+   "market_prob": 0.4951,
+   "edge": 0.1655,
+   "stake": 15.9,
+   "result": "win",
+   "pnl": 15.9,
+   "bankroll_after": 1005.84,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "fighter": "Santiago Luna",
+   "opponent": "Bryce Mitchell",
+   "odds": 108,
+   "model_prob": 0.6017,
+   "market_prob": 0.4754,
+   "edge": 0.1263,
+   "stake": 11.71,
+   "result": "loss",
+   "pnl": -11.71,
+   "bankroll_after": 994.13,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "fighter": "Edgar Chairez",
+   "opponent": "Bruno Silva",
+   "odds": 108,
+   "model_prob": 0.6157,
+   "market_prob": 0.4808,
+   "edge": 0.1349,
+   "stake": 12.91,
+   "result": "win",
+   "pnl": 13.95,
+   "bankroll_after": 1008.07,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-06-06",
+   "event": "ufc-fight-night-june-06-2026",
+   "fighter": "Jordan Leavitt",
+   "opponent": "Joanderson Brito",
+   "odds": 138,
+   "model_prob": 0.5262,
+   "market_prob": 0.4119,
+   "edge": 0.1144,
+   "stake": 9.22,
+   "result": "loss",
+   "pnl": -9.22,
+   "bankroll_after": 998.85,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-06-14",
+   "event": "ufc-freedom-250",
+   "fighter": "Ciryl Gane",
+   "opponent": "Alex Pereira",
+   "odds": 100,
+   "model_prob": 0.5498,
+   "market_prob": 0.4951,
+   "edge": 0.0546,
+   "stake": 4.97,
+   "result": "win",
+   "pnl": 4.97,
+   "bankroll_after": 1003.82,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-06-14",
+   "event": "ufc-freedom-250",
+   "fighter": "Steve Garcia",
+   "opponent": "Diego Lopes",
+   "odds": 178,
+   "model_prob": 0.5458,
+   "market_prob": 0.3493,
+   "edge": 0.1965,
+   "stake": 14.59,
+   "result": "loss",
+   "pnl": -14.59,
+   "bankroll_after": 989.24,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-06-20",
+   "event": "ufc-fight-night-june-20-2026",
+   "fighter": "Kyoji Horiguchi",
+   "opponent": "Manel Kape",
+   "odds": 138,
+   "model_prob": 0.5488,
+   "market_prob": 0.4119,
+   "edge": 0.137,
+   "stake": 10.98,
+   "result": "loss",
+   "pnl": -10.98,
+   "bankroll_after": 978.26,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "fighter": "Manuel Torres",
+   "opponent": "Rafael Fiziev",
+   "odds": -108,
+   "model_prob": 0.615,
+   "market_prob": 0.5094,
+   "edge": 0.1056,
+   "stake": 9.75,
+   "result": "loss",
+   "pnl": -9.75,
+   "bankroll_after": 968.51,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "fighter": "Matheus Camilo",
+   "opponent": "Nazim Sadykhov",
+   "odds": 163,
+   "model_prob": 0.5704,
+   "market_prob": 0.3765,
+   "edge": 0.1939,
+   "stake": 14.86,
+   "result": "win",
+   "pnl": 24.23,
+   "bankroll_after": 992.74,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "fighter": "Andrey Pulyaev",
+   "opponent": "Nursulton Ruziboev",
+   "odds": 170,
+   "model_prob": 0.5052,
+   "market_prob": 0.3665,
+   "edge": 0.1388,
+   "stake": 10.63,
+   "result": "loss",
+   "pnl": -10.63,
+   "bankroll_after": 982.1,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-06-27",
+   "event": "ufc-fight-night-june-27-2026",
+   "fighter": "Jean Matsumoto",
+   "opponent": "Bekzat Almakhan",
+   "odds": -104,
+   "model_prob": 0.629,
+   "market_prob": 0.5049,
+   "edge": 0.1242,
+   "stake": 11.94,
+   "result": "win",
+   "pnl": 11.48,
+   "bankroll_after": 993.59,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-07-11",
+   "event": "ufc-329",
+   "fighter": "Mario Bautista",
+   "opponent": "Cory Sandhagen",
+   "odds": 127,
+   "model_prob": 0.5091,
+   "market_prob": 0.4356,
+   "edge": 0.0735,
+   "stake": 6.08,
+   "result": "win",
+   "pnl": 7.73,
+   "bankroll_after": 1001.32,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-07-18",
+   "event": "ufc-fight-night-july-18-2026",
+   "fighter": "Jose Delgado",
+   "opponent": "Austin Bashi",
+   "odds": 122,
+   "model_prob": 0.5338,
+   "market_prob": 0.446,
+   "edge": 0.0878,
+   "stake": 7.59,
+   "result": "win",
+   "pnl": 9.26,
+   "bankroll_after": 1010.58,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-07-25",
+   "event": "ufc-fight-night-july-25-2026",
+   "fighter": "Steve Erceg",
+   "opponent": "Ramazan Temirov",
+   "odds": 100,
+   "model_prob": 0.5502,
+   "market_prob": 0.4951,
+   "edge": 0.0551,
+   "stake": 5.08,
+   "result": "loss",
+   "pnl": -5.08,
+   "bankroll_after": 1005.5,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-08-01",
+   "event": "ufc-fight-night-august-01-2026",
+   "fighter": "Dusko Todorovic",
+   "opponent": "Robert Valentin",
+   "odds": 144,
+   "model_prob": 0.5257,
+   "market_prob": 0.4021,
+   "edge": 0.1236,
+   "stake": 9.87,
+   "result": "loss",
+   "pnl": -9.87,
+   "bankroll_after": 995.63,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-08-15",
+   "event": "ufc-330",
+   "fighter": "Vicente Luque",
+   "opponent": "Tresean Gore",
+   "odds": -104,
+   "model_prob": 0.5726,
+   "market_prob": 0.5049,
+   "edge": 0.0677,
+   "stake": 6.38,
+   "result": "loss",
+   "pnl": -6.38,
+   "bankroll_after": 989.25,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-08-15",
+   "event": "ufc-330",
+   "fighter": "Neil Magny",
+   "opponent": "Ramiz Brahimaj",
+   "odds": 170,
+   "model_prob": 0.5836,
+   "market_prob": 0.3665,
+   "edge": 0.2172,
+   "stake": 16.75,
+   "result": "win",
+   "pnl": 28.48,
+   "bankroll_after": 1017.73,
+   "source": "backtest"
+  },
+  {
+   "date": "2026-08-22",
+   "event": "ufc-fight-night-august-22-2026",
+   "fighter": "Kennedy Nzechukwu",
+   "opponent": "Shamil Gaziev",
+   "odds": 113,
+   "model_prob": 0.5255,
+   "market_prob": 0.4655,
+   "edge": 0.0601,
+   "stake": 5.38,
+   "result": "loss",
+   "pnl": -5.38,
+   "bankroll_after": 1012.35,
+   "source": "backtest"
+  }
+ ]
+}
