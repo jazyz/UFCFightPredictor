@@ -6,8 +6,8 @@
     <string>com.ufcpredictor.autoretrain</string>
     <key>ProgramArguments</key>
     <array>
-        <string>__REPO__/.venv/bin/python</string>
-        <string>__REPO__/auto_retrain.py</string>
+        <string>/bin/bash</string>
+        <string>__REPO__/run_scheduled.sh</string>
     </array>
     <key>WorkingDirectory</key>
     <string>__REPO__</string>

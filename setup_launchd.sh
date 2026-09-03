@@ -14,7 +14,7 @@ if [ ! -f "$TEMPLATE" ]; then
 fi
 
 echo "This will install launchd job '$LABEL':"
-echo "  runs:  $REPO/.venv/bin/python $REPO/auto_retrain.py"
+echo "  runs:  $REPO/run_scheduled.sh  (auto_retrain.py, then publish_site.py)"
 echo "  when:  Monday & Friday 02:00"
 echo "  plist: $PLIST"
 printf "Proceed? [y/N] "

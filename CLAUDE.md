@@ -50,13 +50,26 @@ cd frontend && npm run build                # Production build
 cd frontend && CI=true npx react-scripts test --watchAll=false   # Frontend tests
 
 # Public site data: replay the walk-forward cache into the JSON the frontend bundles,
-# then commit and push so Cloudflare Pages rebuilds.
+# then commit and push so Cloudflare Pages rebuilds. publish_site.py does all three and
+# runs automatically after every scheduled retrain (see run_scheduled.sh); it commits only
+# frontend/src/data, and only when the content changed (the export timestamp alone never
+# triggers a commit). It must be run on main.
+python publish_site.py                      # export → commit → push
+python publish_site.py --no-push            # same, commit locally only
+python publish_site.py --roll               # also scrape new odds and extend the window (below)
+
+# By hand, the same three steps are:
 python testing/export_site_data.py
 git add frontend/src/data && git commit -m "Refresh site data" && git push
 
 # The export reads test_results/.tier2_full_cache/ (one pred_YYYY-MM-DD.csv per walk-forward
 # retrain, 2024-01-01 → 2026-08-30, committed). To extend or rebuild it:
 python testing/build_walk_forward_cache.py --start 2024-01-01 --end 2026-08-30 --cache test_results/.tier2_full_cache
+# The newest pred_*.csv only covers fights that existed when it was built and the builder
+# reuses existing files, so to extend the window delete the newest one first, then rebuild
+# and export with the new --end. `publish_site.py --roll` does this after running
+# scrapers/scrape_new_odds.py and re-sorting the odds CSV; it skips the rebuild when no
+# newer priced fight appeared. The window is otherwise fixed: the scheduled run never rolls it.
 # Before launch, replace MEMBERSHIP_URL in frontend/src/constants.js (an inert example.com
 # placeholder) with the real Patreon or Discord invite; /join is the only page that links out to it.
 ```
@@ -66,10 +79,14 @@ python testing/build_walk_forward_cache.py --start 2024-01-01 --end 2026-08-30 -
 ./setup_launchd.sh                          # Interactive launchd setup
 tail -f logs/launchd_error.log              # Scheduler-level failures (job never started)
 ls -t logs/auto_retrain_*.log | head -1 | xargs cat  # Latest run log
+ls -t logs/publish_site_*.log | head -1 | xargs cat  # Latest site publish log
 ```
 
-The launchd job runs `.venv/bin/python`, not the shell's default interpreter. If a
-dependency is importable in your shell but the scheduled run fails, check `.venv` first.
+The launchd job runs `run_scheduled.sh`, which runs `auto_retrain.py` and then, only if
+that succeeded, `publish_site.py`, both with `.venv/bin/python` rather than the shell's
+default interpreter. If a dependency is importable in your shell but the scheduled run
+fails, check `.venv` first. The push uses the `origin` SSH remote, so the launchd session
+needs a working key (check `ssh -T git@github.com` once from a fresh login).
 
 ## Architecture
 
@@ -85,6 +102,7 @@ ufcstats.com → scrapers/scrape_incremental.py → data/fight_details_date.csv
 
 ### Key Files by Function
 - **Orchestration**: `auto_retrain.py` — runs the full pipeline on schedule, with backup, validation and rollback
+- **Publishing**: `publish_site.py` — re-exports `frontend/src/data`, commits it if the content changed, pushes main; `--roll` extends the walk-forward window. `run_scheduled.sh` chains it after the retrain
 - **HTTP**: `scrapers/ufcnet.py` — ufcstats session that clears the anti-bot challenge
 - **Scraping**: `scrapers/scrape_incremental.py` — detects last stored date, scrapes only newer events
 - **Fighters**: `scrapers/update_fighters.py` — adds debutants to `instance/detailedfighters.db`
@@ -174,6 +192,9 @@ Runs Monday & Friday at 2:00 AM via launchd:
 5. Validation on `ml_ensemble.py`'s own chronological holdout (the last 5% of fights, never
    trained on). **Accuracy must exceed 60% or the previous models are restored.** This gate
    lives in `auto_retrain.py`; `ml_ensemble.py` on its own saves unconditionally.
+6. `publish_site.py` (via `run_scheduled.sh`, only after a successful retrain) re-exports the
+   site data, commits `frontend/src/data` if anything but the timestamp changed, and pushes
+   main so Cloudflare Pages rebuilds. It never rolls the backtest window on its own.
 
 Any step that fails, or produces nothing, exits non-zero.
 
