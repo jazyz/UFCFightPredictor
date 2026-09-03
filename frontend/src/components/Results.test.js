@@ -5,7 +5,7 @@ import { backtestFixture as fx } from "../test/fixtures";
 
 test("results page reports method, coverage, calibration, market and betting", () => {
   render(<MemoryRouter><Results data={fx} /></MemoryRouter>);
-  expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("One year out of sample");
+  expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Out of sample");
   expect(screen.getByText(/547 fights/)).toBeInTheDocument();
   expect(screen.getByText(/Feb 28, 2026 and Aug 29, 2026/)).toBeInTheDocument();
   expect(screen.getByText("$1,132.93")).toBeInTheDocument();

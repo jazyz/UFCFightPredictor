@@ -1,5 +1,7 @@
 export const backtestFixture = {
   generated: "2026-09-02T14:05:00",
+  range: { start: "2024-01-01", end: "2026-08-30", retrains: ["2024-01-01", "2024-07-13", "2025-01-11", "2025-07-12", "2026-01-24", "2026-07-25"] },
+  config: { blend_w: 0.8, min_edge: 0.05, kelly_fraction: 0.05, kelly_cap: 0.05, max_dog_odds: 200, start_bankroll: 1000, flat_stake: 10 },
   window: { start: "2025-08-30", end: "2026-08-30", retrains: ["2025-08-30", "2026-02-28", "2026-08-29"] },
   coverage: { fights_in_window: 547, scored: 282, with_odds: 281 },
   metrics: { accuracy: 0.6702, auc: 0.704, log_loss: 0.638, brier: 0.223, n: 282 },

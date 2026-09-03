@@ -12,7 +12,7 @@ const Section = ({ eyebrow, title, children }) => (
 
 export default function Methodology({ data }) {
   // `window` is renamed so it never shadows the browser global
-  const { coverage, metrics, window: span } = data;
+  const { coverage, metrics, window: span, config } = data;
   return (
     <main className="mx-auto max-w-content px-6">
       <section className="pb-4 pt-20">
@@ -72,9 +72,14 @@ export default function Methodology({ data }) {
           Of {coverage.fights_in_window} fights in the window, {coverage.scored} were scorable.
         </p>
         <p>
-          Betting is replayed with the exact production sizing code: fractional Kelly at 5% of the criterion,
-          capped at 5% of bankroll, no floor, and a 5-point minimum edge measured against the de-vigged closing
-          price. The bet log shows every stake.
+          Betting is replayed with the exact production sizing code: fractional Kelly at{" "}
+          {pct(config.kelly_fraction, 0)} of the criterion, capped at {pct(config.kelly_cap, 0)} of bankroll, no floor, a{" "}
+          {Math.round(config.min_edge * 100)}-point minimum edge measured against the de-vigged closing price, and no
+          picks priced longer than +{config.max_dog_odds}. The bet log shows every stake.
+        </p>
+        <p>
+          This model version and the longshot cap were adopted after the window they are scored on. Treat the
+          improvement they show as a hypothesis the live bet log tests going forward.
         </p>
       </Section>
 

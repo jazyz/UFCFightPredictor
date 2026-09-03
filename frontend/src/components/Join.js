@@ -4,8 +4,13 @@ import { MEMBERSHIP_URL } from "../constants";
 import { pct } from "../format";
 
 export default function Join({ data }) {
-  const { metrics, bands } = data;
+  const { metrics, bands, config } = data;
   const top = bands[bands.length - 1];
+  const cards = [
+    ["Every covered bout", "Win probability for each fight the model can score, with the de-vigged market probability beside it."],
+    ["Edge and stake", `Which side clears the ${Math.round(config.min_edge * 100)}-point edge gate, and the fractional Kelly stake as a percent of bankroll.`],
+    ["Graded in public", "Every pick lands on the bet log once results are in. Wins and losses alike."],
+  ];
   return (
     <main className="mx-auto max-w-content px-6">
       <section className="pb-12 pt-20">
@@ -18,11 +23,7 @@ export default function Join({ data }) {
       </section>
 
       <section className="grid gap-4 md:grid-cols-3">
-        {[
-          ["Every covered bout", "Win probability for each fight the model can score, with the de-vigged market probability beside it."],
-          ["Edge and stake", "Which side clears the 5-point edge gate, and the fractional Kelly stake as a percent of bankroll."],
-          ["Graded in public", "Every pick lands on the bet log once results are in. Wins and losses alike."],
-        ].map(([title, body]) => (
+        {cards.map(([title, body]) => (
           <div key={title} className="rounded-lg border border-hairline bg-surface p-6">
             <h2 className="font-display text-2xl font-bold tracking-wide text-ink">{title}</h2>
             <p className="mt-2 text-ink-2">{body}</p>

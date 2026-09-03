@@ -21,15 +21,14 @@ const CtaButton = ({ children }) => (
   </Link>
 );
 
-const STEPS = [
-  ["Data", "Every UFC fight since 1994, scraped from ufcstats.com: strikes, takedowns, control time, finishes. Each fight is described only by what was known before it happened."],
-  ["Model", "180+ engineered features per fighter feed a five-model LightGBM ensemble retrained twice a week. It outputs a win probability, not a hot take."],
-  ["Bets", "Probability meets closing odds. A fractional Kelly stake goes down only when the blended probability's edge over the de-vigged market clears 5%."],
-];
-
 export default function Home({ data }) {
   // `window` is renamed so it never shadows the browser global
-  const { metrics, bands, market, flat, betting, coverage, window: span } = data;
+  const { metrics, bands, market, flat, betting, coverage, window: span, config } = data;
+  const steps = [
+    ["Data", "Every UFC fight since 1994, scraped from ufcstats.com: strikes, takedowns, control time, finishes. Each fight is described only by what was known before it happened."],
+    ["Model", "180+ engineered features per fighter feed a five-model LightGBM ensemble retrained twice a week. It outputs a win probability, not a hot take."],
+    ["Bets", `Probability meets closing odds. A fractional Kelly stake goes down only when the blended probability's edge over the de-vigged market clears ${Math.round(config.min_edge * 100)}%, and never on a price longer than +${config.max_dog_odds}.`],
+  ];
   const top = bands[bands.length - 1];
   const populated = bands.filter((b) => b.n > 0);
   const climbs = populated.every((b, i) => i === 0 || b.hit >= populated[i - 1].hit);
@@ -88,7 +87,7 @@ export default function Home({ data }) {
         <Eyebrow>How it works</Eyebrow>
         <H2>Three steps, no vibes</H2>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {STEPS.map(([title, body]) => (
+          {steps.map(([title, body]) => (
             <div key={title} className="rounded-lg border border-hairline bg-surface p-6">
               <h3 className="font-display text-2xl font-bold tracking-wide text-ink">{title}</h3>
               <p className="mt-2 text-ink-2">{body}</p>

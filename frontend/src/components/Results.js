@@ -17,7 +17,7 @@ const Card = ({ children }) => (
 
 export default function Results({ data }) {
   // `window` is renamed so it never shadows the browser global
-  const { window: span, coverage, metrics, bands, monthly, market, flat, betting, bankroll } = data;
+  const { window: span, coverage, metrics, bands, monthly, market, flat, betting, bankroll, config } = data;
   const top = bands[bands.length - 1];
   const retrains = span.retrains.slice(1);
   const se = stdErrPts(metrics.accuracy, metrics.n);
@@ -32,10 +32,10 @@ export default function Results({ data }) {
     <main className="mx-auto max-w-content px-6">
       <section className="pb-12 pt-20">
         <Eyebrow>
-          Annual model review · {shortDate(span.start)} → {shortDate(span.end)} · generated {data.generated.slice(0, 10)}
+          Walk-forward record · {shortDate(span.start)} → {shortDate(span.end)} · generated {data.generated.slice(0, 10)}
         </Eyebrow>
         <h1 className="mt-4 font-display text-6xl font-bold leading-[0.95] tracking-wide text-ink">
-          One year out of sample
+          Out of sample
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-ink-2">
           How the deployed model performed between {shortDate(span.start)} and {shortDate(span.end)}, a
@@ -135,8 +135,10 @@ export default function Results({ data }) {
         <Eyebrow>Betting</Eyebrow>
         <H2>{signedPct(betting.return_pct)} on a $1,000 paper bankroll</H2>
         <p className="mt-4 max-w-2xl text-ink-2">
-          The production config bets the model's pick with fractional Kelly (5% fraction, 5% cap, no floor)
-          whenever the blended probability beats the de-vigged price by at least 5 points. {betting.bets} bets,{" "}
+          The production config bets the model's pick with fractional Kelly ({pct(config.kelly_fraction, 0)} fraction,{" "}
+          {pct(config.kelly_cap, 0)} cap, no floor) whenever the blended probability beats the de-vigged price by at
+          least {Math.round(config.min_edge * 100)} points, and skips any pick priced longer than +{config.max_dog_odds}.{" "}
+          {betting.bets} bets,{" "}
           {betting.max_drawdown_pct}% max drawdown, low point {money(betting.low)}.
         </p>
         <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
