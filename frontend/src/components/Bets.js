@@ -97,6 +97,7 @@ export default function Bets({ data, ledger }) {
   const graded = ledger.filter((e) => e.result !== "pending");
   const liveWins = graded.filter((e) => e.result === "win").length;
   const netPct = graded.reduce((sum, e) => sum + e.pnl_per_unit * e.stake_pct, 0);
+  const cards = new Set(ledger.map((e) => e.event)).size;
   const liveRows = [...ledger]
     .sort((a, b) => (a.event_date < b.event_date ? 1 : -1))
     .map((e) => ({
@@ -143,7 +144,8 @@ export default function Bets({ data, ledger }) {
       ) : (
         <>
           <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <StatTile label="Picks posted" value={ledger.length} sub={`${graded.length} graded · ${ledger.length - graded.length} pending`} />
+            <StatTile label="Picks posted" value={ledger.length} sub={`across ${cards} card${cards === 1 ? "" : "s"}`} />
+            <StatTile label="Graded" value={graded.length} sub={`${ledger.length - graded.length} pending`} />
             <StatTile label="Hit rate" value={graded.length ? pct(liveWins / graded.length) : "—"} sub={`${liveWins} won of ${graded.length} settled`} />
             <StatTile
               label="Net, % of bankroll"
@@ -151,7 +153,6 @@ export default function Bets({ data, ledger }) {
               tone={netPct >= 0 ? "up" : "down"}
               sub="sum of stake % × payout on graded picks"
             />
-            <StatTile label="Sizing" value="5% Kelly" sub="5% cap · no floor · 5% min edge" />
           </section>
           {ledger.length === 0 ? (
             <p className="mt-10 max-w-2xl text-ink-2">

@@ -19,7 +19,8 @@ test("live segment shows graded and pending picks in bankroll percent", () => {
   expect(screen.getByText("Live Winner")).toBeInTheDocument();
   expect(screen.getAllByText("+0.42%")).toHaveLength(2); // the Net tile and the graded row
   expect(screen.getByText("pending")).toBeInTheDocument();
-  expect(screen.getByText(/1 graded/)).toBeInTheDocument();
+  expect(screen.getByText("Graded")).toBeInTheDocument();
+  expect(screen.getByText(/1 pending/)).toBeInTheDocument();
 });
 
 test("live segment has an empty state", () => {
