@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 UFC Fight Predictor is a machine learning system that predicts UFC fight outcomes and recommends bets using the Kelly Criterion. Website: https://ufcalpha.com/ (frontend on Cloudflare Pages, API on Render)
 
-Measured out-of-sample accuracy is **~63%**: 62.9% on the 159 fights of 2026-02-28 → 2026-08-30, and 63.5% across the 762 fights that followed the previous training cutoff. Accuracy alone understates what changed most recently — see "Calibration matters more than accuracy" below.
+The tier-2 walk-forward export over 2024-01-01 → 2026-08-30 scores 756 fights at 66.4% accuracy (AUC 0.695) and turns 170 bets into +26.6% on a $1,000 paper bankroll with an 11.5% max drawdown. The public site (`frontend/`) recomputes every window from `frontend/src/data/backtest.json`.
 
 ## Key Commands
 
@@ -54,11 +54,9 @@ cd frontend && CI=true npx react-scripts test --watchAll=false   # Frontend test
 python testing/export_site_data.py
 git add frontend/src/data && git commit -m "Refresh site data" && git push
 
-# The export's default input, test_results/.lastyear_tier0_cache/ (one pred_YYYY-MM-DD.csv per
-# walk-forward retrain), is committed so the published numbers are reproducible. To roll the window,
-# build a new cache with testing.testing_time_period.process_dates and a train_ml that copies each
-# retrain's data/predicted_results.csv into the cache dir (testing/oos_2024_report.py shows the
-# pattern), then run the export with --cache, --start and --end.
+# The export reads test_results/.tier2_full_cache/ (one pred_YYYY-MM-DD.csv per walk-forward
+# retrain, 2024-01-01 → 2026-08-30, committed). To extend or rebuild it:
+python testing/build_walk_forward_cache.py --start 2024-01-01 --end 2026-08-30 --cache test_results/.tier2_full_cache
 # Before launch, replace MEMBERSHIP_URL in frontend/src/constants.js (an inert example.com
 # placeholder) with the real Patreon or Discord invite; /join is the only page that links out to it.
 ```
@@ -98,6 +96,7 @@ ufcstats.com → scrapers/scrape_incremental.py → data/fight_details_date.csv
 
 ### Model Files
 - `saved_models/lgbm_model_0.joblib` … `lgbm_model_4.joblib` — five ensemble members. They are **not** corner-specific: each is trained on the same augmented data with its own Optuna-sampled hyperparameters, and inference averages `predict_proba` across all five (see `load_ensemble.py`).
+- Members are trained with distinct seeds; `saved_preprocessing/calibrator.joblib` holds the temperature calibrator `load_ensemble.py` applies at inference.
 - `saved_preprocessing/selected_columns.json` — the exact feature list the models expect; **always** select columns through this rather than recomputing the prune.
 - `saved_preprocessing/label_encoder.joblib` — classes are `['loss', 'win']`, so **class 1 = the red corner wins**.
 - `saved_models/backup_YYYYMMDD_HHMMSS/` — timestamped backups written before each retrain, including a copy of `saved_preprocessing/`.
@@ -162,6 +161,7 @@ Fractional Kelly with conservative defaults; all sizing paths (`predict_event.py
   + 0.2 × de-vigged market prob. The displayed headline probability stays the plain model
   average; `closerToOdds` survives only as a legacy comparison path in the backtests
   (`strategy[4] = None`)
+- Picks priced longer than +200 are skipped (`max_dog_odds`, adopted 2026-09 after the 2024-26 walk-forward study)
 
 ### Auto-Retraining System
 Runs Monday & Friday at 2:00 AM via launchd:
@@ -210,12 +210,16 @@ The public site is static: every page reads `frontend/src/data/backtest.json` an
 API. Brand and paywall constants live in `frontend/src/constants.js` (`SITE_NAME`,
 `MEMBERSHIP_URL`).
 
+`frontend/src/aggregate.js` — browser twin of the export's summary sections; every page
+recomputes for the URL window (`?from=&to=`).
+
 Components in `frontend/src/components/`:
 - `Home.js` — landing page: headline stats, how it works, calibration proof, market table, membership CTA
 - `Results.js` — the full walk-forward report
 - `Bets.js` — bet log with Backtest / Live segments
 - `Methodology.js` — pipeline explainer
 - `Join.js` — membership page
+- `PeriodFilter.js` — presets + custom range
 - `Navbar.js`, `Footer.js`, `StatTile.js`, `ScrollToTop.js` — chrome
 - `charts/` — recharts wrappers: `CalibrationChart`, `MonthlyAccuracyChart`, `BankrollChart`, shared `chartTheme`
 - `FightersPage.js` / `FightersDropdown.js` — unrouted legacy components
