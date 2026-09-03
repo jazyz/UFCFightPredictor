@@ -244,10 +244,10 @@ for fold_train, fold_val in oof_splits.split(X_train):
     y_fold_ext = pd.concat([y_fold, y_fold.apply(lambda v: 0 if v == 1 else 1)],
                            ignore_index=True)
     fold_member_probs = []
-    for t in top_trials:
+    for i, t in enumerate(top_trials):
         fold_params = dict(t.params)
         fold_params['n_estimators'] = t.user_attrs['best_iteration']
-        fold_params['random_state'] = seed
+        fold_params['random_state'] = seed + i
         fold_model = lgb.LGBMClassifier(**fold_params)
         fold_model.fit(X_fold_ext, y_fold_ext)
         fold_member_probs.append(fold_model.predict_proba(X_train.iloc[fold_val])[:, 1])
@@ -368,8 +368,6 @@ with open(os.path.join("data", "predicted_results.csv"), mode="w", newline="") a
                 actual_labels[i],
             ]
         )
-
-import joblib
 
 model_save_dir = "saved_models"
 os.makedirs(model_save_dir, exist_ok=True)
