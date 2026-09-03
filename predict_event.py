@@ -45,6 +45,7 @@ sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.join(ROOT, "scrapers"))
 
 import betting_math
+import bet_ledger
 import ufcnet
 from ufcnet import ScrapeError
 
@@ -298,7 +299,7 @@ def recommend(bouts, prob_of, odds_map):
 
 # -------------------------------------------------------------------- output
 
-def write_outputs(rows, event, bets):
+def write_outputs(rows, event, bets, event_date):
     predict_data = [{"Red Fighter": r, "Blue Fighter": b,
                      "Probability Win": p, "Probability Lose": 1 - p}
                     for r, b, p in rows]
@@ -307,10 +308,12 @@ def write_outputs(rows, event, bets):
         "class_probabilities": {"Win": [p for _, _, p in rows],
                                 "Lose": [1 - p for _, _, p in rows]},
         "event": event,
+        "event_date": event_date,
         "generated": datetime.datetime.now().isoformat(timespec="seconds"),
     }
     if bets:
         payload["bets"] = bets
+        bet_ledger.record(event, event_date, payload["generated"], bets)
     with open(PRED_JSON, "w") as fh:
         json.dump(payload, fh)
 
@@ -341,10 +344,15 @@ def main():
     when = None
     if args.event:
         url = args.event
+        try:
+            when = next((w for w, u, _ in upcoming_events(session) if u == url), None)
+        except ScrapeError:
+            when = None
     else:
         events = upcoming_events(session)
         when, url, name = events[0]
         print(f"Next event: {name} — {when.date()}")
+    event_date = (when or datetime.datetime.now()).strftime("%Y-%m-%d")
 
     event_name, bouts = event_card(session, url)
     print(f"{event_name}: {len(bouts)} bouts")
@@ -366,7 +374,7 @@ def main():
         else:
             bets = recommend(bouts, prob_of, odds_map)
 
-    write_outputs(rows, event_name, bets)
+    write_outputs(rows, event_name, bets, event_date)
 
     print(f"\n{'FIGHT':<48}{'MODEL PICK':>26}")
     seen = set()

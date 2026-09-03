@@ -92,6 +92,17 @@ def step_process():
     log.info(f"✓ Processing completed: {len(df)} rows")
 
 
+def step_grade_ledger():
+    """Settle public-ledger picks whose results just landed. Never fails the run."""
+    banner("STEP 2b: GRADING THE BET LEDGER")
+    try:
+        import bet_ledger
+        n = bet_ledger.grade()
+        log.info(f"✓ Ledger graded: {n} entries settled")
+    except Exception as exc:
+        log.warning(f"Ledger grading skipped: {type(exc).__name__}: {exc}")
+
+
 def step_features():
     banner("STEP 3: FEATURE ENGINEERING")
     before = os.path.getmtime(FEATURES) if os.path.exists(FEATURES) else 0
@@ -223,6 +234,7 @@ def main():
             return 0
 
         step_process()
+        step_grade_ledger()
         step_features()
 
         if args.skip_training:
