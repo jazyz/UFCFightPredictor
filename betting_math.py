@@ -6,7 +6,7 @@ backtests measure is exactly what production stakes. Pure functions, no I/O.
 
 Doctrine: fractional Kelly (5% fraction, 5% cap, no floor), a minimum-edge
 gate measured against DE-VIGGED market probabilities, and a betting
-probability that blends model and market at w=0.8.
+probability that blends model and market at w=0.8. Picks priced longer than +200 are skipped.
 """
 
 
@@ -47,7 +47,7 @@ def size_bet(bankroll, kelly_frac, cap, kc):
 
 
 def decide_bet(model_p1, model_p2, odds1, odds2, *, blend_w=0.8, min_edge=0.05,
-               fraction=0.05, cap=0.05, dog_multiplier=1.0, bankroll):
+               fraction=0.05, cap=0.05, dog_multiplier=1.0, max_dog_odds=200, bankroll):
     """Full decision for one bout; None when neither side clears the gates.
 
     model_p2 may be None when the model's probabilities are complementary.
@@ -60,6 +60,10 @@ def decide_bet(model_p1, model_p2, odds1, odds2, *, blend_w=0.8, min_edge=0.05,
     dog_multiplier scales the stake when the pick has positive odds
     (1.0 = no scaling; the half-stake-dogs experiment is a knob, not a
     default).
+    max_dog_odds skips a pick priced strictly longer than +N (default +200, None
+    disables it). The 2024-26 walk-forward study found picks beyond +200 lost at
+    flat stakes (13 bets, 2-11); the cap removes the segment where the model is
+    most often blind.
     """
     if model_p2 is None:
         model_p2 = 1.0 - model_p1
@@ -68,6 +72,8 @@ def decide_bet(model_p1, model_p2, odds1, odds2, *, blend_w=0.8, min_edge=0.05,
     p2 = blend_prob(model_p2, market2, blend_w)
     side = 1 if p1 >= p2 else 2
     prob, market_prob, odds = (p1, market1, odds1) if side == 1 else (p2, market2, odds2)
+    if max_dog_odds is not None and odds > max_dog_odds:
+        return None
     edge = prob - market_prob
     kc = kelly(odds, prob)
     if edge < min_edge or kc <= 0:
