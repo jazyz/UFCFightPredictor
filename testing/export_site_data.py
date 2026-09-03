@@ -68,7 +68,7 @@ class Coverage:
 @dataclass
 class Metrics:
     accuracy: float
-    auc: float
+    auc: Optional[float]
     log_loss: float
     brier: float
     n: int
@@ -95,7 +95,7 @@ class MonthRow:
 class MarketRow:
     name: str
     accuracy: float
-    auc: float
+    auc: Optional[float]
     log_loss: float
     brier: float
 
@@ -353,8 +353,8 @@ def _metrics(ps: List[float], ys: List[int]) -> Tuple[float, float, float, float
     """accuracy, AUC, log loss, Brier for P(fighter 1 wins) against 1/0 outcomes."""
     clipped = [min(max(p, 1e-6), 1 - 1e-6) for p in ps]
     acc = sum((p >= 0.5) == (y == 1) for p, y in zip(ps, ys)) / len(ps)
-    auc = roc_auc_score(ys, ps) if len(set(ys)) > 1 else float("nan")
-    return (acc, float(auc), float(log_loss(ys, clipped, labels=[0, 1])),
+    auc = roc_auc_score(ys, ps) if len(set(ys)) > 1 else None
+    return (acc, None if auc is None else float(auc), float(log_loss(ys, clipped, labels=[0, 1])),
             float(brier_score_loss(ys, clipped)))
 
 
@@ -362,7 +362,7 @@ def prediction_metrics(fights: List[Scored]) -> Metrics:
     ps = [s.model_p1 for s in fights]
     ys = [1 if s.winner == s.f1 else 0 for s in fights]
     acc, auc, ll, br = _metrics(ps, ys)
-    return Metrics(accuracy=round(acc, 4), auc=round(auc, 4), log_loss=round(ll, 4),
+    return Metrics(accuracy=round(acc, 4), auc=None if auc is None else round(auc, 4), log_loss=round(ll, 4),
                    brier=round(br, 4), n=len(fights))
 
 
@@ -397,7 +397,7 @@ def market_section(fights: List[Scored]) -> MarketSection:
     ]
     for name, ps in series:
         acc, auc, ll, br = _metrics(ps, ys)
-        rows.append(MarketRow(name=name, accuracy=round(acc, 4), auc=round(auc, 4),
+        rows.append(MarketRow(name=name, accuracy=round(acc, 4), auc=None if auc is None else round(auc, 4),
                               log_loss=round(ll, 4), brier=round(br, 4)))
     agree = [s for s in fights if (s.model_p1 >= 0.5) == (s.market_p1 >= 0.5)]
     disagree = [s for s in fights if (s.model_p1 >= 0.5) != (s.market_p1 >= 0.5)]

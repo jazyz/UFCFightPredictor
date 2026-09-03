@@ -105,9 +105,10 @@ def replay(start, end, cache_dir, devig_name, max_dog_odds, min_edge,
                 continue
             o1, o2 = int(o1), int(o2)
             model_a = (m1 + (1 - m2)) / 2
+            # the experiment applies its own cap below; disable decide_bet's default so cap_odds=None is truly uncapped
             bet = betting_math.decide_bet(model_a, None, o1, o2, blend_w=blend_w,
                                           min_edge=min_edge, fraction=fraction,
-                                          cap=cap, bankroll=bankroll)
+                                          cap=cap, bankroll=bankroll, max_dog_odds=None)
             if bet is None:
                 banks.append(bankroll)
                 continue

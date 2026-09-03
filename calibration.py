@@ -12,7 +12,8 @@ import os
 import joblib
 import numpy as np
 
-CALIBRATOR_PATH = os.path.join("saved_preprocessing", "calibrator.joblib")
+CALIBRATOR_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               "saved_preprocessing", "calibrator.joblib")
 
 
 def load_temperature(path=CALIBRATOR_PATH):
@@ -30,4 +31,8 @@ def apply_temperature(p, a):
 def calibrate(p, path=CALIBRATOR_PATH):
     """Calibrated copy of win probability array p (no-op without an artifact)."""
     a = load_temperature(path)
-    return np.asarray(p, dtype=float) if a is None else apply_temperature(p, a)
+    if a is None:
+        import warnings
+        warnings.warn(f"no calibrator at {path}; serving uncalibrated probabilities", stacklevel=2)
+        return np.asarray(p, dtype=float)
+    return apply_temperature(p, a)

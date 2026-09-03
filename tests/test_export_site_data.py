@@ -178,7 +178,7 @@ def test_main_writes_v2_json(fixture_dir, tmp_path):
 CACHE = os.path.join(ROOT, "test_results", ".tier2_full_cache")
 
 
-@pytest.mark.skipif(not os.path.isdir(CACHE), reason="walk-forward cache not present (gitignored)")
+@pytest.mark.skipif(not os.path.isdir(CACHE), reason="walk-forward cache not present")
 def test_export_matches_testing_time_period_to_the_cent(tmp_path, monkeypatch):
     """The export must stake exactly what the reference backtest stakes.
 
