@@ -14,4 +14,6 @@ test("results page reports method, coverage, calibration, market and betting", (
   expect(screen.getByRole("table", { name: "Calibration by confidence band" })).toBeInTheDocument();
   expect(screen.getByRole("table", { name: "Accuracy by month" })).toBeInTheDocument();
   expect(screen.getByRole("table", { name: "Bankroll at month end" })).toBeInTheDocument();
+  expect(screen.getByText("Flat $10 per fight")).toBeInTheDocument();
+  expect(screen.getByText(/closing line forecasts better than the model\. The return comes from/)).toBeInTheDocument();
 });

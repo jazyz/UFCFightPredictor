@@ -16,4 +16,5 @@ test("home leads with the out-of-sample record and the membership CTA", () => {
   expect(screen.getByText(/\$1,000 paper bankroll/)).toBeInTheDocument();
   expect(screen.getAllByText(/281 priced fights/).length).toBeGreaterThan(0);
   expect(screen.getByText(/Between Aug 30, 2025 and Aug 30, 2026 it scored/)).toBeInTheDocument();
+  expect(screen.getByText("Flat $10 on the model's pick")).toBeInTheDocument();
 });

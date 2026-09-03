@@ -24,6 +24,9 @@ export default function Results({ data }) {
   const months = monthly.map((m) => m.hit);
   const worst = monthly[months.indexOf(Math.min(...months))];
   const best = monthly[months.indexOf(Math.max(...months))];
+  const [marketRow, modelRow] = market.rows;
+  const marketSharper = marketRow.log_loss < modelRow.log_loss;
+  const modelMoreAccurate = modelRow.accuracy > marketRow.accuracy;
 
   return (
     <main className="mx-auto max-w-content px-6">
@@ -139,7 +142,7 @@ export default function Results({ data }) {
           <StatTile label="Hit rate" value={pct(betting.hit)} sub={`${betting.favorites.won}/${betting.favorites.total} favorites · ${betting.underdogs.won}/${betting.underdogs.total} underdogs`} />
           <StatTile label="Max drawdown" value={`${betting.max_drawdown_pct}%`} sub={`low point ${money(betting.low)}`} />
           <StatTile
-            label="Flat $10 per fight"
+            label={`Flat $${flat.stake} per fight`}
             value={`${signedPct(flat.model_pick_per_bet * 100)} / bet`}
             tone={flat.model_pick_per_bet >= 0 ? "up" : "down"}
             sub={`model pick over ${coverage.with_odds} fights · favorite ${signedPct(flat.market_favorite_per_bet * 100)} / bet`}
@@ -153,9 +156,12 @@ export default function Results({ data }) {
         <H2>Why this works, and where it doesn't</H2>
         <ul className="mt-6 max-w-2xl list-disc space-y-3 pl-5 text-ink-2">
           <li>
-            <b className="text-ink">The edge is price selection, not prophecy.</b> The market forecasts at least as
-            well as the model. The return comes from which agreements the model sizes up: fights where its
-            calibrated probability says the price is soft.
+            <b className="text-ink">The edge is price selection, not prophecy.</b>{" "}
+            {marketSharper
+              ? "On the proper scoring rules (AUC, log loss, Brier) the closing line forecasts better than the model"
+              : "On the proper scoring rules (AUC, log loss, Brier) the model forecasts at least as well as the closing line"}
+            {modelMoreAccurate ? ", even in a year where the model edged it on raw accuracy" : ""}. The return comes from
+            which agreements the model sizes up: fights where its calibrated probability says the price is soft.
           </li>
           <li>
             <b className="text-ink">Disagreement is a warning sign.</b> When model and market split, the model wins{" "}

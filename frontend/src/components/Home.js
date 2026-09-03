@@ -74,7 +74,7 @@ export default function Home({ data }) {
           sub={`${top.n} picks · stated ${pct(top.stated)} on average`}
         />
         <StatTile
-          label="Flat $10 on the model's pick"
+          label={`Flat $${flat.stake} on the model's pick`}
           value={`${signedPct(flat.model_pick_per_bet * 100)} / bet`}
           tone={flat.model_pick_per_bet >= 0 ? "up" : "down"}
           sub={`${coverage.with_odds} priced fights, $${flat.stake} each · blindly backing the favorite: ${signedPct(flat.market_favorite_per_bet * 100)} / bet`}
