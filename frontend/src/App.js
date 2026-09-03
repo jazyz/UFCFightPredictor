@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Home from "./components/Home";
 import Results from "./components/Results";
+import Bets from "./components/Bets";
 import backtest from "./data/backtest.json";
 import ledger from "./data/ledger.json";
 
@@ -16,6 +17,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Home data={backtest} ledger={ledger} />} />
         <Route path="/results" element={<Results data={backtest} />} />
+        <Route path="/bets" element={<Bets data={backtest} ledger={ledger} />} />
       </Routes>
       <Footer />
     </div>
