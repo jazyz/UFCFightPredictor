@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Home from "./components/Home";
+import Results from "./components/Results";
 import backtest from "./data/backtest.json";
 import ledger from "./data/ledger.json";
 
@@ -14,6 +15,7 @@ const App = () => (
       <Navbar />
       <Routes>
         <Route path="/" element={<Home data={backtest} ledger={ledger} />} />
+        <Route path="/results" element={<Results data={backtest} />} />
       </Routes>
       <Footer />
     </div>
