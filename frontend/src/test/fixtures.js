@@ -49,6 +49,28 @@ export const backtestFixture = {
   ],
 };
 
+/** What aggregate() returns for a window with no scored fights, in page-data shape. */
+export const emptyWindowFixture = {
+  ...backtestFixture,
+  window: { start: "2026-02-01", end: "2026-02-28", retrains: ["2026-01-24"] },
+  coverage: { fights_in_window: 0, scored: 0, with_odds: 0 },
+  metrics: { accuracy: null, auc: null, log_loss: null, brier: null, n: 0 },
+  bands: backtestFixture.bands.map((b) => ({ ...b, n: 0, stated: null, hit: null })),
+  monthly: [],
+  market: {
+    rows: backtestFixture.market.rows.map((r) => ({ ...r, accuracy: null, auc: null, log_loss: null, brier: null })),
+    agree: { n: 0, hit: null },
+    disagree: { n: 0, model_hit: null },
+  },
+  flat: { market_favorite_per_bet: 0, model_pick_per_bet: 0, stake: 10 },
+  betting: {
+    final: 1000, return_pct: 0, bets: 0, hit: null,
+    favorites: { won: 0, total: 0 }, underdogs: { won: 0, total: 0 }, max_drawdown_pct: 0, low: 1000,
+  },
+  bankroll: [],
+  bets: [],
+};
+
 export const ledgerFixture = [
   {
     event: "UFC Fight Night: Live vs Test", event_date: "2026-09-06", generated: "2026-09-04T02:10:00",

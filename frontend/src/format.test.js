@@ -1,4 +1,4 @@
-import { pct, money, signedMoney, signedPct, odds, eventName, shortDate, monthLabel, stdErrPts } from "./format";
+import { pct, money, signedMoney, signedPct, odds, eventName, shortDate, monthLabel, stdErrPts, num3 } from "./format";
 
 test("pct formats fractions and dashes nulls", () => {
   expect(pct(0.6702)).toBe("67.0%");
@@ -33,4 +33,9 @@ test("dates", () => {
 
 test("stdErrPts is the binomial standard error in percentage points", () => {
   expect(stdErrPts(0.67, 282)).toBeCloseTo(2.8, 1);
+});
+
+test("num3 formats metrics and dashes nulls", () => {
+  expect(num3(0.7028)).toBe("0.703");
+  expect(num3(null)).toBe("—");
 });

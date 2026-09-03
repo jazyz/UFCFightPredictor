@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import StatTile from "./StatTile";
 import CalibrationChart from "./charts/CalibrationChart";
-import { pct, shortDate, signedPct, stdErrPts } from "../format";
+import { num3, pct, shortDate, signedPct, stdErrPts } from "../format";
 
 const Eyebrow = ({ children }) => (
   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">{children}</p>
@@ -33,7 +33,7 @@ export default function Home({ data }) {
   const populated = bands.filter((b) => b.n > 0);
   const climbs = populated.every((b, i) => i === 0 || b.hit >= populated[i - 1].hit);
   const modelBeatsFavorites = flat.model_pick_per_bet > flat.market_favorite_per_bet;
-  const se = stdErrPts(metrics.accuracy, metrics.n);
+  const se = metrics.n ? stdErrPts(metrics.accuracy, metrics.n) : null;
 
   return (
     <main className="mx-auto max-w-content px-6">
@@ -140,9 +140,9 @@ export default function Home({ data }) {
                 <tr key={r.name} className="border-t border-hairline">
                   <td className="px-5 py-3 text-ink">{r.name}</td>
                   <td className="px-5 py-3 text-ink-2">{pct(r.accuracy)}</td>
-                  <td className="px-5 py-3 text-ink-2">{r.auc.toFixed(3)}</td>
-                  <td className="px-5 py-3 text-ink-2">{r.log_loss.toFixed(3)}</td>
-                  <td className="px-5 py-3 text-ink-2">{r.brier.toFixed(3)}</td>
+                  <td className="px-5 py-3 text-ink-2">{num3(r.auc)}</td>
+                  <td className="px-5 py-3 text-ink-2">{num3(r.log_loss)}</td>
+                  <td className="px-5 py-3 text-ink-2">{num3(r.brier)}</td>
                 </tr>
               ))}
             </tbody>
@@ -169,7 +169,7 @@ export default function Home({ data }) {
         <ul className="mt-6 max-w-2xl list-disc space-y-3 pl-5 text-ink-2">
           <li>
             <b className="text-ink">Sample size.</b> {pct(metrics.accuracy)} on {metrics.n} fights carries a
-            ±{se.toFixed(1)}-point standard error. Treat the direction as meaningful, not the second digit.
+            ±{se == null ? "—" : se.toFixed(1)}-point standard error. Treat the direction as meaningful, not the second digit.
           </li>
           <li>
             <b className="text-ink">Coverage.</b> The model scored {coverage.scored} of {coverage.fights_in_window}{" "}

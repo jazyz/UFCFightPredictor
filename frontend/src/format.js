@@ -33,3 +33,6 @@ export function monthLabel(yyyymm) {
 
 /** Binomial standard error of a hit rate, in percentage points. */
 export const stdErrPts = (p, n) => Math.sqrt((p * (1 - p)) / n) * 100;
+
+/** Three-decimal metric, dash for null (empty windows). */
+export const num3 = (x) => (x == null ? "—" : x.toFixed(3));

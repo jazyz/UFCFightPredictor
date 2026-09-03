@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Home from "./Home";
-import { backtestFixture as fx } from "../test/fixtures";
+import { backtestFixture as fx, emptyWindowFixture } from "../test/fixtures";
 
 test("home leads with the out-of-sample record and the membership CTA", () => {
   render(<MemoryRouter><Home data={fx} /></MemoryRouter>);
@@ -16,4 +16,9 @@ test("home leads with the out-of-sample record and the membership CTA", () => {
   expect(screen.getAllByText(/281 priced fights/).length).toBeGreaterThan(0);
   expect(screen.getByText(/Between Aug 30, 2025 and Aug 30, 2026 it scored/)).toBeInTheDocument();
   expect(screen.getByText("Flat $10 on the model's pick")).toBeInTheDocument();
+});
+
+test("renders an empty window without crashing", () => {
+  render(<MemoryRouter><Home data={emptyWindowFixture} /></MemoryRouter>);
+  expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
 });

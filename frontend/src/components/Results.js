@@ -3,7 +3,7 @@ import StatTile from "./StatTile";
 import CalibrationChart from "./charts/CalibrationChart";
 import MonthlyAccuracyChart from "./charts/MonthlyAccuracyChart";
 import BankrollChart from "./charts/BankrollChart";
-import { money, monthLabel, pct, shortDate, signedPct, stdErrPts } from "../format";
+import { money, monthLabel, num3, pct, shortDate, signedPct, stdErrPts } from "../format";
 
 const Eyebrow = ({ children }) => (
   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">{children}</p>
@@ -20,10 +20,11 @@ export default function Results({ data }) {
   const { window: span, coverage, metrics, bands, monthly, market, flat, betting, bankroll, config } = data;
   const top = bands[bands.length - 1];
   const retrains = span.retrains.slice(1);
-  const se = stdErrPts(metrics.accuracy, metrics.n);
+  const se = metrics.n ? stdErrPts(metrics.accuracy, metrics.n) : null;
   const months = monthly.map((m) => m.hit);
-  const worst = monthly[months.indexOf(Math.min(...months))];
-  const best = monthly[months.indexOf(Math.max(...months))];
+  const counts = monthly.map((m) => m.n);
+  const worst = monthly.length ? monthly[months.indexOf(Math.min(...months))] : null;
+  const best = monthly.length ? monthly[months.indexOf(Math.max(...months))] : null;
   const [marketRow, modelRow] = market.rows;
   const marketSharper = marketRow.log_loss < modelRow.log_loss;
   const modelMoreAccurate = modelRow.accuracy > marketRow.accuracy;
@@ -52,7 +53,7 @@ export default function Results({ data }) {
           tone={betting.return_pct >= 0 ? "up" : "down"}
           sub={`${betting.bets} bets · ${betting.max_drawdown_pct}% max drawdown`}
         />
-        <StatTile label="AUC" value={metrics.auc.toFixed(3)} sub={`log loss ${metrics.log_loss.toFixed(3)} · Brier ${metrics.brier.toFixed(3)}`} />
+        <StatTile label="AUC" value={num3(metrics.auc)} sub={`log loss ${num3(metrics.log_loss)} · Brier ${num3(metrics.brier)}`} />
         <StatTile label="70%+ confidence" value={pct(top.hit)} sub={`hit rate on ${top.n} high-conviction picks`} />
       </section>
 
@@ -60,11 +61,16 @@ export default function Results({ data }) {
         <Eyebrow>Method</Eyebrow>
         <H2>No peeking</H2>
         <p className="mt-4 max-w-2xl text-ink-2">
-          Every prediction comes from a model that had never seen the fight, or anything after it. The ensemble
-          trained on fights before {shortDate(span.start)}, then retrained on{" "}
-          {retrains.map(shortDate).join(" and ")} as the year advanced. Production retrains twice a week, so the
-          live model is fresher than the one tested here. One hyperparameter set, tuned once on the full dataset,
-          is shared by every retrain: the walk-forward isolates training data, not hyperparameter selection.
+          Every prediction comes from a model that had never seen the fight, or anything after it. The model in
+          force at the start of this window trained on fights before {shortDate(span.retrains[0])}
+          {retrains.length
+            ? `, then retrained ${retrains.length} more time${retrains.length === 1 ? "" : "s"} (${retrains
+                .map(shortDate)
+                .join(", ")}) as the window advanced.`
+            : ", and was not retrained inside this window."}{" "}
+          Production retrains twice a week, so the live model is fresher than the one tested here. One
+          hyperparameter set, tuned once on the full dataset, is shared by every retrain: the walk-forward isolates
+          training data, not hyperparameter selection.
         </p>
         <p className="mt-4 max-w-2xl text-ink-2">
           Coverage: the window had {coverage.fights_in_window} fights with recorded results. The model scored{" "}
@@ -89,9 +95,12 @@ export default function Results({ data }) {
         <Eyebrow>By month</Eyebrow>
         <H2>Accuracy by month</H2>
         <p className="mt-4 max-w-2xl text-ink-2">
-          Month-to-month swings ({pct(worst.hit, 0)} in {monthLabel(worst.month)} to {pct(best.hit, 0)} in {monthLabel(best.month)}) are
-          what {Math.min(...monthly.map((m) => m.n))} to {Math.max(...monthly.map((m) => m.n))} fight samples do.
-          The reference line is the year's hit rate, {pct(metrics.accuracy, 0)}.
+          {monthly.length > 1
+            ? `Month-to-month swings (${pct(worst.hit, 0)} in ${monthLabel(worst.month)} to ${pct(best.hit, 0)} in ${monthLabel(best.month)}) are what ${Math.min(...counts)} to ${Math.max(...counts)} fight samples do.`
+            : monthly.length === 1
+              ? `One month in this window: ${monthLabel(monthly[0].month)}, ${pct(monthly[0].hit, 0)} on ${monthly[0].n} fights.`
+              : "No scored fights fall inside this window."}{" "}
+          The reference line is the window's hit rate, {pct(metrics.accuracy, 0)}.
         </p>
         <Card><MonthlyAccuracyChart monthly={monthly} overall={metrics.accuracy} /></Card>
       </section>
@@ -115,9 +124,9 @@ export default function Results({ data }) {
                 <tr key={r.name} className="border-t border-hairline">
                   <td className="px-5 py-3 text-ink">{r.name}</td>
                   <td className="px-5 py-3 text-ink-2">{pct(r.accuracy)}</td>
-                  <td className="px-5 py-3 text-ink-2">{r.auc.toFixed(3)}</td>
-                  <td className="px-5 py-3 text-ink-2">{r.log_loss.toFixed(3)}</td>
-                  <td className="px-5 py-3 text-ink-2">{r.brier.toFixed(3)}</td>
+                  <td className="px-5 py-3 text-ink-2">{num3(r.auc)}</td>
+                  <td className="px-5 py-3 text-ink-2">{num3(r.log_loss)}</td>
+                  <td className="px-5 py-3 text-ink-2">{num3(r.brier)}</td>
                 </tr>
               ))}
             </tbody>
@@ -178,12 +187,12 @@ export default function Results({ data }) {
           </li>
           <li>
             <b className="text-ink">Honest error bars.</b> {pct(metrics.accuracy)} on {metrics.n} fights carries a
-            ±{se.toFixed(1)}-point standard error; the return rides on {betting.bets} bets and their sequencing.
+            ±{se == null ? "—" : se.toFixed(1)}-point standard error; the return rides on {betting.bets} bets and their sequencing.
           </li>
           <li>
             <b className="text-ink">Coverage is the ceiling.</b> The model acts on{" "}
-            {pct(coverage.scored / coverage.fights_in_window, 0)} of fights. The largest untapped improvement is
-            not a better model but a wider one.
+            {coverage.fights_in_window ? pct(coverage.scored / coverage.fights_in_window, 0) : "—"} of fights. The
+            largest untapped improvement is not a better model but a wider one.
           </li>
         </ul>
       </section>
