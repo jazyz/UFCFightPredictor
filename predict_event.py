@@ -313,7 +313,6 @@ def write_outputs(rows, event, bets, event_date):
     }
     if bets:
         payload["bets"] = bets
-        bet_ledger.record(event, event_date, payload["generated"], bets)
     with open(PRED_JSON, "w") as fh:
         json.dump(payload, fh)
 
@@ -322,6 +321,12 @@ def write_outputs(rows, event, bets, event_date):
         w.writerow(["Red Fighter", "Blue Fighter", "Probability Win", "Probability Lose"])
         for r, b, p in rows:
             w.writerow([r, b, p, 1 - p])
+
+    if bets:
+        try:
+            bet_ledger.record(event, event_date, payload["generated"], bets)
+        except Exception as exc:  # the ledger is secondary output; never block predictions
+            print(f"warning: bet ledger not updated: {type(exc).__name__}: {exc}", file=sys.stderr)
 
 
 # ---------------------------------------------------------------------- main
@@ -346,7 +351,7 @@ def main():
         url = args.event
         try:
             when = next((w for w, u, _ in upcoming_events(session) if u == url), None)
-        except ScrapeError:
+        except Exception:  # the date is a convenience; event_card below surfaces real network faults
             when = None
     else:
         events = upcoming_events(session)

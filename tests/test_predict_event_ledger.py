@@ -42,3 +42,14 @@ def test_write_outputs_without_bets_leaves_the_ledger_alone(outputs, monkeypatch
     predict_event.write_outputs(ROWS, "UFC 999", [], "2026-09-06")
     payload = json.load(open(outputs / "predicted_data.json"))
     assert "bets" not in payload and payload["event_date"] == "2026-09-06"
+
+
+def test_write_outputs_survives_a_ledger_failure(outputs, monkeypatch, capsys):
+    def boom(*args, **kw):
+        raise RuntimeError("disk full")
+    monkeypatch.setattr(bet_ledger, "record", boom)
+    predict_event.write_outputs(ROWS, "UFC 999", BETS, "2026-09-06")
+    payload = json.load(open(outputs / "predicted_data.json"))
+    assert payload["bets"] == BETS
+    assert (outputs / "betting_predictions.csv").exists()
+    assert "bet ledger not updated: RuntimeError: disk full" in capsys.readouterr().err
