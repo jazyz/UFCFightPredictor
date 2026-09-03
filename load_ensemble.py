@@ -44,6 +44,15 @@ X_new = X_new.drop(['Result'], axis=1)
 predicted_probabilities = [model.predict_proba(X_new) for model in models]
 
 ensemble_predicted_probabilities = np.mean(predicted_probabilities, axis=0)
+
+# apply the temperature calibrator (no-op when no artifact exists); the win
+# column is calibrated and the loss column rebuilt so the pair stays complementary
+from calibration import calibrate
+_win = list(label_encoder.classes_).index('win')
+_loss = list(label_encoder.classes_).index('loss')
+ensemble_predicted_probabilities[:, _win] = calibrate(ensemble_predicted_probabilities[:, _win])
+ensemble_predicted_probabilities[:, _loss] = 1 - ensemble_predicted_probabilities[:, _win]
+
 ensemble_preds = np.argmax(ensemble_predicted_probabilities, axis=1)
 
 # Convert predictions back to original labels

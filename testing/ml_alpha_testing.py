@@ -118,14 +118,45 @@ def main(split_date = "2021-01-01", calibration=None):    # Step 1: Read the dat
 
     def fit_members(X, y):
         members = []
-        for member_params in best_params_list:
-            m = lgb.LGBMClassifier(**member_params)
+        for i, member_params in enumerate(best_params_list):
+            # distinct seed per member, matching ml_ensemble.py's deployed ensemble
+            m = lgb.LGBMClassifier(**member_params, random_state=42 + i)
             m.fit(X, y)
             members.append(m)
         return members
 
     def ensemble_proba(members, X):
         return np.mean([m.predict_proba(X) for m in members], axis=0)
+
+    def fit_temperature(oof_p, oof_y):
+        # mirrors ml_ensemble.py: logit(q) = a * logit(p), symmetric (no intercept)
+        from scipy.optimize import minimize_scalar
+        p = np.clip(oof_p, 1e-6, 1 - 1e-6)
+        logits = np.log(p / (1 - p))
+        def nll(a):
+            q = np.clip(1.0 / (1.0 + np.exp(-a * logits)), 1e-9, 1 - 1e-9)
+            return -np.mean(oof_y * np.log(q) + (1 - oof_y) * np.log(1 - q))
+        return float(minimize_scalar(nll, bounds=(0.25, 4.0), method='bounded').x)
+
+    def oof_temperature():
+        # each walk-forward split fits its own calibrator on its own train window
+        # (out-of-fold), so backtest probabilities match deployed serving without
+        # leaking the deployed calibrator's future data into past predictions
+        from sklearn.model_selection import TimeSeriesSplit
+        oof_p, oof_y = [], []
+        for tr_idx, va_idx in TimeSeriesSplit(n_splits=5).split(X_train):
+            X_fold, y_fold = X_train.iloc[tr_idx], y_train.iloc[tr_idx]
+            X_sw = X_fold.rename(columns=swap_red_blue)
+            for column in X_fold.columns:
+                if "oppdiff" in column:
+                    X_sw[column] = X_fold[column] * -1
+            members = fit_members(
+                pd.concat([X_fold, X_sw], ignore_index=True),
+                pd.concat([y_fold, y_fold.apply(lambda v: 0 if v == 1 else 1)],
+                          ignore_index=True))
+            oof_p.append(ensemble_proba(members, X_train.iloc[va_idx])[:, 1])
+            oof_y.append(y_train.iloc[va_idx].to_numpy())
+        return fit_temperature(np.concatenate(oof_p), np.concatenate(oof_y))
 
     # with open(os.path.join("test_results", "results.txt"), "a") as f:
     #     f.write(f"Best params: {best_params}\n")
@@ -179,6 +210,12 @@ def main(split_date = "2021-01-01", calibration=None):    # Step 1: Read the dat
 
         # Make predictions and evaluate the model
         predicted_probabilities = ensemble_proba(members, X_test_extended)
+        # apply this split's own OOF temperature, matching deployed serving
+        a = oof_temperature()
+        print(f"temperature calibrator for split {split_date.date()}: a={a:.3f}")
+        p_win = np.clip(predicted_probabilities[:, 1], 1e-6, 1 - 1e-6)
+        p_win = 1.0 / (1.0 + np.exp(-a * np.log(p_win / (1 - p_win))))
+        predicted_probabilities = np.column_stack([1 - p_win, p_win])
         y_pred = np.argmax(predicted_probabilities, axis=1)
 
     accuracy = accuracy_score(y_test_extended, y_pred)

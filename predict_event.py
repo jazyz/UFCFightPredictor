@@ -178,7 +178,8 @@ def predict_rows():
         raise RuntimeError(f"feature rows are missing model columns: {missing[:5]}")
 
     win_index = list(label_encoder.classes_).index("win")
-    probs = np.mean([m.predict_proba(df[features]) for m in models], axis=0)[:, win_index]
+    from calibration import calibrate
+    probs = calibrate(np.mean([m.predict_proba(df[features]) for m in models], axis=0)[:, win_index])
     return [(df["Red Fighter"].iloc[i], df["Blue Fighter"].iloc[i], float(probs[i]))
             for i in range(len(df))]
 
