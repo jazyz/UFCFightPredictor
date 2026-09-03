@@ -6,6 +6,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import Home from "./components/Home";
 import Results from "./components/Results";
 import Bets from "./components/Bets";
+import Methodology from "./components/Methodology";
+import Join from "./components/Join";
 import backtest from "./data/backtest.json";
 import ledger from "./data/ledger.json";
 
@@ -15,9 +17,11 @@ const App = () => (
     <div className="min-h-screen bg-ground font-body text-ink">
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home data={backtest} ledger={ledger} />} />
+        <Route path="/" element={<Home data={backtest} />} />
         <Route path="/results" element={<Results data={backtest} />} />
         <Route path="/bets" element={<Bets data={backtest} ledger={ledger} />} />
+        <Route path="/methodology" element={<Methodology data={backtest} />} />
+        <Route path="/join" element={<Join data={backtest} />} />
       </Routes>
       <Footer />
     </div>
