@@ -47,7 +47,7 @@ export default function Home({ data }) {
           A UFC model that knows when it's right.
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-ink-2">
-          Over the last twelve months it scored <b className="text-ink">{metrics.n}</b> fights it had never
+          Between {shortDate(span.start)} and {shortDate(span.end)} it scored <b className="text-ink">{metrics.n}</b> fights it had never
           seen and called <b className="text-ink">{pct(metrics.accuracy)}</b> of them. When it said 70% or
           better, it hit <b className="text-ink">{pct(top.hit)}</b>.
         </p>
@@ -77,7 +77,7 @@ export default function Home({ data }) {
           label="Flat $10 on the model's pick"
           value={`${signedPct(flat.model_pick_per_bet * 100)} / bet`}
           tone={flat.model_pick_per_bet >= 0 ? "up" : "down"}
-          sub={`Blindly backing the favorite: ${signedPct(flat.market_favorite_per_bet * 100)} / bet`}
+          sub={`${coverage.with_odds} priced fights, $${flat.stake} each · blindly backing the favorite: ${signedPct(flat.market_favorite_per_bet * 100)} / bet`}
         />
         <StatTile
           label="Kelly paper bankroll"
@@ -125,8 +125,8 @@ export default function Home({ data }) {
           Where they disagree ({market.disagree.n} fights) the model wins {pct(market.disagree.model_hit)}. Sharp
           lines price injuries, camp changes and late news that a career-stats model never sees.{" "}
           {modelBeatsFavorites
-            ? `The edge is not out-predicting the market. It is knowing which prices are soft: a flat $10 on every model pick returned ${signedPct(flat.model_pick_per_bet * 100)} per bet against ${signedPct(flat.market_favorite_per_bet * 100)} for the favorite.`
-            : `At flat stakes this year the model's picks returned ${signedPct(flat.model_pick_per_bet * 100)} per bet against ${signedPct(flat.market_favorite_per_bet * 100)} for blindly backing the favorite.`}
+            ? `The edge is not out-predicting the market. It is knowing which prices are soft: a flat $${flat.stake} on every model pick across those ${coverage.with_odds} fights returned ${signedPct(flat.model_pick_per_bet * 100)} per bet, against ${signedPct(flat.market_favorite_per_bet * 100)} for the favorite.`
+            : `At flat stakes across those ${coverage.with_odds} fights, the model's picks returned ${signedPct(flat.model_pick_per_bet * 100)} per bet against ${signedPct(flat.market_favorite_per_bet * 100)} for blindly backing the favorite.`}
         </p>
         <div className="mt-8 overflow-x-auto rounded-lg border border-hairline bg-surface">
           <table className="tnum w-full text-left text-sm">
