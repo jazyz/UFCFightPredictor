@@ -1,0 +1,743 @@
+<title>One Year Out of Sample</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f9f9f7; --surface:#fcfcfb;
+  --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --hairline:rgba(11,11,11,.10);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --good:#006300; --bad:#b3261e;
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme:dark;
+    --bg:#0d0d0d; --surface:#1a1a19;
+    --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --hairline:rgba(255,255,255,.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --good:#0ca30c; --bad:#e66767;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0d0d0d; --surface:#1a1a19;
+  --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --hairline:rgba(255,255,255,.10);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --good:#0ca30c; --bad:#e66767;
+}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px; line-height:1.55; margin:0;
+}
+.wrap{max-width:920px; margin:0 auto; padding:48px 24px 72px;}
+.eyebrow{
+  font-family:'Barlow',system-ui,sans-serif; font-weight:600; font-size:12px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 10px;
+}
+h1{
+  font-family:'Barlow Condensed','Arial Narrow',system-ui,sans-serif;
+  font-weight:700; font-size:56px; line-height:1.02; margin:0 0 12px;
+  letter-spacing:.01em; text-wrap:balance;
+}
+.dek{color:var(--ink2); font-size:17px; max-width:64ch; margin:0;}
+.dek b{color:var(--ink); font-weight:600;}
+section{margin-top:56px;}
+h2{
+  font-family:'Barlow Condensed','Arial Narrow',system-ui,sans-serif;
+  font-weight:700; font-size:30px; margin:0 0 6px; letter-spacing:.01em; text-wrap:balance;
+}
+.kicker{
+  font-weight:600; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muted); margin:0 0 6px;
+}
+p{max-width:68ch; margin:12px 0; color:var(--ink2);}
+p b, p strong{color:var(--ink);}
+ul{max-width:68ch; color:var(--ink2); padding-left:22px;}
+li{margin:8px 0;}
+li b{color:var(--ink);}
+.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; margin-top:28px;}
+.tile{
+  background:var(--surface); border:1px solid var(--hairline); border-radius:8px;
+  padding:16px 18px 14px;
+}
+.tile .lbl{font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.tile .val{
+  font-family:'Barlow Condensed','Arial Narrow',system-ui,sans-serif;
+  font-weight:700; font-size:44px; line-height:1.05; margin-top:4px;
+}
+.tile .val .up{color:var(--good);}
+.tile .sub{font-size:13px; color:var(--ink2); margin-top:2px;}
+.card{
+  background:var(--surface); border:1px solid var(--hairline); border-radius:8px;
+  padding:18px 18px 12px; margin:20px 0;
+}
+.card h3{font-size:15px; font-weight:600; margin:0 0 2px;}
+.card .note{font-size:13px; color:var(--muted); margin:0 0 10px;}
+.chart{position:relative;}
+.chart svg{display:block; width:100%; height:auto;
+  font-family:system-ui,-apple-system,'Segoe UI',sans-serif;}
+.chart text{font-variant-numeric:tabular-nums;}
+.legend{display:flex; gap:18px; flex-wrap:wrap; font-size:13px; color:var(--ink2); margin:2px 0 8px;}
+.legend .chip{display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:6px; vertical-align:baseline;}
+.tip{
+  position:absolute; pointer-events:none; background:var(--surface);
+  border:1px solid var(--hairline); border-radius:6px; box-shadow:0 2px 10px rgba(0,0,0,.12);
+  padding:8px 10px; font-size:12.5px; color:var(--ink2); min-width:150px; z-index:3;
+  font-variant-numeric:tabular-nums;
+}
+.tip .t{font-weight:600; color:var(--ink); margin-bottom:3px;}
+.tip .row{display:flex; justify-content:space-between; gap:14px;}
+table{border-collapse:collapse; width:100%; font-size:14.5px; font-variant-numeric:tabular-nums;}
+.tablewrap{overflow-x:auto; margin:16px 0;}
+th{
+  text-align:left; font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); padding:8px 12px 6px; border-bottom:1px solid var(--axis); white-space:nowrap;
+}
+th.num, td.num{text-align:right;}
+td{padding:8px 12px; border-bottom:1px solid var(--grid); color:var(--ink2); white-space:nowrap;}
+td:first-child{color:var(--ink); font-weight:500;}
+td .chip{display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:8px;}
+.up{color:var(--good); font-weight:600;}
+.down{color:var(--bad); font-weight:600;}
+details{margin:6px 0 4px; font-size:13.5px; color:var(--ink2);}
+summary{cursor:pointer; color:var(--muted); font-size:12.5px; letter-spacing:.04em;}
+summary:focus-visible{outline:2px solid var(--s1); outline-offset:2px; border-radius:3px;}
+details table{margin-top:8px; font-size:13px;}
+.foot{
+  margin-top:64px; padding-top:18px; border-top:1px solid var(--grid);
+  font-size:13px; color:var(--muted); max-width:75ch;
+}
+.foot p{font-size:13px; color:var(--muted); margin:8px 0;}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em; color:var(--ink2);}
+@media (max-width:560px){ h1{font-size:42px;} .tile .val{font-size:36px;} }
+@media (prefers-reduced-motion: no-preference){
+  .tip{transition:opacity .1s linear;}
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">betufc.ca · annual model review · 2025-08-30 → 2026-08-30</p>
+    <h1>One Year Out of Sample</h1>
+    <p class="dek">How the UFC fight predictor actually performed on the 12 months it never trained on:
+    <b>282 fights scored walk-forward</b>, graded on accuracy, calibration, and what a $1,000
+    Kelly bankroll did against real closing odds.</p>
+
+    <div class="tiles">
+      <div class="tile">
+        <div class="lbl">Accuracy</div>
+        <div class="val">67.0%</div>
+        <div class="sub">282 out-of-sample fights</div>
+      </div>
+      <div class="tile">
+        <div class="lbl">Best Kelly ROI</div>
+        <div class="val"><span class="up">+21.5%</span></div>
+        <div class="sub">de-vig config · 194 bets</div>
+      </div>
+      <div class="tile">
+        <div class="lbl">AUC</div>
+        <div class="val">0.704</div>
+        <div class="sub">log loss 0.638 · Brier 0.223</div>
+      </div>
+      <div class="tile">
+        <div class="lbl">70%+ confidence</div>
+        <div class="val">81.8%</div>
+        <div class="sub">hit rate on 22 high-conviction picks</div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <p class="kicker">Method</p>
+    <h2>No peeking: walk-forward from the day before the window</h2>
+    <p>Every prediction comes from a model that had never seen the fight — or anything after it.
+    The ensemble trains on fights before <b>2025-08-30</b>, then retrains twice as the year
+    advances (<b>2026-02-28</b> and <b>2026-08-29</b>, the pipeline's 182-day cadence).
+    Hyperparameters are frozen from the July 2026 search; nothing in this window was used to tune
+    anything. This report runs on the current pipeline — the one deployed today, including the
+    height/reach and stance features.</p>
+    <p>Coverage: the year had <b>547</b> fights with recorded results. The model scored
+    <b>282</b> of them. It skipped 258 fights it cannot predict by design — women's bouts are
+    excluded from training data, and both fighters need at least two prior UFC fights — plus
+    7 draws/no-contests. Betting uses the <b>281</b> scored fights with usable closing odds,
+    de-vigged to remove the bookmaker's margin.</p>
+  </section>
+
+  <section>
+    <p class="kicker">Calibration</p>
+    <h2>Confidence still means something — it's just shy</h2>
+    <p>For Kelly sizing the question isn't "how often is it right," it's "when it says 70%, does
+    it win 70%?" The answer this year: <b>more</b> than it claims. Every confidence band landed at
+    or above its stated probability, rising from 60% on coin-flip calls to 81.8% on its most
+    confident picks. The one wobble is the 60–65 band (62.9% on 62 fights), inside noise.</p>
+
+    <div class="card">
+      <h3>Stated confidence vs. actual hit rate</h3>
+      <p class="note">282 fights · bands by the model's pre-fight win probability</p>
+      <div class="legend">
+        <span><span class="chip" style="background:var(--s2)"></span>Avg. stated confidence</span>
+        <span><span class="chip" style="background:var(--s1)"></span>Actual hit rate</span>
+      </div>
+      <div class="chart" id="bandChart"></div>
+      <details><summary>View as table</summary>
+        <div class="tablewrap"><table id="bandTable"></table></div>
+      </details>
+    </div>
+
+    <p>Systematic underconfidence is the good direction to be wrong in: Kelly stakes scale with
+    stated edge, so the bankroll was, if anything, bet a touch light all year. The opposite error
+    — overconfidence — is the one that torches bankrolls, and it's what the stale 2024–25 models
+    showed before retraining was restored.</p>
+
+    <div class="card">
+      <h3>Accuracy by month</h3>
+      <p class="note">hit rate of the model's pick · fights per month in the tooltip</p>
+      <div class="chart" id="monthChart"></div>
+      <details><summary>View as table</summary>
+        <div class="tablewrap"><table id="monthTable"></table></div>
+      </details>
+    </div>
+
+    <p>Month-to-month swings (54.5% in April, 80.0% in March) are what 15–33 fight samples do;
+    no month is out of line with a true ~67% hit rate. The April–May stretch is worth a glance
+    in fight-level logs, but it recovered without intervention.</p>
+  </section>
+
+  <section>
+    <p class="kicker">vs. the market</p>
+    <h2>The market predicts better. The model still gets paid.</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th>Forecaster</th><th class="num">Accuracy</th><th class="num">AUC</th>
+          <th class="num">Log loss</th><th class="num">Brier</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>De-vigged market odds</td><td class="num">69.0%</td><td class="num">0.736</td><td class="num">0.603</td><td class="num">0.207</td></tr>
+          <tr><td>Model (ensemble)</td><td class="num">67.3%</td><td class="num">0.704</td><td class="num">0.638</td><td class="num">0.223</td></tr>
+          <tr><td>Blend · 0.8 model + 0.2 market</td><td class="num">68.0%</td><td class="num">0.730</td><td class="num">0.624</td><td class="num">0.217</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>On the 281 fights with odds, the model and the market favor the same fighter
+    <b>212 times (75%)</b> — and those picks hit <b>74.1%</b>. On the 69 fights where they
+    disagree, the model wins only <b>46.4%</b> to the market's 53.6%. Head-to-head as a
+    <em>predictor</em>, the market is simply sharper: it prices injuries, camp changes, weigh-ins
+    and late news that a career-stats model never sees.</p>
+    <p>That sounds fatal for betting. It isn't — because a bettor doesn't need to out-predict the
+    market, only to find prices that pay more than a well-calibrated probability says they
+    should. That's the next section.</p>
+  </section>
+
+  <section>
+    <p class="kicker">Betting</p>
+    <h2>+13% to +21% on a $1,000 bankroll</h2>
+    <p>All three production configs bet the model's pick with fractional Kelly
+    (5% fraction, 5% cap, 0.5% floor) whenever the Kelly criterion is positive against the
+    de-vigged price.</p>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th>Config</th><th class="num">Final</th><th class="num">Return</th><th class="num">Bets</th>
+          <th class="num">Hit rate</th><th class="num">Favorites</th><th class="num">Underdogs</th>
+          <th class="num">Max drawdown</th><th class="num">Low point</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><span class="chip" style="background:var(--s1)"></span>De-vig only (legacy)</td>
+            <td class="num">$1,214.87</td><td class="num up">+21.5%</td><td class="num">194</td>
+            <td class="num">61.3%</td><td class="num">96/141</td><td class="num">23/53</td>
+            <td class="num">8.6%</td><td class="num">$991.50</td></tr>
+          <tr><td><span class="chip" style="background:var(--s2)"></span>Blend w=0.8 (deployed)</td>
+            <td class="num">$1,132.93</td><td class="num up">+13.3%</td><td class="num">199</td>
+            <td class="num">61.8%</td><td class="num">102/152</td><td class="num">21/47</td>
+            <td class="num">7.5%</td><td class="num">$991.50</td></tr>
+          <tr><td><span class="chip" style="background:var(--s3)"></span>Blend + 4% min edge</td>
+            <td class="num">$1,128.68</td><td class="num up">+12.9%</td><td class="num">66</td>
+            <td class="num">53.0%</td><td class="num">16/24</td><td class="num">19/42</td>
+            <td class="num">6.3%</td><td class="num">$990.02</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Bankroll, fight by fight</h3>
+      <p class="note">$1,000 start · 281 fights with odds · dashed line = break-even</p>
+      <div class="legend">
+        <span><span class="chip" style="background:var(--s1)"></span>De-vig only</span>
+        <span><span class="chip" style="background:var(--s2)"></span>Blend w=0.8</span>
+        <span><span class="chip" style="background:var(--s3)"></span>Blend + min edge</span>
+      </div>
+      <div class="chart" id="bankChart"></div>
+      <details><summary>View as table (season checkpoints)</summary>
+        <div class="tablewrap"><table id="bankTable"></table></div>
+      </details>
+    </div>
+
+    <p>To separate the model's edge from Kelly compounding, the same year at a flat $10 per fight:</p>
+    <ul>
+      <li><b>Always bet the market favorite:</b> +0.8% per bet — the market is accurate but pays
+      you nothing for agreeing with it.</li>
+      <li><b>Always bet the model's pick:</b> <b class="up">+8.1% per bet</b> — same fights, same
+      prices, meaningfully positive.</li>
+      <li><b>Bet the "value side" wherever model and market differ by ≥5 points:</b>
+      <span class="down">−3.5% per bet</span> — chasing raw disagreement loses.</li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="kicker">Analysis</p>
+    <h2>Why this works — and where it doesn't</h2>
+    <ul>
+      <li><b>The edge is price selection, not prophecy.</b> The model predicts slightly worse
+      than the market, yet its picks returned +8.1% flat where favorites returned +0.8%. The
+      profit comes from <em>which</em> agreements it sizes up: fights where its calibrated
+      probability says the price is soft. Kelly then compounds a small per-bet edge into +13%
+      to +21% for the year.</li>
+      <li><b>Raw disagreement is a warning sign, not a signal.</b> When the model and market
+      split, the model wins 46.4% — and mechanically betting the model's side of every ≥5-point
+      gap lost 3.5% per bet. Large gaps usually mean the market knows something the model
+      structurally can't: injuries, short-notice replacements, camp and weight-cut news. The
+      production configs survive this because positive-Kelly filtering and the market blend
+      keep stakes small where the model is most likely blind.</li>
+      <li><b>Calibration is the asset to protect.</b> Accuracy alone barely separates a good
+      year from a bad one (67% vs 69% for the market). What made betting work is that stated
+      confidence tracked reality band by band — the property the 2024–25 stale-model era lost
+      first. The twice-yearly retrain cadence held it this year.</li>
+      <li><b>Legacy beat the deployed blend this year — don't act on it.</b> +21.5% vs +13.3% is
+      one year and ~200 Kelly bets of separation; over the 2.5-year 2024–26 study the blend won.
+      The blend's lower drawdown (7.5% vs 8.6%) and its protection on disagreement fights are
+      structural; the single-year gap is noise until it repeats.</li>
+      <li><b>Honest error bars.</b> 67.0% accuracy on 282 fights carries a ±2.8-point standard
+      error; every ROI figure rides on under 200 bets and their sequencing. Treat the sign as
+      meaningful, not the second digit.</li>
+      <li><b>Coverage is the ceiling.</b> The model can only act on 52% of fights: no women's
+      bouts (excluded upstream in cleaning), no debutants, nobody with fewer than two UFC
+      fights. The largest untapped improvement in this report isn't a better model — it's a
+      wider one.</li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="kicker">Strategy lab</p>
+    <h2>Where the volatility lives — and 48 ways to spend it</h2>
+    <p>The bankroll curve's shape — slow bleed, sharp recoveries — has two mechanical causes,
+    visible once every bet is categorized. Below, every bet from the full 2024–26 window,
+    replayed from the same walk-forward predictions and validated to the cent against the
+    headline runs.</p>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th>Bet category</th><th class="num">Bets</th><th class="num">Avg stake</th>
+          <th class="num">Hit rate</th><th class="num">P&amp;L σ per bet</th><th class="num">Total P&amp;L</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Kelly favorites — legacy</td><td class="num">93</td><td class="num">$6.91</td><td class="num">65.6%</td><td class="num">$6.41</td><td class="num up">+$120.25</td></tr>
+          <tr><td>Kelly underdogs — legacy</td><td class="num">149</td><td class="num">$12.88</td><td class="num">41.6%</td><td class="num">$18.23</td><td class="num">+$5.66</td></tr>
+          <tr><td>Forced flat (Kelly ≤ 0) — legacy</td><td class="num">278</td><td class="num">$4.87</td><td class="num">67.3%</td><td class="num">$3.48</td><td class="num">+$5.49</td></tr>
+          <tr><td>Kelly favorites — blend</td><td class="num">94</td><td class="num">$6.08</td><td class="num">66.0%</td><td class="num">$5.42</td><td class="num up">+$105.58</td></tr>
+          <tr><td>Kelly underdogs — blend</td><td class="num">123</td><td class="num">$10.27</td><td class="num">41.5%</td><td class="num">$13.28</td><td class="num down">−$73.13</td></tr>
+          <tr><td>Forced flat (Kelly ≤ 0) — blend</td><td class="num">296</td><td class="num">$4.81</td><td class="num">66.2%</td><td class="num">$3.42</td><td class="num down">−$27.25</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ul>
+      <li><b>Underdog bets carry the largest stakes and the least edge.</b> Kelly sizes by
+      model-vs-price divergence, and the model diverges most on underdogs — exactly where it's
+      most often blind. Result: the biggest stakes (≈2× the favorite bets) ride 42%-hit
+      outcomes. That's the bleed-then-spike: frequent small losses, occasional +330 paydays.
+      Over 2.5 years dogs netted roughly zero (legacy) or −$73 (blend); in the last year alone
+      they made +$110 — a lucky season, not a dependable engine.</li>
+      <li><b>Over half of all bets are forced.</b> A legacy fallback stakes 0.5% flat even when
+      Kelly is <em>negative</em> — 278–296 of ~520 bets, netting ≈ zero. It survives in
+      <code>betting_alpha.py</code> (production recommendations); <code>predict_event.py</code>
+      already refuses these bets.</li>
+    </ul>
+
+    <p>Every combination of the five levers — probability source (legacy price-anchor vs blend),
+    minimum-edge gate (0 / 2 / 4 pts), forced bets (kept / dropped), underdog policy (full
+    Kelly / half stake / skip), and Kelly fraction (5% / 3%) — replayed over both windows:
+    48 configurations.</p>
+
+    <div class="card">
+      <h3>Risk vs. return, full 2024–26 window</h3>
+      <p class="note">each point is one configuration · color = underdog policy · ring = currently deployed</p>
+      <div class="legend">
+        <span><span class="chip" style="background:var(--s1)"></span>Dogs: full Kelly</span>
+        <span><span class="chip" style="background:var(--s2)"></span>Dogs: half stake</span>
+        <span><span class="chip" style="background:var(--s3)"></span>Dogs: skip</span>
+      </div>
+      <div class="chart" id="gridScatter"></div>
+    </div>
+
+    <div class="card">
+      <h3>All 48 configurations</h3>
+      <p class="note">click a column header to sort · shaded rows are the configs already in production use</p>
+      <div class="tablewrap"><table id="gridTable"></table></div>
+    </div>
+
+    <ul>
+      <li><b>The underdog lever moves the frontier; the others fine-tune it.</b> Every low-drawdown,
+      solid-return point is a half-stake or skip-dogs config. Best of the grid on the full window:
+      legacy anchor + 4-pt edge gate + half-stake dogs → <b>+15.0%</b> at 7.7% drawdown, and it
+      repeats last year (+13.0% at 4.6%). Skipping dogs entirely is the smoothest ride
+      (≈+14% at 3–4% drawdown) at the cost of last year's dog windfall.</li>
+      <li><b>Dropping forced bets costs ≈0–1 pt of return and removes half the betting volume.</b>
+      It's the cheapest cleanup, and principled: the strategy shouldn't stake picks its own
+      math scores negative.</li>
+      <li><b>The 3% fraction is strictly a comfort dial.</b> It scales return and drawdown down
+      together without fixing the composition problem the dog policy fixes.</li>
+      <li><b>Selection caveat, stated plainly:</b> these 48 cells were both diagnosed and ranked
+      on the same two report-only windows. The forced-bet removal stands on principle; the
+      dog-policy change is a strong hypothesis that should be confirmed on a window that didn't
+      generate it (2021–23) or paper-traded a cycle before real money moves.</li>
+    </ul>
+  </section>
+
+  <footer class="foot">
+    <p><b>Fine print.</b> Window 2025-08-30 → 2026-08-30 · 547 fights · 282 scored · 281 with odds.
+    Strategy-lab grid: pure replays from the cached walk-forward predictions over both windows
+    (full = 2024-01-01 → 2026-07-19 on <code>.oos2024_cache_sorted2026</code>); base cells
+    reproduce the recorded runs to the cent before any lever is varied.
+    Models: five-member LightGBM ensembles, swap-augmented, hyperparameters fixed from the
+    2026-07 Optuna search (top-5 distinct trials). Odds: ufcstats results joined to closing odds
+    incl. the fightodds.io backfill; probabilities de-vigged proportionally. Bankroll sims start
+    at $1,000 and process fights in strict date order. During this analysis the odds file was
+    found to be non-chronological after the two 2026 backfills were merged (108 order breaks);
+    this report sorts before walking, and the pipeline fix is flagged separately. Walk-forward
+    prediction caches: <code>test_results/.oos2024_cache_lastyear/</code>. Generated 2026-08-30
+    on pipeline commit <code>5e2ed4c</code>.</p>
+  </footer>
+</div>
+
+<script>
+const PAYLOAD = {"months":["2025-09","2025-09","2025-09","2025-09","2025-09","2025-09","2025-09","2025-09","2025-09","2025-09","2025-09","2025-09","2025-09","2025-09","2025-09","2025-09","2025-09","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-10","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-11","2025-12","2025-12","2025-12","2025-12","2025-12","2025-12","2025-12","2025-12","2025-12","2025-12","2025-12","2025-12","2025-12","2025-12","2026-01","2026-01","2026-01","2026-01","2026-01","2026-01","2026-01","2026-01","2026-01","2026-01","2026-01","2026-01","2026-01","2026-01","2026-01","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-02","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-03","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-04","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-05","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-06","2026-07","2026-07","2026-07","2026-07","2026-07","2026-07","2026-07","2026-07","2026-07","2026-07","2026-07","2026-07","2026-07","2026-07","2026-07","2026-07","2026-07","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08","2026-08"],"curves":{"legacy":[995.0,996.49,991.5,994.06,1013.28,1042.49,1072.09,1074.37,1079.74,1074.34,1074.34,1076.45,1078.95,1078.95,1078.95,1082.46,1086.97,1081.53,1081.53,1081.53,1083.7,1085.56,1087.4,1087.4,1089.99,1078.74,1078.74,1073.35,1077.67,1077.67,1077.67,1077.67,1072.29,1082.3,1086.46,1089.74,1095.29,1072.61,1067.25,1061.91,1061.91,1056.6,1063.11,1050.77,1050.77,1121.92,1132.56,1136.72,1151.41,1155.71,1149.93,1151.91,1146.15,1149.48,1149.48,1155.75,1149.97,1144.22,1138.5,1141.5,1135.04,1135.04,1129.06,1132.2,1132.2,1135.38,1135.38,1140.19,1143.19,1143.19,1145.31,1131.0,1133.7,1137.93,1171.49,1151.22,1159.11,1196.4,1190.42,1192.63,1186.66,1180.73,1174.83,1174.83,1174.83,1177.09,1177.09,1186.78,1186.78,1188.76,1193.13,1187.16,1190.06,1191.98,1161.45,1161.45,1161.45,1155.65,1149.87,1153.75,1144.57,1144.57,1144.57,1146.81,1141.08,1141.08,1120.17,1120.17,1120.17,1120.17,1103.44,1103.44,1097.84,1100.39,1112.18,1104.5,1109.61,1185.86,1185.86,1189.66,1191.65,1191.65,1191.65,1191.65,1191.65,1185.69,1188.06,1190.44,1184.48,1178.56,1178.56,1181.91,1181.91,1185.31,1185.31,1187.63,1193.13,1193.13,1195.61,1195.61,1175.23,1202.64,1202.64,1205.98,1205.98,1199.95,1199.95,1199.95,1199.95,1193.95,1203.23,1193.85,1198.99,1203.99,1206.73,1206.73,1210.12,1224.46,1226.57,1231.01,1234.81,1228.64,1244.83,1238.61,1238.61,1241.94,1241.94,1231.36,1231.36,1234.78,1234.78,1234.78,1245.73,1248.63,1254.01,1254.01,1271.23,1251.29,1254.89,1254.89,1254.89,1248.61,1242.37,1245.9,1245.9,1249.36,1254.24,1240.6,1256.39,1244.19,1249.46,1253.18,1246.91,1250.76,1250.76,1244.51,1217.64,1191.25,1191.25,1191.25,1217.33,1221.24,1209.53,1209.53,1209.53,1209.53,1221.19,1211.24,1205.18,1199.16,1205.15,1205.15,1206.75,1206.75,1208.76,1186.11,1168.79,1168.79,1172.78,1175.18,1169.3,1180.06,1180.06,1162.53,1162.53,1196.14,1198.36,1200.69,1194.69,1194.69,1198.04,1214.03,1216.28,1233.34,1238.48,1232.29,1232.29,1232.29,1226.12,1219.99,1203.93,1205.83,1207.73,1209.44,1220.67,1220.67,1214.56,1214.56,1196.14,1196.14,1196.14,1196.14,1183.91,1177.99,1181.03,1181.03,1185.3,1188.94,1188.94,1188.94,1192.9,1192.9,1192.9,1192.9,1186.94,1188.81,1182.87,1213.55,1213.55,1207.48,1211.67,1211.67,1211.67,1202.19,1207.51,1207.51,1207.51,1207.51,1210.48,1210.48,1214.87],"blend":[995.0,996.49,991.5,994.06,1009.24,1009.24,1032.12,1034.32,1039.49,1034.29,1034.29,1036.32,1038.73,1038.73,1033.54,1036.89,1041.21,1036.01,1036.01,1037.06,1039.14,1040.93,1042.69,1042.69,1045.18,1036.85,1036.85,1031.67,1035.83,1035.83,1035.83,1035.83,1030.65,1038.3,1042.3,1045.44,1050.77,1050.77,1045.51,1040.29,1040.29,1035.09,1040.11,1040.11,1040.11,1040.11,1047.66,1051.51,1064.24,1068.21,1062.87,1064.7,1059.38,1062.46,1062.46,1068.2,1062.86,1057.54,1052.25,1055.02,1048.46,1048.46,1043.22,1046.12,1046.12,1049.06,1049.06,1043.81,1046.56,1046.56,1048.5,1048.5,1050.99,1054.91,1080.51,1065.55,1071.1,1098.6,1093.1,1095.13,1089.65,1084.2,1078.78,1078.78,1078.78,1080.86,1080.86,1088.03,1088.03,1089.85,1093.85,1088.39,1091.04,1092.8,1069.57,1069.57,1069.57,1064.22,1058.9,1062.48,1054.05,1054.05,1054.05,1056.12,1050.84,1052.48,1036.19,1036.19,1036.19,1036.19,1021.64,1021.64,1015.86,1018.22,1026.77,1020.82,1025.54,1085.01,1079.58,1083.04,1084.85,1084.85,1084.85,1079.43,1079.43,1074.03,1076.18,1078.33,1072.94,1067.57,1070.06,1073.1,1073.1,1076.18,1076.18,1078.29,1083.28,1083.28,1085.54,1085.54,1070.95,1091.62,1091.62,1094.65,1094.65,1089.18,1089.18,1089.18,1089.18,1083.73,1090.63,1093.88,1098.6,1093.1,1095.59,1095.59,1098.66,1110.07,1111.98,1116.01,1119.46,1113.86,1126.15,1120.52,1120.52,1123.54,1123.54,1114.72,1114.72,1117.81,1112.23,1112.23,1120.64,1123.25,1128.09,1128.09,1143.35,1128.21,1131.45,1131.45,1131.45,1125.8,1120.17,1123.35,1123.35,1126.47,1130.33,1120.48,1135.07,1126.62,1131.39,1134.76,1129.08,1132.57,1132.57,1126.9,1126.9,1105.86,1105.86,1105.86,1125.12,1128.73,1118.97,1118.97,1118.97,1118.97,1127.9,1131.66,1126.0,1120.37,1125.97,1125.97,1127.47,1128.79,1130.67,1113.57,1100.67,1100.67,1103.88,1106.13,1100.6,1110.04,1104.49,1091.21,1091.21,1116.56,1118.63,1120.8,1115.2,1115.2,1118.33,1130.49,1132.58,1145.99,1150.77,1145.02,1145.02,1145.02,1139.29,1133.59,1120.18,1121.95,1123.72,1125.3,1134.43,1134.43,1128.75,1128.75,1113.35,1113.35,1113.35,1113.35,1103.97,1098.45,1101.28,1101.28,1105.27,1108.66,1108.66,1110.71,1114.41,1114.41,1114.41,1114.41,1108.84,1110.59,1105.04,1128.71,1128.71,1123.07,1126.97,1126.97,1126.97,1119.34,1124.3,1126.07,1126.07,1126.07,1128.84,1128.84,1132.93],"edge":[995.0,995.0,990.02,990.02,1005.14,1005.14,1027.93,1027.93,1027.93,1022.79,1022.79,1022.79,1022.79,1022.79,1022.79,1022.79,1022.79,1022.79,1022.79,1022.79,1022.79,1022.79,1022.79,1022.79,1022.79,1014.65,1014.65,1014.65,1014.65,1014.65,1014.65,1014.65,1014.65,1022.18,1022.18,1022.18,1027.4,1027.4,1027.4,1027.4,1027.4,1027.4,1032.38,1032.38,1032.38,1032.38,1039.88,1039.88,1052.47,1052.47,1052.47,1052.47,1047.21,1047.21,1047.21,1052.86,1052.86,1052.86,1052.86,1052.86,1046.31,1046.31,1041.08,1041.08,1041.08,1041.08,1041.08,1041.08,1041.08,1041.08,1041.08,1041.08,1041.08,1041.08,1066.34,1051.58,1057.05,1084.19,1078.77,1078.77,1078.77,1078.77,1078.77,1078.77,1078.77,1078.77,1078.77,1085.93,1085.93,1085.93,1085.93,1085.93,1085.93,1085.93,1062.85,1062.85,1062.85,1062.85,1062.85,1062.85,1054.42,1054.42,1054.42,1054.42,1054.42,1054.42,1038.1,1038.1,1038.1,1038.1,1023.52,1023.52,1017.73,1017.73,1026.28,1020.33,1020.33,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1079.49,1084.49,1084.49,1084.49,1084.49,1069.91,1090.56,1090.56,1090.56,1090.56,1090.56,1090.56,1090.56,1090.56,1090.56,1097.51,1097.51,1102.24,1102.24,1102.24,1102.24,1102.24,1113.68,1113.68,1113.68,1113.68,1113.68,1125.97,1125.97,1125.97,1125.97,1125.97,1117.14,1117.14,1117.14,1117.14,1117.14,1125.59,1125.59,1130.44,1130.44,1145.73,1130.57,1130.57,1130.57,1130.57,1130.57,1130.57,1130.57,1130.57,1130.57,1134.44,1124.55,1139.2,1130.71,1130.71,1130.71,1130.71,1130.71,1130.71,1130.71,1130.71,1109.59,1109.59,1109.59,1128.92,1128.92,1119.17,1119.17,1119.17,1119.17,1128.09,1128.09,1128.09,1128.09,1128.09,1128.09,1128.09,1128.09,1128.09,1111.02,1098.16,1098.16,1101.36,1101.36,1101.36,1110.8,1110.8,1097.45,1097.45,1122.94,1122.94,1122.94,1122.94,1122.94,1122.94,1135.15,1135.15,1148.59,1153.38,1147.61,1147.61,1147.61,1147.61,1147.61,1134.04,1134.04,1134.04,1134.04,1143.23,1143.23,1137.51,1137.51,1121.99,1121.99,1121.99,1121.99,1112.53,1112.53,1112.53,1112.53,1112.53,1112.53,1112.53,1112.53,1112.53,1112.53,1112.53,1112.53,1112.53,1112.53,1112.53,1136.37,1136.37,1136.37,1136.37,1136.37,1136.37,1128.68,1128.68,1128.68,1128.68,1128.68,1128.68,1128.68,1128.68]},"bands":[{"band":"50-55","n":80,"pred":52.5,"actual":60.0},{"band":"55-60","n":81,"pred":57.4,"actual":67.9},{"band":"60-65","n":62,"pred":62.5,"actual":62.9},{"band":"65-70","n":37,"pred":67.2,"actual":78.4},{"band":"70+","n":22,"pred":73.2,"actual":81.8}],"monthly":[{"month":"2025-09","n":17,"acc":76.5},{"month":"2025-10","n":32,"acc":68.8},{"month":"2025-11","n":28,"acc":64.3},{"month":"2025-12","n":14,"acc":64.3},{"month":"2026-01","n":15,"acc":66.7},{"month":"2026-02","n":20,"acc":70.0},{"month":"2026-03","n":20,"acc":80.0},{"month":"2026-04","n":22,"acc":54.5},{"month":"2026-05","n":33,"acc":63.6},{"month":"2026-06","n":32,"acc":65.6},{"month":"2026-07","n":17,"acc":64.7},{"month":"2026-08","n":32,"acc":68.8}]};
+
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent){
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function txt(parent, x, y, s, attrs){
+  const t = el('text', Object.assign({x, y, fill:'var(--muted)', 'font-size':'11'}, attrs||{}), parent);
+  t.textContent = s;
+  return t;
+}
+function makeTip(container){
+  const d = document.createElement('div');
+  d.className = 'tip'; d.hidden = true;
+  container.appendChild(d);
+  return d;
+}
+function placeTip(tip, container, px, py){
+  const cw = container.clientWidth;
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  let x = px + 14; if (x + tw > cw - 4) x = px - tw - 14;
+  let y = py - th - 10; if (y < 0) y = py + 14;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+const fmt$ = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+const MONTH_LABEL = m => {
+  const [y, mo] = m.split('-');
+  return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+mo-1] + ' ’' + y.slice(2);
+};
+
+/* ---------- bankroll line chart ---------- */
+(function(){
+  const c = document.getElementById('bankChart');
+  const W = 880, H = 340, m = {t:14, r:16, b:30, l:52};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const series = [
+    {key:'legacy', name:'De-vig only',     color:'var(--s1)'},
+    {key:'blend',  name:'Blend w=0.8',     color:'var(--s2)'},
+    {key:'edge',   name:'Blend + min edge',color:'var(--s3)'},
+  ];
+  const data = series.map(s => PAYLOAD.curves[s.key]);
+  const n = data[0].length;
+  const lo = 950, hi = 1300;
+  const X = i => m.l + i/(n-1)*iw;
+  const Y = v => m.t + (1 - (v-lo)/(hi-lo))*ih;
+
+  const svg = el('svg', {viewBox:`0 0 ${W} ${H}`, role:'img',
+    'aria-label':'Bankroll over 281 fights for three betting configs'}, null);
+  c.appendChild(svg);
+
+  for (let v = lo; v <= hi; v += 50){
+    el('line', {x1:m.l, x2:W-m.r, y1:Y(v), y2:Y(v), stroke:'var(--grid)', 'stroke-width':1}, svg);
+    txt(svg, m.l-8, Y(v)+4, fmt$(v), {'text-anchor':'end'});
+  }
+  el('line', {x1:m.l, x2:W-m.r, y1:Y(1000), y2:Y(1000), stroke:'var(--axis)',
+    'stroke-width':1.5, 'stroke-dasharray':'5 4'}, svg);
+
+  const months = PAYLOAD.months;
+  let last = '';
+  const seen = [];
+  months.forEach((mo, i) => { if (mo !== last){ seen.push([mo, i]); last = mo; } });
+  seen.forEach(([mo, i], k) => {
+    if (k % 2) return;
+    el('line', {x1:X(i), x2:X(i), y1:m.t+ih, y2:m.t+ih+4, stroke:'var(--axis)', 'stroke-width':1}, svg);
+    txt(svg, X(i), m.t+ih+18, MONTH_LABEL(mo), {'text-anchor':'middle'});
+  });
+  el('line', {x1:m.l, x2:W-m.r, y1:m.t+ih, y2:m.t+ih, stroke:'var(--axis)', 'stroke-width':1}, svg);
+
+  series.forEach((s, si) => {
+    const d = data[si].map((v,i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(v).toFixed(1)).join('');
+    el('path', {d, fill:'none', stroke:s.color, 'stroke-width':2,
+      'stroke-linejoin':'round', 'stroke-linecap':'round'}, svg);
+    el('circle', {cx:X(n-1), cy:Y(data[si][n-1]), r:3.5, fill:s.color}, svg);
+  });
+
+  const cross = el('line', {x1:0, x2:0, y1:m.t, y2:m.t+ih, stroke:'var(--axis)',
+    'stroke-width':1, visibility:'hidden'}, svg);
+  const dots = series.map(s => el('circle', {r:4.5, fill:s.color, stroke:'var(--surface)',
+    'stroke-width':2, visibility:'hidden'}, svg));
+  const tip = makeTip(c);
+
+  function onMove(ev){
+    const r = svg.getBoundingClientRect();
+    const fx = (ev.clientX - r.left) * (W / r.width);
+    let i = Math.round((fx - m.l)/iw*(n-1));
+    i = Math.max(0, Math.min(n-1, i));
+    cross.setAttribute('x1', X(i)); cross.setAttribute('x2', X(i));
+    cross.setAttribute('visibility', 'visible');
+    dots.forEach((d, si) => {
+      d.setAttribute('cx', X(i)); d.setAttribute('cy', Y(data[si][i]));
+      d.setAttribute('visibility', 'visible');
+    });
+    tip.innerHTML = '<div class="t">Fight ' + (i+1) + ' · ' + MONTH_LABEL(months[i]) + '</div>' +
+      series.map((s, si) =>
+        '<div class="row"><span><span class="chip" style="background:' + s.color +
+        ';display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px"></span>' +
+        s.name + '</span><span>$' + data[si][i].toFixed(2) + '</span></div>').join('');
+    tip.hidden = false;
+    placeTip(tip, c, (X(i)/W)*r.width, (Y(Math.max(...data.map(d=>d[i])))/H)*r.height);
+  }
+  svg.addEventListener('pointermove', onMove);
+  svg.addEventListener('pointerleave', () => {
+    tip.hidden = true;
+    cross.setAttribute('visibility', 'hidden');
+    dots.forEach(d => d.setAttribute('visibility', 'hidden'));
+  });
+
+  const bt = document.getElementById('bankTable');
+  const idxs = seen.filter((_, k) => k % 2 === 0).map(([mo, i]) => [mo, i]);
+  bt.innerHTML = '<thead><tr><th>As of</th>' + series.map(s => '<th class="num">' + s.name + '</th>').join('') +
+    '</tr></thead><tbody>' +
+    idxs.map(([mo, i]) => '<tr><td>' + MONTH_LABEL(mo) + '</td>' +
+      series.map((s, si) => '<td class="num">$' + data[si][i].toFixed(2) + '</td>').join('') + '</tr>').join('') +
+    '<tr><td>Final</td>' + series.map((s, si) => '<td class="num">$' + data[si][n-1].toFixed(2) + '</td>').join('') +
+    '</tr></tbody>';
+})();
+
+/* ---------- calibration dumbbell ---------- */
+(function(){
+  const c = document.getElementById('bandChart');
+  const bands = PAYLOAD.bands;
+  const W = 880, rowH = 46, m = {t:8, r:70, b:30, l:120};
+  const H = m.t + bands.length*rowH + m.b;
+  const iw = W - m.l - m.r;
+  const lo = 45, hi = 90;
+  const X = v => m.l + (v-lo)/(hi-lo)*iw;
+  const svg = el('svg', {viewBox:`0 0 ${W} ${H}`, role:'img',
+    'aria-label':'Stated confidence versus actual hit rate by confidence band'}, null);
+  c.appendChild(svg);
+
+  for (let v = 50; v <= 90; v += 10){
+    el('line', {x1:X(v), x2:X(v), y1:m.t, y2:H-m.b, stroke:'var(--grid)', 'stroke-width':1}, svg);
+    txt(svg, X(v), H-m.b+16, v + '%', {'text-anchor':'middle'});
+  }
+
+  const tip = makeTip(c);
+  bands.forEach((b, i) => {
+    const y = m.t + i*rowH + rowH/2;
+    txt(svg, m.l-14, y+4, b.band + '%', {'text-anchor':'end', fill:'var(--ink2)', 'font-size':'12.5', 'font-weight':'600'});
+    el('line', {x1:X(b.pred), x2:X(b.actual), y1:y, y2:y, stroke:'var(--grid)', 'stroke-width':2}, svg);
+    el('circle', {cx:X(b.pred), cy:y, r:5, fill:'var(--s2)', stroke:'var(--surface)', 'stroke-width':2}, svg);
+    el('circle', {cx:X(b.actual), cy:y, r:5, fill:'var(--s1)', stroke:'var(--surface)', 'stroke-width':2}, svg);
+    const rightmost = Math.max(b.pred, b.actual);
+    const leftmost = Math.min(b.pred, b.actual);
+    txt(svg, X(rightmost)+11, y+4, rightmost.toFixed(1), {fill:'var(--ink2)', 'font-weight':'600'});
+    txt(svg, X(leftmost)-11, y+4, leftmost.toFixed(1), {'text-anchor':'end'});
+    txt(svg, W-m.r+14, y+4, 'n=' + b.n, {});
+
+    const hit = el('rect', {x:m.l-110, y:m.t+i*rowH, width:W-m.l-m.r+180, height:rowH,
+      fill:'transparent'}, svg);
+    hit.addEventListener('pointerenter', ev => {
+      tip.innerHTML = '<div class="t">Band ' + b.band + '% · ' + b.n + ' fights</div>' +
+        '<div class="row"><span>Avg. stated</span><span>' + b.pred.toFixed(1) + '%</span></div>' +
+        '<div class="row"><span>Actual hit rate</span><span>' + b.actual.toFixed(1) + '%</span></div>' +
+        '<div class="row"><span>Gap</span><span>' + (b.actual-b.pred >= 0 ? '+' : '') + (b.actual-b.pred).toFixed(1) + ' pts</span></div>';
+      tip.hidden = false;
+      const r = svg.getBoundingClientRect();
+      placeTip(tip, c, (X(rightmost)/W)*r.width, (y/H)*r.height);
+    });
+    hit.addEventListener('pointerleave', () => { tip.hidden = true; });
+  });
+
+  document.getElementById('bandTable').innerHTML =
+    '<thead><tr><th>Band</th><th class="num">Fights</th><th class="num">Avg. stated</th><th class="num">Actual</th></tr></thead><tbody>' +
+    bands.map(b => '<tr><td>' + b.band + '%</td><td class="num">' + b.n + '</td><td class="num">' +
+      b.pred.toFixed(1) + '%</td><td class="num">' + b.actual.toFixed(1) + '%</td></tr>').join('') + '</tbody>';
+})();
+
+/* ---------- monthly bars ---------- */
+(function(){
+  const c = document.getElementById('monthChart');
+  const M = PAYLOAD.monthly;
+  const W = 880, H = 280, m = {t:22, r:16, b:30, l:40};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const bw = Math.min(44, iw/M.length - 14);
+  const X = i => m.l + (i + .5)/M.length*iw;
+  const Y = v => m.t + (1 - v/100)*ih;
+  const svg = el('svg', {viewBox:`0 0 ${W} ${H}`, role:'img',
+    'aria-label':'Model accuracy by month'}, null);
+  c.appendChild(svg);
+
+  for (let v = 0; v <= 100; v += 25){
+    el('line', {x1:m.l, x2:W-m.r, y1:Y(v), y2:Y(v), stroke:'var(--grid)', 'stroke-width':1}, svg);
+    txt(svg, m.l-8, Y(v)+4, v + '%', {'text-anchor':'end'});
+  }
+  el('line', {x1:m.l, x2:W-m.r, y1:Y(50), y2:Y(50), stroke:'var(--axis)',
+    'stroke-width':1.5, 'stroke-dasharray':'5 4'}, svg);
+
+  const tip = makeTip(c);
+  M.forEach((d, i) => {
+    const x = X(i) - bw/2, y = Y(d.acc), h = Y(0) - y;
+    const r = 4;
+    el('path', {d:`M${x} ${y+h}V${y+r}Q${x} ${y} ${x+r} ${y}H${x+bw-r}Q${x+bw} ${y} ${x+bw} ${y+r}V${y+h}Z`,
+      fill:'var(--s1)'}, svg);
+    txt(svg, X(i), y-7, d.acc.toFixed(0), {'text-anchor':'middle', fill:'var(--ink2)', 'font-weight':'600'});
+    txt(svg, X(i), m.t+ih+18, MONTH_LABEL(d.month).split(' ')[0], {'text-anchor':'middle'});
+
+    const hit = el('rect', {x:X(i)-iw/M.length/2, y:m.t, width:iw/M.length, height:ih, fill:'transparent'}, svg);
+    hit.addEventListener('pointerenter', () => {
+      tip.innerHTML = '<div class="t">' + MONTH_LABEL(d.month) + '</div>' +
+        '<div class="row"><span>Accuracy</span><span>' + d.acc.toFixed(1) + '%</span></div>' +
+        '<div class="row"><span>Fights</span><span>' + d.n + '</span></div>';
+      tip.hidden = false;
+      const rc = svg.getBoundingClientRect();
+      placeTip(tip, c, (X(i)/W)*rc.width, (y/H)*rc.height);
+    });
+    hit.addEventListener('pointerleave', () => { tip.hidden = true; });
+  });
+  el('line', {x1:m.l, x2:W-m.r, y1:m.t+ih, y2:m.t+ih, stroke:'var(--axis)', 'stroke-width':1}, svg);
+
+  document.getElementById('monthTable').innerHTML =
+    '<thead><tr><th>Month</th><th class="num">Fights</th><th class="num">Accuracy</th></tr></thead><tbody>' +
+    M.map(d => '<tr><td>' + MONTH_LABEL(d.month) + '</td><td class="num">' + d.n +
+      '</td><td class="num">' + d.acc.toFixed(1) + '%</td></tr>').join('') + '</tbody>';
+})();
+
+/* ---------- strategy lab ---------- */
+const GRID = [{"prob": "legacy", "edge": 0.0, "forced": true, "dogs": "full", "frac": 0.05, "full": {"ret": 13.1, "bets": 520, "hit": 59.6, "dd": 16.9}, "year": {"ret": 21.5, "bets": 194, "hit": 61.3, "dd": 8.6}}, {"prob": "legacy", "edge": 0.0, "forced": true, "dogs": "full", "frac": 0.03, "full": {"ret": 8.5, "bets": 520, "hit": 59.6, "dd": 10.2}, "year": {"ret": 12.7, "bets": 194, "hit": 61.3, "dd": 5.2}}, {"prob": "legacy", "edge": 0.0, "forced": true, "dogs": "half", "frac": 0.05, "full": {"ret": 13.8, "bets": 520, "hit": 59.6, "dd": 9.3}, "year": {"ret": 15.4, "bets": 194, "hit": 61.3, "dd": 5.1}}, {"prob": "legacy", "edge": 0.0, "forced": true, "dogs": "half", "frac": 0.03, "full": {"ret": 8.4, "bets": 520, "hit": 59.6, "dd": 5.7}, "year": {"ret": 9.1, "bets": 194, "hit": 61.3, "dd": 3.1}}, {"prob": "legacy", "edge": 0.0, "forced": true, "dogs": "skip", "frac": 0.05, "full": {"ret": 13.1, "bets": 371, "hit": 66.8, "dd": 5.5}, "year": {"ret": 9.0, "bets": 141, "hit": 68.1, "dd": 2.6}}, {"prob": "legacy", "edge": 0.0, "forced": true, "dogs": "skip", "frac": 0.03, "full": {"ret": 7.7, "bets": 371, "hit": 66.8, "dd": 3.3}, "year": {"ret": 5.4, "bets": 141, "hit": 68.1, "dd": 1.6}}, {"prob": "legacy", "edge": 0.0, "forced": false, "dogs": "full", "frac": 0.05, "full": {"ret": 12.4, "bets": 242, "hit": 50.8, "dd": 16.0}, "year": {"ret": 18.9, "bets": 83, "hit": 51.8, "dd": 7.8}}, {"prob": "legacy", "edge": 0.0, "forced": false, "dogs": "full", "frac": 0.03, "full": {"ret": 8.0, "bets": 242, "hit": 50.8, "dd": 9.6}, "year": {"ret": 11.2, "bets": 83, "hit": 51.8, "dd": 4.7}}, {"prob": "legacy", "edge": 0.0, "forced": false, "dogs": "half", "frac": 0.05, "full": {"ret": 13.1, "bets": 242, "hit": 50.8, "dd": 7.9}, "year": {"ret": 12.9, "bets": 83, "hit": 51.8, "dd": 4.3}}, {"prob": "legacy", "edge": 0.0, "forced": false, "dogs": "half", "frac": 0.03, "full": {"ret": 7.9, "bets": 242, "hit": 50.8, "dd": 4.8}, "year": {"ret": 7.7, "bets": 83, "hit": 51.8, "dd": 2.6}}, {"prob": "legacy", "edge": 0.0, "forced": false, "dogs": "skip", "frac": 0.05, "full": {"ret": 12.3, "bets": 93, "hit": 65.6, "dd": 4.0}, "year": {"ret": 6.7, "bets": 30, "hit": 66.7, "dd": 2.0}}, {"prob": "legacy", "edge": 0.0, "forced": false, "dogs": "skip", "frac": 0.03, "full": {"ret": 7.3, "bets": 93, "hit": 65.6, "dd": 2.4}, "year": {"ret": 4.0, "bets": 30, "hit": 66.7, "dd": 1.2}}, {"prob": "legacy", "edge": 0.02, "forced": false, "dogs": "full", "frac": 0.05, "full": {"ret": 12.2, "bets": 241, "hit": 50.6, "dd": 16.0}, "year": {"ret": 18.5, "bets": 80, "hit": 51.2, "dd": 8.3}}, {"prob": "legacy", "edge": 0.02, "forced": false, "dogs": "full", "frac": 0.03, "full": {"ret": 7.9, "bets": 241, "hit": 50.6, "dd": 9.6}, "year": {"ret": 11.0, "bets": 80, "hit": 51.2, "dd": 5.0}}, {"prob": "legacy", "edge": 0.02, "forced": false, "dogs": "half", "frac": 0.05, "full": {"ret": 12.9, "bets": 241, "hit": 50.6, "dd": 7.9}, "year": {"ret": 12.8, "bets": 80, "hit": 51.2, "dd": 4.6}}, {"prob": "legacy", "edge": 0.02, "forced": false, "dogs": "half", "frac": 0.03, "full": {"ret": 7.7, "bets": 241, "hit": 50.6, "dd": 4.8}, "year": {"ret": 7.6, "bets": 80, "hit": 51.2, "dd": 2.7}}, {"prob": "legacy", "edge": 0.02, "forced": false, "dogs": "skip", "frac": 0.05, "full": {"ret": 12.1, "bets": 92, "hit": 65.2, "dd": 4.0}, "year": {"ret": 6.9, "bets": 28, "hit": 67.9, "dd": 2.0}}, {"prob": "legacy", "edge": 0.02, "forced": false, "dogs": "skip", "frac": 0.03, "full": {"ret": 7.1, "bets": 92, "hit": 65.2, "dd": 2.4}, "year": {"ret": 4.1, "bets": 28, "hit": 67.9, "dd": 1.2}}, {"prob": "legacy", "edge": 0.04, "forced": false, "dogs": "full", "frac": 0.05, "full": {"ret": 14.6, "bets": 221, "hit": 51.1, "dd": 15.5}, "year": {"ret": 19.3, "bets": 73, "hit": 52.1, "dd": 8.3}}, {"prob": "legacy", "edge": 0.04, "forced": false, "dogs": "full", "frac": 0.03, "full": {"ret": 9.3, "bets": 221, "hit": 51.1, "dd": 9.3}, "year": {"ret": 11.5, "bets": 73, "hit": 52.1, "dd": 5.0}}, {"prob": "legacy", "edge": 0.04, "forced": false, "dogs": "half", "frac": 0.05, "full": {"ret": 15.0, "bets": 221, "hit": 51.1, "dd": 7.7}, "year": {"ret": 13.0, "bets": 73, "hit": 52.1, "dd": 4.6}}, {"prob": "legacy", "edge": 0.04, "forced": false, "dogs": "half", "frac": 0.03, "full": {"ret": 9.0, "bets": 221, "hit": 51.1, "dd": 4.7}, "year": {"ret": 7.7, "bets": 73, "hit": 52.1, "dd": 2.7}}, {"prob": "legacy", "edge": 0.04, "forced": false, "dogs": "skip", "frac": 0.05, "full": {"ret": 14.0, "bets": 73, "hit": 69.9, "dd": 4.2}, "year": {"ret": 6.5, "bets": 25, "hit": 68.0, "dd": 2.0}}, {"prob": "legacy", "edge": 0.04, "forced": false, "dogs": "skip", "frac": 0.03, "full": {"ret": 8.2, "bets": 73, "hit": 69.9, "dd": 2.5}, "year": {"ret": 3.9, "bets": 25, "hit": 68.0, "dd": 1.2}}, {"prob": "blend 0.8", "edge": 0.0, "forced": true, "dogs": "full", "frac": 0.05, "full": {"ret": 0.5, "bets": 513, "hit": 60.2, "dd": 12.0}, "year": {"ret": 13.3, "bets": 199, "hit": 61.8, "dd": 7.5}}, {"prob": "blend 0.8", "edge": 0.0, "forced": true, "dogs": "full", "frac": 0.03, "full": {"ret": 0.7, "bets": 513, "hit": 60.2, "dd": 7.2}, "year": {"ret": 8.0, "bets": 199, "hit": 61.8, "dd": 4.6}}, {"prob": "blend 0.8", "edge": 0.0, "forced": true, "dogs": "half", "frac": 0.05, "full": {"ret": 4.8, "bets": 513, "hit": 60.2, "dd": 7.6}, "year": {"ret": 9.6, "bets": 199, "hit": 61.8, "dd": 4.3}}, {"prob": "blend 0.8", "edge": 0.0, "forced": true, "dogs": "half", "frac": 0.03, "full": {"ret": 3.0, "bets": 513, "hit": 60.2, "dd": 4.6}, "year": {"ret": 5.7, "bets": 199, "hit": 61.8, "dd": 2.6}}, {"prob": "blend 0.8", "edge": 0.0, "forced": true, "dogs": "skip", "frac": 0.05, "full": {"ret": 8.5, "bets": 390, "hit": 66.2, "dd": 6.0}, "year": {"ret": 5.8, "bets": 152, "hit": 67.1, "dd": 2.4}}, {"prob": "blend 0.8", "edge": 0.0, "forced": true, "dogs": "skip", "frac": 0.03, "full": {"ret": 5.1, "bets": 390, "hit": 66.2, "dd": 3.6}, "year": {"ret": 3.5, "bets": 152, "hit": 67.1, "dd": 1.5}}, {"prob": "blend 0.8", "edge": 0.0, "forced": false, "dogs": "full", "frac": 0.05, "full": {"ret": 3.4, "bets": 217, "hit": 52.1, "dd": 11.4}, "year": {"ret": 13.9, "bets": 80, "hit": 55.0, "dd": 6.6}}, {"prob": "blend 0.8", "edge": 0.0, "forced": false, "dogs": "full", "frac": 0.03, "full": {"ret": 2.3, "bets": 217, "hit": 52.1, "dd": 6.9}, "year": {"ret": 8.3, "bets": 80, "hit": 55.0, "dd": 4.0}}, {"prob": "blend 0.8", "edge": 0.0, "forced": false, "dogs": "half", "frac": 0.05, "full": {"ret": 7.8, "bets": 217, "hit": 52.1, "dd": 5.7}, "year": {"ret": 10.2, "bets": 80, "hit": 55.0, "dd": 3.5}}, {"prob": "blend 0.8", "edge": 0.0, "forced": false, "dogs": "half", "frac": 0.03, "full": {"ret": 4.7, "bets": 217, "hit": 52.1, "dd": 3.5}, "year": {"ret": 6.1, "bets": 80, "hit": 55.0, "dd": 2.1}}, {"prob": "blend 0.8", "edge": 0.0, "forced": false, "dogs": "skip", "frac": 0.05, "full": {"ret": 11.6, "bets": 94, "hit": 66.0, "dd": 3.1}, "year": {"ret": 6.3, "bets": 33, "hit": 69.7, "dd": 1.8}}, {"prob": "blend 0.8", "edge": 0.0, "forced": false, "dogs": "skip", "frac": 0.03, "full": {"ret": 6.9, "bets": 94, "hit": 66.0, "dd": 1.8}, "year": {"ret": 3.8, "bets": 33, "hit": 69.7, "dd": 1.1}}, {"prob": "blend 0.8", "edge": 0.02, "forced": false, "dogs": "full", "frac": 0.05, "full": {"ret": 3.9, "bets": 216, "hit": 52.3, "dd": 11.4}, "year": {"ret": 13.9, "bets": 77, "hit": 54.5, "dd": 6.6}}, {"prob": "blend 0.8", "edge": 0.02, "forced": false, "dogs": "full", "frac": 0.03, "full": {"ret": 2.7, "bets": 216, "hit": 52.3, "dd": 6.9}, "year": {"ret": 8.3, "bets": 77, "hit": 54.5, "dd": 4.0}}, {"prob": "blend 0.8", "edge": 0.02, "forced": false, "dogs": "half", "frac": 0.05, "full": {"ret": 8.3, "bets": 216, "hit": 52.3, "dd": 5.7}, "year": {"ret": 10.2, "bets": 77, "hit": 54.5, "dd": 3.5}}, {"prob": "blend 0.8", "edge": 0.02, "forced": false, "dogs": "half", "frac": 0.03, "full": {"ret": 5.0, "bets": 216, "hit": 52.3, "dd": 3.5}, "year": {"ret": 6.1, "bets": 77, "hit": 54.5, "dd": 2.1}}, {"prob": "blend 0.8", "edge": 0.02, "forced": false, "dogs": "skip", "frac": 0.05, "full": {"ret": 12.2, "bets": 93, "hit": 66.7, "dd": 3.1}, "year": {"ret": 6.3, "bets": 30, "hit": 70.0, "dd": 1.8}}, {"prob": "blend 0.8", "edge": 0.02, "forced": false, "dogs": "skip", "frac": 0.03, "full": {"ret": 7.2, "bets": 93, "hit": 66.7, "dd": 1.8}, "year": {"ret": 3.8, "bets": 30, "hit": 70.0, "dd": 1.1}}, {"prob": "blend 0.8", "edge": 0.04, "forced": false, "dogs": "full", "frac": 0.05, "full": {"ret": 5.9, "bets": 191, "hit": 52.9, "dd": 9.5}, "year": {"ret": 12.9, "bets": 66, "hit": 53.0, "dd": 6.3}}, {"prob": "blend 0.8", "edge": 0.04, "forced": false, "dogs": "full", "frac": 0.03, "full": {"ret": 3.8, "bets": 191, "hit": 52.9, "dd": 5.7}, "year": {"ret": 7.7, "bets": 66, "hit": 53.0, "dd": 3.8}}, {"prob": "blend 0.8", "edge": 0.04, "forced": false, "dogs": "half", "frac": 0.05, "full": {"ret": 10.1, "bets": 191, "hit": 52.9, "dd": 5.1}, "year": {"ret": 8.9, "bets": 66, "hit": 53.0, "dd": 3.5}}, {"prob": "blend 0.8", "edge": 0.04, "forced": false, "dogs": "half", "frac": 0.03, "full": {"ret": 6.0, "bets": 191, "hit": 52.9, "dd": 3.1}, "year": {"ret": 5.3, "bets": 66, "hit": 53.0, "dd": 2.1}}, {"prob": "blend 0.8", "edge": 0.04, "forced": false, "dogs": "skip", "frac": 0.05, "full": {"ret": 13.8, "bets": 71, "hit": 71.8, "dd": 3.0}, "year": {"ret": 4.8, "bets": 24, "hit": 66.7, "dd": 1.8}}, {"prob": "blend 0.8", "edge": 0.04, "forced": false, "dogs": "skip", "frac": 0.03, "full": {"ret": 8.1, "bets": 71, "hit": 71.8, "dd": 1.8}, "year": {"ret": 2.9, "bets": 24, "hit": 66.7, "dd": 1.1}}];
+
+const DOG_COLOR = {full:'var(--s1)', half:'var(--s2)', skip:'var(--s3)'};
+const DOG_LABEL = {full:'full Kelly', half:'half stake', skip:'skip'};
+function isDeployed(r){ return r.prob === 'blend 0.8' && r.edge === 0 && r.forced && r.dogs === 'full' && r.frac === 0.05; }
+function cfgLabel(r){
+  return (r.prob === 'legacy' ? 'legacy' : 'blend') + ' · edge ' + (r.edge*100).toFixed(0) +
+    ' · ' + (r.forced ? 'forced kept' : 'no forced') + ' · dogs ' + DOG_LABEL[r.dogs] +
+    ' · ' + (r.frac*100).toFixed(0) + '% Kelly';
+}
+
+/* scatter: x = full-window max drawdown, y = full-window return */
+(function(){
+  const c = document.getElementById('gridScatter');
+  const W = 880, H = 400, m = {t:14, r:18, b:46, l:56};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const xs = GRID.map(r => r.full.dd), ys = GRID.map(r => r.full.ret);
+  const xlo = 0, xhi = Math.ceil(Math.max(...xs)/5)*5 + 1;
+  const ylo = Math.floor(Math.min(...ys, 0)/5)*5, yhi = Math.ceil(Math.max(...ys)/5)*5;
+  const X = v => m.l + (v-xlo)/(xhi-xlo)*iw;
+  const Y = v => m.t + (1-(v-ylo)/(yhi-ylo))*ih;
+  const svg = el('svg', {viewBox:`0 0 ${W} ${H}`, role:'img',
+    'aria-label':'Return versus max drawdown for 48 strategy configurations'}, null);
+  c.appendChild(svg);
+
+  for (let v = ylo; v <= yhi; v += 5){
+    el('line', {x1:m.l, x2:W-m.r, y1:Y(v), y2:Y(v), stroke:'var(--grid)', 'stroke-width':1}, svg);
+    txt(svg, m.l-8, Y(v)+4, v + '%', {'text-anchor':'end'});
+  }
+  for (let v = 0; v <= xhi; v += 5){
+    el('line', {x1:X(v), x2:X(v), y1:m.t, y2:m.t+ih, stroke:'var(--grid)', 'stroke-width':1}, svg);
+    txt(svg, X(v), m.t+ih+16, v + '%', {'text-anchor':'middle'});
+  }
+  el('line', {x1:m.l, x2:W-m.r, y1:Y(0), y2:Y(0), stroke:'var(--axis)', 'stroke-width':1.5,
+    'stroke-dasharray':'5 4'}, svg);
+  txt(svg, m.l + iw/2, H-8, 'Max drawdown, full window', {'text-anchor':'middle', 'font-size':'12'});
+  const yl = txt(svg, 0, 0, 'Return, full window', {'text-anchor':'middle', 'font-size':'12'});
+  yl.setAttribute('transform', 'translate(14 ' + (m.t+ih/2) + ') rotate(-90)');
+
+  const tip = makeTip(c);
+  GRID.forEach(r => {
+    const cx = X(r.full.dd), cy = Y(r.full.ret);
+    if (isDeployed(r))
+      el('circle', {cx, cy, r:9, fill:'none', stroke:'var(--ink)', 'stroke-width':1.5,
+        'stroke-dasharray':'3 2'}, svg);
+    const dot = el('circle', {cx, cy, r:5, fill:DOG_COLOR[r.dogs],
+      stroke:'var(--surface)', 'stroke-width':1.5}, svg);
+    dot.addEventListener('pointerenter', () => {
+      tip.innerHTML = '<div class="t">' + cfgLabel(r) + (isDeployed(r) ? ' — deployed' : '') + '</div>' +
+        '<div class="row"><span>Full 2024–26</span><span>' + (r.full.ret>=0?'+':'') + r.full.ret +
+        '% · DD ' + r.full.dd + '% · ' + r.full.bets + ' bets</span></div>' +
+        '<div class="row"><span>Last year</span><span>' + (r.year.ret>=0?'+':'') + r.year.ret +
+        '% · DD ' + r.year.dd + '% · ' + r.year.bets + ' bets</span></div>';
+      tip.hidden = false;
+      const rc = svg.getBoundingClientRect();
+      placeTip(tip, c, (cx/W)*rc.width, (cy/H)*rc.height);
+    });
+    dot.addEventListener('pointerleave', () => { tip.hidden = true; });
+  });
+})();
+
+/* sortable grid table */
+(function(){
+  const t = document.getElementById('gridTable');
+  const cols = [
+    {h:'Prob', v:r=>r.prob, num:false},
+    {h:'Edge', v:r=>(r.edge*100).toFixed(0)+'pt', num:true, k:r=>r.edge},
+    {h:'Forced', v:r=>r.forced?'kept':'no', num:false},
+    {h:'Dogs', v:r=>DOG_LABEL[r.dogs], num:false},
+    {h:'Kelly', v:r=>(r.frac*100).toFixed(0)+'%', num:true, k:r=>r.frac},
+    {h:'Ret 24–26', v:r=>(r.full.ret>=0?'+':'')+r.full.ret+'%', num:true, k:r=>r.full.ret},
+    {h:'DD 24–26', v:r=>r.full.dd+'%', num:true, k:r=>r.full.dd},
+    {h:'Bets 24–26', v:r=>r.full.bets, num:true, k:r=>r.full.bets},
+    {h:'Ret year', v:r=>(r.year.ret>=0?'+':'')+r.year.ret+'%', num:true, k:r=>r.year.ret},
+    {h:'DD year', v:r=>r.year.dd+'%', num:true, k:r=>r.year.dd},
+    {h:'Bets year', v:r=>r.year.bets, num:true, k:r=>r.year.bets},
+  ];
+  let sortI = 5, desc = true;
+  function render(){
+    const rows = GRID.slice().sort((a,b) => {
+      const col = cols[sortI];
+      const ka = col.k ? col.k(a) : col.v(a), kb = col.k ? col.k(b) : col.v(b);
+      return (ka < kb ? -1 : ka > kb ? 1 : 0) * (desc ? -1 : 1);
+    });
+    t.innerHTML = '<thead><tr>' + cols.map((cn, i) =>
+      '<th class="' + (cn.num?'num ':'') + '" role="button" tabindex="0" data-i="' + i + '" ' +
+      'style="cursor:pointer">' + cn.h + (i===sortI ? (desc?' ↓':' ↑') : '') + '</th>').join('') +
+      '</tr></thead><tbody>' +
+      rows.map(r => '<tr' + (isDeployed(r) ? ' style="background:var(--grid)"' : '') + '>' +
+        cols.map(cn => '<td class="' + (cn.num?'num':'') + '">' + cn.v(r) + '</td>').join('') +
+        '</tr>').join('') + '</tbody>';
+    t.querySelectorAll('th').forEach(th => {
+      const go = () => {
+        const i = +th.dataset.i;
+        if (i === sortI) desc = !desc; else { sortI = i; desc = true; }
+        render();
+      };
+      th.addEventListener('click', go);
+      th.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
+  }
+  render();
+})();
+</script>

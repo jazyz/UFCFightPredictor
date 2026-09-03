@@ -1,0 +1,693 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Kalshi UFC Playbook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5,500;87.5,600;87.5,700;100,500;100,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f6f7f5; --bg-2:#eef1ee; --ink:#15201b; --ink-2:#4f5c56; --ink-3:#7d877f;
+  --rule:#d5dbd6; --rule-2:#c2cac4;
+  --accent:#0b6e6a; --accent-ink:#ffffff; --accent-soft:#dcecea;
+  --bid:#1e8e5a; --ask:#c4452b; --warn:#a86a00; --warn-soft:#f4e7cd;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --grid:#e2e7e3; --tip-bg:#15201b; --tip-ink:#f6f7f5;
+  --display:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#141816; --bg-2:#1b211e; --ink:#eaf0ec; --ink-2:#a9b4ae; --ink-3:#7f8a83;
+    --rule:#2a322d; --rule-2:#3a443e;
+    --accent:#52c2b8; --accent-ink:#0e1513; --accent-soft:#1c332f;
+    --bid:#4cc38a; --ask:#e5735c; --warn:#e0a92e; --warn-soft:#2e2718;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --grid:#232a26; --tip-bg:#eaf0ec; --tip-ink:#141816;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#141816; --bg-2:#1b211e; --ink:#eaf0ec; --ink-2:#a9b4ae; --ink-3:#7f8a83;
+  --rule:#2a322d; --rule-2:#3a443e;
+  --accent:#52c2b8; --accent-ink:#0e1513; --accent-soft:#1c332f;
+  --bid:#4cc38a; --ask:#e5735c; --warn:#e0a92e; --warn-soft:#2e2718;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --grid:#232a26; --tip-bg:#eaf0ec; --tip-ink:#141816;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.page{display:grid;grid-template-columns:1fr;max-width:1160px;margin:0 auto;padding:40px 24px 96px}
+@media (min-width:1100px){.page{grid-template-columns:200px minmax(0,1fr);gap:56px}}
+nav.toc{display:none}
+@media (min-width:1100px){
+  nav.toc{display:block;position:sticky;top:32px;align-self:start;font-family:var(--display);font-size:13px;line-height:1.4}
+  nav.toc .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0 0 10px}
+  nav.toc a{display:block;color:var(--ink-2);text-decoration:none;padding:5px 0 5px 12px;border-left:2px solid var(--rule)}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--ink);border-left-color:var(--accent);outline:none}
+  nav.toc a.sub{padding-left:24px;font-size:12px}
+}
+main{min-width:0}
+.prose{max-width:70ch}
+h1,h2,h3,h4{font-family:var(--display);font-stretch:87.5%;text-wrap:balance;margin:0;color:var(--ink)}
+h1{font-size:44px;line-height:1.05;font-weight:700;letter-spacing:-.01em}
+h2{font-size:28px;line-height:1.15;font-weight:600;margin-top:64px;padding-top:24px;border-top:1px solid var(--rule)}
+h3{font-size:19px;line-height:1.3;font-weight:600;margin-top:32px}
+h4{font-size:15px;font-weight:600;margin-top:22px;font-stretch:100%}
+p{margin:14px 0}
+ul,ol{padding-left:22px;margin:12px 0}
+li{margin:6px 0}
+li>p{margin:6px 0}
+.eyebrow{font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 14px;font-weight:600}
+.lede{font-size:21px;line-height:1.45;color:var(--ink-2);margin:18px 0 0;max-width:62ch}
+.meta{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);margin-top:22px}
+.answer{margin:36px 0 0;padding:22px 24px;background:var(--bg-2);border-left:3px solid var(--accent);max-width:76ch}
+.answer p{margin:8px 0}
+.answer .big{font-family:var(--display);font-size:20px;font-weight:600;line-height:1.3}
+strong{font-weight:600}
+code,.num{font-family:var(--mono);font-size:.88em}
+.num{font-variant-numeric:tabular-nums}
+/* tables */
+.tbl{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;line-height:1.35;margin:18px 0}
+.tbl caption{text-align:left;font-family:var(--display);font-size:13px;color:var(--ink-2);padding:0 0 8px;caption-side:top}
+.tbl th{text-align:left;font-weight:500;color:var(--ink-3);border-bottom:1px solid var(--rule-2);padding:8px 10px 8px 0;font-size:12px;letter-spacing:.02em;white-space:nowrap}
+.tbl td{padding:8px 10px 8px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.tbl td.r,.tbl th.r{text-align:right;padding-right:22px;padding-left:12px}
+.tbl td:last-child,.tbl th:last-child{padding-right:0}
+.tbl tr.total td{border-bottom:none;border-top:1px solid var(--rule-2);font-weight:500}
+.tbl td.pos{color:var(--bid)} .tbl td.neg{color:var(--ask)}
+.wide{overflow-x:auto;margin:18px 0}
+.wide .tbl{margin:0;min-width:640px}
+.note{font-family:var(--display);font-size:13px;color:var(--ink-3);margin:6px 0 0;line-height:1.45}
+.callout{padding:14px 18px;background:var(--warn-soft);border-left:3px solid var(--warn);margin:20px 0;max-width:76ch}
+.callout p{margin:6px 0;font-size:16px}
+/* order book ladder */
+.ladder{display:grid;grid-template-columns:auto 1fr 1fr;gap:0 18px;font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;max-width:520px;margin:18px 0}
+.ladder .h{font-family:var(--display);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding-bottom:6px;border-bottom:1px solid var(--rule-2)}
+.ladder div{padding:5px 0}
+.ladder .px{color:var(--ink-2)}
+.ladder .bid{color:var(--bid)} .ladder .ask{color:var(--ask)}
+.ladder .mid{color:var(--ink-3);font-style:italic;grid-column:1/-1;border-top:1px dashed var(--rule-2);border-bottom:1px dashed var(--rule-2);text-align:center;font-family:var(--display);font-size:12px}
+.ladder .you{background:var(--accent-soft);border-radius:2px;padding-left:6px;margin-left:-6px}
+/* one-pager tickets */
+.ticket{margin-top:64px;border-top:1px solid var(--rule)}
+.ticket header{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;padding-top:26px;align-items:baseline}
+.ticket .n{font-family:var(--mono);font-size:13px;color:var(--ink-3);padding-top:6px}
+.ticket h2{border:none;margin:0;padding:0}
+.ticket .thesis{grid-column:2;font-size:19px;color:var(--ink-2);margin:0;max-width:64ch;line-height:1.45}
+.strip{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:18px;font-family:var(--display)}
+.strip div{background:var(--bg-2);padding:12px 14px;min-width:0}
+.strip .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+.strip .v{font-size:14px;line-height:1.35;color:var(--ink)}
+@media (max-width:640px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 40px}
+/* chart */
+.viz{margin:24px 0 8px;background:var(--bg-2);padding:18px 18px 12px;border:1px solid var(--rule)}
+.viz .t{font-family:var(--display);font-size:15px;font-weight:600;margin:0}
+.viz .st{font-family:var(--display);font-size:13px;color:var(--ink-2);margin:4px 0 12px}
+.viz svg{width:100%;height:auto;display:block;overflow:visible}
+.viz .legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-family:var(--display);font-size:13px;color:var(--ink-2);margin:10px 0 0}
+.viz .legend span{display:inline-flex;align-items:center;gap:8px}
+.viz .legend i{display:inline-block;width:18px;height:2px;border-radius:1px}
+.viz .tools{display:flex;justify-content:flex-end;margin-top:6px}
+.viz button{font-family:var(--display);font-size:12px;color:var(--ink-2);background:none;border:1px solid var(--rule-2);padding:4px 10px;border-radius:3px;cursor:pointer}
+.viz button:hover,.viz button:focus-visible{color:var(--ink);border-color:var(--ink-3);outline:none}
+.viz .tip{position:absolute;pointer-events:none;background:var(--tip-bg);color:var(--tip-ink);font-family:var(--mono);font-size:12px;padding:8px 10px;border-radius:3px;line-height:1.4;white-space:nowrap;transform:translate(-50%,calc(-100% - 14px));opacity:0;transition:opacity .08s}
+.viz .wrap{position:relative}
+.viz .grid line{stroke:var(--grid);stroke-width:1}
+.viz .axis text{fill:var(--ink-3);font-family:var(--mono);font-size:11px}
+.viz .axis .lbl{fill:var(--ink-2);font-family:var(--display);font-size:11.5px}
+.viz .zero{stroke:var(--rule-2);stroke-width:1}
+.viz path.line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.viz .end text{fill:var(--ink);font-family:var(--display);font-size:11.5px}
+.viz .end circle{stroke:var(--bg-2);stroke-width:2}
+.viz .cross{stroke:var(--ink-3);stroke-width:1;opacity:0}
+.viz .dot{stroke:var(--bg-2);stroke-width:2;opacity:0}
+.viz .band{fill:var(--accent);opacity:.08}
+.viz .bandlbl{fill:var(--accent);font-family:var(--display);font-size:11px}
+footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--rule);font-family:var(--display);font-size:13px;color:var(--ink-3);line-height:1.5}
+.src{font-family:var(--display);font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.src li{margin:5px 0}
+.src a{word-break:break-all}
+@media (prefers-reduced-motion:reduce){.viz .tip{transition:none}}
+</style>
+
+<div class="page">
+<nav class="toc" aria-label="Contents">
+  <p class="k">Contents</p>
+  <a href="#answer">The answer</a>
+  <a href="#fees">Fee math</a>
+  <a href="#book">What our data shows</a>
+  <a href="#ways">Four ways to get paid</a>
+  <a class="sub" href="#take">1 · Market orders</a>
+  <a class="sub" href="#make">2 · Limit orders</a>
+  <a class="sub" href="#quote">3 · Two-sided quoting</a>
+  <a class="sub" href="#inv">4 · Bad fills and inventory</a>
+  <a href="#req">Edge required, by route</a>
+  <a href="#plan">Before the first order</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<main>
+<p class="eyebrow">Research memo · UFC fight-winner contracts on Kalshi</p>
+<h1>Kalshi UFC Playbook</h1>
+<p class="lede">How much edge the model needs to clear Kalshi's fees, and four ways to turn that edge into money on a limit-order book: taking, posting, quoting both sides, and managing the fills that go wrong. Every cost is stated in the market's own unit, cents per $1 contract, which is the same thing as probability points.</p>
+<p class="meta">Prepared 2026-09-02 · replay of 175 tier-2 walk-forward bets, 2024-01 → 2026-07 · 126 Kalshi quotes in the odds file since 2026-05</p>
+
+<section id="answer" class="answer">
+  <p class="big">Fees are not the binding constraint. Overconfidence on underdogs is.</p>
+  <p>Buying a contract at the market's fair price and holding to settlement costs about <span class="num">1.75¢</span> at even money in taker fee, and less at the extremes. Lifting the offer in a one-cent-wide book adds one more cent. So a taker needs roughly <strong>2 to 3 probability points of real edge</strong> to break even, depending on price. A resting bid that gets filled one cent inside the market pays no fee and starts <strong>one point ahead</strong>.</p>
+  <p>The model's picks beat the de-vigged sportsbook price by <span class="num">7.7</span> points on hit rate across the 175 backtest bets. That clears every route on average. It does not clear the taker route where the model is most confident: on picks priced under <span class="num">40¢</span> the realized edge is <span class="num">1.2</span> points against a <span class="num">2.5</span> to <span class="num">3</span> point cost. The instrument that fixes this is a shrink on the model's stated edge, not a change of venue.</p>
+</section>
+
+<section id="fees">
+<h2>Fee math</h2>
+<div class="prose">
+<p>Kalshi charges a fee when an order trades, not when a contract settles. The fee on a trade is a fixed coefficient times price times one-minus-price, per contract, rounded up to the next cent on the order total. Because <code>p·(1−p)</code> peaks at 50¢, the fee is largest at coin-flip prices and shrinks toward both ends. The taker pays it. On most markets the maker pays nothing.</p>
+<h3>The schedule that applies to UFC, verified against the exchange API on 2026-09-02</h3>
+<p>Kalshi's fee schedule, effective 7 July 2026, defines the taker fee as <code>round up(M × 0.07 × C × P × (1 − P))</code>, where C is the contract count, P the price in dollars, and M a per-series multiplier that defaults to 1. A maker fee of <code>0.0175 × C × P × (1 − P)</code> exists but applies only to series flagged for it. The series metadata for the UFC fight-winner contract, ticker <code>KXUFCFIGHT</code>, reports fee type <code>quadratic</code> with multiplier 1. That is the taker-only table. The method-of-victory and round contracts carry the same type. No fee change is scheduled for any series, and none of the 31,000 active liquidity-incentive programs on the exchange covers a UFC or MMA market.</p>
+<ul>
+  <li><strong>Posting on UFC markets is free.</strong> No maker fee, and also no maker rebate. The NFL, NBA, NHL, tennis and golf series do charge makers a quarter of the taker rate; fight markets do not.</li>
+  <li><strong>The fee is charged per fill, on the way in and on the way out.</strong> There is no settlement fee on a yes/no contract. A position held to the bell pays once; a position flattened before it pays twice.</li>
+  <li><strong>Rounding is effectively exact for an API account.</strong> The engine rounds each fill's fee up to a millionth of a dollar and rebates the round-up across the order; direct members' balances are kept to a hundredth of a cent. The old "one cent minimum per contract" folklore no longer describes what you pay.</li>
+  <li><strong>The exchange keeps trading through the fight.</strong> The market closes early only once a result is declared, and settles about five minutes later.</li>
+</ul>
+<p>Three execution routes, each with its own cost stack. The chart shows the real edge, in points, that each route needs before the trade is worth zero. Read a value of 2.7 as "my true probability must be 2.7 points above the market's for this trade to break even."</p>
+</div>
+
+<div class="viz" id="viz-be">
+  <p class="t">Edge needed to break even, by contract price</p>
+  <p class="st">Probability points above the market's fair price. A one-cent-wide book is assumed for the two routes that cross or rest inside it.</p>
+  <div class="wrap">
+    <svg viewBox="0 0 760 330" role="img" aria-label="Line chart of break-even edge in probability points versus contract price in cents for three execution routes"></svg>
+    <div class="tip" role="status" aria-live="polite"></div>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--s2)"></i>Lift the offer, pay fee</span>
+    <span><i style="background:var(--s1)"></i>Trade at fair price, pay fee</span>
+    <span><i style="background:var(--s3)"></i>Rest a bid 1¢ inside, no fee</span>
+  </div>
+  <div class="tools"><button type="button" data-toggle="be-table" aria-expanded="false">Show as table</button></div>
+  <div class="wide" id="be-table" hidden>
+    <table class="tbl">
+      <thead><tr><th>Price</th><th class="r">Taker fee ¢</th><th class="r">Fee as % of stake</th><th class="r">Trade at fair</th><th class="r">Lift the offer</th><th class="r">Rest a bid inside</th></tr></thead>
+      <tbody id="be-rows"></tbody>
+    </table>
+  </div>
+</div>
+<p class="note">Fee = 0.07 × p × (1 − p) per contract. Rounding on Kalshi is to a millionth of a dollar per fill with the round-up rebated across the order, so the curve is what an API account pays to within a hundredth of a cent. The shaded band marks the 5th to 95th percentile of the prices at which the model's 175 backtest picks were fair.</p>
+
+<div class="prose">
+<h3>Kalshi against the sportsbook you backtested on</h3>
+<p>The odds file that produced every ROI figure is 88% FanDuel. Its two-sided hold averages <span class="num">4.09%</span>, so a bettor there pays about two points per side; a live sample of this week's Paris card puts the US books at 4.2 to 6.0% and Pinnacle near 2.8%. The 126 Kalshi quotes in the same file show a median hold of <span class="num">1.0%</span>, which means the book is typically one cent wide. Taking on Kalshi at even money is therefore no cheaper than FanDuel once the fee is added, and dearer than Pinnacle; every saving lives on the maker side, and on favourites, where the fee shrinks while book holds widen.</p>
+</div>
+<div class="wide">
+<table class="tbl">
+  <caption>Cost per contract at a 50¢ fair price, cents. Positive is a cost.</caption>
+  <thead><tr><th>Route</th><th class="r">Spread</th><th class="r">Fee</th><th class="r">Total</th><th>Who decides the timing</th></tr></thead>
+  <tbody>
+    <tr><td>FanDuel, take the posted price</td><td class="r">2.0</td><td class="r">0</td><td class="r">2.0</td><td>You</td></tr>
+    <tr><td>Kalshi, lift the offer</td><td class="r">0.5</td><td class="r">1.75</td><td class="r">2.25</td><td>You</td></tr>
+    <tr><td>Kalshi, rest at the bid and get filled</td><td class="r">−0.5</td><td class="r">0</td><td class="r pos">−0.5</td><td>The other side</td></tr>
+    <tr><td>Kalshi, rest one cent inside the bid</td><td class="r">+0.5</td><td class="r">0</td><td class="r">0.5</td><td>The other side</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">Spread cost is measured from the mid of a one-cent book. Resting at the existing best bid earns half the spread; improving it by a cent gives that back and pays half a cent, but fills first in the queue.</p>
+</section>
+
+<section id="book">
+<h2>What our own data says about Kalshi's UFC books</h2>
+<div class="prose">
+<p>The odds scraper has preferred Kalshi over FanDuel since it was pointed at fightodds.io, and Kalshi quotes exist for every fight from June 2026 onward. That is a small sample of one summer, but it is our sample, and it already answers a few questions the trading plan depends on.</p>
+</div>
+<div class="wide">
+<table class="tbl">
+  <caption>Kalshi quotes in data/fight_results_with_odds.csv, 2026-05 to 2026-08</caption>
+  <thead><tr><th>Measure</th><th class="r">Value</th><th>Reading</th></tr></thead>
+  <tbody>
+    <tr><td>Fights with a Kalshi quote</td><td class="r">126</td><td>All 12 events since June, 8 to 13 fights each, prelims included</td></tr>
+    <tr><td>Median two-sided hold</td><td class="r">1.0%</td><td>A one-cent book at the top. Two-thirds of the ways to make money below depend on that cent.</td></tr>
+    <tr><td>Hold by quote age: under 1h / 1–6h / 6–24h / over 24h</td><td class="r">1.04 / 0.99 / 1.00 / 1.02</td><td>The book does not widen or tighten with time to the fight. Depth behind the top is measured below from the live API.</td></tr>
+    <tr><td>Median underdog price</td><td class="r">+233</td><td>Long prices are common: 57% of Kalshi fights carry a dog longer than +200.</td></tr>
+    <tr><td>Median quote age at cutoff</td><td class="r">4.7 h</td><td>The stored quote is not a closing price. Closing-line value cannot be computed from this file yet.</td></tr>
+    <tr><td>Realized hit-rate edge, all 175 bets</td><td class="r">+7.7 pts</td><td>Model's own claim was 13.0 pts. Shrink factor about 0.6.</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="prose">
+<p>Two things the file cannot tell us and the research below addresses: how many dollars sit at the best bid and offer, and how quickly the Kalshi mid follows a move at Pinnacle or Circa. Both decide whether route 3 is a business or a donation. The first is now answered from the exchange's own order books. The second has never been measured for UFC.</p>
+<h3>What is public about depth and speed</h3>
+<p>Volume is concentrated at the top of the card to a degree the one-cent hold hides. Topuria against Gaethje at UFC Freedom 250 traded more than <span class="num">$6.1M</span> on Kalshi, the year's most liquid fight; on the same card Nickal's market held about <span class="num">$69K</span>. Kalshi's own Fight Night listings show undercard markets with volumes of $0, $12 and $666. Makhachev against Garry showed a one-cent spread with 1.7 million contracts traded two days out. The picture is a book that is deep and tight for a main event and essentially empty for the prelims where a model most often disagrees with the market.</p>
+<p>On speed, two facts matter for anyone resting orders. Kalshi has no in-play delay on order execution; it filed a proposal for one in December 2025 and described the filing as only a filing. Since 12 August 2026 Kalshi streams its full level-two book to institutional subscribers through a low-latency network, so the makers you compete with see depth changes faster than an API poll can. The one cross-venue study of UFC contracts, 281 fights matched across Kalshi and Polymarket, finds neither venue leads the other; nothing is yet published on whether either lags the sportsbooks, which is the lag that would pay a maker.</p>
+<h3>Depth, measured from the exchange's public order books</h3>
+<p>Pulled from Kalshi's public market and order-book endpoints on 2026-09-02 for the UFC Paris card three days out, and from the settled markets of UFC 330 on 16 August. Quantities are contracts; one contract is one dollar of notional.</p>
+</div>
+<div class="wide">
+<table class="tbl">
+  <caption>UFC Paris, 2026-09-05, three days before the card. Every one of the 28 markets was quoted one cent wide.</caption>
+  <thead><tr><th>Market</th><th>Slot</th><th class="r">Volume so far</th><th class="r">Size at best bid, YES</th><th class="r">Within 5¢ of touch, YES / NO</th></tr></thead>
+  <tbody>
+    <tr><td>Hooker vs Parnasse</td><td>Main event</td><td class="r">389,000</td><td class="r">26,990</td><td class="r">130,891 / 290,998</td></tr>
+    <tr><td>Cornolle vs Sygulla</td><td>Prelim</td><td class="r">~20,000</td><td class="r">8,558</td><td class="r">26,396 / 71,573</td></tr>
+    <tr><td>Aljarouj vs Sintes</td><td>Early prelim</td><td class="r">~5,000</td><td class="r">251</td><td class="r">9,043 / 34,701</td></tr>
+    <tr><td>Other main-card fights</td><td></td><td class="r">24,000 to 49,000</td><td class="r">—</td><td class="r">—</td></tr>
+    <tr><td>Other prelims</td><td></td><td class="r">4,000 to 30,000</td><td class="r">—</td><td class="r">—</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="wide">
+<table class="tbl">
+  <caption>UFC 330, 2026-08-16, settled volume by fight. Card total 74.8 million contracts.</caption>
+  <thead><tr><th>Fight</th><th>Slot</th><th class="r">Contracts, both sides</th></tr></thead>
+  <tbody>
+    <tr><td>Makhachev vs Garry</td><td>Main event</td><td class="r">33,590,147</td></tr>
+    <tr><td>Dern vs Robertson</td><td>Co-main</td><td class="r">9,516,775</td></tr>
+    <tr><td>Turner vs Fernandes</td><td>Main card</td><td class="r">4,598,056</td></tr>
+    <tr><td>Luque vs Gore</td><td>Prelim</td><td class="r">3,762,622</td></tr>
+    <tr><td>Tobias vs Fernando</td><td>Early prelim</td><td class="r">1,877,608</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">The main event was 1.7 million contracts on the Thursday before the fight and 33.6 million at settlement. Most of a fight's volume trades on fight day and during the fight. In nine of the twelve bouts the losing fighter's market carried more volume than the winner's, which is what favourites' backers unloading mid-fight looks like. Books were three to four times deeper on the NO side of every market sampled.</p>
+<div class="prose">
+<p>Three days out, the Paris books are deep enough for any stake this desk would place: a prelim's best bid alone absorbs $8,000, and even the early prelim has $9,000 within five cents. A Tuesday-night card is a different market, with $220,000 to $445,000 per fight at settlement and, on the day markets open, eight of ten fights showing no quotes at all and a 70¢ spread until a market maker arrives. The infrastructure question for route 3 is therefore not depth on main cards. It is who is on the other side.</p>
+<h3>Who is on the other side</h3>
+<p>Becker's analysis of 72 million Kalshi trades through November 2025 puts the transfer at <span class="num">1.12%</span> per trade from takers to makers, and the sports slice, 43.6 million trades, at the same figure. The sign flipped in the second quarter of 2024, when institutional makers arrived; before that, takers were ahead. The makers are Susquehanna, described as the exchange's flagship market maker and active in sports, Jump, Wintermute and Galaxy, Kalshi's own affiliate at under 6% of sports making volume, and now the sportsbooks themselves: Flutter booked $6M of market-making revenue in the second quarter of 2026 and DraftKings reports making markets on singles and combos at a profit. The fight-winner series sits in Kalshi's designated market-maker program with a 98% hourly availability requirement. A one-cent book on every fight three days out is what a program like that produces.</p>
+<p>These firms see the sportsbook consensus in real time, and two of them are the sportsbook consensus. A resting order from this desk is competing with them for the same uninformed flow and standing in front of them when the line moves.</p>
+<h3>Does Kalshi lag the books?</h3>
+<p>Nobody has measured it for UFC. The spot checks that exist put liquid Kalshi fight markets within zero to three points of the de-vigged DraftKings price before the fight, with the exchange occasionally a couple of points above the book on a heavy favourite. The one formal price-discovery study with Pinnacle in the panel is on 2024 election contracts and finds the order-book exchanges leading and the dealer books following, which is the wrong direction for a maker hoping to exploit a lag. The one in-play study of Kalshi, on NBA games, finds prices move only 0.64 for each point of public information and drift for fifteen minutes afterwards, but the executable return after spread is negative. Across 387 sports contracts, OddsShopper found no favourite-longshot bias in Kalshi's sports prices at all. The softness on this exchange is in thin books and in-play under-reaction, not in a pre-fight lag to the sportsbooks.</p>
+<h3>Other venues, for the fee comparison</h3>
+</div>
+<div class="wide">
+<table class="tbl">
+  <caption>Taker cost at a 50¢ fair price, fee only, spread extra. Sportsbook figures are holds per side.</caption>
+  <thead><tr><th>Venue</th><th class="r">Taker cost, % of stake</th><th>Maker treatment</th><th>UFC note</th></tr></thead>
+  <tbody>
+    <tr><td>Novig, pre-game</td><td class="r">0</td><td>Credit up to half the taker fee on live fills</td><td>Lists UFC; new exchange, thin</td></tr>
+    <tr><td>Polymarket, global</td><td class="r">0.75 to 1.5</td><td>No fee; share of taker fees rebated daily</td><td>UFC's exclusive prediction-market partner since Nov 2025; 1¢ books on main-card fights, $40K posted</td></tr>
+    <tr><td>Pinnacle</td><td class="r">~1.4</td><td>—</td><td>−106 each side on pick'ems; JS-rendered, no live pull</td></tr>
+    <tr><td>Betfair Exchange</td><td class="r">1.0 to 2.5</td><td>Commission on net winnings only</td><td>MMA volumes not published</td></tr>
+    <tr><td>Polymarket US</td><td class="r">3.0</td><td>Explicit maker rebate</td><td>Thinner than the global book</td></tr>
+    <tr><td>Kalshi</td><td class="r">3.5</td><td>Free, no rebate on UFC</td><td>Deepest UFC books of any exchange</td></tr>
+    <tr><td>FanDuel, DraftKings</td><td class="r">2.1 to 3.0</td><td>—</td><td>4.2 to 6.0% two-sided hold on this week's Paris card</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">Kalshi's taker fee is the highest in the table at even money and the smallest advantage over a sportsbook. At an 80¢ favourite it falls to 1.4% while book holds widen, so the ranking reverses for favourites. Every exchange in the table pays or spares its makers; Kalshi spares them and, for UFC, pays nothing. Polymarket's sports coefficient was 0.03 in spring 2026 and 0.05 by July.</p>
+<div class="prose">
+</div>
+</section>
+
+<section id="ways">
+<h2>Four ways to get paid</h2>
+<div class="prose">
+<p>The four are ordered by how much infrastructure each one needs, from a script that places one order a day to a process that never sleeps during fight week. Each page states what you earn, what you pay, how the variance behaves, and the one failure that ends the strategy. The order book below is the shared vocabulary. Kalshi shows YES prices; a bid for NO at 39 appears here as an offer of YES at 61.</p>
+</div>
+<div class="ladder" aria-label="Example order book, YES side, one cent wide">
+  <div class="h">Side</div><div class="h">YES price</div><div class="h">Resting size</div>
+  <div class="ask">Offer</div><div class="px">63¢</div><div>$240</div>
+  <div class="ask">Offer</div><div class="px">62¢</div><div>$180</div>
+  <div class="ask">Offer, best</div><div class="px">61¢</div><div>$95</div>
+  <div class="mid">mid 60.5¢ · spread 1¢</div>
+  <div class="bid">Bid, best</div><div class="px">60¢</div><div>$120</div>
+  <div class="bid you">Bid, yours</div><div class="px you">60¢</div><div class="you">$10 joins the queue behind $120</div>
+  <div class="bid">Bid</div><div class="px">59¢</div><div>$300</div>
+</div>
+<p class="note">Sizes are illustrative and small; real Kalshi prelims show thousands of contracts at the best bid three days out. Lifting the 61¢ offer buys immediately and pays the fee. Posting at 60¢ waits behind $120 of earlier bids at the same price. Posting at 61¢ would cross and become a take. Improving to 60¢ when the best bid is 59¢ jumps the queue at the cost of one cent.</p>
+
+<!-- ============================ 1 · TAKE ============================ -->
+<article class="ticket" id="take">
+<header>
+  <span class="n">1</span>
+  <h2>Market orders: taking</h2>
+  <p class="thesis">You cross the spread the moment the model says the price is wrong. You pay for certainty of execution and choose every timestamp yourself. This is the backtest, moved to a cheaper-vig venue that then charges the vig back as a fee.</p>
+  <div class="strip">
+    <div><div class="k">You earn</div><div class="v">The model's edge, net of costs. Realized: 7.7 pts hit-rate edge; +7.9% per bet on the 175 bets when replayed at fair + 1¢ + fee.</div></div>
+    <div><div class="k">You pay</div><div class="v">Half the spread plus the fee. 2.25¢ at 50¢, 1.6¢ at 80¢, 1.6¢ at 20¢. Average on our picks: 1.67¢ fee plus the half-spread.</div></div>
+    <div><div class="k">Variance</div><div class="v">Per-bet return sd ≈ 106% of stake. Standard error on ROI is 8 pts at n = 175. 700 bets to confirm a 10% edge.</div></div>
+    <div><div class="k">Ends it</div><div class="v">Betting the model's raw probability on long dogs. Under 40¢ the realized edge is below the cost of taking.</div></div>
+  </div>
+</header>
+<div class="prose">
+<h3>Mechanics</h3>
+<p>Compute the fair probability for the side the model prefers. Look at the best offer on that side. If fair minus offer exceeds the required edge, send a limit order at the offer price for the Kelly count with time-in-force immediate-or-cancel, so a book that moved between your read and your order fills you partially or not at all, never worse than the price you chose. Kalshi's current order endpoint has no market order type; every order is a limit, and the taker's tool is an aggressive limit with IOC. That is the right design for a thin book, where a true market order would walk through the 63¢ and 65¢ offers behind the one you saw.</p>
+<p>Self-trade prevention is mandatory on every order, so a resting bid of yours on the same market cannot be crossed by your own take. Attach a client order ID; a resend with the same ID returns the original order instead of a duplicate. Hold to settlement. Never sell before the fight unless route 4 says so.</p>
+<p>The fair probability is not the blended number the backtest used. Regress outcomes on the model-minus-market gap and use the fitted slope as a shrink. On the current bets the slope is about 0.6, which turns a claimed 13-point edge into 7.7. This is the oldest result in quantitative betting: Benter's 1994 Hong Kong paper reports that in every probability range where his model exceeded the public, actual frequencies fell between the two and closer to the public, and his fix was to fit the model and the market together in a second-stage logit rather than trust either. The 5-point gate the backtest used already exceeds every taker cost stack on the chart, so on average the gate does its job; the problem is that the stated edge and the real edge diverge most exactly where the stated edge is largest.</p>
+<h3>Where the fee bites</h3>
+</div>
+<div class="wide">
+<table class="tbl">
+  <caption>Realized edge versus taker cost, by the pick's fair price. 175 tier-2 bets.</caption>
+  <thead><tr><th>Fair price of pick</th><th class="r">Bets</th><th class="r">Realized edge, pts</th><th class="r">Fee + 1¢, pts</th><th class="r">Net if taken</th><th class="r">Net if rested 1¢ inside</th></tr></thead>
+  <tbody>
+    <tr><td>Under 40¢</td><td class="r">43</td><td class="r">+1.2</td><td class="r">2.55</td><td class="r neg">−1.4</td><td class="r pos">+2.2</td></tr>
+    <tr><td>40 to 50¢</td><td class="r">69</td><td class="r">+8.5</td><td class="r">2.73</td><td class="r pos">+5.8</td><td class="r pos">+9.5</td></tr>
+    <tr><td>50 to 60¢</td><td class="r">49</td><td class="r">+10.3</td><td class="r">2.73</td><td class="r pos">+7.6</td><td class="r pos">+11.3</td></tr>
+    <tr><td>60 to 70¢</td><td class="r">13</td><td class="r">+13.5</td><td class="r">2.62</td><td class="r pos">+10.9</td><td class="r pos">+14.5</td></tr>
+    <tr><td>Over 70¢</td><td class="r">1</td><td class="r">+24.7</td><td class="r">2.30</td><td class="r pos">+22.4</td><td class="r pos">+25.7</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">Fee is the exact 0.07 × p × (1 − p) at each bet's fair price, averaged within the band. The 43 bets under 40¢ are the "phantom long-dog edge" the +200 cap was written to screen; the fee table says the same thing without a post-hoc rule.</p>
+<div class="prose">
+<h3>Variance, in this route's terms</h3>
+<p>Taking has no fill risk and no adverse selection: you cannot be picked off because you are the one picking. All of the variance is outcome variance, and it is large. Seventy percent of bets are near even money or dogs, so each is close to a coin flip with a payoff near one to one. A 175-bet season has a standard error of eight points on ROI. Nothing you do on the execution side changes that number; only more bets do, or a different measure than ROI.</p>
+<p>The measure that converges is closing-line value: the Kalshi mid a minute before the fight, minus the price you paid. Buchdahl's rule of thumb is that per-bet P&amp;L at even money has a standard deviation near 1.0 while per-bet CLV has one near 0.1, so a given edge needs a hundredth as many bets to show up in CLV. A 2-point average CLV is significant at about 96 bets; a 1-point CLV at about 385. Taking with CLV logging is the cheapest experiment in this document, and it is the control arm for everything below.</p>
+<h3>Risks specific to taking</h3>
+<ul>
+  <li><strong>Paying the fee twice.</strong> Any exit before settlement is a second trade with its own fee and spread, roughly 2.75¢ round trip at mid prices. Route 4 covers when that is worth it.</li>
+  <li><strong>Buying into a stale book.</strong> If nobody has refreshed the offer since a sharp-book move, the offer you lift is the one that just became cheap for a reason. Compare the Kalshi mid to the live sportsbook consensus before every take; treat a gap of more than 3¢ as information, not opportunity.</li>
+  <li><strong>In-play prices.</strong> Kalshi keeps trading into and through the fight. An order placed late without an expiry can fill during round one at a price that has nothing to do with the pre-fight model.</li>
+</ul>
+</div>
+</article>
+
+<!-- ============================ 2 · MAKE ============================ -->
+<article class="ticket" id="make">
+<header>
+  <span class="n">2</span>
+  <h2>Limit orders: posting on one side</h2>
+  <p class="thesis">Same directional view as route 1, executed by resting a bid on the side the model likes and letting someone else cross to you. You give up control of timing and fill to save about three cents a contract. On this model's edge, that is roughly a 40% raise.</p>
+  <div class="strip">
+    <div><div class="k">You earn</div><div class="v">The model's edge plus half the spread, no fee. Upper bound on the 175 bets: +16.7% per bet if every order filled 1¢ inside.</div></div>
+    <div><div class="k">You pay</div><div class="v">Nothing in cash. You pay in fills you did not get and in fills you got because news went against you.</div></div>
+    <div><div class="k">Variance</div><div class="v">Outcome variance unchanged; fill variance added. Fewer bets per season, each cheaper. Adverse selection shows up as CLV, not as fee.</div></div>
+    <div><div class="k">Ends it</div><div class="v">A resting order left unattended through a weigh-in miss or a late replacement.</div></div>
+  </div>
+</header>
+<div class="prose">
+<h3>Mechanics</h3>
+<p>When the model's shrunk fair price exceeds the current best offer by the required edge, do not lift it. Post a bid at the best bid, or one cent inside it if the queue at the best bid is deep, for the Kelly count. Set the post-only flag, which Kalshi's order endpoint supports: if the book moves before the order lands and the bid would cross, the order is cancelled rather than filled as a take. Send it good-till-cancelled with an expiration time set before the walkout, since an immediate-or-cancel order cannot carry an expiry. Then wait.</p>
+<p>Three things can happen. The bid fills because uninformed flow sold into it: you now own the position at a price one to two cents better than route 1 and paid no fee. The bid never fills and the fight starts: you either lift late at the offer, converting to route 1, or you skip. The bid fills because the market moved through it on news: you own a position at what is now a bad price, and route 4 applies.</p>
+<p>The right policy for the unfilled case is an empirical question with a clean test. Run the season with half of the unfilled orders converted to takes at the cutoff and half skipped, and compare CLV. My prior is that skipping loses money: the orders that never fill are the ones where the market kept moving toward the model, which are the picks that were most right.</p>
+<h3>Why the raise is as big as it is</h3>
+</div>
+<div class="wide">
+<table class="tbl">
+  <caption>The same 175 bets, same outcomes, replayed at each execution price</caption>
+  <thead><tr><th>Execution</th><th class="r">Price paid</th><th class="r">Fee</th><th class="r">ROI per bet</th></tr></thead>
+  <tbody>
+    <tr><td>Backtest as run (FanDuel-mix odds)</td><td class="r">book price</td><td class="r">in the vig</td><td class="r">+10.0%</td></tr>
+    <tr><td>Kalshi, lift the offer</td><td class="r">fair + 1¢</td><td class="r">yes</td><td class="r">+7.9%</td></tr>
+    <tr><td>Kalshi, trade exactly at fair</td><td class="r">fair</td><td class="r">yes</td><td class="r">+10.1%</td></tr>
+    <tr><td>Kalshi, rest at fair, filled, no fee</td><td class="r">fair</td><td class="r">no</td><td class="r">+14.2%</td></tr>
+    <tr><td>Kalshi, rest 1¢ inside, filled, if UFC ever gets the 0.0175 maker fee</td><td class="r">fair − 1¢</td><td class="r">0.42¢</td><td class="r">+15.6%</td></tr>
+    <tr class="total"><td>Kalshi, rest 1¢ inside, filled, no fee</td><td class="r">fair − 1¢</td><td class="r">no</td><td class="r pos">+16.7%</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">Fair price is the de-vigged market probability of the pick, used as a stand-in for the Kalshi mid. The bottom row assumes every order fills, which no resting strategy achieves; treat it as the ceiling, and the gap to the +7.9% row as the prize.</p>
+<div class="prose">
+<h3>Adverse selection, stated plainly</h3>
+<p>A resting order is an option you have written for free to everyone else. They exercise it when the price is about to move against you. In fight markets the exercise events are visible: a fighter misses weight, an injury leaks, a replacement is announced, a sharp book moves five cents. An arbitrage bot with that feed hits your stale bid within seconds. Your model updates twice a week.</p>
+<p>The defence is not a better model. It is three operational rules. Cancel every resting order when the sportsbook consensus moves more than a set number of cents against it, and reassess before reposting. Never leave orders resting when you are not able to cancel them, which in practice means a process with a heartbeat and cancel-on-disconnect. Size each order so that one full adverse fill is a normal bet, not a season.</p>
+<h3>Variance, in this route's terms</h3>
+<p>Fill uncertainty makes the season's bet count random. If a third of orders never fill, the season has 45 bets rather than 69 and the ROI standard error rises from 13 to 16 points. The dollars saved per bet are certain; the number of bets is not. That trade is worth making when the fee saved per fill exceeds the edge forgone on the unfilled orders, which is exactly what the skip-versus-take test measures.</p>
+<p>Adverse selection does not show up as fee. It shows up as filled orders with negative CLV. Track CLV separately for orders that filled within an hour of posting and orders that filled later; if the late fills carry the negative CLV, tighten the expiry rather than the price.</p>
+</div>
+</article>
+
+<!-- ============================ 3 · QUOTE ============================ -->
+<article class="ticket" id="quote">
+<header>
+  <span class="n">3</span>
+  <h2>Two-sided quoting</h2>
+  <p class="thesis">Post a bid and an offer around a fair value and earn the spread from people who want to trade now. This is a different business from the other three: the money comes from flow, not from being right about the fight, and the model is at best a small skew on a fair value that has to come from somewhere faster.</p>
+  <div class="strip">
+    <div><div class="k">You earn</div><div class="v">Half the spread per fill. On a one-cent book that is 0.5¢ per contract, before adverse selection.</div></div>
+    <div><div class="k">You pay</div><div class="v">Every fill that arrives because the price is about to move. One 5¢ move against a stale quote costs ten spread captures.</div></div>
+    <div><div class="k">Variance</div><div class="v">Two components: small steady spread income and lumpy adverse-selection losses, plus binary outcome variance on whatever inventory reaches the fight.</div></div>
+    <div><div class="k">Ends it</div><div class="v">Quoting off the model instead of off the live sharp consensus. The market is a better fair value than the model at any single instant.</div></div>
+  </div>
+</header>
+<div class="prose">
+<h3>Mechanics</h3>
+<p>Choose a fair value. Post a bid at fair minus a half-spread and an offer at fair plus a half-spread, both post-only. When one side fills, you hold inventory; lean both quotes away from it so the next fill is more likely to flatten you. Refresh the quotes whenever fair value moves. Repeat until the fight starts, then either be flat or accept that whatever you hold is a bet.</p>
+<p>The half-spread has to cover three things: the fee, if the market charges makers one; the expected adverse selection, which is the probability that the next trader knows something times how much the price moves when they do; and a return on the inventory risk you carry. On Kalshi's UFC books the whole spread is one cent. There is no room in that cent for a maker whose fair value is slower than the arbitrage bots' fair value, which is the sportsbook consensus.</p>
+<h3>Why the model is the wrong fair value here</h3>
+<p>Across all scored fights the de-vigged market predicts winners better than the model does. The model's edge exists only on the subset of fights where it disagrees with the market by enough, and it materializes only at settlement. A market maker needs a fair value that is right about the next trade, not about the fight. That is the sportsbook consensus, refreshed every few seconds. The model's proper role in this route is a skew: shift both quotes toward the model's side by a fraction of its shrunk edge, so inventory accumulates in the direction you would have bet anyway, and cap how much.</p>
+<h3>Inventory in a binary market</h3>
+<p>In a stock you can hold inventory for weeks and hedge it. Here the contract resolves to 0 or 1 at a known time, and there is nothing to hedge it with except the other side of the same book. A maker who is long 200 contracts of the favourite at the walkout has not made a market; they have made a bet with all the variance of route 1 and none of its edge selection. The honest version of this route on a thin book is: quote small, cap inventory per fight at what you would have bet outright, and treat everything you carry into the fight as a route-1 position that must pass the route-1 edge test.</p>
+<h3>Variance, in this route's terms</h3>
+<p>Spread income is many small positive numbers. Adverse selection is a few large negative ones. The sum has a fat left tail, and the ratio of the two decides whether the strategy is positive at all. With a half-spread of 0.5¢, breaking even requires that fewer than one fill in ten is followed by a five-cent adverse move. Nobody knows that number for Kalshi UFC books yet; it is the first thing the book logger in the plan below is for.</p>
+<h3>What the evidence says about makers</h3>
+<p>The published record is consistent across venues: makers beat takers by a wide margin, and makers still barely make money. Bürgi, Deng and Whelan's study of 46,000 Kalshi contracts through April 2025 finds an average return of <span class="num">−9.6%</span> for makers against <span class="num">−31.5%</span> for takers; the only maker segment in the black is contracts priced at 50¢ or more, at <span class="num">+2.6%</span> with a standard deviation of 33%. Whelan's Betfair study, with a full one-second order book for 152,000 soccer matches, finds pre-match makers at <span class="num">+0.6%</span> and takers at <span class="num">−2.5%</span>; the maker's return has a standard deviation of 198%, and he notes that mean-variance Kelly would stake half a percent of wealth on it. In play, makers who quoted longshots late lost about as badly as the takers who hit them, which is the cleanest published demonstration that late information overwhelms spread capture for anyone quoting passively.</p>
+<p>Bartlett and O'Hara's adverse-selection study of 41.6 million Kalshi trades finds that makers in single-name markets earn about <span class="num">1.9¢</span> per contract, roughly twice the broad-market figure, and that this profit is cross-subsidized by retail overbuying YES: 61% of single-name volume bought YES and 33% of those markets settled YES. One-sided order flow predicts maker losses in single-name markets. A fight-winner contract is a single-name market.</p>
+<p>The Glosten-Milgrom model makes the same point in one formula. For a binary contract with prior <code>p</code> and a fraction <code>μ</code> of perfectly informed traders, the dealer's zero-profit spread is approximately <code>4·μ·p·(1−p)</code>. Kalshi's taker fee of <code>0.07·p·(1−p)</code> per side is exactly the half-spread a dealer would need if <span class="num">3.5%</span> of flow were perfectly informed. A one-cent book at 50¢ is a dealer pricing informed flow at about 1%. If more than one trade in a hundred against you comes from someone who has seen the sharp line move, the cent does not cover it.</p>
+<p>For sizing a two-sided book, Dalen's 2026 adaptation of Avellaneda-Stoikov to prediction markets works in logit space: the half-spread in probability terms is <code>p·(1−p)</code> times the logit half-spread, and the inventory cap scales with <code>1 / (p·(1−p))</code>. In words, quote widest and carry least at coin-flip prices, where the payoff is most sensitive to news, and add a jump premium before scheduled information such as the weigh-in.</p>
+<h3>Verdict</h3>
+<p>Not with this model as the engine, and not without a live consensus feed. Depth is not the obstacle: main cards carry tens of thousands of contracts within a few cents of the touch three days out. The obstacle is that the other side of a one-cent book on every fight is Susquehanna, Jump, Flutter and DraftKings, quoting off the consensus this desk does not have, under a program that requires them to be there 98% of every hour. If the logger shows that Kalshi mids nonetheless lag the sharp books by minutes, route 3 becomes a latency business in which the model contributes a skew. That is a real business, but it is not the one this model was built for, and the pay per fill is half a cent.</p>
+</div>
+</article>
+
+<!-- ============================ 4 · INVENTORY ============================ -->
+<article class="ticket" id="inv">
+<header>
+  <span class="n">4</span>
+  <h2>Bad fills and inventory</h2>
+  <p class="thesis">Every route above ends with a position that sometimes goes wrong before the fight. The question is never whether the price moved against you. It is whether the world changed. Exit on information, hold on noise, and know which one you are looking at before the order is live.</p>
+  <div class="strip">
+    <div><div class="k">You earn</div><div class="v">Nothing directly. You keep what the other routes made by not converting paper drawdowns into realized ones.</div></div>
+    <div><div class="k">You pay</div><div class="v">Round trip to flatten: cross 1¢ plus fee, about 2.75¢ at mid prices. Hedging on the other side costs the same again.</div></div>
+    <div><div class="k">Variance</div><div class="v">Flattening trades outcome variance for a certain small loss. It lowers the season's variance and, if done on noise, its mean.</div></div>
+    <div><div class="k">Ends it</div><div class="v">Flattening on price moves. The model's whole thesis is that some price moves are noise; selling into them refunds the edge.</div></div>
+  </div>
+</header>
+<div class="prose">
+<h3>What a bad fill is</h3>
+<p>A fill is bad when your fair value at the moment of the fill was wrong, and it is worst when it was wrong because someone else already knew. There are three kinds, and they call for different responses.</p>
+<ol>
+  <li><strong>News.</strong> A weigh-in miss, an injury report, a replacement opponent, a cancelled bout. The fight you modelled no longer exists. The model's probability is void. Fair value is now whatever the sharp books say, and if the position is negative against that, flatten. The cost of flattening is a known 2 to 3 cents; the cost of holding is the whole move. The reference case is Minner against Nuerdanbieke in November 2022, where the favourite went from −220 to −420 in the four hours before the fight on a camp leak, about 13 points of implied probability, before books pulled the market.</li>
+  <li><strong>Sharp money.</strong> The sportsbook consensus moved several cents with no public news. Someone with better information than either you or the model is trading. The literature on closing lines is unambiguous that late moves are informative. Treat it as partial news: mark the position to the new consensus, re-shrink the model's edge against it, and hold only if the shrunk edge still clears the gate.</li>
+  <li><strong>Noise.</strong> The Kalshi mid drifted a cent or two on retail flow while the sportsbooks did not move. Nothing happened. Hold. If anything, this is the moment route 2 wants to post more.</li>
+</ol>
+<p>Telling the second from the third requires a live sportsbook feed. Without one you cannot distinguish sharp money from noise, and the rule collapses to "hold everything," which is fine for route 1 sizing and fatal for route 3 sizing.</p>
+<h3>The decision, priced</h3>
+</div>
+<div class="wide">
+<table class="tbl">
+  <caption>You bought 100 YES at 60¢. The Kalshi mid is now 55¢. What each choice costs, in dollars.</caption>
+  <thead><tr><th>Choice</th><th class="r">Cash cost now</th><th>Position at the fight</th><th>Right when</th></tr></thead>
+  <tbody>
+    <tr><td>Hold</td><td class="r">0</td><td>100 YES at 60. Wins $40 or loses $60.</td><td>The move was noise or your shrunk fair is still above 55 + cost.</td></tr>
+    <tr><td>Flatten: sell 100 YES at 54, pay fee</td><td class="r">−6 − 1.7</td><td>Flat. Loss of $7.70 is final.</td><td>The move was news and your fair is now at or below the market.</td></tr>
+    <tr><td>Hedge half: sell 50 YES at 54</td><td class="r">−3 − 0.9</td><td>50 YES at 60. Wins $20 or loses $30.</td><td>You are unsure, and the position is larger than your current edge justifies.</td></tr>
+    <tr><td>Add: buy 50 more YES at 56, pay fee</td><td class="r">−0.9 fee</td><td>150 YES at avg 58.7.</td><td>The sportsbooks did not move, the shrunk edge grew, and the per-fight cap allows it.</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">Fee at 55¢ is 0.07 × 0.55 × 0.45 ≈ 1.7¢ per contract. Hedging is the exchange-bettor's "greening up"; it always locks in a worse expected value than the better of hold or flatten, and it is worth paying for only when the position size, not the position direction, is the mistake.</p>
+<div class="prose">
+<h3>Settlement is not what the backtest assumed</h3>
+<p>Every ROI figure in this memo comes from a replay that skipped draws and no contests, because a sportsbook voids them. Kalshi's UFC contracts, as reproduced in the rules text available to us, settle a draw or no contest at <strong>50¢ for both sides</strong>. A holder of the favourite at 76¢ loses 26¢ on an eye poke. A bout postponed by up to two weeks stays open; a bout cancelled or pushed further is settled at an exchange-determined fair price based on recent trading, not refunded. No clause covering a replacement opponent was found; since the market names both fighters, a substitution most likely falls under cancellation, and that is an inference rather than rule text. In our own fight data, <span class="num">2.1%</span> of UFC bouts since 2022 ended in a no contest or draw, and 2.7% over the full history. On a portfolio of favourites bought near 65¢ that is a tax of about <span class="num">0.3</span> points per bet the backtest never charged, and it is a tax that falls only on the favourite side.</p>
+<p>The rules text on a live market, ticker <code>KXUFCFIGHT-26SEP08PASBER-PAS</code>, read from the exchange API on 2026-09-02, says it in the exchange's words: "If this fight is postponed or delayed, the market will remain open and close after the rescheduled fight has finished (within two weeks). If the fight is declared a tie or no contest, the market will resolve to 50/50 for both fighters. If the fight is cancelled or rescheduled to over two weeks away, the market will resolve to a fair price in accordance with the rules." The contract terms define that fair price as the last traded price before cancellation, or an Outcome Review Committee determination if the exchange judges that price unrepresentative. The committee's determinations are final. The method-of-victory contract does address substitutes explicitly, settling at "the last fair price determined at the sole discretion of the Exchange," and the fight-winner contract almost certainly inherits that treatment, but it is not written down.</p>
+<p>Two more settlement facts change how inventory behaves. The market keeps trading through the fight and closes early only when a result is declared, so a position can be exited or added to mid-round at prices that reflect the broadcast, and someone with a faster feed than yours is doing exactly that. And a result reversed after settlement, such as a later overturn for a failed drug test, does not reopen the market.</p>
+<h3>Inventory rules that survive contact</h3>
+<ul>
+  <li><strong>Cap per fight before you post.</strong> The cap is the route-1 Kelly stake at the shrunk edge. No route may exceed it, including route 3's accidental accumulation.</li>
+  <li><strong>Cap per card.</strong> Fights on the same night resolve within hours and the clustered bootstrap shows the season's variance is card-level, not fight-level. A bad card with ten positions is one bad bet wearing ten tickets. Hold total exposure per card to roughly three fights' worth.</li>
+  <li><strong>Mark to the consensus, not to Kalshi.</strong> Your unrealized P&L is measured against the sharp books' de-vigged probability, which is the best available estimate of the truth. Kalshi's mid is what you can transact at, not what the position is worth.</li>
+  <li><strong>Build your own dead-man's switch.</strong> Kalshi has no cancel-on-disconnect in its REST, WebSocket or FIX interfaces. Two tools substitute for it. Order groups cap the contracts a set of orders may trade in any rolling 15-second window and cancel the whole group when the cap is hit. A cancel-all endpoint pulls every resting order in one call. Run a watchdog separate from the trading process that calls cancel-all if the trader's heartbeat stops. A quote that outlives its author is the one that gets filled at the worst moment.</li>
+  <li><strong>Log every decision with the consensus at that moment.</strong> Six months in you will want to know whether your holds beat your flattens. That is only knowable if both were recorded against the same benchmark.</li>
+</ul>
+<h3>Variance, in this route's terms</h3>
+<p>Flattening converts a random outcome into a certain small loss, so it always reduces variance. The question is what it does to the mean. Flatten only on news and the mean rises, because you avoid holding positions whose edge is gone. Flatten on any price move and the mean falls by roughly the model's whole edge, because you are systematically selling exactly when the market disagrees with the model, which is the only time the model was ever paid. Kelly sizing already prices the variance you are supposed to carry. Do not pay a second time to remove it.</p>
+</div>
+</article>
+</section>
+
+<section id="req">
+<h2>Edge required, by route and price</h2>
+<div class="prose">
+<p>The whole memo in one table. "Required" is the real, shrunk edge in probability points that makes the route break even at that price. "We have" is the realized hit-rate edge in that price band on the 175 bets. The gap is what you keep.</p>
+</div>
+<div class="wide">
+<table class="tbl">
+  <thead><tr><th>Pick's fair price</th><th class="r">We have, pts</th><th class="r">Take at offer</th><th class="r">Take at fair</th><th class="r">Rest 1¢ inside</th><th class="r">Quote both sides</th></tr></thead>
+  <tbody>
+    <tr><td>Under 40¢, n = 43</td><td class="r">+1.2</td><td class="r neg">2.6 — short</td><td class="r neg">1.6 — short</td><td class="r pos">−1.0 — clear</td><td class="r">—</td></tr>
+    <tr><td>40 to 50¢, n = 69</td><td class="r">+8.5</td><td class="r pos">2.7 — clear</td><td class="r pos">1.7 — clear</td><td class="r pos">−1.0 — clear</td><td class="r">—</td></tr>
+    <tr><td>50 to 60¢, n = 49</td><td class="r">+10.3</td><td class="r pos">2.7 — clear</td><td class="r pos">1.7 — clear</td><td class="r pos">−1.0 — clear</td><td class="r">—</td></tr>
+    <tr><td>60 to 70¢, n = 13</td><td class="r">+13.5</td><td class="r pos">2.6 — clear</td><td class="r pos">1.6 — clear</td><td class="r pos">−1.0 — clear</td><td class="r">—</td></tr>
+    <tr><td>Over 70¢, n = 1</td><td class="r">+24.7</td><td class="r pos">2.3 — clear</td><td class="r pos">1.3 — clear</td><td class="r pos">−1.0 — clear</td><td class="r">—</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">Route 3 has no directional edge requirement; its requirement is that adverse-selection losses stay under half a cent per fill, which cannot be computed from our data. Route 2's negative number means the route is paid to trade at zero edge, but only on the fills it gets; the unfilled orders carry the edge away.</p>
+<div class="callout">
+  <p><strong>The one-sentence answer.</strong> At the prices this model actually bets, a taker on Kalshi needs about 2.5 to 3 points of real edge and a maker needs none; the model has about 8 on average and about 1 on long dogs; so the fee is beaten everywhere except where the model is most sure of itself.</p>
+</div>
+</section>
+
+<section id="plan">
+<h2>Before the first order</h2>
+<div class="prose">
+<p>Everything above rests on three numbers we do not have: the depth at the top of the Kalshi book, the lag between a sharp-book move and the Kalshi mid, and the closing-line value of the model's picks. All three come from the same logger, and none requires capital.</p>
+<ol>
+  <li><strong>Log the Kalshi book.</strong> Best bid, best offer, and size at each, for every UFC market, every few minutes from listing to walkout. The scraper already fetches Kalshi prices from fightodds.io; the exchange's own API gives depth.</li>
+  <li><strong>Log the sharp consensus alongside it.</strong> Pinnacle and Circa if reachable, otherwise the multi-book fightodds.io response that the scraper currently discards. Timestamp both feeds identically.</li>
+  <li><strong>Compute the shrink.</strong> Logistic regression of outcome on model-minus-market gap, walk-forward, refit at each retrain. Use the slope, not 0.8, as the blend.</li>
+  <li><strong>Run route 1 with CLV logging for a season.</strong> Small size, every fight the shrunk edge clears the gate. This is the control.</li>
+  <li><strong>Run route 2 against it</strong> on alternating fights once the logger shows how often a bid one cent inside gets filled and what its CLV looks like.</li>
+  <li><strong>Revisit route 3 only if</strong> the lag measurement shows Kalshi mids trailing the sharp consensus by minutes rather than seconds. Depth on main cards is already sufficient; the lag is the unknown, and no public study has measured it for UFC.</li>
+</ol>
+<h3>What the exchange gives you to work with</h3>
+<p>The trading API is sufficient for routes 1 and 2 on the free tier and for route 3 only with an upgrade. Facts verified on the exchange documentation on 2026-09-02:</p>
+<ul>
+  <li><strong>Orders.</strong> One endpoint creates orders. Side is bid or ask on YES; selling YES is the same as buying NO. Time-in-force is good-till-cancelled, immediate-or-cancel or fill-or-kill. Post-only is a flag. An expiration time attaches to good-till-cancelled orders. Contract counts go to two decimals, so a $10 stake at 61¢ is a legal 16.39 contracts. Self-trade prevention is a required field.</li>
+  <li><strong>Cancelling.</strong> Batch cancel, single cancel, and a cancel-all that pulls every resting order in one request. Order groups provide a rolling 15-second contract cap that cancels the group when exceeded. There is no cancel-on-disconnect; the watchdog is yours to build.</li>
+  <li><strong>Rate limits.</strong> Token buckets with separate read and write budgets. The entry tier allows about 10 order writes a second and 20 reads; the next tier is self-serve and triples both. Higher tiers are earned by a share of exchange volume that a UFC-only trader will not reach. Route 3 across a full card at fight-week refresh rates fits inside the second tier.</li>
+  <li><strong>Market data.</strong> A WebSocket feed delivers an order-book snapshot followed by sequenced deltas per market, and a private fills channel reports every fill with the fee actually charged. A historical-markets endpoint lists settled UFC markets back to the first one on 8 May 2025. Depth history is not provided and cannot be backfilled, which is why the logger in step 1 has to run forward.</li>
+  <li><strong>Authentication.</strong> RSA key pair generated in account settings; each request is signed over timestamp, method and path with RSA-PSS.</li>
+  <li><strong>Position accountability.</strong> $25,000 per fighter-market per member, a soft level at which the exchange may ask you to stop adding or to reduce, not a hard reject. Designated market makers get ten times that.</li>
+  <li><strong>Market-maker program.</strong> The fight-winner series is a covered product in Kalshi's designated market-maker program, with a 98% availability requirement per hour and confidential incentive terms. No open-to-all liquidity or volume incentive covers any UFC market today, so a small maker on fight contracts earns spread and nothing else.</li>
+</ul>
+<div class="callout">
+  <p><strong>Eligibility check before anything else.</strong> Kalshi accepts US residents, with sports contracts geofenced in a changing list of states that as of this week includes Nevada, Washington, Michigan, Maryland, Ohio, Arizona, Montana, Minnesota, Massachusetts and, by the exchange's own disclaimer, New Jersey and Illinois. Canada is excluded from Kalshi entirely. The Wealthsimple Predict partnership announced in June 2026 brings Kalshi contracts to Canadian residents only in climate, financial and economic categories with settlement at least 30 days out. It does not include sports. If the desk sits in Canada, nothing in this memo is tradable on Kalshi and the same analysis would have to be redone for a venue that is.</p>
+</div>
+</div>
+</section>
+
+<section id="sources">
+<h2>Sources</h2>
+<div id="sources-list">
+<h3>Kalshi fees, rules and market structure</h3>
+<ol class="src" id="src-kalshi">
+  <li>Kalshi fee schedule, "7.7.26 Update", effective 2026-07-07. <a href="https://kalshi.com/docs/kalshi-fee-schedule.pdf">kalshi.com/docs/kalshi-fee-schedule.pdf</a>; help article <a href="https://help.kalshi.com/en/articles/13823805-fees">help.kalshi.com/en/articles/13823805-fees</a>. The PDF was bot-blocked to our tooling; formula wording is from search extracts and is consistent with the API and the GWU paper below.</li>
+  <li>Kalshi API, series metadata for KXUFCFIGHT (fee type quadratic, multiplier 1) and fee-type definitions. <a href="https://docs.kalshi.com/api-reference/market/get-series">docs.kalshi.com/api-reference/market/get-series</a></li>
+  <li>Kalshi docs, Fee rounding. <a href="https://docs.kalshi.com/getting_started/fee_rounding">docs.kalshi.com/getting_started/fee_rounding</a></li>
+  <li>Kalshi docs, Create order V2 (post_only, time_in_force, expiration_time, self-trade prevention). <a href="https://docs.kalshi.com/api-reference/orders/create-order-v2">docs.kalshi.com/api-reference/orders/create-order-v2</a></li>
+  <li>Kalshi docs, Cancel all orders. <a href="https://docs.kalshi.com/api-reference/orders/cancel-all-orders">docs.kalshi.com/api-reference/orders/cancel-all-orders</a></li>
+  <li>Kalshi docs, Rate limits and API usage tiers. <a href="https://docs.kalshi.com/getting_started/rate_limits">docs.kalshi.com/getting_started/rate_limits</a></li>
+  <li>Kalshi docs, WebSocket order book updates and user fills. <a href="https://docs.kalshi.com/websockets/orderbook-updates">docs.kalshi.com/websockets/orderbook-updates</a></li>
+  <li>Kalshi docs, Market lifecycle and settlement. <a href="https://docs.kalshi.com/getting_started/market_lifecycle">docs.kalshi.com/getting_started/market_lifecycle</a></li>
+  <li>Kalshi contract terms for the sports achievement contract used by UFC markets (draw, cancellation, postponement, $25,000 position accountability level). <a href="https://assets.kalshi.com/contract_terms/UFC.pdf">assets.kalshi.com/contract_terms/UFC.pdf</a></li>
+  <li>Kalshi DCM Rulebook v1.29 (Rules 4.3, 4.5, 5.11, 5.18, 6.3). <a href="https://kalshi-public-docs.s3.amazonaws.com/regulatory/rulebook/Kalshi%20DCM%20Rulebook%20v.1.29.pdf">kalshi-public-docs.s3.amazonaws.com</a></li>
+  <li>Kalshi help, How to become a market maker on Kalshi (KXUFCFIGHT listed as a covered product). <a href="https://help.kalshi.com/en/articles/13823819-how-to-become-a-market-maker-on-kalshi">help.kalshi.com</a></li>
+  <li>Kalshi and Wealthsimple, Wealthsimple Predict announcement (2026-06-18). <a href="https://news.kalshi.com/p/wealthsimple-predict-kalshi-canada-prediction-markets">news.kalshi.com</a></li>
+  <li>InGame, Kalshi's maker-fee change of July 2025. <a href="https://www.ingame.com/kalshis-change-may-increase-fee-sports-traders/">ingame.com</a></li>
+  <li>Bürgi, Deng and Whelan (Feb 2026), GWU working paper 2026-001, on Kalshi fee rounding and maker versus taker returns. <a href="https://www2.gwu.edu/~forcpgm/2026-001.pdf">gwu.edu</a></li>
+  <li>Kalshi public API, settled UFC fight markets (volume by fight) and live order books for the 2026-09-05 Paris card, queried 2026-09-02. <a href="https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXUFCFIGHT&amp;status=open&amp;limit=100">api.elections.kalshi.com/trade-api/v2/markets</a>; e.g. <a href="https://api.elections.kalshi.com/trade-api/v2/markets/KXUFCFIGHT-26SEP05HOOPAR-HOO/orderbook?depth=10">…/KXUFCFIGHT-26SEP05HOOPAR-HOO/orderbook</a></li>
+  <li>Becker, J. Prediction market microstructure: 72 million Kalshi trades, maker versus taker returns by category. <a href="https://www.jbecker.dev/research/prediction-market-microstructure">jbecker.dev</a></li>
+  <li>Roosevelt Institute, taker losses on Kalshi since launch (May 2026). <a href="https://rooseveltinstitute.org/blog/since-kalshis-launch-ordinary-users-have-lost-half-a-billion-dollars/">rooseveltinstitute.org</a></li>
+  <li>Sportsbook Review, Kalshi single-fight record at UFC 328 (May 2026). <a href="https://www.sportsbookreview.com/news/kalshi-sets-a-single-fight-trading-record-at-ufc-328-may-11-2026/">sportsbookreview.com</a></li>
+  <li>InGame, Susquehanna's biggest sports loss on Kalshi and maker versus taker volume on Knicks game 4. <a href="https://www.ingame.com/susquehanna-biggest-sports-kalshi-volume-knicks/">ingame.com</a>; Kalshi's in-house trading arm. <a href="https://www.ingame.com/kalshi-in-house-trading-arm-not-profitable/">ingame.com</a></li>
+  <li>CNBC (Aug 2026), hedge funds and market makers entering prediction markets. <a href="https://www.cnbc.com/2026/08/19/hedge-funds-are-about-to-jump-in-big-to-prediction-markets.html">cnbc.com</a>; Yahoo Finance on Wintermute quoting Kalshi and Polymarket. <a href="https://finance.yahoo.com/markets/crypto/articles/wintermute-providing-liquidity-kalshi-polymarket-162008202.html">finance.yahoo.com</a></li>
+  <li>The American Prospect (Aug 2026), DraftKings and Flutter market making on exchanges; Flutter Q2 2026 earnings call. <a href="https://prospect.org/2026/08/26/house-always-wins-kalshi-prediction-markets/">prospect.org</a>; <a href="https://www.fool.com/earnings/call-transcripts/2026/08/12/flutter-flut-q2-2026-earnings-call-transcript/">fool.com</a></li>
+  <li>Angelini and De Angelis (Jun 2026), Kalshi NBA in-play under-reaction. arXiv 2606.07811. <a href="https://arxiv.org/html/2606.07811">arxiv.org</a></li>
+  <li>Aktuğ and Torul (Jun 2026), price discovery across exchanges and dealer sportsbooks in the 2024 election. <a href="https://web.bogazici.edu.tr/torul/pridis.pdf">bogazici.edu.tr</a></li>
+  <li>OddsShopper, Where prediction markets are sharp (sports calibration, no longshot bias); Kalshi bid-ask spread study; Kalshi vs Polymarket NFL; UFC Shanghai and UFC Paris price checks. <a href="https://www.oddsshopper.com/articles/prediction-markets/where-prediction-markets-are-sharp">oddsshopper.com</a>; <a href="https://www.oddsshopper.com/articles/prediction-markets/kalshi-bid-ask-spread-cost">spread study</a>; <a href="https://www.oddsshopper.com/articles/prediction-markets/nurmagomedov-vs-song-odds">Shanghai</a></li>
+  <li>BestFightOdds, UFC Paris grid (book holds computed from posted lines). <a href="https://www.bestfightodds.com/">bestfightodds.com</a></li>
+  <li>Novig fee schedule via Covers; ProphetX commission; Sporttrade commission; Polymarket US fees. <a href="https://www.covers.com/betting/bonuses/novig-promo-code">covers.com</a>; <a href="https://prophethelp.zendesk.com/hc/en-us/articles/26975338569489-Understanding-Commission">prophethelp.zendesk.com</a>; <a href="https://sporttrade.zendesk.com/hc/en-us/articles/7588729448603-Commission">sporttrade.zendesk.com</a>; <a href="https://docs.polymarket.us/fees">docs.polymarket.us</a></li>
+  <li>DepthFeed / ScoreTape, historical Kalshi and Polymarket UFC order-book ladders (paid; depth cannot be backfilled from the exchange). <a href="https://kalshisportsdata.com/ufc">kalshisportsdata.com/ufc</a></li>
+  <li>CoinDesk (Mar 2026), Polymarket UFC Seattle announcer-error repricing incident. <a href="https://www.coindesk.com/markets/2026/03/30/polymarket-trader-exploits-ufc-blunder-turns-usd676-into-usd67-000-in-under-a-minute">coindesk.com</a></li>
+  <li>OddsShopper, Kalshi fees explained (Feb 2026), including the venue comparison table. <a href="https://www.oddsshopper.com/articles/prediction-markets/kalshi-fees">oddsshopper.com/articles/prediction-markets/kalshi-fees</a></li>
+  <li>OddsShopper, Makhachev vs Garry on Kalshi (UFC 330), with the draw/no-contest 50/50 settlement rule and the 1¢ spread observation. <a href="https://www.oddsshopper.com/articles/prediction-markets/makhachev-vs-garry-kalshi-odds">oddsshopper.com/…/makhachev-vs-garry-kalshi-odds</a></li>
+  <li>The Block, Kalshi streams full order books via DoubleZero (2026-08-12). <a href="https://www.theblock.co/news/markets/2026-08-12-kalshi-first-prediction-market-to-stream-full-order-books-via-doublezero-411589">theblock.co</a></li>
+  <li>Gambling911, Kalshi filing on order-execution delays (Dec 2025). <a href="https://www.gambling911.com/prediction-markets/kalshi-delay-implementation-on-order-executions-120925">gambling911.com</a></li>
+  <li>DeFi Rate, UFC Freedom 250 volumes on Kalshi and Polymarket. <a href="https://defirate.com/news/ufc-freedom-250-odds-preview-kalshi-vs-polymarket-tonight/">defirate.com</a></li>
+  <li>Polymarket help, Trading fees and Maker rebates (sports fee rate 0.05, maker fee 0, 15% rebate). <a href="https://help.polymarket.com/en/articles/13364478-trading-fees">help.polymarket.com</a></li>
+</ol>
+<h3>Market making, adverse selection, maker versus taker returns</h3>
+<ol class="src" id="src-mm">
+  <li>Glosten, L. and Milgrom, P. (1985). Bid, ask and transaction prices in a specialist market with heterogeneously informed traders. Journal of Financial Economics. <a href="https://www.sciencedirect.com/science/article/pii/0304405X85900443">sciencedirect.com</a></li>
+  <li>Bürgi, Deng and Whelan (Jan 2026). Makers and Takers: The Economics of the Kalshi Prediction Market. <a href="https://www.karlwhelan.com/Papers/Kalshi.pdf">karlwhelan.com/Papers/Kalshi.pdf</a></li>
+  <li>Bartlett and O'Hara (Apr 2026). Adverse Selection in Prediction Markets: Evidence from Kalshi. SSRN 6615739. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6615739">ssrn.com</a>; summary at <a href="https://law.stanford.edu/2026/04/21/adverse-selection-in-prediction-markets-evidence-from-kalshi/">law.stanford.edu</a></li>
+  <li>Whelan, K. (Jan 2026). Agreeing to Disagree: The Economics of Betting Exchanges. <a href="https://www.karlwhelan.com/Papers/Betfair.pdf">karlwhelan.com/Papers/Betfair.pdf</a></li>
+  <li>Akey, Grégoire, Harvie and Martineau (Mar 2026). Who Wins and Who Loses in Prediction Markets? Evidence from Polymarket. CEPR DP21615. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6443103">ssrn.com</a></li>
+  <li>Dalen (2026). Toward Black-Scholes for Prediction Markets: A Unified Kernel and Market-Maker's Handbook. arXiv 2510.15205. <a href="https://arxiv.org/html/2510.15205v2">arxiv.org</a></li>
+  <li>Chen and Pennock (2007). A Utility Framework for Bounded-Loss Market Makers. <a href="https://arxiv.org/abs/1206.5252">arxiv.org</a></li>
+  <li>Das, S. A Learning Market-Maker in the Glosten-Milgrom Model. <a href="https://cs.gmu.edu/~sanmay/papers/das-qf-rev3.pdf">cs.gmu.edu</a></li>
+  <li>BowTiedBettor. Adverse Selection in Betting Markets. <a href="https://www.blog.bowtiedbettor.com/p/adverse-selection-in-betting-markets">blog.bowtiedbettor.com</a></li>
+  <li>Rose-Berman. Kalshi's Favorite Lie. <a href="https://howgamblingworks.substack.com/p/kalshis-favorite-lie">howgamblingworks.substack.com</a></li>
+</ol>
+<h3>Exchanges versus bookmakers, efficiency, longshot bias</h3>
+<ol class="src" id="src-eff">
+  <li>Franck, Verbeek and Nüesch (2010). Prediction accuracy of different market structures: bookmakers versus a betting exchange. International Journal of Forecasting. <a href="https://www.wiwi.uni-muenster.de/uf/sites/uf/files/PublikationenNuuesch/2010ijof_franck_verbeek_nuesch.pdf">uni-muenster.de</a></li>
+  <li>Smith, Paton and Vaughan Williams (2006). Market efficiency in person-to-person betting. Economica. <a href="https://irep.ntu.ac.uk/id/eprint/10053/1/196111_155%20Vaughan%20Williams%20Post%20Print.pdf">irep.ntu.ac.uk</a></li>
+  <li>Flepp, Nüesch and Franck (2017). The liquidity advantage of the quote-driven market. <a href="https://www.unifr.ch/tim/en/assets/public/uploads/Publication%20list/2017/Flepp_N%C3%BCesch_Franck_2017.pdf">unifr.ch</a></li>
+  <li>Croxson and Reade. Exchange vs. Dealers: A High-Frequency Analysis of In-Play Betting Prices. <a href="https://www.researchgate.net/publication/228720836_Exchange_vs_Dealers_A_High-Frequency_Analysis_of_In-Play_Betting_Prices">researchgate.net</a></li>
+  <li>Angelini, De Angelis and Singleton (2021). Informational efficiency and behaviour within in-play prediction markets. International Journal of Forecasting. <a href="https://www.sciencedirect.com/science/article/abs/pii/S0169207021000996">sciencedirect.com</a></li>
+  <li>Robbins (2023). Weak Form Efficiency in Sports Betting Markets. American Journal of Management 23(2). UFC: 6,190 fights, hold 4.4 to 4.6%, longshot bias. <a href="https://myweb.ecu.edu/robbinst/PDFs/Weak%20Form%20Efficiency%20in%20Sports%20Betting%20Markets.pdf">myweb.ecu.edu</a></li>
+  <li>Miller and Nichols (2026). Efficient market insights and favorite-longshot bias in mixed martial arts betting markets. Journal of Economics and Finance. <a href="https://link.springer.com/article/10.1007/s12197-026-09757-x">springer.com</a></li>
+  <li>Whelan (2024). Risk aversion and favourite-longshot bias in a competitive fixed-odds betting market. Economica. <a href="https://www.karlwhelan.com/Papers/EconomicaFinal.pdf">karlwhelan.com</a></li>
+  <li>Adamczewski (Jul 2026). Integration Without Leadership: Cross-Venue Price Discovery in UFC Prediction Markets. SSRN 7194218. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7194218">ssrn.com</a></li>
+  <li>Data Golf (2021). The Favourite-Longshot Bias is not a bias. <a href="https://datagolf.com/fav-longshot-not-a-bias">datagolf.com</a></li>
+</ol>
+<h3>Model and market blending, Kelly, closing-line value</h3>
+<ol class="src" id="src-kelly">
+  <li>Benter, W. (1994). Computer Based Horse Race Handicapping and Wagering Systems: A Report. <a href="https://gwern.net/doc/statistics/decision/1994-benter.pdf">gwern.net</a></li>
+  <li>Baker and McHale (2013). Optimal Betting Under Parameter Uncertainty: Improving the Kelly Criterion. Decision Analysis 10(3). <a href="https://pubsonline.informs.org/doi/abs/10.1287/deca.2013.0271">pubsonline.informs.org</a></li>
+  <li>Chu, Wu and Swartz (2018). Modified Kelly Criteria. Journal of Quantitative Analysis in Sports. <a href="https://www.sfu.ca/~tswartz/papers/kelly.pdf">sfu.ca</a></li>
+  <li>Buchdahl, J. Closing Line Value demystified. <a href="https://www.pinnacleoddsdropper.com/blog/closing-line-value--clv-demystified-by-expert-joseph-buchdahl">pinnacleoddsdropper.com</a></li>
+  <li>arXiv 2605.16066 (2026), on edge filters selecting the model's largest errors. <a href="https://arxiv.org/pdf/2605.16066">arxiv.org</a></li>
+</ol>
+<h3>News risk in fight markets</h3>
+<ol class="src" id="src-news">
+  <li>ESPN, NSAC extends Krause and Minner bans amid probes (Minner vs Nuerdanbieke line move). <a href="https://www.espn.com/mma/story/_/id/35252129/nsac-extends-james-krause-darrick-minner-bans-amid-probes">espn.com</a></li>
+  <li>Sportskeeda, Minner vs Nuerdanbieke suspicious line movement. <a href="https://www.sportskeeda.com/mma/news-darrick-minner-shayilan-nuerdanbieke-fight-investigation-suspicious-betting-line-movement">sportskeeda.com</a></li>
+  <li>Betfair developer docs, in-play bet delay. <a href="https://support.developer.betfair.com/hc/en-us/articles/360002825652-Why-do-you-have-a-delay-on-placing-bets-on-a-market-that-is-in-play">support.developer.betfair.com</a></li>
+  <li>Fight Matrix (2018), Fighters missing weight, win percentage. <a href="https://www.fightmatrix.com/2018/05/26/fighters-missing-weight-win-percentage/">fightmatrix.com</a></li>
+</ol>
+<p class="note">Items the research could not verify on 2026-09-02: the rows of the fee schedule's non-standard fees table, since the PDF is bot-blocked, although the API confirms UFC is on the standard taker-only table; the full text of Bartlett and O'Hara and of Miller and Nichols; a replacement-fighter clause in the fight-winner contract; and the current US state geofence list, which changes weekly. Everything that depends on the fee multiplier is in the fee section and the two cost tables, and the multiplier for UFC is confirmed at 1.</p>
+</div>
+</section>
+
+<footer>Numbers in this memo come from a replay of the cached tier-2 walk-forward predictions through the production betting_math decision function, and from data/fight_results_with_odds.csv and its meta file. The replay was validated to the cent against testing_time_period.py before use. Fee arithmetic uses the coefficient stated in the fee section; if Kalshi changes it, the chart and the two cost tables change with it and nothing else does.</footer>
+</main>
+</div>
+
+<script>
+(function(){
+  const COEF = 0.07;
+  const svg = document.querySelector('#viz-be svg');
+  const tip = document.querySelector('#viz-be .tip');
+  const W=760,H=330,ml=52,mr=150,mt=18,mb=44;
+  const iw=W-ml-mr, ih=H-mt-mb;
+  const xs=[]; for(let p=5;p<=95;p++) xs.push(p);
+  const fee=p=>COEF*p*(100-p)/100;                // cents, unrounded
+  const series=[
+    {key:'lift', name:'Lift the offer, pay fee', color:'var(--s2)', f:p=>fee(p)+1},
+    {key:'fair', name:'Trade at fair price, pay fee', color:'var(--s1)', f:p=>fee(p)},
+    {key:'rest', name:'Rest a bid 1¢ inside, no fee', color:'var(--s3)', f:p=>-1},
+  ];
+  const ymin=-1.5, ymax=3.5;
+  const X=p=>ml+(p-5)/90*iw, Y=v=>mt+(ymax-v)/(ymax-ymin)*ih;
+  const ns='http://www.w3.org/2000/svg';
+  const el=(t,a,parent)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);(parent||svg).appendChild(e);return e;};
+  // band: where our bets actually sit (26–70¢ covers 95% of picks)
+  el('rect',{class:'band',x:X(29),y:mt,width:X(62)-X(29),height:ih});
+  el('text',{class:'bandlbl',x:X(45.5),y:mt+13,'text-anchor':'middle'}).textContent='where 90% of our picks are priced, 29¢ to 62¢';
+  const grid=el('g',{class:'grid'}); const axis=el('g',{class:'axis'});
+  for(let v=-1;v<=3;v++){ el('line',{x1:ml,x2:ml+iw,y1:Y(v),y2:Y(v),class:v===0?'zero':''},v===0?svg:grid);
+    const t=el('text',{x:ml-8,y:Y(v)+4,'text-anchor':'end'},axis); t.textContent=(v>0?'+':'')+v+(v===3?' pts':''); }
+  for(let p=10;p<=90;p+=20){ const t=el('text',{x:X(p),y:mt+ih+18,'text-anchor':'middle'},axis); t.textContent=p+'¢'; }
+  el('text',{class:'lbl',x:ml+iw/2,y:H-6,'text-anchor':'middle'},axis).textContent='Contract price (market fair probability)';
+  series.forEach(s=>{ let d=''; xs.forEach((p,i)=>{d+=(i?'L':'M')+X(p).toFixed(1)+' '+Y(s.f(p)).toFixed(1)+' ';});
+    el('path',{class:'line',d,stroke:s.color}); });
+  // direct end labels with leader spacing
+  const ends=series.map(s=>({s,y:Y(s.f(95))})).sort((a,b)=>a.y-b.y);
+  for(let i=1;i<ends.length;i++) if(ends[i].y-ends[i-1].y<14) ends[i].y=ends[i-1].y+14;
+  ends.forEach(({s,y})=>{ const g=el('g',{class:'end'}); el('circle',{cx:X(95),cy:Y(s.f(95)),r:4,fill:s.color},g);
+    const t=el('text',{x:X(95)+10,y:y+4},g); t.textContent=s.name.split(',')[0]; });
+  // hover
+  const cross=el('line',{class:'cross',x1:0,x2:0,y1:mt,y2:mt+ih});
+  const dots=series.map(s=>el('circle',{class:'dot',r:4,fill:s.color}));
+  const wrap=svg.parentElement;
+  function move(ev){ const r=svg.getBoundingClientRect(); const px=(ev.clientX-r.left)*W/r.width;
+    let p=Math.round(5+(px-ml)/iw*90); if(p<5||p>95||px<ml-10||px>ml+iw+10){leave();return;}
+    cross.setAttribute('x1',X(p)); cross.setAttribute('x2',X(p)); cross.style.opacity=1;
+    series.forEach((s,i)=>{dots[i].setAttribute('cx',X(p));dots[i].setAttribute('cy',Y(s.f(p)));dots[i].style.opacity=1;});
+    tip.innerHTML='<b>'+p+'¢</b> · fee '+fee(p).toFixed(2)+'¢<br>'+series.map(s=>s.name.split(',')[0]+': '+(s.f(p)>0?'+':'')+s.f(p).toFixed(2)+' pts').join('<br>');
+    tip.style.left=(X(p)*r.width/W)+'px'; tip.style.top=(Y(Math.max(...series.map(s=>s.f(p))))*r.height/H)+'px'; tip.style.opacity=1; }
+  function leave(){ cross.style.opacity=0; dots.forEach(d=>d.style.opacity=0); tip.style.opacity=0; }
+  svg.addEventListener('mousemove',move); svg.addEventListener('mouseleave',leave);
+  svg.addEventListener('touchstart',e=>move(e.touches[0]),{passive:true}); svg.addEventListener('touchmove',e=>move(e.touches[0]),{passive:true});
+  // table view
+  const rows=document.getElementById('be-rows');
+  [10,20,30,40,50,60,70,80,90].forEach(p=>{ const f=fee(p); const tr=document.createElement('tr');
+    tr.innerHTML='<td>'+p+'¢</td><td class="r">'+f.toFixed(2)+'</td><td class="r">'+(f/p*100).toFixed(1)+'%</td><td class="r">'+f.toFixed(2)+'</td><td class="r">'+(f+1).toFixed(2)+'</td><td class="r">−1.00</td>'; rows.appendChild(tr); });
+  document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>{ const t=document.getElementById(b.dataset.toggle); t.hidden=!t.hidden; b.setAttribute('aria-expanded',String(!t.hidden)); b.textContent=t.hidden?'Show as table':'Hide table'; }));
+})();
+</script>
+</body></html>
