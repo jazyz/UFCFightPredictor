@@ -90,13 +90,13 @@ ufcstats.com → scrapers/scrape_incremental.py → data/fight_details_date.csv
 - **Fighters**: `scrapers/update_fighters.py` — adds debutants to `instance/detailedfighters.db`
 - **Processing**: `utils/incremental_processing.py` — data cleaning, format conversion
 - **Features**: `process_fights_alpha.py` — ELO, per-minute stats, weighted averages
-- **Training**: `ml_ensemble.py` — 5 LightGBM models with Optuna tuning; saves models and preprocessing
+- **Training**: `ml_ensemble.py` — 5 LightGBM models with Optuna tuning; saves models, preprocessing and the temperature calibrator
 - **Prediction**: `predict_event.py` — event predictions with Kelly betting
 - **API**: `app.py` — Flask REST endpoints
 
 ### Model Files
 - `saved_models/lgbm_model_0.joblib` … `lgbm_model_4.joblib` — five ensemble members. They are **not** corner-specific: each is trained on the same augmented data with its own Optuna-sampled hyperparameters, and inference averages `predict_proba` across all five (see `load_ensemble.py`).
-- Members are trained with distinct seeds; `saved_preprocessing/calibrator.joblib` holds the temperature calibrator `load_ensemble.py` applies at inference.
+- `saved_preprocessing/calibrator.joblib` — the temperature calibrator `load_ensemble.py` applies at inference; members are trained with distinct seeds
 - `saved_preprocessing/selected_columns.json` — the exact feature list the models expect; **always** select columns through this rather than recomputing the prune.
 - `saved_preprocessing/label_encoder.joblib` — classes are `['loss', 'win']`, so **class 1 = the red corner wins**.
 - `saved_models/backup_YYYYMMDD_HHMMSS/` — timestamped backups written before each retrain, including a copy of `saved_preprocessing/`.
@@ -111,6 +111,7 @@ ufcstats.com → scrapers/scrape_incremental.py → data/fight_details_date.csv
   oldest-first because the backtests walk it in file order (re-sort after any backfill)
 - `data/bet_ledger.json` — live picks written by `predict_event.py --odds`, graded by
   `auto_retrain.py`; copied into the site by `testing/export_site_data.py`
+- `test_results/.tier2_full_cache/` — the walk-forward prediction cache the site export reads (six `pred_YYYY-MM-DD.csv`, one per retrain, 2024-01-01 → 2026-08-30); rebuild with `testing/build_walk_forward_cache.py`
 
 ## Important Patterns
 
@@ -132,8 +133,8 @@ For betting, the useful property is that higher confidence means more often righ
 is what Kelly sizing consumes. A stale model degrades here long before its headline
 accuracy moves. When the models were last left untrained for two years, accuracy held
 around 64% while the 70%+ confidence band fell to 64% — no better than its weakest picks.
-After retraining, accuracy was flat (62.9%) but the bands became monotonic again and the
-70%+ band reached 79%. **Judge a retrain on AUC, log loss, Brier and the calibration
+After the February 2026 retrain, accuracy on that year's holdout was flat (62.9%) but the bands became monotonic again and the
+70%+ band reached 79%; the current headline numbers above come from the later tier-2 model over 2024–26. **Judge a retrain on AUC, log loss, Brier and the calibration
 bands, not on accuracy alone.**
 
 ### Feature Engineering
@@ -226,7 +227,7 @@ Components in `frontend/src/components/`:
 
 ## Dependencies
 
-Python: Flask, Flask-CORS, Flask-SQLAlchemy, pandas, numpy, lightgbm, scikit-learn, joblib,
+Python: Flask, Flask-CORS, Flask-SQLAlchemy, pandas, numpy, lightgbm, scikit-learn, scipy, joblib,
 optuna, beautifulsoup4, requests, matplotlib. `shap` is optional (diagnostics only).
 
 Frontend: React 18, Tailwind CSS

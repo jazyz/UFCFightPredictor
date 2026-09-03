@@ -26,8 +26,9 @@ export default function Results({ data }) {
   const worst = monthly.length ? monthly[months.indexOf(Math.min(...months))] : null;
   const best = monthly.length ? monthly[months.indexOf(Math.max(...months))] : null;
   const [marketRow, modelRow] = market.rows;
-  const marketSharper = marketRow.log_loss < modelRow.log_loss;
-  const modelMoreAccurate = modelRow.accuracy > marketRow.accuracy;
+  const comparable = marketRow.log_loss != null && modelRow.log_loss != null;
+  const marketSharper = comparable && marketRow.log_loss < modelRow.log_loss;
+  const modelMoreAccurate = comparable && modelRow.accuracy > marketRow.accuracy;
 
   return (
     <main className="mx-auto max-w-content px-6">
@@ -170,11 +171,13 @@ export default function Results({ data }) {
         <ul className="mt-6 max-w-2xl list-disc space-y-3 pl-5 text-ink-2">
           <li>
             <b className="text-ink">The edge is price selection, not prophecy.</b>{" "}
-            {marketSharper
-              ? "On the proper scoring rules (AUC, log loss, Brier) the closing line forecasts better than the model"
-              : "On the proper scoring rules (AUC, log loss, Brier) the model forecasts at least as well as the closing line"}
-            {modelMoreAccurate ? ", even in a year where the model edged it on raw accuracy" : ""}. The return comes from
-            which agreements the model sizes up: fights where its calibrated probability says the price is soft.
+            {!comparable
+              ? "This window has no scored fights, so there is nothing to compare."
+              : marketSharper
+                ? "On the proper scoring rules (AUC, log loss, Brier) the closing line forecasts better than the model"
+                : "On the proper scoring rules (AUC, log loss, Brier) the model forecasts at least as well as the closing line"}
+            {comparable && modelMoreAccurate ? ", even in a window where the model edged it on raw accuracy" : ""}
+            {comparable ? ". The return comes from which agreements the model sizes up: fights where its calibrated probability says the price is soft." : ""}
           </li>
           <li>
             <b className="text-ink">Disagreement is a warning sign.</b> When model and market split, the model wins{" "}

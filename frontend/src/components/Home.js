@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import StatTile from "./StatTile";
 import CalibrationChart from "./charts/CalibrationChart";
 import { num3, pct, shortDate, signedPct, stdErrPts } from "../format";
@@ -24,6 +24,7 @@ const CtaButton = ({ children }) => (
 export default function Home({ data }) {
   // `window` is renamed so it never shadows the browser global
   const { metrics, bands, market, flat, betting, coverage, window: span, config } = data;
+  const { search } = useLocation();
   const steps = [
     ["Data", "Every UFC fight since 1994, scraped from ufcstats.com: strikes, takedowns, control time, finishes. Each fight is described only by what was known before it happened."],
     ["Model", "180+ engineered features per fighter feed a five-model LightGBM ensemble retrained twice a week. It outputs a win probability, not a hot take."],
@@ -31,7 +32,15 @@ export default function Home({ data }) {
   ];
   const top = bands[bands.length - 1];
   const populated = bands.filter((b) => b.n > 0);
-  const climbs = populated.every((b, i) => i === 0 || b.hit >= populated[i - 1].hit);
+  const dip = populated.findIndex((b, i) => i > 0 && b.hit < populated[i - 1].hit);
+  const lowest = populated[0];
+  const highest = populated[populated.length - 1];
+  const calibrationSentence =
+    populated.length === 0
+      ? "No scored fights fall inside this window."
+      : dip === -1
+        ? "The bars climb together: the more confident the model, the more often it is right."
+        : `Not perfectly monotonic: the ${populated[dip].label} band hit ${pct(populated[dip].hit, 1)} on ${populated[dip].n} fights, below the ${populated[dip - 1].label} band. The ${highest.label} band still out-hits the ${lowest.label} band, ${pct(highest.hit, 1)} to ${pct(lowest.hit, 1)}.`;
   const modelBeatsFavorites = flat.model_pick_per_bet > flat.market_favorite_per_bet;
   const se = metrics.n ? stdErrPts(metrics.accuracy, metrics.n) : null;
 
@@ -50,7 +59,7 @@ export default function Home({ data }) {
         <div className="mt-8 flex flex-wrap gap-3">
           <CtaButton>Get this week's picks</CtaButton>
           <Link
-            to="/results"
+            to={{ pathname: "/results", search }}
             className="inline-block rounded-md border border-hairline px-6 py-3 text-base font-semibold text-ink hover:bg-surface"
           >
             See the full results
@@ -102,9 +111,7 @@ export default function Home({ data }) {
         <p className="mt-4 max-w-2xl text-ink-2">
           Kelly sizing only works if "70%" means 70%. This chart puts the model's stated confidence beside
           what actually happened, band by band.{" "}
-          {climbs
-            ? "The bars climb together: the more confident the model, the more often it is right."
-            : "The higher bands mostly hit more often; the small bands wobble, and that is what small samples do."}{" "}
+          {calibrationSentence}{" "}
           That is the property a stale model loses first, and the reason the ensemble is retrained twice a week.
         </p>
         <div className="mt-8 rounded-lg border border-hairline bg-surface p-5">

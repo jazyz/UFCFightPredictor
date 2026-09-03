@@ -24,7 +24,7 @@ export default function MonthlyAccuracyChart({ monthly, overall }) {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} barCategoryGap="35%" margin={{ top: 16, right: 8, left: -16, bottom: 0 }}>
             <CartesianGrid vertical={false} stroke={C.grid} />
-            <XAxis dataKey="label" tick={tick} axisLine={{ stroke: C.grid }} tickLine={false} interval={0} />
+            <XAxis dataKey="label" tick={tick} axisLine={{ stroke: C.grid }} tickLine={false} interval={data.length > 14 ? "preserveStartEnd" : 0} />
             <YAxis
               domain={[0, 1]}
               ticks={[0, 0.25, 0.5, 0.75, 1]}

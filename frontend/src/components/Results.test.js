@@ -21,11 +21,12 @@ test("results page reports method, coverage, calibration, market and betting", (
 test("analysis bullet notes when the model out-hits the market on raw accuracy", () => {
   const rows = fx.market.rows.map((r, i) => (i === 1 ? { ...r, accuracy: 0.7 } : r));
   render(<MemoryRouter><Results data={{ ...fx, market: { ...fx.market, rows } }} /></MemoryRouter>);
-  expect(screen.getByText(/even in a year where the model edged it on raw accuracy/)).toBeInTheDocument();
+  expect(screen.getByText(/even in a window where the model edged it on raw accuracy/)).toBeInTheDocument();
 });
 
 test("renders an empty window without crashing", () => {
   render(<MemoryRouter><Results data={emptyWindowFixture} /></MemoryRouter>);
   expect(screen.getByText(/was not retrained inside this window/)).toBeInTheDocument();
   expect(screen.getByText(/No scored fights fall inside this window/)).toBeInTheDocument();
+  expect(screen.getByText(/nothing to compare/)).toBeInTheDocument();
 });

@@ -52,8 +52,8 @@ export default function Methodology({ data }) {
 
       <Section eyebrow="Model" title="A five-model LightGBM ensemble">
         <p>
-          Five gradient-boosted tree models, each with its own Optuna-tuned hyperparameters, are averaged at
-          inference. Training data is mirrored so the model sees every fight from both corners, correlated
+          Five gradient-boosted tree models, each with its own Optuna-tuned hyperparameters and its own random seed, are averaged at
+          inference, and a temperature calibrator fitted on out-of-fold predictions rescales the result. Training data is mirrored so the model sees every fight from both corners, correlated
           features are pruned in pairs so the mirror stays intact, and every published probability averages
           both orientations of the bout, so which fighter is listed first does not tip the answer.
         </p>

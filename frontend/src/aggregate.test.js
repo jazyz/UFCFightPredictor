@@ -26,6 +26,7 @@ test("aggregate reproduces the Python summary for the default window", () => {
   expect(js.market.agree.n).toBe(py.market.agree.n);
   expect(close(js.market.agree.hit, py.market.agree.hit, 1e-4)).toBe(true);
   expect(js.market.disagree.n).toBe(py.market.disagree.n);
+  if (py.market.disagree.model_hit != null) expect(close(js.market.disagree.model_hit, py.market.disagree.model_hit, 1e-4)).toBe(true);
   expect(close(js.flat.market_favorite_per_bet, py.flat.market_favorite_per_bet, 1e-4)).toBe(true);
   expect(close(js.flat.model_pick_per_bet, py.flat.model_pick_per_bet, 1e-4)).toBe(true);
   expect(js.betting.bets).toBe(py.betting.bets);
@@ -36,11 +37,18 @@ test("aggregate reproduces the Python summary for the default window", () => {
   expect(close(js.betting.max_drawdown_pct, py.betting.max_drawdown_pct, 0.05)).toBe(true);
   expect(close(js.betting.low, py.betting.low, 0.005)).toBe(true);
   expect(js.bankroll.length).toBe(py.bankroll.length);
-  py.bankroll.forEach((p, i) => expect(close(js.bankroll[i].bankroll, p.bankroll, 0.005)).toBe(true));
+  py.bankroll.forEach((p, i) => {
+    expect(close(js.bankroll[i].bankroll, p.bankroll, 0.005)).toBe(true);
+    expect(js.bankroll[i].date).toBe(p.date);
+    expect(js.bankroll[i].event).toBe(p.event);
+  });
   expect(js.bets.length).toBe(py.bets.length);
   py.bets.forEach((b, i) => {
     expect(js.bets[i].fighter).toBe(b.fighter);
     expect(js.bets[i].result).toBe(b.result);
+    expect(js.bets[i].odds).toBe(b.odds);
+    expect(close(js.bets[i].edge, b.edge, 1e-4)).toBe(true);
+    expect(close(js.bets[i].model_prob, b.model_prob, 1e-4)).toBe(true);
     expect(close(js.bets[i].stake, b.stake, 0.005)).toBe(true);
     expect(close(js.bets[i].pnl, b.pnl, 0.005)).toBe(true);
     expect(close(js.bets[i].bankroll_after, b.bankroll_after, 0.005)).toBe(true);
