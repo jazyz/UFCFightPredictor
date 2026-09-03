@@ -118,3 +118,38 @@ def test_main_writes_json_and_empty_ledger(fixture_dir, tmp_path):
     assert data["metrics"]["n"] == 3
     assert data["bets"][0]["fighter"] == "A"
     assert json.load(open(ledger_out)) == []
+
+
+CACHE = os.path.join(ROOT, "test_results", ".lastyear_tier0_cache")
+
+
+@pytest.mark.skipif(not os.path.isdir(CACHE), reason="walk-forward cache not present (gitignored)")
+def test_export_matches_testing_time_period_to_the_cent(tmp_path, monkeypatch):
+    """The export must stake exactly what the reference backtest stakes.
+
+    process_dates writes relative to the cwd (test_results/*.txt, data/*.png,
+    data/predicted_results.csv), so run it inside a sandbox that holds a copy of
+    the odds file, with train_ml replaced by a copy from the cache."""
+    import shutil
+    (tmp_path / "data").mkdir()
+    (tmp_path / "test_results").mkdir()
+    odds = os.path.join(ROOT, "data", "fight_results_with_odds.csv")
+    shutil.copy(odds, tmp_path / "data" / "fight_results_with_odds.csv")
+    monkeypatch.chdir(tmp_path)
+    import testing_time_period as ttp
+
+    def train_from_cache(date):
+        shutil.copy(os.path.join(CACHE, f"pred_{date}.csv"), "data/predicted_results.csv")
+
+    monkeypatch.setattr(ttp, "train_ml", train_from_cache)
+    ttp.process_dates(esd.DEFAULT_START, esd.DEFAULT_END, [0.05, 0.05, 0, 0.05, 0.8])
+
+    payload = esd.build_payload(esd.load_caches(CACHE), "data/fight_results_with_odds.csv",
+                                esd.DEFAULT_START, esd.DEFAULT_END)
+    assert payload.betting.final == pytest.approx(ttp.bankroll, abs=0.005)
+    assert payload.betting.bets == ttp.favourites + ttp.underdogs
+    assert payload.betting.favorites.total == ttp.favourites
+    assert payload.betting.underdogs.total == ttp.underdogs
+    assert payload.betting.favorites.won == ttp.favouritesHit
+    assert payload.betting.underdogs.won == ttp.underdogsHit
+    assert len(payload.bankroll) == len(ttp.bankrolls)
