@@ -25,6 +25,8 @@ ODDS_ROWS = [
     ("ufc-1", "Jan 04 2025", "A", "B", "A", "-150", "+130"),
     ("ufc-1", "Jan 04 2025", "C", "D", "D", "+200", "-240"),
     ("ufc-fight-night-february-01-2025", "Feb 01 2025", "E", "F", "F", "-", "-"),
+    ("ufc-fight-night-february-01-2025", "Feb 01 2025", "G", "H", "Gee Aitch", "-110", "-110"),
+    ("ufc-2", "Mar 01 2025", "A", "B", "draw/no contest", "-150", "+130"),
 ]
 
 
@@ -52,7 +54,7 @@ def payload(fixture_dir):
 
 
 def test_coverage_and_accuracy_average_both_orientations(payload):
-    assert payload.coverage == esd.Coverage(fights_in_window=3, scored=3, with_odds=2)
+    assert payload.coverage == esd.Coverage(fights_in_window=5, scored=3, with_odds=2)
     assert payload.metrics.n == 3
     # A (0.71) correct, D (0.61) correct, E (0.56) wrong
     assert payload.metrics.accuracy == pytest.approx(2 / 3, abs=1e-4)
@@ -73,7 +75,8 @@ def test_bands_and_monthly(payload):
 
 
 def test_bet_replay_matches_betting_math(payload):
-    assert len(payload.bets) == 1
+    assert len(payload.bets) == 2
+    assert [b.result for b in payload.bets] == ["win", "push"]
     bet = payload.bets[0]
     expected = betting_math.decide_bet(0.71, None, -150, 130, blend_w=0.8, min_edge=0.05,
                                        fraction=0.05, cap=0.05, bankroll=1000.0)
@@ -83,13 +86,13 @@ def test_bet_replay_matches_betting_math(payload):
     assert bet.model_prob == pytest.approx(expected["prob"], abs=1e-4)
     assert bet.market_prob == pytest.approx(expected["market_prob"], abs=1e-4)
     assert payload.betting.final == pytest.approx(1000 + expected["stake"] * 100 / 150, abs=0.005)
-    assert payload.betting.bets == 1 and payload.betting.hit == 1.0
-    assert payload.betting.favorites == esd.SideRecord(won=1, total=1)
+    assert payload.betting.bets == 2 and payload.betting.hit == 0.5
+    assert payload.betting.favorites == esd.SideRecord(won=1, total=2)
     assert payload.betting.underdogs == esd.SideRecord(won=0, total=0)
     assert payload.betting.max_drawdown_pct == 0.0
     assert payload.betting.low == 1000.0
     # one bankroll point per scored fight with odds, including the no-bet fight
-    assert [p.bankroll for p in payload.bankroll] == [payload.betting.final, payload.betting.final]
+    assert [p.bankroll for p in payload.bankroll] == [payload.betting.final] * 3
     assert payload.bankroll[1].event == "ufc-1"
 
 
@@ -105,22 +108,74 @@ def test_market_and_flat_sections(payload):
     assert payload.flat.stake == 10.0
 
 
-def test_main_writes_json_and_empty_ledger(fixture_dir, tmp_path):
+def test_fight_rows_carry_every_odds_row_with_window_independent_bets(fixture_dir):
+    cache, odds = fixture_dir
+    site = esd.build_site_payload(esd.load_caches(cache), odds, "2025-01-01", "2025-12-31")
+    rows = {(r.f1, r.f2, r.date): r for r in site.fights}
+    assert len(site.fights) == 5
+    ab = rows[("A", "B", "2025-01-04")]
+    assert ab.winner == "f1" and ab.model_p1 == pytest.approx(0.71) and ab.market_p1 is not None
+    expected = betting_math.decide_bet(0.71, None, -150, 130, blend_w=0.8, min_edge=0.05,
+                                       fraction=0.05, cap=0.05, bankroll=1000.0)
+    assert ab.bet.side == 1 and ab.bet.odds == -150
+    assert ab.bet.stake_frac * 1000.0 == pytest.approx(expected["stake"], abs=1e-9)
+    assert ab.bet.payout_mult == pytest.approx(100 / 150)
+    cd = rows[("C", "D", "2025-01-04")]
+    assert cd.winner == "f2" and cd.bet is None
+    ef = rows[("E", "F", "2025-02-01")]
+    assert ef.market_p1 is None and ef.odds1 is None and ef.bet is None
+    gh = rows[("G", "H", "2025-02-01")]
+    assert gh.model_p1 is None and gh.winner == "unknown" and gh.bet is None
+    push = rows[("A", "B", "2025-03-01")]
+    assert push.winner == "push" and push.bet is not None
+
+
+def test_site_payload_summary_config_and_range(fixture_dir):
+    cache, odds = fixture_dir
+    caches = esd.load_caches(cache)
+    site = esd.build_site_payload(caches, odds, "2025-01-01", "2025-12-31")
+    v1 = esd.build_payload(caches, odds, "2025-01-01", "2025-12-31")
+    assert site.summary.betting == v1.betting and site.summary.metrics == v1.metrics
+    assert site.summary.bets == v1.bets and site.summary.bankroll == v1.bankroll
+    assert site.range == esd.Range(start="2025-01-01", end="2025-12-31", retrains=["2025-01-01"])
+    assert site.default_window == esd.DefaultWindow(start="2025-01-01", end="2025-12-31")
+    import inspect
+    defaults = {k: p.default for k, p in inspect.signature(betting_math.decide_bet).parameters.items()
+                if p.default is not inspect.Parameter.empty}
+    assert site.config == esd.Config(blend_w=defaults["blend_w"], min_edge=defaults["min_edge"],
+                                     kelly_fraction=defaults["fraction"], kelly_cap=defaults["cap"],
+                                     max_dog_odds=defaults["max_dog_odds"], start_bankroll=1000.0,
+                                     flat_stake=10.0)
+
+
+def test_scored_row_with_unknown_winner_is_rejected(fixture_dir, tmp_path):
+    cache, _ = fixture_dir
+    bad = tmp_path / "bad.csv"
+    with open(bad, "w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["event_name", "event_date", "fighter1_name", "fighter2_name",
+                    "winner_name", "fighter1_odds", "fighter2_odds"])
+        w.writerow(("ufc-1", "Jan 04 2025", "A", "B", "Ay Bee", "-150", "+130"))
+    with pytest.raises(SystemExit):
+        esd.build_site_payload(esd.load_caches(cache), str(bad), "2025-01-01", "2025-12-31")
+
+
+def test_main_writes_v2_json(fixture_dir, tmp_path):
     cache, odds = fixture_dir
     out = tmp_path / "site" / "backtest.json"
-    ledger_out = tmp_path / "site" / "ledger.json"
     rc = esd.main(["--cache", cache, "--odds", odds, "--start", "2025-01-01", "--end", "2025-12-31",
                    "--out", str(out), "--ledger", str(tmp_path / "missing.json"),
-                   "--ledger-out", str(ledger_out)])
+                   "--ledger-out", str(tmp_path / "site" / "ledger.json")])
     assert rc == 0
     import json
     data = json.load(open(out))
-    assert data["metrics"]["n"] == 3
-    assert data["bets"][0]["fighter"] == "A"
-    assert json.load(open(ledger_out)) == []
+    assert set(data) == {"generated", "range", "config", "default_window", "summary", "fights"}
+    assert data["summary"]["metrics"]["n"] == 3 and len(data["fights"]) == 5
+    assert data["config"]["max_dog_odds"] == 200
+    assert json.load(open(tmp_path / "site" / "ledger.json")) == []
 
 
-CACHE = os.path.join(ROOT, "test_results", ".lastyear_tier0_cache")
+CACHE = os.path.join(ROOT, "test_results", ".tier2_full_cache")
 
 
 @pytest.mark.skipif(not os.path.isdir(CACHE), reason="walk-forward cache not present (gitignored)")

@@ -12,6 +12,7 @@ frontend/src/data/ledger.json.
 import argparse
 import csv
 import glob
+import inspect
 import json
 import os
 import shutil
@@ -26,22 +27,25 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 import betting_math  # noqa: E402
 
-# Production betting config, copied from predict_event.py.
-BLEND_W = 0.8
-MIN_EDGE = 0.05
-KELLY_FRACTION = 0.05
-KELLY_MAX = 0.05
+# Production betting config, copied from betting_math.decide_bet's defaults.
+_DECIDE_BET_DEFAULTS = {k: p.default for k, p in inspect.signature(betting_math.decide_bet).parameters.items()
+                        if p.default is not inspect.Parameter.empty}
+BLEND_W = _DECIDE_BET_DEFAULTS["blend_w"]
+MIN_EDGE = _DECIDE_BET_DEFAULTS["min_edge"]
+KELLY_FRACTION = _DECIDE_BET_DEFAULTS["fraction"]
+KELLY_MAX = _DECIDE_BET_DEFAULTS["cap"]
+MAX_DOG_ODDS = _DECIDE_BET_DEFAULTS["max_dog_odds"]
 START_BANKROLL = 1000.0
 FLAT_STAKE = 10.0
 BANDS = [("50–55%", 0.50, 0.55), ("55–60%", 0.55, 0.60), ("60–65%", 0.60, 0.65),
          ("65–70%", 0.65, 0.70), ("70%+", 0.70, 1.01)]
 
-DEFAULT_CACHE = os.path.join(ROOT, "test_results", ".lastyear_tier0_cache")
+DEFAULT_CACHE = os.path.join(ROOT, "test_results", ".tier2_full_cache")
 DEFAULT_ODDS = os.path.join(ROOT, "data", "fight_results_with_odds.csv")
 DEFAULT_OUT = os.path.join(ROOT, "frontend", "src", "data", "backtest.json")
 DEFAULT_LEDGER = os.path.join(ROOT, "data", "bet_ledger.json")
 DEFAULT_LEDGER_OUT = os.path.join(ROOT, "frontend", "src", "data", "ledger.json")
-DEFAULT_START = "2025-08-30"
+DEFAULT_START = "2024-01-01"
 DEFAULT_END = "2026-08-30"
 
 
@@ -177,6 +181,81 @@ class BacktestPayload:
     betting: BettingSummary
     bankroll: List[BankrollPoint]
     bets: List[BetRecord]
+
+
+@dataclass
+class Range:
+    start: str
+    end: str
+    retrains: List[str]
+
+
+@dataclass
+class Config:
+    blend_w: float
+    min_edge: float
+    kelly_fraction: float
+    kelly_cap: float
+    max_dog_odds: Optional[int]
+    start_bankroll: float
+    flat_stake: float
+
+
+@dataclass
+class DefaultWindow:
+    start: str
+    end: str
+
+
+@dataclass
+class Bet:
+    """The production decision for one fight, independent of bankroll: stake_frac is
+    stake / bankroll and payout_mult is profit per $1 staked."""
+    side: int
+    odds: int
+    prob: float
+    market_prob: float
+    edge: float
+    kc: float
+    stake_frac: float
+    payout_mult: float
+
+
+@dataclass
+class FightRow:
+    date: str
+    event: str
+    f1: str
+    f2: str
+    winner: str            # "f1" | "f2" | "push" | "unknown" (unknown only when unscored)
+    model_p1: Optional[float]
+    market_p1: Optional[float]
+    odds1: Optional[int]
+    odds2: Optional[int]
+    bet: Optional[Bet]
+
+
+@dataclass
+class Summary:
+    coverage: Coverage
+    metrics: Metrics
+    bands: List[Band]
+    monthly: List[MonthRow]
+    market: MarketSection
+    flat: FlatSection
+    betting: BettingSummary
+    bankroll: List[BankrollPoint]
+    bets: List[BetRecord]
+
+
+@dataclass
+class SitePayload:
+    generated: str
+    range: Range
+    config: Config
+    default_window: DefaultWindow
+    summary: Summary
+    fights: List[FightRow]
 
 
 @dataclass
@@ -422,6 +501,59 @@ def build_payload(caches, odds_csv: str, start: str, end: str) -> BacktestPayloa
         betting=summary, bankroll=points, bets=bets)
 
 
+def config_from_betting_math() -> Config:
+    return Config(blend_w=BLEND_W, min_edge=MIN_EDGE, kelly_fraction=KELLY_FRACTION,
+                  kelly_cap=KELLY_MAX, max_dog_odds=MAX_DOG_ODDS,
+                  start_bankroll=START_BANKROLL, flat_stake=FLAT_STAKE)
+
+
+def fight_rows(rows: List[dict], caches) -> List[FightRow]:
+    """One row per odds-file fight; unscored and unpriced fights carry nulls."""
+    out = []
+    for row in rows:
+        iso = datetime.strptime(row["event_date"], "%b %d %Y").strftime("%Y-%m-%d")
+        table = cache_for(caches, iso)
+        f1, f2 = row["fighter1_name"], row["fighter2_name"]
+        p_ab, p_ba = table.get((f1, f2)), table.get((f2, f1))
+        model_p1 = None if p_ab is None or p_ba is None else (p_ab + (1 - p_ba)) / 2
+        odds1, odds2 = parse_odds(row["fighter1_odds"]), parse_odds(row["fighter2_odds"])
+        market_p1 = None
+        if odds1 is not None and odds2 is not None:
+            market_p1, _ = betting_math.devig(betting_math.american_to_prob(odds1),
+                                              betting_math.american_to_prob(odds2))
+        name = row["winner_name"]
+        winner = "f1" if name == f1 else "f2" if name == f2 else "push" if name == "draw/no contest" else "unknown"
+        if winner == "unknown" and model_p1 is not None:
+            raise SystemExit(f"scored fight {f1} vs {f2} on {iso} has an unrecognized winner {name!r}")
+        bet = None
+        if model_p1 is not None and market_p1 is not None:
+            decision = betting_math.decide_bet(model_p1, None, odds1, odds2, blend_w=BLEND_W,
+                                               min_edge=MIN_EDGE, fraction=KELLY_FRACTION,
+                                               cap=KELLY_MAX, bankroll=1.0)
+            if decision is not None:
+                odds = odds1 if decision["side"] == 1 else odds2
+                bet = Bet(side=decision["side"], odds=odds, prob=round(decision["prob"], 4),
+                          market_prob=round(decision["market_prob"], 4), edge=round(decision["edge"], 4),
+                          kc=round(decision["kc"], 4), stake_frac=decision["stake"],
+                          payout_mult=payout(odds, 1.0))
+        out.append(FightRow(date=iso, event=row["event_name"], f1=f1, f2=f2, winner=winner,
+                            model_p1=model_p1, market_p1=market_p1, odds1=odds1, odds2=odds2, bet=bet))
+    return out
+
+
+def build_site_payload(caches, odds_csv: str, start: str, end: str) -> SitePayload:
+    rows = read_window(odds_csv, datetime.strptime(start, "%Y-%m-%d"), datetime.strptime(end, "%Y-%m-%d"))
+    fights = fight_rows(rows, caches)  # validates winners before any aggregation
+    v1 = build_payload(caches, odds_csv, start, end)
+    summary = Summary(coverage=v1.coverage, metrics=v1.metrics, bands=v1.bands, monthly=v1.monthly,
+                      market=v1.market, flat=v1.flat, betting=v1.betting, bankroll=v1.bankroll, bets=v1.bets)
+    return SitePayload(generated=v1.generated,
+                       range=Range(start=start, end=end, retrains=v1.window.retrains),
+                       config=config_from_betting_math(),
+                       default_window=DefaultWindow(start=start, end=end),
+                       summary=summary, fights=fights)
+
+
 # ---------------------------------------------------------------------- main
 
 def main(argv=None) -> int:
@@ -436,7 +568,7 @@ def main(argv=None) -> int:
     ap.add_argument("--ledger-out", default=DEFAULT_LEDGER_OUT)
     args = ap.parse_args(argv)
 
-    payload = build_payload(load_caches(args.cache), args.odds, args.start, args.end)
+    payload = build_site_payload(load_caches(args.cache), args.odds, args.start, args.end)
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w") as fh:
         json.dump(asdict(payload), fh, indent=1)
@@ -447,11 +579,13 @@ def main(argv=None) -> int:
         with open(args.ledger_out, "w") as fh:
             fh.write("[]\n")
 
-    m, b = payload.metrics, payload.betting
+    m, b = payload.summary.metrics, payload.summary.betting
     print(f"{m.n} fights scored · accuracy {m.accuracy:.1%} · AUC {m.auc:.3f} · "
           f"log loss {m.log_loss:.3f} · Brier {m.brier:.3f}")
     print(f"{b.bets} bets · hit {(b.hit or 0):.1%} · final ${b.final:,.2f} ({b.return_pct:+.1f}%) · "
           f"max drawdown {b.max_drawdown_pct:.1f}%")
+    print(f"{len(payload.fights)} fight rows · {payload.range.start} → {payload.range.end} · "
+          f"retrains {', '.join(payload.range.retrains)}")
     print(f"wrote {os.path.relpath(args.out, ROOT)} and {os.path.relpath(args.ledger_out, ROOT)}")
     return 0
 
