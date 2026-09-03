@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-UFC Fight Predictor is a machine learning system that predicts UFC fight outcomes and recommends bets using the Kelly Criterion. Website: http://betufc.ca/
+UFC Fight Predictor is a machine learning system that predicts UFC fight outcomes and recommends bets using the Kelly Criterion. Website: https://ufcalpha.com/ (frontend on Cloudflare Pages, API on Render)
 
 Measured out-of-sample accuracy is **~63%**: 62.9% on the 159 fights of 2026-02-28 → 2026-08-30, and 63.5% across the 762 fights that followed the previous training cutoff. Accuracy alone understates what changed most recently — see "Calibration matters more than accuracy" below.
 
@@ -47,6 +47,12 @@ cd testing && python testing_time_period.py # Run backtesting
 python app.py                               # Start Flask server (localhost:5000)
 cd frontend && npm start                    # Start React dev server (localhost:3000)
 cd frontend && npm run build                # Production build
+cd frontend && CI=true npx react-scripts test --watchAll=false   # Frontend tests
+
+# Public site data: replay the walk-forward cache into the JSON the frontend bundles,
+# then commit and push so Cloudflare Pages rebuilds.
+python testing/export_site_data.py
+git add frontend/src/data && git commit -m "Refresh site data" && git push
 ```
 
 ### Scheduler Management (macOS launchd)
@@ -95,6 +101,8 @@ ufcstats.com → scrapers/scrape_incremental.py → data/fight_details_date.csv
 - `data/detailed_fighter_stats.csv` — per-fighter career state, read by `predict_fights_alpha.py`
 - `data/predicted_data.json` — latest predictions; served by `/get_predicted_data`
 - `data/fight_results_with_odds.csv` — historical odds, **stops at 2024-03-30**, so betting backtests cannot cover anything more recent
+- `data/bet_ledger.json` — live picks written by `predict_event.py --odds`, graded by
+  `auto_retrain.py`; copied into the site by `testing/export_site_data.py`
 
 ## Important Patterns
 
@@ -149,7 +157,8 @@ Fractional Kelly with conservative defaults; all sizing paths (`predict_event.py
 ### Auto-Retraining System
 Runs Monday & Friday at 2:00 AM via launchd:
 1. Incremental scrape of new events; new fighters added to the fighter DB
-2. New rows prepended to `fight_details_date.csv` (backup written first)
+2. New rows prepended to `fight_details_date.csv` (backup written first); pending entries in
+   `data/bet_ledger.json` are graded against the new results (a grading error is logged, never fatal)
 3. Full feature recomputation (needed for ELO consistency)
 4. Backup of `saved_models/` + `saved_preprocessing/`, then training via `ml_ensemble.py`
 5. Validation on `ml_ensemble.py`'s own chronological holdout (the last 5% of fights, never
@@ -187,13 +196,20 @@ Several are load-bearing and easy to undo by accident:
 
 ## React Frontend Structure
 
+The public site is static: every page reads `frontend/src/data/backtest.json` and
+`ledger.json`, which `testing/export_site_data.py` writes. No public page calls the Flask
+API. Brand and paywall constants live in `frontend/src/constants.js` (`SITE_NAME`,
+`MEMBERSHIP_URL`).
+
 Components in `frontend/src/components/`:
-- `Home.js` — landing page
-- `FightPredictor.js` — single fight prediction
-- `FightersPage.js` / `FightersDropdown.js` — fighter stats browser
-- `Bets.js` — betting recommendations
-- `Testing.js` — backtesting interface
-- `About.js`, `Navbar.js` — supporting pages/chrome
+- `Home.js` — landing page: headline stats, how it works, calibration proof, market table, membership CTA
+- `Results.js` — the full walk-forward report
+- `Bets.js` — bet log with Backtest / Live segments
+- `Methodology.js` — pipeline explainer
+- `Join.js` — membership page
+- `Navbar.js`, `Footer.js`, `StatTile.js`, `ScrollToTop.js` — chrome
+- `charts/` — recharts wrappers: `CalibrationChart`, `MonthlyAccuracyChart`, `BankrollChart`, shared `chartTheme`
+- `FightersPage.js` / `FightersDropdown.js` — unrouted legacy components
 
 ## Dependencies
 
