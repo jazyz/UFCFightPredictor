@@ -11,6 +11,7 @@ module.exports = {
         muted: "#7c7a72",
         hairline: "rgba(255,255,255,0.10)",
         accent: "#e8362b",
+        "accent-hover": "#f04e43",
         up: "#3ccb7f",
         down: "#ef6b62",
       },

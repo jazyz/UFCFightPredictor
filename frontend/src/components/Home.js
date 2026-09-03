@@ -18,7 +18,7 @@ const CtaButton = ({ children }) => (
     href={MEMBERSHIP_URL}
     target="_blank"
     rel="noreferrer"
-    className="inline-block rounded-md bg-accent px-6 py-3 text-base font-semibold text-white hover:bg-[#f04e43]"
+    className="inline-block rounded-md bg-accent px-6 py-3 text-base font-semibold text-white hover:bg-accent-hover"
   >
     {children}
   </a>

@@ -28,7 +28,8 @@ export default function Methodology({ data }) {
         <p>
           Fight-level statistics are scraped from ufcstats.com: significant strikes by target and position,
           takedowns, submission attempts, reversals, control time, knockdowns, method and round of finish.
-          Debut fighters have no history, so they are skipped rather than guessed.
+          Both fighters need at least two prior UFC bouts on record; debutants and anyone with less history
+          are skipped rather than guessed.
         </p>
         <p>
           The cleaning step drops women's bouts, so the model never trains on or predicts them. Widening
@@ -52,8 +53,9 @@ export default function Methodology({ data }) {
       <Section eyebrow="Model" title="A five-model LightGBM ensemble">
         <p>
           Five gradient-boosted tree models, each with its own Optuna-tuned hyperparameters, are averaged at
-          inference. Training data is mirrored so that swapping the red and blue corners flips the answer
-          exactly, and correlated features are pruned in pairs so the mirror stays intact.
+          inference. Training data is mirrored so the model sees every fight from both corners, correlated
+          features are pruned in pairs so the mirror stays intact, and every published probability averages
+          both orientations of the bout, so which fighter is listed first does not tip the answer.
         </p>
         <p>
           The output is a win probability. Judged on {metrics.n} out-of-sample fights it scores{" "}

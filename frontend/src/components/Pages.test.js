@@ -11,6 +11,8 @@ test("methodology explains the pipeline and links the source", () => {
   expect(screen.getByText(/five-model LightGBM/i)).toBeInTheDocument();
   expect(screen.getByText(/women's bouts/i)).toBeInTheDocument();
   expect(screen.getByRole("link", { name: /GitHub/ })).toHaveAttribute("href", GITHUB_URL);
+  expect(screen.getByText(/at least two prior UFC bouts/)).toBeInTheDocument();
+  expect(screen.getByText(/averages both orientations/)).toBeInTheDocument();
 });
 
 test("join page sends members to the paywall", () => {
