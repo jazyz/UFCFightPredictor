@@ -114,7 +114,11 @@ for column in headers:
 feature_list.extend(header_features)
 
 with app.app_context():
-    for fighter in all_fighters:
+    # sorted(): set iteration order varies with PYTHONHASHSEED, and this loop fixes the
+    # insertion order of fighter_stats, which is the order both exports are written in.
+    # Unsorted, every run rewrote data/detailed_fighter_stats.csv and
+    # data/fighter_stats_readable.txt in a different order and left the repo dirty.
+    for fighter in sorted(all_fighters):
         fighter_stats[fighter] = {}
         for feature in feature_list:
             fighter_stats[fighter][feature]=0

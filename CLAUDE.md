@@ -83,10 +83,29 @@ ls -t logs/publish_site_*.log | head -1 | xargs cat  # Latest site publish log
 ```
 
 The launchd job runs `run_scheduled.sh`, which runs `auto_retrain.py` and then, only if
-that succeeded, `publish_site.py`, both with `.venv/bin/python` rather than the shell's
-default interpreter. If a dependency is importable in your shell but the scheduled run
-fails, check `.venv` first. The push uses the `origin` SSH remote, so the launchd session
-needs a working key (check `ssh -T git@github.com` once from a fresh login).
+that succeeded, `publish_site.py`. launchd starts with a minimal PATH, so the script
+resolves the interpreter explicitly rather than trusting `python3` (which would find
+`/usr/bin/python3` and none of the deps): `$UFC_PYTHON`, then `.venv/bin/python`, then a
+pinned Anaconda interpreter as a last resort, taking the first that can import the pipeline
+packages. `.venv` is the one that should win — it is the isolated environment the scheduled
+retrain trains in, so an unrelated `conda install` cannot shift the library versions under
+it. If no candidate imports, the script exits 1 with the reason rather than running the
+pipeline against a broken environment.
+
+Rebuild `.venv` with:
+
+```bash
+/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt     # then: .venv/bin/pip install pytest
+```
+
+The push uses the `origin` SSH remote, so the launchd session needs a working key (check
+`ssh -T git@github.com` once from a fresh login); the key at `~/.ssh/id_ed25519` is
+unencrypted and pinned in `~/.ssh/config`, so the push works without an ssh-agent.
+
+**A scheduled run with no new events never reaches training.** `auto_retrain.py` stops
+after step 1 when the scrape returns 0 fights, which is the common case between events. To
+exercise the train-and-validate path on demand, use `--skip-scrape`.
 
 ## Architecture
 
@@ -161,7 +180,12 @@ moving averages (recent fights weighted higher), career totals. Features for a f
 only bouts that preceded it, so there is no lookahead.
 
 `process_fights_alpha.py` chooses each fight's red/blue orientation with `random.choice`,
-so it is **not reproducible unless seeded**. `auto_retrain.py` seeds it at 42.
+so it is **not reproducible unless seeded**. It seeds itself at 42 (line 7) and
+`auto_retrain.py` seeds it again through its runner; `data/detailed_fights.csv` is
+byte-identical across runs as a result. The two fighter-stat exports are ordered by
+`sorted(all_fighters)` for the same reason — set iteration order follows `PYTHONHASHSEED`,
+and without the sort every run rewrote both files in a new order and left the repo dirty
+after each scheduled retrain.
 
 ### Red/Blue symmetry is a hard requirement
 Training augments every row with a Red↔Blue-swapped copy, so the retained feature set must
@@ -204,8 +228,10 @@ Any step that fails, or produces nothing, exits non-zero.
   no history.
 - `Time Format` and `Details` are empty for every row: ufcstats labels them differently and
   the original scraper never captured them. New rows match this on purpose.
-- The `shap` block in `ml_ensemble.py` is optional diagnostics — `shap` is not in
-  `requirements.txt` and `summary_plot` blocks on render, so it is skipped when absent.
+- The `shap` block in `ml_ensemble.py` is optional diagnostics, guarded by a try/except so
+  a shap-less environment skips it. It *is* pinned in `requirements.txt` and installed in
+  `.venv`, so the block does run on a scheduled retrain; `summary_plot` is called with
+  `show=False` and `auto_retrain.py` forces `MPLBACKEND=Agg`, so nothing blocks on a render.
 
 ### Leakage fixes to preserve
 Several are load-bearing and easy to undo by accident:

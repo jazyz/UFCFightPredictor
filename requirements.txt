@@ -11,6 +11,10 @@ joblib==1.3.2
 matplotlib==3.7.2
 optuna==3.5.0
 shap==0.43.0
-# used only by ml_alpha_RL.py (written against the legacy gym API)
-gym==0.21.0
-stable-baselines3==1.8.0
+# Used only by ml_alpha_RL.py, which is not part of the pipeline. gym 0.21 predates
+# PEP 517 metadata rules and its build fails on modern setuptools ("'extras_require'
+# must be a dictionary ... of strings"), and stable-baselines3 1.8.0 pins gym==0.21,
+# so neither installs on Python 3.11. Both are deliberately absent from .venv; install
+# them into a separate Python 3.9 environment if you ever need the RL script.
+# gym==0.21.0
+# stable-baselines3==1.8.0
