@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kalshi UFC Worked Examples</title>
+<style>
+  @page { size: letter; margin: 0.75in 0.8in 0.85in 0.8in; }
+  :root {
+    --ink: #1c1c1a; --muted: #6a6a64; --rule: #d9d7d0; --accent: #1a6a5b;
+    --pos: #1f7a4d; --neg: #b3261e; --tint: #eef2f0; --amber-bg: #fbf1dc; --amber: #d99a2b;
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --serif: Charter, "Iowan Old Style", Georgia, serif;
+    --mono: Menlo, "SF Mono", Consolas, monospace;
+  }
+  html, body { margin: 0; padding: 0; background: #fff; color: var(--ink); }
+  body { font-family: var(--serif); font-size: 11pt; line-height: 1.5; padding-bottom: 18pt; }
+  h1, h2, h3, h4 { font-family: var(--sans); font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+  h1 { font-size: 30pt; line-height: 1.05; letter-spacing: -0.025em; margin: 6pt 0 12pt; }
+  h2 { font-size: 19pt; margin: 0 0 8pt; }
+  h3 { font-size: 12.5pt; margin: 18pt 0 6pt; }
+  h4 { font-size: 10.5pt; margin: 14pt 0 4pt; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+  p { margin: 0 0 9pt; }
+  .eyebrow { font-family: var(--sans); font-size: 8.5pt; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8pt; }
+  .lede { font-size: 13.5pt; line-height: 1.4; color: #333; margin-bottom: 10pt; }
+  .meta { font-family: var(--mono); font-size: 8pt; color: var(--muted); margin-bottom: 18pt; }
+  .callout { background: var(--tint); border-left: 3px solid var(--accent); padding: 10pt 14pt; margin: 12pt 0 14pt; break-inside: avoid; }
+  .callout.amber { background: var(--amber-bg); border-left-color: var(--amber); }
+  .callout .head { font-family: var(--sans); font-weight: 700; font-size: 11.5pt; margin-bottom: 4pt; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout ul { margin: 4pt 0 0; padding-left: 16pt; }
+  .callout li { margin-bottom: 3pt; }
+  .callout li:last-child { margin-bottom: 0; }
+  hr.sep { border: 0; border-top: 1px solid var(--rule); margin: 22pt 0 16pt; }
+  table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 8.6pt; line-height: 1.35; margin: 6pt 0 10pt; }
+  table { break-inside: avoid; }
+  .vocab, .setup { break-inside: auto; }
+  tr { break-inside: avoid; }
+  h2, h3, h4, .route-head, .eyebrow { break-after: avoid; }
+  p:has(+ table), p:has(+ ol) { break-after: avoid; }
+  th { text-align: left; font-weight: 400; color: var(--muted); border-bottom: 1px solid var(--rule); padding: 4pt 8pt 4pt 0; }
+  td { vertical-align: top; border-bottom: 1px solid var(--rule); padding: 5pt 8pt 5pt 0; }
+  td:last-child, th:last-child { padding-right: 0; }
+  td.n, th.n { text-align: right; white-space: nowrap; }
+  td.total { font-weight: 700; }
+  .pos { color: var(--pos); } .neg { color: var(--neg); }
+  .cap { font-family: var(--sans); font-size: 8.5pt; color: var(--muted); margin: 8pt 0 0; }
+  .note { font-family: var(--sans); font-size: 8.5pt; color: var(--muted); margin: -4pt 0 10pt; }
+  .vocab td:first-child { font-family: var(--sans); font-weight: 700; font-size: 9pt; width: 22%; color: var(--ink); }
+  .vocab td { font-family: var(--serif); font-size: 10pt; }
+  .setup td:first-child { font-family: var(--sans); font-weight: 700; font-size: 9pt; width: 26%; }
+  .setup td { font-family: var(--serif); font-size: 10.2pt; }
+  ol.steps { counter-reset: step; list-style: none; padding: 0; margin: 4pt 0 10pt; }
+  ol.steps li { counter-increment: step; position: relative; padding-left: 30pt; margin-bottom: 7pt; }
+  ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 1pt; width: 19pt; height: 19pt; border-radius: 50%; background: var(--ink); color: #fff; font-family: var(--sans); font-weight: 700; font-size: 9pt; text-align: center; line-height: 19pt; }
+  ol.steps li b { font-family: var(--sans); font-size: 10pt; }
+  .route { break-before: page; }
+  .route-head { display: flex; align-items: baseline; gap: 12pt; margin-bottom: 4pt; }
+  .route-num { font-family: var(--sans); font-size: 30pt; font-weight: 700; color: var(--muted); line-height: 1; }
+  .route-def { font-size: 12.5pt; color: #3a3a36; line-height: 1.4; margin: 4pt 0 10pt; }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--rule); margin: 10pt 0 14pt; break-inside: avoid; }
+  .card { padding: 9pt 10pt; border-right: 1px solid var(--rule); background: #f7f6f2; }
+  .card:last-child { border-right: 0; }
+  .card .k { font-family: var(--sans); font-size: 7.5pt; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 5pt; }
+  .card .v { font-family: var(--sans); font-size: 9pt; line-height: 1.4; }
+  .verdict { font-family: var(--sans); font-weight: 700; }
+  .keep { break-inside: avoid; }
+  .route:last-of-type td { padding: 4pt 8pt 4pt 0; }
+  .route:last-of-type h3 { margin-top: 10pt; }
+  .route:last-of-type .callout { margin: 8pt 0 8pt; padding: 8pt 14pt; }
+  .small { font-size: 9.2pt; color: #444; }
+</style>
+</head>
+<body>
+
+<div class="eyebrow">Worked examples · UFC fight-winner contracts on Kalshi</div>
+<h1>Kalshi UFC Worked Examples</h1>
+<p class="lede">One fight, four ways to trade it. Each route is walked through as a numbered sequence of actions and a dollar ledger, first the version where it pays, then the version where it does not, and the operating rule that separates the two.</p>
+<p class="meta">Prepared 2026-09-03 · companion to the Kalshi UFC Playbook of 2026-09-02 · every fee and edge figure follows the playbook's fee schedule and its replay of 175 tier-2 walk-forward bets, 2024-01 → 2026-07</p>
+
+<div class="callout">
+  <div class="head">What this document is</div>
+  <p>The playbook says how much edge each route needs and why. This document shows what each route looks like as a trade: what you read, what you compute, what order you send, what happens next, and what the account looks like afterwards. Every example uses the same fight and the same 100 contracts so the four routes can be compared line by line. Nothing here is a new result. It is the playbook's arithmetic applied to one concrete fight.</p>
+</div>
+
+<h2>Vocabulary you need</h2>
+<table class="vocab">
+  <tr><td>Contract</td><td>A Kalshi "A wins" contract pays $1 if Fighter A wins and $0 if not. The price is quoted in cents and doubles as a probability: a contract trading at 61¢ says the market thinks A wins 61% of the time.</td></tr>
+  <tr><td>YES and NO</td><td>Buying NO at 39¢ is the same trade as selling YES at 61¢. Everything below is stated in YES prices on Fighter A.</td></tr>
+  <tr><td>Bid, offer, mid</td><td>The bid is the highest price anyone will pay right now. The offer is the lowest price anyone will sell at. A "60/61" book has a bid of 60¢ and an offer of 61¢, one cent wide, with a mid of 60.5¢. Kalshi's UFC books are typically one cent wide.</td></tr>
+  <tr><td>Taker and maker</td><td>A taker crosses the spread and trades immediately at the other side's price. A maker rests an order at a price and waits for someone to cross to it. On Kalshi's UFC markets the taker pays a fee and the maker pays nothing.</td></tr>
+  <tr><td>Fee</td><td>0.07 × price × (1 − price) per contract, charged whenever a trade happens, so once on the way in and again on the way out if you sell early. About 1.7¢ per contract near even money, less toward the extremes. Nothing is charged at settlement.</td></tr>
+  <tr><td>Consensus</td><td>The de-vigged probability from the sharp sportsbooks (Pinnacle, Circa). It is the best available estimate of the truth at any instant and the benchmark every position is marked against.</td></tr>
+  <tr><td>Shrunk fair</td><td>The model's probability pulled toward the market by the regression slope, currently about 0.6. Model 73% against a market of 60% is a 13-point gap; shrunk, that is 7.8 points, so the shrunk fair is about 68¢. The raw 73 is never used as a price.</td></tr>
+  <tr><td>Edge and the gate</td><td>Shrunk fair minus the price you would pay, in points. The playbook's break-even edge: about 2.7 points to take at the offer, about 1.7 to trade at fair, and −1.0 to rest a bid one cent inside (a maker is paid to trade).</td></tr>
+  <tr><td>IOC, GTC, post-only</td><td>Immediate-or-cancel fills whatever it can right now and cancels the rest. Good-till-cancelled rests until filled, cancelled, or the expiry you attach. Post-only cancels the order if it would cross the spread and trade as a take.</td></tr>
+  <tr><td>Flatten, hedge</td><td>Flatten means selling the whole position back to the market before the fight. Hedging means selling part of it.</td></tr>
+  <tr><td>CLV</td><td>Closing-line value: the Kalshi mid a minute before the walkout, minus the price you paid. It converges about a hundred times faster than profit and loss, so it is how you find out whether a route is working before the season is over.</td></tr>
+</table>
+
+<h2 style="margin-top:18pt">The fight every example uses</h2>
+<table class="setup">
+  <tr><td>Fight</td><td>Fighter A, the favourite, against Fighter B, on the prelims of a Saturday card. The names are placeholders.</td></tr>
+  <tr><td>Kalshi book on "A wins"</td><td>Bid 60¢, offer 61¢, mid 60.5¢. Thousands of contracts resting at each.</td></tr>
+  <tr><td>Sharp consensus</td><td>A at 60%, de-vigged.</td></tr>
+  <tr><td>Our model</td><td>A at 73% raw. Shrunk by 0.6, the fair price is 68¢.</td></tr>
+  <tr><td>Size</td><td>100 contracts, one dollar of notional each. Real sizing comes from the Kelly rule at the shrunk edge; 100 keeps the arithmetic readable, and every dollar figure below scales linearly with size. A prelim's best bid alone holds several thousand contracts three days out.</td></tr>
+  <tr><td>Fee at these prices</td><td>1.67¢ per contract at 61¢, 1.68¢ at 60¢, about 1.74¢ at 54¢ to 56¢, 1.55¢ at 33¢. Per 100 contracts: $1.67, $1.68, $1.74, $1.55.</td></tr>
+</table>
+
+<div class="callout amber">
+  <div class="head">Read this before the ledgers</div>
+  <p>With Kelly sizing no single trade makes or loses a lot. A good trade on 100 contracts is worth about +$40 and a bad one about −$60. The large numbers in either direction come from one of two places: repeating the trade 175 times a season, or breaking one of the operating rules so that a single event hits every position at once. Each route's "goes wrong" section shows both.</p>
+</div>
+
+<!-- ROUTE 1 -->
+<section class="route">
+<div class="eyebrow">Route 1 of 4</div>
+<div class="route-head"><span class="route-num">1</span><h2>Taking: buy at the offer, now</h2></div>
+<p class="route-def">You believe the price is wrong, so you cross the spread the moment the model says so and hold to the bell. You pay for certainty of execution and you choose every timestamp yourself. This is the backtest, moved to Kalshi.</p>
+
+<div class="cards">
+  <div class="card"><div class="k">You earn</div><div class="v">The model's edge, net of costs. Realized across the 175 backtest bets: 7.7 points of hit rate, +7.9% per bet.</div></div>
+  <div class="card"><div class="k">You pay</div><div class="v">Half the spread plus the fee. About 2.25¢ at a 50¢ price, 1.6¢ at 80¢ or 20¢.</div></div>
+  <div class="card"><div class="k">Variance</div><div class="v">Outcome variance only. Per-bet standard deviation about 106% of stake. Eight points of ROI error on a 175-bet season.</div></div>
+  <div class="card"><div class="k">Ends it</div><div class="v">Betting the model's raw probability on long dogs. Under 40¢ the realized edge is below the cost of taking.</div></div>
+</div>
+
+<h3>Step by step</h3>
+<ol class="steps">
+  <li><b>Read the book.</b> The best offer on A is 61¢. The Kalshi mid, 60.5¢, sits within half a cent of the sharp consensus at 60. A gap above 3¢ between the two would be information, not opportunity, and would stop the trade here.</li>
+  <li><b>Compute the shrunk fair.</b> Model 73, consensus 60, gap 13. Multiply by the slope, 0.6, to get 7.8. Shrunk fair is 68¢.</li>
+  <li><b>Check the gate.</b> Edge is 68 − 61 = 7 points. Taking at the offer needs about 2.7 to break even. It passes.</li>
+  <li><b>Size it.</b> The Kelly count at the shrunk edge. Here, 100 contracts.</li>
+  <li><b>Send the order.</b> Limit buy, 100 YES at 61¢, time-in-force immediate-or-cancel, self-trade prevention on, a client order ID attached. Kalshi has no market order type; an aggressive limit with IOC is the taker's tool. If the book moved between your read and your order you fill partially or not at all, never at a worse price than 61.</li>
+  <li><b>It fills.</b> Cash out the door: $61.00 for the contracts plus $1.67 in fee, $62.67 in total.</li>
+  <li><b>Hold to settlement.</b> Never sell before the fight unless route 4 says the world changed.</li>
+  <li><b>Log the CLV.</b> Record the Kalshi mid a minute before the walkout, minus 61. This is the number that tells you within a season whether the model's edge is real.</li>
+</ol>
+
+<h3>When it goes right</h3>
+<p>A wins by decision. Every contract settles at $1.</p>
+<table>
+  <tr><th>Line</th><th class="n">Dollars</th></tr>
+  <tr><td>Buy 100 YES at 61¢</td><td class="n neg">−61.00</td></tr>
+  <tr><td>Taker fee, 0.07 × 0.61 × 0.39 × 100</td><td class="n neg">−1.67</td></tr>
+  <tr><td>A wins, 100 contracts settle at $1</td><td class="n pos">+100.00</td></tr>
+  <tr><td class="total">Net</td><td class="n pos total">+37.33</td></tr>
+</table>
+<p>That is about 60% on the stake. It worked because the model was right about the fight and its 7 points of real edge covered about 2.7 points of cost. Nothing else could have gone wrong on this route: the fill was certain and the only variance was the fight itself.</p>
+<p><b>At season scale.</b> The playbook's replay of the 175 backtest bets at the offer plus fee comes to about +7.9% per bet. At 100 contracts a trade that is roughly $8,750 turned over and roughly +$690 kept. Ten times the size is ten times the number, and the books hold it.</p>
+
+<h3>When it goes wrong, the ordinary way</h3>
+<p>A gets caught in round one. Every contract settles at $0. Net −$62.67, the whole stake plus the fee. This is the outcome variance Kelly already priced when it chose 100 contracts. Seventy percent of the model's bets are near even money or dogs, so each one is close to a coin flip paying about one to one. Nothing on the execution side changes that.</p>
+
+<h3>When it goes wrong, the way that ends the route</h3>
+<p>A different fight. The model says the underdog D wins 45%. The sharp consensus says 32%. Kalshi's book on D is 32/33.</p>
+<ol class="steps">
+  <li><b>Skip the shrink.</b> Treat the raw 45 as fair. Edge against the 33¢ offer looks like 12 points. The gate passes by a mile.</li>
+  <li><b>Size at the raw number.</b> Kelly at 45% returns a full-size bet. At the real number, below, it returns zero.</li>
+  <li><b>Buy 100 D at 33¢.</b> $33.00 plus a fee of 0.07 × 0.33 × 0.67 × 100 = $1.55. Out the door: $34.55.</li>
+  <li><b>What is actually true.</b> Across the backtest, picks priced under 40¢ had a realized edge of 1.2 points, not 13. D wins about one time in three, roughly what the market said.</li>
+</ol>
+<table>
+  <tr><th>Outcome</th><th class="n">Dollars</th></tr>
+  <tr><td>D wins, about one time in three</td><td class="n pos">+65.45</td></tr>
+  <tr><td>D loses, about two times in three</td><td class="n neg">−34.55</td></tr>
+  <tr><td class="total">Expected value per trade, at a true 33.2%</td><td class="n neg total">−1.35</td></tr>
+  <tr><td>Playbook's figure for this band, net if taken</td><td class="n neg">−1.4 pts</td></tr>
+  <tr><td>Season of 43 such bets, expected</td><td class="n neg">about −58</td></tr>
+  <tr><td>Six straight losses, which dogs produce</td><td class="n neg">−207.30</td></tr>
+</table>
+<p>The bleed is slow. The variance is not: dogs lose in streaks, and through the whole streak the model keeps showing 45% on each one. The model cannot show you this. Only the settlement tally or the CLV log can, and that is why step 8 of the good version exists.</p>
+
+<div class="callout keep">
+  <div class="head">The rule that prevents it</div>
+  <p>Regress outcomes on the model-minus-market gap and use the fitted slope as the shrink, refit at every retrain. Under 40¢ the shrunk edge falls below the taker cost, so the route simply does not fire there. The 5-point gate does its job on average; the shrink is what makes it do its job where the model is most confident.</p>
+</div>
+</section>
+
+<!-- ROUTE 2 -->
+<section class="route">
+<div class="eyebrow">Route 2 of 4</div>
+<div class="route-head"><span class="route-num">2</span><h2>Posting one side: rest a bid, let them come to you</h2></div>
+<p class="route-def">The same directional view as route 1, executed by resting a bid on the side the model likes and letting someone else cross to you. You give up control of timing and of whether you fill at all, to save about three cents a contract. On this model's edge that is roughly a 40% raise.</p>
+
+<div class="cards">
+  <div class="card"><div class="k">You earn</div><div class="v">The model's edge plus half the spread, with no fee. Upper bound on the 175 bets: +16.7% per bet if every order filled one cent inside.</div></div>
+  <div class="card"><div class="k">You pay</div><div class="v">Nothing in cash. You pay in fills you did not get, and in fills you got because news went against you.</div></div>
+  <div class="card"><div class="k">Variance</div><div class="v">Outcome variance unchanged, fill variance added. Fewer bets a season, each one cheaper. Adverse selection shows up in CLV, not in fees.</div></div>
+  <div class="card"><div class="k">Ends it</div><div class="v">A resting order left unattended through a weigh-in miss or a late replacement.</div></div>
+</div>
+
+<h3>Step by step</h3>
+<ol class="steps">
+  <li><b>Same read, same fair, same gate.</b> Shrunk fair 68¢, best offer 61¢, 7 points of edge. Do not lift the offer.</li>
+  <li><b>Pick the price.</b> Post at the best bid, 60¢, if the queue there is short. If the queue is deep, post one cent inside to jump it. Here the bid goes at 60¢.</li>
+  <li><b>Send the order.</b> Limit buy, 100 YES at 60¢, post-only, good-till-cancelled, expiration set 30 minutes before the scheduled walkout. Post-only means that if the book moves before the order lands and 60 would cross, the order cancels instead of trading as a take. The expiry exists because an order without one can fill during round one at a price that has nothing to do with the pre-fight model.</li>
+  <li><b>Set two triggers before you walk away.</b> First, cancel the bid if the sharp consensus moves more than a set number of cents against it. Second, a watchdog process separate from the trader that calls Kalshi's cancel-all endpoint if the trader's heartbeat stops. Kalshi has no cancel-on-disconnect; you build it.</li>
+  <li><b>Wait.</b> Three things can happen. The bid fills on uninformed flow, which is the good case. The bid never fills, which is a decision point. The bid fills because the market moved through it on news, which is route 4.</li>
+  <li><b>If unfilled at expiry.</b> Either lift the offer late, which turns the trade into route 1, or skip. The playbook's prior is that skipping loses money: the orders that never fill are the ones where the market kept moving toward the model, and those are the picks most likely to have been right. Test it by alternating.</li>
+  <li><b>Log CLV in two buckets.</b> Fills within an hour of posting, and fills later than that. If the late fills carry the negative CLV, tighten the expiry rather than the price.</li>
+</ol>
+
+<h3>When it goes right</h3>
+<p>Thursday evening a retail trader sells A into your bid, or equivalently buys NO at 40¢.</p>
+<table>
+  <tr><th>Line</th><th class="n">Dollars</th></tr>
+  <tr><td>Bid filled: buy 100 YES at 60¢</td><td class="n neg">−60.00</td></tr>
+  <tr><td>Maker fee on a UFC market</td><td class="n">0.00</td></tr>
+  <tr><td>A wins, 100 contracts settle at $1</td><td class="n pos">+100.00</td></tr>
+  <tr><td class="total">Net</td><td class="n pos total">+40.00</td></tr>
+  <tr><td>Versus taking at 61¢ plus fee</td><td class="n pos">+2.67 more</td></tr>
+</table>
+<p>The extra $2.67 per hundred contracts is 2.67 points of edge that cost nothing. All of it is spread and fee that someone else paid.</p>
+<p><b>At season scale.</b> The playbook's replay says resting at fair with no fee pays about +14.2% per bet against +7.9% for lifting the offer, with a ceiling of +16.7% if every order filled one cent inside. At 100 contracts that is roughly +$1,240 a season against +$690, if the fills come. The fill rate is the number nobody has measured yet.</p>
+
+<h3>When it goes wrong, the quiet way</h3>
+<p>Nobody sells to you. The order expires 30 minutes before the walkout. There is no cash loss, but if you skip the fight you have skipped the one where the market moved toward the model. Do this often and the season has fewer bets and a wider error bar, and the edge that was supposed to pay for the route walks out of the building unfilled.</p>
+
+<h3>When it goes wrong, the way that ends the route</h3>
+<ol class="steps">
+  <li><b>Friday morning weigh-in.</b> A misses weight by three pounds and looks drained on the scale.</li>
+  <li><b>The sharp books move first.</b> Within a minute Pinnacle drops A from 60% to 50%.</li>
+  <li><b>A bot with that feed acts.</b> It sells A into every stale bid on Kalshi. Yours is one of them. You are filled: 100 at 60¢.</li>
+  <li><b>You own a position at a price that is already wrong.</b> Fair is 50. You are down $10 on paper before a punch is thrown, and your model, which refreshes twice a week, still says 73.</li>
+  <li><b>The line keeps sliding.</b> News moves are rarely finished when you first see them. By the walkout A is 45%.</li>
+</ol>
+<table>
+  <tr><th>Choice</th><th class="n">Dollars</th></tr>
+  <tr><td>Paper mark at fill: 100 at 60 against a fair of 50</td><td class="n neg">−10.00</td></tr>
+  <tr><td>Flatten now: sell 100 at the 49¢ bid, fee $1.75</td><td class="n neg">−12.75 locked</td></tr>
+  <tr><td>Hold, A wins (45% likely)</td><td class="n pos">+40.00</td></tr>
+  <tr><td>Hold, A loses (55% likely)</td><td class="n neg">−60.00</td></tr>
+  <tr><td class="total">Hold, expected value at 45%</td><td class="n neg total">−15.00</td></tr>
+</table>
+<p>Flattening at −$12.75 beats holding at an expected −$15, and the news is not done moving. That is what route 4 is for. On one fight this is a bad bet, not a disaster. The disaster is the next paragraph.</p>
+<p><b>The version that loses a lot.</b> You posted bids on ten fights on the card, 100 contracts each. The laptop went to sleep on Friday night, so nothing could cancel. Two markets moved on news overnight, one weigh-in miss and one late replacement, and both bids filled at prices that were ten to fifteen points stale. The other eight filled at random. You wake up holding ten positions you did not choose, on one card, resolving within hours of each other. The playbook's clustered bootstrap is blunt about this: a bad card with ten positions is one bad bet wearing ten tickets.</p>
+<p class="small">The real-world reference is Minner against Nuerdanbieke in November 2022. The favourite went from −220 to −420 in the four hours before the fight on a camp leak, about 13 points of implied probability. A resting bid on Minner was 13 points wrong the moment it filled, and he lost in the first round.</p>
+
+<div class="callout keep">
+  <div class="head">The rule that prevents it</div>
+  <p>The defence is not a better model. It is three operational rules. Cancel every resting order when the sportsbook consensus moves more than a set number of cents against it, and reassess before reposting. Never leave orders resting when you cannot cancel them, which in practice means a heartbeat and a cancel-all watchdog. Size each order so that one full adverse fill is a normal bet, and hold total exposure per card to about three fights' worth.</p>
+</div>
+</section>
+
+<!-- ROUTE 3 -->
+<section class="route">
+<div class="eyebrow">Route 3 of 4</div>
+<div class="route-head"><span class="route-num">3</span><h2>Two-sided quoting: sell liquidity, not opinions</h2></div>
+<p class="route-def">Post a bid and an offer around a fair value and earn the spread from people who want to trade right now. This is a different business from the other three. The money comes from flow, not from being right about the fight, and the model is at most a small tilt on a fair value that has to come from somewhere faster.</p>
+
+<div class="cards">
+  <div class="card"><div class="k">You earn</div><div class="v">Half the spread per fill. On a one-cent book that is 0.5¢ per contract, before adverse selection.</div></div>
+  <div class="card"><div class="k">You pay</div><div class="v">Every fill that arrives because the price is about to move. One 5¢ move against a stale quote costs ten spread captures.</div></div>
+  <div class="card"><div class="k">Variance</div><div class="v">Small steady spread income, lumpy adverse-selection losses, and binary outcome variance on whatever inventory reaches the fight.</div></div>
+  <div class="card"><div class="k">Ends it</div><div class="v">Quoting off the model instead of the live sharp consensus. The market is a better fair value than the model at any single instant.</div></div>
+</div>
+
+<h3>Step by step</h3>
+<ol class="steps">
+  <li><b>Choose the fair value.</b> It is the live sharp consensus, 60.5¢, the mid. It is not the model's 68. A market maker needs a fair value that is right about the next trade, not about the fight.</li>
+  <li><b>Apply the model as a tilt, if at all.</b> Shift both quotes toward A by a fraction of the shrunk edge, so inventory accumulates in the direction you would have bet anyway. On a one-cent book the tilt is at most "sit at 60/61 rather than 59/60."</li>
+  <li><b>Post both sides.</b> Bid 100 YES at 60¢ and offer 100 YES at 61¢, both post-only.</li>
+  <li><b>Set the inventory cap before the first fill.</b> The cap per fight is the route-1 Kelly stake, here 100 contracts. No route may exceed it, including this one's accidental accumulation.</li>
+  <li><b>When one side fills, lean away from it.</b> If the bid fills you are long 100. Pull or lower the bid and leave the offer standing, so the next fill flattens you rather than doubling you.</li>
+  <li><b>Refresh on every consensus move.</b> If your feed is slower than the other makers', stop quoting, because they will pull before you do and your stale quote will be the one that trades.</li>
+  <li><b>At the walkout, be flat.</b> Or accept that whatever you hold is a route-1 bet, and require it to pass the route-1 edge test at its actual cost.</li>
+</ol>
+
+<h3>When it goes right</h3>
+<p>One round trip, as it happens over an afternoon.</p>
+<table>
+  <tr><th>Line</th><th class="n">Dollars</th></tr>
+  <tr><td>A retail buyer lifts your offer: you sell 100 YES at 61¢</td><td class="n pos">+61.00</td></tr>
+  <tr><td>A retail seller hits your bid: you buy 100 YES at 60¢</td><td class="n neg">−60.00</td></tr>
+  <tr><td>Maker fees</td><td class="n">0.00</td></tr>
+  <tr><td class="total">Net, flat, no fight risk</td><td class="n pos total">+1.00</td></tr>
+  <tr><td>50 round trips over fight week on a main event</td><td class="n pos">+50.00</td></tr>
+  <tr><td>Same, quoting 1,000 a side</td><td class="n pos">+500.00</td></tr>
+</table>
+<p>Half a cent per fill, one cent per round trip. The flow exists: a main event trades tens of millions of contracts, most of it on fight day and during the fight, and books are deep within a few cents of the touch three days out. You were paid for being there, not for being right.</p>
+
+<h3>When it goes wrong, the way that ends the route</h3>
+<p>Your fair value is slower than the other makers'. The same weigh-in miss as route 2, seen from the maker's side.</p>
+<ol class="steps">
+  <li><b>Pinnacle drops A from 60 to 50.</b></li>
+  <li><b>The institutional makers see it in under a second.</b> They stream the full level-two book through a low-latency network and two of them are the sportsbook consensus. They pull their bids at 60 and 59.</li>
+  <li><b>Your bid at 60 is now the best bid on the book.</b> They hit it. 100 filled at 60 against a fair of 50.</li>
+  <li><b>Your refresh arrives a few seconds later.</b> Too late. The quote that outlived its author is the one that got filled at the worst moment.</li>
+</ol>
+<table>
+  <tr><th>Line</th><th class="n">Dollars</th></tr>
+  <tr><td>Stale fill: 100 at 60 against a fair of 50</td><td class="n neg">−10.00</td></tr>
+  <tr><td>In spread income, that is</td><td class="n">20 round trips, about the week</td></tr>
+  <tr><td>Break-even condition at a 0.5¢ half-spread</td><td class="n">fewer than 1 fill in 10 followed by a 5¢ adverse move</td></tr>
+</table>
+<p>Nobody has measured that one-in-ten number for Kalshi's UFC books. It is the first thing the book logger in the playbook's plan is for.</p>
+<p><b>The version that loses a lot.</b> Inventory drift. You quote all twelve fights on the card at 1,000 a side with no inventory cap. Retail flow on fight night is one-sided, mostly people buying the favourite, so your offer on A keeps getting lifted while your bid never fills, or on another fight the reverse. Say on A you keep buying and never selling, reposting after every fill. By the walkout you are long 800 A at 60¢. That is a $480 position you never sized and never edge-tested. A maker long 800 contracts at the walkout has not made a market. They have made a bet with all of route 1's variance and none of its edge selection.</p>
+<table>
+  <tr><th>Line</th><th class="n">Dollars</th></tr>
+  <tr><td>Fight week's spread income on this market</td><td class="n pos">+50.00</td></tr>
+  <tr><td>Long 800 A at 60¢, A loses by knockout</td><td class="n neg">−480.00</td></tr>
+  <tr><td class="total">Net</td><td class="n neg total">−430.00</td></tr>
+</table>
+
+<div class="callout keep">
+  <div class="head">The playbook's verdict, and the rule</div>
+  <p><span class="verdict">Not with this model as the engine, and not without a live consensus feed.</span> Depth is not the obstacle. The obstacle is that the other side of a one-cent book on every fight is Susquehanna, Jump, Flutter and DraftKings, quoting off a consensus this desk does not have, under a program that requires them to be there 98% of every hour. If the logger shows Kalshi mids trailing the sharp books by minutes rather than seconds, route 3 becomes a latency business in which the model contributes a tilt. Until then: consensus as fair, an inventory cap equal to the route-1 stake, and treat everything carried into the fight as a route-1 bet.</p>
+</div>
+</section>
+
+<!-- ROUTE 4 -->
+<section class="route">
+<div class="eyebrow">Route 4 of 4</div>
+<div class="route-head"><span class="route-num">4</span><h2>Bad fills and inventory: what to do when a position goes wrong early</h2></div>
+<p class="route-def">Not a way to make money. Every route above sometimes leaves you with a position that went wrong before the fight. The question is never whether the price moved against you. It is whether the world changed. Exit on information, hold on noise, and know which one you are looking at before the order is live.</p>
+
+<div class="cards">
+  <div class="card"><div class="k">You earn</div><div class="v">Nothing directly. You keep what the other routes made by not converting paper drawdowns into realized ones.</div></div>
+  <div class="card"><div class="k">You pay</div><div class="v">A round trip to flatten: cross one cent plus the fee, about 2.75¢ at mid prices. Hedging the other side costs the same again.</div></div>
+  <div class="card"><div class="k">Variance</div><div class="v">Flattening trades outcome variance for a certain small loss. It lowers the season's variance, and if done on noise, its mean.</div></div>
+  <div class="card"><div class="k">Ends it</div><div class="v">Flattening on price moves. The model's whole thesis is that some price moves are noise; selling into them refunds the edge.</div></div>
+</div>
+
+<h3>Step by step: the decision procedure</h3>
+<p>The position, from the playbook's own table: you bought 100 YES on A at 60¢. The Kalshi mid is now 55¢, with a bid at 54 and an offer at 56.</p>
+<ol class="steps">
+  <li><b>Mark to the consensus, not to Kalshi.</b> Kalshi's mid is what you can transact at, not what the position is worth. Before anything else, look at what Pinnacle says.</li>
+  <li><b>Classify the move.</b> There are three kinds. <b>News:</b> a weigh-in miss, an injury report, a replacement opponent, a cancelled bout. The fight you modelled no longer exists and the model's probability is void; fair is whatever the sharp books say. <b>Sharp money:</b> the consensus moved several cents with no public news, so someone knows something; mark to the new consensus, re-shrink the model's edge against it, and hold only if the shrunk edge still clears the gate. <b>Noise:</b> Kalshi drifted a cent or two on retail flow while the sportsbooks did not move. Nothing happened.</li>
+  <li><b>Price the four choices.</b> The table below.</li>
+  <li><b>Act, then log it.</b> Record the decision together with the consensus at that moment. Six months from now you will want to know whether your holds beat your flattens, and that is only knowable if both were recorded against the same benchmark.</li>
+</ol>
+<table>
+  <tr><th>Choice</th><th class="n">Cash cost now</th><th>Position at the fight</th><th>Right when</th></tr>
+  <tr><td>Hold</td><td class="n">0</td><td>100 YES at 60. Wins $40 or loses $60.</td><td>The move was noise, or your shrunk fair is still above 55 plus cost.</td></tr>
+  <tr><td>Flatten: sell 100 at 54, pay fee</td><td class="n neg">−6.00 − 1.74 = −7.74</td><td>Flat. The loss is final.</td><td>The move was news and your fair is now at or below the market.</td></tr>
+  <tr><td>Hedge half: sell 50 at 54, pay fee</td><td class="n neg">−3.00 − 0.87 = −3.87</td><td>50 YES at 60. Wins $20 or loses $30.</td><td>You are unsure, and the size rather than the direction is the mistake.</td></tr>
+  <tr><td>Add: buy 50 more at 56, pay fee</td><td class="n neg">−0.86 fee</td><td>150 YES at an average of 58.7¢. Wins $61 or loses $89.</td><td>The sportsbooks did not move, the shrunk edge grew, and the per-fight cap allows it.</td></tr>
+</table>
+<p class="note">The playbook computes these fees at the 55¢ mid and shows −$7.70, −$3.90 and −$0.90. Here they are computed at the trade price. Hedging always locks in a worse expected value than the better of hold or flatten; it is worth paying for only when the position size, not its direction, is the mistake.</p>
+
+<h3>When it goes right, case one: hold on noise</h3>
+<ol class="steps">
+  <li><b>Thursday night the Kalshi mid drifts from 60.5 to 55 on retail selling.</b></li>
+  <li><b>Pinnacle still shows A at 60.</b> Classification: noise. Nothing happened.</li>
+  <li><b>Hold.</b> If the per-fight cap allows, this is the moment route 2 wants to post more: add 50 at 56.</li>
+</ol>
+<table>
+  <tr><th>Outcome</th><th class="n">Dollars</th></tr>
+  <tr><td>Held 100 at 60, A wins</td><td class="n pos">+40.00</td></tr>
+  <tr><td>Added 50 at 56 for $28.86 with fee, A wins: 150 contracts, $88.86 in</td><td class="n pos">+61.14</td></tr>
+  <tr><td>Had you flattened at 54 instead</td><td class="n neg">−7.74 locked, and the winner sold</td></tr>
+</table>
+
+<h3>When it goes right, case two: flatten on news</h3>
+<ol class="steps">
+  <li><b>Friday morning A misses weight.</b> Pinnacle drops A to 45.</li>
+  <li><b>The fight you modelled is gone.</b> Classification: news. The model's 68 is void; fair is 45 and falling.</li>
+  <li><b>Sell 100 at the 54 bid.</b></li>
+</ol>
+<table>
+  <tr><th>Line</th><th class="n">Dollars</th></tr>
+  <tr><td>Sell 100 YES at 54¢</td><td class="n pos">+54.00</td></tr>
+  <tr><td>Taker fee, 0.07 × 0.54 × 0.46 × 100</td><td class="n neg">−1.74</td></tr>
+  <tr><td class="total">Loss locked, against $60 paid</td><td class="n neg total">−7.74</td></tr>
+  <tr><td>Had you held, and a drained A lost</td><td class="n neg">−60.00</td></tr>
+  <tr><td class="total">Kept by acting</td><td class="n pos total">52.26</td></tr>
+</table>
+<p>The route earned nothing. It kept fifty-two dollars that route 1 or 2 had already put at risk.</p>
+
+<h3>When it goes wrong, case one: flatten on every move</h3>
+<ol class="steps">
+  <li><b>You adopt a rule: sell if the mid drops five cents.</b> It feels like discipline.</li>
+  <li><b>Every fight where the mid drifts against you gets sold at about −$7.74.</b></li>
+  <li><b>But the mid drifting against you is exactly when the market disagrees with the model.</b> That is the only time the model was ever paid. You are systematically selling the fights the model was built to win.</li>
+</ol>
+<table>
+  <tr><th>Line</th><th class="n">Dollars</th></tr>
+  <tr><td>One flatten</td><td class="n neg">−7.74</td></tr>
+  <tr><td>A third of a 175-bet season, 58 flattens</td><td class="n neg">−449</td></tr>
+  <tr><td>Plus the winners among those 58, sold before they paid</td><td class="n neg">roughly the model's whole edge</td></tr>
+  <tr><td class="total">The +$690 season becomes</td><td class="n neg total">about zero, or negative</td></tr>
+</table>
+<p>The season has less variance and no money. Kelly sizing already priced the variance you are supposed to carry. Do not pay a second time to remove it.</p>
+
+<h3>When it goes wrong, case two: hold through news</h3>
+<p>Minner again. The line moves 13 points in four hours. You have no sportsbook feed, so it looks like a price move and your rule says hold on price moves. The fighter loses in round one. That is −$60 on 100 contracts instead of about −$13 to have flattened when the move began. Without a live consensus feed you cannot tell sharp money from noise, and the rule collapses to "hold everything," which is survivable at route-1 sizing and fatal at route-3 sizing.</p>
+
+<h3>When it goes wrong, case three: the settlement nobody warned you about</h3>
+<p>A draw or no contest settles at 50¢ for both sides on Kalshi. A sportsbook would have voided the bet and returned the stake.</p>
+<table>
+  <tr><th>Line</th><th class="n">Dollars</th></tr>
+  <tr><td>Bought 100 YES at 76¢ on a heavy favourite, posted, no fee</td><td class="n neg">−76.00</td></tr>
+  <tr><td>Eye poke in round two, no contest, settles at 50¢</td><td class="n pos">+50.00</td></tr>
+  <tr><td class="total">Net</td><td class="n neg total">−26.00</td></tr>
+</table>
+<p class="small">About 2.1% of UFC bouts since 2022 ended in a no contest or draw. On favourites bought near 65¢ that is a tax of about 0.3 points per bet that the backtest never charged, and it falls only on the favourite's side. Three more settlement facts change how inventory behaves: a bout postponed by up to two weeks stays open; a bout cancelled or pushed further is settled at an exchange-determined fair price, not refunded; and the market keeps trading through the fight, so someone with a faster broadcast feed than yours is repricing your position mid-round.</p>
+
+<div class="callout keep">
+  <div class="head">Inventory rules that survive contact</div>
+  <ul>
+    <li><b>Cap per fight before you post.</b> The route-1 Kelly stake at the shrunk edge. No route may exceed it.</li>
+    <li><b>Cap per card.</b> Fights on one night resolve within hours of each other. Hold total exposure per card to about three fights' worth.</li>
+    <li><b>Mark to the consensus, not to Kalshi.</b> Unrealized profit and loss is measured against the sharp books' de-vigged probability.</li>
+    <li><b>Build your own dead-man's switch.</b> Order groups cap what a set of orders can trade in a rolling 15-second window; a cancel-all endpoint pulls every resting order in one call; a watchdog separate from the trader calls it when the heartbeat stops.</li>
+    <li><b>Log every decision with the consensus at that moment.</b></li>
+  </ul>
+</div>
+</section>
+
+<!-- SUMMARY -->
+<section class="route">
+<div class="eyebrow">The four routes side by side</div>
+<h2>What each one earns, what kills it, and the rule</h2>
+<p>Dollar figures are from the shared example: 100 contracts on Fighter A, book 60/61, shrunk fair 68¢.</p>
+<table>
+  <tr><th style="width:13%">Route</th><th style="width:22%">You earn</th><th style="width:20%">You pay</th><th style="width:22%">What ends it</th><th>The rule</th></tr>
+  <tr><td>1 Taking</td><td>The model's edge, net. +$37.33 on the example. About +7.9% per bet on the replay.</td><td>Spread plus fee, about 2.7 points at these prices. Paid twice if you exit early.</td><td>Betting the model's raw probability on long dogs. Under 40¢ the real edge is below the cost.</td><td>Shrink by the fitted slope, refit each retrain. Log CLV from the first trade.</td></tr>
+  <tr><td>2 Posting</td><td>Edge plus half the spread, no fee. +$40.00 on the example. About +14.2% per bet if fills come.</td><td>Orders that never fill, and fills that arrive because news went against you.</td><td>An order left resting through a weigh-in miss or a late replacement.</td><td>Cancel on a consensus move against you. Watchdog with cancel-all. Size so one adverse fill is a normal bet.</td></tr>
+  <tr><td>3 Quoting</td><td>Half a cent per fill. +$1.00 per round trip, +$50 on a good week at this size.</td><td>Every fill that precedes a move. One 5¢ move costs ten spread captures.</td><td>Quoting off the model, or off a feed slower than the other makers'.</td><td>Consensus as fair. Inventory cap equal to the route-1 stake. Do not run it until the lag is measured.</td></tr>
+  <tr><td>4 Inventory</td><td>Nothing. Keeps what the others made: $52.26 on the example.</td><td>About 2.75¢ per contract to flatten at mid prices.</td><td>Flattening on noise. It refunds the model's whole edge.</td><td>News: exit. Noise: hold. Sharp money: re-shrink and re-test. A live sportsbook feed to tell them apart.</td></tr>
+</table>
+
+<div class="callout amber">
+  <div class="head">The one-sentence answer, from the playbook</div>
+  <p>At the prices this model actually bets, a taker on Kalshi needs about 2.5 to 3 points of real edge and a maker needs none; the model has about 8 on average and about 1 on long dogs; so the fee is beaten everywhere except where the model is most sure of itself.</p>
+</div>
+
+<h3>Where the numbers come from, and what they are not</h3>
+<p class="small">Fee formula: Kalshi's schedule effective 7 July 2026, confirmed against the exchange API for the UFC fight-winner series on 2026-09-02. Realized edges by price band, ROI per bet by execution route and the variance figures: the playbook's replay of 175 tier-2 walk-forward bets through the production sizing rule, 2024-01 to 2026-07; the 0.6 shrink is the fitted slope on those bets. The Minner line move and the 50/50 draw settlement are from the sources the playbook cites. The fighters, the 60/61 book, the weigh-in miss and every fill are illustrative, chosen so the arithmetic is the playbook's, not so the outcomes are typical. Kalshi accepts US residents only, geofences sports contracts by state, and excludes Canada.</p>
+</section>
+
+</body>
+</html>
