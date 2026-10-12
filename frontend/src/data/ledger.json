@@ -1,1 +1,50 @@
-[]
+[
+ {
+  "event": "UFC Fight Night: Allen vs. Duncan",
+  "event_date": "2026-10-10",
+  "generated": "2026-10-10T09:29:39",
+  "fighter": "Christian Leroy Duncan",
+  "opponent": "Brendan Allen",
+  "odds": 120,
+  "model_prob": 0.5156,
+  "market_prob": 0.438,
+  "edge": 0.0777,
+  "kelly": 0.112,
+  "stake_pct": 0.56,
+  "result": "loss",
+  "pnl_per_unit": -1.0,
+  "graded": "2026-10-12T02:17:06"
+ },
+ {
+  "event": "UFC Fight Night: Allen vs. Duncan",
+  "event_date": "2026-10-10",
+  "generated": "2026-10-10T09:29:39",
+  "fighter": "Kai Kamaka III",
+  "opponent": "Andre Fili",
+  "odds": 130,
+  "model_prob": 0.5133,
+  "market_prob": 0.417,
+  "edge": 0.0963,
+  "kelly": 0.1389,
+  "stake_pct": 0.69,
+  "result": "loss",
+  "pnl_per_unit": -1.0,
+  "graded": "2026-10-12T02:17:06"
+ },
+ {
+  "event": "UFC Fight Night: Allen vs. Duncan",
+  "event_date": "2026-10-10",
+  "generated": "2026-10-10T09:29:39",
+  "fighter": "Francisco Prado",
+  "opponent": "Ismael Bonfim",
+  "odds": -110,
+  "model_prob": 0.6188,
+  "market_prob": 0.5,
+  "edge": 0.1188,
+  "kelly": 0.1996,
+  "stake_pct": 1.0,
+  "result": "win",
+  "pnl_per_unit": 0.9091,
+  "graded": "2026-10-12T02:17:06"
+ }
+]
